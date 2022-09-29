@@ -40,24 +40,28 @@
             <artifactId>spring-jdbc</artifactId>
             <version>5.2.5.RELEASE</version>
         </dependency>
+
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
             <version>5.0.0</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+
         <!-- servlet-api -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -65,6 +69,7 @@
             <version>${javax.servlet-api-version}</version>
             <scope>provided</scope>
         </dependency>
+
         <!-- jsp-api -->
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
@@ -72,12 +77,14 @@
             <version>${javax.servlet.jsp-api-version}</version>
             <scope>provided</scope>
         </dependency>
+
         <!-- jstl-api -->
         <dependency>
             <groupId>javax.servlet.jsp.jstl</groupId>
             <artifactId>jstl-api</artifactId>
             <version>${javax.servlet.jsp.jstl-api-version}</version>
         </dependency>
+
         <!--junit-->
         <dependency>
             <groupId>junit</groupId>
@@ -85,25 +92,28 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>1.6.8</version>
-            <scope>runtime</scope>
         </dependency>
+
         <!--json-->
-        <dependency>
+        <!--<dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20200518</version>
-        </dependency>
+        </dependency>-->
+
         <!-- jsonsimple-->
         <dependency>
             <groupId>com.googlecode.json-simple</groupId>
             <artifactId>json-simple</artifactId>
             <version>1.1.1</version>
         </dependency>
+
         <!--lombok-->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -119,13 +129,11 @@
             <version>3.5.6</version>
         </dependency>
 
-
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
             <version>1.2.2</version>
         </dependency>
-
 
         <dependency>
             <groupId>commons-dbcp</groupId>

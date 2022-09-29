@@ -1,0 +1,4 @@
+package com.project.club.controller;
+
+public class ClubRestController {
+}
