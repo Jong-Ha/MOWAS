@@ -9,20 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="설정">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/asdf.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/context-aspect.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/context-aspect.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/context-common.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/context-common.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/context-transaction.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/context-transaction.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/jdbc.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/mybatis-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/sql-mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/config/common-servlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/config/springMVC/common-servlet.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/config/dispatcher-servlet.xml" beforeDir="false" />
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="2022.09.29 LJH&#10;도메인 및 기본 컨트롤러, Dao, Service 생성&#10;xml 좀 수정">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +21,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -62,7 +52,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="LJH" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -85,7 +75,7 @@
     </option>
   </component>
   <component name="ProjectId" id="2FQs3apI0NpYv5zSPVEuuaqWJTI" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -97,25 +87,31 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/MainProject/MOWAS/src/main/resources/sql",
+    "last_opened_file_path": "C:/MainProject/MOWAS/src/test/java",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.75258917",
-    "settings.editor.selected.configurable": "preferences.intentionPowerPack"
+    "settings.editor.selected.configurable": "advanced.settings"
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
       "oracle"
+    ],
+    "com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect": [
+      "OracleSqlPlus"
     ]
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\MainProject\MOWAS\src\test\java" />
+      <recent name="C:\MainProject\MOWAS\src\main\webapp\resources\uploadFiles" />
       <recent name="C:\MainProject\MOWAS\src\main\resources\sql" />
       <recent name="C:\MainProject\MOWAS\src\main\java\com\project\community\service" />
       <recent name="C:\MainProject\MOWAS\src\main\java\com\project\club\dao" />
-      <recent name="C:\MainProject\MOWAS\src\main\webapp\common\error" />
-      <recent name="C:\MainProject\MOWAS\src\test\java" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\MainProject\MOWAS\src\main\webapp\config\springMVC" />
@@ -230,7 +226,7 @@
       <option name="presentableId" value="Default" />
       <updated>1664435445915</updated>
       <workItem from="1664435447388" duration="3000" />
-      <workItem from="1664435463764" duration="13877000" />
+      <workItem from="1664435463764" duration="22015000" />
     </task>
     <task id="LOCAL-00001" summary="설정">
       <created>1664436990723</created>
@@ -246,7 +242,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664437319693</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="2022.09.29 LJH&#10;도메인 및 기본 컨트롤러, Dao, Service 생성&#10;xml 좀 수정">
+      <created>1664450692710</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1664450692710</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -285,7 +288,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
@@ -336,6 +339,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="설정" />
-    <option name="LAST_COMMIT_MESSAGE" value="설정" />
+    <MESSAGE value="2022.09.29 LJH&#10;도메인 및 기본 컨트롤러, Dao, Service 생성&#10;xml 좀 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="2022.09.29 LJH&#10;도메인 및 기본 컨트롤러, Dao, Service 생성&#10;xml 좀 수정" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
