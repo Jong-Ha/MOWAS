@@ -40,7 +40,7 @@
         </div>
         <nav>
             <ul>
-                <li><a href="">로그인</a></li>
+                <li><a href="">로그인</a></li> s
                 <li><a href="">모임 관리</a></li>
                 <li><a class="commu">커뮤니티</a></li>
                 <li><a href="">중고 거래</a></li>

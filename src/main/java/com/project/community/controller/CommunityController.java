@@ -10,6 +10,6 @@ public class CommunityController {
     @RequestMapping("/")
     public String Calender(){
 
-        return "/view/community/addVillBoard.jsp";
+        return "/view/community/calender.jsp";
     }
 }

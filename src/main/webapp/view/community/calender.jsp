@@ -1,16 +1,209 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: BACK
-  Date: 2022-09-29
-  Time: ì˜¤í›„ 8:49
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<link rel="stylesheet" href="/css/fullcalendar-5.11.3/lib/main.css">
+<script type="text/javascript"
+	src="/resources/OpenSource/fullcalendar-5.11.3/lib/main.js"></script>
+<script type="text/javascript"
+	src="/css/fullcalendar-5.11.3/lib/main.min.js"></script>
+
+<script>
+
+    var calendar = null;
+
+    $(document).ready(function() {
+        var Calendar = FullCalendar.Calendar;
+        var Draggable = FullCalendar.Draggable;
+
+        var containerEl = document.getElementById('external-events');
+        var calendarEl = document.getElementById('calendar');
+        var checkbox = document.getElementById('drop-remove');
+
+        
+		
+        // initialize the external events
+        // -----------------------------------------------------------------
+        new Draggable(containerEl, {
+        itemSelector: '.fc-event',
+        eventData: function(eventEl) {
+            return {
+            title: eventEl.innerText
+            };
+        }
+    	
+        });
+
+        // initialize the calendar
+        // -----------------------------------------------------------------
+        calendar = new Calendar(calendarEl, {
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+        editable: true,  // ¼öÁ¤°¡´É ¿©ºÎ
+        droppable: true, // µå·¹±× µå¶ø ¿©ºÎ
+        drop: function(info) {
+            // is the "remove after drop" checkbox checked?
+            if (checkbox.checked) {
+            // if so, remove the element from the "Draggable Events" list
+            info.draggedEl.parentNode.removeChild(info.draggedEl);
+            }
+        },
+     
+        locale : 'ko' 
+    });
+
+    calendar.render();
+  });
+
+    
+//ÀÏÁ¤ ÀúÀå ÇÏ±â    
+  $(function(){
+
+    $(".allSave").on("click", function(){
+
+       var allEevent = calendar.getEvents();// calenderÀÇ ¸ðµç eventÀÇ Á¤º¸¸¦ arrayÇüÅÂ·Î °¡Á®¿Â´Ù.
+
+       var event = new Array();
+
+        for (let i = 0; i < allEevent.length; i++) {
+      
+            var obj = new Object();
+
+             obj.title = allEevent[i]._def.title// ÀÌº¥Æ® ¸íÄª
+             obj.allday = allEevent[i]._def.allDay// ÇÏ·çÁ¾ÀÏÀÎÁö ¾Ë·ÁÁÖ´Â boolen°ª t/f
+             obj.start = allEevent[i]._instance.range.start; // ½ÃÀÛ ½Ã°£
+             obj.end = allEevent[i]._instance.range.end; //³¡½Ã°£
+
+             event.push(obj); // data¸¦ jsonÀ¸·Î ¸¸µé°í Array°´Ã¼¿¡ Áý¾î ³Ö±â
+        }
+
+        var JSONData = JSON.stringify(event);
+        
+           console.log(JSONData);
+
+     	   savedata(JSONData);
+    });
+    
+ });
+
+  function savedata(JSONData){
+	  
+	  alert("ÀÏÁ¤À» ÀúÀåÇÕ´Ï´Ù");
+	
+	  var JSONData = JSONData
+	  
+	  //console.log(JSONData);
+	  
+        $.ajax({
+            url  : "/user/json/calender",
+            method : "POST",
+			contentType : 'application/json; charset=utf-8',
+			dataType	: "json",
+            data : JSON.stringify({
+            	data : JSONData
+            }),
+            type : "text",
+            
+            success : function (JSONData, status) {
+        	alert(status);
+        	
+            } 
+		
+       });		      
+		 
+  }; 
+ 
+  
+  //ÀÏÁ¤ Ãß°¡ ÇÏ±â
+  $(function () {
+	  
+	  $(".addDay").on("click", function() {	
+		   var dateStr = prompt('Enter a date in YYYY-MM-DD format');
+           var date = new Date(dateStr + 'T00:00:00'); // ÀÔ·ÂÇÒ ½Ã°£
+
+           
+           if (!isNaN(date.valueOf())) { // ÀÔ·ÂÇÒ ½Ã°£ÀÌ valueCheck
+               calendar.addEvent({
+                 title: dataTitle,
+                 start: date,
+                 Text: dateText,
+                 allDay: true
+               });
+               alert('Great. Now, update your database...');
+             } else {
+               alert('Invalid date.');
+             }           
+           
+	  });
+	  
+});	
+
+
+  
+
+
+
+</script>
+
+<style>
+.fc-event {
+	margin-top: 5px;
+	cursor: pointer;
+}
+</style>
 </head>
 <body>
-    dddd
+
+	<div class='demo-topbar'>
+
+		<div id='external-events'
+			style="float: left; width: 20%; margin-top: 75px; padding: 5px;">
+
+			<p>
+				<strong>ÀÏÁ¤ ¸ñ·Ï</strong>
+			</p>
+
+			<div
+				class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+				<div class='fc-event-main'>My Event 1</div>
+			</div>
+			<div
+				class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+				<div class='fc-event-main'>My Event 2</div>
+			</div>
+			<div
+				class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+				<div class='fc-event-main'>My Event 3</div>
+			</div>
+			<div
+				class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+				<div class='fc-event-main'>My Event 4</div>
+			</div>
+			<div
+				class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+				<div class='fc-event-main'>My Event 5</div>
+			</div>
+
+			<p>
+				<input type='checkbox' id='drop-remove' /> <label for='drop-remove'>µå·¹±×
+					ÈÄ Á¦°Å</label>
+			</p>
+		</div>
+
+		<div id='calendar-container' style="float: left; width: 75%;">
+			<div
+				style="height: 30px; text-align: center; font-size: 30px; font-weight: bold; color: rgba(69, 69, 199, 0.721); margin-bottom: 20px;">³ªÀÇ ÀÏÁ¤</div>
+			<input type="button" class="allSave" value="ÀüÃ¼ ÀúÀå">
+			<input type="button" class="addDay" value="ÀÏÁ¤ Ãß°¡">
+			<div id='calendar'></div>
+
+		</div>
+	</div>
+</body>
+</html>
+
 </body>
 </html>
