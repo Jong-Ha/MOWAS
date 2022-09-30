@@ -10,19 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="설정">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/asdf.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/context-aspect.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/context-aspect.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/context-common.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/context-common.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/context-transaction.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/context-transaction.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/jdbc.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/mybatis-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/sql-mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/config/common-servlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/config/springMVC/common-servlet.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/config/dispatcher-servlet.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f7a91aff-821b-48e5-9fda-effb58878c53.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f7a91aff-821b-48e5-9fda-effb58878c53.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/a.jsp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +28,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="LJH" />
+    <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
     <excluded-from-favorite>
@@ -97,7 +87,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/MainProject/MOWAS/src/main/resources/sql",
+    "last_opened_file_path": "C:/Devspace/MOWAS/src/main/webapp/view/community",
+    "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.75258917",
@@ -111,11 +102,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community" />
       <recent name="C:\MainProject\MOWAS\src\main\resources\sql" />
       <recent name="C:\MainProject\MOWAS\src\main\java\com\project\community\service" />
       <recent name="C:\MainProject\MOWAS\src\main\java\com\project\club\dao" />
       <recent name="C:\MainProject\MOWAS\src\main\webapp\common\error" />
-      <recent name="C:\MainProject\MOWAS\src\test\java" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\MainProject\MOWAS\src\main\webapp\config\springMVC" />
@@ -285,7 +276,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="origin/ASK" />
                       </list>
                     </value>
                   </entry>
@@ -336,6 +327,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="설정" />
-    <option name="LAST_COMMIT_MESSAGE" value="설정" />
+    <MESSAGE value="BJW 2022.09.30&#10;&#10;mian.jsp / js파일/ css파일 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="BJW 2022.09.30&#10;&#10;mian.jsp / js파일/ css파일 추가" />
   </component>
 </project>
