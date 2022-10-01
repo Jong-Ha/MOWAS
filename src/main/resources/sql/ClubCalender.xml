@@ -1,0 +1,38 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ClubCalenderMapper">
+
+    <resultMap id="clubCalender" type="clubCalender">
+        <result property="clubCalenderNum"    column="club_calender_num"    jdbcType="INTEGER"/>
+        <result property="clubNum"            column="club_num"             jdbcType="INTEGER"/>
+        <result property="regDate"            column="reg_date"              jdbcType="DATE"/>
+        <result property="calenderTitle"      column="calender_title"       jdbcType="VARCHAR"/>
+        <result property="calenderText"       column="calender_text"        jdbcType="VARCHAR"/>
+        <result property="clubDate"           column="club_date"            jdbcType="DATE"/>
+        <result property="location"           column="location"             jdbcType="VARCHAR"/>
+        <result property="noticeCheck"        column="notice_check"         jdbcType="VARCHAR"/>
+        <result property="noticeTime"         column="notice_time"          jdbcType="VARCHAR"/>
+        <result property="calendarApplyCheck" column="calendar_apply_check" jdbcType="VARCHAR"/>
+        <result property="applyAutoCheck"     column="apply_auto_check"     jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="addClubCalender" parameterType="clubCalender">
+        INSERT INTO
+            club_calender(club_calender_num, club_num,regDate,calender_title,
+                                  calender_text,club_date,location,notice_check,noticeTime,calendarApplyCheck,applyAutoCheck)
+            values(clubCalenderNum
+                ,clubNum
+                ,SYSDATE
+                ,calenderTitle
+                ,calenderText
+                ,clubDate
+                ,location
+                ,noticeCheck
+                ,noticeTime
+                ,calendarApplyCheck
+                ,applyAutoCheck)
+    </insert>
+
+</mapper>
