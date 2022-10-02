@@ -5,6 +5,11 @@
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/community/addCalender.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/community" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/community/calender.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/community" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/community/clubPage.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/community" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/community/get/getClubCalenderReview.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/community/get" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/community/list/Community.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/community/list" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/community/list/clubCalenderReviewList.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/community/list" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/community/list/villBoardList.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/community/list" />
       </map>
     </option>
   </component>

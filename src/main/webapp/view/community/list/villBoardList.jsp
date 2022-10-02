@@ -66,8 +66,8 @@
             })
         });
 
-        $(".get").on("click" ,function () {
-            location.href= "/commu/getVillBoard";
+        $(".get").on("click", function () {
+            location.href = "/commu/getVillBoard";
         })
     });
 
@@ -76,12 +76,12 @@
 
     $(function () {
 
-        $(".villBoard").on("click",function() {
+        $(".villBoard").on("click", function () {
             alert("우리 동네 게시판으로 이동");
             location.href = "/commu/villBoardList";
         });
 
-        $(".clubCalenderReview").on("click", function (){
+        $(".clubCalenderReview").on("click", function () {
             alert("모임 일정 후기글 게시판으로 이동")
             location.href = "/commu/clubCalenderReviewList"
         });
@@ -91,7 +91,7 @@
             location.href = "/commu/clubCalenderReviewShortList"
         })
 
-        $(".publicText").on("click",function () {
+        $(".publicText").on("click", function () {
             alert("인기글 목록으로 이동");
             location.href = "/commu/"
         });
@@ -127,13 +127,14 @@
         background-color: #fff;
     }
 
-    .add{
+    .add {
         font-size: 0.1em;
         margin-right: -850px;
         margin-bottom: 15px;
     }
+
     .update,
-    .delete{
+    .delete {
         font-size: 0.5em;
     }
 </style>
@@ -331,4 +332,5 @@
 Installation
 For information on how to install and use Bootstrap for Sass, consult the GitHub repository readme. It's the most up to
 date source and includes information for use with Rails, Compass, and standard Sass projects.
+</body>
 </html>

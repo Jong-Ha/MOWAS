@@ -107,6 +107,17 @@ CREATE TABLE club_calender
     apply_auto_check     CHAR(1)
 );
 
+CREATE TABLE likes
+(
+    like_num       NUMBER PRIMARY KEY,
+    user_id        VARCHAR2(20) REFERENCES users(user_id),
+    board_category CHAR(2),
+    board_num      NUMBER,
+    like_check     CHAR
+);
+
+
+
 CREATE TABLE vill_board
 (
     vill_board_num NUMBER PRIMARY KEY,
@@ -119,17 +130,6 @@ CREATE TABLE vill_board
     view_count     NUMBER,
     like_count     NUMBER,
     board_category CHAR
-);
-
-
-
-CREATE TABLE likes
-(
-    like_num       NUMBER PRIMARY KEY,
-    user_id        VARCHAR2(20) REFERENCES users(user_id),
-    board_category CHAR(2),
-    board_num      NUMBER,
-    like_check     CHAR
 );
 
 CREATE TABLE comments
