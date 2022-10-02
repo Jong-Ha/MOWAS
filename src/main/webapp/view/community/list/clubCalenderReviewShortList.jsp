@@ -19,9 +19,9 @@
 <script type="text/javascript">
     $(function () {
 
-        $(".get").on("click", function () {
+        $(".add").on("click", function () {
 
-            window.open("/view/community/addClubCalenderReviewShort.jsp", "모임 일정 후기글 작성",
+            window.open("/view/community/add/addClubCalenderReviewShort.jsp", "모임 일정 후기글 작성",
                 "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
         });
 

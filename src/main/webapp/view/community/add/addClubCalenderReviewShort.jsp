@@ -56,7 +56,8 @@
                     timer: 1500,
                 });
 
-                //$("form").attr("method", "post").attr("action", "/commu/addClubCalender").submit();
+                $("form").attr("method", "post").attr("action", "/clubcal/addClubCalenderReviewShort")
+                    .attr("enctype", "multipart/form-data").submit();
 
             });
 
@@ -94,7 +95,7 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
                     <strong>파일
-                        <input type="file" value="영상 첨부">
+                        <input type="file" name="file" value="영상 첨부">
                     </strong>
                 </div>
             </div>
@@ -115,7 +116,7 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
                     <strong>모임 일정 날짜
-                        <input type="date" name="" value="모임 일정 날짜">
+                        <input type="date" name="clubCalenderDate" value="모임 일정 날짜">
                     </strong>
                 </div>
             </div>
