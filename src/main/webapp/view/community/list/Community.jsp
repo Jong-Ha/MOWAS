@@ -37,6 +37,10 @@
             location.href = "../../.."
         });
 
+        $(".calender").on("click", function () {
+            location.href="/view/community/calender.jsp";
+        })
+
     });
 </script>
 
@@ -146,6 +150,7 @@
 
     <nav class="shadow-lg navbar navbar-expand-lg bg-light" style="margin-bottom: 50px;">
         <button type="button" class="btn btn-primary btnlf publicText">인기 모임글</button>
+        <button type="button" class="btn btn-outline-secondary btnlf calender">캘린더</button>
         <button type="button" class="btn btn-outline-warning btnlf clubCalenderReview">모임 일정 후기</button>
         <button class="btn btn-outline-success btnlf clubCalenderReviewShort" type="submit">모임 일정 쇼츠</button>
         <button type="button" class="btn btn-outline-danger btnlf villBoard">우리 동네 게시글</button>
