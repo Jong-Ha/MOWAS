@@ -23,6 +23,7 @@
     </resultMap>
 
     <!--clubService.addClub-->
+    <!--모임 만들기-->
     <insert id="addClub" parameterType="com.project.domain.Club">
         INSERT
         INTO club(
@@ -55,6 +56,7 @@
                )
     </insert>
 
+    <!--모임장 등록-->
     <insert id="addClubMaster" parameterType="com.project.domain.Club">
     INSERT
     INTO club_user(
@@ -75,7 +77,8 @@
     SYSDATE
     )
     </insert>
-    
+
+    <!--새 모임의 모임번호 찾기-->
     <sql id="getNewClubNum">
         SELECT * 
         FROM (SELECT club_num 
@@ -84,7 +87,8 @@
               ORDER BY club_num DESC) 
         WHERE ROWNUM = 1
     </sql>
-    
+
+    <!--새모임 상세 조회-->
     <select id="getNewClub" parameterType="com.project.domain.Club" resultMap="ClubResultMap">
         SELECT *
         FROM (SELECT club_num,
@@ -106,13 +110,99 @@
     </select>
 
     <!--clubService.updateClub-->
+    <!--모임 정보 수정-->
     <update id="updateClub" parameterType="com.project.domain.Club">
         UPDATE club
         <set>
-
+            club_name = #{clubName},
+            club_text = #{clubText},
+            vill_code = #{villCode},
+            club_image = #{clubImage},
+            gather_check = #{gatherCheck},
+            club_tag = #{tag}
         </set>
         <where>
             club_num = #{clubNum}
         </where>
     </update>
+
+    <!--clubService.getClub-->
+    <!--모임 상세 조회-->
+    <select id="getClub" parameterType="int" resultMap="ClubResultMap">
+        SELECT club_num,
+               club_master_id,
+               inter_list,
+               club_name,
+               club_text,
+               vill_code,
+               current_cluber,
+               club_create_date,
+               club_image,
+               gather_check,
+               club_tag,
+               club_delete_check
+        FROM club
+        WHERE club_num = #{value}
+    </select>
+
+    <!--clubService.deleteClub-->
+    <!--모임 삭제-->
+    <update id="deleteClub" parameterType="int">
+        UPDATE club
+        <set>
+            club_delete_check = '1'
+        </set>
+        <where>
+            club_num = #{value}
+        </where>
+    </update>
+
+    <!--clubService.listClub-->
+    <!--리스트 조건걸어서 찾기-->
+
+    <!--clubService.addClubApply-->
+    <!--모임 신청-->
+    <!--이미 탈퇴했었으면 새로운 레코드 등록-->
+    <insert id="addClubApply" parameterType="com.project.domain.Cluber">
+        INSERT
+        INTO club_user(
+            club_user_num,
+            user_id,
+            user_image,
+            club_num,
+            cluber_text,
+            cluber_status,
+            club_apply_date
+        ) VALUES(
+                    seq_club_user.nextval,
+                    #{user.userId},
+                    #{user.userImage},
+                    #{clubNum},
+                    #{cluberText},
+                    '2',
+                    SYSDATE
+                )
+    </insert>
+
+    <!--clubService.updateClubApply-->
+    <!--찾아올때는 신청상태랑 아이디랑 모임번호로 들고오자-->
+    <update id="updateClubApply" parameterType="com.project.domain.Cluber">
+        UPDATE club_user
+        <set>
+            club_user_num = #{clubUserNum},
+            cluber_text = #{cluberText}
+        </set>
+        <where>
+            club_num = #{clubNum}
+        </where>
+    </update>
+
+    <!--clubService.deleteClubApply-->
+    <!--넘버로 삭제 안됨 수정 필요-->
+    <delete id="deleteClubApply" parameterType="com.project.domain.Cluber">
+        DELETE club_user
+        <where>
+            club_user_num = #{clubUserNum}
+        </where>
+    </delete>
 </mapper>

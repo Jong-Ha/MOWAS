@@ -28,9 +28,41 @@ public class ClubServiceTest {
         club.setClubImage("이미지");
         club.setTag("#asdf #qwer #zxcv");
 
-        Club result = new Club();
+        Club result = clubService.addClub(club);
 
-        result = clubService.addClub(club);
+        System.out.println(result);
+    }
+
+    @Test
+    public void updateClub(){
+        Club club = new Club();
+        club.setClubNum(10008);
+        club.setGatherCheck("0");
+        club.setClubName("clubName");
+        club.setClubText("clubText");
+        club.setVillCode("역삼1동");
+        club.setClubImage("미지미지");
+        club.setTag("#tag1 #tag2 #tag3");
+
+        Club result = clubService.updateClub(club);
+
+        System.out.println(result);
+    }
+
+    @Test
+    public void deleteClub(){
+        Club club = new Club();
+        club.setClubNum(10008);
+
+        clubService.deleteClub(club);
+    }
+
+    @Test
+    public void getClub(){
+
+        int clubNum = 10008;
+
+        Club result = clubService.getClub(clubNum);
 
         System.out.println(result);
     }

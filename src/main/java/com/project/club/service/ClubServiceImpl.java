@@ -19,4 +19,20 @@ public class ClubServiceImpl implements ClubService {
         clubDao.addClubMaster(club);
         return clubDao.getClub(club);
     }
+
+    @Override
+    public Club updateClub(Club club) {
+        clubDao.updateClub(club);
+        return clubDao.getClub(club.getClubNum());
+    }
+
+    @Override
+    public void deleteClub(Club club) {
+        clubDao.deleteClub(club);
+    }
+
+    @Override
+    public Club getClub(int clubNum) {
+        return clubDao.getClub(clubNum);
+    }
 }

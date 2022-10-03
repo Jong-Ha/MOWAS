@@ -30,7 +30,7 @@ public class ClubDaoImpl implements ClubDao {
 
     @Override
     public void deleteClub(Club club) {
-        sqlSession.delete("ClubMapper.deleteClub",club);
+        sqlSession.update("ClubMapper.deleteClub",club.getClubNum());
     }
 
     @Override
