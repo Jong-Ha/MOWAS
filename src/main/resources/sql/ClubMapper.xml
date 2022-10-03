@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ClubMapper">
+
+    <resultMap type="com.project.domain.Club" id="ClubResultMap">
+        <result property="clubNum"			column="club_num"           jdbcType="INTEGER"/>
+        <result property="clubMasterId"		column="club_master_id"		jdbcType="VARCHAR"/>
+        <result property="interList"		column="inter_list"		    jdbcType="CHAR"/>
+        <result property="clubName"			column="club_name"			jdbcType="VARCHAR"/>
+        <result property="clubText"			column="club_text"		    jdbcType="VARCHAR"/>
+        <result property="villCode"			column="vill_code"		    jdbcType="CHAR"/>
+        <result property="currentCluber"	column="current_cluber"		jdbcType="INTEGER"/>
+        <result property="clubCreateDate"	column="club_create_date"	jdbcType="DATE"/>
+        <result property="clubImage"		column="club_image"			jdbcType="VARCHAR"/>
+        <result property="gatherCheck"		column="gather_check"		jdbcType="CHAR"/>
+        <result property="tag"			    column="club_tag"			jdbcType="VARCHAR"/>
+        <result property="clubDeleteCheck"	column="club_delete_check"	jdbcType="CHAR"/>
+        <result property="likeCheck"		column="like_check"	        jdbcType="CHAR"/>
+    </resultMap>
+
+    <!--clubService.addClub-->
+    <insert id="addClub" parameterType="com.project.domain.Club">
+        INSERT
+        INTO club(
+                  club_num,
+                  club_master_id,
+                  inter_list,
+                  club_name,
+                  club_text,
+                  vill_code,
+                  current_cluber,
+                  club_create_date,
+                  club_image,
+                  gather_check,
+                  club_tag,
+                  club_delete_check
+                  )
+        VALUES (
+                seq_club.NEXTVAL,
+                #{clubMasterId:VARCHAR},
+                #{interList:CHAR},
+                #{clubName:VARCHAR},
+                #{clubText:VARCHAR},
+                #{villCode:CHAR},
+                1,
+                SYSDATE,
+                #{clubImage:VARCHAR},
+                1,
+                #{tag:VARCHAR},
+                0
+               )
+    </insert>
+
+    <insert id="addClubMaster" parameterType="com.project.domain.Club">
+    INSERT
+    INTO club_user(
+    club_user_num,
+    user_id,
+    user_image,
+    club_num,
+    cluber_status,
+    club_reg_date,
+    club_apply_date
+    ) VALUES(
+    seq_club_user.nextval,
+    #{clubMasterId:VARCHAR},
+    (SELECT user_image FROM users WHERE user_id = #{clubMasterId}),
+    (<include refid="getNewClubNum"/>),
+    '6',
+    SYSDATE,
+    SYSDATE
+    )
+    </insert>
+    
+    <sql id="getNewClubNum">
+        SELECT * 
+        FROM (SELECT club_num 
+              FROM club 
+              WHERE club_master_id = #{clubMasterId} 
+              ORDER BY club_num DESC) 
+        WHERE ROWNUM = 1
+    </sql>
+    
+    <select id="getNewClub" parameterType="com.project.domain.Club" resultMap="ClubResultMap">
+        SELECT *
+        FROM (SELECT club_num,
+                     club_master_id,
+                     inter_list,
+                     club_name,
+                     club_text,
+                     vill_code,
+                     current_cluber,
+                     club_create_date,
+                     club_image,
+                     gather_check,
+                     club_tag,
+                     club_delete_check
+              FROM club
+              WHERE club_master_id = #{clubMasterId}
+              ORDER BY club_num DESC)
+        WHERE ROWNUM = 1
+    </select>
+
+    <!--clubService.updateClub-->
+    <update id="updateClub" parameterType="com.project.domain.Club">
+        UPDATE club
+        <set>
+
+        </set>
+        <where>
+            club_num = #{clubNum}
+        </where>
+    </update>
+</mapper>
