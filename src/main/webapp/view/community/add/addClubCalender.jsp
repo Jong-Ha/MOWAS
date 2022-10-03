@@ -48,15 +48,19 @@
 
             $(".submit").on("click", function () {
 
+                console.log("이거 왜 안되냐");
+
+                $("form").attr("method", "post").attr("action", "/clubcal/addClubCalender") .attr("enctype", "multipart/form-data").submit();
+
+
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
                     title: 'Your work has been saved',
                     showConfirmButton: false,
-                    timer: 1500,
+                    timer: 1500
                 });
 
-               // $("form").attr("method", "post").attr("action", "/commu/addClubCalender").submit();
 
             });
 
@@ -127,7 +131,7 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
                     <strong>파일
-                        <input type="file" value="파일 첨부">
+                        <input type="file" name="file" value="파일 첨부">
                     </strong>
                 </div>
             </div>

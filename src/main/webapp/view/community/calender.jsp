@@ -23,6 +23,10 @@
 
         // initialize the external events
         // -----------------------------------------------------------------
+
+        var all_events = null;
+
+        all_events = lodinCalender();
         new Draggable(containerEl, {
             itemSelector: '.fc-event',
             eventData: function (eventEl) {
@@ -43,6 +47,7 @@
             },
             editable: true,  // 수정가능 여부
             droppable: true, // 드레그 드랍 여부
+            events  : all_events,
             drop: function (info) {
                 // is the "remove after drop" checkbox checked?
                 if (checkbox.checked) {
@@ -87,6 +92,23 @@
         });
 
     });
+
+    function lodinCalender(){
+
+        $.ajax({
+            url: "/clubcal/json/getCalender",
+            method: "POST",
+            contentType: 'application/json; charset=utf-8',
+            dataType: "json",
+            data: {},
+            type: "text",
+
+            success: function (JSONData, status) {
+                alert(status);
+
+            }
+        });
+    }
 
     function savedata(JSONData) {
 
@@ -139,7 +161,7 @@
             alert("리뷰창 오픈 ");
 
             var pop = window.open(
-             "/view/community/addClubCalender.jsp","리뷰페이지",
+             "/view/community/add/addClubCalender.jsp","리뷰페이지",
                 "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
 
 

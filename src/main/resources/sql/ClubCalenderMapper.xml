@@ -36,19 +36,18 @@
     <!--모임 일정 -->
     <insert id="addClubCalender"    parameterType="clubCalender">
         INSERT INTO
-            club_calendar(club_calender_num, club_num,regDate,calender_title,
-                                  calender_text,club_date,location,notice_check,noticeTime,calendarApplyCheck,applyAutoCheck)
-            values(seq_club_calender.NEXTVAL
-                ,${clubNum}
+            club_calendar(club_calender_num, club_num,reg_date,calender_title,calender_text,club_date,location,notice_check,notice_time,calendar_apply_check,apply_auto_check)
+            values(  SEQ_CLUB_CALENDAR.nextval
+                ,#{clubNum}
                 ,SYSDATE
-                ,${calenderTitle}
-                ,${calenderText}
-                ,${clubDate}
-                ,${location}
-                ,${noticeCheck}
-                ,${noticeTime}
-                ,${calendarApplyCheck}
-                ,${applyAutoCheck})
+                ,#{calenderTitle}
+                ,#{calenderText}
+                ,#{clubDate}
+                ,#{location}
+                ,#{noticeCheck}
+                ,#{noticeTime}
+                ,#{calendarApplyCheck}
+                ,#{applyAutoCheck})
     </insert>
 
     <update id="updateClubCalender" parameterType="clubCalender">

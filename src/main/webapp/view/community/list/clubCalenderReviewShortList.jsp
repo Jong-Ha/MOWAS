@@ -15,6 +15,8 @@
 <title>Bootstrap Example</title>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<%--rolVideo--%>
+<script src='http://starbros.pe.hu/rolVideo.min.js'></script>
 
 <script type="text/javascript">
     $(function () {
@@ -94,6 +96,15 @@
 
     });
 
+    /*rolVideo*/
+    $(function () {
+
+        $('.ShortVideo').rolVideo(1);
+        $('.ShortVideo2').rolVideo(2);
+        $('.ShortVideo3').rolVideo(3);
+
+    });
+
 </script>
 
 
@@ -136,6 +147,9 @@
     .card-height{
         height: 500px;
     }
+    .ShortVideo{
+        padding: 5px;
+    }
     .update,
     .delete{
         font-size: 0.5em;
@@ -161,15 +175,14 @@
         모임 일정 후기 쇼츠 작성
     </button>
 
+
+
     <div class="row row-cols-1 row-cols-md-3 g-4 cardbox">
         <div class="col">
             <div class="card h-100" style="">
-                <svg class="bd-placeholder-img card-img-top card-height" width="100%"
-                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap"
-                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#868e96"></rect>
-                    <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-                </svg>
+                <video controls autoplay loop class="ShortVideo">
+                    <source src="/resources/uploadFiles/KakaoTalk_20221003_142411482.mp4" type="video/mp4">
+                </video>
 
                 <div class="card-body carditem">
                     <h5 class="card-title">Card title
@@ -216,12 +229,9 @@
     <div class="row row-cols-1 row-cols-md-3 g-4 cardbox">
         <div class="col">
             <div class="card h-100 get">
-                <svg class="bd-placeholder-img card-img-top card-height" width="100%"
-                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap"
-                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#868e96"></rect>
-                    <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-                </svg>
+                <video controls autoplay loop class="ShortVideo2">
+                    <source src="/resources/uploadFiles/KakaoTalk_20221003_142411482.mp4" type="video/mp4">
+                </video>
 
                 <div class="card-body carditem">
                     <h5 class="card-title">Card title
@@ -271,12 +281,9 @@
     <div class="row row-cols-1 row-cols-md-3 g-4 cardbox">
         <div class="col">
             <div class="card h-100">
-                <svg class="bd-placeholder-img card-img-top card-height" width="100%"
-                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap"
-                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#868e96"></rect>
-                    <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-                </svg>
+                <video controls autoplay loop class="ShortVideo3">
+                    <source src="/resources/uploadFiles/KakaoTalk_20221003_142411482.mp4" type="video/mp4">
+                </video>
 
                 <div class="card-body carditem">
                     <h5 class="card-title">Card title
