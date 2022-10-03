@@ -22,17 +22,7 @@ public class CommunityController {
         System.out.println("calender진입");
 
         return "/view/community/list/Community.jsp";
-    }
-
-    ;
-
-    @RequestMapping(value = "addClubCalender", method = RequestMethod.POST)
-    public String addClubCalender(@ModelAttribute("ClubCalendar") ClubCalendar commu) throws Exception {
-        System.out.println("addClubCalender 진입 " + commu);
-        commu.setClubNum(3);
-        commuService.addClubCalender(commu);
-        return "/view/community/calender.jsp";
-    }
+    };
 
     //우리동네 게시글
     @RequestMapping(value = "getVillBoard")

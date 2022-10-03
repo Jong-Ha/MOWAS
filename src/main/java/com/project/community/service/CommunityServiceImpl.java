@@ -13,7 +13,6 @@ public class CommunityServiceImpl implements CommunityService {
     @Qualifier("communityDaoImpl")
     private CommunityDao commuDao;
 
-
     @Override
     public void addClubCalender(ClubCalendar commu) throws Exception {
         commuDao.addClubCalender(commu);
