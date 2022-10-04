@@ -23,6 +23,7 @@
         <!-- jstl를 사용하기 위한 API-->
         <!--업데이트가 2개뿐 이고 그중에 1.2가 가장 많이 쓰임-->
         <javax.servlet.jsp.jstl-api-version>1.2</javax.servlet.jsp.jstl-api-version>
+        <jackson.version>2.9.2</jackson.version>
     </properties>
 
     <repositories>
@@ -49,6 +50,7 @@
             <version>5.2.5.RELEASE</version>
         </dependency>
 
+        <!--ojdbc6-->
         <dependency>
             <groupId>com.oracle.database.jdbc</groupId>
             <artifactId>ojdbc6</artifactId>
@@ -166,6 +168,12 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.11.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
     </dependencies>
 

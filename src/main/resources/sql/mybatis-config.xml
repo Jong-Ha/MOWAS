@@ -16,7 +16,7 @@
 	<typeAliases>
 		<typeAlias alias="user" type="com.project.domain.User" />
 		<typeAlias alias="clubCalender" type="com.project.domain.ClubCalendar"/>
-		<typeAlias alias="clubCalenderReview" type="com.project.domain.ClubCalendarReview"/>
+		<typeAlias alias="calenderReview" type="com.project.domain.ClubCalendarReview"/>
 		<typeAlias alias="villBoard" type="com.project.domain.VilBoard"/>
 		<typeAlias alias="like" type="com.project.domain.Like"/>
 		<typeAlias alias="comment" type="com.project.domain.Comment"/>

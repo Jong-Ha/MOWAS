@@ -34,7 +34,7 @@
 
         $(".publicText").on("click", function () {
             alert("인기글 목록으로 이동");
-            location.href = "../../.."
+            location.href = "/commu/"
         });
 
         $(".calender").on("click", function () {
