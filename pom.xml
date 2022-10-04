@@ -23,6 +23,7 @@
         <!-- jstl를 사용하기 위한 API-->
         <!--업데이트가 2개뿐 이고 그중에 1.2가 가장 많이 쓰임-->
         <javax.servlet.jsp.jstl-api-version>1.2</javax.servlet.jsp.jstl-api-version>
+        <jackson.version>2.9.2</jackson.version>
     </properties>
 
     <dependencies>
@@ -49,6 +50,21 @@
             <scope>test</scope>
         </dependency>
 
+        <!--ojdbc6-->
+        <dependency>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0.4</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>5.2.5.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
@@ -60,7 +76,6 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit.version}</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -93,12 +108,19 @@
             <version>${javax.servlet.jsp.jstl-api-version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+
         <!--junit-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
         </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
         <dependency>
@@ -127,13 +149,6 @@
             <artifactId>lombok</artifactId>
             <version>1.18.24</version>
             <scope>provided</scope>
-        </dependency>
-
-        <!--ojdbc6-->
-        <dependency>
-            <groupId>com.oracle.database.jdbc</groupId>
-            <artifactId>ojdbc6</artifactId>
-            <version>11.2.0.4</version>
         </dependency>
 
         <!--mybatis-->
@@ -166,6 +181,12 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.11.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
     </dependencies>
 

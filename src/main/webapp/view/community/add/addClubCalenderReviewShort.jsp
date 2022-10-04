@@ -56,7 +56,7 @@
                     timer: 1500,
                 });
 
-                $("form").attr("method", "post").attr("action", "/clubcal/addClubCalenderReviewShort")
+                $("form").attr("method", "post").attr("action", "/clubCal/addClubCalenderReview")
                     .attr("enctype", "multipart/form-data").submit();
 
             });
@@ -75,6 +75,8 @@
 
 <form>
     <!--  화면구성 div Start /////////////////////////////////////-->
+
+    <input type="hidden" name="boardCategory" value="2">
     <div class="wap">
         <div class="container">
 
@@ -85,7 +87,7 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2"><strong>제 목</strong></div>
                 <div class="col-xs-8 col-xs-4">
-                    <input type="text" class="form-control" name="calenderTitle" value=""/>
+                    <input type="text" class="form-control" name="reviewTitle" value=""/>
                 </div>
             </div>
 
@@ -102,7 +104,7 @@
 
             <hr/>
 
-            <select class="form-select " style="width: 300px;">
+            <select class="form-select " name="reviewRange" style="width: 300px;">
                 <option selected>공개 여부를 선택 하세요</option>
                 <option value="1">전체 공개</option>
                 <option value="2">모임 공개</option>

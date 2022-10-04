@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="MOWAS:war exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="BJW 2022.10.03&#10;&#10;댓글,대댓글,조회수 json으로 처리 calender add성공 pom.xml에 jdbc드라이버 dependency 관개 맷음,&#10;spring-mybatis mybatise 버전 충돌 해결">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/22bfef48-75bc-4097-aafc-1aad1fbf0ade.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/22bfef48-75bc-4097-aafc-1aad1fbf0ade.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4d1529a5-92aa-4d51-baa4-8d27ef377822.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/4d1529a5-92aa-4d51-baa4-8d27ef377822.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4d1529a5-92aa-4d51-baa4-8d27ef377822/storage_v2/_src_/schema/SYSTEM.L2avkg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4d1529a5-92aa-4d51-baa4-8d27ef377822/storage_v2/_src_/schema/SYSTEM.L2avkg.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/604fa4e0-b206-4e66-af45-8915d8f867d6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/604fa4e0-b206-4e66-af45-8915d8f867d6.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubCalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubCalendarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubCalendarDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubCalendarDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubCalendarDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubCalendarDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/community/controller/CommunityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/community/controller/CommunityController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/community/controller/CommunityRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/community/controller/CommunityRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/community/dao/CommunityDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/community/dao/CommunityDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/community/dao/CommunityDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/community/dao/CommunityDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/community/service/CommunityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/community/service/CommunityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/community/service/CommunityServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/community/service/CommunityServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/ClubCalendarReview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/ClubCalendarReview.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/Recomment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/Recomment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/VilBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/VilBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/ClubCalenderMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/ClubCalenderMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/CommunityMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/CommunityMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/add/addClubCalender.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/add/addClubCalender.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/add/addClubCalenderReview.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/add/addClubCalenderReview.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/add/addVillBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/add/addVillBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/get/getVillBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/get/getVillBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/list/Community.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/list/Community.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/list/clubCalenderReviewList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/list/clubCalenderReviewList.jsp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+        <option value="Jsp File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="BJW" />
+  </component>
+  <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="BJW" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="2FQs3apI0NpYv5zSPVEuuaqWJTI" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Devspace/MOWAS/src/main/resources/sql&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;아티팩트&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.75258917&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;0644e903b0ad21f514b0480754c0a1e2&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;oracle&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Devspace\MOWAS\src\main\resources\sql" />
+      <recent name="C:\Devspace\MOWAS\src\main\java\com\project\user\dao" />
+      <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community\update" />
+      <recent name="C:\Devspace\MOWAS\src\main\webapp\resources\images" />
+      <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Devspace\MOWAS\src\main\webapp\resources\OpenSource" />
+      <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community\list" />
+      <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community\add" />
+      <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community\get" />
+      <recent name="C:\MainProject\MOWAS\src\main\webapp\config\springMVC" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.project.user.service" />
+      <recent name="com.project.user.dao" />
+      <recent name="com.project.user.controller" />
+      <recent name="com.project.notice.dao" />
+      <recent name="com.project.notice.service" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Tomcat 9.0.58" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.58" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="$PROJECT_DIR$/../../Program Files/Java/jdk1.8.0_181" nameIsGenerated="true">
+      <option name="COMMON_VM_ARGUMENTS" value="-Dfile.encoding=UTF-8" />
+      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
+      <deployment>
+        <artifact name="MOWAS:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="fe5e9b74-ca98-4c12-a5ff-9c74a0a432b8" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="50718" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="MOWAS:war exploded" />
+        </option>
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpringBeansView">
+    <option name="beanDetailsProportion" value="0.61269844" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="" />
+      <created>1664435445915</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1664435445915</updated>
+      <workItem from="1664435447388" duration="3000" />
+      <workItem from="1664435463764" duration="13877000" />
+      <workItem from="1664537429856" duration="1976000" />
+      <workItem from="1664583010249" duration="1369000" />
+      <workItem from="1664584397479" duration="410000" />
+      <workItem from="1664584818843" duration="3292000" />
+      <workItem from="1664588148117" duration="475000" />
+      <workItem from="1664601668272" duration="11705000" />
+      <workItem from="1664617500348" duration="12301000" />
+      <workItem from="1664677373593" duration="16464000" />
+      <workItem from="1664774315468" duration="5615000" />
+      <workItem from="1664791732816" duration="7276000" />
+      <workItem from="1664799031582" duration="4279000" />
+      <workItem from="1664842795721" duration="15620000" />
+    </task>
+    <task id="LOCAL-00001" summary="설정">
+      <created>1664436990723</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1664436990724</updated>
+    </task>
+    <task id="LOCAL-00002" summary="설정">
+      <created>1664437319693</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1664437319693</updated>
+    </task>
+    <task id="LOCAL-00003" summary="BJW 2022.10.03&#10;&#10;댓글,대댓글,조회수 json으로 처리 calender add성공 pom.xml에 jdbc드라이버 dependency 관개 맷음,&#10;spring-mybatis mybatise 버전 충돌 해결">
+      <created>1664804126823</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1664804126823</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="728fd7bf-a372-4b71-9832-8c7ae9f08b66">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="BJW" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="e6376b67-aadb-407d-b0e6-bd69a7dbe400">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/master" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="master" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="설정" />
+    <MESSAGE value="BJW 2022.09.30&#10;&#10;mian.jsp / js파일/ css파일 추가" />
+    <MESSAGE value="BJW 2022.10.01&#10;&#10;커뮤니티 jsp 완성, navigation 경로 완성" />
+    <MESSAGE value="BJW 2022.10.03&#10;&#10;댓글,대댓글,조회수 json으로 처리 calender add성공 pom.xml에 jdbc드라이버 dependency 관개 맷음,&#10;spring-mybatis mybatise 버전 충돌 해결" />
+    <option name="LAST_COMMIT_MESSAGE" value="BJW 2022.10.03&#10;&#10;댓글,대댓글,조회수 json으로 처리 calender add성공 pom.xml에 jdbc드라이버 dependency 관개 맷음,&#10;spring-mybatis mybatise 버전 충돌 해결" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubCalendarController.java</url>
+          <line>73</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

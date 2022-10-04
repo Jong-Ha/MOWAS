@@ -24,17 +24,21 @@
 
         $(".clubCalenderReview").on("click", function () {
             alert("모임 일정 후기글 게시판으로 이동")
-            location.href = "/commu/clubCalenderReviewList"
+            location.href = "/clubCal/listCalenderReview?boardCategory="+1
         });
 
         $(".clubCalenderReviewShort").on("click", function () {
             alert("모일 일정 쇼츠 게시판으로 이동")
-            location.href = "/commu/clubCalenderReviewShortList"
+            location.href = "/clubCal/listCalenderReview?boardCategory="+2
         })
 
         $(".publicText").on("click", function () {
             alert("인기글 목록으로 이동");
-            location.href = "../../.."
+            location.href = "/commu/"
+        });
+
+        $(".clubPage").on("click", function () {
+            location.href = "/view/community/clubPage.jsp"
         });
 
         $(".calender").on("click", function () {
@@ -154,6 +158,7 @@
         <button type="button" class="btn btn-outline-warning btnlf clubCalenderReview">모임 일정 후기</button>
         <button class="btn btn-outline-success btnlf clubCalenderReviewShort" type="submit">모임 일정 쇼츠</button>
         <button type="button" class="btn btn-outline-danger btnlf villBoard">우리 동네 게시글</button>
+        <button type="button" class="btn btn-outline-danger btnlf clubPage">클럽</button>
 
     </nav>
 
