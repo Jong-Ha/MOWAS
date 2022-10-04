@@ -4,7 +4,6 @@ import com.project.domain.Club;
 import com.project.domain.Cluber;
 
 import java.util.List;
-import java.util.Map;
 
 public interface ClubService {
 
@@ -18,5 +17,13 @@ public interface ClubService {
     public void deleteCluberApply(int clubUserNum);
     public List<Cluber> listCluberApply(int clubNum);
     public String getCluberApply(int clubUserNum);
-    public void updateCluberApply(Map<String, Object> map);
+    public void updateCluberApply(int clubNum, int clubUserNum, String result);
+    public void addClubManager(int clubUserNum);
+    public void deleteClubManager(int clubUserNum);
+    public void updateClubMaster(Cluber cluber);
+    public void deleteCluber(Cluber cluber, String kickoutCheck);
+    public void addClubBlacklist(Cluber cluber);
+    public void updateClubBlacklist(String process, List<Integer> clubUserNumList);
+    public List<Cluber> listClubBlacklist(int clubNum);
+    public String getClubBlacklist(int clubUserNum);
 }

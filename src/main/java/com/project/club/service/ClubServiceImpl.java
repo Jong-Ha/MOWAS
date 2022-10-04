@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +21,7 @@ public class ClubServiceImpl implements ClubService {
     @Override
     public Club addClub(Club club) {
         clubDao.addClub(club);
-        clubDao.addClubMaster(club);
+        clubDao.addClubMasterNewClub(club);
         return clubDao.getClub(club);
     }
 
@@ -66,11 +67,65 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public void updateCluberApply(Map<String, Object> map) {
+    public void updateCluberApply(int clubNum, int clubUserNum, String result) {
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        map.put("result",result);
+        map.put("clubUserNum",clubUserNum);
+        map.put("clubNum",clubNum);
+
         clubDao.processCluberApply(map);
-        if(map.get("result").equals("accept")){
-            Cluber cluber = (Cluber) map.get("cluber");
-            clubDao.updateClubNewCluber(cluber.getClubNum());
+        if(((String)map.get("result")).equals("accept")){
+            clubDao.updateClubNewCluber((Integer) map.get("clubNum"));
         }
+    }
+
+    @Override
+    public void addClubManager(int clubUserNum) {
+        clubDao.addClubManager(clubUserNum);
+    }
+
+    @Override
+    public void deleteClubManager(int clubUserNum) {
+        clubDao.deleteClubManager(clubUserNum);
+    }
+
+    @Override
+    public void updateClubMaster(Cluber cluber) {
+        clubDao.deleteClubMaster(cluber);
+        clubDao.addClubMaster(cluber);
+        clubDao.updateClubMaster(cluber);
+    }
+
+    @Override
+    public void deleteCluber(Cluber cluber, String kickoutCheck) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("cluber",cluber);
+        map.put("kickoutCheck", kickoutCheck);
+        clubDao.deleteCluber(map);
+        clubDao.updateClubDeleteCluber(cluber.getClubNum());
+    }
+
+    @Override
+    public void addClubBlacklist(Cluber cluber) {
+        clubDao.addClubBlacklist(cluber);
+    }
+
+    @Override
+    public void updateClubBlacklist(String process, List<Integer> clubUserNumList) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("process",process);
+        map.put("list", clubUserNumList);
+        clubDao.updateClubBlacklist(map);
+    }
+
+    @Override
+    public List<Cluber> listClubBlacklist(int clubNum) {
+        return clubDao.listClubBlacklist(clubNum);
+    }
+
+    @Override
+    public String getClubBlacklist(int clubUserNum) {
+        return clubDao.getClubBlacklist(clubUserNum);
     }
 }

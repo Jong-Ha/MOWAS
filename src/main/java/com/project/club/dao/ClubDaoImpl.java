@@ -46,8 +46,8 @@ public class ClubDaoImpl implements ClubDao {
     }
 
     @Override
-    public void addClubMaster(Club club) {
-        sqlSession.insert("ClubMapper.addClubMaster",club);
+    public void addClubMasterNewClub(Club club) {
+        sqlSession.insert("ClubMapper.addClubMasterNewClub",club);
     }
 
     @Override
@@ -88,5 +88,60 @@ public class ClubDaoImpl implements ClubDao {
     @Override
     public void updateClubNewCluber(int clubNum) {
         sqlSession.update("ClubMapper.updateClubNewCluber",clubNum);
+    }
+
+    @Override
+    public void addClubManager(int clubUserNum) {
+        sqlSession.update("ClubMapper.addClubManager",clubUserNum);
+    }
+
+    @Override
+    public void deleteClubManager(int clubUserNum) {
+        sqlSession.update("ClubMapper.deleteClubManager",clubUserNum);
+    }
+
+    @Override
+    public void deleteClubMaster(Cluber cluber) {
+        sqlSession.update("ClubMapper.deleteClubMaster",cluber);
+    }
+
+    @Override
+    public void addClubMaster(Cluber cluber) {
+        sqlSession.update("ClubMapper.addClubMaster",cluber);
+    }
+
+    @Override
+    public void updateClubMaster(Cluber cluber) {
+        sqlSession.update("ClubMapper.updateClubMaster",cluber);
+    }
+
+    @Override
+    public void deleteCluber(Map<String, Object> map) {
+        sqlSession.update("ClubMapper.deleteCluber",map);
+    }
+
+    @Override
+    public void updateClubDeleteCluber(int clubNum) {
+        sqlSession.update("ClubMapper.updateClubDeleteCluber",clubNum);
+    }
+
+    @Override
+    public void addClubBlacklist(Cluber cluber) {
+        sqlSession.insert("ClubMapper.addClubBlacklist", cluber);
+    }
+
+    @Override
+    public void updateClubBlacklist(Map<String, Object> map) {
+        sqlSession.update("ClubMapper.updateClubBlacklist", map);
+    }
+
+    @Override
+    public List<Cluber> listClubBlacklist(int clubNum) {
+        return sqlSession.selectList("ClubMapper.listClubBlacklist", clubNum);
+    }
+
+    @Override
+    public String getClubBlacklist(int clubUserNum) {
+        return sqlSession.selectOne("ClubMapper.getClubBlacklist", clubUserNum);
     }
 }
