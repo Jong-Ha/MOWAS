@@ -16,7 +16,7 @@ public class Deal {
     private String dealTitle;
     private String dealText;
     private Date dealRegDate;
-    private String productCame;
+    private String productName;
     private int price;
     private String tag;
     private int viewCount;
@@ -26,7 +26,8 @@ public class Deal {
     private int chatNum;
     private String review;
     private int reviewPt;
-    private Date dealEndAate;
+    private Date dealEndDate;
     private Date dealDate;
     private String dealLocation;
+
 }
