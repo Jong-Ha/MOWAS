@@ -13,7 +13,7 @@ public class ClubReport {
     private Date processDate;
     private String reportResult;
     private char rereportApplyCheck;
-    private Date rrportApplyDate;
+    private Date reportApplyDate;
     private String rereportText;
     private String rereportResult;
 
@@ -97,12 +97,12 @@ public class ClubReport {
         this.rereportApplyCheck = rereportApplyCheck;
     }
 
-    public Date getRrportApplyDate() {
-        return rrportApplyDate;
+    public Date getReportApplyDate() {
+        return reportApplyDate;
     }
 
-    public void setRrportApplyDate(Date rrportApplyDate) {
-        this.rrportApplyDate = rrportApplyDate;
+    public void setReportApplyDate(Date rrportApplyDate) {
+        this.reportApplyDate = rrportApplyDate;
     }
 
     public String getRereportText() {
@@ -134,7 +134,7 @@ public class ClubReport {
                 ", processDate=" + processDate +
                 ", reportResult='" + reportResult + '\'' +
                 ", rereportApplyCheck=" + rereportApplyCheck +
-                ", rrportApplyDate=" + rrportApplyDate +
+                ", reportApplyDate=" + reportApplyDate +
                 ", rereportText='" + rereportText + '\'' +
                 ", rereportResult='" + rereportResult + '\'' +
                 '}';

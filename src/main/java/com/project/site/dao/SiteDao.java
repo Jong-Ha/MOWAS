@@ -2,15 +2,15 @@ package com.project.site.dao;
 
 import com.project.domain.MasterBoard;
 
+import java.util.List;
+
 public interface SiteDao {
 
-    public MasterBoard findMasterBoard(int materBoardNo) throws Exception;
-
-   // public List<MasterBoard> getMaterBoardList(Search search) throws Exception;
-
-    public void updateMasterBoard(MasterBoard masterbBoard) throws Exception;
-
-    public void addMasterBoard(MasterBoard masterBoard);
+    // MaterBoard CRUD
+    public void addMasterBoard(MasterBoard masterBoard) throws Exception;
+    public void updateMasterBoard(MasterBoard masterBoard) throws Exception;
+    public MasterBoard getMasterBoard(int materBoardNo) throws Exception;
+    //public List<MasterBoard> listMaterBoard() throws Exception;
 
     //public int getTotalCount(Search search) throws Exception ;
 
