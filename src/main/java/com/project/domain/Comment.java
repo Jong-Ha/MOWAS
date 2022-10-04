@@ -11,7 +11,7 @@ import java.sql.Date;
 @ToString
 public class Comment {
     private int commentNum;
-    private User userId;
+    private String userId;
     private int clubNum;
     private int boardNum;
     private String boardCategory;

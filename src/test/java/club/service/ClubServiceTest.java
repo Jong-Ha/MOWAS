@@ -2,12 +2,17 @@ package club.service;
 
 import com.project.club.service.ClubService;
 import com.project.domain.Club;
+import com.project.domain.Cluber;
+import com.project.domain.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.List;
+import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:config/context-common.xml","classpath:config/context-aspect.xml","classpath:config/context-mybatis.xml","classpath:config/context-transaction.xml"})
@@ -66,4 +71,48 @@ public class ClubServiceTest {
 
         System.out.println(result);
     }
+
+    @Test
+    public void addCluberApply(){
+        Cluber cluber = new Cluber();
+        User user = new User();
+    }
+
+    @Test
+    public void updateCluberApply(){
+        Cluber cluber = new Cluber();
+        User user = new User();
+    }
+
+    @Test
+    public void deleteCluberApply(){
+        int clubUserNum = 10013;
+
+        clubService.deleteCluberApply(clubUserNum);
+    }
+
+    @Test
+    public void listCluberApply(){
+        int clubNum = 10008;
+
+        List<Cluber> result = clubService.listCluberApply(clubNum);
+
+        System.out.println(result);
+    }
+
+    @Test
+    public void getCluberApply(){
+        int clubUserNum = 10013;
+
+        String result = clubService.getCluberApply(clubUserNum);
+
+        System.out.println(result);
+    }
+
+    @Test
+    public void processCluberApply(){
+        String result = "reject";
+        Cluber cluber = new Cluber();
+    }
+
 }

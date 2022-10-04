@@ -2,6 +2,7 @@ package com.project.community.controller;
 
 import com.project.community.service.CommunityService;
 import com.project.domain.ClubCalendar;
+import com.project.domain.VilBoard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,7 @@ public class CommunityController {
     public String getVillBoard(){
         return "/view/community/get/getVillBoard.jsp";
     }
+    
     @RequestMapping(value = "villBoardList")
     public String villBoardList() {
 
@@ -49,12 +51,25 @@ public class CommunityController {
         return "/view/community/list/clubCalenderReviewList.jsp";
     }
 
-    //모임 후기 쇼츠
     @RequestMapping(value = "clubCalenderReviewShortList")
-    public String clubCalenderReviewShort(){
+    public String clubCalenderReviewShortList() {
 
         return "/view/community/list/clubCalenderReviewShortList.jsp";
-
     }
+
+    @RequestMapping(value = "addVillBoard")
+    public String addVillBoard(@ModelAttribute("villBoard")VilBoard villBoard){
+        System.out.println("우리 동네 게시글 진입 : " + villBoard);
+
+        villBoard.setUserId("user01");
+        villBoard.setVillCode("창원");
+        villBoard.setBoardCategory(1);
+
+        commuService.addVillBoard(villBoard);
+
+
+        return null;
+    }
+
 
 }

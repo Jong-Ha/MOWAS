@@ -57,7 +57,7 @@
 				});
 
 
-				//$("form").attr("method", "post").attr("action", "/commu/addVillBoard").submit();
+				$("form").attr("method", "post").attr("action", "/commu/addVillBoard").attr("enctype", "multipart/form-data").submit();
 
 			});
 
@@ -85,7 +85,7 @@
 			<div class="row">
 				<div class="col-xs-4 col-xs-2"><strong>제 목</strong></div>
 				<div class="col-xs-8 col-xs-4">
-					<input type="text" class="form-control" name="calenderTitle" value=""/>
+					<input type="text" class="form-control" name="villTitle" value=""/>
 				</div>
 			</div>
 
@@ -95,7 +95,7 @@
 			<div class="row">
 				<div class="col-xs-4 col-xs-2"><strong>내용</strong></div>
 				<div class="col-xs-8 col-xs-4">
-					<textarea class="form-control" name="calenderText" style=" height: 200px;  width: 500px;  margin-bottom: 20px;"></textarea>
+					<textarea class="form-control" name="villText" style=" height: 200px;  width: 500px;  margin-bottom: 20px;"></textarea>
 				</div>
 			</div>
 
@@ -103,8 +103,8 @@
 
 			<div class="row">
 				<div class="col-xs-4 col-xs-2 ">
-					<strong>위치
-						<input type="button" name="location" value="위치 입력">
+					<strong>태그
+						<input type="text" name="villTag" placeholder="태그를 입력 해주세요">
 					</strong>
 				</div>
 			</div>

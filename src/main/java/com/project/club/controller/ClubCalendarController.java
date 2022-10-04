@@ -21,19 +21,38 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("clubcal")
+@RequestMapping("/clubCal/*")
 public class ClubCalendarController {
 
     @Autowired
     @Qualifier("clubCalenderServiceImpl")
     private ClubCalendarService calenderService;
 
-
+    /*모임 일정*/
     @RequestMapping(value = "addClubCalender", method = RequestMethod.POST)
     public String addClubCalender(@ModelAttribute("ClubCalendar") ClubCalendar calender,
                                   @RequestParam("file") List<MultipartFile> file) throws Exception {
-        calender.setClubNum(2);
+        calender.setClubNum(10008);
         calender.setLocation("창원시 진해구 소사동");
+        /*자동 참여*/
+        if(calender.getApplyAutoCheck()  == "on" ){
+            calender.setApplyAutoCheck("1");
+        }else {
+            calender.setApplyAutoCheck("2");
+        }
+        /*추가 참여*/
+        if(calender.getCalendarApplyCheck() == "on" ){
+            calender.setCalendarApplyCheck("1");
+        }else{
+            calender.setCalendarApplyCheck("2");
+        }
+
+        /*알림 설정*/
+        if (calender.getNoticeCheck() == "on"){
+            calender.setNoticeCheck("1");
+        }else{
+            calender.setNoticeCheck("2");
+        }
 
         System.out.println("addClubCalender 진입 " + calender);
 
@@ -70,11 +89,16 @@ public class ClubCalendarController {
         return null;
     }
 
-    @RequestMapping(value = "addClubCalenderReviewShort", method = RequestMethod.POST)
-    public String addClubCalenderReviewShort(@ModelAttribute("clubCalenderReviewShort") ClubCalendarReview calendeReview
+    /*모임 일정*/
+
+    /*모임 일정 후기 쇼츠*/
+    @RequestMapping(value = "addClubCalenderReview", method = RequestMethod.POST)
+    public String addClubCalenderReview(@ModelAttribute("clubCalenderReview") ClubCalendarReview calendeReview
             , @RequestParam("file") List<MultipartFile> file) {
 
         System.out.println("파일 업로드 진입 : " + file);
+        System.out.println("모임 일정 후기 Data : " + calendeReview);
+
 
         List<Map<String, String>> fileList = new ArrayList<>();
         for (int i = 0; i < file.size(); i++) {
@@ -91,6 +115,13 @@ public class ClubCalendarController {
                 e.printStackTrace();
             }
         }
+
+        calendeReview.setClubCalenderNum(10001);
+        calendeReview.setClubNum(10008);
+        calendeReview.setUserId("user01");
+        calendeReview.setBoardCategory(2);
+
+        calenderService.addCalenderReview(calendeReview);
 
         return null;
     }

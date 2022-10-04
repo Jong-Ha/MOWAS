@@ -13,7 +13,7 @@ public class ClubCalendarReview {
     private int clubCalenderReviewNum;
     private int clubCalenderNum;
     private int clubNum;
-    private User userId;
+    private String userId;
     private String reviewRange;
     private String reviewTitle;
     private String reviewText;

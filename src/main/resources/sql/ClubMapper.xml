@@ -22,6 +22,24 @@
         <result property="likeCheck"		column="like_check"	        jdbcType="CHAR"/>
     </resultMap>
 
+    <resultMap type="com.project.domain.Cluber" id="CluberResultMap">
+        <result property="clubUserNum"		column="club_user_num"      jdbcType="INTEGER"/>
+        <result property="user.userId"		column="user_id"		    jdbcType="VARCHAR"/>
+        <result property="user.userImage"	column="user_image"		    jdbcType="VARCHAR"/>
+        <result property="clubNum"			column="club_num"			jdbcType="INTEGER"/>
+        <result property="cluberStatus"		column="cluber_status"		jdbcType="CHAR"/>
+        <result property="clubRegDate"		column="club_reg_date"		jdbcType="DATE"/>
+        <result property="clubApplyDate"	column="club_apply_date"	jdbcType="DATE"/>
+        <result property="cluberText"	    column="cluber_text"	    jdbcType="VARCHAR"/>
+        <result property="clubOutText"		column="club_out_text"		jdbcType="VARCHAR"/>
+        <result property="clubOutDate"		column="club_out_date"		jdbcType="DATE"/>
+        <result property="blacklistDate"	column="blacklist_date"		jdbcType="DATE"/>
+        <result property="blacklistText"	column="blacklist_text"	    jdbcType="VARCHAR"/>
+        <result property="blacklistCheck"	column="blacklist_check"	jdbcType="CHAR"/>
+    </resultMap>
+
+    <!--여기서부터 쿼리 시작-->
+
     <!--clubService.addClub-->
     <!--모임 만들기-->
     <insert id="addClub" parameterType="com.project.domain.Club">
@@ -160,10 +178,10 @@
     <!--clubService.listClub-->
     <!--리스트 조건걸어서 찾기-->
 
-    <!--clubService.addClubApply-->
+    <!--clubService.addCluberApply-->
     <!--모임 신청-->
     <!--이미 탈퇴했었으면 새로운 레코드 등록-->
-    <insert id="addClubApply" parameterType="com.project.domain.Cluber">
+    <insert id="addCluberApply" parameterType="com.project.domain.Cluber">
         INSERT
         INTO club_user(
             club_user_num,
@@ -184,25 +202,75 @@
                 )
     </insert>
 
-    <!--clubService.updateClubApply-->
+    <!--clubService.updateCluberApply-->
     <!--찾아올때는 신청상태랑 아이디랑 모임번호로 들고오자-->
-    <update id="updateClubApply" parameterType="com.project.domain.Cluber">
+    <update id="updateCluberApply" parameterType="com.project.domain.Cluber">
         UPDATE club_user
         <set>
-            club_user_num = #{clubUserNum},
             cluber_text = #{cluberText}
         </set>
         <where>
-            club_num = #{clubNum}
+            club_user_num = #{clubUserNum}
         </where>
     </update>
 
-    <!--clubService.deleteClubApply-->
-    <!--넘버로 삭제 안됨 수정 필요-->
-    <delete id="deleteClubApply" parameterType="com.project.domain.Cluber">
+    <!--clubService.deleteCluberApply-->
+    <!--신청중인 거 삭제-->
+    <delete id="deleteCluberApply" parameterType="int">
         DELETE club_user
         <where>
             club_user_num = #{clubUserNum}
         </where>
     </delete>
+
+    <!--clubService.listCluberApply-->
+    <!--신청 목록 조회-->
+    <select id="listCluberApply" parameterType="int" resultMap="CluberResultMap">
+        SELECT club_user_num,
+               user_id,
+               user_image,
+               club_apply_date,
+               cluber_text
+        FROM club_user
+        <where>
+        club_num = #{clubNum}
+        AND cluber_status = '2'
+        </where>
+    </select>
+
+    <!--clubService.getCluberApply-->
+    <!--신청 목록에서 자기소개 조회-->
+    <select id="getCluberApply" parameterType="int" resultType="String">
+        SELECT cluber_text
+        FROM club_user
+        <where>
+            club_user_num = #{value}
+        </where>
+    </select>
+
+    <!--clubService.updateCluberApply-->
+    <!--모임 가입 신청 처리-->
+    <!--승인시 모임원 거절시 거절-->
+    <update id="processCluberApply" parameterType="map">
+        UPDATE club_user
+        <set>
+            cluber_status = <if test="result=='accept'">'4'</if>
+                            <if test="result=='reject'">'3'</if>,
+            club_reg_date = SYSDATE
+        </set>
+        <where>
+            club_user_num = #{clubUserNum}
+        </where>
+    </update>
+
+    <!--모임원 가입시 현재인원 증가-->
+    <update id="updateClubNewCluber" parameterType="int">
+        UPDATE club
+        <set>
+            current_cluber = current_cluber + 1
+        </set>
+        <where>
+            club_num = #{clubNum}
+        </where>
+    </update>
 </mapper>

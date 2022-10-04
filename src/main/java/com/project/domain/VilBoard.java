@@ -11,7 +11,8 @@ import java.sql.Date;
 @ToString
 public class VilBoard {
     private int villBoardNum;
-    private User userId;
+    //private User userId;
+    private String userId;
     private String villCode;
     private String villTitle;
     private String villText;
