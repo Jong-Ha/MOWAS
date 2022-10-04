@@ -27,10 +27,9 @@
 	<mappers>
 		<mapper resource="sql/UserMapper.xml" />
 		<mapper resource="sql/ClubCalenderMapper.xml" />
+		<mapper resource="sql/ClubMapper.xml" />
 		<mapper resource="sql/CommunityMapper.xml" />
 		<!--<mapper resource="sql/UserMapper.xml" />
-		<mapper resource="sql/UserMapper.xml" />
-		<mapper resource="sql/UserMapper.xml" />
 		<mapper resource="sql/UserMapper.xml" />
 		<mapper resource="sql/UserMapper.xml" />
 		<mapper resource="sql/UserMapper.xml" />-->

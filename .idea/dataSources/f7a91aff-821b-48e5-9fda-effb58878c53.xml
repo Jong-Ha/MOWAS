@@ -31,13 +31,22 @@
       <ObjectId>32</ObjectId>
     </schema>
     <schema id="10" parent="1" name="MOWAS">
+      <CreatedTimestamp>2022-09-30.04:27:33</CreatedTimestamp>
       <Current>1</Current>
+      <IntrospectionL1Timestamp>2022-10-01.02:53:32</IntrospectionL1Timestamp>
+      <IntrospectionL2Timestamp>2022-10-01.02:53:32</IntrospectionL2Timestamp>
+      <IntrospectionL3Timestamp>2022-10-01.02:53:32</IntrospectionL3Timestamp>
+      <IntrospectionVersion>200820</IntrospectionVersion>
+      <ModifiedTimestamp>2022-10-01.02:53:32</ModifiedTimestamp>
       <ObjectId>36</ObjectId>
     </schema>
     <schema id="11" parent="1" name="OUTLN">
       <ObjectId>11</ObjectId>
     </schema>
     <schema id="12" parent="1" name="PUBLIC">
+      <CreatedTimestamp>2006-02-08.07:10:24</CreatedTimestamp>
+      <IntrospectionVersion>200820</IntrospectionVersion>
+      <ModifiedTimestamp>2022-09-30.04:04:04</ModifiedTimestamp>
       <ObjectId>1</ObjectId>
     </schema>
     <schema id="13" parent="1" name="SYS">
