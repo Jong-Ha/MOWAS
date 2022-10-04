@@ -1,0 +1,112 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ClubCalenderMapper">
+
+    <resultMap id="clubCalenderSelect" type="clubCalender">
+        <result property="clubCalenderNum"    column="club_calender_num"    jdbcType="INTEGER"/>
+        <result property="clubNum"            column="club_num"             jdbcType="INTEGER"/>
+        <result property="regDate"            column="reg_date"              jdbcType="DATE"/>
+        <result property="calenderTitle"      column="calender_title"       jdbcType="VARCHAR"/>
+        <result property="calenderText"       column="calender_text"        jdbcType="VARCHAR"/>
+        <result property="clubDate"           column="club_date"            jdbcType="DATE"/>
+        <result property="location"           column="location"             jdbcType="VARCHAR"/>
+        <result property="noticeCheck"        column="notice_check"         jdbcType="VARCHAR"/>
+        <result property="noticeTime"         column="notice_time"          jdbcType="VARCHAR"/>
+        <result property="calendarApplyCheck" column="calendar_apply_check" jdbcType="VARCHAR"/>
+        <result property="applyAutoCheck"     column="apply_auto_check"     jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="calenderReviewSelect" type="calenderReview">
+        <result property="clubCalenderReviewNum"    column="club_calendar_review_num"    jdbcType="INTEGER"/>
+        <result property="clubCalenderNum"          column="club_calendar_num"           jdbcType="INTEGER"/>
+        <result property="clubNum"                  column="club_num"                    jdbcType="INTEGER"/>
+        <result property="userId"            column="user_id"                     jdbcType="VARCHAR"/>
+        <result property="reviewRange"              column="review_range"                jdbcType="VARCHAR"/>
+        <result property="reviewTitle"              column="review_title"                jdbcType="VARCHAR"/>
+        <result property="reviewText"               column="review_text"                 jdbcType="VARCHAR"/>
+        <result property="regDate"                  column="reg_date"                    jdbcType="DATE"/>
+        <result property="viewCount"                column="view_count"                  jdbcType="INTEGER"/>
+        <result property="likeConunt"               column="like_count"                  jdbcType="INTEGER"/>
+        <result property="updateDate"               column="update_date"                 jdbcType="DATE"/>
+        <result property="boardCategory"            column="board_category"              jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--모임 일정 -->
+    <insert id="addClubCalender"    parameterType="clubCalender">
+        INSERT INTO
+            club_calendar(club_calendar_num, club_num,reg_date,calendar_title,calendar_text,club_date,location,notice_check,notice_time,calendar_apply_check,apply_auto_check)
+            values(  SEQ_CLUB_CALENDAR.nextval
+                ,#{clubNum}
+                ,SYSDATE
+                ,#{calenderTitle}
+                ,#{calenderText}
+                ,#{clubDate}
+                ,#{location}
+                ,#{noticeCheck}
+                ,#{noticeTime}
+                ,#{calendarApplyCheck}
+                ,#{applyAutoCheck})
+    </insert>
+
+    <update id="updateClubCalender" parameterType="clubCalender">
+        UPDATE
+            club_calendar
+            <set>
+                calender_title=${calenderTitle}
+                ,calender_text=${calenderText}
+                ,location = ${location}
+                ,notice_check = ${noticeCheck}
+                ,notice_time=${noticeTime}
+                ,calender_apply_check = ${calenderApplyCheck}
+                ,apply_auto_check=${applyAutoCheck}
+                ,reg_date=SYSDATE
+            </set>
+            WHERE club_calender_num = ${clubCalenderNum}
+    </update>
+
+    <delete id="deleteClubCalender" parameterType="clubCalender">
+        DELETE club_calendar
+        WHERE club_calendar_num = #{clubCalenderNum}
+    </delete>
+
+    <select id="getClubCalender"    parameterType="int"  resultMap="clubCalenderSelect">
+        SELECT *
+        FROM club_calendar
+        WHERE club_calendar_num = #{clubCalenderNum}
+    </select>
+
+    <!--모임 일정 후기글-->
+    <insert id="addCalenderReview" parameterType="calenderReview">
+        INSERT INTO
+        club_calendar_review (club_calendar_review_num,club_calendar_num,club_num,user_id,review_range,review_title,review_text,reg_date,board_category)
+        VALUES (seq_club_calendar_review.NEXTVAL
+                ,#{clubCalenderNum}
+                ,#{clubNum}
+                ,#{userId}
+                ,#{reviewRange}
+                ,#{reviewTitle}
+                ,#{reviewText}
+                ,SYSDATE
+                ,#{boardCategory}
+                )
+    </insert>
+
+    <update id="updateClubCalenderReview" parameterType="calenderReview">
+        UPDATE club_calendar_review
+            <set>
+                review_range = ${reviewRange}
+                ,review_title = ${reviewTitle}
+                ,review_text = ${reviewText}
+                ,update_date = SYSDATE
+            </set>
+        WHERE club_calender_review_num = ${clubCalenderReviewNum}
+    </update>
+
+    <delete id="deleteClubCalenderReview" parameterType="int">
+        DELETE club_calendar_review
+         WHERE club_calender_review_num = ${clubCalenderReviewNum}
+    </delete>
+
+</mapper>

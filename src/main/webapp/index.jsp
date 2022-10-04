@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="resources/css/main.css" />
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <noscript><link rel="stylesheet" href="resources/css/noscript.css" /></noscript>
+    <noscript><link rel="stylesheet" href="resources/css/noscript.css"/></noscript>
 
 
     <script type="text/javascript">
@@ -65,11 +65,11 @@
 </div>
 
 <!-- Scripts -->
-<script src="resources/js/jquery.min.js"></script>
-<script src="resources/js/browser.min.js"></script>
-<script src="resources/js/breakpoints.min.js"></script>
-<script src="resources/js/util.js"></script>
-<script src="resources/js/main.js"></script>
+<script src="resources/OpenSource/js/jquery.min.js"></script>
+<script src="resources/OpenSource/js/browser.min.js"></script>
+<script src="resources/OpenSource/js/breakpoints.min.js"></script>
+<script src="resources/OpenSource/js/util.js"></script>
+<script src="resources/OpenSource/js/main.js"></script>
 
 </body>
 </html>

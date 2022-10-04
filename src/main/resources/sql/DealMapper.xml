@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="DealMapper">
+    <resultMap id="DealSelectMap" type="Deal">
+        <result property="dealBoardNum" column="deal_board_num" jdbcType="INTEGER"/>
+        <result property="dealStatus" column="deal_status" jdbcType="CHAR"/>
+        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="dealTitle" column="deal_title" jdbcType="VARCHAR"/>
+        <result property="dealText" column="deal_text" jdbcType="VARCHAR"/>
+        <result property="dealRegDate" column="deal_reg_date" jdbcType="DATE"/>
+        <result property="productName" column="product_name" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="INTEGER"/>
+        <result property="tag" column="deal_tag" jdbcType="VARCHAR"/>
+        <result property="viewCount" column="view_count" jdbcType="INTEGER"/>
+        <result property="villCode" column="vill_code" jdbcType="VARCHAR"/>
+        <result property="dealId" column="deal_id" jdbcType="VARCHAR"/>
+        <result property="dealModeCheck" column="deal_mode_check" jdbcType="CHAR"/>
+        <result property="charNum" column="char_num" jdbcType="INTEGER"/>
+        <result property="review" column="review" jdbcType="VARCHAR"/>
+        <result property="reviewPt" column="review_pt" jdbcType="INTEGER"/>
+        <result property="dealEndDate" column="deal_end_date" jdbcType="DATE"/>
+        <result property="dealDate" column="deal_date" jdbcType="DATE"/>
+        <result property="dealLocation" column="deal_location" jdbcType="VARCHAR"/>
+    </resultMap>
+    <insert id="addDeal" parameterType="deal">
+        INSERT INTO deal(deal_board_num, deal_status, user_id,deal_title, deal_text, deal_reg_date, product_name, price, tag,view_count, vill_code)
+values (seq_deal.NEXTVAL,#{dealStatus},#{userId},#{dealTitle},#{dealText},SYSDATE,#{productName},#{price},#{tag},#{viewCount},#{villCode})
+    </insert>
+    <select id="getDeal" parameterType="int" resultMap="dealSelectMap">
+        SELECT
+            deal_board_num,user_id, vill_Code,deal_title,price,deal_mode_check,product_name,deal_text,tag,deal_reg_date ,신뢰온도, 파일
+from deal
+where deal_board_num=#{value}
+    </select>
+    <update id="updateDeal" parameterType="deal">
+    UPDATE DEAL
+<set>
+    deal_title=#{dealTitle},
+        deal_status=#{dealStatus},
+        deal_text=#{dealText},
+        deal_reg_date=SYSDATE,
+    product_NAME=#{product_name},
+        price=#{price},
+        tag=#{tag}
+
+</set>
+WHERE deal_board_num=#{dealBoardNum};
+    </update>
+</mapper>
