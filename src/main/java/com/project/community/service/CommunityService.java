@@ -12,5 +12,12 @@ public interface CommunityService {
 
     void addComment(Comment comment);
 
+
+    void updateComment(Comment comment);
+
+    void deleteComment(Comment comment);
     void addRecomment(Recomment recomment);
+    void updateRecomment(Recomment recomment);
+
+    void deleteRecomment(int recommentNum);
 }

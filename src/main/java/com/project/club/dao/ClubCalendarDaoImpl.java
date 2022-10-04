@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Map;
+
 @Repository("clubCalenderDaoImpl")
 public class ClubCalendarDaoImpl implements ClubCalendarDao {
 
@@ -29,7 +32,32 @@ public class ClubCalendarDaoImpl implements ClubCalendarDao {
     }
 
     @Override
-    public void addCalenderReview(ClubCalendarReview calendeReview) {
-        sqlSession.insert("ClubCalenderMapper.addCalenderReview", calendeReview);
+    public void addCalenderReview(ClubCalendarReview calenderReview) {
+        sqlSession.insert("ClubCalenderMapper.addCalenderReview", calenderReview);
+    }
+
+    @Override
+    public void addCalenderReviewShort(ClubCalendarReview calenderReview) {
+        sqlSession.insert("ClubCalenderMapper.addCalenderReviewShort", calenderReview);
+    }
+
+    @Override
+    public void updateCalenderReview(ClubCalendarReview calenderReview) {
+        sqlSession.update("ClubCalenderMapper.updateCalenderReview", calenderReview);
+    }
+
+    @Override
+    public void updateCalenderReviewShort(ClubCalendarReview calenderReview) {
+        sqlSession.update("ClubCalenderMapper.updateCalenderReviewShort",calenderReview);
+    }
+
+    @Override
+    public void deleteCalenderReview(int calenderNum) {
+        sqlSession.delete("ClubCalenderMapper.deleteCalenderReview", calenderNum);
+    }
+
+    @Override
+    public List<ClubCalendarReview> listCalenderReview(int boardCategory) {
+        return sqlSession.selectList("ClubCalenderMapper.listCalenderReview", boardCategory);
     }
 }

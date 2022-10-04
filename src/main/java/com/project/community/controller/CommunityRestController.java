@@ -39,6 +39,34 @@ public class CommunityRestController {
 
         return null;
     }
+
+    @RequestMapping(value = "updateComment", method = RequestMethod.POST)
+    public String updateComment(@RequestBody Comment comment/*, @ModelAttribute("comment")Comment comment*/) throws ParseException {
+        System.out.println(comment);
+
+  /*      JSONParser parser = new JSONParser();
+
+        JSONObject jsonObj = (JSONObject)parser.parse(commentText);*/
+
+        comment.setBoardNum(10001);
+        comment.setCommentNum(10001);
+
+        System.out.println("댓글 도매인  : " + comment);
+
+        communityService.updateComment(comment);
+
+        return null;
+    }
+
+    @RequestMapping(value = "deleteComment", method = RequestMethod.POST)
+    public String deleteComment(@RequestBody Comment comment){
+
+        comment.setCommentCheck("y");
+
+        System.out.println(comment);
+        communityService.deleteComment(comment);
+        return null;
+    }
     @RequestMapping("addRecomment")
     public String addReComment(@RequestBody Recomment recomment){
 
@@ -49,6 +77,25 @@ public class CommunityRestController {
         recomment.setBoardCategory("1");
 
         communityService.addRecomment(recomment);
+
+        return null;
+    }
+
+    @RequestMapping("updateRecomment")
+    public String updateRecomment(@RequestBody Recomment recomment){
+        System.out.println("대댓글 수정 : " + recomment);
+
+        recomment.setRecommentNum(10000);
+
+        communityService.updateRecomment(recomment);
+        return null;
+    }
+
+    @RequestMapping("deleteRecomment")
+    public String deleteRecomment(@RequestBody Recomment recomment){
+        System.out.println("대댓글 삭제 : "+ recomment);
+
+        communityService.deleteRecomment(recomment.getRecommentNum());
 
         return null;
     }

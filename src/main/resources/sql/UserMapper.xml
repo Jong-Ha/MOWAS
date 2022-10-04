@@ -7,8 +7,8 @@
 <mapper namespace="UserMapper">
 
     <resultMap id="userSelectMap" type="user">
-        <result property="userId" column="user_id" javaType="VARCHAR"/>
-        <result
+        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+
 
 
     </resultMap>

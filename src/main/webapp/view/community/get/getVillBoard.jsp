@@ -296,7 +296,7 @@
                     }
                 })
             });
-
+            /*댓글*/
             $(".addcomment").on("click", function () {
                 //$("form").attr("method", "post").attr("action", "/commu/json/addComment").submit();
                 var commentText = $(".addComment").val();
@@ -321,6 +321,51 @@
                 })
             })
 
+            $(".updateComment").on("click", function () {
+                //$("form").attr("method", "post").attr("action", "/commu/json/addComment").submit();
+                var commentText = $(".addComment").val();
+
+                console.log(commentText);
+
+                $.ajax({
+                    url: "/commu/json/updateComment",
+                    type: "POST",
+                    data: JSON.stringify({"commentText": commentText}),
+                    dataType: "json",
+                    contentType: 'application/json; charset=UTF-8',
+                    /*
+                                        headers:{
+                                            "Accept":"application/json",
+                                            "Content-Type":"application/json; charset=utf-8"
+                                        },*/
+                    success: function (JSONData, result) {
+                        console.log(result);
+                    }
+
+                })
+            })
+
+            $(".deleteComment").on("click", function () {
+
+                $.ajax({
+                    url: "/commu/json/deleteComment",
+                    type: "POST",
+                    data: JSON.stringify({"commentNum": 10000}),
+                    dataType: "json",
+                    contentType: 'application/json; charset=UTF-8',
+                    /*
+                                        headers:{
+                                            "Accept":"application/json",
+                                            "Content-Type":"application/json; charset=utf-8"
+                                        },*/
+                    success: function (JSONData, result) {
+                        console.log(result);
+                    }
+
+                })
+            })
+
+            /*대댓*/
             $(".addRecomment").on("click", function () {
                 var recommentText = $(".recomment").val();
 
@@ -343,13 +388,54 @@
                 })
             })
 
+            $(".updateRecomment").on("click",function () {
+                var recommentText = $(".recomment").val();
+
+                console.log(recommentText);
+
+                $.ajax({
+                    url: "/commu/json/updateRecomment",
+                    type: "POST",
+                    data: JSON.stringify({"recommentText": recommentText}),
+                    dataType: "json",
+                    contentType: 'application/json; charset=UTF-8',
+                    /*
+                                        headers:{
+                                            "Accept":"application/json",
+                                            "Content-Type":"application/json; charset=utf-8"
+                                        },*/
+                    success: function (JSONData, result) {
+                        console.log(result);
+                    }
+                })
+            })
+
+            $(".deleteRecomment").on("click", function () {
+
+                $.ajax({
+                    url: "/commu/json/deleteRecomment",
+                    type: "POST",
+                    data: JSON.stringify({"recommentNum": 10001}),
+                    dataType: "json",
+                    contentType: 'application/json; charset=UTF-8',
+                    /*
+                                        headers:{
+                                            "Accept":"application/json",
+                                            "Content-Type":"application/json; charset=utf-8"
+                                        },*/
+                    success: function (JSONData, result) {
+                        console.log(result);
+                    }
+                })
+            })
+
 
             $(".update").on("click", function () {
                 window.open("/view/community/update/updateVillBoard.jsp", "우리 동네 게시글 수정",
                     "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no"
                 )
-            });
-        });
+            })
+        })
     </script>
 
 
@@ -611,14 +697,16 @@
                             </div>
                             <div class="d-grid gap-2 updatebox"
                                  style="gap: 0.1rem !important; margin-top: -5px;">
-                                <button class="btn btn-primary" type="button">Button</button>
-                                <button class="btn btn-primary" type="button">Button</button>
+                                <button class="btn btn-primary updateComment" type="button">수정</button>
+                                <button class="btn btn-primary deleteComment" type="button">삭제</button>
                             </div>
                         </div>
                     </div>
                     <div>
                         <input type="text" name="recommentText" class="recomment">
-                        <button type="button" class="btn btn-primary addRecomment"></button>
+                        <button type="button" class="btn btn-primary addRecomment">작성</button>
+                        <button type="button" class="btn btn-primary updateRecomment">수정</button>
+                        <button type="button" class="btn btn-primary deleteRecomment">삭제</button>
                     </div>
                 </div>
             </div>

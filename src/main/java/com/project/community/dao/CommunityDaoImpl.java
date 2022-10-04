@@ -39,8 +39,28 @@ public class CommunityDaoImpl implements CommunityDao {
     }
 
     @Override
+    public void updateComment(Comment comment) {
+        sqlSession.update("CommunityMapper.updateComment", comment);
+    }
+    @Override
+    public void deleteComment(Comment comment) {
+        sqlSession.update("CommunityMapper.deleteComment", comment);
+    }
+
+
+    @Override
     public void addRecomment(Recomment recomment) {
         sqlSession.insert("CommunityMapper.addRecomment", recomment);
     }
+    @Override
+    public void updateRecomment(Recomment recomment) {
+        sqlSession.update("CommunityMapper.updateRecomment", recomment);
+    }
+
+    @Override
+    public void deleteRecomment(int recommentNum) {
+        sqlSession.delete("CommunityMapper.deleteRecomment",recommentNum);
+    }
+
 
 }

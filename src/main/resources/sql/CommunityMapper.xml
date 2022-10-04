@@ -125,18 +125,23 @@
     <update id="updateComment" parameterType="comment">
         UPDATE comments
             <set>
-                comment_text = ${commentText}
+                comment_text = #{commentText}
             </set>
-        WHERE comment_num = ${commentNum}
+        WHERE comment_num = #{commentNum}
     </update>
 
-    <update id="deleteComment" parameterType="int">
+    <update id="deleteComment" parameterType="comment">
         UPDATE comments
             <set>
-                comment_check = ${commentCheck}
+                comment_check = #{commentCheck}
             </set>
-        WHERE comment_num = ${commentNum}
+        WHERE comment_num = #{commentNum}
     </update>
+
+    <select id="listComment"  parameterType="int" resultMap="comemntSelect">
+        SELECT * FROM comments
+        WHERE board_num = #{boardNum}
+    </select>
 
     <!--대댓글-->
     <insert id="addRecomment" parameterType="recomment">
@@ -152,17 +157,24 @@
     </insert>
 
     <update id="updateRecomment" parameterType="recomment">
-        UPDATE recomments
+        UPDATE recomment
         <set>
-            recomment_text = ${recommentText}
+            recomment_text = #{recommentText}
         </set>
-        WHERE recomment_num = ${recommentNum}
+        WHERE recomment_num = #{recommentNum}
     </update>
 
     <delete id="deleteRecomment" parameterType="int">
         DELETE recomment
-        WHERE recomment_num = ${recommentNum}
+        WHERE recomment_num = #{recommentNum}
     </delete>
+
+    <select id="listRecomment" parameterType="int" resultMap="recomemntSelect">
+        select * from RECOMMENT
+        where COMMENT_NUM = #{commentNum};
+    </select>
+
+
 
 
 

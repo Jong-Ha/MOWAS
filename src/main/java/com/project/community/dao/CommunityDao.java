@@ -11,6 +11,13 @@ public interface CommunityDao {
     void addVillBoard(VilBoard villBoard);
 
     void addComment(Comment comment);
+    void updateComment(Comment comment);
 
     void addRecomment(Recomment recomment);
+
+    void deleteComment(Comment comment);
+
+    void updateRecomment(Recomment recomment);
+
+    void deleteRecomment(int recommentNum);
 }

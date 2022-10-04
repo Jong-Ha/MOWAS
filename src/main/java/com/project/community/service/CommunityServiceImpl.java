@@ -30,9 +30,29 @@ public class CommunityServiceImpl implements CommunityService {
     public void addComment(Comment comment) {
         commuDao.addComment(comment);
     }
+    @Override
+    public void updateComment(Comment comment) {
+        commuDao.updateComment(comment);
+    }
+
+    @Override
+    public void deleteComment(Comment comment) {
+        commuDao.deleteComment(comment);
+    }
 
     @Override
     public void addRecomment(Recomment recomment) {
         commuDao.addRecomment(recomment);
     }
+
+    @Override
+    public void updateRecomment(Recomment recomment) {
+        commuDao.updateRecomment(recomment);
+    }
+
+    @Override
+    public void deleteRecomment(int recommentNum) {
+        commuDao.deleteRecomment(recommentNum);
+    }
+
 }

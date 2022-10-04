@@ -57,7 +57,7 @@
                     timer: 1500,
                 });
 
-                //$("form").attr("method", "post").attr("action", "/commu/addClubCalender").submit();
+                $("form").attr("method", "post").attr("action", "/clubCal/updateClubCalenderReview").submit();
 
             });
 
@@ -74,18 +74,21 @@
 <body>
 
 <form>
-    <!--  화면구성 div Start /////////////////////////////////////-->
+
+    <input type="hidden" name="boardCategory" value="1">
+    <input type="hidden" name="clubCalenderReviewNum" value="10003">
+
     <div class="wap">
         <div class="container">
 
             <div class="page-header">
-                <h3 class=" text-info">모임 일정 후기글 수정</h3>
+                <h3 class=" text-info">모임 일정 후기글 작성</h3>
             </div>
 
             <div class="row">
                 <div class="col-xs-4 col-xs-2"><strong>제 목</strong></div>
                 <div class="col-xs-8 col-xs-4">
-                    <input type="text" class="form-control" name="calenderTitle" value=""/>
+                    <input type="text" class="form-control" name="reviewTitle" value=""/>
                 </div>
             </div>
 
@@ -95,14 +98,14 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2"><strong>내용</strong></div>
                 <div class="col-xs-8 col-xs-4">
-                    <textarea class="form-control" name="calenderText"
+                    <textarea class="form-control" name="reviewText"
                               style=" height: 200px;  width: 500px;  margin-bottom: 20px;"></textarea>
                 </div>
             </div>
 
             <hr/>
 
-            <select class="form-select " style="width: 300px;">
+            <select class="form-select " name="reviewRange" style="width: 300px;">
                 <option selected>공개 여부를 선택 하세요</option>
                 <option value="1">전체 공개</option>
                 <option value="2">모임 공개</option>

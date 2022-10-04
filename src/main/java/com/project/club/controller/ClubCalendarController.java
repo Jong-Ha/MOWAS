@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -93,14 +94,14 @@ public class ClubCalendarController {
 
     /*모임 일정 후기 쇼츠*/
     @RequestMapping(value = "addClubCalenderReview", method = RequestMethod.POST)
-    public String addClubCalenderReview(@ModelAttribute("clubCalenderReview") ClubCalendarReview calendeReview
-            , @RequestParam("file") List<MultipartFile> file) {
+    public String addClubCalenderReview(@ModelAttribute("clubCalenderReview") ClubCalendarReview calenderReview
+            /*, @RequestParam("file") List<MultipartFile> file*/) {
 
-        System.out.println("파일 업로드 진입 : " + file);
-        System.out.println("모임 일정 후기 Data : " + calendeReview);
+      /*  System.out.println("파일 업로드 진입 : " + file);*/
+        System.out.println("모임 일정 후기 Data : " + calenderReview);
 
 
-        List<Map<String, String>> fileList = new ArrayList<>();
+/*        List<Map<String, String>> fileList = new ArrayList<>();
         for (int i = 0; i < file.size(); i++) {
             String fileName = file.get(i).getOriginalFilename();
             System.out.println("파일 이름 : " + fileName);
@@ -114,15 +115,58 @@ public class ClubCalendarController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }*/
+
+        calenderReview.setClubCalenderNum(10001);
+        calenderReview.setClubNum(10008);
+        calenderReview.setUserId("user01");
+
+        if(calenderReview.getBoardCategory() == 1) {
+            calenderService.addCalenderReview(calenderReview);
+        }else if(calenderReview.getBoardCategory() == 2){
+            calenderService.addCalenderReviewShort(calenderReview);
+        }
+        return null;
+    }
+    @RequestMapping("updateClubCalenderReview")
+    public String updateClubCalenderReview(@ModelAttribute("clubCalenderReview") ClubCalendarReview calenderReview){
+        System.out.println("모임 일정 수정 진입: " + calenderReview);
+
+
+        if(calenderReview.getBoardCategory() == 1) {
+            calenderService.updateCalenderReview(calenderReview);
+        }else if(calenderReview.getBoardCategory() == 2){
+            calenderService.updateCalenderReviewShort(calenderReview);
         }
 
-        calendeReview.setClubCalenderNum(10001);
-        calendeReview.setClubNum(10008);
-        calendeReview.setUserId("user01");
-        calendeReview.setBoardCategory(2);
+        return  null;
+    }
 
-        calenderService.addCalenderReview(calendeReview);
+    @RequestMapping("deleteClubCalenderReview")
+    public String deleteClubCalenderReview(@RequestParam("calenderNum")int calenderNum){
+        System.out.println("캘린더 번호 : " + calenderNum);
+
+        calenderService.deleteCalenderReview(calenderNum);
 
         return null;
+    }
+
+    @RequestMapping("listCalenderReview")
+    public String listCalenderReview(@RequestParam("boardCategory")int boardCategory
+                                    ,Model model,HttpServletRequest request){
+
+        Map<String, Object> map = calenderService.listCalenderReview(boardCategory);
+
+        model.addAttribute("list", map.get("list"));
+
+
+        if (boardCategory == 1){
+            return "/view/community/list/clubCalenderReviewList.jsp";
+        } else if (boardCategory == 2) {
+            return "/view/community/list/clubCalenderReviewShortList.jsp";
+        }
+
+        return null;
+
     }
 }
