@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MOWAS">
+  <database-model serializer="dbm" dbms="ORACLE" family-id="ORACLE" format-version="4.43">
+    <root id="1">
+      <IntrospectionLevel>3</IntrospectionLevel>
+      <ServerVersion>10.2.0.1.0</ServerVersion>
+      <TablespacesHash>21786136066</TablespacesHash>
+    </root>
+    <schema id="2" parent="1" name="ANONYMOUS">
+      <ObjectId>28</ObjectId>
+    </schema>
+    <schema id="3" parent="1" name="CTXSYS">
+      <ObjectId>25</ObjectId>
+    </schema>
+    <schema id="4" parent="1" name="DBSNMP">
+      <ObjectId>23</ObjectId>
+    </schema>
+    <schema id="5" parent="1" name="DIP">
+      <ObjectId>18</ObjectId>
+    </schema>
+    <schema id="6" parent="1" name="FLOWS_020100">
+      <ObjectId>35</ObjectId>
+    </schema>
+    <schema id="7" parent="1" name="FLOWS_FILES">
+      <ObjectId>34</ObjectId>
+    </schema>
+    <schema id="8" parent="1" name="HR">
+      <ObjectId>33</ObjectId>
+    </schema>
+    <schema id="9" parent="1" name="MDSYS">
+      <ObjectId>32</ObjectId>
+    </schema>
+    <schema id="10" parent="1" name="MOWAS">
+      <CreatedTimestamp>2022-09-30.04:27:33</CreatedTimestamp>
+      <Current>1</Current>
+      <IntrospectionL1Timestamp>2022-10-01.02:53:32</IntrospectionL1Timestamp>
+      <IntrospectionL2Timestamp>2022-10-01.02:53:32</IntrospectionL2Timestamp>
+      <IntrospectionL3Timestamp>2022-10-01.02:53:32</IntrospectionL3Timestamp>
+      <IntrospectionVersion>200820</IntrospectionVersion>
+      <ModifiedTimestamp>2022-10-01.02:53:32</ModifiedTimestamp>
+      <ObjectId>36</ObjectId>
+    </schema>
+    <schema id="11" parent="1" name="OUTLN">
+      <ObjectId>11</ObjectId>
+    </schema>
+    <schema id="12" parent="1" name="PUBLIC">
+      <CreatedTimestamp>2006-02-08.07:10:24</CreatedTimestamp>
+      <IntrospectionVersion>200820</IntrospectionVersion>
+      <ModifiedTimestamp>2022-09-30.04:04:04</ModifiedTimestamp>
+      <ObjectId>1</ObjectId>
+    </schema>
+    <schema id="13" parent="1" name="SYS">
+      <ObjectId>0</ObjectId>
+    </schema>
+    <schema id="14" parent="1" name="SYSTEM">
+      <ObjectId>5</ObjectId>
+    </schema>
+    <schema id="15" parent="1" name="TSMSYS">
+      <ObjectId>20</ObjectId>
+    </schema>
+    <schema id="16" parent="1" name="XDB">
+      <ObjectId>27</ObjectId>
+    </schema>
+    <tablespace id="17" parent="1" name="SYSTEM">
+      <BlockSize>8192</BlockSize>
+      <ContentCategory>P</ContentCategory>
+      <LocalExtentManagement>1</LocalExtentManagement>
+      <Logging>1</Logging>
+      <Status>E</Status>
+    </tablespace>
+    <tablespace id="18" parent="1" name="UNDO">
+      <BlockSize>8192</BlockSize>
+      <ContentCategory>U</ContentCategory>
+      <LocalExtentManagement>1</LocalExtentManagement>
+      <Logging>1</Logging>
+      <Status>E</Status>
+    </tablespace>
+    <tablespace id="19" parent="1" name="SYSAUX">
+      <AutoSegmentManagement>1</AutoSegmentManagement>
+      <BlockSize>8192</BlockSize>
+      <ContentCategory>P</ContentCategory>
+      <LocalExtentManagement>1</LocalExtentManagement>
+      <Logging>1</Logging>
+      <Status>E</Status>
+    </tablespace>
+    <tablespace id="20" parent="1" name="TEMP">
+      <BlockSize>8192</BlockSize>
+      <ContentCategory>T</ContentCategory>
+      <LocalExtentManagement>1</LocalExtentManagement>
+      <Logging>0</Logging>
+      <Status>E</Status>
+    </tablespace>
+    <tablespace id="21" parent="1" name="USERS">
+      <AutoSegmentManagement>1</AutoSegmentManagement>
+      <BlockSize>8192</BlockSize>
+      <ContentCategory>P</ContentCategory>
+      <LocalExtentManagement>1</LocalExtentManagement>
+      <Logging>1</Logging>
+      <Status>E</Status>
+    </tablespace>
+    <user id="22" parent="1" name="ANONYMOUS">
+      <ObjectId>28</ObjectId>
+    </user>
+    <user id="23" parent="1" name="CTXSYS">
+      <ObjectId>25</ObjectId>
+    </user>
+    <user id="24" parent="1" name="DBSNMP">
+      <ObjectId>23</ObjectId>
+    </user>
+    <user id="25" parent="1" name="DIP">
+      <ObjectId>18</ObjectId>
+    </user>
+    <user id="26" parent="1" name="FLOWS_020100">
+      <ObjectId>35</ObjectId>
+    </user>
+    <user id="27" parent="1" name="FLOWS_FILES">
+      <ObjectId>34</ObjectId>
+    </user>
+    <user id="28" parent="1" name="HR">
+      <ObjectId>33</ObjectId>
+    </user>
+    <user id="29" parent="1" name="MDSYS">
+      <ObjectId>32</ObjectId>
+    </user>
+    <user id="30" parent="1" name="MOWAS">
+      <ObjectId>36</ObjectId>
+      <DefaultTablespaceName>USERS</DefaultTablespaceName>
+      <TemporaryTablespaceName>TEMP</TemporaryTablespaceName>
+    </user>
+    <user id="31" parent="1" name="OUTLN">
+      <ObjectId>11</ObjectId>
+    </user>
+    <user id="32" parent="1" name="SYS">
+      <ObjectId>0</ObjectId>
+    </user>
+    <user id="33" parent="1" name="SYSTEM">
+      <ObjectId>5</ObjectId>
+    </user>
+    <user id="34" parent="1" name="TSMSYS">
+      <ObjectId>20</ObjectId>
+    </user>
+    <user id="35" parent="1" name="XDB">
+      <ObjectId>27</ObjectId>
+    </user>
+  </database-model>
+</dataSource>
