@@ -60,4 +60,9 @@ public class ClubCalendarDaoImpl implements ClubCalendarDao {
     public List<ClubCalendarReview> listCalenderReview(int boardCategory) {
         return sqlSession.selectList("ClubCalenderMapper.listCalenderReview", boardCategory);
     }
+
+    @Override
+    public ClubCalendarReview getCalenderReview(int clubCalenderReviewNum) {
+        return sqlSession.selectOne("ClubCalenderMapper.getCalenderReview", clubCalenderReviewNum);
+    }
 }

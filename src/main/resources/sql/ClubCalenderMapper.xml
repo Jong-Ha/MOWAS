@@ -132,14 +132,15 @@
           WHERE club_calendar_review_num = #{clubCalenderReviewNum}
     </delete>
 
+    <select id="getCalenderReview" parameterType="int"  resultMap="calenderReviewSelect">
+        SELECT *
+        FROM club_calendar_review
+        WHERE club_calendar_review_num = #{clubCalenderReviewNum}
+    </select>
+
     <select id="listCalenderReview" parameterType="int" resultMap="calenderReviewSelect">
         select * from CLUB_CALENDAR_REVIEW
-        <if test = "boardCategory == 1">
-        WHERE BOARD_CATEGORY = 1
-        </if>
-        <if test = "boardCategory == 2">
-        WHERE BOARD_CATEGORY = 2
-        </if>
+        WHERE BOARD_CATEGORY = #{boardCategory}
         AND REVIEW_RANGE = '1'
     </select>
 

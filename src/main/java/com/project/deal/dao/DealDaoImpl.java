@@ -1,5 +1,6 @@
 package com.project.deal.dao;
 
+import com.project.common.Search;
 import com.project.domain.Deal;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,25 +23,36 @@ public class DealDaoImpl implements DealDao{
         System.out.println(this.getClass());
     }
 
-    public void addDeal(Deal deal) throws Exception{
-        sqlSession.insert("DealMapper.addDeal", deal);
-    }
-    public Deal getDeal(int dealBoradNum) throws Exception{
-        return sqlSession.selectOne("DealMapper.getDeal", dealBoradNum);
+
+
+
+//    @Override
+    //public List<Deal> ListDeal(Search search) throws Exception {
+    //    return null;
+    //}
+
+    @Override
+    public void addDeal(Deal deal)  {
+        sqlSession.insert("DealMapper.addDeal",deal);
     }
 
     @Override
-    public List<Deal> ListDeal(SearchControls search) throws Exception {
-        return null;
+    public Deal getDeal(int dealBoardNum){
+        return sqlSession.selectOne("DealMapper.getDeal", dealBoardNum);
     }
 
     @Override
-    public void updateDeal(Deal deal) throws Exception {
+    public void updateDeal(Deal deal) {
         sqlSession.update("DealMapper.updateDeal", deal);
     }
 
     @Override
-    public void deleteDeal(Deal deal) throws Exception {
-sqlSession.delete("DealMapper.deleteDeal", deal);
+    public void deleteDeal(Deal deal) {
+        sqlSession.delete("DealMapper.deleteDeal", deal);
+    }
+
+    @Override
+    public List<Deal> getListDeal(Search search) {
+        return sqlSession.selectList("DealMapper.getListDeal",search);
     }
 }

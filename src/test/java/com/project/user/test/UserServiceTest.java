@@ -24,50 +24,50 @@ public class UserServiceTest {
     public void testAddUser() throws Exception {
 
         User user = new User();
-        user.setUserId("testId06");
+        user.setUserId("testId07");
         user.setMasterCheck("1");
-        user.setUserStatus("3");
+        user.setUserStatus("1");
         user.setPassword("test04");
-        user.setUserName("이몽룡");
-        user.setRrd(3333);
+        user.setUserName("차은우");
+        user.setRrd(77777);
         user.setGender("남자");
-        user.setEmail("test04@test.com");
+        user.setEmail("test07@test.com");
         user.setPhone(333444455);
-        user.setVillCode("강남4동");
-        user.setUserImage("이미지.jpg");
+        user.setVillCode("강남7동");
+        user.setUserImage("이미지7.jpg");
         //new Date(System.currentTimeMillis());
-        user.setLcd("2022-10-05");
+        user.setLcd("2022-10-07");
         user.setLoginCheck("1");
-        user.setPsd("2022-10-05");
-        user.setPed("2022-10-05");
+        user.setPsd("2022-10-07");
+        user.setPed("2022-10-07");
         user.setPpt(30);
-        user.setReviewPt(70);
+        user.setReviewPt(77);
 
         userService.addUser(user);
 
-        user = userService.getUser("testId06");
+        user = userService.getUser("testId07");
 
         //==> console 확인
         //System.out.println(user);
 
         //==> API 확인
-        Assert.assertEquals("testId06", user.getUserId());
+        Assert.assertEquals("testId07", user.getUserId());
         Assert.assertEquals("1", user.getMasterCheck());
-        Assert.assertEquals("3", user.getUserStatus());
-        Assert.assertEquals("test04", user.getPassword());
-        Assert.assertEquals("이몽룡", user.getUserName());
-        Assert.assertEquals(3333, user.getRrd());
+        Assert.assertEquals("1", user.getUserStatus());
+        Assert.assertEquals("test07", user.getPassword());
+        Assert.assertEquals("차은우", user.getUserName());
+        Assert.assertEquals(77777, user.getRrd());
         Assert.assertEquals("남자", user.getGender());
-        Assert.assertEquals("test04@test.com", user.getEmail());
+        Assert.assertEquals("test07@test.com", user.getEmail());
         Assert.assertEquals(333444455, user.getPhone());
-        Assert.assertEquals("강남4동", user.getVillCode());
-        Assert.assertEquals("이미지.jpg", user.getUserImage());
-        Assert.assertEquals("2022-10-05", user.getLcd());
+        Assert.assertEquals("강남7동", user.getVillCode());
+        Assert.assertEquals("이미지7.jpg", user.getUserImage());
+        Assert.assertEquals("2022-10-07", user.getLcd());
         Assert.assertEquals("1", user.getLoginCheck());
-        Assert.assertEquals("2022-10-05", user.getPsd());
-        Assert.assertEquals("2022-10-05", user.getPed());
+        Assert.assertEquals("2022-10-07", user.getPsd());
+        Assert.assertEquals("2022-10-07", user.getPed());
         Assert.assertEquals(30, user.getPpt());
-        Assert.assertEquals(70, user.getReviewPt());
+        Assert.assertEquals(77, user.getReviewPt());
     }
 
     @Test
@@ -153,7 +153,7 @@ public class UserServiceTest {
         userInterList.setUserId("testId05");
         userInterList.setInterList("8");
 
-        userService.addInterList(userInterList);
+      //  userService.addInterList(userInterList);
 
     }
 

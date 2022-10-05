@@ -9,6 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Service("communityServiceImpl")
 public class CommunityServiceImpl implements CommunityService {
 
@@ -54,5 +58,52 @@ public class CommunityServiceImpl implements CommunityService {
     public void deleteRecomment(int recommentNum) {
         commuDao.deleteRecomment(recommentNum);
     }
+
+
+
+    @Override
+    public Map<String, Object> listVillBoard(String villCode) {
+        List<VilBoard> list = commuDao.listVillBoard(villCode);
+
+        Map<String,Object>map = new HashMap<String,Object>();
+
+        map.put("list", list);
+
+        return map;
+    }
+
+    @Override
+    public VilBoard getVillBoard(int villBoardNum) {
+        return commuDao.getVillBoard(villBoardNum);
+    }
+
+    @Override
+    public Map<String, Object> listComment(int villBoardNum, int boardCategory) {
+        Map<String, Object>map = new HashMap<String,Object>();
+
+        map.put("boardNum" , villBoardNum);
+        map.put("boardCategory",boardCategory);
+
+        List<Comment> list = commuDao.listComment(map);
+
+        for (Comment comment : list) {
+            comment.setRecommentList(commuDao.listRecomment(comment.getCommentNum()));
+        }
+
+        map.put("list", list);
+
+        return map;
+    }
+
+    @Override
+    public void updateViewCount(VilBoard villBoard) {
+        commuDao.updateViewCount(villBoard);
+    }
+
+    @Override
+    public int getViewCount(int villBoardNum) {
+        return commuDao.getViewCount(villBoardNum);
+    }
+
 
 }

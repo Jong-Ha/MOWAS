@@ -1,8 +1,8 @@
 package com.project.user.dao;
 
 import com.project.domain.User;
-import com.project.domain.UserInterList;
-import com.project.user.mail.MailApp;
+//import com.project.domain.UserInterList;
+//import com.project.user.mail.MailApp;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,22 +16,23 @@ public class UserDaoImpl implements UserDao{
     public void setSqlSession(SqlSession sqlSession){
         this.sqlSession = sqlSession;
     }
-    private MailApp mailApp;
-    public void setMailApp(MailApp mailApp){
-        this.mailApp = mailApp;
-    }
-
+  //  private MailApp mailApp;
+  // public void setMailApp(MailApp mailApp){
+  //      this.mailApp = mailApp;
+  //  }
+//
     public UserDaoImpl() {
         System.out.println(this.getClass());
     }
 
     public void addUser(User user)throws Exception{
+        System.out.println("여기는 DaoImpl addUser 메서드이다");
         sqlSession.insert("UserMapper.addUser", user);
     }
 
-    public void addInterList(UserInterList userInterListNum)throws Exception{
-        sqlSession.insert("UserMapper.addInterList", userInterListNum);
-    }
+ //   public void addInterList(UserInterList userInterListNum)throws Exception{
+  //      sqlSession.insert("UserMapper.addInterList", userInterListNum);
+  //  }
 
     public User getUser(String userId)throws Exception{
         return sqlSession.selectOne("UserMapper.getUser", userId);
