@@ -1,7 +1,7 @@
 package com.project.user.service;
 
 import com.project.domain.User;
-import com.project.domain.UserInterList;
+//import com.project.domain.UserInterList;
 import com.project.user.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,9 +25,9 @@ public class UserServiceImpl implements UserService{
     };
 
     //관심목록 추가
-    public void addInterList(UserInterList userInterListNum)throws Exception{
-        userDao.addInterList(userInterListNum);
-    }
+ //   public void addInterList(UserInterList userInterListNum)throws Exception{
+ //       userDao.addInterList(userInterListNum);
+  //  }
 
     public User getUser(String userId)throws Exception{
         return userDao.getUser(userId);

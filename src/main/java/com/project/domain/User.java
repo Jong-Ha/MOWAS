@@ -12,6 +12,8 @@ import java.util.Date;
 
 public class User {
     private String userId;
+    private String interList;
+
     private String masterCheck;
     private String userStatus;
     private String password;
