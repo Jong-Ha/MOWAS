@@ -11,8 +11,8 @@ import java.sql.Date;
 @Setter
 public class Recomment {
     private int recommentNum;
-    private int commentMum;
-    private User userId;
+    private int commentNum;
+    private String userId;
     private String boardCategory;
     private String recommentText;
     private Date regDate;

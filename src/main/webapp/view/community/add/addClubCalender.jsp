@@ -50,7 +50,7 @@
 
                 console.log("이거 왜 안되냐");
 
-                $("form").attr("method", "post").attr("action", "/clubcal/addClubCalender") .attr("enctype", "multipart/form-data").submit();
+                $("form").attr("method", "post").attr("action", "/clubCal/addClubCalender") .attr("enctype", "multipart/form-data").submit();
 
 
                 Swal.fire({

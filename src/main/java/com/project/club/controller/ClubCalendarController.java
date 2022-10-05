@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,19 +22,38 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("clubcal")
+@RequestMapping("/clubCal/*")
 public class ClubCalendarController {
 
     @Autowired
     @Qualifier("clubCalenderServiceImpl")
     private ClubCalendarService calenderService;
 
-
+    /*모임 일정*/
     @RequestMapping(value = "addClubCalender", method = RequestMethod.POST)
     public String addClubCalender(@ModelAttribute("ClubCalendar") ClubCalendar calender,
                                   @RequestParam("file") List<MultipartFile> file) throws Exception {
-        calender.setClubNum(2);
+        calender.setClubNum(10008);
         calender.setLocation("창원시 진해구 소사동");
+        /*자동 참여*/
+        if(calender.getApplyAutoCheck()  == "on" ){
+            calender.setApplyAutoCheck("1");
+        }else {
+            calender.setApplyAutoCheck("2");
+        }
+        /*추가 참여*/
+        if(calender.getCalendarApplyCheck() == "on" ){
+            calender.setCalendarApplyCheck("1");
+        }else{
+            calender.setCalendarApplyCheck("2");
+        }
+
+        /*알림 설정*/
+        if (calender.getNoticeCheck() == "on"){
+            calender.setNoticeCheck("1");
+        }else{
+            calender.setNoticeCheck("2");
+        }
 
         System.out.println("addClubCalender 진입 " + calender);
 
@@ -70,13 +90,18 @@ public class ClubCalendarController {
         return null;
     }
 
-    @RequestMapping(value = "addClubCalenderReviewShort", method = RequestMethod.POST)
-    public String addClubCalenderReviewShort(@ModelAttribute("clubCalenderReviewShort") ClubCalendarReview calendeReview
-            , @RequestParam("file") List<MultipartFile> file) {
+    /*모임 일정*/
 
-        System.out.println("파일 업로드 진입 : " + file);
+    /*모임 일정 후기 쇼츠*/
+    @RequestMapping(value = "addClubCalenderReview", method = RequestMethod.POST)
+    public String addClubCalenderReview(@ModelAttribute("clubCalenderReview") ClubCalendarReview calenderReview
+            /*, @RequestParam("file") List<MultipartFile> file*/) {
 
-        List<Map<String, String>> fileList = new ArrayList<>();
+      /*  System.out.println("파일 업로드 진입 : " + file);*/
+        System.out.println("모임 일정 후기 Data : " + calenderReview);
+
+
+/*        List<Map<String, String>> fileList = new ArrayList<>();
         for (int i = 0; i < file.size(); i++) {
             String fileName = file.get(i).getOriginalFilename();
             System.out.println("파일 이름 : " + fileName);
@@ -90,8 +115,58 @@ public class ClubCalendarController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }*/
+
+        calenderReview.setClubCalenderNum(10001);
+        calenderReview.setClubNum(10008);
+        calenderReview.setUserId("user01");
+
+        if(calenderReview.getBoardCategory() == 1) {
+            calenderService.addCalenderReview(calenderReview);
+        }else if(calenderReview.getBoardCategory() == 2){
+            calenderService.addCalenderReviewShort(calenderReview);
+        }
+        return null;
+    }
+    @RequestMapping("updateClubCalenderReview")
+    public String updateClubCalenderReview(@ModelAttribute("clubCalenderReview") ClubCalendarReview calenderReview){
+        System.out.println("모임 일정 수정 진입: " + calenderReview);
+
+
+        if(calenderReview.getBoardCategory() == 1) {
+            calenderService.updateCalenderReview(calenderReview);
+        }else if(calenderReview.getBoardCategory() == 2){
+            calenderService.updateCalenderReviewShort(calenderReview);
+        }
+
+        return  null;
+    }
+
+    @RequestMapping("deleteClubCalenderReview")
+    public String deleteClubCalenderReview(@RequestParam("calenderNum")int calenderNum){
+        System.out.println("캘린더 번호 : " + calenderNum);
+
+        calenderService.deleteCalenderReview(calenderNum);
+
+        return null;
+    }
+
+    @RequestMapping("listCalenderReview")
+    public String listCalenderReview(@RequestParam("boardCategory")int boardCategory
+                                    ,Model model,HttpServletRequest request){
+
+        Map<String, Object> map = calenderService.listCalenderReview(boardCategory);
+
+        model.addAttribute("list", map.get("list"));
+
+
+        if (boardCategory == 1){
+            return "/view/community/list/clubCalenderReviewList.jsp";
+        } else if (boardCategory == 2) {
+            return "/view/community/list/clubCalenderReviewShortList.jsp";
         }
 
         return null;
+
     }
 }
