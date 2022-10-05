@@ -36,6 +36,8 @@ public class DealServiceImpl implements DealService {
     @Override
     public Deal updateDeal(Deal deal) throws Exception {
         dealDao.updateDeal(deal);
+
+        return null;
     }
 
     @Override
@@ -43,10 +45,10 @@ public class DealServiceImpl implements DealService {
     dealDao.deleteDeal(deal);
     }
 
-    @Override
-    public Map<String, Object> listDeal(Search search) throws Exception {
-        return null;
-    }
+//    @Override
+//    public Map<String, Object> listDeal(Search search) throws Exception {
+//        return null;
+//    }
 
 
 }

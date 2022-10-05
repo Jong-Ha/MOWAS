@@ -25,17 +25,17 @@
         <result property="dealDate" column="deal_date" jdbcType="DATE"/>
         <result property="dealLocation" column="deal_location" jdbcType="VARCHAR"/>
     </resultMap>
-    <insert id="addDeal" parameterType="deal">
+    <insert id="addDeal" parameterType="Deal">
         INSERT INTO deal(deal_board_num, deal_status, user_id,deal_title, deal_text, deal_reg_date, product_name, price, tag,view_count, vill_code)
 values (seq_deal.NEXTVAL,#{dealStatus},#{userId},#{dealTitle},#{dealText},SYSDATE,#{productName},#{price},#{tag},#{viewCount},#{villCode})
     </insert>
-    <select id="getDeal" parameterType="int" resultMap="dealSelectMap">
+    <select id="getDeal" parameterType="int" resultMap="DealSelectMap">
         SELECT
             deal_board_num,user_id, vill_Code,deal_title,price,deal_mode_check,product_name,deal_text,tag,deal_reg_date ,신뢰온도, 파일
 from deal
 where deal_board_num=#{value}
     </select>
-    <update id="updateDeal" parameterType="deal">
+    <update id="updateDeal" parameterType="Deal">
     UPDATE DEAL
 <set>
     deal_title=#{dealTitle},

@@ -21,5 +21,11 @@
                     pointcut="execution(* com.project.*.service..*Impl.*(..) )"	method="invoke"/>
         </aop:aspect>
     </aop:config>
+    <aop:config>
+        <aop:aspect  ref="logAspect">
+            <aop:around
+                    pointcut="execution(* com.project.*.dao..*Impl.*(..) )"	method="invoke"/>
+        </aop:aspect>
+    </aop:config>
 
 </beans>
