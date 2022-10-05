@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Map;
+
 @Repository("communityDaoImpl")
 public class CommunityDaoImpl implements CommunityDao {
 
@@ -39,8 +42,57 @@ public class CommunityDaoImpl implements CommunityDao {
     }
 
     @Override
+    public void updateComment(Comment comment) {
+        sqlSession.update("CommunityMapper.updateComment", comment);
+    }
+    @Override
+    public void deleteComment(Comment comment) {
+        sqlSession.update("CommunityMapper.deleteComment", comment);
+    }
+
+
+    @Override
     public void addRecomment(Recomment recomment) {
         sqlSession.insert("CommunityMapper.addRecomment", recomment);
+    }
+    @Override
+    public void updateRecomment(Recomment recomment) {
+        sqlSession.update("CommunityMapper.updateRecomment", recomment);
+    }
+
+    @Override
+    public void deleteRecomment(int recommentNum) {
+        sqlSession.delete("CommunityMapper.deleteRecomment",recommentNum);
+    }
+
+    @Override
+    public List<Comment> listComment(Map<String, Object> map) {
+        return sqlSession.selectList("CommunityMapper.listComment", map);
+    }
+
+    @Override
+    public List<Recomment> listRecomment(int commentNo) {
+        return sqlSession.selectList("CommunityMapper.listRecomment", commentNo);
+    }
+
+    @Override
+    public List<VilBoard> listVillBoard(String villCode) {
+        return sqlSession.selectList("CommunityMapper.listVillBoard", villCode);
+    }
+
+    @Override
+    public VilBoard getVillBoard(int villBoardNum) {
+        return sqlSession.selectOne("CommunityMapper.getVillBoard", villBoardNum);
+    }
+
+    @Override
+    public void updateViewCount(VilBoard villBoard) {
+        sqlSession.update("CommunityMapper.updateViewCount",villBoard);
+    }
+
+    @Override
+    public int getViewCount(int villBoardNum) {
+        return sqlSession.selectOne("CommunityMapper.getViewCount", villBoardNum);
     }
 
 }

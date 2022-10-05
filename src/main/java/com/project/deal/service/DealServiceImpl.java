@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service("dealServiceImpl")
@@ -25,28 +27,41 @@ public class DealServiceImpl implements DealService {
         System.out.println(this.getClass());
     }
 
-    public void addDeal(Deal deal) throws Exception{
+
+    @Override
+    public void addDeal(Deal deal) {
         dealDao.addDeal(deal);
+        System.out.println("addDeal serviceImpl");
+
     }
 
     @Override
-    public Deal getDeal(int dealBoardNum) throws Exception {
+    public Deal getDeal(int dealBoardNum) {
+        System.out.println("getDeal serviceImpl");
         return dealDao.getDeal(dealBoardNum);
+
     }
 
     @Override
-    public Deal updateDeal(Deal deal) throws Exception {
-        return dealDao.updateDeal(deal);
+    public void updateDeal(Deal deal) {
+        dealDao.updateDeal(deal);
+        System.out.println("updateDeal serviceImpl");
     }
 
     @Override
-    public void deleteDeal(Deal deal) throws Exception {
-    dealDao.deleteDeal(deal);
+    public void deleteDeal(Deal deal) {
+        dealDao.deleteDeal(deal);
+        System.out.println("deleteDeal serviceImpl");
     }
 
     @Override
-    public Map<String, Object> listDeal(Search search) throws Exception {
-        return null;
+    public Map<String, Object> getListDeal(Search search) {
+        List<Deal> list=dealDao.getListDeal(search);
+
+        Map<String, Object> map =new HashMap<String,Object>();
+        map.put("list",list);
+
+        return map;
     }
 
 

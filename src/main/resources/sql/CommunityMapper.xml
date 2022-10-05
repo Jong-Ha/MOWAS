@@ -36,7 +36,7 @@
         <result property="regDate"        column="reg_date"        jdbcType="DATE"/>
     </resultMap>
 
-    <resultMap id="recomemntSelect" type="recomment">
+    <resultMap id="recommentSelect" type="recomment">
         <result property="recommentNum"     column="recomment_num"     jdbcType="INTEGER"/>
         <result property="commentNum"       column="comment_num"       jdbcType="INTEGER"/>
         <result property="userId"           column="user_id"           jdbcType="VARCHAR"/>
@@ -63,23 +63,29 @@
     <update id="updateVillBoard" parameterType="villBoard">
         UPDATE vill_board
             <set>
-                vill_title = ${villTitle}
-                ,vill_text = ${villText}
-                ,vill_tag = ${villTag}
+                vill_title = #{villTitle}
+                ,vill_text = #{villText}
+                ,vill_tag = #{villTag}
                 ,reg_date = SYSDATE
             </set>
-        WHERE vill_board_num = ${villBoardNum}
+        WHERE vill_board_num = #{villBoardNum}
     </update>
 
     <delete id="deleteVillBoard" parameterType="int">
         DELETE vill_board
-        WHERE vill_board_num = ${villBoardNum}
+        WHERE vill_board_num = #{villBoardNum}
     </delete>
 
     <select id="getVillBoard" parameterType="int" resultMap="villBoardSelect">
         SELECT *
         FROM vill_board
-        WHERE vill_board_num = ${villBoardNum}
+        WHERE vill_board_num = #{villBoardNum}
+    </select>
+
+    <select id="listVillBoard" parameterType="String" resultMap="villBoardSelect">
+        SELECT *
+        FROM vill_board
+        WHERE vill_code LIKE '%'||#{villCode}||'%'
     </select>
 
 
@@ -88,24 +94,24 @@
         INSERT INTO
             likes (like_num,user_id,board_category,board_num,like_check)
             VALUES (seq_like.NEXTVAL
-                    ,${userId.userId}
-                    ,${boardCategory}
-                    ,${boardNum}
-                    ,${likeCheck}
+                    ,#{userId.userId}
+                    ,#{boardCategory}
+                    ,#{boardNum}
+                    ,#{likeCheck}
                    )
     </insert>
 
     <update id="updateLike" parameterType="like">
         UPDATE likes
             <set>
-                like_check = ${likeCheck}
+                like_check = #{likeCheck}
             </set>
-        WHERE like_num = ${likeNum}
+        WHERE like_num = #{likeNum}
     </update>
 
     <select id="getLike" parameterType="string" resultMap="liikeSelect">
         SELECT * FROM likes
-        WHERE user_id = ${userId}
+        WHERE user_id = #{userId}
     </select>
 
     <!--댓글-->
@@ -125,18 +131,24 @@
     <update id="updateComment" parameterType="comment">
         UPDATE comments
             <set>
-                comment_text = ${commentText}
+                comment_text = #{commentText}
             </set>
-        WHERE comment_num = ${commentNum}
+        WHERE comment_num = #{commentNum}
     </update>
 
-    <update id="deleteComment" parameterType="int">
+    <update id="deleteComment" parameterType="comment">
         UPDATE comments
             <set>
-                comment_check = ${commentCheck}
+                comment_check = #{commentCheck}
             </set>
-        WHERE comment_num = ${commentNum}
+        WHERE comment_num = #{commentNum}
     </update>
+
+    <select id="listComment"  parameterType="map" resultMap="comemntSelect">
+        SELECT * FROM comments
+        WHERE board_num = #{boardNum}
+        AND board_category = #{boardCategory}
+    </select>
 
     <!--대댓글-->
     <insert id="addRecomment" parameterType="recomment">
@@ -152,20 +164,36 @@
     </insert>
 
     <update id="updateRecomment" parameterType="recomment">
-        UPDATE recomments
+        UPDATE recomment
         <set>
-            recomment_text = ${recommentText}
+            recomment_text = #{recommentText}
         </set>
-        WHERE recomment_num = ${recommentNum}
+        WHERE recomment_num = #{recommentNum}
     </update>
 
     <delete id="deleteRecomment" parameterType="int">
         DELETE recomment
-        WHERE recomment_num = ${recommentNum}
+        WHERE recomment_num = #{recommentNum}
     </delete>
 
+    <select id="listRecomment" parameterType="map" resultMap="recommentSelect">
+        select * from RECOMMENT
+        where COMMENT_NUM = #{commentNum}
+    </select>
 
+    <update id="updateViewCount" parameterType="villBoard">
+        UPDATE
+            vill_board
+            <set>
+                view_count=#{viewCount} +1
+            </set>
+        WHERE vill_board_num = #{villBoardNum}
+    </update>
 
-
+    <select id="getViewCount" parameterType="int" resultType="int">
+        SELECT view_count
+        FROM vill_board
+        WHERE vill_board_num = #{villBoardNum}
+    </select>
 
 </mapper>

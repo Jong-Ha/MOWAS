@@ -1,7 +1,6 @@
 package com.project.club.dao;
 
-import com.project.domain.Club;
-import com.project.domain.Cluber;
+import com.project.domain.*;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -46,8 +45,8 @@ public class ClubDaoImpl implements ClubDao {
     }
 
     @Override
-    public void addClubMaster(Club club) {
-        sqlSession.insert("ClubMapper.addClubMaster",club);
+    public void addClubMasterNewClub(Club club) {
+        sqlSession.insert("ClubMapper.addClubMasterNewClub",club);
     }
 
     @Override
@@ -88,5 +87,126 @@ public class ClubDaoImpl implements ClubDao {
     @Override
     public void updateClubNewCluber(int clubNum) {
         sqlSession.update("ClubMapper.updateClubNewCluber",clubNum);
+    }
+
+    @Override
+    public void addClubManager(int clubUserNum) {
+        sqlSession.update("ClubMapper.addClubManager",clubUserNum);
+    }
+
+    @Override
+    public void deleteClubManager(int clubUserNum) {
+        sqlSession.update("ClubMapper.deleteClubManager",clubUserNum);
+    }
+
+    @Override
+    public void deleteClubMaster(Cluber cluber) {
+        sqlSession.update("ClubMapper.deleteClubMaster",cluber);
+    }
+
+    @Override
+    public void addClubMaster(Cluber cluber) {
+        sqlSession.update("ClubMapper.addClubMaster",cluber);
+    }
+
+    @Override
+    public void updateClubMaster(Cluber cluber) {
+        sqlSession.update("ClubMapper.updateClubMaster",cluber);
+    }
+
+    @Override
+    public void deleteCluber(Map<String, Object> map) {
+        sqlSession.update("ClubMapper.deleteCluber",map);
+    }
+
+    @Override
+    public void updateClubDeleteCluber(int clubNum) {
+        sqlSession.update("ClubMapper.updateClubDeleteCluber",clubNum);
+    }
+
+    @Override
+    public void addClubBlacklist(Cluber cluber) {
+        sqlSession.insert("ClubMapper.addClubBlacklist", cluber);
+    }
+
+    @Override
+    public void updateClubBlacklist(Map<String, Object> map) {
+        sqlSession.update("ClubMapper.updateClubBlacklist", map);
+    }
+
+    @Override
+    public List<Cluber> listClubBlacklist(int clubNum) {
+        return sqlSession.selectList("ClubMapper.listClubBlacklist", clubNum);
+    }
+
+    @Override
+    public String getClubBlacklist(int clubUserNum) {
+        return sqlSession.selectOne("ClubMapper.getClubBlacklist", clubUserNum);
+    }
+
+    @Override
+    public void addClubMasterBoard(ClubMasterBoard clubMasterBoard) {
+        sqlSession.insert("ClubMapper.addClubMasterBoard", clubMasterBoard);
+    }
+
+    @Override
+    public void updateClubMasterBoard(ClubMasterBoard clubMasterBoard) {
+        sqlSession.update("ClubMapper.updateClubMasterBoard", clubMasterBoard);
+    }
+
+    @Override
+    public void deleteClubMasterBoard(int clubMasterBoardNum) {
+        sqlSession.delete("ClubMapper.deleteClubMasterBoard", clubMasterBoardNum);
+    }
+
+    @Override
+    public List<ClubMasterBoard> listClubMasterBoard(int clubNum) {
+        return sqlSession.selectList("ClubMapper.listClubMasterBoard", clubNum);
+    }
+
+    @Override
+    public ClubMasterBoard getClubMasterBoard(int clubMasterBoardNum) {
+        return sqlSession.selectOne("ClubMapper.getClubMasterBoard", clubMasterBoardNum);
+    }
+
+    @Override
+    public void addClubMasterBoardFile(File file) {
+        sqlSession.insert("ClubMapper.addClubMasterBoardFile", file);
+    }
+
+    @Override
+    public void deleteClubMasterBoardFile(ClubMasterBoard clubMasterBoard) {
+        sqlSession.delete("ClubMapper.deleteClubMasterBoardFile", clubMasterBoard);
+    }
+
+    @Override
+    public List<String> listClubMasterBoardCurrentFile(int clubMasterBoardNum) {
+        return sqlSession.selectList("ClubMapper.listClubMasterBoardCurrentFile", clubMasterBoardNum);
+    }
+
+    @Override
+    public int getClubMasterBoardNum(String userId) {
+        return sqlSession.selectOne("ClubMapper.getClubMasterBoardNum", userId);
+    }
+
+    @Override
+    public void addClubCalendarApply(Map<String, Object> map) {
+        sqlSession.insert("ClubMapper.addClubCalendarApply", map);
+    }
+
+    @Override
+    public void deleteClubCalendarApply(Map<String, Object> map) {
+        sqlSession.delete("ClubMapper.deleteClubCalendarApply", map);
+    }
+
+    @Override
+    public List<CalendarCluber> listClubCalendarApply(Map<String, Object> map) {
+        return sqlSession.selectList("ClubMapper.listClubCalendarApply", map);
+    }
+
+    @Override
+    public void updateClubCalendarApply(Map<String, Object> map) {
+        sqlSession.update("ClubMapper.updateClubCalendarApply", map);
+
     }
 }

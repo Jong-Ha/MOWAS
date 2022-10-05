@@ -22,4 +22,5 @@ public class ClubCalendarReview {
     private int likeConunt;
     private Date updateDate;
     private int boardCategory;
+    private Date clubDate;
 }

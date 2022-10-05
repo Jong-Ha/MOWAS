@@ -290,7 +290,6 @@
             어쩌구~~~어쩌구 어쩌구~~~</p>
     </div>
 
-    <button class="btn btn-success btnlf" type="submit" style="float: right;">모임 탈퇴</button>
 </div>
 </body>
 </html>

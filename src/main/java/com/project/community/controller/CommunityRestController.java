@@ -3,6 +3,7 @@ package com.project.community.controller;
 import com.project.community.service.CommunityService;
 import com.project.domain.Comment;
 import com.project.domain.Recomment;
+import com.project.domain.VilBoard;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -28,9 +29,7 @@ public class CommunityRestController {
         JSONObject jsonObj = (JSONObject)parser.parse(commentText);*/
 
         comment.setUserId("user01");
-        comment.setBoardNum(10001);
-        comment.setBoardCategory("1");
-        comment.setBoardCategory("1");
+        comment.setBoardCategory("10");
         comment.setCommentCheck("n");
 
         System.out.println("댓글 도매인  : " + comment);
@@ -39,37 +38,75 @@ public class CommunityRestController {
 
         return null;
     }
+
+    @RequestMapping(value = "updateComment", method = RequestMethod.POST)
+    public String updateComment(@RequestBody Comment comment/*, @ModelAttribute("comment")Comment comment*/) throws ParseException {
+        System.out.println(comment);
+
+  /*      JSONParser parser = new JSONParser();
+
+        JSONObject jsonObj = (JSONObject)parser.parse(commentText);*/
+
+        comment.setBoardNum(10001);
+        comment.setCommentNum(10001);
+
+        System.out.println("댓글 도매인  : " + comment);
+
+        communityService.updateComment(comment);
+
+        return null;
+    }
+
+    @RequestMapping(value = "deleteComment", method = RequestMethod.POST)
+    public String deleteComment(@RequestBody Comment comment){
+
+        comment.setCommentCheck("y");
+
+        System.out.println(comment);
+
+        communityService.deleteComment(comment);
+
+        return null;
+    }
     @RequestMapping("addRecomment")
     public String addReComment(@RequestBody Recomment recomment){
 
         System.out.println("대댓글의 내영 : " + recomment);
 
-        recomment.setCommentNum(10000);
         recomment.setUserId("user01");
-        recomment.setBoardCategory("1");
+        recomment.setBoardCategory("11");
 
         communityService.addRecomment(recomment);
 
         return null;
     }
 
-    @RequestMapping(value = "viewCount")
-    public String viewCount(@RequestBody String viewCount) throws ParseException {
+    @RequestMapping("updateRecomment")
+    public String updateRecomment(@RequestBody Recomment recomment){
+        System.out.println("대댓글 수정 : " + recomment);
 
-        System.out.println("조회수 : " + viewCount);
+        recomment.setRecommentNum(10000);
 
-        JSONParser parser = new JSONParser();
+        communityService.updateRecomment(recomment);
+        return null;
+    }
 
-        JSONObject jsonObj = (JSONObject) parser.parse(viewCount);
+    @RequestMapping("deleteRecomment")
+    public String deleteRecomment(@RequestBody Recomment recomment){
 
-        /* json객체를 String으로 형변환후 int로 형변환*/
-        String SCount = (String) jsonObj.get("viewCount");
+        System.out.println("대댓글 삭제 : "+ recomment);
 
-        int Count = Integer.parseInt(SCount);
-
-        System.out.println("json 조회수 : " + Count);
+        communityService.deleteRecomment(recomment.getRecommentNum());
 
         return null;
+    }
+
+    @RequestMapping(value = "viewCount")
+    public int viewCount(@RequestBody VilBoard villBoard) throws ParseException {
+
+        communityService.updateViewCount(villBoard);
+
+        return communityService.getViewCount(villBoard.getVillBoardNum());
     }
 
     @RequestMapping(value = "addLike")

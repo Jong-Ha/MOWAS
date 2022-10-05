@@ -11,6 +11,7 @@ import java.sql.Date;
 @ToString
 public class Deal {
     private int dealBoardNum;
+    private int boardCategory;
     private int dealStatus;
     private String userId;
     private String dealTitle;

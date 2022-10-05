@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-         pageEncoding="EUC-KR" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+         pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,33 +15,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 
 <script type="text/javascript">
-    $(function () {
 
-        $(".villBoard").on("click", function () {
-            alert("우리 동네 게시판으로 이동");
-            location.href = "/commu/villBoardList";
-        });
 
-        $(".clubCalenderReview").on("click", function () {
-            alert("모임 일정 후기글 게시판으로 이동")
-            location.href = "/commu/clubCalenderReviewList"
-        });
-
-        $(".clubCalenderReviewShort").on("click", function () {
-            alert("모일 일정 쇼츠 게시판으로 이동")
-            location.href = "/commu/clubCalenderReviewShortList"
-        })
-
-        $(".publicText").on("click", function () {
-            alert("인기글 목록으로 이동");
-            location.href = "/commu/"
-        });
-
-        $(".calender").on("click", function () {
-            location.href="/view/community/calender.jsp";
-        })
-
-    });
 </script>
 
 
@@ -147,15 +122,8 @@
             </button>
         </div>
     </div>
+    <jsp:include page="/layout/commubar.jsp"/>
 
-    <nav class="shadow-lg navbar navbar-expand-lg bg-light" style="margin-bottom: 50px;">
-        <button type="button" class="btn btn-primary btnlf publicText">인기 모임글</button>
-        <button type="button" class="btn btn-outline-secondary btnlf calender">캘린더</button>
-        <button type="button" class="btn btn-outline-warning btnlf clubCalenderReview">모임 일정 후기</button>
-        <button class="btn btn-outline-success btnlf clubCalenderReviewShort" type="submit">모임 일정 쇼츠</button>
-        <button type="button" class="btn btn-outline-danger btnlf villBoard">우리 동네 게시글</button>
-
-    </nav>
 
     <div class="row row-cols-1 row-cols-md-3 g-4 cardbox">
         <div class="col">

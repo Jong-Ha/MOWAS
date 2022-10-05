@@ -84,6 +84,8 @@
 
 <form>
     <!--  화면구성 div Start /////////////////////////////////////-->
+    <input type="hidden" name="boardCategory" value="1">
+
     <div class="wap">
         <div class="container">
 

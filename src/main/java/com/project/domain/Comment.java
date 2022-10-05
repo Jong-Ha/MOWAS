@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,5 +19,6 @@ public class Comment {
     private String commentCheck;
     private String commentText;
     private Date regDate;
+    private List<Recomment> recommentList;
 
 }
