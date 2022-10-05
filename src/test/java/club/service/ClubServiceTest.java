@@ -1,9 +1,7 @@
 package club.service;
 
 import com.project.club.service.ClubService;
-import com.project.domain.Club;
-import com.project.domain.Cluber;
-import com.project.domain.User;
+import com.project.domain.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -193,9 +191,6 @@ public class ClubServiceTest {
         cluber.setBlacklistText("왜 블랙됨!");
 
         clubService.addClubBlacklist(cluber);
-
-        int clubUserNum = 10017;
-        System.out.println(clubService.getClubBlacklist(clubUserNum));
     }
 
     @Test
@@ -205,6 +200,100 @@ public class ClubServiceTest {
         list.add(10016);
         list.add(10017);
         clubService.updateClubBlacklist(process, list);
+    }
+
+    @Test
+    public void listClubMasterBoard(){
+        int clubNum = 10008;
+        System.out.println(clubService.listClubMasterBoard(clubNum));
+    }
+
+    @Test
+    public void getClubMasterBoard(){
+        int clubMasterBoardNum = 10001;
+        System.out.println(clubService.getClubMasterBoard(clubMasterBoardNum));
+    }
+
+    @Test
+    public void addClubMasterBoard(){
+        ClubMasterBoard clubMasterBoard = new ClubMasterBoard();
+        clubMasterBoard.setClubNum(10008);
+        clubMasterBoard.setUserId("user02");
+        clubMasterBoard.setTitle("제제제목목목");
+        clubMasterBoard.setText("내내내용용용");
+        List<File> files = new ArrayList<>();
+        for (int i = 0; i < 2; i++) {
+            File file = new File();
+            file.setFileName((i+1)+"파일");
+            files.add(file);
+        }
+        clubMasterBoard.setFiles(files);
+
+        clubService.addClubMasterBoard(clubMasterBoard);
+    }
+
+    @Test
+    public void updateClubMasterBoard(){
+        ClubMasterBoard clubMasterBoard = clubService.getClubMasterBoard(10002);
+        clubMasterBoard.setTitle("제목");
+        clubMasterBoard.setText("내용");
+        List<File> files = new ArrayList<>();
+        for (int i = 0; i < 2; i++) {
+            File file = new File();
+            file.setBoardNum(clubMasterBoard.getBoardNum());
+            file.setFileName((i+1)+"파일");
+            files.add(file);
+            file = new File();
+            file.setBoardNum(clubMasterBoard.getBoardNum());
+            file.setFileName("파일"+(i+10));
+            files.add(file);
+        }
+        clubMasterBoard.setFiles(files);
+        clubService.updateClubMasterBoard(clubMasterBoard);
+    }
+
+    @Test
+    public void deleteClubMasterBoard(){
+        int clubMasterBoardNum = 10002;
+
+        clubService.deleteClubMasterBoard(clubMasterBoardNum);
+    }
+
+    @Test
+    public void listClubCalendarApply(){
+        int clubCalendarNum = 10001;
+        String applyStatus = "1";
+
+        System.out.println(clubService.listClubCalendarApply(clubCalendarNum, applyStatus));
+    }
+
+    @Test
+    public void addClubCalendarApply(){
+        CalendarCluber calendarCluber = new CalendarCluber();
+        User user = new User();
+        user.setUserId("user03");
+        user.setUserImage("미미미");
+        calendarCluber.setUser(user);
+        calendarCluber.setClubCalendarNum(10001);
+        String applyAutoCheck = "1";
+
+        clubService.addClubCalendarApply(calendarCluber, applyAutoCheck);
+    }
+
+    @Test
+    public void deleteClubCalendarApply(){
+        int clubCalendarNum = 10001;
+        String userId = "user02";
+
+        clubService.deleteClubCalendarApply(clubCalendarNum, userId);
+    }
+
+    @Test
+    public void updateClubCalendarApply(){
+        int clubCalendarApplyNum = 10005;
+        String process = "reject";
+
+        clubService.updateClubCalendarApply(clubCalendarApplyNum, process);
     }
 
 }
