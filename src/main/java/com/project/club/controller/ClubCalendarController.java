@@ -1,8 +1,11 @@
 package com.project.club.controller;
 
 import com.project.club.service.ClubCalendarService;
+import com.project.community.service.CommunityService;
 import com.project.domain.ClubCalendar;
 import com.project.domain.ClubCalendarReview;
+import com.project.domain.Comment;
+import com.project.domain.Recomment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,6 +31,10 @@ public class ClubCalendarController {
     @Autowired
     @Qualifier("clubCalenderServiceImpl")
     private ClubCalendarService calenderService;
+
+    @Autowired
+    @Qualifier("communityServiceImpl")
+    private CommunityService communityService;
 
     /*모임 일정*/
     @RequestMapping(value = "addClubCalender", method = RequestMethod.POST)
@@ -151,11 +158,32 @@ public class ClubCalendarController {
         return null;
     }
 
+    @RequestMapping("getClubCalenderReview")
+    public String getClubCalenderReview(@RequestParam("clubCalenderReviewNum")int clubCalenderReviewNum,
+                                        @RequestParam("boardCategory")int boardCategory,
+                                        @ModelAttribute("clubCalenderReview")ClubCalendarReview calendarReview,
+                                        @ModelAttribute("Comment") Comment comment,
+                                        Model model){
+        calendarReview = calenderService.getCalenderReview(clubCalenderReviewNum);
+
+        Map<String, Object> map = communityService.listComment(clubCalenderReviewNum ,boardCategory);
+
+
+
+        model.addAttribute("calenderReview", calendarReview);
+        model.addAttribute("list", map.get("list"));
+
+        System.out.println("list의 정보 : " + map.get("list"));
+
+        return "/view/community/get/getClubCalenderReview.jsp";
+    }
+
     @RequestMapping("listCalenderReview")
     public String listCalenderReview(@RequestParam("boardCategory")int boardCategory
                                     ,Model model,HttpServletRequest request){
 
         Map<String, Object> map = calenderService.listCalenderReview(boardCategory);
+
 
         model.addAttribute("list", map.get("list"));
 

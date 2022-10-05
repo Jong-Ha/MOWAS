@@ -1,7 +1,7 @@
 package com.project.user.service;
 
 import com.project.domain.User;
-import com.project.domain.UserInterList;
+//import com.project.domain.UserInterList;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public interface UserService {
     public void addUser(User user)throws Exception;
 
     //관심목록 추가
-    public void addInterList(UserInterList userInterListNum)throws Exception;
+  //  public void addInterList(UserInterList userInterListNum)throws Exception;
 
     //회원상세보기, 내정보 보기, 로그인
     public User getUser(String userId)throws Exception;

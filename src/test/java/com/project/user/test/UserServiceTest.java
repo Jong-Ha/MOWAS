@@ -153,7 +153,7 @@ public class UserServiceTest {
         userInterList.setUserId("testId05");
         userInterList.setInterList("8");
 
-        userService.addInterList(userInterList);
+      //  userService.addInterList(userInterList);
 
     }
 

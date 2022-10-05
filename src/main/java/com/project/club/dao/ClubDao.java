@@ -1,7 +1,6 @@
 package com.project.club.dao;
 
-import com.project.domain.Club;
-import com.project.domain.Cluber;
+import com.project.domain.*;
 
 import java.util.List;
 import java.util.Map;
@@ -33,4 +32,17 @@ public interface ClubDao {
     public void updateClubBlacklist(Map<String, Object> map);
     public List<Cluber> listClubBlacklist(int clubNum);
     public String getClubBlacklist(int clubUserNum);
+    public void addClubMasterBoard(ClubMasterBoard clubMasterBoard);
+    public void updateClubMasterBoard(ClubMasterBoard clubMasterBoard);
+    public void deleteClubMasterBoard(int clubMasterBoardNum);
+    public List<ClubMasterBoard> listClubMasterBoard(int clubNum);
+    public ClubMasterBoard getClubMasterBoard(int clubMasterBoardNum);
+    public void addClubMasterBoardFile(File file);
+    public List<String> listClubMasterBoardCurrentFile(int clubMasterBoardNum);
+    public void deleteClubMasterBoardFile(ClubMasterBoard clubMasterBoard);
+    public int getClubMasterBoardNum(String userId);
+    public void addClubCalendarApply(Map<String, Object> map);
+    public void deleteClubCalendarApply(Map<String, Object> map);
+    public List<CalendarCluber>listClubCalendarApply(Map<String, Object> map);
+    public void updateClubCalendarApply(Map<String, Object> map);
 }

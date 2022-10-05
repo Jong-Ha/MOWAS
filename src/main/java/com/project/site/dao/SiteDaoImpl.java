@@ -1,6 +1,7 @@
 package com.project.site.dao;
 
 
+import com.project.common.Search;
 import com.project.domain.MasterBoard;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,12 +41,17 @@ public class SiteDaoImpl implements SiteDao{
         return sqlSession.selectOne("SiteMapper.getMasterBoard", masterBoardNo);
     }
 
-    //@Override
-    //public List<MasterBoard> listMaterBoard() throws Exception {
-    //    return sqlSession.selectList("SiteMapper.listMaterBoard");
-    //}
+    @Override
+    public void deleteMasterBoard(int masterBoardNo) throws Exception {
+        sqlSession.delete("SiteMapper.deleteMasterBoard", masterBoardNo);
+    }
 
-    //public int getTotalCount(Search search) throws Exception {
-    //    return sqlSession.selectOne("SiteMapper.getTotalCount", search);
-    //}
+
+    public List<MasterBoard> listMasterBoard(Search search) throws Exception {
+        return sqlSession.selectList("SiteMapper.listMaterBoard", search);
+    }
+
+    public int getTotalCount(Search search) throws Exception {
+        return sqlSession.selectOne("SiteMapper.getTotalCount", search);
+    }
 }

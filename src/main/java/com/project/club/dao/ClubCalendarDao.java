@@ -22,4 +22,6 @@ public interface ClubCalendarDao {
     void deleteCalenderReview(int calenderNum);
 
     List<ClubCalendarReview> listCalenderReview(int boardCategory);
+
+    ClubCalendarReview getCalenderReview(int clubCalenderReviewNum);
 }

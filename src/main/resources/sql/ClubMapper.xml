@@ -38,6 +38,37 @@
         <result property="blacklistCheck"	column="blacklist_check"	jdbcType="CHAR"/>
     </resultMap>
 
+    <resultMap type="com.project.domain.ClubMasterBoard" id="ClubMasterBoardResultMap">
+        <result property="boardNum"		column="club_master_board_num"  jdbcType="INTEGER"/>
+        <result property="clubNum"		column="club_num"		        jdbcType="INTEGER"/>
+        <result property="userId"	    column="user_id"		        jdbcType="VARCHAR"/>
+        <result property="title"		column="title"			        jdbcType="VARCHAR"/>
+        <result property="text"		    column="text"		            jdbcType="VARCHAR"/>
+        <result property="regDate"		column="reg_date"		        jdbcType="DATE"/>
+        <result property="updateDate"	column="update_date"	        jdbcType="DATE"/>
+        <collection property="files"    column="club_master_board_num" ofType="com.project.domain.File" select="getClubMasterBoardFiles"/>
+    </resultMap>
+
+    <resultMap type="com.project.domain.File" id="FileResultMap">
+        <result property="fileNum"		    column="file_num"           jdbcType="INTEGER"/>
+        <result property="boardNum"		    column="board_num"		    jdbcType="VARCHAR"/>
+        <result property="boardCategory"	column="board_category"		jdbcType="VARCHAR"/>
+        <result property="fileName"		    column="file_name"			jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="getClubMasterBoardFiles" resultMap="FileResultMap">
+        SELECT * FROM files WHERE board_num = #{clubMasterBoardNum} AND board_category = '04'
+    </select>
+
+    <resultMap type="com.project.domain.CalendarCluber" id="CalendarCluberResultMap">
+        <result property="clubCalendarApplyNum"	column="club_calendar_apply_num"    jdbcType="INTEGER"/>
+        <result property="clubCalendarNum"		column="club_calendar_num"		    jdbcType="VARCHAR"/>
+        <result property="user.userId"		    column="user_id"		            jdbcType="VARCHAR"/>
+        <result property="user.userImage"	    column="user_image"		            jdbcType="VARCHAR"/>
+        <result property="applyStatus"		    column="apply_status"			    jdbcType="INTEGER"/>
+        <result property="applyDate"		    column="apply_date"			        jdbcType="INTEGER"/>
+    </resultMap>
+
     <!--여기서부터 쿼리 시작-->
 
     <!--clubService.addClub-->
@@ -453,4 +484,166 @@
         FROM club_user
         WHERE club_user_num = #{clubUserNum}
     </select>
+
+    <!--clubService.addClubMasterBoard-->
+    <!--모임 공지사항 작성-->
+    <insert id="addClubMasterBoard" parameterType="com.project.domain.ClubMasterBoard">
+        INSERT
+        INTO club_master_board(club_master_board_num,
+                               club_num,
+                               user_id,
+                               title,
+                               text,
+                               reg_date)
+        VALUES(seq_club_master_board.NEXTVAL,
+               #{clubNum},
+               #{userId},
+               #{title},
+               #{text},
+               SYSDATE)
+    </insert>
+
+    <!--신규 넘버 조회-->
+    <select id="getClubMasterBoardNum" parameterType="String" resultType="int">
+        SELECT club_master_board_num
+        FROM (SELECT ROWNUM,
+                     club_master_board_num
+              FROM club_master_board
+              WHERE user_id = #{userId}
+              ORDER BY reg_date DESC)
+        WHERE ROWNUM=1
+    </select>
+
+    <!--파일 등록-->
+    <insert id="addClubMasterBoardFile" parameterType="com.project.domain.File">
+        INSERT
+        INTO files(file_num,
+                   board_num,
+                   board_category,
+                   file_name)
+        VALUES(seq_files.NEXTVAL, #{boardNum}, '04', #{fileName})
+    </insert>
+
+    <!--clubService.updateClubMasterBoard-->
+    <!--모임 공지사항 수정-->
+    <update id="updateClubMasterBoard" parameterType="com.project.domain.ClubMasterBoard">
+        UPDATE club_master_board
+        <set>
+            title = #{title},
+            text = #{text},
+            update_date = SYSDATE
+        </set>
+        <where>
+            club_master_board_num = #{boardNum}
+        </where>
+    </update>
+
+    <!--현재 파일 조회-->
+    <select id="listClubMasterBoardCurrentFile" parameterType="int" resultType="String">
+        SELECT file_name FROM files WHERE board_num = #{clubMasterBoardNum} AND board_category = '04'
+    </select>
+
+    <!--파일 삭제-->
+    <delete id="deleteClubMasterBoardFile" parameterType="com.project.domain.ClubMasterBoard">
+        DELETE files
+        <where>
+            board_num = #{boardNum}
+            AND board_category = '04'
+            <foreach collection="files" item="file" open="AND file_name NOT IN (" separator="," close=")">
+                #{file.fileName}
+            </foreach>
+        </where>
+    </delete>
+
+    <!--clubService.deleteClubMasterBoard-->
+    <!--모임 공지사항 삭제-->
+    <delete id="deleteClubMasterBoard" parameterType="int">
+        DELETE club_master_board
+        <where>
+            club_master_board_num = #{clubMasterBoardNum}
+        </where>
+    </delete>
+
+    <!--clubService.listClubMasterBoard-->
+    <!--모임 공지사항 목록 조회-->
+    <select id="listClubMasterBoard" parameterType="int" resultMap="ClubMasterBoardResultMap">
+        SELECT club_master_board_num,
+               user_id,
+               title,
+               reg_date,
+               update_date
+        FROM club_master_board
+        WHERE club_num = #{clubNum}
+    </select>
+
+    <!--clubService.getClubMasterBoard-->
+    <!--모임 공지사항 상세 조회-->
+    <select id="getClubMasterBoard" parameterType="int" resultMap="ClubMasterBoardResultMap">
+        SELECT club_master_board_num,
+               club_num,
+               user_id,
+               title,
+               text,
+               reg_date,
+               update_date
+        FROM club_master_board
+        WHERE club_master_board_num = #{clubMasterBoardNum}
+    </select>
+
+    <!--clubService.addClubCalendarApply-->
+    <!--모임 일정 참여 신청-->
+    <insert id="addClubCalendarApply" parameterType="map">
+        INSERT
+        INTO club_calendar_apply(club_calendar_apply_num,
+                                 club_calendar_num,
+                                 user_id,
+                                 apply_status,
+                                 user_image,
+                                 apply_date)
+        VALUES(seq_club_calendar_apply.NEXTVAL,
+               #{calendarCluber.clubCalendarNum},
+               #{calendarCluber.user.userId},
+                <if test='applyAutoCheck=="2"'>'1'</if>
+                <if test='applyAutoCheck=="1"'>'0'</if>,
+               #{calendarCluber.user.userImage},
+               SYSDATE)
+    </insert>
+
+    <!--clubService.deleteClubCalendarApply-->
+    <!--모임 일정 참여 취소-->
+    <delete id="deleteClubCalendarApply" parameterType="map">
+        DELETE club_calendar_apply
+        <where>
+            club_calendar_num = #{clubCalendarNum}
+            AND user_id = #{userId}
+            AND apply_status = '0'
+        </where>
+    </delete>
+
+    <!--clubService.listClubCalendarApply-->
+    <!--모임 일정 참여 신청 목록-->
+    <select id="listClubCalendarApply" parameterType="map" resultMap="CalendarCluberResultMap">
+        SELECT club_calendar_apply_num,
+               user_id,
+               user_image,
+               apply_date
+        FROM club_calendar_apply
+        <where>
+            apply_status = #{applyStatus}
+            AND club_calendar_num = #{clubCalendarNum}
+        </where>
+    </select>
+
+    <!--clubService.updateClubCalendarApply-->
+    <!--모임 일정 참여 신청 처리-->
+    <update id="updateClubCalendarApply" parameterType="map">
+        UPDATE club_calendar_apply
+        <set>
+            apply_status =  <if test='process=="accept"'>1</if>
+                            <if test='process=="reject"'>2</if>
+        </set>
+        <where>
+            club_calendar_apply_num = #{clubCalendarApplyNum}
+        </where>
+    </update>
 </mapper>

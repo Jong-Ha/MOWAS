@@ -1,15 +1,12 @@
 package com.project.club.service;
 
 import com.project.club.dao.ClubDao;
-import com.project.domain.Club;
-import com.project.domain.Cluber;
+import com.project.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service("clubServiceImpl")
 public class ClubServiceImpl implements ClubService {
@@ -127,5 +124,82 @@ public class ClubServiceImpl implements ClubService {
     @Override
     public String getClubBlacklist(int clubUserNum) {
         return clubDao.getClubBlacklist(clubUserNum);
+    }
+
+    @Override
+    public void addClubMasterBoard(ClubMasterBoard clubMasterBoard) {
+        clubDao.addClubMasterBoard(clubMasterBoard);
+        int clubMasterBoardNum = clubDao.getClubMasterBoardNum(clubMasterBoard.getUserId());
+        List<File> files = clubMasterBoard.getFiles();
+        for(File file : files){
+            file.setBoardNum(clubMasterBoardNum);
+            clubDao.addClubMasterBoardFile(file);
+        }
+    }
+
+    @Override
+    public void updateClubMasterBoard(ClubMasterBoard clubMasterBoard) {
+        clubDao.updateClubMasterBoard(clubMasterBoard);
+        clubDao.deleteClubMasterBoardFile(clubMasterBoard);
+        List<String> currentFiles = clubDao.listClubMasterBoardCurrentFile(clubMasterBoard.getBoardNum());
+        Set<String> check = new HashSet<>();
+        check.addAll(currentFiles);
+        for(File file : clubMasterBoard.getFiles()){
+            if(check.add(file.getFileName())){
+                clubDao.addClubMasterBoardFile(file);
+            }
+        }
+    }
+
+    @Override
+    public void deleteClubMasterBoard(int clubMasterBoardNum) {
+        clubDao.deleteClubMasterBoard(clubMasterBoardNum);
+        ClubMasterBoard clubMasterBoard = new ClubMasterBoard();
+        List<File> files = new ArrayList<>();
+        clubMasterBoard.setFiles(files);
+        clubMasterBoard.setBoardNum(clubMasterBoardNum);
+        clubDao.deleteClubMasterBoardFile(clubMasterBoard);
+    }
+
+    @Override
+    public List<ClubMasterBoard> listClubMasterBoard(int clubNum) {
+        return clubDao.listClubMasterBoard(clubNum);
+    }
+
+    @Override
+    public ClubMasterBoard getClubMasterBoard(int clubMasterBoardNum) {
+        return clubDao.getClubMasterBoard(clubMasterBoardNum);
+    }
+
+    @Override
+    public void addClubCalendarApply(CalendarCluber calendarCluber, String applyAutoCheck) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("calendarCluber", calendarCluber);
+        map.put("applyAutoCheck", applyAutoCheck);
+        clubDao.addClubCalendarApply(map);
+    }
+
+    @Override
+    public void deleteClubCalendarApply(int clubCalendarNum, String userId) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("clubCalendarNum", clubCalendarNum);
+        map.put("userId", userId);
+        clubDao.deleteClubCalendarApply(map);
+    }
+
+    @Override
+    public List<CalendarCluber> listClubCalendarApply(int clubCalendarNum, String applyStatus) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("clubCalendarNum",clubCalendarNum);
+        map.put("applyStatus",applyStatus);
+        return clubDao.listClubCalendarApply(map);
+    }
+
+    @Override
+    public void updateClubCalendarApply(int clubCalendarApplyNum, String process) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("clubCalendarApplyNum", clubCalendarApplyNum);
+        map.put("process", process);
+        clubDao.updateClubCalendarApply(map);
     }
 }
