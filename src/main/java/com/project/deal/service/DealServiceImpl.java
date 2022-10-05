@@ -14,17 +14,17 @@ public class DealServiceImpl implements DealService {
     @Autowired
     @Qualifier("dealDaoImpl")
     private DealDao dealDao;
+
     public void setDealDao(DealDao dealDao) {
         this.dealDao = dealDao;
     }
-
 
 
     public DealServiceImpl() {
         System.out.println(this.getClass());
     }
 
-    public void addDeal(Deal deal) throws Exception{
+    public void addDeal(Deal deal) throws Exception {
         dealDao.addDeal(deal);
     }
 
@@ -35,18 +35,19 @@ public class DealServiceImpl implements DealService {
 
     @Override
     public Deal updateDeal(Deal deal) throws Exception {
-        dealDao.updateDeal(deal);
+      return null;
+              //dealDao.updateDeal(deal);
     }
 
     @Override
     public void deleteDeal(Deal deal) throws Exception {
-    dealDao.deleteDeal(deal);
+        dealDao.deleteDeal(deal);
     }
+}
 
-    @Override
+   /* @Override
     public Map<String, Object> listDeal(Search search) throws Exception {
         return null;
-    }
+    }*/
 
 
-}

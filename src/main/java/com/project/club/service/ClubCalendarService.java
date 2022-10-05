@@ -20,4 +20,6 @@ public interface ClubCalendarService {
     void deleteCalenderReview(int calenderNum);
 
     Map<String, Object> listCalenderReview(int boardCategory);
+
+    ClubCalendarReview getCalenderReview(int clubCalenderReviewNum);
 }

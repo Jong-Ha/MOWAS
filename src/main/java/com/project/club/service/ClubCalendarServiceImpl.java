@@ -63,4 +63,9 @@ public class ClubCalendarServiceImpl implements ClubCalendarService {
         return map;
     }
 
+    @Override
+    public ClubCalendarReview getCalenderReview(int clubCalenderReviewNum) {
+        return clubCalendarDao.getCalenderReview(clubCalenderReviewNum);
+    }
+
 }
