@@ -6,6 +6,7 @@
 <mapper namespace="DealMapper">
     <resultMap id="DealSelectMap" type="Deal">
         <result property="dealBoardNum" column="deal_board_num" jdbcType="INTEGER"/>
+        <result property="boardCategory" column="board_category" jdbcType="CHAR"/>
         <result property="dealStatus" column="deal_status" jdbcType="CHAR"/>
         <result property="userId" column="user_id" jdbcType="VARCHAR"/>
         <result property="dealTitle" column="deal_title" jdbcType="VARCHAR"/>
@@ -25,16 +26,52 @@
         <result property="dealDate" column="deal_date" jdbcType="DATE"/>
         <result property="dealLocation" column="deal_location" jdbcType="VARCHAR"/>
     </resultMap>
+<!--게시물 작성-->
     <insert id="addDeal" parameterType="deal">
-        INSERT INTO deal(deal_board_num, deal_status, user_id,deal_title, deal_text, deal_reg_date, product_name, price, tag,view_count, vill_code)
-values (seq_deal.NEXTVAL,#{dealStatus},#{userId},#{dealTitle},#{dealText},SYSDATE,#{productName},#{price},#{tag},#{viewCount},#{villCode})
+        INSERT INTO deal(deal_board_num,
+                         board_category,
+                         deal_status,
+                         user_id,
+                         deal_title,
+                         deal_text,
+                         deal_reg_date,
+                         product_name,
+                         price,
+                         tag,
+                         view_count,
+                         vill_code)
+values (seq_deal.NEXTVAL,
+        #{boardCategory},
+        #{dealStatus},
+        #{userId},
+        #{dealTitle},
+        #{dealText},
+        SYSDATE,
+        #{productName},
+        #{price},
+        #{tag},
+        #{viewCount},
+        #{villCode})
     </insert>
-    <select id="getDeal" parameterType="int" resultMap="dealSelectMap">
+<!--    &lt;!&ndash;게시물 상세조회&ndash;&gt;-->
+    <select id="getDeal" parameterType="int" resultMap="DealSelectMap">
         SELECT
-            deal_board_num,user_id, vill_Code,deal_title,price,deal_mode_check,product_name,deal_text,tag,deal_reg_date ,신뢰온도, 파일
+            deal_board_num,
+            user_id,
+            vill_Code,
+            deal_title,
+            price,
+            deal_mode_check,
+            product_name,
+            deal_text,
+            tag,
+            deal_reg_date
+            <!--신뢰온도,
+            파일-->
 from deal
 where deal_board_num=#{value}
     </select>
+<!--    &lt;!&ndash;게시물 수정&ndash;&gt;-->
     <update id="updateDeal" parameterType="deal">
     UPDATE DEAL
 <set>
@@ -49,4 +86,31 @@ where deal_board_num=#{value}
 </set>
 WHERE deal_board_num=#{dealBoardNum};
     </update>
+    <!--게시물 삭제-->
+    <delete id="deleteDeal" parameterType="int">
+        DELETE deal
+        <where>
+            deal_board_num=#{dealBoardNum}
+        </where>
+    </delete>
+    <!--게시물 목록 조회 board_category 8,번과 9번 의 차이를 여기서 나눠줘야되나 ? .. .-->
+<!--    <select id="getListDeal" parameterType="search" resultMap="DealSelectMap">-->
+<!--        SELECT *-->
+<!--        FROM( SELECT inner_table.* , ROWNUM AS row_seq-->
+<!--              FROM	(SELECT DEAL_TITLE , tag-->
+<!--                       FROM DEAL-->
+<!--                       <if test="searchCondition !=null">-->
+<!--                           <where>-->
+<!--                               <if test="searchCondition==0 and searchKeyword !='' ">-->
+<!--                       deal_title=#{searchKeyword}-->
+<!--                               </if>-->
+<!--                       <if test="searchCondition ==1 and searchKeyword !='' ">-->
+<!--                           tag = #{tag}-->
+<!--                       </if>-->
+<!--                           </where>-->
+<!--                       </if>-->
+<!--                       ORDER BY deal_board_num ) inner_table)a ;-->
+
+<!--    </select>-->
+
 </mapper>

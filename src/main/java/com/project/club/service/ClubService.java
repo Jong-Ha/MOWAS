@@ -1,6 +1,8 @@
 package com.project.club.service;
 
+import com.project.domain.CalendarCluber;
 import com.project.domain.Club;
+import com.project.domain.ClubMasterBoard;
 import com.project.domain.Cluber;
 
 import java.util.List;
@@ -18,5 +20,22 @@ public interface ClubService {
     public void deleteCluberApply(int clubUserNum);
     public List<Cluber> listCluberApply(int clubNum);
     public String getCluberApply(int clubUserNum);
-    public void updateCluberApply(Map<String, Object> map);
+    public void updateCluberApply(int clubNum, int clubUserNum, String result);
+    public void addClubManager(int clubUserNum);
+    public void deleteClubManager(int clubUserNum);
+    public void updateClubMaster(Cluber cluber);
+    public void deleteCluber(Cluber cluber, String kickoutCheck);
+    public void addClubBlacklist(Cluber cluber);
+    public void updateClubBlacklist(String process, List<Integer> clubUserNumList);
+    public List<Cluber> listClubBlacklist(int clubNum);
+    public String getClubBlacklist(int clubUserNum);
+    public void addClubMasterBoard(ClubMasterBoard clubMasterBoard);
+    public void updateClubMasterBoard(ClubMasterBoard clubMasterBoard);
+    public void deleteClubMasterBoard(int clubMasterBoardNum);
+    public List<ClubMasterBoard> listClubMasterBoard(int clubNum);
+    public ClubMasterBoard getClubMasterBoard(int clubMasterBoardNum);
+    public void addClubCalendarApply(CalendarCluber calendarCluber, String applyAutoCheck);
+    public void deleteClubCalendarApply(int clubCalendarNum, String userId);
+    public List<CalendarCluber>listClubCalendarApply(int clubCalendarNum, String applyStatus);
+    public void updateClubCalendarApply(int clubCalendarApplyNum, String process);
 }

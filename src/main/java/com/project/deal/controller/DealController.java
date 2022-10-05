@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/deal/*")
@@ -23,4 +26,17 @@ public DealController(){
     @Value("#{commonProperties['pageSize']}")
     int pageSize;
 
+    @RequestMapping(value = "addDeal",method = RequestMethod.GET)
+    public String addDeal() {
+        System.out.println("/deal/addDeal: GET");
+        return "redirect:/deal/addDeal.jsp";
+    }
+    @RequestMapping(value = "addDeal",method =RequestMethod.POST)
+    public String addDeal(@ModelAttribute("deal")Deal deal, Model model){
+        System.out.println("/deal/addDeal : POST");
+        dealService.addDeal(deal);
+        System.out.println(deal);
+        model.addAttribute("deal",deal);
+        return "forward:/deal/addDeal.jsp";
+    }
 }
