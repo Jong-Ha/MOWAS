@@ -12,5 +12,5 @@ public interface DealService {
     public Deal getDeal(int dealBoardNum) throws Exception;
     public Deal updateDeal(Deal deal) throws Exception;
     public void deleteDeal(Deal deal) throws Exception;
-    public Map<String, Object> listDeal(Search search) throws Exception;
+   // public Map<String, Object> listDeal(Search search) throws Exception;
 }

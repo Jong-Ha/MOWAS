@@ -32,8 +32,7 @@ public interface UserService {
 
     //회원 주민등록번호 중복 확인
     public boolean checkDupRrd(String rrd)throws Exception;
-    //이메일 인증코드 전송
-    public void sendEmail(String email)throws Exception;
+
     //휴대폰번호 인증코드 전송
     public void sendPhone(String phone)throws Exception;
     //로그아웃

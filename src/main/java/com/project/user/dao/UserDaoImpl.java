@@ -26,6 +26,7 @@ public class UserDaoImpl implements UserDao{
     }
 
     public void addUser(User user)throws Exception{
+        System.out.println("여기는 DaoImpl addUser 메서드이다");
         sqlSession.insert("UserMapper.addUser", user);
     }
 
