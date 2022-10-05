@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
+      <artifact name="MOWAS:war" />
       <artifact name="MOWAS:war exploded" />
     </artifacts-to-build>
   </component>
@@ -9,16 +10,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="KSM 2022.10.04&#10;materBoard, clubReport, CommunutyReport 도메인 생성">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f7a91aff-821b-48e5-9fda-effb58878c53.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f7a91aff-821b-48e5-9fda-effb58878c53.xml" afterDir="false" />
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="KSM 2022.10.04&#10;materBoard, clubReport, CommunityReport 도메인 생성&#10;masterBoard add, get, update Unit Test 완료">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4d1529a5-92aa-4d51-baa4-8d27ef377822.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f7a91aff-821b-48e5-9fda-effb58878c53.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-01__10_34__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-01__10_34__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-03__10_35__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-03__10_35__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-03__10_36__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-03__10_36__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/ClubReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/ClubReport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/deal/dao/DealDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/deal/dao/DealDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/deal/dao/DealDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/deal/dao/DealDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/deal/service/DealService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/deal/service/DealService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/deal/service/DealServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/deal/service/DealServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/controller/SiteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/controller/SiteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/dao/SiteDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/dao/SiteDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/dao/SiteDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/dao/SiteDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/service/SiteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/service/SiteService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/service/SiteServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/service/SiteServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/service/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +44,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="KSM" />
+    <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
     <excluded-from-favorite>
@@ -96,7 +106,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/workspace/MOWAS",
+    "last_opened_file_path": "C:/workspace/MOWAS/src/main/java/com/project/common",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -104,7 +114,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.75258917",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.EditorConfig",
+    "settings.editor.selected.configurable": "preferences.applicationServers",
     "spring.configuration.checksum": "0644e903b0ad21f514b0480754c0a1e2"
   },
   "keyToStringList": {
@@ -115,11 +125,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\workspace\MOWAS\src\main\java\com\project\common" />
       <recent name="C:\workspace\MOWAS" />
       <recent name="C:\workspace\MOWAS\src\main\resources\sql" />
       <recent name="C:\MainProject\MOWAS\src\main\resources\sql" />
       <recent name="C:\MainProject\MOWAS\src\main\java\com\project\community\service" />
-      <recent name="C:\MainProject\MOWAS\src\main\java\com\project\club\dao" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\MainProject\MOWAS\src\main\webapp\config\springMVC" />
@@ -132,7 +142,7 @@
       <recent name="com.project.site.controller" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SiteServiceTest.testUpdateMasterBoard">
+  <component name="RunManager" selected="JUnit.SiteServiceTest.testListMasterBoardAll">
     <configuration name="SiteServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MOWAS" />
       <extension name="coverage">
@@ -175,6 +185,22 @@
       <option name="PACKAGE_NAME" value="site.service" />
       <option name="MAIN_CLASS_NAME" value="site.service.SiteServiceTest" />
       <option name="METHOD_NAME" value="testGetMasterBoard" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SiteServiceTest.testListMasterBoardAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MOWAS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="site.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="site.service" />
+      <option name="MAIN_CLASS_NAME" value="site.service.SiteServiceTest" />
+      <option name="METHOD_NAME" value="testListMasterBoardAll" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -280,11 +306,13 @@
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="MOWAS:war exploded" />
+          <artifact name="MOWAS:war" />
         </option>
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SiteServiceTest.testListMasterBoardAll" />
         <item itemvalue="JUnit.SiteServiceTest.testUpdateMasterBoard" />
         <item itemvalue="JUnit.SiteServiceTest.testGetMasterBoard" />
         <item itemvalue="JUnit.SiteServiceTest.testAddMasterBoard" />
@@ -307,6 +335,7 @@
       <workItem from="1664435463764" duration="13877000" />
       <workItem from="1664521123863" duration="2546000" />
       <workItem from="1664842883822" duration="7260000" />
+      <workItem from="1664928637143" duration="27229000" />
     </task>
     <task id="LOCAL-00001" summary="설정">
       <created>1664436990723</created>

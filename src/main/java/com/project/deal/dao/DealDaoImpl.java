@@ -35,8 +35,9 @@ public class DealDaoImpl implements DealDao{
     }
 
     @Override
-    public void updateDeal(Deal deal) throws Exception {
+    public Deal updateDeal(Deal deal) throws Exception {
         sqlSession.update("DealMapper.updateDeal", deal);
+        return deal;
     }
 
     @Override

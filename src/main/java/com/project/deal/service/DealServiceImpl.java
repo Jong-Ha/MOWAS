@@ -1,5 +1,6 @@
 package com.project.deal.service;
 
+import com.project.common.Search;
 import com.project.deal.dao.DealDao;
 import com.project.domain.Deal;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class DealServiceImpl implements DealService {
 
     @Override
     public Deal updateDeal(Deal deal) throws Exception {
-        dealDao.updateDeal(deal);
+        return dealDao.updateDeal(deal);
     }
 
     @Override

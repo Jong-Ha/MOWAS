@@ -12,7 +12,7 @@ public interface DealDao {
 
     public List<Deal> ListDeal(SearchControls search) throws Exception;
 
-    public void updateDeal(Deal deal) throws Exception;
+    public Deal updateDeal(Deal deal) throws Exception;
     public void deleteDeal(Deal deal) throws Exception;
 
 }
