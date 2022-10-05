@@ -7,9 +7,61 @@
 <mapper namespace="UserMapper">
 
     <resultMap id="userSelectMap" type="user">
-        <result property="userId" column="user_id" javaType="VARCHAR"/>
-        <result
-
-
+        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="masterCheck" column="master_check" jdbcType="CHAR"/>
+        <result property="userStatus" column="user_status" jdbcType="CHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+        <result property="rrd" column="rrd" jdbcType="NUMERIC"/>
+        <result property="gender" column="gender" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="phone" column="phone" jdbcType="NUMERIC"/>
+        <result property="villCode" column="vill_code" jdbcType="VARCHAR"/>
+        <result property="userImage" column="user_Image" jdbcType="VARCHAR"/>
+        <result property="lcd" column="lcd" jdbcType="DATE"/>
+        <result property="loginCheck" column="login_check" jdbcType="CHAR"/>
+        <result property="psd" column="psd" jdbcType="DATE"/>
+        <result property="ped" column="ped" jdbcType="DATE"/>
+        <result property="ppt" column="ppt" jdbcType="NUMERIC"/>
+        <result property="reviewPt" column="review_pt" jdbcType="NUMERIC"/>
     </resultMap>
+
+    <resultMap id="interListSelectMap" type="interList">
+        <result property="userInterListNum" column="user_inter_list_num" jdbcType="NUMERIC"/>
+        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="interList" column="inter_list" jdbcType="CHAR"/>
+    </resultMap>
+
+    <insert      id="addUser"     parameterType="user" >
+        INSERT INTO users(user_id, master_check, user_status, password, user_name, rrd, gender, email,
+                          phone, vill_code, user_image, lcd, login_check, psd, ped, ppt, review_pt)
+        values(#{userId}, #{masterCheck}, #{userStatus}, #{password}, #{userName}, #{rrd}, #{gender}, #{email},
+               #{phone}, #{villCode}, #{userImage}, sysdate, #{loginCheck}, #{psd,jdbcType=DATE}, #{ped,jdbcType=DATE}, #{ppt}, #{reviewPt})
+    </insert>
+
+    <insert      id="addInterList"     parameterType="interList" >
+        INSERT INTO user_inter_list(user_inter_list_num, user_id, inter_list)
+        values(seq_user_inter_list_num.nextval, #{userId}, #{interList})
+    </insert>
+
+    <select id="getUser"    parameterType="String" resultMap="userSelectMap">
+        SELECT user_id, master_check, user_status, password, user_name, rrd, gender, email,
+               phone, vill_code, user_image, lcd, login_check, psd, ped, ppt, review_pt
+        FROM users
+        WHERE user_id=#{userId}
+    </select>
+
+    <update id="updateUser" parameterType="user">
+        UPDATE users
+        <set>
+            password = #{password},
+            email = #{email},
+            phone = #{phone},
+            vill_code = #{villCode},
+            user_image = #{userImage}
+        </set>
+        WHERE user_id=#{userId}
+    </update>
+
+
 </mapper>
