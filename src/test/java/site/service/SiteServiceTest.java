@@ -1,5 +1,6 @@
 package site.service;
 
+import com.project.common.Page;
 import com.project.common.Search;
 import com.project.domain.MasterBoard;
 import com.project.site.service.SiteService;
@@ -99,8 +100,9 @@ public class SiteServiceTest {
     public void testListMasterBoardAll() throws Exception{
 /*
         Search search = new Search();
-        search.setCurrentPage(1);
-        search.setPageSize(3);
+        Page page = new Page();
+        page.setCurrentPage(1);
+        page.setPageSize(3);
         Map<String,Object> map = siteService.listMasterBoard(search);
 
         List<Object> list = (List<Object>)map.get("mbList");
@@ -114,8 +116,8 @@ public class SiteServiceTest {
 
         System.out.println("=======================================");
 
-        search.setCurrentPage(1);
-        search.setPageSize(3);
+        page.setCurrentPage(1);
+        page.setPageSize(3);
         search.setSearchCondition("0");
         search.setSearchKeyword("");
         map = siteService.listMasterBoard(search);

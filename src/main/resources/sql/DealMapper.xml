@@ -54,7 +54,7 @@ values (seq_deal.NEXTVAL,
         #{villCode})
     </insert>
 <!--    &lt;!&ndash;게시물 상세조회&ndash;&gt;-->
-    <select id="getDeal" parameterType="int" resultMap="DealSelectMap">
+    <select id="getDeal" parameterType="int" resultMap="dealSelectMap">
         SELECT
             deal_board_num,
             user_id,
