@@ -18,9 +18,9 @@ import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {	"classpath:config/context-common.xml",
-                                        "classpath:config/context-aspect.xml",
-                                        "classpath:config/context-mybatis.xml",
-                                        "classpath:config/context-transaction.xml" })
+        "classpath:config/context-aspect.xml",
+        "classpath:config/context-mybatis.xml",
+        "classpath:config/context-transaction.xml" })
 
 public class SiteServiceTest {
 
@@ -99,8 +99,8 @@ public class SiteServiceTest {
     public void testListMasterBoardAll() throws Exception{
 
         Search search = new Search();
-        search.setCurrentPage(1);
-        search.setPageSize(3);
+//        search.setCurrentPage(1);
+//        search.setPageSize(3);
         Map<String,Object> map = siteService.listMasterBoard(search);
 
         List<Object> list = (List<Object>)map.get("mbList");
@@ -114,8 +114,8 @@ public class SiteServiceTest {
 
         System.out.println("=======================================");
 
-        search.setCurrentPage(1);
-        search.setPageSize(3);
+//        search.setCurrentPage(1);
+//        search.setPageSize(3);
         search.setSearchCondition("0");
         search.setSearchKeyword("");
         map = siteService.listMasterBoard(search);
@@ -129,4 +129,4 @@ public class SiteServiceTest {
         totalCount = (Integer)map.get("totalCount");
         System.out.println(totalCount);
     }
- }
+}

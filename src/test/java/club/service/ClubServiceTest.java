@@ -303,4 +303,27 @@ public class ClubServiceTest {
         clubService.updateClubCalendarApply(clubCalendarApplyNum, process);
     }
 
+    @Test
+    public void listCluber(){
+        int clubNum = 10008;
+
+        System.out.println(clubService.listCluber(clubNum));
+    }
+
+    @Test
+    public void getCluber(){
+        int clubUserNum = 10006;
+
+        System.out.println(clubService.getCluber(clubUserNum));
+    }
+
+    @Test
+    public void updateCluber(){
+        Cluber cluber = new Cluber();
+        cluber.setClubUserNum(10006);
+        cluber.setCluberText("소개소개소개소개소개");
+
+        clubService.updateCluber(cluber);
+    }
+
 }
