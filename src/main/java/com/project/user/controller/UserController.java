@@ -2,6 +2,7 @@ package com.project.user.controller;
 
 import com.project.domain.User;
 import com.project.user.service.UserService;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,7 +23,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.Properties;
+
 
 @Controller
 @RequestMapping("/user/*")
@@ -90,10 +93,15 @@ public class UserController {
         return "redirect:/view/user/main.jsp";
     }
 
-    @RequestMapping(value = "mailSender")
-    public void mailSender(HttpServletRequest request, ModelMap mo) throws AddressException, MessagingException {
+
+
+
+    @RequestMapping(value = "mailSender",method = RequestMethod.POST)
+    public void mailSender(HttpServletRequest request, ModelMap mo,@RequestParam(value="email", required = false)String email) throws AddressException, MessagingException {
 
         System.out.println("여기는 mailSender 컨트롤러 시작이다");
+        System.out.println("email의 값은? : "+email);
+
         // 네이버일 경우 smtp.naver.com 을 입력합니다.
         // Google일 경우 smtp.gmail.com 을 입력합니다.
         String host = "smtp.naver.com";
@@ -102,8 +110,9 @@ public class UserController {
         final String password = "dnjfdighkseka21!";  //네이버 이메일 비밀번호를 입력해주세요.
         int port=465; //포트번호
 
+
         // 메일 내용
-        String recipient = "apf2013@gmail.com";    //받는 사람의 메일주소를 입력해주세요.
+        String recipient = email;    //받는 사람의 메일주소를 입력해주세요.
         String subject = "MOWAS 이메일 인증코드입니다"; 	  //메일 제목 입력해주세요.
         String body = "MOWAS님으로 부터 메일을 받았습니다. " +
                 "인증번호는 [1234]입니다"; //메일 내용 입력해주세요.

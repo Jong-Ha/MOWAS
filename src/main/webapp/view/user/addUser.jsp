@@ -21,25 +21,110 @@
 
     $(function (){
       $(".emailKey").on("click",function (){
-
-
-
         alert('이메일인증버튼?');
-        $(".userEmail").attr("method", "POST").attr("action", "/user/mailSender").submit();
+        $("form").attr("method", "POST").attr("action", "/user/mailSender").submit();
+         // self.location="/user/mailSender";
+      });
+      $(".smsKey").on("click",function (){
+        alert('문자인증버튼?');
+        $("form").attr("method", "POST").attr("action", "/user/smsSend").submit();
+        // self.location="/user/mailSender";
+      });
+      $(".CheckEmailKey").on("click",function (){
+        result=true;
+        if(value!=1234){
+          result=false;
+        }
+      });
+      $(".CheckSmsKey").on("click",function (){
+        result=true;
+        if(value!=1234){
+          result=false;
+        }
+      });
+
+      $(".addUser").on("click",function (){
+        var id=$("input[name='id']").val();
+        var pw=$("input[name='password']").val();
+        var pw2=$("input[name='password2]").val();
+        var name=$("input[name='username']").val();
+
+        var gender=$("input[name='gender']").val();
+        var email=$("input[id='CheckEamil']").val();
+        var phone=$("input[id='CheckPhone']").val();
+
+        if(id==null||id.length<1){
+          alert("아이디를 입력해주세요");
+          return;
+        }
+        if(pw==null||pw.length<1){
+          alert("비밀번호를 입력해주세요");
+          return;
+        }
+        if(pw2==null||pw2.length<1){
+          alert("비밀번호 확인란을 입력해주세요");
+          return;
+        }
+        if(name==null||name.length<1){
+          alert("이름을 입력해주세요");
+          return;
+        }
+        if(pw != pw2){
+          alert("비밀번호 확인이 일치하지 않습니다");
+          $("#password2").focus();
+          return;
+        }
+
+
+
+
+
+
+          if(email != "" && (email.indexOf('@') < 1 || email.indexOf('.') == -1)){
+            alert("이메일 형식이 아닙니다.");
+            return;
+          }
+
+
+        $("form").attr("method","POST").attr("action","/user/addUser").submit();
 
       });
+
+
+
+       $(".CheckRrd").on("click",function (){
+           $.ajax(
+              {
+                url : "/user/json/getUser",
+                method : "POST",
+                data :{
+                  rrd : $("#rrd").val()
+                },
+                dataType : "json",
+                success : function (JSONData, status){
+                  var displayValue = "이미 가입한 회원입니다."
+
+                  $(".CheckRrd").val(displayValue);
+                }
+              });
+         });
+
+
+
+      $(function (){
+        $(".cancle").on("click",function (){
+          $("form").reset();
+        });
+      });
+
     });
-
-
-
-
-
 
   </script>
  <body class="bg-light">
     
 <div class="container" style="text-align: -webkit-center;">
 <div class="wap">
+
   <main>
     <div class="py-5 text-center">
       <img class="d-block mx-auto mb-4"  alt="" width="72" height="57">
@@ -47,15 +132,15 @@
       <p class="lead">정보를 입력해주세요</p>
     </div>
 
-
+      <hr>
 
       <div class="col-md-7 col-lg-8">
-        <h4 class="mb-3">Billing address</h4>
+
         <form class="needs-validation" novalidate>
           <div class="row g-3">
             <div class="col-sm">
               <label for="id" class="form-label">아이디</label>
-              <input type="text" class="form-control" id="Id" placeholder="" value="" name="id" required>
+              <input type="text" class="form-control" id="Id" name="id" maxLength="20" required>
               <div class="invalid-feedback">
                 Valid first name is required.
               </div>
@@ -64,14 +149,14 @@
             <div class="col-12">
               <label for="password" class="form-label">비밀번호</label>
               <div class="input-group has-validation">
-                <input type="password" class="form-control" id="password" name="password" placeholder="" required>
+                <input type="password" class="form-control" id="password" name="password" minLength="8" maxLength="20" required>
                 <div class="invalid-feedback"></div>
               </div>
             </div>
             <div class="col-12">
               <label for="password2" class="form-label">비밀번호 확인</label>
               <div class="input-group has-validation">
-                <input type="password" class="form-control" id="password2" name="password2" placeholder="" required>
+                <input type="password" class="form-control" id="password2" name="password2" minLength="8" maxLength="20" required>
                 <div class="invalid-feedback"></div>
               </div>
             </div>
@@ -90,34 +175,42 @@
             <div class="col-12">
               <label for="rrd" class="form-label">주민등록번호</label>
               <div class="input-group has-validation">
-                <input type="text" class="form-control" id="rrd" name="rrd" placeholder="" required>
+                <input type="text" class="form-control" id="rrd" name="rrd" maxLength="13" required>
                 <div class="invalid-feedback"></div>
               </div>
+              <button type="button" class="btn btn-primary btn-sm CheckRrd">중복 확인</button>
             </div>
+
 
             <div class="col-12">
               성별
-              <div class="input-group has-validation">
-                <input type="radio" class="form-control" id="male" name="gender" value="male" required>남자
-                <input type="radio" class="form-control" id="female" name="gender" value="female" required>여자
+                <input type="radio" class="form-check-input" id="male" name="gender" value="male" checked required>남자
+                <input type="radio" class="form-check-input" id="female" name="gender" value="female" required>여자
                 <div class="invalid-feedback"></div>
-              </div>
+
             </div>
-            이메일 또는 휴대폰번호 인증하기(택1)
+            <h6>이메일 또는 휴대폰번호 인증하기(택1)</h6>
             <div class="col-12">
+              <input type="radio" class="form-check-input" id="CheckEamil" checked required>
               <label for="email" class="form-label">이메일 <span class="text-muted"> </span></label>
-              <input type="email" class="form-control userEmail" id="email" placeholder="you@example.com">
-              <div class="invalid-feedback">
-                Please enter a valid email address for shipping updates.
-              </div>
-              <input type="text" class="form-control CheckEmailKey" required>
+              <input type="email" class="form-control userEmail" id="email" name="email" value="you@email.com">
+              <input type="text" class="form-control CheckEmailKey" value="인증번호 입력" required>
               <button type="button" class="btn btn-primary btn-sm emailKey">인증번호 요청</button>
+              <button type="button" class="btn btn-secondary btn-sm CheckEmailKey">인증 확인</button>
             </div>
 
+            <div class="col-12">
+              <input type="radio" class="form-check-input" id="CheckPhone" required>
+              휴대폰번호
+            <input type="tel" class="form-control" name="sms" >
+            <input type="text" class="form-control" value="인증번호 입력" >
+            <button type="button" class="btn btn-primary btn-sm smsKey">인증번호 요청</button>
+              <button type="button" class="btn btn-secondary btn-sm CheckSmsKey">인증 확인</button>
+            </div>
 
             <div class="col-12">
               <label for="address" class="form-label">동네인증</label>
-              서울특별시
+              <br>서울특별시</br>
               <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   무슨구
@@ -138,110 +231,50 @@
               <input type="text" class="form-control" id="address"  required>
 
             <div class="col-12">
-              <label for="address2" class="form-label">Address 2 <span class="text-muted">(Optional)</span></label>
-              <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+
+              <button class="btn btn-secondary dropdown-toggle" type="button" name="interList" data-bs-toggle="dropdown" aria-expanded="false">
+                관심목록
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown1" >스포츠</a></li>
+                <li><a class="dropdown2" >반려동물</a></li>
+                <li><a class="dropdown3" >음악</a></li>
+                <li><a class="dropdown4" >독서</a></li>
+                <li><a class="dropdown5" >게임</a></li>
+                <li><a class="dropdown6" >육아</a></li>
+                <li><a class="dropdown7" >공연</a></li>
+                <li><a class="dropdown8" >공예</a></li>
+                <li><a class="dropdown9" >댄스</a></li>
+                <li><a class="dropdown10" >자동차</a></li>
+                <li><a class="dropdown11" >사진</a></li>
+                <li><a class="dropdown12" >여행</a></li>
+                <li><a class="dropdown13" >기타</a></li>
+              </ul>
+              <button type="button" class="btn btn-primary btn-sm interList">관심목록 추가</button>
             </div>
 
             <div class="col-md-5">
-              <label for="country" class="form-label">Country</label>
-              <select class="form-select" id="country" required>
-                <option value="">Choose...</option>
-                <option>United States</option>
-              </select>
-              <div class="invalid-feedback">
-                Please select a valid country.
-              </div>
+              <label for="myInterList" class="form-label">내 관심목록 (최대 13개)</label>
+              <input type="text" id="myInterList">
             </div>
+
+
 
             <div class="col-md-4">
-              <label for="state" class="form-label">State</label>
-              <select class="form-select" id="state" required>
-                <option value="">Choose...</option>
-                <option>California</option>
-              </select>
-              <div class="invalid-feedback">
-                Please provide a valid state.
-              </div>
+              <label for="userImage" class="form-label">회원 사진 등록</label>
+              <input type="file" id="userImage">
             </div>
 
-            <div class="col-md-3">
-              <label for="zip" class="form-label">Zip</label>
-              <input type="text" class="form-control" id="zip" placeholder="" required>
+
+          </div>
+            <hr>
+            <div class="col-12">
+            <button class="w-100 btn btn-primary btn-lg cancle" type="button"> 취소</button>
+            <button class="w-100 btn btn-primary btn-lg addUser" type="submit"> 회원가입</button>
               <div class="invalid-feedback">
-                Zip code required.
-              </div>
             </div>
           </div>
-
-          <hr class="my-4">
-
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="same-address">
-            <label class="form-check-label" for="same-address">Shipping address is the same as my billing address</label>
           </div>
-
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="save-info">
-            <label class="form-check-label" for="save-info">Save this information for next time</label>
-          </div>
-
-          <hr class="my-4">
-
-          <h4 class="mb-3">Payment</h4>
-
-          <div class="my-3">
-            <div class="form-check">
-              <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
-              <label class="form-check-label" for="credit">Credit card</label>
-            </div>
-            <div class="form-check">
-              <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
-              <label class="form-check-label" for="debit">Debit card</label>
-            </div>
-            <div class="form-check">
-              <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
-              <label class="form-check-label" for="paypal">PayPal</label>
-            </div>
-          </div>
-
-          <div class="row gy-3">
-            <div class="col-md-6">
-              <label for="cc-name" class="form-label">Name on card</label>
-              <input type="text" class="form-control" id="cc-name" placeholder="" required>
-              <small class="text-muted">Full name as displayed on card</small>
-              <div class="invalid-feedback">
-                Name on card is required
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <label for="cc-number" class="form-label">Credit card number</label>
-              <input type="text" class="form-control" id="cc-number" placeholder="" required>
-              <div class="invalid-feedback">
-                Credit card number is required
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <label for="cc-expiration" class="form-label">Expiration</label>
-              <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-              <div class="invalid-feedback">
-                Expiration date required
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <label for="cc-cvv" class="form-label">CVV</label>
-              <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-              <div class="invalid-feedback">
-                Security code required
-              </div>
-            </div>
-          </div>
-
-          <hr class="my-4">
-
-          <button class="w-100 btn btn-primary btn-lg" type="submit"><a href="main.jsp"> Continue to checkout</a></button>
         </form>
       </div>
   </main>
