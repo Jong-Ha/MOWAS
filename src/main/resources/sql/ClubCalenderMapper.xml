@@ -80,69 +80,63 @@
     <!--모임 일정 후기글-->
     <insert id="addCalenderReview" parameterType="calenderReview">
         INSERT INTO
-        club_calendar_review (club_calendar_review_num,club_calendar_num,club_num,user_id,review_range,review_title,review_text,reg_date,board_category)
-        VALUES (seq_club_calendar_review.NEXTVAL
+        <if test="boardCategory == 1">
+            club_calendar_review (club_calendar_review_num,club_calendar_num,club_num,user_id,review_range,review_title,review_text,reg_date,board_category)
+            VALUES (seq_club_calendar_review.NEXTVAL
+                    ,#{clubCalenderNum}
+                    ,#{clubNum}
+                    ,#{userId}
+                    ,#{reviewRange}
+                    ,#{reviewTitle}
+                    ,#{reviewText}
+                    ,SYSDATE
+                    ,#{boardCategory}
+                    )
+        </if>
+        <if test="boardCategory == 2">
+            club_calendar_review(club_calendar_review_num,club_calendar_num,club_num,user_id,review_range,review_title,board_category,reg_date)
+            VALUES (seq_club_calendar_review.NEXTVAL
                 ,#{clubCalenderNum}
                 ,#{clubNum}
                 ,#{userId}
                 ,#{reviewRange}
                 ,#{reviewTitle}
-                ,#{reviewText}
-                ,SYSDATE
                 ,#{boardCategory}
-                )
+                ,SYSDATE)
+        </if>
     </insert>
 
     <update id="updateCalenderReview" parameterType="calenderReview">
         UPDATE club_calendar_review
+        <if test="boardCategory == 1">
             <set>
                 review_range = #{reviewRange}
                 ,review_title = #{reviewTitle}
                 ,review_text = #{reviewText}
                 ,update_date = SYSDATE
-            </set>
-        WHERE club_calendar_review_num = #{clubCalenderReviewNum}
-    </update>
-
-    <insert id="addCalenderReviewShort" parameterType="calenderReview">
-        INSERT INTO
-            club_calendar_review(club_calendar_review_num,club_calendar_num,club_num,user_id,review_range,review_title,board_category,reg_date)
-        VALUES (seq_club_calendar_review.NEXTVAL
-              ,#{clubCalenderNum}
-              ,#{clubNum}
-              ,#{userId}
-              ,#{reviewRange}
-              ,#{reviewTitle}
-              ,#{boardCategory}
-              ,SYSDATE)
-    </insert>
-
-    <update id="updateCalenderReviewShort" parameterType="calenderReview">
-        UPDATE club_calendar_review
+             </set>
+        </if>
+        <if test="boardCategory == 2">
             <set>
                 review_range  = #{reviewRange}
                 ,review_title = #{reviewTitle}
                 ,update_date  = SYSDATE
             </set>
+        </if>
         WHERE club_calendar_review_num = #{clubCalenderReviewNum}
     </update>
 
-    <delete id="deleteCalenderReview" parameterType="int">
-        DELETE club_calendar_review
-          WHERE club_calendar_review_num = #{clubCalenderReviewNum}
-    </delete>
+    <select id="getCalenderReview" parameterType="map"  resultMap="calenderReviewSelect">
+        SELECT *
+        FROM club_calendar_review
+        WHERE club_calendar_review_num = #{clubCalenderReviewNum}
+    </select>
 
     <select id="listCalenderReview" parameterType="int" resultMap="calenderReviewSelect">
         select * from CLUB_CALENDAR_REVIEW
-        <if test = "boardCategory == 1">
-        WHERE BOARD_CATEGORY = 1
-        </if>
-        <if test = "boardCategory == 2">
-        WHERE BOARD_CATEGORY = 2
-        </if>
+        WHERE BOARD_CATEGORY = #{boardCategory}
         AND REVIEW_RANGE = '1'
     </select>
-
 
 
 </mapper>

@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Map;
+
 @Repository("communityDaoImpl")
 public class CommunityDaoImpl implements CommunityDao {
 
@@ -16,9 +19,11 @@ public class CommunityDaoImpl implements CommunityDao {
     @Qualifier("sqlSessionTemplate")
     private SqlSession sqlSession;
 
-    public void setSqlSession(SqlSession sqlSession){
+    public void setSqlSession(SqlSession sqlSession) {
         this.sqlSession = sqlSession;
-    };
+    }
+
+    ;
 
     /*모임 일정*/
     @Override
@@ -42,6 +47,7 @@ public class CommunityDaoImpl implements CommunityDao {
     public void updateComment(Comment comment) {
         sqlSession.update("CommunityMapper.updateComment", comment);
     }
+
     @Override
     public void deleteComment(Comment comment) {
         sqlSession.update("CommunityMapper.deleteComment", comment);
@@ -52,6 +58,7 @@ public class CommunityDaoImpl implements CommunityDao {
     public void addRecomment(Recomment recomment) {
         sqlSession.insert("CommunityMapper.addRecomment", recomment);
     }
+
     @Override
     public void updateRecomment(Recomment recomment) {
         sqlSession.update("CommunityMapper.updateRecomment", recomment);
@@ -59,8 +66,78 @@ public class CommunityDaoImpl implements CommunityDao {
 
     @Override
     public void deleteRecomment(int recommentNum) {
-        sqlSession.delete("CommunityMapper.deleteRecomment",recommentNum);
+        sqlSession.delete("CommunityMapper.deleteRecomment", recommentNum);
     }
 
+    @Override
+    public List<Comment> listComment(Map<String, Object> map) {
+        return sqlSession.selectList("CommunityMapper.listComment", map);
+    }
+
+    @Override
+    public List<Recomment> listRecomment(int commentNo) {
+        return sqlSession.selectList("CommunityMapper.listRecomment", commentNo);
+    }
+
+    @Override
+    public List<VilBoard> listVillBoard(String villCode) {
+        return sqlSession.selectList("CommunityMapper.listVillBoard", villCode);
+    }
+
+    @Override
+    public VilBoard getVillBoard(int villBoardNum) {
+        return sqlSession.selectOne("CommunityMapper.getVillBoard", villBoardNum);
+    }
+
+    @Override
+    public void updateViewCount(Map<String,Object> map) {
+        sqlSession.update("CommunityMapper.updateViewCount", map);
+    }
+
+
+    @Override
+    public int getLikeCount(Map<String,Object>map) {
+        return sqlSession.selectOne("CommunityMapper.getLikeCount", map);
+    }
+
+    @Override
+    public void addLike(Map<String, Object> map) {
+        sqlSession.insert("CommunityMapper.addLike", map);
+    }
+
+    @Override
+    public String getLikeCheck(Map<String, Object> map) {
+        return sqlSession.selectOne("CommunityMapper.checkLike", map);
+    }
+
+    @Override
+    public void updateLike(Map<String, Object> map) {
+        sqlSession.update("CommunityMapper.updateLike", map);
+    }
+
+    @Override
+    public void deleteLikeCount(Map<String, Object> map) {
+        sqlSession.update("CommunityMapper.deleteLikeCount", map);
+    }
+
+    @Override
+    public void updateLikeCount(Map<String, Object> map) {
+        sqlSession.update("CommunityMapper.updateLikeCount", map);
+    }
+
+    @Override
+    public int getViewCount(Map<String, Object> map) {
+        return sqlSession.selectOne("CommunityMapper.getViewCount", map);
+    }
+
+    @Override
+    public void updateVillBoard(VilBoard villBoard) {
+        sqlSession.update("CommunityMapper.updateVillBoard",villBoard);
+    }
+
+    @Override
+    public void deleteBoard(Map<String, Object> map) {
+        sqlSession.delete("CommunityMapper.deleteBoard", map);
+    }
 
 }

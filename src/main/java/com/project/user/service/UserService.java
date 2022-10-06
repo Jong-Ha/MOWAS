@@ -1,6 +1,7 @@
 package com.project.user.service;
 
 import com.project.domain.User;
+import com.project.domain.UserInterList;
 //import com.project.domain.UserInterList;
 
 import java.util.List;
@@ -10,7 +11,7 @@ public interface UserService {
     public void addUser(User user)throws Exception;
 
     //관심목록 추가
-  //  public void addInterList(UserInterList userInterListNum)throws Exception;
+    public void addInterList(UserInterList InterList)throws Exception;
 
     //회원상세보기, 내정보 보기, 로그인
     public User getUser(String userId)throws Exception;
@@ -21,8 +22,7 @@ public interface UserService {
     //회원 아이디 중복 확인
     public boolean checkDupId(String userId)throws Exception;
 
-    //이메일 인증코드 전송
-    public void sendEmail(String email)throws Exception;
+
 
 /*
     //회원목록 조회
@@ -32,8 +32,7 @@ public interface UserService {
 
     //회원 주민등록번호 중복 확인
     public boolean checkDupRrd(String rrd)throws Exception;
-    //이메일 인증코드 전송
-    public void sendEmail(String email)throws Exception;
+
     //휴대폰번호 인증코드 전송
     public void sendPhone(String phone)throws Exception;
     //로그아웃

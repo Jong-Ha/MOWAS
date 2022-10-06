@@ -3,6 +3,7 @@ package com.project.user.dao;
 import com.project.domain.User;
 //import com.project.domain.UserInterList;
 //import com.project.user.mail.MailApp;
+import com.project.domain.UserInterList;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,12 +27,13 @@ public class UserDaoImpl implements UserDao{
     }
 
     public void addUser(User user)throws Exception{
+        System.out.println("여기는 DaoImpl addUser 메서드이다");
         sqlSession.insert("UserMapper.addUser", user);
     }
 
- //   public void addInterList(UserInterList userInterListNum)throws Exception{
-  //      sqlSession.insert("UserMapper.addInterList", userInterListNum);
-  //  }
+    public void addInterList(UserInterList interList)throws Exception{
+        sqlSession.insert("UserMapper.addInterList", interList);
+    }
 
     public User getUser(String userId)throws Exception{
         return sqlSession.selectOne("UserMapper.getUser", userId);
@@ -41,7 +43,5 @@ public class UserDaoImpl implements UserDao{
         sqlSession.update("UserMapper.updateUser", user);
     }
 
-    public void sendEmail(String email)throws Exception{
-     //   MailApp mailApp1 = mailApp;
-    }
+
 }

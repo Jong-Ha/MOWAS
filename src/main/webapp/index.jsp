@@ -14,9 +14,13 @@
         $(function (){
             $(".commu").on("click",
                 function (){
-                location.href="/commu/"
-            });
+                    location.href="/commu/main"
+                });
 
+            $("li > a:contains('모임 관리')").on("click",
+                function (){
+                    location.href="/club/listClub"
+                });
         });
 
     </script>
@@ -40,8 +44,8 @@
         </div>
         <nav>
             <ul>
-                <li><a href="">로그인</a></li>
-                <li><a href="">모임 관리</a></li>
+                <li><a href="/view/user/login.jsp">로그인</a></li>
+                <li><a>모임 관리</a></li>
                 <li><a class="commu">커뮤니티</a></li>
                 <li><a href="/deal/getListDeal">중고 거래</a></li>
                 <li><a href="">공지 사항</a></li>

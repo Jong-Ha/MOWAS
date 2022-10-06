@@ -1,8 +1,11 @@
 package com.project.club.controller;
 
 import com.project.club.service.ClubCalendarService;
+import com.project.community.service.CommunityService;
 import com.project.domain.ClubCalendar;
 import com.project.domain.ClubCalendarReview;
+import com.project.domain.Comment;
+import com.project.domain.Recomment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,6 +31,10 @@ public class ClubCalendarController {
     @Autowired
     @Qualifier("clubCalenderServiceImpl")
     private ClubCalendarService calenderService;
+
+    @Autowired
+    @Qualifier("communityServiceImpl")
+    private CommunityService communityService;
 
     /*모임 일정*/
     @RequestMapping(value = "addClubCalender", method = RequestMethod.POST)
@@ -90,7 +97,7 @@ public class ClubCalendarController {
         return null;
     }
 
-    /*모임 일정*/
+
 
     /*모임 일정 후기 쇼츠*/
     @RequestMapping(value = "addClubCalenderReview", method = RequestMethod.POST)
@@ -128,27 +135,70 @@ public class ClubCalendarController {
         }
         return null;
     }
-    @RequestMapping("updateClubCalenderReview")
-    public String updateClubCalenderReview(@ModelAttribute("clubCalenderReview") ClubCalendarReview calenderReview){
-        System.out.println("모임 일정 수정 진입: " + calenderReview);
 
+    /*수정 화면 navigation*/
+    @RequestMapping(value = "updateClubCalenderReview", method = RequestMethod.GET)
+    public String updateClubCalenderReview(@RequestParam("clubCalenderReviewNum")int clubCalenderReviewNum
+                                            ,@RequestParam("boardCategory")int boardCategory
+                                            ,@ModelAttribute("clubCalenderReview")ClubCalendarReview calenderReview ,Model model){
 
-        if(calenderReview.getBoardCategory() == 1) {
-            calenderService.updateCalenderReview(calenderReview);
-        }else if(calenderReview.getBoardCategory() == 2){
-            calenderService.updateCalenderReviewShort(calenderReview);
+        calenderReview = calenderService.getCalenderReview(clubCalenderReviewNum);
+
+        model.addAttribute("calenderReview",calenderReview);
+
+        if (calenderReview.getBoardCategory() == 1){
+            return "/view/community/update/updateClubCalenderReview.jsp";
+        } else if (calenderReview.getBoardCategory() == 2) {
+            return "/view/community/update/updateClubCalenderReviewShort.jsp";
         }
 
-        return  null;
+       return null;
+    }
+
+    /*모임 일정 후기 수정*/
+    @RequestMapping(value = "updateClubCalenderReview", method = RequestMethod.POST)
+    public String updateClubCalenderReview(@ModelAttribute("clubCalenderReview") ClubCalendarReview calenderReview){
+
+        System.out.println("모임 일정 후기 수정 : " + calenderReview);
+
+        calenderService.updateCalenderReview(calenderReview);
+        if(calenderReview.getBoardCategory() == 1){
+            return "forward:/view/community/list/clubCalenderReviewList.jsp";
+        } else if (calenderReview.getBoardCategory() == 2) {
+            return "forward:/view/community/list/clubCalenderReviewShortList.jsp";
+        }
+        return null;
     }
 
     @RequestMapping("deleteClubCalenderReview")
     public String deleteClubCalenderReview(@RequestParam("calenderNum")int calenderNum){
-        System.out.println("캘린더 번호 : " + calenderNum);
+
+        System.out.println("모임 일정 번호 : " + calenderNum);
 
         calenderService.deleteCalenderReview(calenderNum);
 
         return null;
+    }
+
+    @RequestMapping("getClubCalenderReview")
+    public String getClubCalenderReview(@RequestParam("clubCalenderReviewNum")int clubCalenderReviewNum,
+                                        @RequestParam("boardCategory")int boardCategory,
+                                        @ModelAttribute("clubCalenderReview")ClubCalendarReview calendarReview,
+                                        @ModelAttribute("Comment") Comment comment,
+                                        Model model){
+
+        calendarReview = calenderService.getCalenderReview(clubCalenderReviewNum);
+
+        Map<String, Object> map = communityService.listComment(clubCalenderReviewNum ,boardCategory);
+
+
+
+        model.addAttribute("calenderReview", calendarReview);
+        model.addAttribute("list", map.get("list"));
+
+        System.out.println("list의 정보 : " + map.get("list"));
+
+        return "/view/community/get/getClubCalenderReview.jsp";
     }
 
     @RequestMapping("listCalenderReview")
@@ -159,11 +209,10 @@ public class ClubCalendarController {
 
         model.addAttribute("list", map.get("list"));
 
-
         if (boardCategory == 1){
-            return "/view/community/list/clubCalenderReviewList.jsp";
+            return "forward:/view/community/list/clubCalenderReviewList.jsp";
         } else if (boardCategory == 2) {
-            return "/view/community/list/clubCalenderReviewShortList.jsp";
+            return "forward:/view/community/list/clubCalenderReviewShortList.jsp";
         }
 
         return null;

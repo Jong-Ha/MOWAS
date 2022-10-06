@@ -39,6 +39,13 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
+    public List<Club> listClub(String userId) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("userId", userId);
+        return clubDao.listClub(map);
+    }
+
+    @Override
     public void addCluberApply(Cluber cluber) {
         clubDao.addCluberApply(cluber);
     }

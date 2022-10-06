@@ -1,5 +1,5 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
-<%@ page pageEncoding="EUC-KR" %>
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page pageEncoding="utf-8" %>
 
 
 <!DOCTYPE html>
@@ -7,9 +7,9 @@
 <html lang="ko">
 
 <head>
-    <meta charset="EUC-KR">
+    <meta charset="utf-8">
 
-    <!-- ¬¸¡∂ : http://getbootstrap.com/css/   ¬¸¡∂ -->
+    <!-- Ï∞∏Ï°∞ : http://getbootstrap.com/css/   Ï∞∏Ï°∞ -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->
@@ -43,12 +43,10 @@
     <!--  ///////////////////////// JavaScript ////////////////////////// -->
     <script type="text/javascript">
 
-        //============= »∏ø¯¡§∫∏ºˆ¡§ Event  √≥∏Æ =============
+        //============= ÌöåÏõêÏ†ïÎ≥¥ÏàòÏ†ï Event  Ï≤òÎ¶¨ =============
         $(function () {
 
             $(".submit").on("click", function () {
-
-                console.log("¿Ã∞≈ ø÷ æ»µ«≥ƒ");
 
                 $("form").attr("method", "post").attr("action", "/clubCal/addClubCalender") .attr("enctype", "multipart/form-data").submit();
 
@@ -77,16 +75,16 @@
 <body>
 
 <form>
-    <!--  »≠∏È±∏º∫ div Start /////////////////////////////////////-->
+    <!--  ÌôîÎ©¥Íµ¨ÏÑ± div Start /////////////////////////////////////-->
     <div class="wap">
         <div class="container">
 
             <div class="page-header">
-                <h3 class=" text-info">∏¿” ¿œ¡§ ¿€º∫</h3>
+                <h3 class=" text-info">Î™®ÏûÑ ÏùºÏ†ï ÏûëÏÑ±</h3>
             </div>
 
             <div class="row">
-                <div class="col-xs-4 col-xs-2"><strong>¡¶ ∏Ò</strong></div>
+                <div class="col-xs-4 col-xs-2"><strong>Ï†ú Î™©</strong></div>
                 <div class="col-xs-8 col-xs-4">
                     <input type="text" class="form-control" name="calenderTitle" value=""/>
                 </div>
@@ -96,7 +94,7 @@
             <hr/>
 
             <div class="row">
-                <div class="col-xs-4 col-xs-2"><strong>¿œ¡§ ≥ªøÎ</strong></div>
+                <div class="col-xs-4 col-xs-2"><strong>ÏùºÏ†ï ÎÇ¥Ïö©</strong></div>
                 <div class="col-xs-8 col-xs-4">
                     <textarea class="form-control" name="calenderText" style=" height: 200px;  width: 500px;  margin-bottom: 20px;"></textarea>
                 </div>
@@ -107,7 +105,7 @@
 
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
-                    <strong>¿œ¡§ ≥Ø¬•
+                    <strong>ÏùºÏ†ï ÎÇ†Ïßú
                         <input class="form-control" name="clubDate" type="date">
                     </strong>
                 </div>
@@ -119,8 +117,8 @@
 
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
-                    <strong>¿ßƒ°
-                        <input type="button" name="location" value="¿ßƒ° ¿‘∑¬">
+                    <strong>ÏúÑÏπò
+                        <input type="button" name="location" value="ÏúÑÏπò ÏûÖÎ†•">
                     </strong>
                 </div>
             </div>
@@ -130,8 +128,8 @@
 
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
-                    <strong>∆ƒ¿œ
-                        <input type="file" name="file" value="∆ƒ¿œ √∑∫Œ">
+                    <strong>ÌååÏùº
+                        <input type="file" name="file" value="ÌååÏùº Ï≤®Î∂Ä">
                     </strong>
                 </div>
             </div>
@@ -140,7 +138,7 @@
             <hr/>
 
             <div class="form-check form-switch">
-                æÀ∏≤ º≥¡§ ø©∫Œ
+                ÏïåÎ¶º ÏÑ§Ï†ï Ïó¨Î∂Ä
                 <input class="form-check-input check" name="noticeCheck" type="checkbox" role="switch" id="flexSwitchCheckDefault1">
                 <label class="form-check-label" for="flexSwitchCheckDefault1"></label>
             </div>
@@ -148,14 +146,14 @@
 
             <hr/>
 
-            æÀ∏≤ Ω√∞£ º≥¡§
+            ÏïåÎ¶º ÏãúÍ∞Ñ ÏÑ§Ï†ï
             <hr>
             <input type="time" name="noticeTime">
 
             <hr/>
 
             <div class="form-check form-switch">
-                √ﬂ∞° ¬¸ø© ø©∫Œ
+                Ï∂îÍ∞Ä Ï∞∏Ïó¨ Ïó¨Î∂Ä
                 <input class="form-check-input check" name="calendarApplyCheck" type="checkbox" role="switch" id="flexSwitchCheckDefault2">
                 <label class="form-check-label" for="flexSwitchCheckDefault2"></label>
             </div>
@@ -165,7 +163,7 @@
 
 
             <div class="form-check form-switch">
-                ¿⁄µø ¬¸ø© ∞°¥…
+                ÏûêÎèô Ï∞∏Ïó¨ Í∞ÄÎä•
                 <input class="form-check-input check" name="applyAutoCheck" type="checkbox" role="switch" id="flexSwitchCheckDefault3">
                 <label class="form-check-label" for="flexSwitchCheckDefault3"></label>
             </div>
@@ -176,8 +174,8 @@
 
             <div class="row">
                 <div class="col-xs-12 text-center ">
-                    <button type="button" class="btn btn-primary btn-lg submit">»Æ¿Œ</button>
-                    <button type="button" class="btn btn-secondary btn-lg close">¥›±‚</button>
+                    <button type="button" class="btn btn-primary btn-lg submit">ÌôïÏù∏</button>
+                    <button type="button" class="btn btn-secondary btn-lg close">Îã´Í∏∞</button>
                 </div>
             </div>
 

@@ -42,12 +42,6 @@ public class ClubCalendarServiceImpl implements ClubCalendarService {
     }
 
     @Override
-    public void updateCalenderReviewShort(ClubCalendarReview calenderReview) {
-        clubCalendarDao.updateCalenderReviewShort(calenderReview);
-    }
-
-
-    @Override
     public void deleteCalenderReview(int calenderNum) {
         clubCalendarDao.deleteCalenderReview(calenderNum);
     }
@@ -62,5 +56,11 @@ public class ClubCalendarServiceImpl implements ClubCalendarService {
 
         return map;
     }
+
+    @Override
+    public ClubCalendarReview getCalenderReview(int clubCalenderReviewNum) {
+        return clubCalendarDao.getCalenderReview(clubCalenderReviewNum);
+    }
+
 
 }

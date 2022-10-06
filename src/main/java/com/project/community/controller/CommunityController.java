@@ -1,14 +1,25 @@
 package com.project.community.controller;
 
+import com.project.club.service.ClubCalendarService;
 import com.project.community.service.CommunityService;
 import com.project.domain.ClubCalendar;
 import com.project.domain.VilBoard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/commu/*")
@@ -18,21 +29,42 @@ public class CommunityController {
     @Qualifier("communityServiceImpl")
     private CommunityService commuService;
 
-    @RequestMapping("/")
+    @Autowired
+    @Qualifier("clubCalenderServiceImpl")
+    private ClubCalendarService calenderService;
+
+
+    @RequestMapping("main")
     public String Calender() {
         System.out.println("calender진입");
-
         return "/view/community/list/Community.jsp";
     };
 
     //우리동네 게시글
     @RequestMapping(value = "getVillBoard")
-    public String getVillBoard(){
+    public String getVillBoard(@RequestParam("villBoardNum")int villBoardNum
+                               ,@RequestParam("boardCategory")int boardCategory
+                               ,Model model ,@ModelAttribute("VillBaord")VilBoard villBoard){
+
+        villBoard = commuService.getVillBoard(villBoardNum);
+
+        Map<String, Object> map = commuService.listComment(villBoardNum, boardCategory);
+
+
+        model.addAttribute("list", map.get("list"));
+
+        model.addAttribute("villBoard", villBoard);
+
         return "/view/community/get/getVillBoard.jsp";
     }
     
     @RequestMapping(value = "villBoardList")
-    public String villBoardList() {
+    public String villBoardList(@RequestParam("villCode")String villCode,
+                                Model model) {
+
+        Map<String,Object>map =  commuService.listVillBoard(villCode);
+
+        model.addAttribute("list",map.get("list"));
 
         return "/view/community/list/villBoardList.jsp";
     }
@@ -59,17 +91,61 @@ public class CommunityController {
 
     @RequestMapping(value = "addVillBoard")
     public String addVillBoard(@ModelAttribute("villBoard")VilBoard villBoard){
-        System.out.println("우리 동네 게시글 진입 : " + villBoard);
 
         villBoard.setUserId("user01");
         villBoard.setVillCode("창원");
-        villBoard.setBoardCategory(1);
+        villBoard.setBoardCategory(3);
 
         commuService.addVillBoard(villBoard);
 
 
         return null;
     }
+    @RequestMapping(value = "updateVillBoard", method = RequestMethod.GET)
+    public String updateVillBoard(@RequestParam("boardNum")int boardNum
+                                ,@ModelAttribute("vilBarod")VilBoard vilBoard
+                                ,Model model){
+
+        vilBoard = commuService.getVillBoard(boardNum);
+
+        model.addAttribute("villBoard",vilBoard);
+
+        return "/view/community/update/updateVillBoard.jsp";
+    }
+
+    @RequestMapping(value = "updateVillBoard", method = RequestMethod.POST)
+    public String updateVillBoard(@ModelAttribute("villBoard")VilBoard vilBoard){
+
+        commuService.updateVillBoard(vilBoard);
+
+        return null;
+    }
+
+    @RequestMapping(value = "deleteBoard")
+    public String deleteBoard(@RequestParam("boardNum")int boardNum,
+                              @RequestParam("boardCategory")int boardCategory
+                            , Model model, HttpSession session, HttpServletResponse response) throws UnsupportedEncodingException {
+
+       // commuService.deleteBoard(boardNum,boardCategory);
+
+        /*session.getAttribute("villCode");*/
+
+        String villCode = "창원";
+
+        String encode = "";
+
+        encode = URLEncoder.encode(villCode,"utf-8");
+
+        if (boardCategory== 1){
+            return "redirect:/clubCal/listCalenderReview?boardCategory="+boardCategory;
+        } else if (boardCategory == 2) {
+            return "redirect:/clubCal/listCalenderReview?boardCategory="+boardCategory;
+        } else if (boardCategory ==3) {
+            return "redirect:/commu/villBoardList?villCode="+encode;
+        }
+        return null;
+    }
+
 
 
 }

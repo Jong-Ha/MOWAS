@@ -1,10 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-         pageEncoding="EUC-KR" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+         pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="EUC-KR">
     <title>Insert title here</title>
 </head>
 <meta charset="utf-8">
@@ -16,6 +15,7 @@
 <title>Bootstrap Example</title>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 <%--rolVideo--%>
 <script src='http://starbros.pe.hu/rolVideo.min.js'></script>
 
@@ -24,16 +24,24 @@
 
         $(".add").on("click", function () {
 
-            window.open("/view/community/add/addClubCalenderReviewShort.jsp", "∏¿” ¿œ¡§ »ƒ±‚±€ ¿€º∫",
+            window.open("/view/community/add/addClubCalenderReviewShort.jsp", "Î™®ÏûÑ ÏùºÏ†ï ÌõÑÍ∏∞Í∏Ä ÏûëÏÑ±",
                 "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
         });
 
         $(".update").on("click", function () {
-            window.open("/view/community/update/updateClubCalenderReviewShort.jsp", "∏¿” ¿œ¡§ »ƒ±‚ºÓ√˜ ºˆ¡§",
+            var boardNum = $(this).parents(".cardbox").find(".boardNum").val();
+            var boardCategory = $(".boardCategory").val();
+            console.log(boardNum);
+
+            window.open(
+                "/clubCal/updateClubCalenderReview?clubCalenderReviewNum="+boardNum+"&boardCategory="+boardCategory, "Î™®ÏûÑ ÏùºÏ†ï ÌõÑÍ∏∞Í∏Ä ÏàòÏ†ï",
                 "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no"
             )
         });
+
         $(".delete").on("click", function () {
+            var boardNum = $(this).parents(".cardbox").find(".boardNum").val();
+            var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val()
 
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
@@ -44,26 +52,26 @@
             })
 
             swalWithBootstrapButtons.fire({
-                title: '¡§∏ª ªË¡¶ «œΩ√∞⁄Ω¿¥œ±Ó?',
-                text: "ªË¡¶«œ∏È «ÿ¥Á ∞‘Ω√±€¿ª ∫ººˆ æ¯Ω¿¥œ¥Ÿ",
+                title: 'Ï†ïÎßê ÏÇ≠Ï†ú ÌïòÏãúÍ≤†ÏäµÎãàÍπå?',
+                text: "ÏÇ≠Ï†úÌïòÎ©¥ Ìï¥Îãπ Í≤åÏãúÍ∏ÄÏùÑ Î≥ºÏàò ÏóÜÏäµÎãàÎã§",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'ªË¡¶',
-                cancelButtonText: '√Îº“',
+                confirmButtonText: 'ÏÇ≠Ï†ú',
+                cancelButtonText: 'Ï∑®ÏÜå',
                 reverseButtons: true
             }).then((result) => {
                 if (result.isConfirmed) {
                     swalWithBootstrapButtons.fire(
-                        'ªË¡¶ º∫∞¯!',
+                        'ÏÇ≠Ï†ú ÏÑ±Í≥µ!',
                         'success',
-                        location.href = "/clubCal/deleteClubCalenderReview?calenderNum=" + 10012
+                        location.href = "/commu/deleteBoard?boardNum="+boardNum+"&boardCategory="+boardCategory
                     )
                 } else if (
                     /* Read more about handling dismissals below */
                     result.dismiss === Swal.DismissReason.cancel
                 ) {
                     swalWithBootstrapButtons.fire(
-                        'ªË¡¶ √Îº“',
+                        'ÏÇ≠Ï†ú Ï∑®ÏÜå',
                         'error'
                     )
                 }
@@ -71,38 +79,41 @@
         });
     });
 
-
-    //¥Ÿ∏• ∞‘Ω√∆«¿∏∑Œ navigation
-
     $(function () {
-        $(".villBoard").on("click", function () {
-            alert("øÏ∏Æ µø≥◊ ∞‘Ω√∆«¿∏∑Œ ¿Ãµø");
-            location.href = "/commu/villBoardList";
+
+        /*Ï¢ãÏïÑÏöî*/
+        $(".likeButton").on("click", function () {
+            var likeCount = $(this).parents(".cardbox").find(".likeText").html();
+            var boardNum = $(this).parents(".cardbox").find(".boardNum").val();
+            var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val()
+            var likeText = $(this).parents(".cardbox").find(".likeText")
+
+
+            console.log(boardCategory);
+            $.ajax({
+                url: "/commu/json/addLike",
+                type: "POST",
+                data: JSON.stringify({
+                    "likeCount": likeCount,
+                    "boardNum": boardNum,
+                    "boardCategory": boardCategory
+                }),
+                dataType: "JSON",
+                contentType: 'application/json; charset=UTF-8',
+                success: function (JSONData, result) {
+
+                    likeText.html(JSONData);
+                }
+            });
         });
-
-        $(".clubCalenderReview").on("click", function () {
-            alert("∏¿” ¿œ¡§ »ƒ±‚±€ ∞‘Ω√∆«¿∏∑Œ ¿Ãµø")
-            location.href = "/commu/clubCalenderReviewList"
-        });
-
-        $(".clubCalenderReviewShort").on("click", function () {
-            alert("∏¿œ ¿œ¡§ ºÓ√˜ ∞‘Ω√∆«¿∏∑Œ ¿Ãµø")
-            location.href = "/commu/clubCalenderReviewShortList"
-        })
-
-        $(".publicText").on("click", function () {
-            alert("¿Œ±‚±€ ∏Ò∑œ¿∏∑Œ ¿Ãµø");
-            location.href = "/commu/"
-        });
-
     });
 
     /*rolVideo*/
     $(function () {
+        function x() {
+            $('.ShortVideo').rolVideo(1);
+        }
 
-        $('.ShortVideo').rolVideo(1);
-        $('.ShortVideo2').rolVideo(2);
-        $('.ShortVideo3').rolVideo(3);
 
     });
 
@@ -137,12 +148,6 @@
         background-color: #fff;
     }
 
-    .add {
-        font-size: 0.1em;
-        margin-right: -850px;
-        margin-bottom: 50px;
-    }
-
     .card {
         width: 900px;
     }
@@ -159,8 +164,16 @@
     .delete {
         font-size: 0.5em;
     }
+
+    .addBox {
+        margin-bottom: 50px;
+    }
+
+    .add {
+        margin-right: -700px;
+    }
 </style>
-</head>
+
 <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 
 <!-- Example Code -->
@@ -169,21 +182,21 @@
     <jsp:include page="/layout/toolbar.jsp"/>
 
 
-    <nav class="shadow-lg navbar navbar-expand-lg bg-light" style="margin-bottom: 50px;">
-        <button type="button" class="btn btn-outline-primary btnlf publicText">¿Œ±‚ ∏¿”±€</button>
-        <button type="button" class="btn btn-outline-warning btnlf clubCalenderReview">∏¿” ¿œ¡§ »ƒ±‚</button>
-        <button class="btn btn-success btnlf clubCalenderReviewShort" type="submit">∏¿” ¿œ¡§ ºÓ√˜</button>
-        <button type="button" class="btn btn-outline-danger btnlf villBoard">øÏ∏Æ µø≥◊ ∞‘Ω√±€</button>
-    </nav>
+    <jsp:include page="/layout/commubar.jsp"/>
 
-    <button class="btn btn-primary add">
-        ∏¿” ¿œ¡§ »ƒ±‚ ºÓ√˜ ¿€º∫
-    </button>
+
+    <div class="addBox">
+        <button class="btn btn-primary add ">
+            Ïö∞Î¶¨ ÎèôÎÑ§ Í≤åÏãúÍ∏Ä ÏûëÏÑ±
+        </button>
+    </div>
 
     <c:set var="i" value="0"/>
     <c:forEach var="ClubCalendarReview" items="${list}">
         <c:set var="i" value="${i+1}"/>
             <div class="row row-cols-1 row-cols-md-3 g-4 cardbox">
+                <input hidden class="boardNum" value="${ClubCalendarReview.clubCalenderReviewNum}">
+                <input hidden class="boardCategory" value="${ClubCalendarReview.boardCategory}">
                 <div class="col">
                     <div class="card h-100" style="">
                         <video controls autoplay loop class="ShortVideo">
@@ -193,12 +206,12 @@
                         <div class="card-body carditem">
                             <h5 class="card-title">${ClubCalendarReview.reviewTitle}
 
-                                <button type="button" class="btn btn-primary position-relative">
+                                <button type="button" class="btn btn-primary position-relative likeButton">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                          class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
                                         <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111L8.864.046zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z"/>
                                     </svg>
-                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger likeText"
                                           style=" z-index: 1; font-size: 0.5em;">${ClubCalendarReview.likeConunt} </span>
                                 </button>
 
@@ -219,6 +232,9 @@
                                     </svg>
                                 </button>
 
+                                <button type="button" class="btn btn-outline-primary itembutton update">ÏàòÏ†ï</button>
+                                <button type="button" class="btn btn-outline-secondary itembutton delete">ÏÇ≠Ï†ú</button>
+
                             </h5>
                         </div>
                         <div class="card-footer">
@@ -231,9 +247,5 @@
 </div>
 </body>
 
-<hr>
-
-Installation
-For information on how to install and use Bootstrap for Sass, consult the GitHub repository readme. It's the most up to
-date source and includes information for use with Rails, Compass, and standard Sass projects.
+<
 </html>

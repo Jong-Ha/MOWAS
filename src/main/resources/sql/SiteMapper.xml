@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SiteMapper">
+
+    <resultMap id="MasterBoardSelectMap" type="masterBoard">
+        <result property="masterBoardNo" 	column="master_board_num"   jdbcType="INTEGER"/>
+        <result property="adminId"	column="admin_id" 		 jdbcType="VARCHAR"/>
+        <result property="mbCategory" column="mb_category" 	 jdbcType="CHAR"/>
+        <result property="mbTitle" column="mb_title"         jdbcType="VARCHAR"/>
+        <result property="mbText" 	column="mb_text" 		jdbcType="VARCHAR"/>
+        <result property="mbRegDate" 	column="reg_date"       jdbcType="DATE"/>
+    </resultMap>
+
+
+
+    <resultMap id="CommunityReportSelectMap" type="communityReport">
+        <result property="reportNo" 	column="report_num"   jdbcType="INTEGER"/>
+        <result property="boardNo"	column="board_num" 		 jdbcType="INTEGER"/>
+        <result property="boardCategory" column="board_category" 	 jdbcType="CHAR"/>
+        <result property="reportId" column="report_id"         jdbcType="VARCHAR"/>
+        <result property="reportedId" column="reported_id"         jdbcType="VARCHAR"/>
+        <result property="adminId" 	column="admin_id" 		jdbcType="VARCHAR"/>
+        <result property="reportBasis" column="report_basis"         jdbcType="CHAR"/>
+        <result property="reportDate" 	column="report_date"       jdbcType="DATE"/>
+        <result property="reportText" 	column="report_text"       jdbcType="VARCHAR"/>
+        <result property="ppt" 	column="ppt"       jdbcType="INTEGER"/>
+        <result property="pptDate" 	column="ppt_date"       jdbcType="DATE"/>
+        <result property="processResult" 	column="process_result"       jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--
+    <resultMap id="ClubReportSelectMap" type="clubReport">
+        <result property="clubReportNum" 	column="club_report_num"   jdbcType="INTEGER"/>
+        <result property="clubNum"	column="club_num" 		 jdbcType="INTEGER"/>
+        <result property="reportId" column="report_id" 	 jdbcType="VARCHAR"/>
+        <result property="adminId" column="admin_id"         jdbcType="VARCHAR"/>
+        <result property="crBasis" column="cr_basis"         jdbcType="CHAR"/>
+        <result property="reportDate" column="report_date"         jdbcType="DATE"/>
+        <result property="reportText" 	column="report_text"       jdbcType="VARCHAR"/>
+        <result property="processDate" column="process_date"         jdbcType="DATE"/>
+        <result property="reportResult" 	column="report_result"       jdbcType="VARCHAR"/>
+        <result property="rereportApplyCheck" 	column="rereport_apply_check"       jdbcType="CHAR"/>
+        <result property="reportApplyDate" 	column="rereport_apply_date"       jdbcType="DATE"/>
+        <result property="rereportText" 	column="rereport_text"       jdbcType="VARCHAR"/>
+        <result property="rereportResult" 	column="rereport_result"       jdbcType="VARCHAR"/>
+    </resultMap>
+-->
+    <!-- Master Board Query 공지사항 추가-->
+    <insert id="addMasterBoard" parameterType="masterBoard">
+    INSERT INTO master_board(
+                master_board_num,
+                admin_id,
+                mb_category,
+                mb_title,
+                mb_text,
+                reg_date)
+    VALUES (    seq_master_board.NEXTVAL,
+                #{adminId},
+                #{mbCategory},
+                #{mbTitle},
+                #{mbText},
+                SYSDATE)
+    </insert>
+
+    <!-- Master Board Query 공지사항 상세 조회-->
+    <select id="getMasterBoard"	parameterType="int"	resultMap="MasterBoardSelectMap">
+        SELECT
+            master_board_num,
+            admin_id,
+            mb_category,
+            mb_title,
+            mb_text,
+            reg_date
+        FROM master_board
+        WHERE master_board_num = #{value}
+    </select>
+
+    <!-- Master Board Query 공지사항 수정-->
+    <update	id="updateMasterBoard"	parameterType="masterBoard" >
+        UPDATE master_board
+        <set>
+            admin_id 		= #{adminId} ,
+            mb_category		= #{mbCategory},
+            mb_title        = #{mbTitle} ,
+            mb_text			= #{mbText},
+            reg_date		= #{mbRegDate}
+        </set>
+        WHERE master_board_num = #{masterBoardNo}
+    </update>
+
+    <!-- Master Board Query 공지사항 삭제-->
+    <delete id="deleteMasterBoard" parameterType="int">
+
+        DELETE master_board
+        <where>
+            master_board_num = #{masterBoardNo}
+        </where>
+    </delete>
+
+    <!-- Master Board Query 공지사항 목록 조회-->
+    <select id="listMasterBoard" parameterType="search" resultMap="MasterBoardSelectMap">
+
+        SELECT *
+        FROM (	SELECT inner_table.* , ROWNUM AS row_seq
+                FROM		(	SELECT master_board_num, admin_id, mb_category, mb_title, reg_date
+                                FROM master_board
+                                    <if test="searchCondition != null">
+                                        <where>
+                                        <if test="searchCondition == 0 and searchKeyword !='' ">
+                                            master_board_num = to_char(#{searchKeyword})
+                                        </if>
+                                        <if test="searchCondition == 1 and searchKeyword !='' ">
+                                            mb_title = #{searchKeyword}
+                                        </if>
+                                        </where>
+                                    </if>
+        ORDER BY master_board_num ) inner_table
+        WHERE ROWNUM &lt;= #{endRowNum} )
+        WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum}
+    </select>
+
+    <select  id="getMbTotalCount"  parameterType="search"	 resultType="int">
+        SELECT COUNT(*)
+        FROM(	SELECT master_board_num, admin_id, mb_category, mb_title, reg_date
+        FROM master_board
+        <if test="searchCondition != null">
+            <where>
+                <if test="searchCondition == 0 and searchKeyword !='' ">
+                    master_board_num = to_char(#{searchKeyword})
+                </if>
+                <if test="searchCondition == 1 and searchKeyword !='' ">
+                    mb_title LIKE '%${searchKeyword}%'
+                </if>
+            </where>
+        </if> ) countTable
+    </select>
+
+    <!-- 커뮤니티 신고 CRUD -->
+
+
+    <insert id="addCommunityReport" parameterType="communityReport">
+        INSERT INTO community_report(
+            report_num,
+            board_num,
+            board_category,
+            report_id,
+            reported_id,
+            report_basis,
+            report_text,
+            report_date,
+            ppt,
+            process_result)
+        VALUES (    seq_community_report.NEXTVAL,
+                    #{boardNo},
+                    #{boardCategory},
+                    #{reportId},
+                    #{reportedId},
+                    #{reportBasis},
+                    #{reportText},
+                    SYSDATE,
+                    0,
+                    '처리중')
+    </insert>
+
+    <!-- Community Report Query 상세 조회-->
+    <select id="getCommunityReport"	parameterType="int"	resultMap="CommunityReportSelectMap">
+        SELECT
+            report_num,
+            report_id,
+            reported_id,
+            report_date,
+            board_category,
+            report_basis,
+            report_text
+        FROM community_report
+        WHERE report_num = #{value}
+    </select>
+
+    <!-- Master Board Query 공지사항 수정-->
+    <update	id="processCommunityReport"	parameterType="communityReport" >
+        UPDATE community_report
+        <set>
+            ppt 		= #{ppt} ,
+            ppt_date		= SYSDATE,
+            process_result = <if test='ppt==0'>'처리중'</if>
+                             <if test='ppt!=0'>'처리완료'</if>
+        </set>
+        WHERE report_num = #{reportNo}
+    </update>
+
+    <select id="listCommunityReport" parameterType="int" resultMap="CommunityReportSelectMap">
+        SELECT  report_num,
+                reported_id,
+                report_date,
+                board_category,
+                board_num,
+                process_result
+        FROM community_report
+        <where>
+            report_num = #{reportNo}
+        </where>
+    </select>
+
+    <select id="listCommunityReportProcess" parameterType="int" resultMap="CommunityReportSelectMap">
+        SELECT  report_num,
+                reported_id,
+                report_date,
+                ppt,
+                ppt_date,
+                admin_id
+        FROM community_report
+        <where>
+            report_num = #{reportNo}
+        </where>
+    </select>
+
+    <select id="getCommunityReportProcess"	parameterType="int"	resultMap="CommunityReportSelectMap">
+        SELECT  report_num,
+                report_id,
+                reported_id,
+                report_date,
+                board_category,
+                report_basis,
+                ppt,
+                ppt_date,
+                report_text
+        FROM community_report
+        WHERE report_num = #{value}
+    </select>
+
+    <select  id="getTotalCount"  parameterType="map"	 resultType="_int">
+        SELECT COUNT(*)
+        FROM (
+        <if test='where=="communityReportList"'>
+            SELECT report_num, reported_id, report_date, board_category, board_num, process_result
+            FROM community_report
+            WHERE process_result=#{processResult}) countTable
+        </if>
+
+        <if test='where=="communityReportProcessList"'>
+            SELECT report_num, reported_id, report_date, ppt, ppt_date, admin_id
+            FROM community_report
+            WHERE process_result=#{processResult}) countTable
+        </if>
+
+        <if test='where=="clubReportList"'>
+            SELECT club_report_num, club_num, report_id, cr_basis, report_date
+            FROM club_report
+            WHERE report_result=#{reportResult}) countTable
+        </if>
+    </select>
+
+</mapper>

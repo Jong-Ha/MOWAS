@@ -47,11 +47,6 @@ public class ClubCalendarDaoImpl implements ClubCalendarDao {
     }
 
     @Override
-    public void updateCalenderReviewShort(ClubCalendarReview calenderReview) {
-        sqlSession.update("ClubCalenderMapper.updateCalenderReviewShort",calenderReview);
-    }
-
-    @Override
     public void deleteCalenderReview(int calenderNum) {
         sqlSession.delete("ClubCalenderMapper.deleteCalenderReview", calenderNum);
     }
@@ -60,4 +55,10 @@ public class ClubCalendarDaoImpl implements ClubCalendarDao {
     public List<ClubCalendarReview> listCalenderReview(int boardCategory) {
         return sqlSession.selectList("ClubCalenderMapper.listCalenderReview", boardCategory);
     }
+
+    @Override
+    public ClubCalendarReview getCalenderReview(int clubCalenderReviewNum) {
+        return sqlSession.selectOne("ClubCalenderMapper.getCalenderReview", clubCalenderReviewNum);
+    }
+
 }

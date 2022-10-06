@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 public interface ClubCalendarDao {
-   public void addCalender(ClubCalendar calender);
+    void addCalender(ClubCalendar calender);
 
-   public String getCalender(int clubNum);
+    String getCalender(int clubNum);
 
     void addCalenderReview(ClubCalendarReview calenderReview);
 
@@ -17,9 +17,10 @@ public interface ClubCalendarDao {
 
     void updateCalenderReview(ClubCalendarReview calenderReview);
 
-    void updateCalenderReviewShort(ClubCalendarReview calenderReview);
-
     void deleteCalenderReview(int calenderNum);
 
     List<ClubCalendarReview> listCalenderReview(int boardCategory);
+
+    ClubCalendarReview getCalenderReview(int clubCalenderReviewNum);
+
 }
