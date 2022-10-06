@@ -14,7 +14,7 @@
         $(function (){
             $(".commu").on("click",
                 function (){
-                    location.href="/commu/"
+                    location.href="/commu/main"
                 });
 
             $("li > a:contains('모임 관리')").on("click",

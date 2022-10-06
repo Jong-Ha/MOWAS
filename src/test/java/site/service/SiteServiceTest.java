@@ -97,7 +97,7 @@ public class SiteServiceTest {
 
     @Test
     public void testListMasterBoardAll() throws Exception{
-
+/*
         Search search = new Search();
         search.setCurrentPage(1);
         search.setPageSize(3);
@@ -127,6 +127,6 @@ public class SiteServiceTest {
         //System.out.println(list);
 
         totalCount = (Integer)map.get("totalCount");
-        System.out.println(totalCount);
+        System.out.println(totalCount);*/
     }
  }

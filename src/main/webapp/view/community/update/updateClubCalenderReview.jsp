@@ -1,5 +1,5 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
-<%@ page pageEncoding="EUC-KR" %>
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page pageEncoding="utf-8" %>
 
 
 <!DOCTYPE html>
@@ -9,7 +9,7 @@
 <head>
     <meta charset="EUC-KR">
 
-    <!-- ÂüÁ¶ : http://getbootstrap.com/css/   ÂüÁ¶ -->
+    <!-- ì°¸ì¡° : http://getbootstrap.com/css/   ì°¸ì¡° -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->
@@ -44,7 +44,7 @@
     <!--  ///////////////////////// JavaScript ////////////////////////// -->
     <script type="text/javascript">
 
-        //============= È¸¿øÁ¤º¸¼öÁ¤ Event  Ã³¸® =============
+        //=============  Event  ì²˜ë¦¬ =============
         $(function () {
 
             $(".submit").on("click", function () {
@@ -52,13 +52,15 @@
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
-                    title: '¼öÁ¤µÇ¾ú½À´Ï´Ù',
+                    title: 'ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤',
                     showConfirmButton: false,
                     timer: 1500,
                 });
+                $("form").attr("method", "post").attr("action", "/clubCal/updateClubCalenderReview").submit(function () {
 
-                $("form").attr("method", "post").attr("action", "/clubCal/updateClubCalenderReview").submit();
+                });
 
+                self.close();
             });
 
             $(".close").on("click", function () {
@@ -74,21 +76,20 @@
 <body>
 
 <form>
-
-    <input type="hidden" name="boardCategory" value="1">
-    <input type="hidden" name="clubCalenderReviewNum" value="10003">
+    <input name="clubCalenderReviewNum" hidden value="${calenderReview.clubCalenderReviewNum}">
+    <input name="boardCategory" hidden value="${calenderReview.boardCategory}">
 
     <div class="wap">
         <div class="container">
 
             <div class="page-header">
-                <h3 class=" text-info">¸ğÀÓ ÀÏÁ¤ ÈÄ±â±Û ÀÛ¼º</h3>
+                <h3 class=" text-info">ëª¨ì„ ì¼ì • í›„ê¸°ê¸€ ì‘ì„±</h3>
             </div>
 
             <div class="row">
-                <div class="col-xs-4 col-xs-2"><strong>Á¦ ¸ñ</strong></div>
+                <div class="col-xs-4 col-xs-2"><strong>ì œ ëª©</strong></div>
                 <div class="col-xs-8 col-xs-4">
-                    <input type="text" class="form-control" name="reviewTitle" value=""/>
+                    <input type="text" class="form-control" name="reviewTitle" value="${calenderReview.reviewTitle}"/>
                 </div>
             </div>
 
@@ -96,19 +97,19 @@
             <hr/>
 
             <div class="row">
-                <div class="col-xs-4 col-xs-2"><strong>³»¿ë</strong></div>
+                <div class="col-xs-4 col-xs-2"><strong>ë‚´ìš©</strong></div>
                 <div class="col-xs-8 col-xs-4">
                     <textarea class="form-control" name="reviewText"
-                              style=" height: 200px;  width: 500px;  margin-bottom: 20px;"></textarea>
+                              style=" height: 200px;  width: 500px;  margin-bottom: 20px;">${calenderReview.reviewText}</textarea>
                 </div>
             </div>
 
             <hr/>
 
             <select class="form-select " name="reviewRange" style="width: 300px;">
-                <option selected>°ø°³ ¿©ºÎ¸¦ ¼±ÅÃ ÇÏ¼¼¿ä</option>
-                <option value="1">ÀüÃ¼ °ø°³</option>
-                <option value="2">¸ğÀÓ °ø°³</option>
+                <option selected>ê³µê°œ ì—¬ë¶€ë¥¼ ì„ íƒ í•˜ì„¸ìš”</option>
+                <option value="1">ì „ì²´ ê³µê°œ</option>
+                <option value="2">ëª¨ì„ ê³µê°œ</option>
             </select>
 
             <hr/>
@@ -116,8 +117,8 @@
 
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
-                    <strong>ÆÄÀÏ
-                        <input type="file" value="ÆÄÀÏ Ã·ºÎ">
+                    <strong>íŒŒì¼
+                        <input type="file" value="íŒŒì¼ ì²¨ë¶€">
                     </strong>
                 </div>
             </div>
@@ -126,8 +127,8 @@
 
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
-                    <strong>¸ğÀÓ ÀÏÁ¤ ³¯Â¥
-                        <input type="date" name="" value="¸ğÀÓ ÀÏÁ¤ ³¯Â¥">
+                    <strong>ëª¨ì„ ì¼ì • ë‚ ì§œ
+                        <input type="date" name="" value="ëª¨ì„ ì¼ì • ë‚ ì§œ">
                     </strong>
                 </div>
             </div>
@@ -136,8 +137,8 @@
 
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
-                    <strong>À§Ä¡
-                        <input type="button" name="location" value="À§Ä¡ ÀÔ·Â">
+                    <strong>ìœ„ì¹˜
+                        <input type="button" name="location" value="ìœ„ì¹˜ ì…ë ¥">
                     </strong>
                 </div>
             </div>
@@ -147,8 +148,8 @@
 
             <div class="row">
                 <div class="col-xs-12 text-center ">
-                    <button type="button" class="btn btn-primary btn-lg submit">È®ÀÎ</button>
-                    <button type="button" class="btn btn-secondary btn-lg close">´İ±â</button>
+                    <button type="button" class="btn btn-primary btn-lg submit">í™•ì¸</button>
+                    <button type="button" class="btn btn-secondary btn-lg close">ë‹«ê¸°</button>
                 </div>
             </div>
 
