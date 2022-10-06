@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+
 @RestController
 @RequestMapping("/commu/json/*")
 public class CommunityRestController {
@@ -102,27 +104,83 @@ public class CommunityRestController {
     }
 
     @RequestMapping(value = "viewCount")
-    public int viewCount(@RequestBody VilBoard villBoard) throws ParseException {
-
-        communityService.updateViewCount(villBoard);
-
-        return communityService.getViewCount(villBoard.getVillBoardNum());
-    }
-
-    @RequestMapping(value = "addLike")
-    public String addLike(@RequestBody String like) throws ParseException {
-        System.out.println("좋아요 진입 : " + like);
+    public int viewCount(@RequestBody String Board) throws ParseException {
 
         JSONParser parser = new JSONParser();
 
-        JSONObject jsonObject = (JSONObject) parser.parse(like);
+        System.out.println("viewCount : " + Board);
 
-        String SLike = (String)jsonObject.get("likeCount");
+        JSONObject jsonObj = (JSONObject)parser.parse(Board);
 
-        int likeCount = Integer.parseInt(SLike);
+        String SboardNum = (String) jsonObj.get("boardNum");
+        String SboardCategory = (String) jsonObj.get("boardCategory");
+        String SviewCount = (String) jsonObj.get("viewCount");
 
-        System.out.println("좋아영!!!" + likeCount);
+        int boardNum = Integer.parseInt(SboardNum);
+        int boardCategory = Integer.parseInt(SboardCategory);
+        int viewCount = Integer.parseInt(SviewCount);
 
-        return null;
+        communityService.updateViewCount(boardNum,viewCount,boardCategory);
+
+        return communityService.getViewCount(boardNum,boardCategory);
+    }
+
+    @RequestMapping(value = "addLike")
+    public int addLike(@RequestBody String Board, HttpSession session) throws ParseException {
+
+        JSONParser parser = new JSONParser();
+
+        System.out.println("likeRestController진입 : " + Board);
+
+        JSONObject jsonObj = (JSONObject)parser.parse(Board);
+
+        String SboardNum = (String) jsonObj.get("boardNum");
+        String SboardCategory = (String) jsonObj.get("boardCategory");
+        String SlikeCount = (String) jsonObj.get("likeCount");
+
+
+        int boardNum = Integer.parseInt(SboardNum);
+        int boardCategory = Integer.parseInt(SboardCategory);
+        int likeCount = Integer.parseInt(SlikeCount.trim());
+
+        System.out.println(likeCount);
+
+        /*String userId = session.getAttribute("userId");*/
+        String userId = "user01";
+
+        /*좋아요 유무 체크*/
+        String likeCheck = communityService.getLikeCheck(userId,boardNum,boardCategory);
+
+        /*좋아요 체크가 null이면 좋아요 add*/
+        if( likeCheck == null) {
+            /*게시글에 좋아요 count +1*/
+            communityService.updateLikeCount(boardNum,boardCategory,likeCount);
+            /*좋아요 add*/
+            communityService.addLike(userId,boardNum,boardCategory);
+            /*좋아요 count 화면으로 return*/
+            return communityService.getLikeCount(boardNum, boardCategory);
+         /*좋아요 체크가 y면 좋아요 count -1*/
+        } else if (likeCheck.equals("y")) {
+
+            /*좋아요 count -1*/
+            communityService.deleteLikeCount(boardNum,boardCategory,likeCount);
+
+            /*좋아요 체크를 'n' 로 변경*/
+            communityService.updateLike(userId,boardNum,boardCategory,"n");
+
+            /*좋아요 count 화면으로 return*/
+            return communityService.getLikeCount(boardNum,boardCategory);
+           /*좋아요 체크가 n이면 실행*/
+        }else if (likeCheck.equals("n")){
+            /*게시글에 좋아요 count +1*/
+            communityService.updateLikeCount(boardNum,boardCategory,likeCount);
+
+            /*좋아요 체크를 'y' 로 변경*/
+            communityService.updateLike(userId,boardNum,boardCategory,"y");
+            /*좋아요 count 화면으로 return*/
+            return communityService.getLikeCount(boardNum,boardCategory);
+        }
+
+        return 0;
     }
 }

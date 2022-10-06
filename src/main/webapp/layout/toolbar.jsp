@@ -19,6 +19,7 @@
     }
     .btnlf{
       margin-left: 20px;
+
     }
     .textint{
       font-size: 0.2em;
@@ -73,15 +74,14 @@
         <img src="${pageContext.request.contextPath}/resources/images/pngwing.png" style="width: 30px; margin-right: 10px;">
         <div class="login">
           <div class="d-grid gap-2">
-            <button type="button" class="btn btn-outline-primary btnlf loginbox">로그아웃</button>
-            <button class="btn btn-outline-success btnlf loginbox" type="submit">마이패이지</button>
+            <button type="button" class="btn btn-outline-primary btnlf loginbox" style="font-size: 0.5em;">로그아웃</button>
+            <button class="btn btn-outline-success btnlf loginbox" style="font-size: 0.5em;" type="submit">마이패이지</button>
           </div>
         </div>
-        <button type="button" class="btn btn-primary position-relative alrim">
+        <button type="button" class="btn btn-primary position-relative alrim" style="font-size: 0.5em;">
           Inbox
           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-			  	99+
-			  </span>
+          99+</span>
 
         </button>
       </div>

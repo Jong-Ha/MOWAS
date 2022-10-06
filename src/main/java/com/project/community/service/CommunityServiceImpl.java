@@ -34,6 +34,7 @@ public class CommunityServiceImpl implements CommunityService {
     public void addComment(Comment comment) {
         commuDao.addComment(comment);
     }
+
     @Override
     public void updateComment(Comment comment) {
         commuDao.updateComment(comment);
@@ -60,12 +61,11 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
 
-
     @Override
     public Map<String, Object> listVillBoard(String villCode) {
         List<VilBoard> list = commuDao.listVillBoard(villCode);
 
-        Map<String,Object>map = new HashMap<String,Object>();
+        Map<String, Object> map = new HashMap<String, Object>();
 
         map.put("list", list);
 
@@ -79,10 +79,10 @@ public class CommunityServiceImpl implements CommunityService {
 
     @Override
     public Map<String, Object> listComment(int villBoardNum, int boardCategory) {
-        Map<String, Object>map = new HashMap<String,Object>();
+        Map<String, Object> map = new HashMap<String, Object>();
 
-        map.put("boardNum" , villBoardNum);
-        map.put("boardCategory",boardCategory);
+        map.put("boardNum", villBoardNum);
+        map.put("boardCategory", boardCategory);
 
         List<Comment> list = commuDao.listComment(map);
 
@@ -96,13 +96,101 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
     @Override
-    public void updateViewCount(VilBoard villBoard) {
-        commuDao.updateViewCount(villBoard);
+    public void updateViewCount(int boardNun,int viewCount,int boardCategory) {
+        Map<String,Object>map = new HashMap<String,Object>();
+        map.put("boardNum", boardNun);
+        map.put("viewCount", viewCount);
+        map.put("boardCategory", boardCategory);
+
+        commuDao.updateViewCount(map);
+    }
+
+
+    @Override
+    public int getLikeCount(int boardNum, int boardCategory) {
+        Map<String,Object>map = new HashMap<String,Object>();
+        map.put("boardNum", boardNum);
+        map.put("boardCategory", boardCategory);
+
+        return commuDao.getLikeCount(map);
     }
 
     @Override
-    public int getViewCount(int villBoardNum) {
-        return commuDao.getViewCount(villBoardNum);
+    public void addLike(String userId, int boardNum, int boardCategory) {
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        map.put("userId", userId);
+        map.put("boardNum", boardNum);
+        map.put("boardCategory", boardCategory);
+        map.put("likeCheck", "y");
+
+        commuDao.addLike(map);
+    }
+
+    @Override
+    public String getLikeCheck(String userId, int boardNum, int boardCategory) {
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        map.put("userId", userId);
+        map.put("boardNum", boardNum);
+        map.put("boardCategory", boardCategory);
+
+        return commuDao.getLikeCheck(map);
+    }
+
+    @Override
+    public void updateLike(String userId, int boarddNum, int boardCategory, String likeCheck) {
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        map.put("userId", userId);
+        map.put("boardNum", boarddNum);
+        map.put("boardCategory", boardCategory);
+        map.put("likeCheck", likeCheck);
+
+        commuDao.updateLike(map);
+    }
+
+    @Override
+    public void deleteLikeCount(int boardNnm, int boardCategory, int likeCount) {
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        map.put("boardNum", boardNnm);
+        map.put("boardCategory", boardCategory);
+        map.put("likeCount", likeCount);
+
+        commuDao.deleteLikeCount(map);
+    }
+
+    @Override
+    public void updateLikeCount(int boardNum, int boardCategory, int likeCount) {
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        map.put("boardNum", boardNum);
+        map.put("boardCategory", boardCategory);
+        map.put("likeCount", likeCount);
+
+        commuDao.updateLikeCount(map);
+    }
+
+    @Override
+    public int getViewCount(int boardNum, int boardCategory) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("boardNum", boardNum);
+        map.put("boardCategory", boardCategory);
+        return commuDao.getViewCount(map);
+    }
+
+    @Override
+    public void updateVillBoard(VilBoard vilBoard) {
+        commuDao.updateVillBoard(vilBoard);
+    }
+
+    @Override
+    public void deleteBoard(int boardNum, int boardCategory) {
+        Map<String,Object>map = new HashMap<String,Object>();
+        map.put("boardNum", boardNum);
+        map.put("boardCategory", boardCategory);
+        commuDao.deleteBoard(map);
     }
 
 

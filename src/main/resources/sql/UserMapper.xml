@@ -36,7 +36,7 @@
         INSERT INTO users(user_id, master_check, user_status, password, user_name, rrd, gender, email,
                           phone, vill_code, user_image, lcd, login_check, psd, ped, ppt, review_pt)
         values(#{userId}, #{masterCheck}, #{userStatus}, #{password}, #{userName}, #{rrd}, #{gender}, #{email},
-               #{phone}, #{villCode}, #{userImage}, sysdate, #{loginCheck}, #{psd,jdbcType=DATE}, #{ped,jdbcType=DATE}, #{ppt}, #{reviewPt})
+               #{phone}, #{villCode}, #{userImage}, #{lcd,jdbcType=DATE}, #{loginCheck}, #{psd,jdbcType=DATE}, #{ped,jdbcType=DATE}, #{ppt}, #{reviewPt})
     </insert>
 
     <insert      id="addInterList"     parameterType="interList" >

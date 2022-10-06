@@ -19,7 +19,7 @@
 
     <resultMap id="liikeSelect" type="like">
         <result property="likeNum"          column="like_num"           jdbcType="INTEGER"/>
-        <result property="userId.userId"    column="user_id"            jdbcType="VARCHAR"/>
+        <result property="userId"           column="user_id"            jdbcType="VARCHAR"/>
         <result property="boardCategory"    column="board_category"     jdbcType="VARCHAR"/>
         <result property="boardNum"         column="board_num"          jdbcType="VARCHAR"/>
         <result property="likeCheck"        column="like_check"         jdbcType="VARCHAR"/>
@@ -90,28 +90,110 @@
 
 
     <!--종아요-->
-    <insert id="addLike" parameterType="like">
+    <insert id="addLike" parameterType="map">
         INSERT INTO
             likes (like_num,user_id,board_category,board_num,like_check)
-            VALUES (seq_like.NEXTVAL
-                    ,#{userId.userId}
+            VALUES (seq_likes.NEXTVAL
+                    ,#{userId}
                     ,#{boardCategory}
                     ,#{boardNum}
-                    ,#{likeCheck}
-                   )
+                    ,#{likeCheck} )
     </insert>
 
-    <update id="updateLike" parameterType="like">
+    <update id="updateLike" parameterType="map">
         UPDATE likes
             <set>
                 like_check = #{likeCheck}
             </set>
-        WHERE like_num = #{likeNum}
+        WHERE board_num = #{boardNum}
+        AND board_category = #{boardCategory}
+        AND user_id = #{userId}
     </update>
 
-    <select id="getLike" parameterType="string" resultMap="liikeSelect">
-        SELECT * FROM likes
-        WHERE user_id = #{userId}
+    <select id="checkLike" parameterType="map" resultType="String">
+        SELECT LIKE_CHECK FROM likes
+        WHERE board_num = #{boardNum}
+        AND board_category = #{boardCategory}
+        AND user_id = #{userId}
+    </select>
+
+    <update id="updateLikeCount" parameterType="map">
+        UPDATE
+        <if test="boardCategory == 1 or boardCategory == 2">
+            club_calendar_review
+            <set>
+                like_count = #{likeCount} + 1
+            </set>
+            WHERE club_calendar_review_num = #{boardNum}
+        </if>
+        <if test="boardCategory == 3">
+            vill_board
+            <set>
+                like_count = #{likeCount} + 1
+            </set>
+            WHERE vill_board_num =#{boardNum}
+        </if>
+    </update>
+
+    <update id="deleteLikeCount" parameterType="map">
+        UPDATE
+        <if test="boardCategory == 1 or boardCategory == 2">
+            club_calendar_review
+            <set>
+                like_count = #{likeCount} -1
+            </set>
+            WHERE club_calendar_review_num = #{boardNum}
+        </if>
+        <if test="boardCategory == 3">
+            vill_board
+            <set>
+                like_count = #{likeCount} -1
+            </set>
+            WHERE vill_board_num = #{boardNum}
+        </if>
+    </update>
+
+    <select id="getLikeCount" parameterType="map" resultType="int">
+        SELECT like_count
+        <if test="boardCategory == 1 or boardCategory == 2">
+            FROM club_calendar_review
+            WHERE club_calendar_review_num = #{boardNum}
+        </if>
+        <if test="boardCategory ==3">
+            FROM vill_board
+            WHERE vill_board_num = #{boardNum}
+        </if>
+    </select>
+
+    <!--조회수-->
+    <update id="updateViewCount" parameterType="map">
+        UPDATE
+        <if test="boardCategory == 1 or boardCategory == 2">
+            club_calendar_review
+            <set>
+                view_count=#{viewCount} +1
+            </set>
+            WHERE club_calendar_review_num = #{boardNum}
+        </if>
+        <if test="boardCategory == 3">
+            vill_board
+            <set>
+                view_count=#{viewCount} +1
+            </set>
+            WHERE vill_board_num = #{boardNum}
+        </if>
+    </update>
+
+    <select id="getViewCount" parameterType="map" resultType="int">
+        SELECT view_count
+        <if test="boardCategory == 1 or boardCategory == 2">
+            FROM club_calendar_review
+            WHERE club_calendar_review_num = #{boardNum}
+        </if>
+        <if test="boardCategory == 3">
+            FROM vill_board
+            WHERE vill_board_num = #{boardNum}
+        </if>
     </select>
 
     <!--댓글-->
@@ -171,29 +253,27 @@
         WHERE recomment_num = #{recommentNum}
     </update>
 
-    <delete id="deleteRecomment" parameterType="int">
-        DELETE recomment
-        WHERE recomment_num = #{recommentNum}
-    </delete>
 
     <select id="listRecomment" parameterType="map" resultMap="recommentSelect">
         select * from RECOMMENT
         where COMMENT_NUM = #{commentNum}
     </select>
 
-    <update id="updateViewCount" parameterType="villBoard">
-        UPDATE
-            vill_board
-            <set>
-                view_count=#{viewCount} +1
-            </set>
-        WHERE vill_board_num = #{villBoardNum}
-    </update>
-
-    <select id="getViewCount" parameterType="int" resultType="int">
-        SELECT view_count
-        FROM vill_board
-        WHERE vill_board_num = #{villBoardNum}
-    </select>
+    <!--게시글 지우기-->
+    <delete id="deleteBoard" parameterType="map">
+        DELETE
+            <if test="boardCategory == 1 || boardCategory == 2">
+                club_calendar_review
+                WHERE club_calendar_review_num = #{boardNum}
+            </if>
+            <if test="boardCategory == 3">
+                vill_board
+                WHERE vill_board_num=#{boardNum}
+            </if>
+            <if test="boardCategory == 12">
+                recomment
+                WHERE recomment_num = #{boardNum}
+            </if>
+    </delete>
 
 </mapper>
