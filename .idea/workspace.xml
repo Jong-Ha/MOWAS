@@ -9,37 +9,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="BJW 2022.10.04&#10;&#10;모임 일정 후기글,모임 일정 후기쇼츠 delete,update,list&#10;댓글 대댓글, update,delete,&#10;jsp파일 수정 보안">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" afterDir="false" />
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="BJW 2022.10.04&#10;&#10;모임 일정 후기, 모임 일정 후기쇼츠, 우리동네 게시글 list jsp 출력&#10;모임 일정 후기, 우리 동네 게시글 get 출력&#10;각 게시글 댓글 대댓글 출력&#10;조회수, 좋아요수 출력">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f7a91aff-821b-48e5-9fda-effb58878c53.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubCalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubCalendarController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubCalendarDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubCalendarDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubCalendarDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubCalendarDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/common/filter/RequestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/common/filter/RequestFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/community/controller/CommunityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/community/controller/CommunityController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/community/controller/CommunityRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/community/controller/CommunityRestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/community/dao/CommunityDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/community/dao/CommunityDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/community/dao/CommunityDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/community/dao/CommunityDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/community/service/CommunityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/community/service/CommunityService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/community/service/CommunityServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/community/service/CommunityServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/deal/service/DealService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/deal/service/DealService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/deal/service/DealServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/deal/service/DealServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/common.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/common.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/sql/ClubCalenderMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/ClubCalenderMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/sql/CommunityMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/CommunityMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/sql/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/commubar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/commubar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/add/addClubCalender.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/add/addClubCalender.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/add/addClubCalenderReview.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/add/addClubCalenderReview.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/add/addClubCalenderReviewShort.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/add/addClubCalenderReviewShort.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/add/addVillBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/add/addVillBoard.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/get/getClubCalenderReview.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/get/getClubCalenderReview.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/get/getVillBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/get/getVillBoard.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/list/Community.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/list/Community.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/list/clubCalenderReviewList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/list/clubCalenderReviewList.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/list/clubCalenderReviewShortList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/list/clubCalenderReviewShortList.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/list/villBoardList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/list/villBoardList.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/update/updateClubCalender.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/update/updateClubCalender.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/update/updateClubCalenderReview.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/update/updateClubCalenderReview.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/update/updateClubCalenderReviewShort.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/update/updateClubCalenderReviewShort.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/update/updateVillBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/update/updateVillBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/site/service/SiteServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/site/service/SiteServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +67,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="BJW" />
+    <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
     <excluded-from-favorite>
@@ -83,7 +91,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="BJW" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -126,10 +134,10 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "아티팩트",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.75258917",
-    "settings.editor.selected.configurable": "SQL Resolution Scopes",
+    "settings.editor.selected.configurable": "File.Encoding",
     "spring.configuration.checksum": "0644e903b0ad21f514b0480754c0a1e2"
   },
   "keyToStringList": {
@@ -147,11 +155,11 @@
       <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\903-15\IdeaProjects\MOWAS\src\main\webapp\view\user" />
       <recent name="C:\Devspace\MOWAS\src\main\webapp\resources\OpenSource" />
       <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community\list" />
       <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community\add" />
       <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community\get" />
-      <recent name="C:\MainProject\MOWAS\src\main\webapp\config\springMVC" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.project.user.service" />
@@ -161,8 +169,24 @@
       <recent name="com.project.notice.service" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="Tomcat 9.0.58" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.58" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="$PROJECT_DIR$/../../Program Files/Java/jdk1.8.0_181" nameIsGenerated="true">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.58">
+    <configuration name="UserServiceTest.testAddUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MOWAS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.project.user.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.project.user.test" />
+      <option name="MAIN_CLASS_NAME" value="com.project.user.test.UserServiceTest" />
+      <option name="METHOD_NAME" value="testAddUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tomcat 9.0.58" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.58" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="$PROJECT_DIR$/../../../../Program Files/Java/jdk1.8.0_181" nameIsGenerated="true">
       <option name="COMMON_VM_ARGUMENTS" value="-Dfile.encoding=UTF-8" />
       <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
@@ -176,11 +200,11 @@
       <server-settings>
         <option name="BASE_DIRECTORY_NAME" value="fe5e9b74-ca98-4c12-a5ff-9c74a0a432b8" />
       </server-settings>
-      <log_file alias="Tomcat Manager Log" path="%IDEA_RUN:CATALINA_BASE%/logs/manager.*" />
-      <log_file alias="Tomcat Host Manager Log" path="%IDEA_RUN:CATALINA_BASE%/logs/host-manager.*" />
-      <log_file alias="Tomcat Localhost Access Log" path="%IDEA_RUN:CATALINA_BASE%/logs/localhost_access_log.*" />
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="50718" />
       </RunnerSettings>
@@ -251,6 +275,15 @@
         </option>
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JUnit.UserServiceTest.testAddUser" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.58" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.UserServiceTest.testAddUser" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SpringBeansView">
@@ -277,7 +310,7 @@
       <workItem from="1664791732816" duration="7276000" />
       <workItem from="1664799031582" duration="4279000" />
       <workItem from="1664842795721" duration="15620000" />
-      <workItem from="1664931668886" duration="33610000" />
+      <workItem from="1665015431736" duration="38885000" />
     </task>
     <task id="LOCAL-00001" summary="설정">
       <created>1664436990723</created>
@@ -394,17 +427,6 @@
     <MESSAGE value="BJW 2022.10.01&#10;&#10;커뮤니티 jsp 완성, navigation 경로 완성" />
     <MESSAGE value="BJW 2022.10.03&#10;&#10;댓글,대댓글,조회수 json으로 처리 calender add성공 pom.xml에 jdbc드라이버 dependency 관개 맷음,&#10;spring-mybatis mybatise 버전 충돌 해결" />
     <option name="LAST_COMMIT_MESSAGE" value="BJW 2022.10.03&#10;&#10;댓글,대댓글,조회수 json으로 처리 calender add성공 pom.xml에 jdbc드라이버 dependency 관개 맷음,&#10;spring-mybatis mybatise 버전 충돌 해결" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubCalendarController.java</url>
-          <line>80</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -9,11 +9,12 @@ import java.util.List;
 import java.util.Map;
 
 public interface CommunityDao {
-    public void addClubCalender(ClubCalendar commu)throws Exception;
+    public void addClubCalender(ClubCalendar commu) throws Exception;
 
     void addVillBoard(VilBoard villBoard);
 
     void addComment(Comment comment);
+
     void updateComment(Comment comment);
 
     void addRecomment(Recomment recomment);
@@ -33,7 +34,24 @@ public interface CommunityDao {
     VilBoard getVillBoard(int villBoardNum);
 
 
-    void updateViewCount(VilBoard villBoard);
+    void updateViewCount(Map<String,Object> map);
 
-    int getViewCount(int villBoardNum);
+
+    int getLikeCount(Map<String,Object>map);
+
+    void addLike(Map<String, Object> map);
+
+    String getLikeCheck(Map<String, Object> map);
+
+    void updateLike(Map<String, Object> map);
+
+    void deleteLikeCount(Map<String, Object> map);
+
+    void updateLikeCount(Map<String, Object> map);
+
+    int getViewCount(Map<String, Object> map);
+
+    void updateVillBoard(VilBoard vilBoard);
+
+    void deleteBoard(Map<String, Object> map);
 }

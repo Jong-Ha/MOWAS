@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="DealMapper">
-    <resultMap id="DealSelectMap" type="Deal">
+    <resultMap id="dealSelectMap" type="deal">
         <result property="dealBoardNum" column="deal_board_num" jdbcType="INTEGER"/>
         <result property="boardCategory" column="board_category" jdbcType="CHAR"/>
         <result property="dealStatus" column="deal_status" jdbcType="CHAR"/>
@@ -54,7 +54,7 @@ values (seq_deal.NEXTVAL,
         #{villCode})
     </insert>
 <!--    &lt;!&ndash;게시물 상세조회&ndash;&gt;-->
-    <select id="getDeal" parameterType="int" resultMap="DealSelectMap">
+    <select id="getDeal" parameterType="int" resultMap="dealSelectMap">
         SELECT
             deal_board_num,
             user_id,

@@ -7,7 +7,6 @@
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact" />
-      <secret-storage>master_key</secret-storage>
       <user-name>mowas</user-name>
       <schema-mapping>
         <introspection-scope>
@@ -18,7 +17,6 @@
         </introspection-scope>
       </schema-mapping>
       <introspection-level>3</introspection-level>
-      <load-sources>user_and_system_sources</load-sources>
     </data-source>
   </component>
 </project>

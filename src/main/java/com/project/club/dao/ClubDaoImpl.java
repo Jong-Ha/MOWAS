@@ -40,8 +40,8 @@ public class ClubDaoImpl implements ClubDao {
     }
 
     @Override
-    public List<Club> listClub() {
-        return sqlSession.selectList("ClubMapper.listClub");
+    public List<Club> listClub(Map<String, Object> map) {
+        return sqlSession.selectList("ClubMapper.listClub", map);
     }
 
     @Override

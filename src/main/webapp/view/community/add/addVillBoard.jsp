@@ -1,5 +1,5 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
-<%@ page pageEncoding="EUC-KR" %>
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page pageEncoding="utf-8" %>
 
 
 <!DOCTYPE html>
@@ -7,9 +7,9 @@
 <html lang="ko">
 
 <head>
-	<meta charset="EUC-KR">
+	<meta charset="utf-8">
 
-	<!-- ÂüÁ¶ : http://getbootstrap.com/css/   ÂüÁ¶ -->
+	<!-- ì°¸ì¡° : http://getbootstrap.com/css/   ì°¸ì¡° -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 	<!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->
@@ -43,7 +43,7 @@
 	<!--  ///////////////////////// JavaScript ////////////////////////// -->
 	<script type="text/javascript">
 
-		//============= È¸¿øÁ¤º¸¼öÁ¤ Event  Ã³¸® =============
+		//============= íšŒì›ì •ë³´ìˆ˜ì • Event  ì²˜ë¦¬ =============
 		$(function () {
 
 			$(".submit").on("click", function () {
@@ -74,16 +74,16 @@
 <body>
 
 <form>
-	<!--  È­¸é±¸¼º div Start /////////////////////////////////////-->
+	<!--  í™”ë©´êµ¬ì„± div Start /////////////////////////////////////-->
 	<div class="wap">
 		<div class="container">
 
 			<div class="page-header">
-				<h3 class=" text-info">¿ì¸® µ¿³× °Ô½Ã±Û ÀÛ¼º</h3>
+				<h3 class=" text-info">ìš°ë¦¬ ë™ë„¤ ê²Œì‹œê¸€ ìž‘ì„±</h3>
 			</div>
 
 			<div class="row">
-				<div class="col-xs-4 col-xs-2"><strong>Á¦ ¸ñ</strong></div>
+				<div class="col-xs-4 col-xs-2"><strong>ì œ ëª©</strong></div>
 				<div class="col-xs-8 col-xs-4">
 					<input type="text" class="form-control" name="villTitle" value=""/>
 				</div>
@@ -93,7 +93,7 @@
 			<hr/>
 
 			<div class="row">
-				<div class="col-xs-4 col-xs-2"><strong>³»¿ë</strong></div>
+				<div class="col-xs-4 col-xs-2"><strong>ë‚´ìš©</strong></div>
 				<div class="col-xs-8 col-xs-4">
 					<textarea class="form-control" name="villText" style=" height: 200px;  width: 500px;  margin-bottom: 20px;"></textarea>
 				</div>
@@ -103,8 +103,8 @@
 
 			<div class="row">
 				<div class="col-xs-4 col-xs-2 ">
-					<strong>ÅÂ±×
-						<input type="text" name="villTag" placeholder="ÅÂ±×¸¦ ÀÔ·Â ÇØÁÖ¼¼¿ä">
+					<strong>íƒœê·¸
+						<input type="text" name="villTag" placeholder="íƒœê·¸ë¥¼ ìž…ë ¥ í•´ì£¼ì„¸ìš”">
 					</strong>
 				</div>
 			</div>
@@ -114,8 +114,8 @@
 
 			<div class="row">
 				<div class="col-xs-4 col-xs-2 ">
-					<strong>ÆÄÀÏ
-						<input type="file" value="ÆÄÀÏ Ã·ºÎ">
+					<strong>íŒŒì¼
+						<input type="file" value="íŒŒì¼ ì²¨ë¶€">
 					</strong>
 				</div>
 			</div>
@@ -125,8 +125,8 @@
 
 			<div class="row">
 				<div class="col-xs-12 text-center ">
-					<button type="button" class="btn btn-primary btn-lg submit">È®ÀÎ</button>
-					<button type="button" class="btn btn-secondary btn-lg close">´Ý±â</button>
+					<button type="button" class="btn btn-primary btn-lg submit">í™•ì¸</button>
+					<button type="button" class="btn btn-secondary btn-lg close">ë‹«ê¸°</button>
 				</div>
 			</div>
 

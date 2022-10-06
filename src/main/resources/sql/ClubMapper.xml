@@ -209,6 +209,16 @@
     <!--clubService.listClub-->
     <!--리스트 조건걸어서 찾기-->
 
+    <!--그냥 다 찾기-->
+    <select id="listClub" parameterType="map" resultMap="ClubResultMap">
+        SELECT c.*, l.like_check
+        FROM club c, likes l
+        WHERE c.club_num = l.board_num(+)
+          AND (l.board_category = '12' OR l.board_category IS NULL)
+          AND (l.user_id = #{userId} OR l.user_id IS NULL)
+          AND c.club_delete_check = '0'
+    </select>
+
     <!--clubService.addCluberApply-->
     <!--모임 신청-->
     <!--이미 탈퇴했었으면 새로운 레코드 등록-->

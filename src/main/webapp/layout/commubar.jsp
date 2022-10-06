@@ -17,11 +17,6 @@
   <script type="text/javascript">
     $(function () {
 
-      $(".villBoard").on("click", function () {
-        alert("우리 동네 게시판으로 이동");
-        location.href = "/commu/villBoardList?villCode="+"창원";
-      });
-
       $(".clubCalenderReview").on("click", function () {
         alert("모임 일정 후기글 게시판으로 이동")
         location.href = "/clubCal/listCalenderReview?boardCategory="+1
@@ -31,6 +26,11 @@
         alert("모임 일정 쇼츠 게시판으로 이동")
         location.href = "/clubCal/listCalenderReview?boardCategory="+2
       })
+
+      $(".villBoard").on("click", function () {
+        alert("우리 동네 게시판으로 이동");
+        location.href = "/commu/villBoardList?villCode="+"창원"+"&boardCategory="+3;
+      });
 
       $(".publicText").on("click", function () {
         alert("인기글 목록으로 이동");

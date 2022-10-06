@@ -18,10 +18,10 @@ public class User {
     private String userStatus;
     private String password;
     private String userName;
-    private int rrd;
+    private String rrd;
     private String gender;
     private String email;
-    private int phone;
+    private String phone;
     private String villCode;
     private String userImage;
     private String lcd;
@@ -74,11 +74,11 @@ public class User {
         this.userName = userName;
     }
 
-    public int getRrd() {
+    public String getRrd() {
         return rrd;
     }
 
-    public void setRrd(int rrd) {
+    public void setRrd(String rrd) {
         this.rrd = rrd;
     }
 
@@ -98,11 +98,11 @@ public class User {
         this.email = email;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
