@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal" created-in="IU-222.4167.29">
-    <data-source name="@192.168.0.13" uuid="237649e1-0c40-43f6-ac9c-4a05cceec5ed">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="ORACLE" exact-version="0" />
-      <schema-mapping />
-    </data-source>
-    <data-source name="@127.0.0.1" uuid="6ab34226-125e-4bcc-9101-22335ebb5e7c">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="ORACLE" exact-version="0" />
-      <schema-mapping />
-    </data-source>
-    <data-source name="mowas" uuid="08d299d1-baaf-4d6e-bdb3-138c3d27fbb6">
+    <data-source name="@192.168.0.13" uuid="a880c5af-8b7c-45aa-a213-e9b8674d51a0">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="ORACLE" exact-version="0" />
       <schema-mapping />
     </data-source>

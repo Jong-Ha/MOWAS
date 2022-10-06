@@ -1,8 +1,16 @@
 package com.project.common;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
 public class Search {
     private String searchCondition;
     private String searchKeyword;
+
 
 
     public String getSearchCondition() {
@@ -20,4 +28,5 @@ public class Search {
     public void setSearchKeyword(String searchKeyword) {
         this.searchKeyword = searchKeyword;
     }
+
 }

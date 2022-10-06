@@ -19,7 +19,16 @@
     </style>
   <script type="text/javascript">
 
+    $(function (){
+      $(".emailKey").on("click",function (){
 
+
+
+        alert('이메일인증버튼?');
+        $(".userEmail").attr("method", "POST").attr("action", "/user/mailSender").submit();
+
+      });
+    });
 
 
 
@@ -97,31 +106,36 @@
             이메일 또는 휴대폰번호 인증하기(택1)
             <div class="col-12">
               <label for="email" class="form-label">이메일 <span class="text-muted"> </span></label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com">
+              <input type="email" class="form-control userEmail" id="email" placeholder="you@example.com">
               <div class="invalid-feedback">
                 Please enter a valid email address for shipping updates.
               </div>
+              <input type="text" class="form-control CheckEmailKey" required>
+              <button type="button" class="btn btn-primary btn-sm emailKey">인증번호 요청</button>
             </div>
+
 
             <div class="col-12">
               <label for="address" class="form-label">동네인증</label>
               서울특별시
               <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown button
+                  무슨구
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <li><a class="dropdown-item" >성동구</a></li>
+                  <li><a class="dropdown-item" >중구</a></li>
+                  <li><a class="dropdown-item" >광진구</a></li>
                 </ul>
-              </div>
+                <input type="text" id="ssv3-location-label" required>
+                <button type="button" class="btn btn-primary btn-sm">동네인증 요청</button>
 
-              <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
               <div class="invalid-feedback">
                 Please enter your shipping address.
               </div>
             </div>
+              동네인증 결과
+              <input type="text" class="form-control" id="address"  required>
 
             <div class="col-12">
               <label for="address2" class="form-label">Address 2 <span class="text-muted">(Optional)</span></label>
