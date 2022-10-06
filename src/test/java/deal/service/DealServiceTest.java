@@ -1,8 +1,10 @@
 package deal.service;
 
+import com.project.common.Page;
 import com.project.common.Search;
 import com.project.deal.service.DealService;
 import com.project.domain.Deal;
+import com.project.domain.User;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,51 +28,95 @@ public class DealServiceTest {
 
 
     @Test
-    public void AddDeal(){
+    public void AddDeal()throws Exception{
         Deal deal =new Deal();
-        deal.setDealBoardNum(1000);
-        deal.setDealStatus(1);
-        deal.setBoardCategory(9);
-        deal.setUserId("user01");
+        User user=new User();
+        deal.setDealBoardNum(10020);
+        deal.setBoardCategory(8);
+        user.setUserId("user01");
+        deal.setUser(user);
+       // deal.setUserId("user10");
         deal.setDealTitle("바보");
         deal.setDealText("는");
         deal.setProductName("는");
         deal.setPrice(100);
-        deal.setDealText("hi");
+        deal.setTag("hi");
         deal.setViewCount(1);
-        deal.setDealModeCheck(0);
+        deal.setVillCode("봉천동");
+
 
         dealService.addDeal(deal);
-        Deal result =dealService.getDeal(1000);
       //  Assert.assertEquals("hi",deal.getDealTitle());
-    System.out.println(result);
+
     }
 
     @Test
-    public void updateDeal(){
+    public void updateDeal()throws Exception{
+
         Deal deal =new Deal();
-        deal.setDealStatus(1);
-        deal.setBoardCategory(9);
-        deal.setUserId("user01");
-        deal.setDealTitle("바보");
-        deal.setDealText("는");
-        deal.setProductName("는");
-        deal.setPrice(100);
-        deal.setDealText("hi");
+        User user = new User();
+        user.setUserId("user20");
+        deal.setDealTitle("111");
+        deal.setDealStatus(2);
+        deal.setDealText("111");
+        deal.setProductName("111");
+        deal.setPrice(111);
+        deal.setTag("111");
+        deal.setDealBoardNum(10001);
 
-        dealService.addDeal(deal);
-        Deal result=dealService.getDeal(10000);
-      System.out.println(result);
+    dealService.updateDeal(deal);
 
     }
     @Test
-    public void deleteDeal(){
+    public void deleteDeal()throws Exception{
         Deal deal = new Deal();
-        deal.setDealBoardNum(10000);
+        deal.setDealBoardNum(10020);
         dealService.deleteDeal(deal);
     }
- //   @Test
-//    public void testGetListDeal(){
+//    @Test
+//    public void testGetListDeal()throws Exception{
+//
+//        Search search = new Search();
+//        search.setCurrentPage(1);
+//        search.setPageSize(3);
+//        Map<String,Object> map = dealService.getListDeal(search);
+//
+//        List<Object> list = (List<Object>)map.get("list");
+//        Assert.assertEquals(3, list.size());
+//
+//        //==> console 확인
+//        //System.out.println(list);
+//
+//        Integer totalCount = (Integer)map.get("totalCount");
+//        System.out.println(totalCount);
+//
+//        System.out.println("=======================================");
+//
+//        search.setCurrentPage(1);
+//        search.setPageSize(3);
+//        search.setSearchCondition("0");
+//        search.setSearchKeyword("");
+//        map = dealService.getListDeal(search);
+//
+//        list = (List<Object>)map.get("list");
+//        Assert.assertEquals(3, list.size());
+//
+//        //==> console 확인
+//        //System.out.println(list);
+//
+//        totalCount = (Integer)map.get("totalCount");
+//        System.out.println(totalCount);
+//
+//    }
+
+
+
+
+
+
+
+
+
 //        Search search =new Search();
 //        search.setSearchCondition("0");
 //        search.setSearchKeyword("제목4");
@@ -97,11 +143,12 @@ public class DealServiceTest {
 //
 //        totalCount = (Integer)map.get("totalCount");
 //        System.out.println(totalCount);
+
+   // @Test
+//    public void GetDeal() throws Exception{
+//
+//        int dealBoardNum =10002;
+//
+//                System.out.println(dealService.getDeal(dealBoardNum)+"1111111111111111111111111111111");
 //    }
-    @Test
-    public void GetDeal()  {
-        int result1 =10002;
-                Deal result=dealService.getDeal(result1);
-                System.out.println(result+"1111111111111111111111111111111");
-    }
 }

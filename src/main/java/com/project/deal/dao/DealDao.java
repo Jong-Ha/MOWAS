@@ -7,15 +7,16 @@ import javax.naming.directory.SearchControls;
 import java.util.List;
 
 public interface DealDao {
-    public void addDeal(Deal deal) ;
+    public void addDeal(Deal deal) throws Exception;
 
-    public Deal getDeal(int dealBoardNum) ;
+    public Deal getDeal(int dealBoardNum) throws Exception;
 
+    public void updateDeal(Deal deal)throws Exception;
+    public void deleteDeal(Deal deal) throws Exception;
 
-
-    public void updateDeal(Deal deal);
-    public void deleteDeal(Deal deal) ;
-
-        public List<Deal> getListDeal(Search search) ;
+    public List<Deal>  getListDeal(Search search) throws Exception ;
    //public List<Deal> listDeal();
+   public int getTotalCount(Search search) throws Exception ;
+    // 게시판 currentPage Row 만  return
+    public String makeCurrentPageSql(String sql, Search search);
 }

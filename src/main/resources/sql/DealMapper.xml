@@ -8,7 +8,7 @@
         <result property="dealBoardNum" column="deal_board_num" jdbcType="INTEGER"/>
         <result property="boardCategory" column="board_category" jdbcType="CHAR"/>
         <result property="dealStatus" column="deal_status" jdbcType="CHAR"/>
-        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="user.userId" column="user_id" jdbcType="VARCHAR"/>
         <result property="dealTitle" column="deal_title" jdbcType="VARCHAR"/>
         <result property="dealText" column="deal_text" jdbcType="VARCHAR"/>
         <result property="dealRegDate" column="deal_reg_date" jdbcType="DATE"/>
@@ -43,7 +43,7 @@
 values (seq_deal.NEXTVAL,
         #{boardCategory},
         #{dealStatus},
-        #{userId},
+        #{user.userId},
         #{dealTitle},
         #{dealText},
         SYSDATE,
@@ -56,21 +56,12 @@ values (seq_deal.NEXTVAL,
 <!--    &lt;!&ndash;게시물 상세조회&ndash;&gt;-->
     <select id="getDeal" parameterType="int" resultMap="DealSelectMap">
         SELECT
-            deal_board_num,
-            user_id,
-            vill_Code,
-            deal_title,
-            price,
-            deal_mode_check,
-            product_name,
-            deal_text,
-            tag,
-            deal_reg_date
-            <!--신뢰온도,
-            파일-->
+            *
 from deal
-where deal_board_num=#{value}
+where deal_board_num=#{dealBoardNum}
     </select>
+    <!--신뢰온도,
+           파일-->
 <!--    &lt;!&ndash;게시물 수정&ndash;&gt;-->
     <update id="updateDeal" parameterType="deal">
     UPDATE DEAL
@@ -79,7 +70,7 @@ where deal_board_num=#{value}
         deal_status=#{dealStatus},
         deal_text=#{dealText},
         deal_reg_date=SYSDATE,
-    product_NAME=#{product_name},
+    product_name=#{productName},
         price=#{price},
         tag=#{tag}
 
@@ -93,24 +84,27 @@ WHERE deal_board_num=#{dealBoardNum};
             deal_board_num=#{dealBoardNum}
         </where>
     </delete>
-    <!--게시물 목록 조회 board_category 8,번과 9번 의 차이를 여기서 나눠줘야되나 ? .. .-->
-<!--    <select id="getListDeal" parameterType="search" resultMap="DealSelectMap">-->
-<!--        SELECT *-->
-<!--        FROM( SELECT inner_table.* , ROWNUM AS row_seq-->
-<!--              FROM	(SELECT DEAL_TITLE , tag-->
-<!--                       FROM DEAL-->
-<!--                       <if test="searchCondition !=null">-->
-<!--                           <where>-->
-<!--                               <if test="searchCondition==0 and searchKeyword !='' ">-->
-<!--                       deal_title=#{searchKeyword}-->
-<!--                               </if>-->
-<!--                       <if test="searchCondition ==1 and searchKeyword !='' ">-->
-<!--                           tag = #{tag}-->
-<!--                       </if>-->
-<!--                           </where>-->
-<!--                       </if>-->
-<!--                       ORDER BY deal_board_num ) inner_table)a ;-->
+    <!--게시물 목록 조회.. .-->
+    <select id="getListDeal" parameterType="search" resultMap="DealSelectMap">
+        SELECT *
+        FROM( SELECT inner_table.* , ROWNUM AS row_seq
+        FROM	(SELECT *
+        FROM deal
+        <if test="searchCondition != null">
+            <where>
+                <if test="searchCondition == 0 and searchKeyword !='' ">
+                    product_num LIKE '%' ||#{searchKeyword:INTEGER} ||'%'
+                </if>
+                <if test="searchCondition == 1 and searchKeyword !='' ">
+                    tag Like '%'|| #{searchKeyword}||'%'
+                </if>
 
-<!--    </select>-->
+            </where>
+        </if>
+        ORDER BY deal_board_num) inner_table
+        WHERE ROWNUM &lt;= #{endRowNum} )
+        WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum}
+    </select>
+
 
 </mapper>
