@@ -71,6 +71,13 @@ public class ClubServiceTest {
     }
 
     @Test
+    public void listClub(){
+        String userId = "user01";
+
+        System.out.println(clubService.listClub(userId));
+    }
+
+    @Test
     public void addCluberApply(){
         Cluber cluber = new Cluber();
         User user = new User();

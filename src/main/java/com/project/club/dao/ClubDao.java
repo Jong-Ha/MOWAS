@@ -11,7 +11,7 @@ public interface ClubDao {
     public void updateClub(Club club);
     public void deleteClub(Club club);
     public Club getClub(int clubNum);
-    public List<Club> listClub();
+    public List<Club> listClub(Map<String, Object> map);
     public void addClubMasterNewClub(Club club);
     public Club getClub(Club club);
     public void addCluberApply(Cluber cluber);

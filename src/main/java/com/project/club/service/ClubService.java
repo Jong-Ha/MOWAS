@@ -6,7 +6,6 @@ import com.project.domain.ClubMasterBoard;
 import com.project.domain.Cluber;
 
 import java.util.List;
-import java.util.Map;
 
 public interface ClubService {
 
@@ -14,7 +13,7 @@ public interface ClubService {
     public Club updateClub(Club club);
     public void deleteClub(Club club);
     public Club getClub(int clubNum);
-//    public List<Club> listClub();
+    public List<Club> listClub(String userId);
     public void addCluberApply(Cluber cluber);
     public void updateCluberApply(Cluber cluber);
     public void deleteCluberApply(int clubUserNum);
