@@ -163,6 +163,7 @@
             width: 700px;
             margin-bottom: 20px;
             font-size: 0.9em;
+
         }
 
         .RecommentText {
@@ -175,7 +176,7 @@
         }
 
         .commentitembox {
-            width: 130px;
+            width: 140px;
             display: flex;
             margin-left: 470px;
             border-radius: 10px;
@@ -320,7 +321,6 @@
 
             $(function () {
 
-
                 $(".delete").on("click", function () {
                     var boardNum = $(".boardNum").val();
                     var boardCategory = $(".boardCategory").val()
@@ -343,7 +343,7 @@
                         reverseButtons: true
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            location.href = "/commu/deleteBoard?boardNum="+boardNum+"&boardCategory="+boardCategory
+                            location.href = "/commu/deleteBoard?boardNum=" + boardNum + "&boardCategory=" + boardCategory
                             swalWithBootstrapButtons.fire(
                                 '삭제 성공!',
                                 'success'
@@ -362,150 +362,175 @@
 
 
                 $(".update").on("click", function () {
-                    var  boardNum = $(".boardNum").val()
+                    var boardNum = $(".boardNum").val()
                     var boardCatagory = $(".boardCategory").val()
                     window.open(
-                        "/clubCal/updateClubCalenderReview?clubCalenderReviewNum="+boardNum+"&boardCategory="+boardCatagory, "모임 일정 후기글 수정",
+                        "/clubCal/updateClubCalenderReview?clubCalenderReviewNum=" + boardNum + "&boardCategory=" + boardCatagory, "모임 일정 후기글 수정",
                         "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no"
                     )
 
                 });
             });
-
-            $(function () {
-
-                /*댓글*/
-                $(".addcomment").on("click", function () {
-                    var commentText = $(".addComment").val();
-                    var boardNum = $(".boardNum").val();
-
-
-                    console.log(boardNum);
-                    console.log(commentText);
-
-                    $.ajax({
-                        url: "/commu/json/addComment",
-                        type: "POST",
-                        data: JSON.stringify({
-                            "commentText": commentText,
-                            "boardNum": boardNum,
-                            "boardCategory": 10
-                        }),
-                        dataType: "json",
-                        contentType: 'application/json; charset=UTF-8',
-                        success: function (JSONData, result) {
-                            console.log(result);
-                        }
-
-                    })
-                })
-
-                $(".updateComment").on("click", function () {
-                    var commentText = $(".updateComment").val();
-                    var commentNum = $(this).parent().parent().find(".commentNum").val()
-
-                    console.log(commentText);
-
-                    $.ajax({
-                        url: "/commu/json/updateComment",
-                        type: "POST",
-                        data: JSON.stringify({
-                            "commentText": commentText,
-                            "commentNum": commentNum
-                        }),
-                        dataType: "json",
-                        contentType: 'application/json; charset=UTF-8',
-                        success: function (JSONData, result) {
-                            console.log(result);
-                        }
-
-                    })
-                })
-
-                $(".deleteComment").on("click", function () {
-                    var commentNum = $(this).parents(".allComment").find(".commentNum").val()
-
-                    console.log(commentNum);
-
-                    $.ajax({
-                        url: "/commu/json/deleteComment",
-                        type: "POST",
-                        data: JSON.stringify({"commentNum": commentNum}),
-                        dataType: "json",
-                        contentType: 'application/json; charset=UTF-8',
-                        success: function (JSONData, result) {
-                            console.log(result);
-                        }
-
-                    })
-                })
-
-                $(".showRecomment").on("click", function () {
-                    $(this).parents(".allComment").find("#reComent").show();
-                })
-
-                /*대댓*/
-                $(".addRecomment").on("click", function () {
-                    var recommentText = $(this).parent().parent().find(".addReomment").val();
-                    var commentNum = $(this).parent().parent().find(".commentNum").val()
-
-                    $.ajax({
-                        url: "/commu/json/addRecomment",
-                        type: "POST",
-                        data: JSON.stringify({
-                            "recommentText": recommentText,
-                            "commentNum": commentNum
-                        }),
-                        dataType: "json",
-                        contentType: 'application/json; charset=UTF-8',
-                        success: function (JSONData, result) {
-                            console.log(result);
-                        }
-                    })
-                })
-
-                $(".updateRecomment").on("click", function () {
-                    var recommentText = $(".recomment").val();
-
-                    console.log(recommentText);
-
-                    $.ajax({
-                        url: "/commu/json/updateRecomment",
-                        type: "POST",
-                        data: JSON.stringify({"recommentText": recommentText}),
-                        dataType: "json",
-                        contentType: 'application/json; charset=UTF-8',
-                        /*
-                                            headers:{
-                                                "Accept":"application/json",
-                                                "Content-Type":"application/json; charset=utf-8"
-                                            },*/
-                        success: function (JSONData, result) {
-                            console.log(result);
-                        }
-                    })
-                })
-
-                $(".deleteRecomment").on("click", function () {
-                    var recommentNum = $(this).parents(".RecommentList").find(".recommentNum").val()
-                    console.log(recommentNum);
-
-                    $.ajax({
-                        url: "/commu/json/deleteRecomment",
-                        type: "POST",
-                        data: JSON.stringify({"recommentNum": recommentNum}),
-                        dataType: "json",
-                        contentType: 'application/json; charset=UTF-8',
-                        success: function (JSONData, result) {
-                            console.log(result);
-                        }
-                    })
-                })
-
-
-
-            });
         });
+
+        $(function () {
+
+            /*댓글*/
+            $(".addcomment").on("click", function () {
+                var commentText = $(".addComment").val();
+                var boardNum = $(".boardNum").val();
+                var boardCategory = $(".boardCategory").val();
+
+                boardCategory.trim();
+
+                console.log(boardCategory);
+
+
+                $.ajax({
+                    url: "/commu/json/addComment",
+                    type: "POST",
+                    data: JSON.stringify({
+                        "commentText": commentText,
+                        "boardNum": boardNum,
+                        "boardCategory": boardCategory
+                    }),
+                    dataType: "json",
+                    contentType: 'application/json; charset=UTF-8',
+                    success: function (JSONData, result) {
+                        console.log(result);
+                    }
+
+                })
+            })
+
+            $(".updateComment").on("click", function () {
+                var commentText = $(".updateComment").val();
+                var commentNum = $(this).parent().parent().find(".commentNum").val()
+
+                console.log(commentText);
+
+                $.ajax({
+                    url: "/commu/json/updateComment",
+                    type: "POST",
+                    data: JSON.stringify({
+                        "commentText": commentText,
+                        "commentNum": commentNum
+                    }),
+                    dataType: "json",
+                    contentType: 'application/json; charset=UTF-8',
+                    success: function (JSONData, result) {
+                        console.log(result);
+                    }
+
+                })
+            })
+
+            $(".deleteComment").on("click", function () {
+                var commentNum = $(this).parents(".allComment").find(".commentNum").val()
+
+                console.log(commentNum);
+
+                $.ajax({
+                    url: "/commu/json/deleteComment",
+                    type: "POST",
+                    data: JSON.stringify({"commentNum": commentNum}),
+                    dataType: "json",
+                    contentType: 'application/json; charset=UTF-8',
+                    success: function (JSONData, result) {
+                        console.log(result);
+                    }
+
+                })
+            })
+
+            $(".showRecomment").on("click", function () {
+                $(this).parents(".allComment").find("#reComent").show();
+            })
+
+            /*대댓*/
+            $(".addRecomment").on("click", function () {
+                var recommentText = $(this).parent().parent().find(".addReomment").val();
+                var commentNum = $(this).parent().parent().find(".commentNum").val()
+
+                $.ajax({
+                    url: "/commu/json/addRecomment",
+                    type: "POST",
+                    data: JSON.stringify({
+                        "recommentText": recommentText,
+                        "commentNum": commentNum
+                    }),
+                    dataType: "json",
+                    contentType: 'application/json; charset=UTF-8',
+                    success: function (JSONData, result) {
+                        console.log(result);
+                    }
+                })
+            })
+
+            $(".updateRecomment").on("click", function () {
+                var recommentText = $(".recomment").val();
+
+                console.log(recommentText);
+
+                $.ajax({
+                    url: "/commu/json/updateRecomment",
+                    type: "POST",
+                    data: JSON.stringify({"recommentText": recommentText}),
+                    dataType: "json",
+                    contentType: 'application/json; charset=UTF-8',
+                    /*
+                                        headers:{
+                                            "Accept":"application/json",
+                                            "Content-Type":"application/json; charset=utf-8"
+                                        },*/
+                    success: function (JSONData, result) {
+                        console.log(result);
+                    }
+                })
+            })
+
+            $(".deleteRecomment").on("click", function () {
+                var recommentNum = $(this).parents(".RecommentList").find(".recommentNum").val()
+                console.log(recommentNum);
+
+                $.ajax({
+                    url: "/commu/json/deleteRecomment",
+                    type: "POST",
+                    data: JSON.stringify({"recommentNum": recommentNum}),
+                    dataType: "json",
+                    contentType: 'application/json; charset=UTF-8',
+                    success: function (JSONData, result) {
+                        console.log(JSONData);
+                    }
+                })
+            })
+
+            var boardNum = $(".boardNum").val();
+            var boardCategory = $(".boardCategory").val();
+
+            $.ajax({
+                url : "/commu/json/getListComment",
+                method : "post",
+                data : JSON.stringify({
+                    "boardNum": boardNum,
+                    "boardCategory":boardCategory
+                }),
+                contentType : "application/json; charset= utf-8",
+                dataType : "json",
+                success : function(JSONData, result){
+
+                    $.each(JSONData ,function (index, item) {
+                    var str ="<div class='commentList'>"+
+                              "<div class='allComment'>"+
+                                "<input hidden class='commentNum' value='item.commentNum'>"+
+                                "<div class='input-group flex-nowrap commentText shadow-lg' style='width: 700px;'>"
+
+                    });
+                },
+            })
+
+        });
+
     </script>
 
 
@@ -714,12 +739,9 @@
 
             <%--댓글 목록--%>
             <div class="commentList">
-                <c:set var="i" value="0"/>
-                <c:forEach var="comment" items="${list}">
-                    <c:set var="i" value="${i+1}"/>
                     <div class="allComment">
                         <input hidden class="commentNum" value="${comment.commentNum}">
-                        <div class="input-group flex-nowrap commentText shadow-lg">
+                        <div class="input-group flex-nowrap commentText shadow-lg" style=" width: 700px;">
                             <c:if test="${comment.commentCheck == 'n'}">
                                 <span class="input-group-text" id="addon-wrapping"
                                       style="width: 100px; font-size: 0.5em; font-weight: bolder;">
@@ -873,15 +895,13 @@
                 </c:forEach>
             </div>
 
-            <div class="footer">
+            <jsp:include page="/layout/chat.jsp"/>
 
-            </div>
         </div>
-
-
     </div>
 
+
 </div>
-<jsp:include page="/layout/chat.jsp"/>
+
 </body>
 </html>

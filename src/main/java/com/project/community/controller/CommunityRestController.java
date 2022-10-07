@@ -3,7 +3,9 @@ package com.project.community.controller;
 import com.project.community.service.CommunityService;
 import com.project.domain.Comment;
 import com.project.domain.Recomment;
+import com.project.domain.User;
 import com.project.domain.VilBoard;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/commu/json/*")
@@ -23,18 +26,12 @@ public class CommunityRestController {
 
     /* 댓글 대댓글*/
     @RequestMapping(value = "addComment", method = RequestMethod.POST)
-    public String addComment(@RequestBody Comment comment/*, @ModelAttribute("comment")Comment comment*/) throws ParseException {
+    public String addComment(@RequestBody Comment comment) throws ParseException {
         System.out.println(comment);
 
-  /*      JSONParser parser = new JSONParser();
-
-        JSONObject jsonObj = (JSONObject)parser.parse(commentText);*/
 
         comment.setUserId("user01");
-        comment.setBoardCategory("10");
         comment.setCommentCheck("n");
-
-        System.out.println("댓글 도매인  : " + comment);
 
        communityService.addComment(comment);
 
@@ -101,6 +98,18 @@ public class CommunityRestController {
         communityService.deleteRecomment(recomment.getRecommentNum());
 
         return null;
+    }
+
+    @RequestMapping("getListComment")
+    public Map<String, Object> getListComment(@RequestBody Map<String, Object> map){
+
+        Map<String, Object> map2 =
+                communityService.listComment(Integer.parseInt((String) map.get("boardNum")),
+                                            Integer.parseInt((String) map.get("boardCategory")));
+
+        System.out.println(map2);
+
+        return map2;
     }
 
     @RequestMapping(value = "viewCount")
@@ -180,6 +189,19 @@ public class CommunityRestController {
             /*좋아요 count 화면으로 return*/
             return communityService.getLikeCount(boardNum,boardCategory);
         }
+
+        return 0;
+    }
+
+    @RequestMapping(value = "addVillBoard" , method =  RequestMethod.POST)
+    public int addVillBarod(@RequestBody VilBoard villBoard, HttpSession session){
+        System.out.println(villBoard);
+
+        User user = (User)session.getAttribute("user");
+
+        villBoard.setUserId(user.getUserId());
+        villBoard.setVillCode("창원");
+        communityService.addVillBoard(villBoard);
 
         return 0;
     }

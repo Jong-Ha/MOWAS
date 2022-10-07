@@ -3,6 +3,7 @@ package com.project.community.controller;
 import com.project.club.service.ClubCalendarService;
 import com.project.community.service.CommunityService;
 import com.project.domain.ClubCalendar;
+import com.project.domain.User;
 import com.project.domain.VilBoard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -90,14 +91,16 @@ public class CommunityController {
     }
 
     @RequestMapping(value = "addVillBoard")
-    public String addVillBoard(@ModelAttribute("villBoard")VilBoard villBoard){
+    public String addVillBoard(@ModelAttribute("villBoard")VilBoard villBoard,
+                               HttpSession session){
+       User user =  (User)session.getAttribute("user");
 
-        villBoard.setUserId("user01");
+        System.out.println("유저의 이름 :" + user.getUserId());
+        villBoard.setUserId(user.getUserId());
         villBoard.setVillCode("창원");
         villBoard.setBoardCategory(3);
 
-        commuService.addVillBoard(villBoard);
-
+        //commuService.addVillBoard(villBoard);
 
         return null;
     }

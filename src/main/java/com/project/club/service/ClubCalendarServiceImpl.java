@@ -36,10 +36,7 @@ public class ClubCalendarServiceImpl implements ClubCalendarService {
     public void updateCalenderReview(ClubCalendarReview calenderReview) {
         clubCalendarDao.updateCalenderReview(calenderReview);
     }
-    @Override
-    public void addCalenderReviewShort(ClubCalendarReview calenderReview) {
-        clubCalendarDao.addCalenderReviewShort(calenderReview);
-    }
+
 
     @Override
     public void deleteCalenderReview(int calenderNum) {

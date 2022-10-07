@@ -11,7 +11,6 @@ public interface ClubCalendarService {
     public String getCalender(int clubNum);
 
     void addCalenderReview(ClubCalendarReview calenderReview);
-    void addCalenderReviewShort(ClubCalendarReview calenderReview);
 
     void updateCalenderReview(ClubCalendarReview calenderReview);
 

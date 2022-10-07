@@ -253,7 +253,6 @@
         WHERE recomment_num = #{recommentNum}
     </update>
 
-
     <select id="listRecomment" parameterType="map" resultMap="recommentSelect">
         select * from RECOMMENT
         where COMMENT_NUM = #{commentNum}

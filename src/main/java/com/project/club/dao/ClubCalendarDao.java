@@ -13,7 +13,6 @@ public interface ClubCalendarDao {
 
     void addCalenderReview(ClubCalendarReview calenderReview);
 
-    void addCalenderReviewShort(ClubCalendarReview calenderReview);
 
     void updateCalenderReview(ClubCalendarReview calenderReview);
 

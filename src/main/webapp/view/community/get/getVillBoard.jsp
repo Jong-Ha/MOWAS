@@ -223,7 +223,7 @@
 
             $(document).ready(function () {
                 var viewCount = $(".viewText").html();
-                var villBoardNum = $(".villBoardNum").val();
+                var boardNum = $(".boardNum").val();
                 var boardCategory = $(".boardCategory").val()
 
                 $.ajax({
@@ -231,7 +231,7 @@
                     type: "POST",
                     data: JSON.stringify({
                         "viewCount": viewCount,
-                        "boardNum": villBoardNum,
+                        "boardNum": boardNum,
                         "boardCategory" : boardCategory
                     }),
                     dataType: "JSON",
@@ -248,7 +248,7 @@
             $(".likeButton").on("click", function () {
 
                 var likeCount = $(".likeText").html();
-                var villBoardNum = $(".villBoardNum").val();
+                var boardNum = $(".boardNum").val();
                 var boardCategory = $(".boardCategory").val()
 
                 $.ajax({
@@ -256,7 +256,7 @@
                     type: "POST",
                     data: JSON.stringify({
                         "likeCount": likeCount,
-                        "boardNum": villBoardNum,
+                        "boardNum": boardNum,
                         "boardCategory" : boardCategory
                     }),
                     dataType: "JSON",
@@ -274,7 +274,7 @@
 
         $(function () {
             $(".delete").on("click", function () {
-                var villBoardNum = $(".villBoardNum").val();
+                var boardNum = $(".boardNum").val();
                 var boardCategory = $(".boardCategory").val()
 
                 const swalWithBootstrapButtons = Swal.mixin({
@@ -315,20 +315,20 @@
             $(".addcomment").on("click", function () {
                 //$("form").attr("method", "post").attr("action", "/commu/json/addComment").submit();
                 var commentText = $(".addComment").val();
+                var boardCategory = $(".boardCategory").val();
+                var boardNum = $(".boardNum").val();
 
-                console.log(commentText);
+                console.log(boardCategory);
 
                 $.ajax({
                     url: "/commu/json/addComment",
                     type: "POST",
-                    data: JSON.stringify({"commentText": commentText}),
+                    data: JSON.stringify({
+                        "commentText": commentText,
+                        "boardCategory": boardCategory,
+                        "boardNum": boardNum}),
                     dataType: "json",
                     contentType: 'application/json; charset=UTF-8',
-                    /*
-                                        headers:{
-                                            "Accept":"application/json",
-                                            "Content-Type":"application/json; charset=utf-8"
-                                        },*/
                     success: function (JSONData, result) {
                         console.log(result);
                     }
@@ -338,21 +338,20 @@
 
             $(".updateComment").on("click", function () {
                 //$("form").attr("method", "post").attr("action", "/commu/json/addComment").submit();
-                var commentText = $(".addComment").val();
+                var commentText = $(this).parents(".allComment").find(".addComment").val();
+                var commentNum = $(this).parents(".allComment").find(".commentNum").val();
 
                 console.log(commentText);
 
                 $.ajax({
                     url: "/commu/json/updateComment",
                     type: "POST",
-                    data: JSON.stringify({"commentText": commentText}),
+                    data: JSON.stringify({
+                        "commentText": commentText,
+                        "commentNum": commentNum}),
                     dataType: "json",
                     contentType: 'application/json; charset=UTF-8',
-                    /*
-                                        headers:{
-                                            "Accept":"application/json",
-                                            "Content-Type":"application/json; charset=utf-8"
-                                        },*/
+
                     success: function (JSONData, result) {
                         console.log(result);
                     }
@@ -361,11 +360,12 @@
             })
 
             $(".deleteComment").on("click", function () {
+                var commentNum = $(".commentNum").val();
 
                 $.ajax({
                     url: "/commu/json/deleteComment",
                     type: "POST",
-                    data: JSON.stringify({"commentNum": 10000}),
+                    data: JSON.stringify({"commentNum": commentNum}),
                     dataType: "json",
                     contentType: 'application/json; charset=UTF-8',
                     /*
@@ -461,7 +461,7 @@
 <body class="bg-light">
 
 <div class="container" style="text-align: -webkit-center;">
-    <input hidden class="villBoardNum" value="${villBoard.villBoardNum}">
+    <input hidden class="boardNum" value="${villBoard.villBoardNum}">
     <input hidden class="boardCategory" value="${villBoard.boardCategory}">
     <div class="wap shadow-lg">
 

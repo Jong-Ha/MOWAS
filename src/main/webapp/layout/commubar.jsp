@@ -33,7 +33,7 @@
             });
 
             $(".publicText").on("click", function () {
-                location.href = "/commu/"
+                location.href = "/commu/main"
             });
 
             $(".clubPage").on("click", function () {

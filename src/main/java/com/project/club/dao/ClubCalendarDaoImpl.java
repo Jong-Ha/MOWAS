@@ -36,10 +36,6 @@ public class ClubCalendarDaoImpl implements ClubCalendarDao {
         sqlSession.insert("ClubCalenderMapper.addCalenderReview", calenderReview);
     }
 
-    @Override
-    public void addCalenderReviewShort(ClubCalendarReview calenderReview) {
-        sqlSession.insert("ClubCalenderMapper.addCalenderReviewShort", calenderReview);
-    }
 
     @Override
     public void updateCalenderReview(ClubCalendarReview calenderReview) {

@@ -48,13 +48,51 @@
 
             $(".submit").on("click", function () {
 
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Your work has been saved',
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
+                var boardCategory = $(".boardCategory").val();
+                var reviewTitle = $(".reviewTitle").val();
+                var reviewRange = $(".reviewRange").val();
+                var file = $(".file").val();
+
+                $.ajax({
+                    url : "/clubCal/json/addClubCalenderReview",
+                    method  : "post",
+                    data : JSON.stringify({
+                        "boardCategory" : boardCategory,
+                        "reviewTitle" : reviewTitle,
+                        "reviewRange": reviewRange,
+                        "file": file
+                    }),
+                    dataType : "json",
+                    contentType : "application/json; charset=UTF-8",
+                    success : function () {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Your work has been saved',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+
+                        setTimeout(function () {
+                            opener.location.reload();
+                            window.close();
+                        },1600);
+                    }, error : function () {
+
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Your work has been saved',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+
+                        setTimeout(function () {
+                            window.close();
+                        },1600)
+                    }
+                })
+
 
                 $("form").attr("method", "post").attr("action", "/clubCal/addClubCalenderReview")
                     .attr("enctype", "multipart/form-data").submit();
@@ -76,7 +114,7 @@
 <form>
     <!--  화면구성 div Start /////////////////////////////////////-->
 
-    <input type="hidden" name="boardCategory" value="2">
+    <input type="hidden" class="boardCategory" name="boardCategory" value="2">
     <div class="wap">
         <div class="container">
 
@@ -87,7 +125,7 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2"><strong>제 목</strong></div>
                 <div class="col-xs-8 col-xs-4">
-                    <input type="text" class="form-control" name="reviewTitle" value=""/>
+                    <input type="text" class="form-control reviewTitle" name="reviewTitle" value=""/>
                 </div>
             </div>
 
@@ -97,14 +135,14 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
                     <strong>파일
-                        <input type="file" name="file" value="영상 첨부">
+                        <input type="file" class="file"  name="file" value="영상 첨부">
                     </strong>
                 </div>
             </div>
 
             <hr/>
 
-            <select class="form-select " name="reviewRange" style="width: 300px;">
+            <select class="form-select reviewRange" name="reviewRange" style="width: 300px;">
                 <option selected>공개 여부를 선택 하세요</option>
                 <option value="1">전체 공개</option>
                 <option value="2">모임 공개</option>

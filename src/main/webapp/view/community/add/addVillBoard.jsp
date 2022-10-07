@@ -48,16 +48,55 @@
 
 			$(".submit").on("click", function () {
 
-				Swal.fire({
-					position: 'top-end',
-					icon: 'success',
-					title: 'Your work has been saved',
-					showConfirmButton: false,
-					timer: 1500,
-				});
+				var boardCategory = $(".boardCategory").val()
+				var villTitle = $(".villTitle").val()
+				var villText = $(".villText").val()
+				var villTag = $(".villTag").val();
 
 
-				$("form").attr("method", "post").attr("action", "/commu/addVillBoard").attr("enctype", "multipart/form-data").submit();
+				$.ajax({
+					url : "/commu/json/addVillBoard",
+					method : "post",
+					data : JSON.stringify({
+						"boardCategory": boardCategory,
+						"villTitle": villTitle,
+						"villText": villText,
+						"villTag": villTag
+
+					}) ,
+					dataType: "json",
+					contentType : "application/json; charset=UTF-8",
+					success : function () {
+
+						Swal.fire({
+							position: 'top-end',
+							icon: 'success',
+							title: 'Your work has been saved',
+							showConfirmButton: false,
+							timer: 1500,
+						});
+
+						setTimeout(function () {
+							opener.location.reload()
+							window.close();
+						});
+
+					},error : function () {
+
+						Swal.fire({
+							position: 'top-end',
+							icon: 'success',
+							title: 'Your work has been saved',
+							showConfirmButton: false,
+							timer: 1500,
+						});
+
+
+						setTimeout(function () {
+							window.close();
+						})
+					}
+				})
 
 			});
 
@@ -77,7 +116,7 @@
 	<!--  화면구성 div Start /////////////////////////////////////-->
 	<div class="wap">
 		<div class="container">
-
+			<input hidden class="boardCategory" value="3">
 			<div class="page-header">
 				<h3 class=" text-info">우리 동네 게시글 작성</h3>
 			</div>
@@ -85,7 +124,7 @@
 			<div class="row">
 				<div class="col-xs-4 col-xs-2"><strong>제 목</strong></div>
 				<div class="col-xs-8 col-xs-4">
-					<input type="text" class="form-control" name="villTitle" value=""/>
+					<input type="text" class="form-control villTitle" name="villTitle" value=""/>
 				</div>
 			</div>
 
@@ -95,7 +134,7 @@
 			<div class="row">
 				<div class="col-xs-4 col-xs-2"><strong>내용</strong></div>
 				<div class="col-xs-8 col-xs-4">
-					<textarea class="form-control" name="villText" style=" height: 200px;  width: 500px;  margin-bottom: 20px;"></textarea>
+					<textarea class="form-control villText"  name="villText" style=" height: 200px;  width: 500px;  margin-bottom: 20px;"></textarea>
 				</div>
 			</div>
 
@@ -104,7 +143,7 @@
 			<div class="row">
 				<div class="col-xs-4 col-xs-2 ">
 					<strong>태그
-						<input type="text" name="villTag" placeholder="태그를 입력 해주세요">
+						<input type="text" class="villTag"  name="villTag" placeholder="태그를 입력 해주세요">
 					</strong>
 				</div>
 			</div>
@@ -115,7 +154,7 @@
 			<div class="row">
 				<div class="col-xs-4 col-xs-2 ">
 					<strong>파일
-						<input type="file" value="파일 첨부">
+						<input type="file" class="file" value="파일 첨부">
 					</strong>
 				</div>
 			</div>
