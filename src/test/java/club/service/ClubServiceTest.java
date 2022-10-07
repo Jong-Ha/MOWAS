@@ -117,7 +117,7 @@ public class ClubServiceTest {
 
     @Test
     public void getCluberApply(){
-        int clubUserNum = 10013;
+        int clubUserNum = 10004;
 
         String result = clubService.getCluberApply(clubUserNum);
 
@@ -312,7 +312,7 @@ public class ClubServiceTest {
 
     @Test
     public void getCluber(){
-        int clubUserNum = 10006;
+        int clubUserNum = 10004;
 
         System.out.println(clubService.getCluber(clubUserNum));
     }

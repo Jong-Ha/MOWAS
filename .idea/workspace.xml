@@ -9,12 +9,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="JHK 2022.10.05&#10;&#10;mailApp, UserInterList, UserServiceTest 자바파일 누락&#10;재커밋함">
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="LJH 2022.10.06&#10;&#10;모임 좋아요 기능 추가">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/getClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/getClub.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listCalendarCluber.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listCalendarCluber.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClubBlacklist.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClubBlacklist.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClubCalendarApply.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClubCalendarApply.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listCluberApply.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listCluberApply.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/club/service/ClubServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/club/service/ClubServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,10 +108,10 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "아티팩트",
+    "project.structure.last.edited": "전역 라이브러리",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.12528735",
-    "settings.editor.selected.configurable": "File.Encoding",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "spring.configuration.checksum": "0644e903b0ad21f514b0480754c0a1e2"
   },
   "keyToStringList": {
@@ -153,7 +160,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ClubServiceTest.listCluber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ClubServiceTest.getCluberApply" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MOWAS" />
       <extension name="coverage">
         <pattern>
@@ -163,7 +170,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="club.service" />
       <option name="MAIN_CLASS_NAME" value="club.service.ClubServiceTest" />
-      <option name="METHOD_NAME" value="listCluber" />
+      <option name="METHOD_NAME" value="getCluberApply" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -218,7 +225,7 @@
       </method>
     </configuration>
     <configuration name="Tomcat 9.0.58" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.58" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="1.8" nameIsGenerated="true">
-      <option name="COMMON_VM_ARGUMENTS" value="-DFile.encoding=UTF-8" />
+      <option name="COMMON_VM_ARGUMENTS" value="-DFile.encoding=UTF-8 -Dconsole.encoding=UTF-8" />
       <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
       <deployment>
@@ -307,8 +314,8 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.ClubServiceTest.getCluberApply" />
       <item itemvalue="JUnit.ClubServiceTest.getCluber" />
-      <item itemvalue="JUnit.ClubServiceTest.listCluber" />
       <item itemvalue="JUnit.ClubServiceTest.listCluberApply" />
       <item itemvalue="JUnit.ClubServiceTest.updateClubCalendarApply" />
       <item itemvalue="JUnit.ClubServiceTest.updateCluber" />
@@ -316,11 +323,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ClubServiceTest.listCluberApply" />
+        <item itemvalue="JUnit.ClubServiceTest.getCluberApply" />
+        <item itemvalue="JUnit.ClubServiceTest.getCluber" />
         <item itemvalue="JUnit.ClubServiceTest.updateCluber" />
         <item itemvalue="JUnit.ClubServiceTest.updateClubCalendarApply" />
-        <item itemvalue="JUnit.ClubServiceTest.listCluberApply" />
-        <item itemvalue="JUnit.ClubServiceTest.listCluber" />
-        <item itemvalue="JUnit.ClubServiceTest.getCluber" />
       </list>
     </recent_temporary>
   </component>
@@ -349,6 +356,10 @@
       <workItem from="1664791732816" duration="7276000" />
       <workItem from="1664799031582" duration="4279000" />
       <workItem from="1664842795721" duration="15620000" />
+      <workItem from="1665130668613" duration="190000" />
+      <workItem from="1665130875501" duration="382000" />
+      <workItem from="1665131266802" duration="50000" />
+      <workItem from="1665131327325" duration="7334000" />
     </task>
     <task id="LOCAL-00001" summary="설정">
       <created>1664436990723</created>
