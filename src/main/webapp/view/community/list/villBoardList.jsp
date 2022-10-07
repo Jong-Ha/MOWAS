@@ -22,7 +22,7 @@
             var villBoardNum = $(this).parents(".cardbox").find(".villNum").val();
             var boardCategory = $(".boardCategory").val()
             console.log(villBoardNum);
-            location.href = "/commu/getVillBoard?villBoardNum="+villBoardNum;
+            location.href = "/commu/getVillBoard?villBoardNum="+villBoardNum+"&boardCategory="+boardCategory;
         })
 
         $(".add").on("click", function () {
@@ -246,8 +246,7 @@
         </div>
     </c:forEach>
 
-
 </div>
-
+<jsp:include page="/layout/chat.jsp"/>
 </body>
 </html>
