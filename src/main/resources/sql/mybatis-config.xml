@@ -16,6 +16,7 @@
 	<typeAliases>
 		<typeAlias alias="user" type="com.project.domain.User" />
 		<typeAlias alias="masterBoard" type="com.project.domain.MasterBoard" />
+		<typeAlias alias="communityReport" type="com.project.domain.CommunityReport" />
 		<typeAlias alias="interList" type="com.project.domain.UserInterList"/>
 		<typeAlias alias="deal" type="com.project.domain.Deal" />
 		<typeAlias alias="clubCalender" type="com.project.domain.ClubCalendar"/>
@@ -25,6 +26,7 @@
 		<typeAlias alias="like" type="com.project.domain.Like"/>
 		<typeAlias alias="comment" type="com.project.domain.Comment"/>
 		<typeAlias alias="recomment" type="com.project.domain.Recomment"/>
+
 	</typeAliases>
 
 	 <!-- SQL Definition :: file include -->
@@ -33,8 +35,8 @@
 		<mapper resource="sql/SiteMapper.xml" />
 		<mapper resource="sql/ClubCalenderMapper.xml" />
 		<mapper resource="sql/ClubMapper.xml" />
-		<!--<mapper resource="sql/DealMapper.xml" />-->
-		<mapper resource="sql/CommunityMapper.xml" />
+		<mapper resource="sql/DealMapper.xml" />
+<!--		<mapper resource="sql/CommunityMapper.xml" />-->
 		<!--<mapper resource="sql/UserMapper.xml" />
 		<mapper resource="sql/UserMapper.xml" />
 		<mapper resource="sql/UserMapper.xml" />

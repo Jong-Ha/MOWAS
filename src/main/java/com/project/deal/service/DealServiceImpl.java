@@ -3,6 +3,7 @@ package com.project.deal.service;
 import com.project.common.Search;
 import com.project.deal.dao.DealDao;
 import com.project.domain.Deal;
+import com.project.site.dao.SiteDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,14 @@ public class DealServiceImpl implements DealService {
     @Autowired
     @Qualifier("dealDaoImpl")
     private DealDao dealDao;
+    public void setDealDaoDao(DealDao dealDao) {
 
+        this.dealDao = dealDao;
+    }
+    public DealServiceImpl() {
+
+        System.out.println(this.getClass());
+    }
     @Override
     public void addDeal(Deal deal) throws Exception{
         dealDao.addDeal(deal);
@@ -47,7 +55,14 @@ public class DealServiceImpl implements DealService {
 
     @Override
     public Map<String, Object> getListDeal(Search search) throws Exception {
-        return null;
+        List<Deal> list=dealDao.getListDeal(search);
+        int totalCount = dealDao.getTotalCount(search);
+        System.out.println("여기까지는 옴 ?");
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("list", list );
+        map.put("totalCount", new Integer(totalCount));
+
+        return map;
     }
 
 //    @Override
