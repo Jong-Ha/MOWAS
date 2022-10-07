@@ -2,6 +2,7 @@ package com.project.site.service;
 
 import com.project.common.Page;
 import com.project.common.Search;
+import com.project.domain.ClubReport;
 import com.project.domain.CommunityReport;
 import com.project.domain.MasterBoard;
 import com.project.site.dao.SiteDao;
@@ -30,6 +31,7 @@ public class SiteServiceImpl implements SiteService {
         System.out.println(this.getClass());
     }
 
+    // 공지사항 CRUD
     @Override
     public void addMasterBoard(MasterBoard masterBoard) throws Exception {
         siteDao.addMasterBoard(masterBoard);
@@ -62,6 +64,7 @@ public class SiteServiceImpl implements SiteService {
         return map;
     }
 
+    //커뮤니티 신고 CRUD
     @Override
     public void addCommunityReport(CommunityReport communityReport) throws Exception {
         siteDao.addCommunityReport(communityReport);
@@ -73,11 +76,17 @@ public class SiteServiceImpl implements SiteService {
     }
 
     @Override
-    public Map<String, Object> listCommunityReport(int reportNo) throws Exception {
-        List<CommunityReport> list = siteDao.listCommunityReport(reportNo);
+    public Map<String, Object> listCommunityReport(Search search) throws Exception {
+        List<CommunityReport> list = siteDao.listCommunityReport(search);
+
+        Map<String,Object> totalCountmap = new HashMap<String, Object>();
+        totalCountmap.put("where", "communityReportList");
+        int totalCount = siteDao.getTotalCount(totalCountmap);
+
         Map<String,Object> map = new HashMap<String, Object>();
 
         map.put("list", list);
+        map.put("totalCount", new Integer(totalCount));
 
         return map;
     }
@@ -88,16 +97,65 @@ public class SiteServiceImpl implements SiteService {
     }
 
     @Override
-    public   Map<String, Object> listCommunityReportProcess(int reportNo) throws Exception {
-        List<CommunityReport> list = siteDao.listCommunityReportProcess(reportNo);
+    public   Map<String, Object> listCommunityReportProcess(Search search) throws Exception {
+        List<CommunityReport> list = siteDao.listCommunityReportProcess(search);
+
+        Map<String,Object> totalCountmap = new HashMap<String, Object>();
+        totalCountmap.put("where", "communityReportProcessList");
+
+        int totalCount = siteDao.getTotalCount(totalCountmap);
+
         Map<String,Object> map = new HashMap<String, Object>();
 
         map.put("list", list);
+        map.put("totalCount", new Integer(totalCount));
 
         return map;
     }
 
     public CommunityReport getCommunityReportProcess(int reportNo) throws Exception {
         return siteDao.getCommunityReportProcess(reportNo);
+    }
+
+    @Override
+    public void deleteCommunityReport(int reportNo) throws Exception {
+        siteDao.deleteCommunityReport(reportNo);
+    }
+
+    //모임 신고 CRUD
+    @Override
+    public void addClubReport(ClubReport clubReport) throws Exception {
+        siteDao.addClubReport(clubReport);
+    }
+
+    @Override
+    public  ClubReport getClubReport(int clubReportNo) throws Exception {
+        return siteDao.getClubReport(clubReportNo);
+    }
+
+    @Override
+    public Map<String, Object> listClubReport(Search search) throws Exception {
+        List<ClubReport> list = siteDao.listClubReport(search);
+
+        Map<String,Object> totalCountmap = new HashMap<String, Object>();
+        totalCountmap.put("where", "clubReportList");
+        int totalCount = siteDao.getTotalCount(totalCountmap);
+
+        Map<String,Object> map = new HashMap<String, Object>();
+
+        map.put("list", list);
+        map.put("totalCount", new Integer(totalCount));
+
+        return map;
+    }
+
+    @Override
+    public void processClubReport(ClubReport clubReport) throws Exception {
+        siteDao.processClubReport(clubReport);
+    }
+
+    @Override
+    public void deleteClubReport(int clubReportNo) throws Exception {
+        siteDao.deleteClubReport(clubReportNo);
     }
 }

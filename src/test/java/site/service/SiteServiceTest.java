@@ -138,12 +138,12 @@ public class SiteServiceTest {
     public void testAddCommuReport() throws Exception {
         CommunityReport commReport = new CommunityReport();
 
-        commReport.setBoardNo(10002);
-        commReport.setBoardCategory("02");
-        commReport.setReportId("user02");
-        commReport.setReportedId("user03");
-        commReport.setReportBasis('1');
-        commReport.setReportText("게시글에 욕설이 포함되었어요");
+        commReport.setBoardNo(10003);
+        commReport.setBoardCategory("03");
+        commReport.setReportId("user04");
+        commReport.setReportedId("user05");
+        commReport.setReportBasis('6');
+        commReport.setReportText("게시글에 정치적 발언이 포함되었어요");
 
         siteService.addCommunityReport(commReport);
 
@@ -189,5 +189,79 @@ public class SiteServiceTest {
 
         //==> console Ȯ��
         System.out.println(commReport);
+    }
+
+    @Test
+    public void testListCommunityReportAll() throws Exception{
+
+        Search search = new Search();
+        search.setCurrentPage(1);
+        search.setPageSize(3);
+
+        Map<String,Object> map = siteService.listCommunityReport(search);
+
+        List<Object> list = (List<Object>)map.get("List");
+
+        //Assert.assertEquals(3, list.size());
+
+        //==> console Ȯ��
+        System.out.println(list);
+
+        Integer totalCount = (Integer)map.get("totalCount");
+        System.out.println(totalCount);
+
+        System.out.println("=======================================");
+
+        search.setCurrentPage(1);
+        search.setPageSize(2);
+        search.setSearchCondition("1");
+        search.setSearchKeyword("");
+        map = siteService.listCommunityReport(search);
+
+        list = (List<Object>)map.get("list");
+        //Assert.assertEquals(3, list.size());
+
+        //==> console Ȯ��
+        //System.out.println(list);
+
+        totalCount = (Integer)map.get("totalCount");
+        System.out.println(totalCount);
+    }
+
+    @Test
+    public void testListCommunityReportProcessAll() throws Exception{
+
+        Search search = new Search();
+        search.setCurrentPage(1);
+        search.setPageSize(3);
+
+        Map<String,Object> map = siteService.listCommunityReportProcess(search);
+
+        List<Object> list = (List<Object>)map.get("List");
+
+        //Assert.assertEquals(3, list.size());
+
+        //==> console Ȯ��
+        System.out.println(list);
+
+        Integer totalCount = (Integer)map.get("totalCount");
+        System.out.println(totalCount);
+
+        System.out.println("=======================================");
+
+        search.setCurrentPage(1);
+        search.setPageSize(2);
+        search.setSearchCondition("1");
+        search.setSearchKeyword("");
+        map = siteService.listCommunityReportProcess(search);
+
+        list = (List<Object>)map.get("list");
+        //Assert.assertEquals(3, list.size());
+
+        //==> console Ȯ��
+        //System.out.println(list);
+
+        totalCount = (Integer)map.get("totalCount");
+        System.out.println(totalCount);
     }
  }
