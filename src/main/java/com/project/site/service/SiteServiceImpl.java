@@ -1,6 +1,8 @@
 package com.project.site.service;
 
+import com.project.common.Page;
 import com.project.common.Search;
+import com.project.domain.CommunityReport;
 import com.project.domain.MasterBoard;
 import com.project.site.dao.SiteDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,13 +52,52 @@ public class SiteServiceImpl implements SiteService {
 
     @Override
     public Map<String, Object> listMasterBoard(Search search) throws Exception {
-        List<MasterBoard> list = siteDao.listMasterBoard(search);
-        int totalCount = siteDao.getTotalCount(search);
+        List<MasterBoard> mblist = siteDao.listMasterBoard(search);
+        int totalCount = siteDao.getMbTotalCount(search);
 
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("mbList", list);
+        map.put("list", mblist);
         map.put("totalCount", new Integer(totalCount));
 
         return map;
+    }
+
+    @Override
+    public void addCommunityReport(CommunityReport communityReport) throws Exception {
+        siteDao.addCommunityReport(communityReport);
+    }
+
+    @Override
+    public  CommunityReport getCommunityReport(int reportNo) throws Exception {
+        return siteDao.getCommunityReport(reportNo);
+    }
+
+    @Override
+    public Map<String, Object> listCommunityReport(int reportNo) throws Exception {
+        List<CommunityReport> list = siteDao.listCommunityReport(reportNo);
+        Map<String,Object> map = new HashMap<String, Object>();
+
+        map.put("list", list);
+
+        return map;
+    }
+
+    @Override
+    public void processCommunityReport(CommunityReport communityReport) throws Exception {
+        siteDao.processCommunityReport(communityReport);
+    }
+
+    @Override
+    public   Map<String, Object> listCommunityReportProcess(int reportNo) throws Exception {
+        List<CommunityReport> list = siteDao.listCommunityReportProcess(reportNo);
+        Map<String,Object> map = new HashMap<String, Object>();
+
+        map.put("list", list);
+
+        return map;
+    }
+
+    public CommunityReport getCommunityReportProcess(int reportNo) throws Exception {
+        return siteDao.getCommunityReportProcess(reportNo);
     }
 }

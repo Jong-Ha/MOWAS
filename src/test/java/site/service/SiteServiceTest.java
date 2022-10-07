@@ -2,6 +2,7 @@ package site.service;
 
 import com.project.common.Page;
 import com.project.common.Search;
+import com.project.domain.CommunityReport;
 import com.project.domain.MasterBoard;
 import com.project.site.service.SiteService;
 
@@ -100,35 +101,93 @@ public class SiteServiceTest {
     public void testListMasterBoardAll() throws Exception{
 
         Search search = new Search();
-        Page page = new Page();
-        page.setCurrentPage(1);
-        page.setPageSize(3);
+        search.setCurrentPage(1);
+        search.setPageSize(5);
+
         Map<String,Object> map = siteService.listMasterBoard(search);
 
-        List<Object> list = (List<Object>)map.get("mbList");
-        Assert.assertEquals(3, list.size());
+        List<Object> list = (List<Object>)map.get("List");
+
+        //Assert.assertEquals(3, list.size());
 
         //==> console Ȯ��
-        //System.out.println(list);
+        System.out.println(list);
 
         Integer totalCount = (Integer)map.get("totalCount");
         System.out.println(totalCount);
 
         System.out.println("=======================================");
 
-        page.setCurrentPage(1);
-        page.setPageSize(3);
-        search.setSearchCondition("0");
+        search.setCurrentPage(1);
+        search.setPageSize(5);
+        search.setSearchCondition("1");
         search.setSearchKeyword("");
         map = siteService.listMasterBoard(search);
 
-        list = (List<Object>)map.get("mblist");
-        Assert.assertEquals(3, list.size());
+        list = (List<Object>)map.get("list");
+        //Assert.assertEquals(3, list.size());
 
         //==> console Ȯ��
         //System.out.println(list);
 
         totalCount = (Integer)map.get("totalCount");
         System.out.println(totalCount);
+    }
+
+    @Test
+    public void testAddCommuReport() throws Exception {
+        CommunityReport commReport = new CommunityReport();
+
+        commReport.setBoardNo(10002);
+        commReport.setBoardCategory("02");
+        commReport.setReportId("user02");
+        commReport.setReportedId("user03");
+        commReport.setReportBasis('1');
+        commReport.setReportText("게시글에 욕설이 포함되었어요");
+
+        siteService.addCommunityReport(commReport);
+
+        /*
+        commReport = siteService.getCommunityReport(10002);
+
+        //System.out.println(masterBoard);
+
+        Assert.assertEquals("admin3", commReport.getAdminId());
+        Assert.assertEquals("02", commReport.getBoardCategory());
+        Assert.assertEquals("user02", commReport.getReportId());
+        Assert.assertEquals("user03", commReport.getReportedId());
+        Assert.assertEquals("게시글에 욕설이 포함되었어요", commReport.getReportText());
+
+         */
+    }
+
+    @Test
+    public void testGetCommuReport() throws Exception {
+        CommunityReport commReport = new CommunityReport();
+
+        commReport = siteService.getCommunityReport(10000);
+
+        //==> console Ȯ��
+        System.out.println(commReport);
+
+        //==> API Ȯ��
+        //Assert.assertEquals("admin3", masterBoard.getAdminId());
+        //Assert.assertEquals('1', masterBoard.getMbCategory());
+        //Assert.assertEquals("공지사항 제목", masterBoard.getMbTitle());
+        //Assert.assertEquals("공지사항 세부 내역",masterBoard.getMbText());
+    }
+
+    @Test
+    public void testUpdateCommuReport() throws Exception{
+        CommunityReport commReport = siteService.getCommunityReport(10000);
+
+        commReport.setPpt(5);
+
+        siteService.processCommunityReport(commReport);;
+
+        commReport = siteService.getCommunityReport(10000);
+
+        //==> console Ȯ��
+        System.out.println(commReport);
     }
  }

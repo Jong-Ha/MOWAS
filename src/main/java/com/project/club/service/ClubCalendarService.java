@@ -15,8 +15,6 @@ public interface ClubCalendarService {
 
     void updateCalenderReview(ClubCalendarReview calenderReview);
 
-    void updateCalenderReviewShort(ClubCalendarReview calenderReview);
-
     void deleteCalenderReview(int calenderNum);
 
     Map<String, Object> listCalenderReview(int boardCategory);

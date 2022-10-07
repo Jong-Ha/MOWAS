@@ -1,6 +1,7 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
-<%@ page pageEncoding="EUC-KR" %>
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page pageEncoding="utf-8" %>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 
@@ -9,7 +10,7 @@
 <head>
     <meta charset="EUC-KR">
 
-    <!-- ÂüÁ¶ : http://getbootstrap.com/css/   ÂüÁ¶ -->
+    <!-- ì°¸ì¡° : http://getbootstrap.com/css/   ì°¸ì¡° -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->
@@ -43,7 +44,7 @@
     <!--  ///////////////////////// JavaScript ////////////////////////// -->
     <script type="text/javascript">
 
-        //============= È¸¿øÁ¤º¸¼öÁ¤ Event  Ã³¸® =============
+        //=============  Event  ì²˜ë¦¬ =============
         $(function () {
 
             $(".submit").on("click", function () {
@@ -73,21 +74,20 @@
 <body>
 
 <form>
-    <!--  È­¸é±¸¼º div Start /////////////////////////////////////-->
-
-    <input type="hidden" name="boardCategory" value="2">
-    <input type="hidden" name="clubCalenderReviewNum" value="10004">
+    <!--  í™”ë©´êµ¬ì„± div Start /////////////////////////////////////-->
     <div class="wap">
+        <input name="clubCalenderReviewNum" hidden value="${calenderReview.clubCalenderReviewNum}">
+        <input name="boardCategory" hidden value="${calenderReview.boardCategory}">
         <div class="container">
 
             <div class="page-header">
-                <h3 class=" text-info">¸ðÀÓ ÀÏÁ¤ ÈÄ±â¼îÃ÷ ÀÛ¼º</h3>
+                <h3 class=" text-info">ëª¨ìž„ ì¼ì • í›„ê¸°ì‡¼ì¸  ìž‘ì„±</h3>
             </div>
 
             <div class="row">
-                <div class="col-xs-4 col-xs-2"><strong>Á¦ ¸ñ</strong></div>
+                <div class="col-xs-4 col-xs-2"><strong>ì œ ëª©</strong></div>
                 <div class="col-xs-8 col-xs-4">
-                    <input type="text" class="form-control" name="reviewTitle" value=""/>
+                    <input type="text" class="form-control" name="reviewTitle" value="${calenderReview.reviewTitle}"/>
                 </div>
             </div>
 
@@ -96,8 +96,8 @@
 
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
-                    <strong>ÆÄÀÏ
-                        <input type="file" name="file" value="¿µ»ó Ã·ºÎ">
+                    <strong>íŒŒì¼
+                        <input type="file" name="file" value="ì˜ìƒ ì²¨ë¶€">
                     </strong>
                 </div>
             </div>
@@ -105,9 +105,9 @@
             <hr/>
 
             <select class="form-select " name="reviewRange" style="width: 300px;">
-                <option selected>°ø°³ ¿©ºÎ¸¦ ¼±ÅÃ ÇÏ¼¼¿ä</option>
-                <option value="1">ÀüÃ¼ °ø°³</option>
-                <option value="2">¸ðÀÓ °ø°³</option>
+                <option selected>ê³µê°œ ì—¬ë¶€ë¥¼ ì„ íƒ í•˜ì„¸ìš”</option>
+                <option value="1">ì „ì²´ ê³µê°œ</option>
+                <option value="2">ëª¨ìž„ ê³µê°œ</option>
             </select>
 
             <hr/>
@@ -117,8 +117,8 @@
 
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
-                    <strong>¸ðÀÓ ÀÏÁ¤ ³¯Â¥
-                        <input type="date" name="clubCalenderDate" value="¸ðÀÓ ÀÏÁ¤ ³¯Â¥">
+                    <strong>ëª¨ìž„ ì¼ì • ë‚ ì§œ
+                        <input type="date" name="clubCalenderDate" value="ëª¨ìž„ ì¼ì • ë‚ ì§œ">
                     </strong>
                 </div>
             </div>
@@ -127,8 +127,8 @@
 
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
-                    <strong>À§Ä¡
-                        <input type="button" name="location" value="À§Ä¡ ÀÔ·Â">
+                    <strong>ìœ„ì¹˜
+                        <input type="button" name="location" value="ìœ„ì¹˜ ìž…ë ¥">
                     </strong>
                 </div>
             </div>
@@ -138,8 +138,8 @@
 
             <div class="row">
                 <div class="col-xs-12 text-center ">
-                    <button type="button" class="btn btn-primary btn-lg submit">È®ÀÎ</button>
-                    <button type="button" class="btn btn-secondary btn-lg close">´Ý±â</button>
+                    <button type="button" class="btn btn-primary btn-lg submit">í™•ì¸</button>
+                    <button type="button" class="btn btn-secondary btn-lg close">ë‹«ê¸°</button>
                 </div>
             </div>
 

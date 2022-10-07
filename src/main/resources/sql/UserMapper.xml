@@ -45,7 +45,7 @@
     </insert>
 
     <select id="getUser"    parameterType="String" resultMap="userSelectMap">
-        SELECT user_id, master_check, user_status, password, user_name, rrd, gender, email,
+        SELECT user_id, master_check, user_status, password, user_name, gender, email,
                phone, vill_code, user_image, lcd, login_check, psd, ped, ppt, review_pt
         FROM users
         WHERE user_id=#{userId}
