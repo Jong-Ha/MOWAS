@@ -22,6 +22,9 @@ public interface UserService {
     //회원 아이디 중복 확인
     public boolean checkDupId(String userId)throws Exception;
 
+    //회원 주민등록번호 중복 확인
+    public boolean checkDupRrd(String rrd)throws Exception;
+
 
 
 /*

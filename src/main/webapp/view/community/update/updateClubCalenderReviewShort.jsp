@@ -49,24 +49,57 @@
 
             $(".submit").on("click", function () {
 
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Your work has been saved',
-                    showConfirmButton: false,
-                    timer: 1500,
+                var clubCalenderReviewNum = $(".clubCalenderReviewNum").val();
+                var boardCategory = $(".boardCategory").val();
+                var reviewTitle = $(".reviewTitle").val();
+                var reviewRange = $(".reviewRange").val();
+
+
+                $.ajax({
+                    url: "/clubCal/json/updateClubCalenderReview",
+                    method: "post",
+                    data: JSON.stringify({
+                        "clubCalenderReviewNum": clubCalenderReviewNum,
+                        "boardCategory": boardCategory,
+                        "reviewTitle": reviewTitle,
+                        "reviewRange": reviewRange,
+                    }),
+                    dataType: "json",
+                    contentType: 'application/json; charset=UTF-8',
+                    success: function (JSONData, result) {
+
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: '수정되었습니다',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+
+                        setTimeout(function () {
+                            //window.opener.location = "/clubCal/listCalenderReview?boardCategory="+1;
+                            opener.location.reload();
+                            window.close();
+                        }, 1500);
+                    },
+                    error: function (result, error) {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: '수정 실패ㅠㅠ',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    }
+
                 });
-
-                $("form").attr("method", "post").attr("action", "/clubCal/updateClubCalenderReview").submit();
-
             });
 
             $(".close").on("click", function () {
                 window.close();
             });
+
         });
-
-
     </script>
 
 </head>
@@ -76,8 +109,8 @@
 <form>
     <!--  화면구성 div Start /////////////////////////////////////-->
     <div class="wap">
-        <input name="clubCalenderReviewNum" hidden value="${calenderReview.clubCalenderReviewNum}">
-        <input name="boardCategory" hidden value="${calenderReview.boardCategory}">
+        <input name="clubCalenderReviewNum" class="clubCalenderReviewNum" hidden value="${calenderReview.clubCalenderReviewNum}">
+        <input name="boardCategory"  class="boardCategory" hidden value="${calenderReview.boardCategory}">
         <div class="container">
 
             <div class="page-header">
@@ -87,7 +120,7 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2"><strong>제 목</strong></div>
                 <div class="col-xs-8 col-xs-4">
-                    <input type="text" class="form-control" name="reviewTitle" value="${calenderReview.reviewTitle}"/>
+                    <input type="text" class="form-control reviewTitle" name="reviewTitle" value="${calenderReview.reviewTitle}"/>
                 </div>
             </div>
 
@@ -104,16 +137,13 @@
 
             <hr/>
 
-            <select class="form-select " name="reviewRange" style="width: 300px;">
+            <select class="form-select reviewRange" name="reviewRange" style="width: 300px;">
                 <option selected>공개 여부를 선택 하세요</option>
                 <option value="1">전체 공개</option>
                 <option value="2">모임 공개</option>
             </select>
 
             <hr/>
-
-
-
 
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
@@ -128,7 +158,7 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
                     <strong>위치
-                        <input type="button" name="location" value="위치 입력">
+                        <input type="button location" name="location" value="위치 입력">
                     </strong>
                 </div>
             </div>
@@ -148,7 +178,7 @@
         </div>
     </div>
 </form>
-
+<jsp:include page="/layout/chat.jsp"/>
 </body>
 
 </html>

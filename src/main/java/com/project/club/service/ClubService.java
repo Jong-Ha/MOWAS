@@ -16,6 +16,7 @@ public interface ClubService {
     public List<Club> listClub(String userId);
     public void addCluberApply(Cluber cluber);
     public void updateCluberApply(Cluber cluber);
+    public Cluber getCluberApplyUpdate(Cluber cluber);
     public void deleteCluberApply(int clubUserNum);
     public List<Cluber> listCluberApply(int clubNum);
     public String getCluberApply(int clubUserNum);
@@ -24,11 +25,12 @@ public interface ClubService {
     public void deleteClubManager(int clubUserNum);
     public void updateClubMaster(Cluber cluber);
     public void deleteCluber(Cluber cluber, String kickoutCheck);
+    public int getCluberDelete(Cluber cluber);
     public void addClubBlacklist(Cluber cluber);
     public void updateClubBlacklist(String process, List<Integer> clubUserNumList);
     public List<Cluber> listClubBlacklist(int clubNum);
     public String getClubBlacklist(int clubUserNum);
-    public void addClubMasterBoard(ClubMasterBoard clubMasterBoard);
+    public int addClubMasterBoard(ClubMasterBoard clubMasterBoard);
     public void updateClubMasterBoard(ClubMasterBoard clubMasterBoard);
     public void deleteClubMasterBoard(int clubMasterBoardNum);
     public List<ClubMasterBoard> listClubMasterBoard(int clubNum);
@@ -37,4 +39,7 @@ public interface ClubService {
     public void deleteClubCalendarApply(int clubCalendarNum, String userId);
     public List<CalendarCluber>listClubCalendarApply(int clubCalendarNum, String applyStatus);
     public void updateClubCalendarApply(int clubCalendarApplyNum, String process);
+    public List<Cluber> listCluber(int clubNum);
+    public Cluber getCluber(int clubUserNum);
+    public void updateCluber(Cluber cluber);
 }

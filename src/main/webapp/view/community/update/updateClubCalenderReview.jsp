@@ -48,19 +48,53 @@
         $(function () {
 
             $(".submit").on("click", function () {
+                var clubCalenderReviewNum = $(".clubCalenderReviewNum").val();
+                var boardCategory = $(".boardCategory").val();
+                var reviewTitle = $(".reviewTitle").val();
+                var reviewText = $(".reviewText").val();
+                var reviewRange = $(".reviewRange").val();
 
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: '수정되었습니다',
-                    showConfirmButton: false,
-                    timer: 1500,
+
+                $.ajax({
+                    url: "/clubCal/json/updateClubCalenderReview",
+                    method: "post",
+                    data: JSON.stringify({
+                        "clubCalenderReviewNum": clubCalenderReviewNum,
+                        "boardCategory": boardCategory,
+                        "reviewTitle": reviewTitle,
+                        "reviewText": reviewText,
+                        "reviewRange": reviewRange,
+                        "location": location
+                    }),
+                    dataType: "json",
+                    contentType: 'application/json; charset=UTF-8',
+                    success: function (JSONData, result) {
+
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: '수정되었습니다',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+
+                        setTimeout(function () {
+                            opener.location.reload();
+                            window.close();
+                        }, 1500);
+                    },
+                    error: function (result, error) {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: '수정 실패ㅠㅠ',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    }
+
                 });
-                $("form").attr("method", "post").attr("action", "/clubCal/updateClubCalenderReview").submit(function () {
 
-                });
-
-                self.close();
             });
 
             $(".close").on("click", function () {
@@ -76,8 +110,8 @@
 <body>
 
 <form>
-    <input name="clubCalenderReviewNum" hidden value="${calenderReview.clubCalenderReviewNum}">
-    <input name="boardCategory" hidden value="${calenderReview.boardCategory}">
+    <input name="clubCalenderReviewNum" class="clubCalenderReviewNum" hidden value="${calenderReview.clubCalenderReviewNum}">
+    <input name="boardCategory" class="boardCategory" hidden value="${calenderReview.boardCategory}">
 
     <div class="wap">
         <div class="container">
@@ -89,7 +123,8 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2"><strong>제 목</strong></div>
                 <div class="col-xs-8 col-xs-4">
-                    <input type="text" class="form-control" name="reviewTitle" value="${calenderReview.reviewTitle}"/>
+                    <input type="text" class="form-control reviewTitle" name="reviewTitle"
+                           value="${calenderReview.reviewTitle}"/>
                 </div>
             </div>
 
@@ -99,14 +134,14 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2"><strong>내용</strong></div>
                 <div class="col-xs-8 col-xs-4">
-                    <textarea class="form-control" name="reviewText"
+                    <textarea class="form-control reviewText" name="reviewText"
                               style=" height: 200px;  width: 500px;  margin-bottom: 20px;">${calenderReview.reviewText}</textarea>
                 </div>
             </div>
 
             <hr/>
 
-            <select class="form-select " name="reviewRange" style="width: 300px;">
+            <select class="form-select reviewRange" name="reviewRange" style="width: 300px;">
                 <option selected>공개 여부를 선택 하세요</option>
                 <option value="1">전체 공개</option>
                 <option value="2">모임 공개</option>
@@ -138,7 +173,7 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
                     <strong>위치
-                        <input type="button" name="location" value="위치 입력">
+                        <input type="button location" name="location" value="위치 입력">
                     </strong>
                 </div>
             </div>
@@ -158,7 +193,7 @@
         </div>
     </div>
 </form>
-
+<jsp:include page="/layout/chat.jsp"/>
 </body>
 
 </html>

@@ -65,6 +65,11 @@ public class ClubDaoImpl implements ClubDao {
     }
 
     @Override
+    public Cluber getCluberApplyUpdate(Cluber cluber) {
+        return sqlSession.selectOne("ClubMapper.getCluberApplyUpdate",cluber);
+    }
+
+    @Override
     public void deleteCluberApply(int clubUserNum) {
         sqlSession.delete("ClubMapper.deleteCluberApply",clubUserNum);
     }
@@ -117,6 +122,12 @@ public class ClubDaoImpl implements ClubDao {
     @Override
     public void deleteCluber(Map<String, Object> map) {
         sqlSession.update("ClubMapper.deleteCluber",map);
+    }
+
+    @Override
+    public int getCluberDelete(Cluber cluber) {
+        System.out.println(cluber);
+        return sqlSession.selectOne("ClubMapper.getCluberDelete",cluber);
     }
 
     @Override
@@ -208,5 +219,20 @@ public class ClubDaoImpl implements ClubDao {
     public void updateClubCalendarApply(Map<String, Object> map) {
         sqlSession.update("ClubMapper.updateClubCalendarApply", map);
 
+    }
+
+    @Override
+    public List<Cluber> listCluber(int clubNum) {
+        return sqlSession.selectList("ClubMapper.listCluber", clubNum);
+    }
+
+    @Override
+    public Cluber getCluber(int clubUserNum) {
+        return sqlSession.selectOne("ClubMapper.getCluber", clubUserNum);
+    }
+
+    @Override
+    public void updateCluber(Cluber cluber) {
+        sqlSession.update("ClubMapper.updateCluber", cluber);
     }
 }

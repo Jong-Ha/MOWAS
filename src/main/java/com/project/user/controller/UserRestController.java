@@ -1,21 +1,19 @@
 package com.project.user.controller;
 
-import com.project.domain.User;
 import com.project.domain.UserInterList;
 import com.project.user.service.UserService;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import java.util.HashMap;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/user/*")
+@RequestMapping("/user/json/*")
 public class UserRestController {
 
     @Autowired
@@ -23,12 +21,15 @@ public class UserRestController {
     private UserService userService;
 
 
-    @RequestMapping(value = "json/getUser", method = RequestMethod.POST)
-    public User getUser(@RequestBody User user, Model model)throws Exception{
-        System.out.println("json/getUser : POST 실행");
-        userService.getUser(user.getRrd());
-        model.addAttribute("user", user);
-        return user;
+    @RequestMapping(value = "checkDupRrd", method = RequestMethod.POST)
+    public Map<String, Object> checkDupRrd(@RequestBody String rrd)throws Exception{
+        System.out.println("json/checkDupRrd : POST 실행");
+        boolean result=userService.checkDupRrd(rrd);
+        Map<String,Object> map = new HashMap<String, Object>();
+
+        map.put("result", new Boolean(result));
+        map.put("rrd",rrd);
+        return map;
     }
 
 

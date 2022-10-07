@@ -162,11 +162,11 @@ public class ClubCalendarController {
         System.out.println("모임 일정 후기 수정 : " + calenderReview);
 
         calenderService.updateCalenderReview(calenderReview);
-        if(calenderReview.getBoardCategory() == 1){
+    /*    if(calenderReview.getBoardCategory() == 1){
             return "forward:/view/community/list/clubCalenderReviewList.jsp";
         } else if (calenderReview.getBoardCategory() == 2) {
             return "forward:/view/community/list/clubCalenderReviewShortList.jsp";
-        }
+        }*/
         return null;
     }
 

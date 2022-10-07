@@ -56,6 +56,11 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
+    public Cluber getCluberApplyUpdate(Cluber cluber) {
+        return clubDao.getCluberApplyUpdate(cluber);
+    }
+
+    @Override
     public void deleteCluberApply(int clubUserNum) {
         clubDao.deleteCluberApply(clubUserNum);
     }
@@ -111,6 +116,11 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
+    public int getCluberDelete(Cluber cluber) {
+        return clubDao.getCluberDelete(cluber);
+    }
+
+    @Override
     public void addClubBlacklist(Cluber cluber) {
         clubDao.addClubBlacklist(cluber);
     }
@@ -134,7 +144,7 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public void addClubMasterBoard(ClubMasterBoard clubMasterBoard) {
+    public int addClubMasterBoard(ClubMasterBoard clubMasterBoard) {
         clubDao.addClubMasterBoard(clubMasterBoard);
         int clubMasterBoardNum = clubDao.getClubMasterBoardNum(clubMasterBoard.getUserId());
         List<File> files = clubMasterBoard.getFiles();
@@ -142,6 +152,7 @@ public class ClubServiceImpl implements ClubService {
             file.setBoardNum(clubMasterBoardNum);
             clubDao.addClubMasterBoardFile(file);
         }
+        return  clubMasterBoardNum;
     }
 
     @Override
@@ -208,5 +219,20 @@ public class ClubServiceImpl implements ClubService {
         map.put("clubCalendarApplyNum", clubCalendarApplyNum);
         map.put("process", process);
         clubDao.updateClubCalendarApply(map);
+    }
+
+    @Override
+    public List<Cluber> listCluber(int clubNum) {
+        return clubDao.listCluber(clubNum);
+    }
+
+    @Override
+    public Cluber getCluber(int clubUserNum) {
+        return clubDao.getCluber(clubUserNum);
+    }
+
+    @Override
+    public void updateCluber(Cluber cluber) {
+        clubDao.updateCluber(cluber);
     }
 }
