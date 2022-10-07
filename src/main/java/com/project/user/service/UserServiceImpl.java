@@ -47,6 +47,15 @@ public class UserServiceImpl implements UserService{
         return result;
     }
 
+    public boolean checkDupRrd(String rrd)throws Exception{
+          boolean result=true;
+          User user = userDao.checkDupRrd(rrd);
+          if(user !=null){
+              result=false;
+          }
+          return result;
+    }
+
 
 
 

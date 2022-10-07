@@ -1,5 +1,6 @@
 package com.project.user.controller;
 
+import com.project.common.Search;
 import com.project.domain.User;
 import com.project.user.service.UserService;
 import org.json.simple.JSONObject;
@@ -47,14 +48,14 @@ public class UserController {
     @RequestMapping(value = "addUser",method = RequestMethod.GET)
     public String addUser() throws Exception{
         System.out.println("/user/addUser : GET 실행");
-        return "foward:/view/user/addUser.jsp";
+        return "forward:/view/user/addUser.jsp";
     }
 
     @RequestMapping(value = "addUser",method = RequestMethod.POST)
     public String addUser(@ModelAttribute("user") User user) throws Exception{
         System.out.println("/user/addUser : POST 실행");
         userService.addUser(user);
-        return "foward:/view/user/main.jsp";
+        return "forward:/view/user/main.jsp";
     }
 
     @RequestMapping(value = "getUser", method = RequestMethod.GET)
@@ -62,13 +63,13 @@ public class UserController {
         System.out.println("/user/getUser : GET 실행");
         User user = userService.getUser(userId);
         model.addAttribute("user", user);
-        return "foward:/view/user/getUser.jsp";
+        return "forward:/view/user/getUser.jsp";
     }
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String login() throws Exception{
         System.out.println("/user/login : GET 실행");
-        return "foward:/view/user/login.jsp";
+        return "redirect:/view/user/login.jsp";
     }
 
     @RequestMapping(value = "login",method = RequestMethod.POST)
@@ -93,6 +94,11 @@ public class UserController {
         return "redirect:/view/user/main.jsp";
     }
 
+    @RequestMapping(value="listUser")
+    public String listUser(@ModelAttribute("search")Search search, Model model)throws Exception{
+
+        return "forward:/view/user/listUser.jsp";
+    }
 
 
 

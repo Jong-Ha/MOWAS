@@ -291,10 +291,7 @@
     </div>
 </div>
 
-<hr>
+<jsp:include page="/layout/chat.jsp"/>
 
-Installation
-For information on how to install and use Bootstrap for Sass, consult the GitHub repository readme. It's the most up to
-date source and includes information for use with Rails, Compass, and standard Sass projects.
 </body>
 </html>

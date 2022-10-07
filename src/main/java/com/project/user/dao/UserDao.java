@@ -12,6 +12,8 @@ public interface UserDao {
 
     public User getUser(String userId)throws Exception;
 
+    public User checkDupRrd(String rrd)throws Exception;
+
     public void updateUser(User user)throws Exception;
 
 

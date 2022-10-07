@@ -56,7 +56,13 @@ values (seq_deal.NEXTVAL,
 <!--    &lt;!&ndash;게시물 상세조회&ndash;&gt;-->
     <select id="getDeal" parameterType="int" resultMap="dealSelectMap">
         SELECT
-            *
+            deal_board_num,
+            user_id,
+            deal_title,
+            deal_text,
+            price,
+            product_name,
+            tag
 from deal
 where deal_board_num=#{dealBoardNum}
     </select>
@@ -85,15 +91,15 @@ WHERE deal_board_num=#{dealBoardNum};
         </where>
     </delete>
     <!--게시물 목록 조회.. .-->
-    <select id="getListDeal" parameterType="search" resultMap="DealSelectMap">
+    <select id="getListDeal" parameterType="search" resultMap="dealSelectMap">
         SELECT *
         FROM( SELECT inner_table.* , ROWNUM AS row_seq
-        FROM	(SELECT *
+        FROM	(SELECT deal_board_num,deal_title,deal_text
         FROM deal
         <if test="searchCondition != null">
             <where>
                 <if test="searchCondition == 0 and searchKeyword !='' ">
-                    product_num LIKE '%' ||#{searchKeyword:INTEGER} ||'%'
+                    product_name LIKE '%' ||#{searchKeyword:INTEGER} ||'%'
                 </if>
                 <if test="searchCondition == 1 and searchKeyword !='' ">
                     tag Like '%'|| #{searchKeyword}||'%'
@@ -102,9 +108,25 @@ WHERE deal_board_num=#{dealBoardNum};
             </where>
         </if>
         ORDER BY deal_board_num) inner_table
-        WHERE ROWNUM &lt;= #{endRowNum} )
-        WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum}
+        WHERE ROWNUM >= #{endRowNum})
     </select>
+<!--    WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum}-->
 
+
+    <select  id="getTotalCount"  parameterType="search"	 resultType="int">
+        SELECT COUNT(*)
+        FROM(	SELECT deal_board_num,deal_title,deal_text
+        FROM deal
+        <if test="searchCondition != null">
+            <where>
+                <if test="searchCondition == 0 and searchKeyword !='' ">
+                    deal_board_num= to_char(#{searchKeyword})
+                </if>
+                <if test="searchCondition == 1 and searchKeyword !='' ">
+                    tag = ${searchKeyword}
+                </if>
+            </where>
+        </if> ) countTable
+    </select>
 
 </mapper>

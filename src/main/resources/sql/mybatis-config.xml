@@ -16,14 +16,15 @@
 	<typeAliases>
 		<typeAlias alias="user" type="com.project.domain.User" />
 		<typeAlias alias="masterBoard" type="com.project.domain.MasterBoard" />
+		<typeAlias alias="communityReport" type="com.project.domain.CommunityReport" />
+		<typeAlias alias="clubReport" type="com.project.domain.ClubReport" />
+		<typeAlias alias="deal" type="com.project.domain.Deal"/>
 		<typeAlias alias="interList" type="com.project.domain.UserInterList"/>
-		<typeAlias alias="deal" type="com.project.domain.Deal" />
 		<typeAlias alias="clubCalender" type="com.project.domain.ClubCalendar"/>
 		<typeAlias alias="search" type="com.project.common.Search"/>
 		<typeAlias alias="calenderReview" type="com.project.domain.ClubCalendarReview"/>
 		<typeAlias alias="villBoard" type="com.project.domain.VilBoard"/>
 		<typeAlias alias="like" type="com.project.domain.Like"/>
-		<typeAlias alias="communityReport" type="com.project.domain.CommunityReport"/>
 		<typeAlias alias="comment" type="com.project.domain.Comment"/>
 		<typeAlias alias="recomment" type="com.project.domain.Recomment"/>
 	</typeAliases>
@@ -34,7 +35,7 @@
 		<mapper resource="sql/SiteMapper.xml" />
 		<mapper resource="sql/ClubCalenderMapper.xml" />
 		<mapper resource="sql/ClubMapper.xml" />
-		<!--<mapper resource="sql/DealMapper.xml" />-->
+		<mapper resource="sql/DealMapper.xml" />
 		<mapper resource="sql/CommunityMapper.xml" />
 		<!--<mapper resource="sql/UserMapper.xml" />
 		<mapper resource="sql/UserMapper.xml" />
