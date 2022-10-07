@@ -56,15 +56,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
         $("form").attr("method","POST").attr("action","/user/addUser").submit();
 
       });
@@ -162,9 +153,9 @@
 
             <div class="col-12 ">
               <label for="rrd" class="form-label">주민등록번호</label>
-              <div hidden class="rrdtext"></div>
+              <div hidden class="rrdtext">ㅎ러ㅗ?러ㅗㅎ러</div>
               <div class="input-group has-validation">
-                <input type="text" class="form-control" id="rrd" name="rrd" maxLength="13" required>
+                <input type="text" class="form-control" id="rrd" name="rrd" maxLength="14" required>
                 <div class="invalid-feedback"></div>
               </div>
               <button type="button" class="btn btn-primary btn-sm CheckRrd">중복 확인</button>
