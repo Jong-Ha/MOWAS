@@ -53,37 +53,16 @@
         var email=$("input[id='CheckEamil']").val();
         var phone=$("input[id='CheckPhone']").val();
 
-        if(id==null||id.length<1){
-          alert("아이디를 입력해주세요");
-          return;
-        }
-        if(pw==null||pw.length<1){
-          alert("비밀번호를 입력해주세요");
-          return;
-        }
-        if(pw2==null||pw2.length<1){
-          alert("비밀번호 확인란을 입력해주세요");
-          return;
-        }
-        if(name==null||name.length<1){
-          alert("이름을 입력해주세요");
-          return;
-        }
-        if(pw != pw2){
-          alert("비밀번호 확인이 일치하지 않습니다");
-          $("#password2").focus();
-          return;
-        }
 
 
 
 
 
 
-          if(email != "" && (email.indexOf('@') < 1 || email.indexOf('.') == -1)){
-            alert("이메일 형식이 아닙니다.");
-            return;
-          }
+
+
+
+
 
 
         $("form").attr("method","POST").attr("action","/user/addUser").submit();
@@ -93,27 +72,36 @@
 
 
        $(".CheckRrd").on("click",function (){
-           $.ajax(
+         var rrdCheck=$("input[name='rrd']").val();
+         alert(rrdCheck)
+           $.post("/user/json/checkDupRrd",
               {
-                url : "/user/json/getUser",
-                method : "POST",
-                data :{
-                  rrd : $("#rrd").val()
-                },
-                dataType : "json",
-                success : function (JSONData, status){
-                  var displayValue = "이미 가입한 회원입니다."
 
-                  $(".CheckRrd").val(displayValue);
-                }
+                  rrd : rrdCheck
+                },
+                function (map){
+                  if(map.result) {
+                    $(".rrdtext").show();
+                    $(".rrdtext").html('회원가입할 수 있습니다');
+                  } else{
+                    $(".rrdtext").show();
+                    $(".rrdtext").html('이미 가입한 회원입니다');
+                  }
+
+                });
+         alert('이건되낭?')
               });
-         });
+
+
+
+
+
 
 
 
       $(function (){
         $(".cancle").on("click",function (){
-          $("form").reset();
+          $("form")[0].reset();
         });
       });
 
@@ -140,7 +128,7 @@
           <div class="row g-3">
             <div class="col-sm">
               <label for="id" class="form-label">아이디</label>
-              <input type="text" class="form-control" id="Id" name="id" maxLength="20" required>
+              <input type="text" class="form-control" id="Id" name="userId" maxLength="20" required>
               <div class="invalid-feedback">
                 Valid first name is required.
               </div>
@@ -165,15 +153,16 @@
             <div class="col-12">
               <label for="username" class="form-label">이름</label>
               <div class="input-group has-validation">
-                <input type="text" class="form-control" id="username" name="username"  required>
+                <input type="text" class="form-control" id="username" name="userName"  required>
               <div class="invalid-feedback">
                   Your username is required.
                 </div>
               </div>
             </div>
 
-            <div class="col-12">
+            <div class="col-12 ">
               <label for="rrd" class="form-label">주민등록번호</label>
+              <div hidden class="rrdtext"></div>
               <div class="input-group has-validation">
                 <input type="text" class="form-control" id="rrd" name="rrd" maxLength="13" required>
                 <div class="invalid-feedback"></div>
@@ -191,22 +180,23 @@
             </div>
             <h6>이메일 또는 휴대폰번호 인증하기(택1)</h6>
             <div class="col-12">
-              <input type="radio" class="form-check-input" id="CheckEamil" checked required>
-              <label for="email" class="form-label">이메일 <span class="text-muted"> </span></label>
-              <input type="email" class="form-control userEmail" id="email" name="email" value="you@email.com">
+              <label for="CheckEamil" class="form-label"><input type="radio" class="form-check-input" id="CheckEamil" required>
+              이메일</label>
+              <input type="email" class="form-control userEmail" id="email" name="email" >
               <input type="text" class="form-control CheckEmailKey" value="인증번호 입력" required>
               <button type="button" class="btn btn-primary btn-sm emailKey">인증번호 요청</button>
               <button type="button" class="btn btn-secondary btn-sm CheckEmailKey">인증 확인</button>
             </div>
 
             <div class="col-12">
-              <input type="radio" class="form-check-input" id="CheckPhone" required>
-              휴대폰번호
-            <input type="tel" class="form-control" name="sms" >
-            <input type="text" class="form-control" value="인증번호 입력" >
+              <label for="CheckPhone" class="form-label"><input type="radio" class="form-check-input" id="CheckPhone" required>
+              휴대폰번호</label>
+            <input type="tel" class="form-control" name="phone" >
+            <input type="text" class="form-control" id="CheckSms" value="인증번호 입력" >
             <button type="button" class="btn btn-primary btn-sm smsKey">인증번호 요청</button>
               <button type="button" class="btn btn-secondary btn-sm CheckSmsKey">인증 확인</button>
             </div>
+          </div>
 
             <div class="col-12">
               <label for="address" class="form-label">동네인증</label>
@@ -220,7 +210,7 @@
                   <li><a class="dropdown-item" >중구</a></li>
                   <li><a class="dropdown-item" >광진구</a></li>
                 </ul>
-                <input type="text" id="ssv3-location-label" required>
+                <input type="text" id="ssv3-location-label" name="villCode" required>
                 <button type="button" class="btn btn-primary btn-sm">동네인증 요청</button>
 
               <div class="invalid-feedback">
@@ -262,8 +252,17 @@
 
             <div class="col-md-4">
               <label for="userImage" class="form-label">회원 사진 등록</label>
-              <input type="file" id="userImage">
+              <input type="file" id="userImage" name="userImage">
             </div>
+
+            <input hidden class="masterCheck" name="masterCheck" value="0">
+            <input hidden class="userStatus" name="userStatus" value="0">
+            <input hidden class="lcd" name="lcd" value="2022-10-10">
+              <input hidden class="loginCheck" name="loginCheck" value="0">
+              <input hidden class="psd" name="psd" value="">
+              <input hidden class="ped" name="ped" value="">
+              <input hidden class="ppt" name="ppt" value="0">
+              <input hidden class="reviewPt" name="reviewPt" value="0">
 
 
           </div>
@@ -274,7 +273,7 @@
               <div class="invalid-feedback">
             </div>
           </div>
-          </div>
+
         </form>
       </div>
   </main>

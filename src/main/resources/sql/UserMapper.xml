@@ -35,8 +35,8 @@
     <insert      id="addUser"     parameterType="user" >
         INSERT INTO users(user_id, master_check, user_status, password, user_name, rrd, gender, email,
                           phone, vill_code, user_image, lcd, login_check, psd, ped, ppt, review_pt)
-        values(#{userId}, #{masterCheck}, #{userStatus}, #{password}, #{userName}, #{rrd}, #{gender}, #{email},
-               #{phone}, #{villCode}, #{userImage}, #{lcd,jdbcType=DATE}, #{loginCheck}, #{psd,jdbcType=DATE}, #{ped,jdbcType=DATE}, #{ppt}, #{reviewPt})
+        values(#{userId:VARCHAR}, #{masterCheck:CHAR}, #{userStatus:CHAR}, #{password:VARCHAR}, #{userName:VARCHAR}, #{rrd:NUMERIC}, #{gender:VARCHAR}, #{email:VARCHAR},
+               #{phone:NUMERIC}, #{villCode:VARCHAR}, #{userImage:VARCHAR}, #{lcd,jdbcType=DATE}, #{loginCheck:CHAR}, #{psd,jdbcType=DATE}, #{ped,jdbcType=DATE}, #{ppt:NUMERIC}, #{reviewPt:NUMERIC})
     </insert>
 
     <insert      id="addInterList"     parameterType="interList" >
@@ -49,6 +49,12 @@
                phone, vill_code, user_image, lcd, login_check, psd, ped, ppt, review_pt
         FROM users
         WHERE user_id=#{userId}
+    </select>
+
+    <select id="checkDupRrd" parameterType="String" resultMap="userSelectMap">
+        SELECT rrd
+        FROM users
+        WHERE rrd=#{rrd}
     </select>
 
     <update id="updateUser" parameterType="user">

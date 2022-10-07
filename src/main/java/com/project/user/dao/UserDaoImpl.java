@@ -17,11 +17,7 @@ public class UserDaoImpl implements UserDao{
     public void setSqlSession(SqlSession sqlSession){
         this.sqlSession = sqlSession;
     }
-  //  private MailApp mailApp;
-  // public void setMailApp(MailApp mailApp){
-  //      this.mailApp = mailApp;
-  //  }
-//
+
     public UserDaoImpl() {
         System.out.println(this.getClass());
     }
@@ -41,6 +37,10 @@ public class UserDaoImpl implements UserDao{
 
     public void updateUser(User user)throws Exception{
         sqlSession.update("UserMapper.updateUser", user);
+    }
+
+    public User checkDupRrd(String rrd)throws Exception{
+        return sqlSession.selectOne("UserMapper.checkDupRrd", rrd);
     }
 
 
