@@ -212,11 +212,13 @@
     <!--그냥 다 찾기-->
     <select id="listClub" parameterType="map" resultMap="ClubResultMap">
         SELECT c.*, l.like_check
-        FROM club c, likes l
-        WHERE c.club_num = l.board_num(+)
-          AND (l.board_category = '12' OR l.board_category IS NULL)
-          AND (l.user_id = #{userId} OR l.user_id IS NULL)
-          AND c.club_delete_check = '0'
+        FROM club c, (SELECT board_num,
+                             like_check
+                      FROM likes
+                      WHERE board_category = '12'
+                        AND user_id = #{userId}) l
+        WHERE c.club_delete_check = '0'
+          AND c.club_num = l.board_num(+)
     </select>
 
     <!--clubService.addCluberApply-->
@@ -254,6 +256,19 @@
             club_user_num = #{clubUserNum}
         </where>
     </update>
+
+    <!--clubService.getCluberApplyUpdate-->
+    <!--신청 수정 시 조회-->
+    <select id="getCluberApplyUpdate" parameterType="com.project.domain.Cluber" resultMap="CluberResultMap">
+        SELECT club_user_num,
+               cluber_text
+        FROM club_user
+        <where>
+            club_num = #{clubNum}
+            AND user_id = #{user.userId}
+            AND cluber_status = '2'
+        </where>
+    </select>
 
     <!--clubService.deleteCluberApply-->
     <!--신청중인 거 삭제-->
@@ -383,6 +398,17 @@
         </where>
     </update>
 
+    <!--탈퇴 요청 시 조회-->
+    <select id="getCluberDelete" parameterType="com.project.domain.Cluber" resultType="int">
+        SELECT club_user_num
+        FROM club_user
+        <where>
+            club_num = #{clubNum}
+            AND user_id = #{user.userId}
+            AND cluber_status IN ('4','5')
+        </where>
+    </select>
+
     <!--모임원 수 감소-->
     <update id="updateClubDeleteCluber" parameterType="int">
         UPDATE club
@@ -411,7 +437,8 @@
                blacklist_text,
                blacklist_check
         FROM club_user
-        WHERE club_num = #{clubNum};
+        WHERE club_num = #{clubNum}
+          AND cluber_status IN ('4','5','6','7','8')
     </select>
 
     <!--clubService.getCluber-->
@@ -431,8 +458,16 @@
                blacklist_text,
                blacklist_check
         FROM club_user
-        WHERE club_user_num = #{clubUserNum};
+        WHERE club_user_num = #{clubUserNum}
     </select>
+
+    <!--clubService.updateCluber-->
+    <!--모임원 자기소개 수정-->
+    <update id="updateCluber" parameterType="com.project.domain.Cluber">
+        UPDATE club_user
+        SET cluber_text = #{cluberText}
+        WHERE club_user_num = #{clubUserNum}
+    </update>
 
     <!--clubService.addClubBlacklist-->
     <!--블랙리스트 추가-->
@@ -450,7 +485,7 @@
         ) VALUES(
                     seq_club_user.nextval,
                     #{user.userId},
-                    #{user.userImage},
+                    (SELECT user_image FROM users WHERE user_id = #{user.userId}),
                     #{clubNum},
                     '9',
                     SYSDATE,

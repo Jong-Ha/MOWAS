@@ -5,15 +5,16 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Date;
+import java.util.List;
 
 @Getter
 @Setter
 @ToString
 public class Deal {
+    private User user;
     private int dealBoardNum;
     private int boardCategory;
     private int dealStatus;
-    private String userId;
     private String dealTitle;
     private String dealText;
     private Date dealRegDate;
@@ -30,5 +31,6 @@ public class Deal {
     private Date dealEndDate;
     private Date dealDate;
     private String dealLocation;
+    List<File> files;
 
 }

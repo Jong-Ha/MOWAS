@@ -13,46 +13,46 @@ import java.util.List;
 @Repository("dealDaoImpl")
 public class DealDaoImpl implements DealDao{
     @Autowired
-    @Qualifier("sqlSessionTemplate")
+    @Qualifier(value = "sqlSessionTemplate")
     private SqlSession sqlSession;
-    public void setSqlSession(SqlSession sqlSession){
-        this.sqlSession=sqlSession;
-    }
 
     public DealDaoImpl(){
-        System.out.println(this.getClass());
+
     }
 
 
-
-
-//    @Override
-    //public List<Deal> ListDeal(Search search) throws Exception {
-    //    return null;
-    //}
-
     @Override
-    public void addDeal(Deal deal)  {
-        sqlSession.insert("DealMapper.addDeal",deal);
+    public void addDeal(Deal deal)throws Exception{
+            sqlSession.insert("DealMapper.addDeal", deal);
     }
 
-    @Override
-    public Deal getDeal(int dealBoardNum){
-        return sqlSession.selectOne("DealMapper.getDeal", dealBoardNum);
+    public Deal getDeal(int dealBoradNum) throws Exception {
+        System.out.println("DAOIMPL"+dealBoradNum);
+        return sqlSession.selectOne("DealMapper.getDeal", dealBoradNum);
     }
 
+
     @Override
-    public void updateDeal(Deal deal) {
+    public void updateDeal(Deal deal)throws Exception {
         sqlSession.update("DealMapper.updateDeal", deal);
     }
 
     @Override
-    public void deleteDeal(Deal deal) {
-        sqlSession.delete("DealMapper.deleteDeal", deal);
+    public void deleteDeal(Deal deal)throws Exception {
+sqlSession.delete("DealMapper.deleteDeal", deal);
     }
 
     @Override
-    public List<Deal> getListDeal(Search search) {
-        return sqlSession.selectList("DealMapper.getListDeal",search);
+    public List<Deal> getListDeal(Search search) throws Exception {
+        System.out.println("이거 맞아요 ?");
+
+        return sqlSession.selectList("DealMapper.getListDeal", search);
     }
+
+    @Override
+    public int getTotalCount(Search search) throws Exception {
+        return sqlSession.selectOne("DealMapper.getTotalCount",search);
+    }
+
+
 }

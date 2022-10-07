@@ -362,10 +362,13 @@
 
 
                 $(".update").on("click", function () {
-
-                    window.open("/view/community/update/updateClubCalenderReview.jsp", "모임 일정 후기글 수정",
+                    var  boardNum = $(".boardNum").val()
+                    var boardCatagory = $(".boardCategory").val()
+                    window.open(
+                        "/clubCal/updateClubCalenderReview?clubCalenderReviewNum="+boardNum+"&boardCategory="+boardCatagory, "모임 일정 후기글 수정",
                         "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no"
                     )
+
                 });
             });
 
@@ -500,11 +503,7 @@
                 })
 
 
-                $(".update").on("click", function () {
-                    window.open("/view/community/update/updateVillBoard.jsp", "우리 동네 게시글 수정",
-                        "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no"
-                    )
-                });
+
             });
         });
     </script>
@@ -520,6 +519,8 @@
     <div class="wap shadow-lg">
 
         <jsp:include page="/layout/toolbar.jsp"/>
+
+        <jsp:include page="/layout/commubar.jsp"/>
 
         <div class="usedbox">
             <div class="thumbnailBox">
@@ -881,5 +882,6 @@
     </div>
 
 </div>
+<jsp:include page="/layout/chat.jsp"/>
 </body>
 </html>

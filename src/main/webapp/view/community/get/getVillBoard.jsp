@@ -446,7 +446,11 @@
 
 
             $(".update").on("click", function () {
-                window.open("/view/community/update/updateVillBoard.jsp", "우리 동네 게시글 수정",
+                var boardNum = $(".villBoardNum").val();
+                var boardCategory = $(".boardCategory").val()
+
+                window.open(
+                    "/commu/updateVillBoard?boardNum="+boardNum, "우리 동네 게시글 수정",
                     "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no"
                 )
             })
@@ -463,6 +467,7 @@
 
         <jsp:include page="/layout/toolbar.jsp"/>
 
+        <jsp:include page="/layout/commubar.jsp"/>
         <div class="usedbox">
             <div class="thumbnailBox">
                 <div class="shadow-lg midle"
@@ -826,6 +831,6 @@
 
     </div>
 </div>
-
+<jsp:include page="/layout/chat.jsp"/>
 </body>
 </html>
