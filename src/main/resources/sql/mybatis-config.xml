@@ -23,6 +23,7 @@
 		<typeAlias alias="calenderReview" type="com.project.domain.ClubCalendarReview"/>
 		<typeAlias alias="villBoard" type="com.project.domain.VilBoard"/>
 		<typeAlias alias="like" type="com.project.domain.Like"/>
+		<typeAlias alias="communityReport" type="com.project.domain.CommunityReport"/>
 		<typeAlias alias="comment" type="com.project.domain.Comment"/>
 		<typeAlias alias="recomment" type="com.project.domain.Recomment"/>
 	</typeAliases>
