@@ -18,5 +18,4 @@ public interface DealDao {
    //public List<Deal> listDeal();
    public int getTotalCount(Search search) throws Exception ;
     // 게시판 currentPage Row 만  return
-    public String makeCurrentPageSql(String sql, Search search);
 }

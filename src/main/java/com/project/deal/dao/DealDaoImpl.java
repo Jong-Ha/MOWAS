@@ -44,6 +44,8 @@ sqlSession.delete("DealMapper.deleteDeal", deal);
 
     @Override
     public List<Deal> getListDeal(Search search) throws Exception {
+        System.out.println("이거 맞아요 ?");
+
         return sqlSession.selectList("DealMapper.getListDeal", search);
     }
 
@@ -52,9 +54,5 @@ sqlSession.delete("DealMapper.deleteDeal", deal);
         return sqlSession.selectOne("DealMapper.getTotalCount",search);
     }
 
-    @Override
-    public String makeCurrentPageSql(String sql, Search search) {
-        return null;
-    }
 
 }

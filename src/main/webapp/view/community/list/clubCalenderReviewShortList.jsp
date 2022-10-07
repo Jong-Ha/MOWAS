@@ -245,6 +245,8 @@
             </div>
     </c:forEach>
 </div>
+
+<jsp:include page="/layout/chat.jsp"/>
 </body>
 
 <

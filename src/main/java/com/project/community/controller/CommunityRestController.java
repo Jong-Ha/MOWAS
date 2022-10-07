@@ -183,4 +183,15 @@ public class CommunityRestController {
 
         return 0;
     }
+
+    @RequestMapping(value = "updateVillBoard" , method = RequestMethod.POST)
+    public int updateVillBoard(@RequestBody VilBoard vilBoard){
+
+        System.out.println("우리동네 게시판 수정 : "+ vilBoard);
+
+
+        communityService.updateVillBoard(vilBoard);
+
+        return 0;
+    }
 }
