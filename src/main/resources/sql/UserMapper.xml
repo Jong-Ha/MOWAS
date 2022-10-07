@@ -69,5 +69,24 @@
         WHERE user_id=#{userId}
     </update>
 
+    <select id="listUser" parameterType="Seach" resultMap="userSelectmap">
+        select * from(
+            select Rounum row _num, vt.* from(
+            <include refid="listusd"></include>
+                ) vt
+            <include refid="">
+
+    </include>
+            )
+
+    </select>
+
+    <sql id="listUser2">
+        select
+            user_id, lcd, review_pt, ppt, psd, ped, userStatus
+        from users
+
+
+    </sql>
 
 </mapper>
