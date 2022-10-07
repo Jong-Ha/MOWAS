@@ -3,6 +3,7 @@ package com.project.site.dao;
 
 import com.project.common.Page;
 import com.project.common.Search;
+import com.project.domain.ClubReport;
 import com.project.domain.CommunityReport;
 import com.project.domain.MasterBoard;
 import org.apache.ibatis.session.SqlSession;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -68,8 +70,8 @@ public class SiteDaoImpl implements SiteDao{
         return sqlSession.selectOne("SiteMapper.getCommunityReport", reportNo);
     }
     @Override
-    public List<CommunityReport> listCommunityReport(int reportNo) throws Exception {
-        return sqlSession.selectList("SiteMapper.listCommunityReport");
+    public List<CommunityReport> listCommunityReport(Search search) throws Exception {
+        return sqlSession.selectList("SiteMapper.listCommunityReport", search);
 
     }
     @Override
@@ -78,13 +80,43 @@ public class SiteDaoImpl implements SiteDao{
     }
 
     @Override
-    public  List<CommunityReport>listCommunityReportProcess(int reportNo) throws Exception {
-        return sqlSession.selectList("SiteMapper.listCommunityReportProcess");
+    public  List<CommunityReport>listCommunityReportProcess(Search search) throws Exception {
+        return sqlSession.selectList("SiteMapper.listCommunityReportProcess", search);
     }
 
     @Override
     public CommunityReport getCommunityReportProcess(int reportNo) throws Exception {
         return sqlSession.selectOne("SiteMapper.getCommunityReportProcess", reportNo);
+    }
+
+    @Override
+    public void deleteCommunityReport(int reportNo) throws Exception {
+        sqlSession.delete("SiteMapper.deleteCommunityReport", reportNo);
+    }
+
+    //모임 신고 CRUD
+    @Override
+    public void addClubReport(ClubReport clubReport) throws Exception {
+        sqlSession.insert("SiteMapper.addClubReport", clubReport);
+    }
+    @Override
+    public  ClubReport getClubReport(int clubReportNo) throws Exception {
+        return sqlSession.selectOne("SiteMapper.getClubReport", clubReportNo);
+    }
+
+    @Override
+    public List<ClubReport> listClubReport(Search search) throws Exception {
+        return sqlSession.selectList("SiteMapper.listClubReport", search);
+    }
+
+    @Override
+    public void processClubReport(ClubReport clubReport) throws Exception {
+        sqlSession.update("SiteMapper.processClubReport", clubReport);
+    }
+
+    @Override
+    public void deleteClubReport(int clubReportNo) throws Exception {
+        sqlSession.delete("SiteMapper.deleteClubReport", clubReportNo);
     }
 
     @Override

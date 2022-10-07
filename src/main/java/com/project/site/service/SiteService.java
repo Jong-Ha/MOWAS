@@ -2,6 +2,7 @@ package com.project.site.service;
 
 import com.project.common.Page;
 import com.project.common.Search;
+import com.project.domain.ClubReport;
 import com.project.domain.CommunityReport;
 import com.project.domain.MasterBoard;
 
@@ -25,11 +26,25 @@ public interface SiteService {
 
     public  CommunityReport getCommunityReport(int reportNo) throws Exception;
 
-    public Map<String, Object> listCommunityReport(int reportNo) throws Exception;
+    public Map<String, Object> listCommunityReport(Search search) throws Exception;
     public void processCommunityReport(CommunityReport communityReport) throws Exception;
 
-    public   Map<String, Object> listCommunityReportProcess(int reportNo) throws Exception;
+    public   Map<String, Object> listCommunityReportProcess(Search search) throws Exception;
 
     public CommunityReport getCommunityReportProcess(int reportNo) throws Exception;
+
+    public void deleteCommunityReport(int reportNo) throws Exception;
+
+    //모임 신고 CRUD
+    public void addClubReport(ClubReport clubReport) throws Exception;
+
+    public  ClubReport getClubReport(int clubReportNo) throws Exception;
+
+    public Map<String, Object> listClubReport(Search search) throws Exception;
+
+    public void processClubReport(ClubReport clubReport) throws Exception;
+
+    public void deleteClubReport(int clubReportNo) throws Exception;
+
 
 }

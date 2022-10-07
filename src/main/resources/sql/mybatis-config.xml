@@ -16,6 +16,8 @@
 	<typeAliases>
 		<typeAlias alias="user" type="com.project.domain.User" />
 		<typeAlias alias="masterBoard" type="com.project.domain.MasterBoard" />
+		<typeAlias alias="communityReport" type="com.project.domain.CommunityReport" />
+		<typeAlias alias="clubReport" type="com.project.domain.ClubReport" />
 		<typeAlias alias="deal" type="com.project.domain.Deal"/>
 		<typeAlias alias="interList" type="com.project.domain.UserInterList"/>
 		<typeAlias alias="clubCalender" type="com.project.domain.ClubCalendar"/>
