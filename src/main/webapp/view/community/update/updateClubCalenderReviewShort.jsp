@@ -178,7 +178,7 @@
         </div>
     </div>
 </form>
-<jsp:include page="/layout/chat.jsp"/>
+
 </body>
 
 </html>

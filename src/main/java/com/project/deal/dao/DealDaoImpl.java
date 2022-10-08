@@ -45,7 +45,7 @@ sqlSession.delete("DealMapper.deleteDeal", deal);
     @Override
     public List<Deal> getListDeal(Search search) throws Exception {
         System.out.println("이거 맞아요 ?");
-
+        System.out.println(search+"getlistDeal daoimpl");
         return sqlSession.selectList("DealMapper.getListDeal", search);
     }
 
