@@ -17,13 +17,16 @@
                 var button = $(this);
                 $.ajax({
                     url: "/club/json/clubLike",
-                    type: "POST",
+                    method:"POST",
                     data: JSON.stringify({
                         "boardNum": clubNum,
                         "boardCategory": "12"
                     }),
+                    headers:{
+                        "Accept":"application/json",
+                        "Content-Type":"application/json; charset=UTF-8"
+                    },
                     dataType: "JSON",
-                    contentType: 'application/json; charset=UTF-8',
                     success: function () {
                         // alert("ajax")
                         if(button.val()==='좋아요!'){

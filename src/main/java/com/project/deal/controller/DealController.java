@@ -3,21 +3,17 @@ package com.project.deal.controller;
 import com.project.common.Page;
 import com.project.common.Search;
 import com.project.deal.service.DealService;
-import com.project.domain.Deal;
-import com.project.domain.User;
-import com.project.domain.VilBoard;
+import com.project.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -53,9 +49,54 @@ public DealController(){
     model.addAttribute("deal",deal);
     return "forward:/view/deal/getListDeal.jsp";
    }
+    @RequestMapping(value = "getDeal/{dealBoardNum}")
+    public String getDeal(Model model, @PathVariable int dealBoardNum) throws Exception {
+        Deal deal = dealService.getDeal(dealBoardNum);
+        model.addAttribute("deal", deal);
+        return "/view/deal/getDeal.jsp";
+    }
+
+    @RequestMapping(value = "getListDeal")
+    public String getListDeal(@ModelAttribute("search") Search search, Model model,HttpServletRequest request) throws Exception {
+        System.out.println("getListDeal : GET POST");
+        if(search.getCurrentPage()==0) {
+            search.setCurrentPage(1);
+        }
+        Map<String , Object> map=dealService.getListDeal(search);
+
+        Page resultPage=new Page(search.getCurrentPage(),((Integer)map.get("totalCount")).intValue(),pageUnit,pageSize);
+        System.out.println(resultPage);
+
+    model.addAttribute("list", (List<Deal>)map.get("list"));
+        System.out.println(map.get("list"));
+       model.addAttribute("resultPage", resultPage);
+        model.addAttribute("search", search);
+        System.out.println("여기까지 ? ? !!1111");
+        System.out.println(map);
+        return "forward:/view/deal/getListDeal.jsp";
+    }
+
+    @RequestMapping(value="updateDeal/{dealBoardNum}", method=RequestMethod.GET)
+    public String updateDealView(@PathVariable("dealBoardNum") int dealBoardNum, Model model ) throws Exception {
+        Deal deal = dealService.getDeal(dealBoardNum);
+        dealService.updateDeal(deal);
+
+        model.addAttribute("deal", deal);
+        return "forward:/view/deal/updateDeal.jsp";
+
+    }
+    @RequestMapping(value="updateDeal", method=RequestMethod.POST)
+    public String updateDeal(@ModelAttribute("deal") Deal deal ,Model model) throws Exception {
+
+        dealService.updateDeal(deal);
+        model.addAttribute("dealBoardNum",deal.getDealBoardNum());
+        return "forward:/view/deal/getDeal.jsp";
+    }
+}
 
 
-  //   @RequestMapping(value = "/getListDeal")
+
+//   @RequestMapping(value = "/getListDeal")
    //public String getListDeal(@ModelAttribute("boardCategory")Search search,Model model,HttpServletRequest request) throws Exception{
 //       System.out.println("/deal/Listdeal : GET / POST");
 //        Page page=new Page();
@@ -153,4 +194,4 @@ public DealController(){
 //        return null;
 //
 //    }
-}
+

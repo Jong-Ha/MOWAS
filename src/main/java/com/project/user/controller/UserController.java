@@ -1,5 +1,6 @@
 package com.project.user.controller;
 
+import com.project.common.Search;
 import com.project.domain.User;
 import com.project.user.service.UserService;
 import org.json.simple.JSONObject;
@@ -93,6 +94,11 @@ public class UserController {
         return "redirect:/view/user/main.jsp";
     }
 
+    @RequestMapping(value="listUser")
+    public String listUser(@ModelAttribute("search")Search search, Model model)throws Exception{
+
+        return "forward:/view/user/listUser.jsp";
+    }
 
 
 

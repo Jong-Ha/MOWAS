@@ -4,6 +4,7 @@ import com.project.common.Page;
 import com.project.common.Search;
 import com.project.deal.service.DealService;
 import com.project.domain.Deal;
+import com.project.domain.MasterBoard;
 import com.project.domain.User;
 import org.junit.Assert;
 import org.junit.Test;
@@ -70,44 +71,46 @@ public class DealServiceTest {
     @Test
     public void deleteDeal()throws Exception{
         Deal deal = new Deal();
-        deal.setDealBoardNum(10020);
+        deal.setDealBoardNum(10009);
         dealService.deleteDeal(deal);
     }
-//    @Test
-//    public void testGetListDeal()throws Exception{
-//
-//        Search search = new Search();
-//        search.setCurrentPage(1);
-//        search.setPageSize(3);
-//        Map<String,Object> map = dealService.getListDeal(search);
-//
-//        List<Object> list = (List<Object>)map.get("list");
-//        Assert.assertEquals(3, list.size());
-//
-//        //==> console 확인
-//        //System.out.println(list);
-//
-//        Integer totalCount = (Integer)map.get("totalCount");
-//        System.out.println(totalCount);
-//
-//        System.out.println("=======================================");
-//
-//        search.setCurrentPage(1);
-//        search.setPageSize(3);
-//        search.setSearchCondition("0");
-//        search.setSearchKeyword("");
-//        map = dealService.getListDeal(search);
-//
-//        list = (List<Object>)map.get("list");
-//        Assert.assertEquals(3, list.size());
-//
-//        //==> console 확인
-//        //System.out.println(list);
-//
-//        totalCount = (Integer)map.get("totalCount");
-//        System.out.println(totalCount);
-//
-//    }
+    @Test
+    public void testGetListDeal()throws Exception{
+        Search search = new Search();
+        search.setCurrentPage(1);
+        search.setPageSize(5);
+
+        Map<String,Object> map = dealService.getListDeal(search);
+
+        List<Object> list = (List<Object>)map.get("List");
+
+        //Assert.assertEquals(3, list.size());
+
+        //==> console Ȯ��
+        System.out.println(list);
+
+        Integer totalCount = (Integer)map.get("totalCount");
+        System.out.println(totalCount);
+
+        System.out.println("=======================================");
+
+        search.setCurrentPage(1);
+        search.setPageSize(5);
+        search.setSearchCondition("1");
+        search.setSearchKeyword("");
+        map = dealService.getListDeal(search);
+
+        list = (List<Object>)map.get("list");
+        //Assert.assertEquals(3, list.size());
+
+        //==> console Ȯ��
+        //System.out.println(list);
+
+        totalCount = (Integer)map.get("totalCount");
+        System.out.println(totalCount);
+
+    }
+
 
 
 
@@ -144,11 +147,14 @@ public class DealServiceTest {
 //        totalCount = (Integer)map.get("totalCount");
 //        System.out.println(totalCount);
 
-   // @Test
-//    public void GetDeal() throws Exception{
-//
-//        int dealBoardNum =10002;
-//
-//                System.out.println(dealService.getDeal(dealBoardNum)+"1111111111111111111111111111111");
-//    }
+    @Test
+    public void GetDeal() throws Exception{
+
+        int dealBoardNum =10005;
+    Deal result = dealService.getDeal(dealBoardNum);
+                System.out.println(dealService.getDeal(dealBoardNum)+"1111111111111111111111111111111");
+    }
+
+
+
 }

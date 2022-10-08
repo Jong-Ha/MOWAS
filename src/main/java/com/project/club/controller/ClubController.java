@@ -260,14 +260,14 @@ public class ClubController {
     }
 
     @RequestMapping(value = "listClubCalendarApply/{clubCalendarNum}", method = RequestMethod.GET)
-    public String listClubCalendarApply(@PathVariable int clubCalendarNum){
-
+    public String listClubCalendarApply(@PathVariable int clubCalendarNum, Model model){
+        model.addAttribute("list", clubService.listClubCalendarApply(clubCalendarNum,"0"));
         return "/view/club/listClubCalendarApply.jsp";
     }
 
     @RequestMapping(value = "listCalendarCluber/{clubCalendarNum}", method = RequestMethod.GET)
-    public String listCalendarCluber(@PathVariable int clubCalendarNum){
-
+    public String listCalendarCluber(@PathVariable int clubCalendarNum, Model model){
+        model.addAttribute("list",clubService.listClubCalendarApply(clubCalendarNum,"1"));
         return "/view/club/listCalendarCluber.jsp";
     }
 

@@ -48,15 +48,21 @@ values (seq_deal.NEXTVAL,
         #{dealText},
         SYSDATE,
         #{productName},
-        #{price},
+        #{price:NUMERIC},
         #{tag},
-        #{viewCount},
+        #{viewCount:NUMERIC},
         #{villCode})
     </insert>
 <!--    &lt;!&ndash;게시물 상세조회&ndash;&gt;-->
-    <select id="getDeal" parameterType="int" resultMap="dealSelectMap">
+    <select id="getDeal" parameterType="int" resultMap="DealSelectMap">
         SELECT
-            *
+            deal_board_num,
+            user_id,
+            deal_title,
+            deal_text,
+            price,
+            product_name,
+            tag
 from deal
 where deal_board_num=#{dealBoardNum}
     </select>
@@ -66,16 +72,16 @@ where deal_board_num=#{dealBoardNum}
     <update id="updateDeal" parameterType="deal">
     UPDATE DEAL
 <set>
-    deal_title=#{dealTitle},
-        deal_status=#{dealStatus},
-        deal_text=#{dealText},
-        deal_reg_date=SYSDATE,
-    product_name=#{productName},
-        price=#{price},
-        tag=#{tag}
+        deal_title=#{dealTitle:VARCHAR},
+        deal_status=#{dealStatus:CHAR},
+        deal_text=#{dealText:VARCHAR},
 
+    product_name=#{productName:VARCHAR},
+        price=#{price:NUMERIC},
+        tag=#{tag:VARCHAR}
 </set>
-WHERE deal_board_num=#{dealBoardNum};
+
+        <where> deal_board_num=#{dealBoardNum}</where>
     </update>
     <!--게시물 삭제-->
     <delete id="deleteDeal" parameterType="int">
@@ -87,24 +93,41 @@ WHERE deal_board_num=#{dealBoardNum};
     <!--게시물 목록 조회.. .-->
     <select id="getListDeal" parameterType="search" resultMap="DealSelectMap">
         SELECT *
-        FROM( SELECT inner_table.* , ROWNUM AS row_seq
-        FROM	(SELECT *
+        FROM (	SELECT inner_table.* , ROWNUM AS row_seq
+        FROM		(	SELECT deal_board_num, deal_title, deal_text, user_id, deal_reg_date ,tag
         FROM deal
         <if test="searchCondition != null">
             <where>
                 <if test="searchCondition == 0 and searchKeyword !='' ">
-                    product_num LIKE '%' ||#{searchKeyword:INTEGER} ||'%'
+                    deal_title = #{searchKeyword}
                 </if>
                 <if test="searchCondition == 1 and searchKeyword !='' ">
-                    tag Like '%'|| #{searchKeyword}||'%'
+                    tag = #{searchKeyword}
                 </if>
-
             </where>
         </if>
-        ORDER BY deal_board_num) inner_table
-        WHERE ROWNUM &lt;= #{endRowNum} )
-        WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum}
+        ORDER BY deal_board_num ) inner_table
+        WHERE ROWNUM >= 0 )
+
     </select>
 
+<!--    WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum}-->
+
+
+    <select  id="getTotalCount"  parameterType="search"	 resultType="int">
+        SELECT COUNT(*)
+        FROM(	SELECT deal_board_num,deal_title,deal_text
+        FROM deal
+        <if test="searchCondition != null">
+            <where>
+                <if test="searchCondition == 0 and searchKeyword !='' ">
+                    deal_board_num= to_char(#{searchKeyword})
+                </if>
+                <if test="searchCondition == 1 and searchKeyword !='' ">
+                    tag = ${searchKeyword}
+                </if>
+            </where>
+        </if> ) countTable
+    </select>
 
 </mapper>
