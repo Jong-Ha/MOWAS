@@ -61,6 +61,7 @@
                     data : JSON.stringify({
                             "boardCategory" : boardCategory,
                             "reviewTitle": reviewTitle,
+                            "reviewText" : reviewText,
                             "reviewRange": reviewRange
                     }),
                     dataType : "json",
@@ -106,7 +107,7 @@
 
 <form>
     <!--  화면구성 div Start /////////////////////////////////////-->
-    <input type="hidden" class="boardCategory" name="boardCategory" value="2">
+    <input type="hidden" class="boardCategory" name="boardCategory" value="1">
 
     <div class="wap">
         <div class="container">

@@ -26,7 +26,7 @@ public class CommunityRestController {
 
     /* 댓글 대댓글*/
     @RequestMapping(value = "addComment", method = RequestMethod.POST)
-    public String addComment(@RequestBody Comment comment) throws ParseException {
+    public int addComment(@RequestBody Comment comment) throws ParseException {
         System.out.println(comment);
 
 
@@ -35,29 +35,26 @@ public class CommunityRestController {
 
        communityService.addComment(comment);
 
-        return null;
+        return 0;
     }
 
     @RequestMapping(value = "updateComment", method = RequestMethod.POST)
-    public String updateComment(@RequestBody Comment comment/*, @ModelAttribute("comment")Comment comment*/) throws ParseException {
+    public int updateComment(@RequestBody Comment comment/*, @ModelAttribute("comment")Comment comment*/) throws ParseException {
         System.out.println(comment);
 
   /*      JSONParser parser = new JSONParser();
 
         JSONObject jsonObj = (JSONObject)parser.parse(commentText);*/
 
-        comment.setBoardNum(10001);
-        comment.setCommentNum(10001);
-
         System.out.println("댓글 도매인  : " + comment);
 
         communityService.updateComment(comment);
 
-        return null;
+        return 0;
     }
 
     @RequestMapping(value = "deleteComment", method = RequestMethod.POST)
-    public String deleteComment(@RequestBody Comment comment){
+    public int deleteComment(@RequestBody Comment comment){
 
         comment.setCommentCheck("y");
 
@@ -65,10 +62,10 @@ public class CommunityRestController {
 
         communityService.deleteComment(comment);
 
-        return null;
+        return 0;
     }
     @RequestMapping("addRecomment")
-    public String addReComment(@RequestBody Recomment recomment){
+    public int addReComment(@RequestBody Recomment recomment){
 
         System.out.println("대댓글의 내영 : " + recomment);
 
@@ -77,27 +74,26 @@ public class CommunityRestController {
 
         communityService.addRecomment(recomment);
 
-        return null;
+        return 0;
     }
 
     @RequestMapping("updateRecomment")
-    public String updateRecomment(@RequestBody Recomment recomment){
+    public int updateRecomment(@RequestBody Recomment recomment){
         System.out.println("대댓글 수정 : " + recomment);
 
-        recomment.setRecommentNum(10000);
-
         communityService.updateRecomment(recomment);
-        return null;
+
+        return 0;
     }
 
     @RequestMapping("deleteRecomment")
-    public String deleteRecomment(@RequestBody Recomment recomment){
+    public int deleteRecomment(@RequestBody Recomment recomment){
 
         System.out.println("대댓글 삭제 : "+ recomment);
 
         communityService.deleteRecomment(recomment.getRecommentNum());
 
-        return null;
+        return 0;
     }
 
     @RequestMapping("getListComment")
