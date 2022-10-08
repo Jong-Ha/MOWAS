@@ -84,8 +84,8 @@ public class ClubServiceImpl implements ClubService {
         map.put("clubNum",clubNum);
 
         clubDao.processCluberApply(map);
-        if(((String)map.get("result")).equals("accept")){
-            clubDao.updateClubNewCluber((Integer) map.get("clubNum"));
+        if(result.equals("accept")){
+            clubDao.updateClubNewCluber(clubNum);
         }
     }
 

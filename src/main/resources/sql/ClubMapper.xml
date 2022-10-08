@@ -286,7 +286,8 @@
                user_id,
                user_image,
                club_apply_date,
-               cluber_text
+               cluber_text,
+               club_num
         FROM club_user
         <where>
         club_num = #{clubNum}
@@ -300,7 +301,7 @@
         SELECT cluber_text
         FROM club_user
         <where>
-            club_user_num = #{value}
+            club_user_num = #{clubUserNum}
         </where>
     </select>
 
@@ -310,9 +311,9 @@
     <update id="processCluberApply" parameterType="map">
         UPDATE club_user
         <set>
-            cluber_status = <if test="result=='accept'">'4'</if>
-                            <if test="result=='reject'">'3'</if>,
-            club_reg_date = SYSDATE
+            cluber_status = <if test="result=='accept'">'4',
+            club_reg_date = SYSDATE</if>
+                            <if test="result=='reject'">'3'</if>
         </set>
         <where>
             club_user_num = #{clubUserNum}
@@ -691,4 +692,5 @@
             club_calendar_apply_num = #{clubCalendarApplyNum}
         </where>
     </update>
+
 </mapper>
