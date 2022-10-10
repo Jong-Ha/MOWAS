@@ -83,6 +83,7 @@
     </script>
 </head>
 <body>
+<img src="/resources/${club.clubImage}" alt="모임이미지"><br>
 ${club}<br>
 <input type="button" class="updateClub" value="모임 수정">
 <input type="button" class="deleteClub" value="모임 삭제">

@@ -69,12 +69,11 @@
         WHERE user_id=#{userId}
     </update>
 
-    <select id="listUser" parameterType="Seach" resultMap="userSelectmap">
+    <!--<select id="listUser" parameterType="Search" resultMap="userSelectmap">
         select * from(
-            select Rounum row _num, vt.* from(
-            <include refid="listusd"></include>
-                ) vt
-            <include refid="">
+        select Rownum row _num, vt.* from(
+        <include refid="listUser2"/>) vt
+        <include refid="">
 
     </include>
             )
@@ -83,10 +82,9 @@
 
     <sql id="listUser2">
         select
-            user_id, lcd, review_pt, ppt, psd, ped, userStatus
+            user_id, lcd, review_pt, ppt, psd, ped, user_status
         from users
 
-
-    </sql>
+    </sql>-->
 
 </mapper>

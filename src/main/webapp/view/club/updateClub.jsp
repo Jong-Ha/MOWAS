@@ -9,15 +9,21 @@
             $(".updateClub").on("click",function(){
                 $("form").attr("method","post").attr("action","/club/updateClub").submit();
             })
+            $('input[name="file"]').on("change",function(){
+                <%--alert($(this).val())--%>
+                <%--alert('${club.clubImage}')--%>
+                $('input[name="deleteFileName"]').attr("disabled",false)
+            })
         })
     </script>
 </head>
 <body>
-<form>
+<form enctype="multipart/form-data">
     <label>
         <input type="hidden" name="clubNum" value="${club.clubNum}">
+        <input type="hidden" name="deleteFileName" value="${club.clubImage}" disabled>
         clubName : <input type="text" name="clubName" value="${club.clubName}"><br>
-        clubName : <textarea name="clubText">${club.clubText}</textarea><br>
+        clubText : <textarea name="clubText">${club.clubText}</textarea><br>
         interList : <select name="interList">
         <option value="01" ${club.interList == '01'? 'selected':''}>독서</option>
         <option value="02" ${club.interList == '02'? 'selected':''}>자동차</option>
@@ -34,7 +40,8 @@
         <option value="13" ${club.interList == '13'? 'selected':''}>그외</option>
     </select><br>
         villCode : <input type="text" name="villCode" value="${club.villCode}"><br>
-        clubImage : <input type="text" name="clubImage" value="${club.clubImage}"><br>
+        <img src="/resources/${club.clubImage}"><br>
+        clubImage : <input type="file" name="file" value="${club.clubImage}"><br>
         tag : <input type="text" name="tag" value="${club.tag}"><br>
         모집여부 : <input type="radio" name="gatherCheck" value="1" ${club.gatherCheck == '1'? 'checked':''}>모집중
         <input type="radio" name="gatherCheck" value="0" ${club.gatherCheck == '0'? 'checked':''}>모집완료<br>

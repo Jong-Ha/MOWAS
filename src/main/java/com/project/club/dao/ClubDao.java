@@ -32,12 +32,14 @@ public interface ClubDao {
     public void updateClubDeleteCluber(int clubNum);
     public void addClubBlacklist(Cluber cluber);
     public void updateClubBlacklist(Map<String, Object> map);
-    public List<Cluber> listClubBlacklist(int clubNum);
+    public List<Cluber> listClubBlacklist(Map<String, Object> map);
+    public int getTotalClubBlacklist(Map<String, Object> map);
     public String getClubBlacklist(int clubUserNum);
     public void addClubMasterBoard(ClubMasterBoard clubMasterBoard);
     public void updateClubMasterBoard(ClubMasterBoard clubMasterBoard);
     public void deleteClubMasterBoard(int clubMasterBoardNum);
-    public List<ClubMasterBoard> listClubMasterBoard(int clubNum);
+    public List<ClubMasterBoard> listClubMasterBoard(Map<String, Object> map);
+    public int getTotalClubMasterBoard(Map<String, Object> map);
     public ClubMasterBoard getClubMasterBoard(int clubMasterBoardNum);
     public void addClubMasterBoardFile(File file);
     public List<String> listClubMasterBoardCurrentFile(int clubMasterBoardNum);
@@ -47,7 +49,9 @@ public interface ClubDao {
     public void deleteClubCalendarApply(Map<String, Object> map);
     public List<CalendarCluber>listClubCalendarApply(Map<String, Object> map);
     public void updateClubCalendarApply(Map<String, Object> map);
-    public List<Cluber> listCluber(int clubNum);
+    public List<Cluber> listCluber(Map<String, Object> map);
+    public String getCluberCondition(Map<String, Object> map);
+    public int getTotalCluber(Map<String, Object> map);
     public Cluber getCluber(int clubUserNum);
     public void updateCluber(Cluber cluber);
 

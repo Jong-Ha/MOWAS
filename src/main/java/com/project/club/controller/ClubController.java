@@ -1,6 +1,8 @@
 package com.project.club.controller;
 
 import com.project.club.service.ClubService;
+import com.project.common.Page;
+import com.project.common.Search;
 import com.project.domain.*;
 import com.project.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +11,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
+import java.util.*;
 
 @Controller
 @RequestMapping("/club/*")
@@ -32,61 +36,115 @@ public class ClubController {
     @Value("#{commonProperties['pageUnit']}")
     int pageUnit;
 
+    @Value("#{commonProperties['resourcesPath']}")
+    String resourcesPath;
+
+    @Value("#{commonProperties['clubImagePath']}")
+    String clubImagePath;
+
+    @Value("#{commonProperties['clubMasterBoardPath']}")
+    String clubMasterBoardPath;
+
     public ClubController() {
     }
 
     @RequestMapping(value = "login")
-    public String login(HttpSession session, @RequestParam("userId") String userId) throws Exception{
+    public String login(HttpSession session, @RequestParam("userId") String userId) throws Exception {
         User user = userService.getUser(userId);
-        session.setAttribute("user",user);
-        return "/club/listClub";
+        session.setAttribute("user", user);
+        return "forward:/club/listClub";
     }
 
     @RequestMapping(value = "addClub", method = RequestMethod.GET)
-    public String addClubView(){
+    public String addClubView() {
         return "/view/club/addClub.jsp";
     }
 
     @RequestMapping(value = "addClub", method = RequestMethod.POST)
-    public String addClub(@ModelAttribute("club") Club club){
-        club.setClubMasterId("user02");
+    public String addClub(@ModelAttribute("club") Club club, @ModelAttribute("file") MultipartFile file, HttpSession session) throws Exception {
+//        System.out.println(file);
+//        System.out.println(file.getOriginalFilename());//real.png
+//        System.out.println(file.getName());
+//        System.out.println(Objects.requireNonNull(file.getContentType()).substring(0,file.getContentType().indexOf("/")));//image/png
+        User user = (User) session.getAttribute("user");
+        club.setClubMasterId(user.getUserId());
+
+        if (Objects.requireNonNull(file.getContentType()).substring(0, file.getContentType().indexOf("/")).equals("image")) {
+            String fileName = clubImagePath + UUID.randomUUID() + file.getOriginalFilename();
+            java.io.File uploadFile = new java.io.File(fileName);
+            file.transferTo(uploadFile);
+            club.setClubImage(fileName);
+        }
+
         club = clubService.addClub(club);
-        return "redirect:/club/getClub/"+club.getClubNum();
+        return "redirect:/club/getClub/" + club.getClubNum();
     }
 
     @RequestMapping(value = "listClub")
-    public String listClub(Model model, HttpSession session){
+    public String listClub(Model model, HttpSession session) {
         User user = (User) session.getAttribute("user");
-        List<Club> list = clubService.listClub("");
-        if (user!=null) {
-            list = clubService.listClub(user.getUserId());
+        String userId = "";
+        if (user != null) {
+            userId = user.getUserId();
         }
-        model.addAttribute("list",list);
+        List<Club> list = clubService.listClub(userId);
+        model.addAttribute("list", list);
         return "/view/club/listClub.jsp";
     }
 
     @RequestMapping(value = "getClub/{clubNum}")
-    public String getClub(Model model, @PathVariable int clubNum){
+    public String getClub(Model model, @PathVariable int clubNum, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            String cluberStatus = clubService.getCluberCondition(user, clubNum);
+            session.setAttribute(String.valueOf(clubNum), cluberStatus);
+        } else {
+            session.removeAttribute(String.valueOf(clubNum));
+        }
         Club club = clubService.getClub(clubNum);
-        model.addAttribute("club",club);
+        model.addAttribute("club", club);
         return "/view/club/getClub.jsp";
     }
 
     @RequestMapping(value = "updateClub/{clubNum}", method = RequestMethod.GET)
-    public String updateClubView(Model model, @PathVariable int clubNum){
+    public String updateClubView(Model model, @PathVariable int clubNum) {
         model.addAttribute(clubService.getClub(clubNum));
         return "/view/club/updateClub.jsp";
     }
 
     @RequestMapping(value = "updateClub", method = RequestMethod.POST)
-    public String updateClub(@ModelAttribute("club") Club club) throws Exception{
-        club.setClubMasterId("user02");
+    public String updateClub(@ModelAttribute("club") Club club, @ModelAttribute("file") MultipartFile file, @RequestParam(value = "deleteFileName", required = false) String deleteFileName) throws Exception {
+        //새로운 파일 업로드
+        if (Objects.requireNonNull(file.getContentType()).substring(0, file.getContentType().indexOf("/")).equals("image")) {
+            String fileName = clubImagePath + UUID.randomUUID() + file.getOriginalFilename();
+            System.out.println(fileName);
+            java.io.File uploadFile = new java.io.File(fileName);
+            file.transferTo(uploadFile);
+            club.setClubImage(fileName);
+        }
+
+        //파일 업데이트
         club = clubService.updateClub(club);
-        return "redirect:/club/getClub/"+club.getClubNum();
+
+        //기존파일 삭제
+//        System.out.println("deleteFileName : "+deleteFileName);
+        if (deleteFileName != null) {
+//            System.out.println("first if");
+            java.io.File deleteFile = new java.io.File(resourcesPath+deleteFileName);
+            if(deleteFile.exists()){
+//                System.out.println("second if");
+                if(deleteFile.delete()){
+                    System.out.println("file deleted");
+                }else {
+                    System.out.println("cannot delete");
+                }
+            }
+        }
+        return "redirect:/club/getClub/" + club.getClubNum();
     }
 
     @RequestMapping(value = "deleteClub/{clubNum}")
-    public String deleteClub(@PathVariable int clubNum){
+    public String deleteClub(@PathVariable int clubNum) {
         Club club = new Club();
         club.setClubNum(clubNum);
         clubService.deleteClub(club);
@@ -94,78 +152,96 @@ public class ClubController {
     }
 
     @RequestMapping(value = "addCluberApply/{clubNum}", method = RequestMethod.GET)
-    public String addCluberApplyView(@PathVariable int clubNum, Model model){
+    public String addCluberApplyView(@PathVariable int clubNum, Model model) {
         Club club = clubService.getClub(clubNum);
-        model.addAttribute("club",club);
+        model.addAttribute("club", club);
         return "/view/club/addCluberApply.jsp";
     }
 
     @RequestMapping(value = "addCluberApply", method = RequestMethod.POST)
-    public String addCluberApply(@ModelAttribute("cluber") Cluber cluber, HttpSession session){
-        cluber.setUser((User)session.getAttribute("user"));
+    public String addCluberApply(@ModelAttribute("cluber") Cluber cluber, HttpSession session) {
+        cluber.setUser((User) session.getAttribute("user"));
         clubService.addCluberApply(cluber);
-        return "redirect:/club/getClub/"+cluber.getClubNum();
+        return "redirect:/club/getClub/" + cluber.getClubNum();
     }
 
     @RequestMapping(value = "updateCluberApply/{clubNum}", method = RequestMethod.GET)
-    public String updateCluberApplyView(@PathVariable int clubNum, HttpSession session, Model model){
+    public String updateCluberApplyView(@PathVariable int clubNum, HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
         Club club = clubService.getClub(clubNum);
         Cluber cluber = new Cluber();
         cluber.setUser(user);
         cluber.setClubNum(clubNum);
         cluber = clubService.getCluberApplyUpdate(cluber);
-        model.addAttribute("club",club);
-        model.addAttribute("cluber",cluber);
+        model.addAttribute("club", club);
+        model.addAttribute("cluber", cluber);
         return "/view/club/updateCluberApply.jsp";
     }
 
     @RequestMapping(value = "updateCluberApply", method = RequestMethod.POST)
-    public String updateCluberApply(@ModelAttribute("cluber") Cluber cluber){
+    public String updateCluberApply(@ModelAttribute("cluber") Cluber cluber) {
         clubService.updateCluberApply(cluber);
-        return "redirect:/club/getClub/"+cluber.getClubNum();
+        return "redirect:/club/getClub/" + cluber.getClubNum();
     }
 
     @RequestMapping(value = "deleteCluberApply", method = RequestMethod.POST)
-    public String deleteCluberApply(@ModelAttribute("cluber") Cluber cluber){
+    public String deleteCluberApply(@ModelAttribute("cluber") Cluber cluber) {
         clubService.deleteCluberApply(cluber.getClubUserNum());
-        return "redirect:/club/getClub/"+cluber.getClubNum();
+        return "redirect:/club/getClub/" + cluber.getClubNum();
     }
 
     @RequestMapping(value = "listCluberApply/{clubNum}", method = RequestMethod.GET)
-    public String listCluberApply(@PathVariable int clubNum, Model model){
+    public String listCluberApply(@PathVariable int clubNum, Model model) {
         model.addAttribute("list", clubService.listCluberApply(clubNum));
         return "/view/club/listCluberApply.jsp";
     }
 
-    @RequestMapping(value = "listCluber/{clubNum}", method = RequestMethod.GET)
-    public String listCluber(@PathVariable int clubNum, Model model){
-        model.addAttribute("clubNum",clubNum);
-        model.addAttribute("list",clubService.listCluber(clubNum));
+    @RequestMapping(value = "listCluber/{clubNum}")
+    public String listCluber(@PathVariable int clubNum, Model model, @ModelAttribute("search") Search search) {
+        search.setPageSize(pageSize);
+        search.setSearchCondition("0");
+        Map<String, Object> map = clubService.listCluber(search, clubNum);
+        Page resultPage = new Page(search.getCurrentPage(), (Integer) map.get("totalCount"), pageUnit, pageSize);
+        map.put("resultPage", resultPage);
+        model.addAllAttributes(map);
+        return "/view/club/listCluber.jsp";
+    }
+
+    @RequestMapping(value = "listCluberOut/{clubNum}")
+    public String listCluberOut(@PathVariable int clubNum, Model model, @ModelAttribute("search") Search search) {
+        if (search.getCurrentPage() == 0) {
+            search.setCurrentPage(1);
+        }
+        search.setPageSize(pageSize);
+        search.setSearchCondition("1");
+        Map<String, Object> map = clubService.listCluber(search, clubNum);
+        Page resultPage = new Page(search.getCurrentPage(), (Integer) map.get("totalCount"), pageUnit, pageSize);
+        map.put("resultPage", resultPage);
+        model.addAllAttributes(map);
         return "/view/club/listCluber.jsp";
     }
 
     @RequestMapping(value = "getCluber/{clubUserNum}", method = RequestMethod.GET)
-    public String getCluber(@PathVariable int clubUserNum, Model model){
+    public String getCluber(@PathVariable int clubUserNum, Model model) {
         model.addAttribute("cluber", clubService.getCluber(clubUserNum));
         return "/view/club/getCluber.jsp";
     }
 
     @RequestMapping(value = "updateCluber/{clubUserNum}", method = RequestMethod.GET)
-    public String updateCluberView(@PathVariable int clubUserNum, Model model){
+    public String updateCluberView(@PathVariable int clubUserNum, Model model) {
         model.addAttribute("cluber", clubService.getCluber(clubUserNum));
         return "/view/club/updateCluber.jsp";
     }
 
     @RequestMapping(value = "updateCluber", method = RequestMethod.POST)
-    public String updateCluber(@ModelAttribute("cluber") Cluber cluber){
+    public String updateCluber(@ModelAttribute("cluber") Cluber cluber) {
         clubService.updateCluber(cluber);
-        return "redirect:/club/getCluber/"+cluber.getClubUserNum();
+        return "redirect:/club/getCluber/" + cluber.getClubUserNum();
     }
 
     @RequestMapping(value = "deleteCluber/{kickoutCheck}", method = RequestMethod.GET)
-    public String deleteCluberView(@RequestParam(value = "clubNum", defaultValue = "0") int clubNum, @RequestParam(value = "clubUserNum", defaultValue = "0") int clubUserNum, @PathVariable String kickoutCheck, HttpSession session, Model model){
-        if(clubUserNum==0){
+    public String deleteCluberView(@RequestParam(value = "clubNum", defaultValue = "0") int clubNum, @RequestParam(value = "clubUserNum", defaultValue = "0") int clubUserNum, @PathVariable String kickoutCheck, HttpSession session, Model model) {
+        if (clubUserNum == 0) {
             Cluber cluber = new Cluber();
             cluber.setUser((User) session.getAttribute("user"));
             cluber.setClubNum(clubNum);
@@ -178,128 +254,187 @@ public class ClubController {
     }
 
     @RequestMapping(value = "deleteCluber", method = RequestMethod.POST)
-    public String deleteCluber(@ModelAttribute("cluber") Cluber cluber, @RequestParam("kickoutCheck") String kickoutCheck){
-        clubService.deleteCluber(cluber,kickoutCheck);
-        if (kickoutCheck.equals("T")){
-            return "redirect:/club/getCluber/"+cluber.getClubUserNum();
-        }else {
-            return "redirect:/club/getClub/"+cluber.getClubNum();
+    public String deleteCluber(@ModelAttribute("cluber") Cluber cluber, @RequestParam("kickoutCheck") String kickoutCheck) {
+        clubService.deleteCluber(cluber, kickoutCheck);
+        if (kickoutCheck.equals("T")) {
+            return "redirect:/club/getCluber/" + cluber.getClubUserNum();
+        } else {
+            return "redirect:/club/getClub/" + cluber.getClubNum();
         }
     }
 
     @RequestMapping(value = "addClubBlacklist/{clubNum}", method = RequestMethod.GET)
-    public String addClubBlacklistView(@PathVariable int clubNum, @RequestParam(value = "userId", required = false) String userId, Model model){
+    public String addClubBlacklistView(@PathVariable int clubNum, @RequestParam(value = "userId", required = false) String userId, Model model) {
         model.addAttribute("userId", userId);
         model.addAttribute("clubNum", clubNum);
         return "/view/club/addClubBlacklist.jsp";
     }
 
     @RequestMapping(value = "addClubBlacklist", method = RequestMethod.POST)
-    public String addClubBlacklist(@ModelAttribute("cluber") Cluber cluber,@ModelAttribute("blackUser") User blackUser){
+    public String addClubBlacklist(@ModelAttribute("cluber") Cluber cluber, @ModelAttribute("blackUser") User blackUser) {
         cluber.setUser(blackUser);
         clubService.addClubBlacklist(cluber);
-        return "redirect:/club/listClubBlacklist/"+cluber.getClubNum();
+        return "redirect:/club/listClubBlacklist/" + cluber.getClubNum();
     }
 
-    @RequestMapping(value = "listClubBlacklist/{clubNum}", method = RequestMethod.GET)
-    public String listClubBlacklist(@PathVariable int clubNum, Model model){
-        model.addAttribute("list",clubService.listClubBlacklist(clubNum));
-        model.addAttribute("clubNum",clubNum);
+    @RequestMapping(value = "listClubBlacklist/{clubNum}")
+    public String listClubBlacklist(@PathVariable int clubNum, Model model, @ModelAttribute("search") Search search) {
+        if (search.getCurrentPage() == 0) {
+            search.setCurrentPage(1);
+        }
+        search.setPageSize(pageSize);
+        Map<String, Object> map = clubService.listClubBlacklist(search, clubNum);
+        Page resultPage = new Page(search.getCurrentPage(), (Integer) map.get("totalCount"), pageUnit, pageSize);
+        map.put("resultPage", resultPage);
+        model.addAllAttributes(map);
         return "/view/club/listClubBlacklist.jsp";
     }
 
     @RequestMapping(value = "addClubMasterBoard/{clubNum}", method = RequestMethod.GET)
-    public String addClubMasterBoardView(@PathVariable int clubNum, Model model){
+    public String addClubMasterBoardView(@PathVariable int clubNum, Model model) {
         model.addAttribute("clubNum", clubNum);
         return "/view/club/addClubMasterBoard.jsp";
     }
 
     @RequestMapping(value = "addClubMasterBoard", method = RequestMethod.POST)
-    public String addClubMasterBoard(@ModelAttribute("clubMasterBoard") ClubMasterBoard clubMasterBoard, @RequestParam("fileName") List<String> fileNames){
-        List<File> files = new ArrayList<>();
-        for(String str : fileNames){
-            File file = new File();
-            file.setFileName(str);
-            files.add(file);
+    public String addClubMasterBoard(@ModelAttribute("clubMasterBoard") ClubMasterBoard clubMasterBoard, MultipartHttpServletRequest multi) throws Exception {
+        ////파일 업로드
+        //파일 추출
+        List<MultipartFile> mfs = multi.getFiles("file");
+        System.out.println(mfs);
+        //저장할 파일이 있는지 validation check
+        if(mfs.size()>0 && !mfs.get(0).getOriginalFilename().equals("")){
+            //저장할 리스트 생성
+            List<File> files = new ArrayList<>();
+            //추출된 파일 업로드
+            for (MultipartFile mf : mfs) {
+                //파일이 이미지인지 validation check
+                if (Objects.requireNonNull(mf.getContentType()).substring(0, mf.getContentType().indexOf("/")).equals("image")) {
+                    //파일 경로 및 이름 유니크하게 생성
+                    String fileName = clubMasterBoardPath + UUID.randomUUID() + mf.getOriginalFilename();
+                    java.io.File uploadFile = new java.io.File(fileName);
+                    //파일 업로드
+                    mf.transferTo(uploadFile);
+                    //리스트에 파일 저장
+                    File file = new File();
+                    file.setFileName(fileName);
+                    files.add(file);
+                }
+            }
+            //domain 객체에 리스트 저장
+            clubMasterBoard.setFiles(files);
         }
-        clubMasterBoard.setFiles(files);
+
+        //모임 공지사항 등록
         int boardNum = clubService.addClubMasterBoard(clubMasterBoard);
-        return "redirect:/club/getClubMasterBoard/"+boardNum;
+        return "redirect:/club/getClubMasterBoard/" + boardNum;
     }
 
     @RequestMapping(value = "getClubMasterBoard/{boardNum}", method = RequestMethod.GET)
-    public String getClubMasterBoard(@PathVariable("boardNum") int boardNum, Model model){
-        model.addAttribute("clubMasterBoard",clubService.getClubMasterBoard(boardNum));
+    public String getClubMasterBoard(@PathVariable("boardNum") int boardNum, Model model) {
+        model.addAttribute("clubMasterBoard", clubService.getClubMasterBoard(boardNum));
         return "/view/club/getClubMasterBoard.jsp";
     }
 
     @RequestMapping(value = "updateClubMasterBoard/{boardNum}", method = RequestMethod.GET)
-    public String updateClubMasterBoardView(@PathVariable int boardNum, Model model){
+    public String updateClubMasterBoardView(@PathVariable int boardNum, Model model) {
         model.addAttribute("clubMasterBoard", clubService.getClubMasterBoard(boardNum));
         return "/view/club/updateClubMasterBoard.jsp";
     }
 
     @RequestMapping(value = "updateClubMasterBoard", method = RequestMethod.POST)
-    public String updateClubMasterBoard(@ModelAttribute("clubMasterBoard") ClubMasterBoard clubMasterBoard, @RequestParam("fileName") List<String> fileNames){
-        List<File> files = new ArrayList<>();
-        for(String str : fileNames){
-            File file = new File();
-            file.setBoardNum(clubMasterBoard.getBoardNum());
-            file.setFileName(str);
-            files.add(file);
+    public String updateClubMasterBoard(@ModelAttribute("clubMasterBoard") ClubMasterBoard clubMasterBoard, MultipartHttpServletRequest multi) throws Exception {
+        ////파일 업로드
+        //파일 추출
+        List<MultipartFile> mfs = multi.getFiles("file");
+        System.out.println(mfs);
+        //저장할 파일이 있는지 validation check
+        if(mfs.size()>0 && !mfs.get(0).getOriginalFilename().equals("")){
+            //저장할 리스트 생성
+            List<File> files = new ArrayList<>();
+            //추출된 파일 업로드
+            for (MultipartFile mf : mfs) {
+                //파일이 이미지인지 validation check
+                if (Objects.requireNonNull(mf.getContentType()).substring(0, mf.getContentType().indexOf("/")).equals("image")) {
+                    //파일 경로 및 이름 유니크하게 생성
+                    String fileName = clubMasterBoardPath + UUID.randomUUID() + mf.getOriginalFilename();
+                    java.io.File uploadFile = new java.io.File(fileName);
+                    //파일 업로드
+                    mf.transferTo(uploadFile);
+                    //리스트에 파일 저장
+                    File file = new File();
+                    file.setFileName(fileName);
+                    files.add(file);
+                }
+            }
+            //domain 객체에 리스트 저장
+            clubMasterBoard.setFiles(files);
         }
-        clubMasterBoard.setFiles(files);
+
+        //모임 공지사항 수정
         clubService.updateClubMasterBoard(clubMasterBoard);
-        return "redirect:/club/getClubMasterBoard/"+clubMasterBoard.getBoardNum();
+        return "redirect:/club/getClubMasterBoard/" + clubMasterBoard.getBoardNum();
     }
 
     @RequestMapping(value = "deleteClubMasterBoard/{clubMasterBoardNum}/{clubNum}", method = RequestMethod.GET)
-    public String deleteClubMasterBoard(@PathVariable int clubMasterBoardNum, @PathVariable int clubNum){
+    public String deleteClubMasterBoard(@PathVariable int clubMasterBoardNum, @PathVariable int clubNum) {
         clubService.deleteClubMasterBoard(clubMasterBoardNum);
-        return "redirect:/club/listClubMasterBoard/"+clubNum;
+        return "redirect:/club/listClubMasterBoard/" + clubNum;
     }
 
     @RequestMapping(value = "listClubCalendarApply/{clubCalendarNum}", method = RequestMethod.GET)
-    public String listClubCalendarApply(@PathVariable int clubCalendarNum, Model model){
-        model.addAttribute("list", clubService.listClubCalendarApply(clubCalendarNum,"0"));
+    public String listClubCalendarApply(@PathVariable int clubCalendarNum, Model model) {
+        model.addAttribute("list", clubService.listClubCalendarApply(clubCalendarNum, "0"));
         return "/view/club/listClubCalendarApply.jsp";
     }
 
     @RequestMapping(value = "listCalendarCluber/{clubCalendarNum}", method = RequestMethod.GET)
-    public String listCalendarCluber(@PathVariable int clubCalendarNum, Model model){
-        model.addAttribute("list",clubService.listClubCalendarApply(clubCalendarNum,"1"));
+    public String listCalendarCluber(@PathVariable int clubCalendarNum, Model model) {
+        model.addAttribute("list", clubService.listClubCalendarApply(clubCalendarNum, "1"));
         return "/view/club/listCalendarCluber.jsp";
     }
 
     @RequestMapping("updateClubMaster/{clubUserNum}")
-    public String updateClubMaster(@PathVariable int clubUserNum){
+    public String updateClubMaster(@PathVariable int clubUserNum) {
         clubService.updateClubMaster(clubService.getCluber(clubUserNum));
-        return "redirect:/club/getCluber/"+clubUserNum;
+        return "redirect:/club/getCluber/" + clubUserNum;
     }
 
     @RequestMapping("addClubManager/{clubUserNum}")
-    public String addClubManager(@PathVariable int clubUserNum){
+    public String addClubManager(@PathVariable int clubUserNum) {
         clubService.addClubManager(clubUserNum);
-        return "redirect:/club/getCluber/"+clubUserNum;
+        return "redirect:/club/getCluber/" + clubUserNum;
     }
 
     @RequestMapping("deleteClubManager/{clubUserNum}")
-    public String deleteClubManager(@PathVariable int clubUserNum){
+    public String deleteClubManager(@PathVariable int clubUserNum) {
         clubService.deleteClubManager(clubUserNum);
-        return "redirect:/club/getCluber/"+clubUserNum;
+        return "redirect:/club/getCluber/" + clubUserNum;
     }
 
     @RequestMapping("updateClubBlacklist/{process}")
-    public String updateClubBlacklist(@PathVariable String process, @RequestParam("clubUserNum") List<Integer> clubUserNumList, @RequestParam("clubNum") int clubNum){
+    public String updateClubBlacklist(@PathVariable String process, @RequestParam("clubUserNum") List<Integer> clubUserNumList, @RequestParam("clubNum") int clubNum) {
         clubService.updateClubBlacklist(process, clubUserNumList);
-        return "redirect:/club/listClubBlacklist/"+clubNum;
+        return "redirect:/club/listClubBlacklist/" + clubNum;
     }
 
     //확인용
 
-    @RequestMapping(value = "listClubMasterBoard/{clubNum}", method = RequestMethod.GET)
-    public String listClubMasterBoard(Model model, @PathVariable("clubNum") int clubNum){
-        model.addAttribute("list",clubService.listClubMasterBoard(clubNum));
+    @RequestMapping(value = "listClubMasterBoard/{clubNum}")
+    public String listClubMasterBoard(Model model, @PathVariable("clubNum") int clubNum, @ModelAttribute("search") Search search) {
+        if (search.getCurrentPage() == 0) {
+            search.setCurrentPage(1);
+        }
+        if (search.getPageSize() == 0) {
+            search.setPageSize(pageSize);
+        }
+        if (search.getSearchKeyword() == null) {
+            search.setSearchKeyword("");
+        }
+        Map<String, Object> map = clubService.listClubMasterBoard(search, clubNum);
+        Page resultPage = new Page(search.getCurrentPage(), (Integer) map.get("totalCount"), pageUnit, pageSize);
+        map.put("resultPage", resultPage);
+        model.addAllAttributes(map);
         return "/view/club/listClubMasterBoard.jsp";
     }
 }
