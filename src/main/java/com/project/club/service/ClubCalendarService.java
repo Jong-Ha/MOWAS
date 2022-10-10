@@ -8,7 +8,7 @@ import java.util.Map;
 public interface ClubCalendarService {
     public void addCalender(ClubCalendar calender);
 
-    public String getCalender(int clubNum);
+    public ClubCalendar getCalender(int clubCalenderNum);
 
     void addCalenderReview(ClubCalendarReview calenderReview);
 
@@ -19,4 +19,6 @@ public interface ClubCalendarService {
     Map<String, Object> listCalenderReview(int boardCategory);
 
     ClubCalendarReview getCalenderReview(int clubCalenderReviewNum);
+
+    Map<String, Object> getListCalender(ClubCalendar calender);
 }

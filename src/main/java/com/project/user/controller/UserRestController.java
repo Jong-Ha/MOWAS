@@ -21,7 +21,8 @@ public class UserRestController {
     private UserService userService;
 
 
-    @RequestMapping(value = "checkDupRrd", method = RequestMethod.POST)
+
+ /*   @RequestMapping(value = "checkDupRrd", method = RequestMethod.POST)
     public Map<String, Object> checkDupRrd(@RequestBody String rrd)throws Exception{
         System.out.println("json/checkDupRrd : POST 실행");
         boolean result=userService.checkDupRrd(rrd);
@@ -32,16 +33,18 @@ public class UserRestController {
         return map;
     }
 
-
+*/
     @RequestMapping(value = "interListControl", method=RequestMethod.POST)
     public void interListControl(@ModelAttribute(value="interList") UserInterList interList)throws  Exception{
         System.out.println("여기는 interListControl 시작이다");
         System.out.println("interList의 값은 ? :"+interList);
         userService.addInterList(interList);
+
+
     }
 
 
-    @RequestMapping(value = "smsSend",method = RequestMethod.POST)
+/*    @RequestMapping(value = "smsSend",method = RequestMethod.POST)
     public void smsSend(@RequestParam(value="sms", required = false)String phone) throws Exception{
         System.out.println("여기는 smsSend 컨트롤러 시작이다");
         System.out.println("sms의 값은 ? : "+phone);
@@ -66,7 +69,7 @@ public class UserRestController {
             System.out.println(e.getCode());
         }
         System.out.println("여기는 smsSend 컨트롤러 종료이다");
-    }
+    }*/
 
 
 }

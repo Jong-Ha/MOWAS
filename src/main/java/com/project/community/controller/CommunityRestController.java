@@ -1,10 +1,7 @@
 package com.project.community.controller;
 
 import com.project.community.service.CommunityService;
-import com.project.domain.Comment;
-import com.project.domain.Recomment;
-import com.project.domain.User;
-import com.project.domain.VilBoard;
+import com.project.domain.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -14,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController

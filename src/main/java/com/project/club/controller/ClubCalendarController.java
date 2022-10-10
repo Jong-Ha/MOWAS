@@ -5,7 +5,6 @@ import com.project.community.service.CommunityService;
 import com.project.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,9 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -87,13 +83,17 @@ public class ClubCalendarController {
         return "/view/community/calender.jsp";
     }
 
-    @RequestMapping(value = "getCalender")
-    public String getCalender(){
+    @RequestMapping("getClubCalender")
+    public String getClubCalender(@RequestParam("clubCalenderNum")int clubCalenderNum
+            ,@ModelAttribute("ClubCalendar")ClubCalendar clubCalendar
+            ,Model model){
+        System.out.println(clubCalenderNum);
 
-        int clubNum = 2;
+        clubCalendar = calenderService.getCalender(clubCalenderNum);
 
-        String getCalender = calenderService.getCalender(clubNum);
-        return null;
+        model.addAttribute("clubCalender", clubCalendar);
+
+        return "/view/community/get/getClubCalender.jsp";
     }
 
 
@@ -222,4 +222,6 @@ public class ClubCalendarController {
         return null;
 
     }
+
+
 }

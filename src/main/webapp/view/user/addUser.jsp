@@ -62,7 +62,7 @@
 
 
 
-       $(".CheckRrd").on("click",function (){
+ /*      $(".CheckRrd").on("click",function (){
          var rrdCheck=$("input[name='rrd']").val();
          alert(rrdCheck)
            $.post("/user/json/checkDupRrd",
@@ -82,7 +82,7 @@
                 });
          alert('¿Ã∞«µ«≥∂?')
               });
-
+*/
 
 
 

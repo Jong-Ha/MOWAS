@@ -4,15 +4,13 @@ import com.project.domain.ClubCalendar;
 import com.project.domain.ClubCalendarReview;
 
 import java.util.List;
-import java.util.Map;
 
 public interface ClubCalendarDao {
     void addCalender(ClubCalendar calender);
 
-    String getCalender(int clubNum);
+    ClubCalendar getCalender(int clubCalenderNum);
 
     void addCalenderReview(ClubCalendarReview calenderReview);
-
 
     void updateCalenderReview(ClubCalendarReview calenderReview);
 
@@ -22,4 +20,5 @@ public interface ClubCalendarDao {
 
     ClubCalendarReview getCalenderReview(int clubCalenderReviewNum);
 
+    List<ClubCalendar> getListCalender(ClubCalendar calender);
 }

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 
 @Repository("clubCalenderDaoImpl")
 public class ClubCalendarDaoImpl implements ClubCalendarDao {
@@ -27,8 +26,8 @@ public class ClubCalendarDaoImpl implements ClubCalendarDao {
     }
 
     @Override
-    public String getCalender(int clubNum) {
-        return sqlSession.selectOne("ClubCalenderMapper.getClubCalenderList", clubNum);
+    public ClubCalendar getCalender(int clubCalenderNum) {
+        return sqlSession.selectOne("ClubCalenderMapper.getClubCalender", clubCalenderNum);
     }
 
     @Override
@@ -55,6 +54,11 @@ public class ClubCalendarDaoImpl implements ClubCalendarDao {
     @Override
     public ClubCalendarReview getCalenderReview(int clubCalenderReviewNum) {
         return sqlSession.selectOne("ClubCalenderMapper.getCalenderReview", clubCalenderReviewNum);
+    }
+
+    @Override
+    public List<ClubCalendar> getListCalender(ClubCalendar calender) {
+        return sqlSession.selectList("ClubCalenderMapper.getListCalender", calender);
     }
 
 }
