@@ -259,7 +259,7 @@ public class ClubServiceTest {
             files.add(file);
         }
         clubMasterBoard.setFiles(files);
-        clubService.updateClubMasterBoard(clubMasterBoard);
+//        clubService.updateClubMasterBoard(clubMasterBoard);
     }
 
     @Test

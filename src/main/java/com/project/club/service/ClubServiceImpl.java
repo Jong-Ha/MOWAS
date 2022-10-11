@@ -170,26 +170,43 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public void updateClubMasterBoard(ClubMasterBoard clubMasterBoard) {
+    public void updateClubMasterBoard(ClubMasterBoard clubMasterBoard, List<String> deleteFileNames) {
+        //모임 공지사항 업데이트
         clubDao.updateClubMasterBoard(clubMasterBoard);
-        clubDao.deleteClubMasterBoardFile(clubMasterBoard);
-        List<String> currentFiles = clubDao.listClubMasterBoardCurrentFile(clubMasterBoard.getBoardNum());
-        Set<String> check = new HashSet<>(currentFiles);
-        for(File file : clubMasterBoard.getFiles()){
-            if(check.add(file.getFileName())){
-                clubDao.addClubMasterBoardFile(file);
-            }
+
+        //삭제된 파일 날리기
+        Map<String, Object> map = new HashMap<>();
+        map.put("boardNum", clubMasterBoard.getBoardNum());
+        map.put("deleteFileNames",deleteFileNames);
+        if(deleteFileNames!=null){
+            clubDao.deleteClubMasterBoardFile(map);
         }
+
+        //새로운 파일 등록
+        List<File> files = clubMasterBoard.getFiles();
+        for(File file : files){
+            file.setBoardNum(clubMasterBoard.getBoardNum());
+            clubDao.addClubMasterBoardFile(file);
+        }
+
+        //에러발생
+//        System.out.println(2/0);
     }
 
     @Override
-    public void deleteClubMasterBoard(int clubMasterBoardNum) {
+    public List<String> deleteClubMasterBoard(int clubMasterBoardNum) {
         clubDao.deleteClubMasterBoard(clubMasterBoardNum);
-        ClubMasterBoard clubMasterBoard = new ClubMasterBoard();
-        List<File> files = new ArrayList<>();
-        clubMasterBoard.setFiles(files);
-        clubMasterBoard.setBoardNum(clubMasterBoardNum);
-        clubDao.deleteClubMasterBoardFile(clubMasterBoard);
+
+        //파일 날리기
+        Map<String, Object> map = new HashMap<>();
+        List<String> deleteFileNames = new ArrayList<>();
+        map.put("boardNum", clubMasterBoardNum);
+        map.put("deleteFileNames",deleteFileNames);
+        //deleteFileNames가 널이면 실행 안됨
+        //deleteFileNames.size가 0이면 모든 파일 삭제
+        List<String> deleteFiles = clubDao.listClubMasterBoardCurrentFile(clubMasterBoardNum);
+        clubDao.deleteClubMasterBoardFile(map);
+        return deleteFiles;
     }
 
     @Override

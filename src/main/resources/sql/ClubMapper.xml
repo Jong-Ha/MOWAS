@@ -690,13 +690,13 @@
     </select>
 
     <!--파일 삭제-->
-    <delete id="deleteClubMasterBoardFile" parameterType="com.project.domain.ClubMasterBoard">
+    <delete id="deleteClubMasterBoardFile" parameterType="map">
         DELETE files
         <where>
             board_num = #{boardNum}
             AND board_category = '04'
-            <foreach collection="files" item="file" open="AND file_name NOT IN (" separator="," close=")">
-                #{file.fileName}
+            <foreach collection="deleteFileNames" item="fileName" open="AND file_name IN (" separator="," close=")">
+                #{fileName}
             </foreach>
         </where>
     </delete>

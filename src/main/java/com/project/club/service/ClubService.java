@@ -31,8 +31,8 @@ public interface ClubService {
     public Map<String, Object> listClubBlacklist(Search search, int clubNum);
     public String getClubBlacklist(int clubUserNum);
     public int addClubMasterBoard(ClubMasterBoard clubMasterBoard);
-    public void updateClubMasterBoard(ClubMasterBoard clubMasterBoard);
-    public void deleteClubMasterBoard(int clubMasterBoardNum);
+    public void updateClubMasterBoard(ClubMasterBoard clubMasterBoard, List<String> deleteFileNames);
+    public List<String> deleteClubMasterBoard(int clubMasterBoardNum);
     public Map<String, Object> listClubMasterBoard(Search search, int clubNum);
     public ClubMasterBoard getClubMasterBoard(int clubMasterBoardNum);
     public void addClubCalendarApply(CalendarCluber calendarCluber, String applyAutoCheck);

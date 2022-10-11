@@ -338,20 +338,23 @@ public class ClubController {
 
     @RequestMapping(value = "updateClubMasterBoard/{boardNum}", method = RequestMethod.GET)
     public String updateClubMasterBoardView(@PathVariable int boardNum, Model model) {
-        model.addAttribute("clubMasterBoard", clubService.getClubMasterBoard(boardNum));
+        ClubMasterBoard clubMasterBoard = clubService.getClubMasterBoard(boardNum);
+        int fileSize = clubMasterBoard.getFiles().size();
+        model.addAttribute("clubMasterBoard", clubMasterBoard);
+        model.addAttribute("fileSize", fileSize);
         return "/view/club/updateClubMasterBoard.jsp";
     }
 
     @RequestMapping(value = "updateClubMasterBoard", method = RequestMethod.POST)
-    public String updateClubMasterBoard(@ModelAttribute("clubMasterBoard") ClubMasterBoard clubMasterBoard, MultipartHttpServletRequest multi) throws Exception {
+    public String updateClubMasterBoard(@ModelAttribute("clubMasterBoard") ClubMasterBoard clubMasterBoard, MultipartHttpServletRequest multi, @RequestParam(value = "deleteFileName", required = false) List<String> deleteFileNames) throws Exception {
         ////파일 업로드
         //파일 추출
         List<MultipartFile> mfs = multi.getFiles("file");
         System.out.println(mfs);
+        //저장할 리스트 생성
+        List<File> files = new ArrayList<>();
         //저장할 파일이 있는지 validation check
         if(mfs.size()>0 && !mfs.get(0).getOriginalFilename().equals("")){
-            //저장할 리스트 생성
-            List<File> files = new ArrayList<>();
             //추출된 파일 업로드
             for (MultipartFile mf : mfs) {
                 //파일이 이미지인지 validation check
@@ -367,18 +370,60 @@ public class ClubController {
                     files.add(file);
                 }
             }
-            //domain 객체에 리스트 저장
-            clubMasterBoard.setFiles(files);
         }
+        //domain 객체에 리스트 저장
+        clubMasterBoard.setFiles(files);
 
         //모임 공지사항 수정
-        clubService.updateClubMasterBoard(clubMasterBoard);
+        //서비스에서 일부러 에러 발생해서 롤백 - 검증용
+        try {
+            clubService.updateClubMasterBoard(clubMasterBoard, deleteFileNames);
+        }catch (Exception e){
+            System.out.println(e.getStackTrace());
+        }
+
+        //기존파일 삭제
+//        System.out.println("deleteFileNames : "+deleteFileNames);
+        if (deleteFileNames != null) {
+            for(String deleteFileName : deleteFileNames){
+                java.io.File deleteFile = new java.io.File(resourcesPath+deleteFileName);
+                if(deleteFile.exists()){
+                    if(deleteFile.delete()){
+                        System.out.println("file deleted");
+                    }else {
+                        System.out.println("cannot delete");
+                    }
+                }
+            }
+        }
+
         return "redirect:/club/getClubMasterBoard/" + clubMasterBoard.getBoardNum();
     }
 
     @RequestMapping(value = "deleteClubMasterBoard/{clubMasterBoardNum}/{clubNum}", method = RequestMethod.GET)
     public String deleteClubMasterBoard(@PathVariable int clubMasterBoardNum, @PathVariable int clubNum) {
-        clubService.deleteClubMasterBoard(clubMasterBoardNum);
+        List<String> deleteFileNames = clubService.deleteClubMasterBoard(clubMasterBoardNum);
+
+        ////기존파일 삭제
+        //확인
+//        System.out.println("deleteFileNames : "+deleteFileNames);
+        //validation check
+        if (deleteFileNames != null) {
+            //각 항목 삭제
+            for(String deleteFileName : deleteFileNames){
+                //파일 설정
+                java.io.File deleteFile = new java.io.File(resourcesPath+deleteFileName);
+                //파일이 있으면 삭제
+                if(deleteFile.exists()){
+                    if(deleteFile.delete()){
+                        System.out.println("file deleted");
+                    }else {
+                        System.out.println("cannot delete");
+                    }
+                }
+            }
+        }
+
         return "redirect:/club/listClubMasterBoard/" + clubNum;
     }
 

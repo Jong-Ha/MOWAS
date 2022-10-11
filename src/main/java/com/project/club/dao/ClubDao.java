@@ -43,7 +43,7 @@ public interface ClubDao {
     public ClubMasterBoard getClubMasterBoard(int clubMasterBoardNum);
     public void addClubMasterBoardFile(File file);
     public List<String> listClubMasterBoardCurrentFile(int clubMasterBoardNum);
-    public void deleteClubMasterBoardFile(ClubMasterBoard clubMasterBoard);
+    public void deleteClubMasterBoardFile(Map<String, Object> map);
     public int getClubMasterBoardNum(String userId);
     public void addClubCalendarApply(Map<String, Object> map);
     public void deleteClubCalendarApply(Map<String, Object> map);

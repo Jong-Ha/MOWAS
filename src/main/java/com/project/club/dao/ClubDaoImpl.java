@@ -196,8 +196,8 @@ public class ClubDaoImpl implements ClubDao {
     }
 
     @Override
-    public void deleteClubMasterBoardFile(ClubMasterBoard clubMasterBoard) {
-        sqlSession.delete("ClubMapper.deleteClubMasterBoardFile", clubMasterBoard);
+    public void deleteClubMasterBoardFile(Map<String, Object> map) {
+        sqlSession.delete("ClubMapper.deleteClubMasterBoardFile", map);
     }
 
     @Override
