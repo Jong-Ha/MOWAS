@@ -12,6 +12,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/community/list/clubCalenderReviewList.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/community/list" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/community/list/villBoardList.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/community/list" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/user" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/user/listUser.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/user" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/user/login.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/user" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/user/main.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/user" />
       </map>

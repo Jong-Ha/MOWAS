@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Service ("userServiceImpl")
 public class UserServiceImpl implements UserService{
     @Autowired
@@ -30,8 +34,17 @@ public class UserServiceImpl implements UserService{
         userDao.addInterList(interList);
     }
 
+    public void deleteInterList(UserInterList interList)throws Exception{
+          userDao.deleteInterList(interList);
+    }
+
     public User getUser(String userId)throws Exception{
         return userDao.getUser(userId);
+    }
+
+    public User loginUser(User user)throws Exception{
+          User dbUser = userDao.getUser(user.getUserId());
+          return dbUser;
     }
 
     public void updateUser(User user)throws Exception{
@@ -50,10 +63,24 @@ public class UserServiceImpl implements UserService{
     public boolean checkDupRrd(String rrd)throws Exception{
           boolean result=true;
           User user = userDao.checkDupRrd(rrd);
+          System.out.println("유저임플 user값 : "+user);
           if(user !=null){
               result=false;
+
           }
           return result;
+    }
+
+    public Map<String, Object> listUser(User user)throws Exception{
+          List userList = userDao.listUser(user);
+          Map<String, Object> map = new HashMap<String, Object>();
+          map.put("userList",userList);
+        return map;
+    }
+
+    public User getUserDetail(String userId)throws Exception{
+          User userDetail = userDao.getUserDetail(userId);
+          return userDetail;
     }
 
 
