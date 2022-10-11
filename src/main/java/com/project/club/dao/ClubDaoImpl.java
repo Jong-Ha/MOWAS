@@ -146,8 +146,13 @@ public class ClubDaoImpl implements ClubDao {
     }
 
     @Override
-    public List<Cluber> listClubBlacklist(int clubNum) {
-        return sqlSession.selectList("ClubMapper.listClubBlacklist", clubNum);
+    public List<Cluber> listClubBlacklist(Map<String, Object> map) {
+        return sqlSession.selectList("ClubMapper.listClubBlacklist", map);
+    }
+
+    @Override
+    public int getTotalClubBlacklist(Map<String, Object> map) {
+        return sqlSession.selectOne("ClubMapper.getTotalClubBlacklist", map);
     }
 
     @Override
@@ -171,8 +176,13 @@ public class ClubDaoImpl implements ClubDao {
     }
 
     @Override
-    public List<ClubMasterBoard> listClubMasterBoard(int clubNum) {
-        return sqlSession.selectList("ClubMapper.listClubMasterBoard", clubNum);
+    public List<ClubMasterBoard> listClubMasterBoard(Map<String, Object> map) {
+        return sqlSession.selectList("ClubMapper.listClubMasterBoard", map);
+    }
+
+    @Override
+    public int getTotalClubMasterBoard(Map<String, Object> map) {
+        return sqlSession.selectOne("ClubMapper.getTotalClubMasterBoard", map);
     }
 
     @Override
@@ -186,8 +196,8 @@ public class ClubDaoImpl implements ClubDao {
     }
 
     @Override
-    public void deleteClubMasterBoardFile(ClubMasterBoard clubMasterBoard) {
-        sqlSession.delete("ClubMapper.deleteClubMasterBoardFile", clubMasterBoard);
+    public void deleteClubMasterBoardFile(Map<String, Object> map) {
+        sqlSession.delete("ClubMapper.deleteClubMasterBoardFile", map);
     }
 
     @Override
@@ -222,8 +232,18 @@ public class ClubDaoImpl implements ClubDao {
     }
 
     @Override
-    public List<Cluber> listCluber(int clubNum) {
-        return sqlSession.selectList("ClubMapper.listCluber", clubNum);
+    public List<Cluber> listCluber(Map<String, Object> map) {
+        return sqlSession.selectList("ClubMapper.listCluber", map);
+    }
+
+    @Override
+    public int getTotalCluber(Map<String, Object> map) {
+        return sqlSession.selectOne("ClubMapper.getTotalCluber", map);
+    }
+
+    @Override
+    public String getCluberCondition(Map<String, Object> map) {
+        return sqlSession.selectOne("ClubMapper.getCluberCondition", map);
     }
 
     @Override

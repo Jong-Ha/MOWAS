@@ -9,21 +9,24 @@
             $(".addClubMasterBoard").on("click",function(){
                 $("form").attr("method","post").attr("action","/club/addClubMasterBoard").submit()
             })
+
+            $("input:file").on("change",function(){
+                if($(this)[0].files.length>10){
+                    alert('파일 갯수를 초과하였습니다.');
+                    $(this).val('');
+                }
+            })
         })
     </script>
 </head>
 <body>
-<form>
+<form enctype="multipart/form-data">
     <label>
         <input type="hidden" name="clubNum" value="${clubNum}">
         <input type="hidden" name="userId" value="${user.userId}">
         제목<input type="text" name="title" value=""><br>
         내용<input type="text" name="text" value=""><br>
-        파일<input type="text" name="fileName" value=""><br>
-        파일<input type="text" name="fileName" value=""><br>
-        파일<input type="text" name="fileName" value=""><br>
-        파일<input type="text" name="fileName" value=""><br>
-        파일<input type="text" name="fileName" value=""><br>
+        파일<input type="file" name="file" multiple="multiple"/><br>
         알림<input type="checkbox" name="noticeSendCheck"><br>
     </label>
 </form>

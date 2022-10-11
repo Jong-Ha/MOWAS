@@ -1,6 +1,7 @@
 package com.project.club.service;
 
 import com.project.club.dao.ClubDao;
+import com.project.common.Search;
 import com.project.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -36,6 +37,14 @@ public class ClubServiceImpl implements ClubService {
     @Override
     public Club getClub(int clubNum) {
         return clubDao.getClub(clubNum);
+    }
+
+    @Override
+    public String getCluberCondition(User user, int clubNum) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("user", user);
+        map.put("clubNum", clubNum);
+        return clubDao.getCluberCondition(map);
     }
 
     @Override
@@ -134,8 +143,13 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public List<Cluber> listClubBlacklist(int clubNum) {
-        return clubDao.listClubBlacklist(clubNum);
+    public Map<String, Object> listClubBlacklist(Search search, int clubNum) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("search", search);
+        map.put("clubNum",clubNum);
+        map.put("list", clubDao.listClubBlacklist(map));
+        map.put("totalCount", clubDao.getTotalClubBlacklist(map));
+        return map;
     }
 
     @Override
@@ -156,32 +170,55 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public void updateClubMasterBoard(ClubMasterBoard clubMasterBoard) {
+    public void updateClubMasterBoard(ClubMasterBoard clubMasterBoard, List<String> deleteFileNames) {
+        //모임 공지사항 업데이트
         clubDao.updateClubMasterBoard(clubMasterBoard);
-        clubDao.deleteClubMasterBoardFile(clubMasterBoard);
-        List<String> currentFiles = clubDao.listClubMasterBoardCurrentFile(clubMasterBoard.getBoardNum());
-        Set<String> check = new HashSet<>();
-        check.addAll(currentFiles);
-        for(File file : clubMasterBoard.getFiles()){
-            if(check.add(file.getFileName())){
-                clubDao.addClubMasterBoardFile(file);
-            }
+
+        //삭제된 파일 날리기
+        Map<String, Object> map = new HashMap<>();
+        map.put("boardNum", clubMasterBoard.getBoardNum());
+        map.put("deleteFileNames",deleteFileNames);
+        if(deleteFileNames!=null){
+            clubDao.deleteClubMasterBoardFile(map);
         }
+
+        //새로운 파일 등록
+        List<File> files = clubMasterBoard.getFiles();
+        for(File file : files){
+            file.setBoardNum(clubMasterBoard.getBoardNum());
+            clubDao.addClubMasterBoardFile(file);
+        }
+
+        //에러발생
+//        System.out.println(2/0);
     }
 
     @Override
-    public void deleteClubMasterBoard(int clubMasterBoardNum) {
+    public List<String> deleteClubMasterBoard(int clubMasterBoardNum) {
         clubDao.deleteClubMasterBoard(clubMasterBoardNum);
-        ClubMasterBoard clubMasterBoard = new ClubMasterBoard();
-        List<File> files = new ArrayList<>();
-        clubMasterBoard.setFiles(files);
-        clubMasterBoard.setBoardNum(clubMasterBoardNum);
-        clubDao.deleteClubMasterBoardFile(clubMasterBoard);
+
+        //파일 날리기
+        Map<String, Object> map = new HashMap<>();
+        List<String> deleteFileNames = new ArrayList<>();
+        map.put("boardNum", clubMasterBoardNum);
+        map.put("deleteFileNames",deleteFileNames);
+        //deleteFileNames가 널이면 실행 안됨
+        //deleteFileNames.size가 0이면 모든 파일 삭제
+        List<String> deleteFiles = clubDao.listClubMasterBoardCurrentFile(clubMasterBoardNum);
+        clubDao.deleteClubMasterBoardFile(map);
+        return deleteFiles;
     }
 
     @Override
-    public List<ClubMasterBoard> listClubMasterBoard(int clubNum) {
-        return clubDao.listClubMasterBoard(clubNum);
+    public Map<String, Object> listClubMasterBoard(Search search, int clubNum) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("search",search);
+        map.put("clubNum",clubNum);
+        int totalCount = clubDao.getTotalClubMasterBoard(map);
+        List<ClubMasterBoard> list = clubDao.listClubMasterBoard(map);
+        map.put("totalCount",totalCount);
+        map.put("list",list);
+        return map;
     }
 
     @Override
@@ -222,8 +259,15 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public List<Cluber> listCluber(int clubNum) {
-        return clubDao.listCluber(clubNum);
+    public Map<String, Object> listCluber(Search search, int clubNum) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("clubNum",clubNum);
+        map.put("search",search);
+        int totalCount = clubDao.getTotalCluber(map);
+        List<Cluber> list = clubDao.listCluber(map);
+        map.put("totalCount",totalCount);
+        map.put("list",list);
+        return map;
     }
 
     @Override
