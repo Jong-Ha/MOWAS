@@ -67,7 +67,7 @@
                     swalWithBootstrapButtons.fire(
                         '삭제 성공!',
                         'success',
-                        location.href = "/commu/deleteBoard?boardNum="+boardNum+"&boardCategory="+boardCategory
+                    location.href = "/commu/deleteBoard?boardNum="+boardNum+"&boardCategory="+boardCategory
                     )
                 } else if (
                     /* Read more about handling dismissals below */

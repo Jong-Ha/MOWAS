@@ -1,6 +1,7 @@
 package club.service;
 
 import com.project.club.service.ClubService;
+import com.project.common.Search;
 import com.project.domain.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -117,7 +118,7 @@ public class ClubServiceTest {
 
     @Test
     public void getCluberApply(){
-        int clubUserNum = 10013;
+        int clubUserNum = 10004;
 
         String result = clubService.getCluberApply(clubUserNum);
 
@@ -176,8 +177,9 @@ public class ClubServiceTest {
     @Test
     public void listClubBlacklist(){
         int clubNum = 10008;
+        Search search = new Search();
 
-        System.out.println(clubService.listClubBlacklist(clubNum));
+        System.out.println(clubService.listClubBlacklist(search,clubNum));
     }
 
     @Test
@@ -212,7 +214,8 @@ public class ClubServiceTest {
     @Test
     public void listClubMasterBoard(){
         int clubNum = 10008;
-        System.out.println(clubService.listClubMasterBoard(clubNum));
+        Search search = new Search();
+        System.out.println(clubService.listClubMasterBoard(search, clubNum));
     }
 
     @Test
@@ -256,7 +259,7 @@ public class ClubServiceTest {
             files.add(file);
         }
         clubMasterBoard.setFiles(files);
-        clubService.updateClubMasterBoard(clubMasterBoard);
+//        clubService.updateClubMasterBoard(clubMasterBoard);
     }
 
     @Test
@@ -306,13 +309,13 @@ public class ClubServiceTest {
     @Test
     public void listCluber(){
         int clubNum = 10008;
-
-        System.out.println(clubService.listCluber(clubNum));
+        Search search = new Search();
+        System.out.println(clubService.listCluber(search, clubNum));
     }
 
     @Test
     public void getCluber(){
-        int clubUserNum = 10006;
+        int clubUserNum = 10004;
 
         System.out.println(clubService.getCluber(clubUserNum));
     }

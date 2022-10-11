@@ -119,6 +119,7 @@ public class DealServiceTest {
 
 
 
+
 //        Search search =new Search();
 //        search.setSearchCondition("0");
 //        search.setSearchKeyword("제목4");
@@ -149,7 +150,7 @@ public class DealServiceTest {
     @Test
     public void GetDeal() throws Exception{
 
-        int dealBoardNum =100011;
+        int dealBoardNum =10005;
     Deal result = dealService.getDeal(dealBoardNum);
                 System.out.println(dealService.getDeal(dealBoardNum)+"1111111111111111111111111111111");
     }

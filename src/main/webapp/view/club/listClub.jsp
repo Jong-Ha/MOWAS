@@ -17,13 +17,16 @@
                 var button = $(this);
                 $.ajax({
                     url: "/club/json/clubLike",
-                    type: "POST",
+                    method:"POST",
                     data: JSON.stringify({
                         "boardNum": clubNum,
                         "boardCategory": "12"
                     }),
+                    headers:{
+                        "Accept":"application/json",
+                        "Content-Type":"application/json; charset=UTF-8"
+                    },
                     dataType: "JSON",
-                    contentType: 'application/json; charset=UTF-8',
                     success: function () {
                         // alert("ajax")
                         if(button.val()==='좋아요!'){
@@ -40,6 +43,15 @@
     </script>
 </head>
 <body>
+
+<input type="button" class="addClub" value="모임 만들기">
+<input type="button" class="clubLogin" value="로그인">
+<label>
+    아이디 : <input type="text" name="userId" value="user01">
+</label>
+${user.userId}
+<br>
+<br>
 <c:forEach items="${list}" var="club">
     <div>
         <a href="/club/getClub/${club.clubNum}">${club}</a>
@@ -49,13 +61,5 @@
         <br/>
     </div>
 </c:forEach>
-
-<input type="button" class="addClub" value="모임 만들기">
-<input type="button" class="clubLogin" value="로그인">
-<label>
-    아이디 : <input type="text" name="userId" value="">
-</label>
-${user.userId}
-<br>
 </body>
 </html>

@@ -48,6 +48,7 @@
 
             $(".submit").on("click", function () {
 
+
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
@@ -182,7 +183,7 @@
         </div>
     </div>
 </form>
-<jsp:include page="/layout/chat.jsp"/>
+
 </body>
 
 </html>

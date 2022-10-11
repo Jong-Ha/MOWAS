@@ -13,10 +13,10 @@
     </script>
 </head>
 <body>
-<form>
+<form enctype="multipart/form-data">
     <label>
         clubName : <input type="text" name="clubName" value=""><br>
-        clubName : <textarea name="clubText"></textarea><br>
+        clubText : <textarea name="clubText"></textarea><br>
         interList : <select name="interList">
         <option value="01">독서</option>
         <option value="02">자동차</option>
@@ -33,7 +33,7 @@
         <option value="13">그외</option>
     </select><br>
         villCode : <input type="text" name="villCode" value=""><br>
-        clubImage : <input type="text" name="clubImage" value=""><br>
+        clubImage : <input type="file" name="file"><br>
         tag : <input type="text" name="tag" value=""><br>
     </label>
     <input type="button" class="addClub" value="모임 만들기">

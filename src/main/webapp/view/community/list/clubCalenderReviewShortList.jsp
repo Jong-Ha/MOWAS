@@ -187,7 +187,7 @@
 
     <div class="addBox">
         <button class="btn btn-primary add ">
-            우리 동네 게시글 작성
+            모임 일정 쇼츠
         </button>
     </div>
 
@@ -246,8 +246,7 @@
     </c:forEach>
 </div>
 
-<jsp:include page="/layout/chat.jsp"/>
-</body>
+<jsp:include page="/layout/chatIcon.jsp"/>
 
-<
+</body>
 </html>

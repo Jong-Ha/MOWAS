@@ -38,22 +38,27 @@
   <!--  ///////////////////////// JavaScript ////////////////////////// -->
   <script type="text/javascript">
 
-    //============= "가입"  Event 연결 =============
+    ============= "가입"  Event 연결 =============
     $(function() {
       //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
       $( "button.btn.btn-primary" ).on("click" , function() {
-        fncAddUser();
-      });
-    });
-
-
-    //============= "취소"  Event 처리 및  연결 =============
-    $(function() {
-      //==> 추가된부분 : "addUser"  Event 연결
-      $("a[href='#' ]:contains('상세 보기')").on("click", function() {
         self.location = "/deal/getDeal?dealBoardNum="+$(this).children().val();
       });
     });
+    // $(function() {
+    //   //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+    //   $( .addDeal ).on("click" , function() {
+    //     self.location = "/deal/dd="+$(this).children().val();
+    //   });
+    // });
+
+    // //============= "취소"  Event 처리 및  연결 =============
+    // $(function() {
+    //   //==> 추가된부분 : "addUser"  Event 연결
+    //   $("a[href='#' ]:contains('상세 보기')").on("click", function() {
+    //     self.location = "/deal/getDeal?dealBoardNum="+$(this).children().val();
+    //   });
+    // });
   </script>
 
 
@@ -133,13 +138,14 @@
     <c:forEach items="${list}" var="deal">
 
     <tr>
+
       <td align="left">   ${deal.dealBoardNum}</td>
       <td align="left">    ${deal.dealTitle}</td>
       <td align="left">    ${deal.dealText}</td>
-      <td align="left"><p><a href="#" class="btn btn-primary" role="button"><input type=hidden value=${deal.dealBoardNum }>상세 보기</a> </p></td>
+      <td align="left"><a href="/deal/getDeal/${deal.dealBoardNum}">상세보기</a></td>
 
     </c:forEach>
-
+      <a href="/deal/addDeal"> <input type="button" class="addDeal" value="거래 만들기"></a>
     </tbody>
 
   </table>

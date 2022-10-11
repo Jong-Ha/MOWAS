@@ -2,13 +2,9 @@ package com.project.club.controller;
 
 import com.project.club.service.ClubCalendarService;
 import com.project.community.service.CommunityService;
-import com.project.domain.ClubCalendar;
-import com.project.domain.ClubCalendarReview;
-import com.project.domain.Comment;
-import com.project.domain.Recomment;
+import com.project.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -41,6 +35,7 @@ public class ClubCalendarController {
     public String addClubCalender(@ModelAttribute("ClubCalendar") ClubCalendar calender,
                                   @RequestParam("file") List<MultipartFile> file) throws Exception {
         calender.setClubNum(10008);
+
         calender.setLocation("창원시 진해구 소사동");
         /*자동 참여*/
         if(calender.getApplyAutoCheck()  == "on" ){
@@ -88,13 +83,17 @@ public class ClubCalendarController {
         return "/view/community/calender.jsp";
     }
 
-    @RequestMapping(value = "getCalender")
-    public String getCalender(){
+    @RequestMapping("getClubCalender")
+    public String getClubCalender(@RequestParam("clubCalenderNum")int clubCalenderNum
+            ,@ModelAttribute("ClubCalendar")ClubCalendar clubCalendar
+            ,Model model){
+        System.out.println(clubCalenderNum);
 
-        int clubNum = 2;
+        clubCalendar = calenderService.getCalender(clubCalenderNum);
 
-        String getCalender = calenderService.getCalender(clubNum);
-        return null;
+        model.addAttribute("clubCalender", clubCalendar);
+
+        return "/view/community/get/getClubCalender.jsp";
     }
 
 
@@ -102,13 +101,16 @@ public class ClubCalendarController {
     /*모임 일정 후기 쇼츠*/
     @RequestMapping(value = "addClubCalenderReview", method = RequestMethod.POST)
     public String addClubCalenderReview(@ModelAttribute("clubCalenderReview") ClubCalendarReview calenderReview
-            /*, @RequestParam("file") List<MultipartFile> file*/) {
+            /*, @RequestParam("file") List<MultipartFile> file*/ ,HttpSession session) {
 
       /*  System.out.println("파일 업로드 진입 : " + file);*/
+
+        User user = (User)session.getAttribute("user");
+
         System.out.println("모임 일정 후기 Data : " + calenderReview);
 
 
-/*        List<Map<String, String>> fileList = new ArrayList<>();
+        /*  List<Map<String, String>> fileList = new ArrayList<>();
         for (int i = 0; i < file.size(); i++) {
             String fileName = file.get(i).getOriginalFilename();
             System.out.println("파일 이름 : " + fileName);
@@ -125,13 +127,15 @@ public class ClubCalendarController {
         }*/
 
         calenderReview.setClubCalenderNum(10001);
-        calenderReview.setClubNum(10008);
-        calenderReview.setUserId("user01");
+
+        calenderReview.setUserId(user.getUserId());
+
+        calenderReview.setClubNum(10002);
 
         if(calenderReview.getBoardCategory() == 1) {
             calenderService.addCalenderReview(calenderReview);
         }else if(calenderReview.getBoardCategory() == 2){
-            calenderService.addCalenderReviewShort(calenderReview);
+
         }
         return null;
     }
@@ -204,7 +208,7 @@ public class ClubCalendarController {
     @RequestMapping("listCalenderReview")
     public String listCalenderReview(@RequestParam("boardCategory")int boardCategory
                                     ,Model model,HttpServletRequest request){
-
+        System.out.println(boardCategory);
         Map<String, Object> map = calenderService.listCalenderReview(boardCategory);
 
         model.addAttribute("list", map.get("list"));
@@ -218,4 +222,6 @@ public class ClubCalendarController {
         return null;
 
     }
+
+
 }
