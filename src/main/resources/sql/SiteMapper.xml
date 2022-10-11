@@ -294,7 +294,17 @@
         <if test='where=="clubReportList"'>
             SELECT club_report_num, club_num, report_id, cr_basis, report_date
             FROM club_report
-            WHERE report_result=#{reportResult}) countTable
+            <if test="searchCondition != null">
+                <where>
+                    <if test="searchCondition == 0 and searchKeyword !='' ">
+                        club_report_num = to_char(#{searchKeyword})
+                    </if>
+                    <if test="searchCondition == 1 and searchKeyword !='' ">
+                        report_id LIKE "%"||#{searchKeyword}||"%"
+                    </if>
+                </where>
+            </if>
+            ) countTable
         </if>
     </select>
 
@@ -308,24 +318,16 @@
             cr_basis,
             report_date,
             report_text,
-            process_date,
-            process_result,
             rereport_apply_check,
-            rereport_apply_date,
-            rereport_text,
             rereport_result )
         VALUES (    seq_club_report.NEXTVAL,
-                    #{clubNo},
+                    #{clubNum},
                     #{reportId},
                     #{adminId},
                     #{crBasis},
                     SYSDATE,
                     #{reportText},
-                    #{processDate},
-                    #{processResult},
                     'N',
-                    #{rereportApplyDate},
-                    #{rereporText},
                     '대기'
                )
     </insert>
@@ -333,27 +335,26 @@
     <select id="getClubReport"	parameterType="int"	resultMap="ClubReportSelectMap">
         SELECT
             club_report_num,
-            club_num,
-            report_id,
-            admin_id,
-            cr_basis,
-            report_date,
-            report_text,
-            process_date,
-            process_result,
-            rereport_apply_check,
-            rereport_apply_date,
-            rereport_text,
-            rereport_result
-        FROM club_report
-        WHERE club_report_num = #{value}
+            cr.club_num,
+            cr.report_id,
+            cr.cr_basis,
+            cr.report_date,
+            cr.report_text,
+            cr.process_date,
+            cr.report_result,
+            cr.admin_id,
+            c.club_master_id,
+            c.club_name
+        FROM club_report cr, club c
+        WHERE cr.club_report_num = #{value}
+            AND cr.club_num = c.club_num
     </select>
 
     <update	id="processClubReport"	parameterType="clubReport" >
         UPDATE club_report
         <set>
             process_date 		= SYSDATE ,
-            process_result =    #{processResult}
+            report_result =    #{reportResult}
         </set>
         WHERE club_report_num = #{clubReportNo}
     </update>
@@ -361,13 +362,42 @@
     <update	id="processClubRereport"	parameterType="clubReport" >
         UPDATE club_report
         <set>
-            rereport_apply_check 	= <if test='rereport_text!=null'>'Y'</if> ,
-            rereport_apply_date = #{rereportApplyDate},
+            rereport_apply_check 	= <if test='rereportText!=null'>'Y'</if> ,
+            rereport_apply_date = SYSDATE,
             rereport_text = #{rereportText},
             rereport_result = #{rereportResult}
         </set>
         WHERE club_report_num = #{clubReportNo}
     </update>
 
+    <select id="listClubReport"			parameterType="search"			resultMap="ClubReportSelectMap">
+        SELECT
+        inner_table.*
+        FROM (
+            SELECT
+                ROWNUM row_seq,
+                deep_inner.*
+                FROM (
+                    SELECT  cr.club_report_num,
+                            cr.club_num,
+                            cr.report_id,
+                            cr.admin_id,
+                            cr.cr_basis,
+                            cr.report_date,
+                            cr.report_text,
+                            cr.process_date,
+                            cr.report_result,
+                            cr.rereport_apply_check,
+                            cr.rereport_apply_date,
+                            cr.rereport_text,
+                            cr.rereport_result,
+                            c.club_master_id,
+                            c.club_name
+                        FROM club_report cr, club c
+                        WHERE cr.club_num = c.club_num
+                        ORDER BY cr.club_report_num DESC ) deep_inner
+                    WHERE ROWNUM &lt;= #{endRowNum} ) inner_table
+            WHERE inner_table.row_seq BETWEEN #{startRowNum} AND #{endRowNum}
+    </select>
 
 </mapper>

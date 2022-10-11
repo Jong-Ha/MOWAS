@@ -2,6 +2,8 @@ package site.service;
 
 import com.project.common.Page;
 import com.project.common.Search;
+import com.project.domain.Club;
+import com.project.domain.ClubReport;
 import com.project.domain.CommunityReport;
 import com.project.domain.MasterBoard;
 import com.project.site.service.SiteService;
@@ -237,7 +239,7 @@ public class SiteServiceTest {
 
         Map<String,Object> map = siteService.listCommunityReportProcess(search);
 
-        List<Object> list = (List<Object>)map.get("List");
+        List<Object> list = (List<Object>)map.get("list");
 
         //Assert.assertEquals(3, list.size());
 
@@ -254,6 +256,96 @@ public class SiteServiceTest {
         search.setSearchCondition("1");
         search.setSearchKeyword("");
         map = siteService.listCommunityReportProcess(search);
+
+        list = (List<Object>)map.get("list");
+        //Assert.assertEquals(3, list.size());
+
+        //==> console Ȯ��
+        //System.out.println(list);
+
+        totalCount = (Integer)map.get("totalCount");
+        System.out.println(totalCount);
+    }
+
+    @Test
+    public void testAddClubReport() throws Exception {
+        ClubReport clubReport = new ClubReport();
+
+        clubReport.setClubNum(10002);
+        clubReport.setReportId("user02");
+        clubReport.setCrBasis('1');
+        clubReport.setReportText("다단계 모임");
+        clubReport.setAdminId("admin01");
+
+        siteService.addClubReport(clubReport);
+    }
+
+    @Test
+    public void testGetClubReport() throws Exception {
+        ClubReport clubReport = new ClubReport();
+
+        Club club = new Club();
+        clubReport.setClubNum(10002);
+        clubReport = siteService.getClubReport(10001);
+
+        //==> console Ȯ��
+        System.out.println(clubReport);
+    }
+
+    @Test
+    public void testUpdateClubReport() throws Exception{
+        ClubReport clubReport = siteService.getClubReport(10001);
+
+        clubReport.setReportResult("대기");
+
+        siteService.processClubReport(clubReport);;
+
+        clubReport = siteService.getClubReport(10001);
+
+        //==> console Ȯ��
+        System.out.println(clubReport);
+    }
+
+    @Test
+    public void testUpdateClubRereport() throws Exception{
+        ClubReport clubReport = siteService.getClubReport(10001);
+
+        clubReport.setRereportResult("대기");
+        clubReport.setRereportText("상품 판매 모임이 아닌 사회적 기업 소개였습니다.");
+
+        siteService.processClubRereport(clubReport);;
+
+        clubReport = siteService.getClubReport(10001);
+
+        //==> console Ȯ��
+        System.out.println(clubReport);
+    }
+    @Test
+    public void testListClubReportAll() throws Exception{
+
+        Search search = new Search();
+        search.setCurrentPage(1);
+        search.setPageSize(3);
+
+        Map<String,Object> map = siteService.listClubReport(search);
+
+        List<Object> list = (List<Object>)map.get("list");
+
+        //Assert.assertEquals(3, list.size());
+
+        //==> console Ȯ��
+        System.out.println(list);
+
+        Integer totalCount = (Integer)map.get("totalCount");
+        System.out.println(totalCount);
+
+        System.out.println("=======================================");
+
+        search.setCurrentPage(1);
+        search.setPageSize(2);
+        search.setSearchCondition("1");
+        search.setSearchKeyword("");
+        map = siteService.listClubReport(search);
 
         list = (List<Object>)map.get("list");
         //Assert.assertEquals(3, list.size());

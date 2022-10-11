@@ -9,15 +9,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="KSM 2022.10.06&#10;&#10;커뮤니티 신고 add, get, process&#10;단위테스트 완료, 지도 API class 추가">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" afterDir="false" />
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="KSM 2022.10.07&#10;&#10;커뮤니티 신고 list Unit test완료&#10;모임 신고 비즈니스로직 작성완료">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-01__10_34__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-01_오후_10_34_[Changes]/SYSTEM.L2avkg.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-01_오후_10_34_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-03__10_35__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-03__10_36__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-03_오후_10_35_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-03_오후_10_36_[Changes]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/ClubReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/ClubReport.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/dao/SiteDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/dao/SiteDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/dao/SiteDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/dao/SiteDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/service/SiteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/service/SiteService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/service/SiteServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/service/SiteServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/sql/SiteMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/SiteMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/a.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/a.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/site/service/SiteServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/site/service/SiteServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -100,7 +108,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/workspace/MOWAS",
+    "last_opened_file_path": "C:/workspace/11.Model2MVCShop",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -140,8 +148,8 @@
       <recent name="com.project.notice.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SiteServiceTest.testListCommunityReportAll">
-    <configuration name="SiteServiceTest.testAddCommuReport" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.SiteServiceTest.testListClubReportAll">
+    <configuration name="SiteServiceTest.testGetClubReport" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MOWAS" />
       <extension name="coverage">
         <pattern>
@@ -151,7 +159,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="site.service" />
       <option name="MAIN_CLASS_NAME" value="site.service.SiteServiceTest" />
-      <option name="METHOD_NAME" value="testAddCommuReport" />
+      <option name="METHOD_NAME" value="testGetClubReport" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SiteServiceTest.testListClubReportAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MOWAS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="site.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="site.service" />
+      <option name="MAIN_CLASS_NAME" value="site.service.SiteServiceTest" />
+      <option name="METHOD_NAME" value="testListClubReportAll" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -173,7 +197,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SiteServiceTest.testListCommunityReportProcessAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SiteServiceTest.testUpdateClubReport" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MOWAS" />
       <extension name="coverage">
         <pattern>
@@ -183,13 +207,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="site.service" />
       <option name="MAIN_CLASS_NAME" value="site.service.SiteServiceTest" />
-      <option name="METHOD_NAME" value="testListCommunityReportProcessAll" />
+      <option name="METHOD_NAME" value="testUpdateClubReport" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SiteServiceTest.testListMasterBoardAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SiteServiceTest.testUpdateClubRereport" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MOWAS" />
       <extension name="coverage">
         <pattern>
@@ -199,7 +223,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="site.service" />
       <option name="MAIN_CLASS_NAME" value="site.service.SiteServiceTest" />
-      <option name="METHOD_NAME" value="testListMasterBoardAll" />
+      <option name="METHOD_NAME" value="testUpdateClubRereport" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -295,18 +319,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.SiteServiceTest.testAddCommuReport" />
+      <item itemvalue="JUnit.SiteServiceTest.testGetClubReport" />
+      <item itemvalue="JUnit.SiteServiceTest.testListClubReportAll" />
+      <item itemvalue="JUnit.SiteServiceTest.testUpdateClubReport" />
+      <item itemvalue="JUnit.SiteServiceTest.testUpdateClubRereport" />
       <item itemvalue="JUnit.SiteServiceTest.testListCommunityReportAll" />
-      <item itemvalue="JUnit.SiteServiceTest.testListCommunityReportProcessAll" />
-      <item itemvalue="JUnit.SiteServiceTest.testListMasterBoardAll" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.58" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SiteServiceTest.testListClubReportAll" />
+        <item itemvalue="JUnit.SiteServiceTest.testUpdateClubRereport" />
+        <item itemvalue="JUnit.SiteServiceTest.testUpdateClubReport" />
+        <item itemvalue="JUnit.SiteServiceTest.testGetClubReport" />
         <item itemvalue="JUnit.SiteServiceTest.testListCommunityReportAll" />
-        <item itemvalue="JUnit.SiteServiceTest.testListCommunityReportProcessAll" />
-        <item itemvalue="JUnit.SiteServiceTest.testListMasterBoardAll" />
-        <item itemvalue="JUnit.SiteServiceTest.testAddCommuReport" />
       </list>
     </recent_temporary>
   </component>
@@ -337,6 +363,7 @@
       <workItem from="1664842795721" duration="15620000" />
       <workItem from="1664931668886" duration="33610000" />
       <workItem from="1665101725150" duration="27798000" />
+      <workItem from="1665447327049" duration="31658000" />
     </task>
     <task id="LOCAL-00001" summary="설정">
       <created>1664436990723</created>
@@ -398,7 +425,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="KSM" />
                       </list>
                     </value>
                   </entry>
@@ -462,6 +489,16 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubCalendarController.java</url>
           <line>80</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/project/site/dao/SiteDaoImpl.java</url>
+          <line>103</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/site/service/SiteServiceTest.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
