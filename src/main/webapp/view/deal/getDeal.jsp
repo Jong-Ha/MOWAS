@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-         pageEncoding="EUC-KR"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
 <%@ page import="java.util.*"%>
@@ -18,10 +17,10 @@ Product vo=(Product)request.getAttribute("vo");
 <html>
 <head>
 
-    <title>ªÛ«∞ ∏Ò∑œ¡∂»∏</title>
+    <title>ÏÉÅÌíà Î™©Î°ùÏ°∞Ìöå</title>
     <meta charset="EUC-KR">
 
-    <!-- ¬¸¡∂ : http://getbootstrap.com/css/   ¬¸¡∂ -->
+    <!-- Ï∞∏Ï°∞ : http://getbootstrap.com/css/   Ï∞∏Ï°∞ -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->
@@ -31,44 +30,135 @@ Product vo=(Product)request.getAttribute("vo");
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script>
-        $(function(){
+        $(function() {
+            // $(document).ready(function(){
+            // var dealNum = $(this).parent().children("[name='dealBoardNum']").val();
+            // var boardCategory=$(this).parent().children("[name='boardCategory']").val();
+            //
+            // $.ajax({
+            //     url : "/deal/json/getLikeCheck",
+            //     method : "POST",
+            //     data : JSON.stringify({
+            //         "boardNum" : dealNum,
+            //         "boardCategory" : boardCategory
+            //     }),
+            //     dataType: "json",
+            //     headers: {
+            //         "Accept": "application/json",
+            //         "Content-Type": "application/json; charset=UTF-8"
+            //     },
+            //     success:function (JSONData) {
+            //         if (JSONData.like === 'n') {
+            //             alert("ÎàÑÎ¶Ñ")
+            //             $(".likeToggle").val("Ï¢ãÏïÑÏöî Ìï¥Ï†ú") ;
+            //         } else {
+            //             alert("Î∫å")
+            //             $(".likeToggle").val("Ï¢ãÏïÑÏöî!");
+            //         }
+            //     }
+            // })
+            // })
             // $(".addClub").on("click",function(){
             //     location.href="/club/addClub"
             // })
-            // $(".clubLogin").on("click",function(){
-            //     location.href="/club/login?userId="+$("input[name='userId']").val()
-            //})
-            $(".likeToggle").on("click",function(){
-                var dealBoardNum = $(this).parent().children("[name='dealBoardNum']").val();
-                var button = $(this);
+            $(".dealLogin").on("click",function(){
+                location.href="/deal/login?userId="+$("input[name='userId']").val()+"&dealBoardNum=${deal.dealBoardNum}";
+            })
+            $(".likeToggle").on("click", function () {
+                var dealNum = $(this).parent().children("[name='dealBoardNum']").val();
+                var boardCategory=$(this).parent().children("[name='boardCategory']").val();
                 $.ajax({
                     url: "/deal/json/dealLike",
-                    type: "POST",
+                    method: "POST",
                     data: JSON.stringify({
-                        "boardNum": clubNum,
-                        "boardCategory": "8"
+                        "boardNum": dealNum,
+                        "boardCategory": boardCategory
                     }),
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json; charset=UTF-8"
+                    },
                     dataType: "JSON",
-                    contentType: 'application/json; charset=UTF-8',
-
-                    success: function () {
-                        // alert("ajax")
-                        if(button.val()==='¡¡æ∆ø‰!'){
-                            // alert("¥©∏ß")
-                            button.val("¡¡æ∆ø‰ «ÿ¡¶");
-                        }else{
-                            // alert("ª≠")
-                            button.val("¡¡æ∆ø‰!");
+                    success: function (JSONData, result) {
+                         alert(result)
+                        alert(JSONData);
+                        if (JSONData.like === 'n') {
+                             alert("ÎàÑÎ¶Ñ")
+                            $(".likeToggle").val("Ï¢ãÏïÑÏöî Ìï¥Ï†ú") ;
+                        } else {
+                             alert("Î∫å")
+                            $(".likeToggle").val("Ï¢ãÏïÑÏöî!");
                         }
                     }
                 })
             })
-        })
+        });
+            //$(".likeToggle").on("click",function(){
+
+        //
+        //         var likeCount =$(this).parents(".cardbox").find(".likeText").html();
+        //         var boardNum = $(this).parents(".cardbox").find(".boardNum").val();
+        //         var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val()
+        //         var  likeText = $(this).parents(".cardbox").find(".likeText")
+        //
+        //         $.ajax({
+        //             url: "/deal/json/addLike",
+        //             type: "POST",
+        //             data: JSON.stringify({
+        //                 "likeCount": likeCount,
+        //                 "boardNum": boardNum,
+        //                 "boardCategory": boardCategory
+        //             }),
+        //             dataType: "JSON",
+        //             contentType: 'application/json; charset=UTF-8',
+        //             success: function (JSONData, result) {
+        //
+        //                 likeText.html(JSONData);
+        //             }
+        //         })
+        //     });
+        // });
+
+        //
+        //         var dealBoardNum = $(this).parent().children("[name='dealBoardNum']").val();
+        //         var button = $(this);
+        //         $.ajax({
+        //             url: "/deal/json/dealLike",
+        //             type: "POST",
+        //             data: JSON.stringify({
+        //                 "boardNum": dealBoardNum,
+        //                 "boardCategory": "8"
+        //             }),
+        //             dataType: "JSON",
+        //             contentType: 'application/json; charset=UTF-8',
+        //
+        //             success: function () {
+        //                 // alert("ajax")
+        //                 if(button.val()==='Ï¢ãÏïÑÏöî!'){
+        //                     // alert("ÎàÑÎ¶Ñ")
+        //                     button.val("Ï¢ãÏïÑÏöî Ìï¥Ï†ú");
+        //                 }else{
+        //                     // alert("Î∫å")
+        //                     button.val("Ï¢ãÏïÑÏöî!");
+        //                 }
+        //             }
+        //         })
+        //     })
+        // })
         $(function(){
             $(".updateDeal").on("click",function(){
                 location.href="/deal/updateDeal/${deal.dealBoardNum}"
             })
-        })
+            $(".deleteDeal").on("click",function(){
+                var check = confirm("ÏßÑÏßú ÏÇ≠Ï†ú?");
+                if(check==true){
+                    location.href="/deal/deleteDeal/${deal.dealBoardNum}"
+                }
+            })
+        });
+
+
+
     </script>
     <!-- Bootstrap Dropdown Hover CSS -->
     <link href="/css/animate.min.css" rel="stylesheet">
@@ -77,9 +167,9 @@ Product vo=(Product)request.getAttribute("vo");
     <script src="/javascript/bootstrap-dropdownhover.min.js"></script>
 
 
-    <!-- jQuery UI toolTip ªÁøÎ CSS-->
+    <!-- jQuery UI toolTip ÏÇ¨Ïö© CSS-->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <!-- jQuery UI toolTip ªÁøÎ JS-->
+    <!-- jQuery UI toolTip ÏÇ¨Ïö© JS-->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <!--  ///////////////////////// CSS ////////////////////////// -->
@@ -99,19 +189,26 @@ Product vo=(Product)request.getAttribute("vo");
 ${deal}<br>
 <div>
 
-    <input type="button" class="likeToggle" value="${deal.likeCheck=='y'?'¡¡æ∆ø‰ «ÿ¡¶':'¡¡æ∆ø‰!'}">
+    <input type="button" class="likeToggle" value="${deal.likeCheck=='y'?'Ï¢ãÏïÑÏöî Ìï¥Ï†ú':'Ï¢ãÏïÑÏöî!'}">
     <input type="hidden" name="dealBoardNum" value="${deal.dealBoardNum}">
+    <input type="hidden" name="boardCategory" value="${deal.boardCategory}">
     <br/>
     <br/>
 </div>
 </table>
-<input type="button" class="updateDeal" value="∞≈∑° ºˆ¡§">
-<input type="button" class="deleteDeal" value="∞≈∑° ªË¡¶">
-<input type="button" class="#" value="√§∆√«œ±‚">
+<input type="button" class="updateDeal" value="Í±∞Îûò ÏàòÏ†ï">
+<input type="button" class="deleteDeal" value="Í±∞Îûò ÏÇ≠Ï†ú">
+<input type="button" class="#" value="Ï±ÑÌåÖÌïòÍ∏∞">
 
+<input type="button" class="dealLogin" value="Î°úÍ∑∏Ïù∏">
+<label>
+    ÏïÑÏù¥Îîî : <input type="text" name="userId" value="">
+    <input type="hidden" name="dealBoardNum" value="${deal.dealBoardNum}">
+</label>
 
+${user.userId}
 
-
+<br>
 
 
 
@@ -130,7 +227,7 @@ ${deal}<br>
 <%--            <td background="/images/ct_ttl_img02.gif" width="100%" style="padding-left: 10px;">--%>
 <%--                <table width="100%" border="0" cellspacing="0" cellpadding="0">--%>
 <%--                    <tr>--%>
-<%--                        <td width="93%" class="ct_ttl01">ªÛ«∞ªÛºº¡∂»∏</td>--%>
+<%--                        <td width="93%" class="ct_ttl01">ÏÉÅÌíàÏÉÅÏÑ∏Ï°∞Ìöå</td>--%>
 <%--                        <td width="20%" align="right">&nbsp;</td>--%>
 <%--                    </tr>--%>
 <%--                </table>--%>
@@ -149,7 +246,7 @@ ${deal}<br>
 <%--        </tr>--%>
 <%--        <tr>--%>
 <%--            <td width="104" class="ct_write">--%>
-<%--                ªÛ«∞π¯»£ <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>--%>
+<%--                ÏÉÅÌíàÎ≤àÌò∏ <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>--%>
 <%--            </td>--%>
 <%--            <td bgcolor="D6D6D6" width="1"></td>--%>
 <%--            <td class="ct_write01">--%>
@@ -170,7 +267,7 @@ ${deal}<br>
 <%--        </tr>--%>
 <%--        <tr>--%>
 <%--            <td width="104" class="ct_write">--%>
-<%--                ªÛ«∞∏Ì <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>--%>
+<%--                ÏÉÅÌíàÎ™Ö <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>--%>
 <%--            </td>--%>
 <%--            <td bgcolor="D6D6D6" width="1"></td>--%>
 <%--            &lt;%&ndash;		<td class="ct_write01"><%=vo.getProdName()%></td> &ndash;%&gt;--%>
@@ -181,7 +278,7 @@ ${deal}<br>
 <%--        </tr>--%>
 <%--        <tr>--%>
 <%--            <td width="104" class="ct_write">--%>
-<%--                ªÛ«∞¿ÃπÃ¡ˆ <img 	src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>--%>
+<%--                ÏÉÅÌíàÏù¥ÎØ∏ÏßÄ <img 	src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>--%>
 <%--            </td>--%>
 <%--            <td bgcolor="D6D6D6" width="1"></td>--%>
 <%--            <td class="ct_write01">--%>
@@ -193,7 +290,7 @@ ${deal}<br>
 <%--        </tr>--%>
 <%--        <tr>--%>
 <%--            <td width="104" class="ct_write">--%>
-<%--                ªÛ«∞ªÛºº¡§∫∏ <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>--%>
+<%--                ÏÉÅÌíàÏÉÅÏÑ∏Ï†ïÎ≥¥ <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>--%>
 <%--            </td>--%>
 <%--            <td bgcolor="D6D6D6" width="1"></td>--%>
 <%--            &lt;%&ndash; 		<td class="ct_write01"><%=vo.getProdDetail()%></td>&ndash;%&gt;--%>
@@ -203,7 +300,7 @@ ${deal}<br>
 <%--            <td height="1" colspan="3" bgcolor="D6D6D6"></td>--%>
 <%--        </tr>--%>
 <%--        <tr>--%>
-<%--            <td width="104" class="ct_write">¡¶¡∂¿œ¿⁄</td>--%>
+<%--            <td width="104" class="ct_write">Ï†úÏ°∞ÏùºÏûê</td>--%>
 <%--            <td bgcolor="D6D6D6" width="1"></td>--%>
 <%--            &lt;%&ndash;		<td class="ct_write01"><%=vo.getManuDate()%></td> &ndash;%&gt;--%>
 <%--            <td class="ct_write01">${product.manuDate }</td>--%>
@@ -212,7 +309,7 @@ ${deal}<br>
 <%--            <td height="1" colspan="3" bgcolor="D6D6D6"></td>--%>
 <%--        </tr>--%>
 <%--        <tr>--%>
-<%--            <td width="104" class="ct_write">∞°∞›</td>--%>
+<%--            <td width="104" class="ct_write">Í∞ÄÍ≤©</td>--%>
 <%--            <td bgcolor="D6D6D6" width="1"></td>--%>
 <%--            &lt;%&ndash; 		<td class="ct_write01"><%=vo.getPrice()%></td>&ndash;%&gt;--%>
 <%--            <td class="ct_write01">${product.price }</td>--%>
@@ -221,7 +318,7 @@ ${deal}<br>
 <%--            <td height="1" colspan="3" bgcolor="D6D6D6"></td>--%>
 <%--        </tr>--%>
 <%--        <tr>--%>
-<%--            <td width="104" class="ct_write">µÓ∑œ¿œ¿⁄</td>--%>
+<%--            <td width="104" class="ct_write">Îì±Î°ùÏùºÏûê</td>--%>
 <%--            <td bgcolor="D6D6D6" width="1"></td>--%>
 <%--            &lt;%&ndash; 		<td class="ct_write01"><%=vo.getRegDate()%></td>&ndash;%&gt;--%>
 <%--            <td class="ct_write01">${product.regDate}</td>--%>
@@ -243,10 +340,10 @@ ${deal}<br>
 <%--                            <img src="/images/ct_btnbg01.gif" width="17" height="23"/>--%>
 <%--                        </td>--%>
 <%--<td><input type="hidden" name="clubNum" value="${club.clubNum}">--%>
-<%--    <input type="button" class="likeToggle" value="${deal.likeCheck=='y'?'¡¡æ∆ø‰ «ÿ¡¶':'¡¡æ∆ø‰!'}"></td>--%>
+<%--    <input type="button" class="likeToggle" value="${deal.likeCheck=='y'?'Ï¢ãÏïÑÏöî Ìï¥Ï†ú':'Ï¢ãÏïÑÏöî!'}"></td>--%>
 <%--                        <td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top: 3px;">--%>
-<%--                            &lt;%&ndash; 					<a href="/addPurchaseView.do?prod_no=<%=vo.getProdNo()%>">±∏∏≈</a>&ndash;%&gt;--%>
-<%--                            <a href="/addPurchaseView.do?prod_no=${product.prodNo }">√§∆√«œ±‚</a>--%>
+<%--                            &lt;%&ndash; 					<a href="/addPurchaseView.do?prod_no=<%=vo.getProdNo()%>">Íµ¨Îß§</a>&ndash;%&gt;--%>
+<%--                            <a href="/addPurchaseView.do?prod_no=${product.prodNo }">Ï±ÑÌåÖÌïòÍ∏∞</a>--%>
 <%--                        </td>--%>
 <%--                        <td width="14" height="23">--%>
 <%--                            <img src="/images/ct_btnbg03.gif" width="14" height="23">--%>
@@ -257,7 +354,7 @@ ${deal}<br>
 <%--                            <img src="/images/ct_btnbg01.gif" width="17" height="23"/>--%>
 <%--                        </td>--%>
 <%--                        <td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top: 3px;">--%>
-<%--                            <a href="javascript:history.go(-1)">¿Ã¿¸</a>--%>
+<%--                            <a href="javascript:history.go(-1)">Ïù¥Ï†Ñ</a>--%>
 <%--                        </td>--%>
 <%--                        <td width="14" height="23">--%>
 <%--                            <img src="/images/ct_btnbg03.gif" width="14" height="23">--%>

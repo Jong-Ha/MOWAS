@@ -38,13 +38,20 @@
   <!--  ///////////////////////// JavaScript ////////////////////////// -->
   <script type="text/javascript">
 
-    ============= "가입"  Event 연결 =============
+    // ============= "가입"  Event 연결 =============
     $(function() {
       //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
       $( "button.btn.btn-primary" ).on("click" , function() {
         self.location = "/deal/getDeal?dealBoardNum="+$(this).children().val();
       });
+      $(".dealLogin").on("click",function(){
+        location.href="/deal/login?userId="+$("input[name='userId']").val()
+      })
+
+
     });
+
+
     // $(function() {
     //   //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
     //   $( .addDeal ).on("click" , function() {
@@ -59,6 +66,15 @@
     //     self.location = "/deal/getDeal?dealBoardNum="+$(this).children().val();
     //   });
     // });
+    $(function () {
+      $(".deal").on("click", function () {
+        location.href = "/deal/getListDeal?boardCategory=" + 8;
+      });
+
+      $(".dealRequest").on("click", function () {
+        location.href = "/deal/getListDeal?boardCategory=" + 9;
+      })
+    });
   </script>
 
 
@@ -115,10 +131,8 @@
 
   <div class="form-group">
     <div class="col-sm-2">
-      <select class="form-control" name="board_category" id="board_category">
-        <option value="8" >판매</option>
-        <option value="9" >판매요청</option>
-      </select>
+      <button type="button" class="deal">판매</button>
+      <button type="button" class="dealRequest">판매요청</button>
 
     </div>
   </div>
@@ -149,6 +163,11 @@
     </tbody>
 
   </table>
+<input type="button" class="clubLogin" value="로그인">
+<label>
+  아이디 : <input type="text" name="userId" value="">
+</label>
+${user.userId}
 </body>
 
 </html>
