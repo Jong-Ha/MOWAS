@@ -9,12 +9,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="BJW 2022.10.10&#10;&#10;파일 업로드 json으로 처리 하기, 일정 캘린더 api 사용해서 fullcalendar로 display 완성, 캘린더 list로 불러올떄 겹치는 문제 해결해야함&#10;채팅 작업 시작">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-03__10_35__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-03__10_36__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-03_오후_10_35_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-03_오후_10_36_[Changes]/shelved.patch" beforeDir="false" />
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="BJW 2022.10.10&#10;&#10;CommunityMapper.xml 업로드">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubCalendarRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubCalendarRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/community/controller/CommunityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/community/controller/CommunityController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/chat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/src/chat.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/chat.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/chat.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/chatIcon.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/calender.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/calender.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/get/getClubCalenderReview.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/get/getClubCalenderReview.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/get/getVillBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/get/getVillBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/list/Community.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/list/Community.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/list/clubCalenderReviewShortList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/list/clubCalenderReviewShortList.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/update/updateVillBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/update/updateVillBoard.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,15 +47,15 @@
       <list>
         <option value="Class" />
         <option value="Interface" />
-        <option value="Jsp File" />
         <option value="HTML File" />
         <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="BJW" />
+    <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
     <excluded-from-favorite>
@@ -61,7 +79,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="BJW" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -102,7 +120,7 @@
     "WebServerToolWindowFactoryState": "false",
     "javascript.nodejs.core.library.configured.version": "16.17.1",
     "javascript.nodejs.core.library.typings.version": "16.11.64",
-    "last_opened_file_path": "C:/Devspace/MOWAS/src/main/webapp/chat",
+    "last_opened_file_path": "C:/Project/MOWAS/src/main/webapp/chat",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -122,18 +140,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Project\MOWAS\src\main\webapp\chat" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\layout" />
       <recent name="C:\Devspace\MOWAS\src\main\webapp\chat" />
       <recent name="C:\MainProject\MOWAS\src\main\webapp\view\club" />
       <recent name="C:\Devspace\MOWAS\src\main\resources\sql" />
-      <recent name="C:\Devspace\MOWAS\src\main\java\com\project\user\dao" />
-      <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community\update" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Project\MOWAS\src\main\webapp\resources\css" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\chat" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\view\community" />
       <recent name="C:\Devspace\MOWAS\src\main\webapp\chat\src" />
       <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community\get" />
-      <recent name="C:\Devspace\MOWAS\src\main\webapp\view\club" />
-      <recent name="C:\Devspace\MOWAS\src\main\resources\sql" />
-      <recent name="C:\Users\903-15\IdeaProjects\MOWAS\src\main\webapp\view\user" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.project.user.service" />
@@ -365,6 +383,7 @@
       <workItem from="1665375840443" duration="19763000" />
       <workItem from="1665406219687" duration="3645000" />
       <workItem from="1665449757216" duration="2068000" />
+      <workItem from="1665452254749" duration="29397000" />
     </task>
     <task id="LOCAL-00001" summary="설정">
       <created>1664436990723</created>
