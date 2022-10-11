@@ -157,6 +157,13 @@ public class UserServiceTest {
 
     }
 
+    @Test
+    public void testListUser() throws Exception{
+        User user = new User();
+        userService.listUser(user);
+
+
+    }
 
 
 }

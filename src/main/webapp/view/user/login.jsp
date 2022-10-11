@@ -11,20 +11,19 @@
 <title>Bootstrap Example</title>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="/resources/OpenSource/js/jquery.cookie.js"></script>
+
 
 <style>
-
     .wap {
         width: 400px;
         margin-top: 100px;
     }
-
     .loginbox {
         border-radius: 10px;
         width: 500px;
         padding: 15px;
     }
-
     .loginbnt {
         margin-bottom: 10px;
     }
@@ -34,10 +33,13 @@
 <script type="text/javascript">
     $("#floatingInput").focus();
 
-    $(function () {
-        $(".loginStart").on("click", function () {
+    function fncLogin() {
             var id = $("input:text").val();
             var pw = $("input:password").val();
+            var keepId = $("#keepId").prop('checked');
+            var keepLogin = $("#keepLogin").prop('checked');
+            console.log("keepId =>"+keepId);
+            console.log("keepLogin =>"+keepLogin);
 
             if (id == null || id.length < 1) {
                 alert('ID를 입력하지 않으셨습니다');
@@ -49,12 +51,66 @@
                 $("input:password").focus();
                 return;
             }
-            //alert('로그인?');
-            $("form").attr("method", "POST").attr("action", "/user/login").submit();
 
+            //$("form").attr("method", "POST").attr("action", "/user/login").submit();
+            $.ajax("/user/json/login",{
+                method : "POST",
+                dataType : "JSON",
+                data : JSON.stringify({
+                    userId : id,
+                    password : pw
+                }),
+                headers : {
+                    "Accept" : "application/json",
+                    "Content-Type" : "application/json"
+                },
+                success : function (JSONData){
+                    console.log('JSONData ==>'+JSONData)
+                    if(keepId){
+                        $.cookie('keepId',id,{ expires : 365,path : '/'});
+                    }else {
+                        $.removeCookie('keepId',{paht : '/'})
+                    }
+                    if(keepLogin){
+                        $.cookie('keepLogin',pw,{expires: 365, paht: '/'});
+                    }else {
+                        $.removeCookie('keepLogin',{path : '/'})
+                    }
+//                    $(self.location).attr("href", "/view/user/main.jsp")
+                },
+                error : function (){
+                    alert("로그인 실패");
+                }
+            });
+    };
+
+    $(function (){
+        $('input[name="userId"]').focus();
+        console.log('keepId : '+$.cookie('keepId'))
+        if($.cookie('keepId')!=undefined){
+            $('#keepId').prop('checked',true);
+            $('#keepLogin').prop('disabled',!$('#keepId').prop('checked'));
+            $('input[name="userId"]').val($.cookie('keepId'));
+            $('input[name="password"]').focus();
+        }
+        console.log('keepLogin : '+$.cookie('keepLogin'))
+        if($.cookie('keepLogin')!=undefined){
+            $('#keepLogin').prop('checked',true);
+            $('input[name="password"]').val($.cookie('keepLogin'));
+        }
+        $('#keepId').on('click',function (){
+            $('#keepLogin').prop('disabled', !$(this).prop('checked'));
+        });
+        $(".loginStart").bind('click',function (){
+            alert('로그인버튼클릭');
+            fncLogin();
+        });
+        $('input[name="password"]').on('keydown', function (key){
+            if(key.keyCode == 4){
+                fncLogin();
+            }
         })
-    })
-
+    });
     $(function () {
         $(".addUserStart").on("click", function () {
             //alert('이건 뜨나?');
@@ -86,14 +142,14 @@
                         <label for="floatingInput">Email address</label>
                     </div>-->
                     <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" >
                         <label for="floatingPassword">Password</label>
                     </div>
 
                     <div class="checkbox mb-3">
-                        <label>
-                            <input type="checkbox" value="remember-me"> 자동 로그인
-                            <input type="checkbox" value="remember-me"> 아이디 저장
+                        <label for="keepId"> <input type="checkbox" id="keepId" name="keepId" value="keepId"> 아이디 저장</label></div>
+                    <div class="checkbox mb-3">
+                        <label for="keepLogin"> <input type="checkbox" id="keepLogin" name="keepLogin" disabled="disabled" value=keepLogin"> 자동 로그인
                         </label>
                     </div>
                     <button class="btn btn-outline-primary btnlf addUserStart" type="button"> 회원 가입</button>

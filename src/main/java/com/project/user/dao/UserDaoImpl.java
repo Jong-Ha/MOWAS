@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository("userDaoImpl")
 public class UserDaoImpl implements UserDao{
     @Autowired
@@ -31,6 +33,10 @@ public class UserDaoImpl implements UserDao{
         sqlSession.insert("UserMapper.addInterList", interList);
     }
 
+    public void deleteInterList(UserInterList interList)throws Exception{
+        sqlSession.delete("UserMapper.deleteInterList", interList);
+    }
+
     public User getUser(String userId)throws Exception{
         return sqlSession.selectOne("UserMapper.getUser", userId);
     }
@@ -41,6 +47,14 @@ public class UserDaoImpl implements UserDao{
 
     public User checkDupRrd(String rrd)throws Exception{
         return sqlSession.selectOne("UserMapper.checkDupRrd", rrd);
+    }
+
+    public List<User> listUser(User user)throws Exception{
+       return sqlSession.selectList("UserMapper.listUser", user);
+    }
+
+    public User getUserDetail(String userId)throws Exception{
+        return sqlSession.selectOne("UserMapper.getUserDetail", userId);
     }
 
 
