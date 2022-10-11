@@ -32,5 +32,5 @@ public class Deal {
     private Date dealDate;
     private String dealLocation;
     List<File> files;
-
+    private String likeCheck;
 }

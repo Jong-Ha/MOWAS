@@ -13,7 +13,15 @@
     <title>Bootstrap Example</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-    
+
+    <script type="text/javascript">
+        $(function () {
+            $(".commu").on("click",function () {
+                location.href = "/commu/main"
+            })
+        })
+
+    </script>
     
     
     <style>
@@ -178,7 +186,7 @@
    <nav class="shadow-lg navbar navbar-expand-lg bg-light" style="margin-bottom: 50px;">
    	    <button type="button" class="btn btn-outline-primary btnlf">모임 목록</button>
         <button class="btn btn-outline-success btnlf" type="submit">판매 구매 게시글</button>
-   		<button type="button" class="btn btn-outline-danger btnlf">커뮤니티</button>
+   		<button type="button" class="btn btn-outline-danger btnlf commu">커뮤니티</button>
 		<button type="button" class="btn btn-outline-warning btnlf">공지 사항</button>
    </nav>
     

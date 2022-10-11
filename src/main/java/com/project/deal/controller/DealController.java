@@ -3,10 +3,7 @@ package com.project.deal.controller;
 import com.project.common.Page;
 import com.project.common.Search;
 import com.project.deal.service.DealService;
-import com.project.domain.Deal;
-import com.project.domain.MasterBoard;
-import com.project.domain.User;
-import com.project.domain.VilBoard;
+import com.project.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -55,7 +52,7 @@ public DealController(){
     @RequestMapping(value = "getDeal/{dealBoardNum}")
     public String getDeal(Model model, @PathVariable int dealBoardNum) throws Exception {
         Deal deal = dealService.getDeal(dealBoardNum);
-        model.addAttribute("list", deal);
+        model.addAttribute("deal", deal);
         return "/view/deal/getDeal.jsp";
     }
 
@@ -79,13 +76,21 @@ public DealController(){
         return "forward:/view/deal/getListDeal.jsp";
     }
 
-    @RequestMapping(value="updateDeal", method=RequestMethod.GET)
-    public String updateDeal(@RequestParam("dealBoardNum") int dealBoardNum, Model model ) throws Exception {
+    @RequestMapping(value="updateDeal/{dealBoardNum}", method=RequestMethod.GET)
+    public String updateDealView(@PathVariable("dealBoardNum") int dealBoardNum, Model model ) throws Exception {
         Deal deal = dealService.getDeal(dealBoardNum);
         dealService.updateDeal(deal);
 
         model.addAttribute("deal", deal);
-        return null;
+        return "forward:/view/deal/updateDeal.jsp";
+
+    }
+    @RequestMapping(value="updateDeal", method=RequestMethod.POST)
+    public String updateDeal(@ModelAttribute("deal") Deal deal ,Model model) throws Exception {
+
+        dealService.updateDeal(deal);
+        model.addAttribute("dealBoardNum",deal.getDealBoardNum());
+        return "forward:/view/deal/getDeal.jsp";
     }
 }
 

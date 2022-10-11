@@ -140,4 +140,5 @@ public class CommunityDaoImpl implements CommunityDao {
         sqlSession.delete("CommunityMapper.deleteBoard", map);
     }
 
+
 }

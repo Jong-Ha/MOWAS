@@ -24,8 +24,8 @@ public class ClubCalendarServiceImpl implements ClubCalendarService {
     }
 
     @Override
-    public String getCalender(int clubNum) {
-        return clubCalendarDao.getCalender(clubNum);
+    public ClubCalendar getCalender(int clubCalenderNum) {
+        return clubCalendarDao.getCalender(clubCalenderNum);
     }
 
     @Override
@@ -36,10 +36,7 @@ public class ClubCalendarServiceImpl implements ClubCalendarService {
     public void updateCalenderReview(ClubCalendarReview calenderReview) {
         clubCalendarDao.updateCalenderReview(calenderReview);
     }
-    @Override
-    public void addCalenderReviewShort(ClubCalendarReview calenderReview) {
-        clubCalendarDao.addCalenderReviewShort(calenderReview);
-    }
+
 
     @Override
     public void deleteCalenderReview(int calenderNum) {
@@ -60,6 +57,26 @@ public class ClubCalendarServiceImpl implements ClubCalendarService {
     @Override
     public ClubCalendarReview getCalenderReview(int clubCalenderReviewNum) {
         return clubCalendarDao.getCalenderReview(clubCalenderReviewNum);
+    }
+
+    @Override
+    public Map<String, Object> getListCalender(ClubCalendar calender) {
+
+        List<ClubCalendar> list = clubCalendarDao.getListCalender(calender);
+
+
+        Map<String,Object> map = null;
+        for (int i = 0; i < list.size(); i++) {
+            map = new HashMap<>();
+
+            map.put("id", list.get(i).getClubCalenderNum());
+            map.put("start", list.get(i).getClubDate());
+            map.put("title", list.get(i).getCalenderTitle());
+            map.put("allDay", "ture");
+
+        }
+        System.out.println("map 덮어 쓰기 " + map);
+        return map;
     }
 
 
