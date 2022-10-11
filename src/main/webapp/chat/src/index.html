@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+
+    <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+<div class="wrapper">
+    <div class="user-container">
+        <label for="nickname">대화</label>
+        <input type="text" id="nickname">
+    </div>
+    <div class="display-container">
+        <ul class="chatting-list">
+            <li class="sent">
+
+            </li>
+            <li class="received">
+                <span class="profile">
+                    <span class="user">깔깔</span>
+                    <img class="userimg" src="https://placeimg.com/50/50/any" alt="any">
+                </span>
+                <span class="message">그랴</span>
+                <span class="time">오후 2:10</span>
+            </li>
+        </ul>
+    </div>
+    <div class="input-container">
+            <span>
+                <input type="text" class="chatting-input">
+                <button class="send-button">전송</button>
+            </span>
+    </div>
+</div>
+
+<!--html이 로드된후 soket과 연결 하기 위해-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.2/socket.io.js"
+        integrity="sha512-VJ6+sp2E5rFQk05caiXXzQd1wBABpjEj1r5kMiLmGAAgwPItw1YpqsCCBtq8Yr1x6C49/mTpRdXtq8O2RcZhlQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+
+        const socket = io();
+
+        const nickname = document.querySelector("#nickname")
+        const chatList = document.querySelector(".chatting-list")
+        const chatInput = document.querySelector(".chatting-input")
+        const sendButton = document.querySelector(".send-button")
+
+
+</script>
+<script src="js/chat.js"></script>
+</body>
+</html>

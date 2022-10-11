@@ -9,99 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="JHK 2022.10.05&#10;&#10;mailApp, UserInterList, UserServiceTest 자바파일 누락&#10;재커밋함">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="BJW 2022.10.10&#10;&#10;파일 업로드 json으로 처리 하기, 일정 캘린더 api 사용해서 fullcalendar로 display 완성, 캘린더 list로 불러올떄 겹치는 문제 해결해야함&#10;채팅 작업 시작">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-03__10_35__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-03__10_36__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-03_오후_10_35_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-03_오후_10_36_[Changes]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubCalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubCalendarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubCalendarRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubCalendarRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubCalendarDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubCalendarDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubCalendarDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubCalendarDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/community/controller/CommunityRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/community/controller/CommunityRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/community/dao/CommunityDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/community/dao/CommunityDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/ClubCalenderMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/ClubCalenderMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/body-parser/HISTORY.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/body-parser/HISTORY.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/body-parser/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/body-parser/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/body-parser/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/body-parser/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/body-parser/SECURITY.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/body-parser/SECURITY.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/body-parser/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/body-parser/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/body-parser/lib/read.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/body-parser/lib/read.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/body-parser/lib/types/json.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/body-parser/lib/types/json.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/body-parser/lib/types/raw.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/body-parser/lib/types/raw.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/body-parser/lib/types/text.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/body-parser/lib/types/text.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/body-parser/lib/types/urlencoded.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/body-parser/lib/types/urlencoded.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/body-parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/body-parser/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/History.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/History.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/Readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/lib/application.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/lib/application.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/lib/express.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/lib/express.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/lib/middleware/init.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/lib/middleware/init.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/lib/middleware/query.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/lib/middleware/query.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/lib/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/lib/request.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/lib/response.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/lib/response.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/lib/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/lib/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/lib/router/layer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/lib/router/layer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/lib/router/route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/lib/router/route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/lib/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/lib/utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/lib/view.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/lib/view.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/express/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/.eslintrc" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/.eslintrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/.github/FUNDING.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/.github/FUNDING.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/.nycrc" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/.nycrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/LICENSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/LICENSE.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/dist/qs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/dist/qs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/lib/formats.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/lib/formats.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/lib/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/lib/parse.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/lib/parse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/lib/stringify.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/lib/stringify.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/lib/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/lib/utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/test/parse.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/test/parse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/test/stringify.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/test/stringify.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/test/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/qs/test/utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/browser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/buffer-util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/buffer-util.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/event-target.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/event-target.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/extension.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/extension.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/limiter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/limiter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/permessage-deflate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/permessage-deflate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/receiver.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/receiver.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/sender.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/sender.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/stream.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/stream.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/subprotocol.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/subprotocol.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/validation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/websocket-server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/websocket-server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/websocket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/websocket.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/wrapper.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/wrapper.mjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/add/addClubCalender.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/add/addClubCalender.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/add/addClubCalenderReview.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/add/addClubCalenderReview.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/add/addClubCalenderReviewShort.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/add/addClubCalenderReviewShort.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/add/addVillBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/add/addVillBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/calender.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/calender.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/list/clubCalenderReviewList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/list/clubCalenderReviewList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/update/updateClubCalenderReview.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/update/updateClubCalenderReview.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/update/updateClubCalenderReviewShort.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/update/updateClubCalenderReviewShort.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/update/updateVillBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/update/updateVillBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +61,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="BJW" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -181,39 +94,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;16.17.1&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;16.11.64&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/MainProject/MOWAS/src/main/webapp/view/club&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;아티팩트&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.75258917&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;0644e903b0ad21f514b0480754c0a1e2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "javascript.nodejs.core.library.configured.version": "16.17.1",
+    "javascript.nodejs.core.library.typings.version": "16.11.64",
+    "last_opened_file_path": "C:/Devspace/MOWAS/src/main/webapp/chat",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "아티팩트",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.75258917",
+    "settings.editor.selected.configurable": "File.Encoding",
+    "spring.configuration.checksum": "0644e903b0ad21f514b0480754c0a1e2"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;oracle&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "oracle"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Devspace\MOWAS\src\main\webapp\chat" />
       <recent name="C:\MainProject\MOWAS\src\main\webapp\view\club" />
       <recent name="C:\Devspace\MOWAS\src\main\resources\sql" />
       <recent name="C:\Devspace\MOWAS\src\main\java\com\project\user\dao" />
       <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community\update" />
-      <recent name="C:\Devspace\MOWAS\src\main\webapp\resources\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Devspace\MOWAS\src\main\webapp\chat\src" />
@@ -451,6 +364,7 @@
       <workItem from="1665325850457" duration="8794000" />
       <workItem from="1665375840443" duration="19763000" />
       <workItem from="1665406219687" duration="3645000" />
+      <workItem from="1665449757216" duration="2068000" />
     </task>
     <task id="LOCAL-00001" summary="설정">
       <created>1664436990723</created>
@@ -519,7 +433,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="BJW" />
                       </list>
                     </value>
                   </entry>
@@ -574,7 +488,8 @@
     <MESSAGE value="BJW 2022.10.01&#10;&#10;커뮤니티 jsp 완성, navigation 경로 완성" />
     <MESSAGE value="BJW 2022.10.03&#10;&#10;댓글,대댓글,조회수 json으로 처리 calender add성공 pom.xml에 jdbc드라이버 dependency 관개 맷음,&#10;spring-mybatis mybatise 버전 충돌 해결" />
     <MESSAGE value="BJW 2022.10.09&#10;&#10;댓글 대댓글 등록,수정,삭제하면 uri가 안변하고 화면에 바로 결과 출력 되게 json으로 처리 하였음" />
-    <option name="LAST_COMMIT_MESSAGE" value="BJW 2022.10.09&#10;&#10;댓글 대댓글 등록,수정,삭제하면 uri가 안변하고 화면에 바로 결과 출력 되게 json으로 처리 하였음" />
+    <MESSAGE value="BJW 2022.10.10&#10;&#10;파일 업로드 json으로 처리 하기, 일정 캘린더 api 사용해서 fullcalendar로 display 완성, 캘린더 list로 불러올떄 겹치는 문제 해결해야함&#10;채팅 작업 시작" />
+    <option name="LAST_COMMIT_MESSAGE" value="BJW 2022.10.10&#10;&#10;파일 업로드 json으로 처리 하기, 일정 캘린더 api 사용해서 fullcalendar로 display 완성, 캘린더 list로 불러올떄 겹치는 문제 해결해야함&#10;채팅 작업 시작" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
