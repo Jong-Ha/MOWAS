@@ -10,27 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="JHK 2022.10.05&#10;&#10;mailApp, UserInterList, UserServiceTest 자바파일 누락&#10;재커밋함">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/site/addMasterBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-01__10_34__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-01_오후_10_34_[Changes]/SYSTEM.L2avkg.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-01_오후_10_34_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-03__10_35__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-03__10_36__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-03_오후_10_35_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-03_오후_10_36_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/ClubReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/ClubReport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/controller/SiteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/controller/SiteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/dao/SiteDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/dao/SiteDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/dao/SiteDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/dao/SiteDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/service/SiteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/service/SiteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/service/SiteServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/service/SiteServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/SiteMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/SiteMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/sql/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/mybatis-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/a.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/a.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/site/service/SiteServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/site/service/SiteServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
