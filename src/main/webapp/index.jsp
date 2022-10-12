@@ -16,13 +16,13 @@
                 function (){
                 location.href="/commu/"
             });
-
-            $(".site").on("click",
-                function (){
-                    $(self.location).attr("href","/view/site/a.jsp");
-                });
-
         });
+
+        $(function (){
+            $(".site").on("click", function (){
+                $(self.location).attr("href", "site/listMasterBoard");
+            })
+        })
 
     </script>
 </head>

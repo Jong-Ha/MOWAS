@@ -106,7 +106,7 @@
 
         SELECT *
         FROM (	SELECT inner_table.* , ROWNUM AS row_seq
-                FROM		(	SELECT master_board_num, admin_id, mb_category, mb_title, reg_date
+                FROM		(	SELECT master_board_num, admin_id, mb_category, mb_title, mb_text, reg_date
                                 FROM master_board
                                     <if test="searchCondition != null">
                                         <where>
