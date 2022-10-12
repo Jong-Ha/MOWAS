@@ -16,6 +16,10 @@
     </script>
 </head>
 <body>
+<c:forEach items="${clubMasterBoard.files}" var="i">
+    <img src="/resources/${i.fileName}" alt="모임 공지사항"><br>
+    <br>
+</c:forEach>
 ${clubMasterBoard}
 <input type="button" class="updateClubMasterBoard" value="수정">
 <input type="button" class="deleteClubMasterBoard" value="삭제">

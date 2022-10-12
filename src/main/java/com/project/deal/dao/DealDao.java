@@ -5,6 +5,7 @@ import com.project.domain.Deal;
 
 import javax.naming.directory.SearchControls;
 import java.util.List;
+import java.util.Map;
 
 public interface DealDao {
     public void addDeal(Deal deal) throws Exception;
@@ -14,7 +15,7 @@ public interface DealDao {
     public void updateDeal(Deal deal)throws Exception;
     public void deleteDeal(Deal deal) throws Exception;
 
-    public List<Deal>  getListDeal(Search search) throws Exception ;
+    public List<Deal>  getListDeal(Map<String, Object> map) throws Exception ;
    //public List<Deal> listDeal();
    public int getTotalCount(Search search) throws Exception ;
     // 게시판 currentPage Row 만  return

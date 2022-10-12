@@ -35,10 +35,55 @@
             $(".listClubMasterBoard").on("click",function(){
                 location.href="/club/listClubMasterBoard/${club.clubNum}"
             })
+
+            // 일정 참여 신청 관련
+            $(".addClubCalendarApply").on("click",function(){
+                $.ajax({
+                    url : "/club/json/addClubCalendarApply",
+                    method : "POST",
+                    data : JSON.stringify({
+                        "clubCalendarNum" : 10003,
+                        "userId" : "${user.userId}",
+                        "userImage" : "${user.userImage}",
+                        //1이면 확인 2면 자동
+                        "applyAutoCheck" : "1"
+                    }),
+                    dataType : "JSON",
+                    headers:{
+                        "Accept":"application/json",
+                        "Content-Type":"application/json; charset=UTF-8"
+                    },
+                    success: function () {
+                        $(".addClubCalendarApply").toggle()
+                        $(".deleteClubCalendarApply").toggle()
+                    }
+                })
+            })
+            //참여 신청 취소
+            $(".deleteClubCalendarApply").on("click",function(){
+                $.ajax({
+                    url : "/club/json/deleteClubCalendarApply",
+                    method : "POST",
+                    data : JSON.stringify({
+                        "clubCalendarNum" : 10003,
+                        "userId" : "${user.userId}"
+                    }),
+                    dataType : "JSON",
+                    headers:{
+                        "Accept":"application/json",
+                        "Content-Type":"application/json; charset=UTF-8"
+                    },
+                    success: function () {
+                        $(".addClubCalendarApply").toggle()
+                        $(".deleteClubCalendarApply").toggle()
+                    }
+                })
+            })
         })
     </script>
 </head>
 <body>
+<img src="/resources/${club.clubImage}" alt="모임이미지"><br>
 ${club}<br>
 <input type="button" class="updateClub" value="모임 수정">
 <input type="button" class="deleteClub" value="모임 삭제">
@@ -51,14 +96,18 @@ ${club}<br>
 <input type="button" class="listClubMasterBoard" value="모임 공지사항"><br>
 <input type="button" class="addClubMasterBoard" value="모임 공지사항 작성">
 <br><br>
-<input type="button" class="listClubCalendar" value="모임 일정"><br>
 <input type="button" class="listClubCalendar" value="모임 일정">
+<a href="/club/listCalendarCluber/10003">clubNum : 10001, clubCalendarNum : 10003</a>
+<input type="button" class="addClubCalendarApply" value="모임 일정 참여">
+<input type="button" class="deleteClubCalendarApply" style="display: none" value="모임 일정 참여 취소">
+<br>
+<input type="button" class="addClubCalendar" value="모임 일정 작성">
 <br><br>
 <input type="button" class="listClubCalendarReviewList" value="모임 후기글"><br>
-<input type="button" class="listClubCalendarReviewList" value="모임 후기글">
+<input type="button" class="addClubCalendarReviewList" value="모임 후기글 작성">
 <br><br>
 <input type="button" class="listClubCalendarReviewShortList" value="모임 후기쇼츠"><br>
-<input type="button" class="listClubCalendarReviewShortList" value="모임 후기쇼츠">
+<input type="button" class="addClubCalendarReviewShortList" value="모임 후기쇼츠 작성">
 <br><br>
 </body>
 </html>

@@ -7,66 +7,71 @@
 <mapper namespace="ClubMapper">
 
     <resultMap type="com.project.domain.Club" id="ClubResultMap">
-        <result property="clubNum"			column="club_num"           jdbcType="INTEGER"/>
-        <result property="clubMasterId"		column="club_master_id"		jdbcType="VARCHAR"/>
-        <result property="interList"		column="inter_list"		    jdbcType="CHAR"/>
-        <result property="clubName"			column="club_name"			jdbcType="VARCHAR"/>
-        <result property="clubText"			column="club_text"		    jdbcType="VARCHAR"/>
-        <result property="villCode"			column="vill_code"		    jdbcType="CHAR"/>
-        <result property="currentCluber"	column="current_cluber"		jdbcType="INTEGER"/>
-        <result property="clubCreateDate"	column="club_create_date"	jdbcType="DATE"/>
-        <result property="clubImage"		column="club_image"			jdbcType="VARCHAR"/>
-        <result property="gatherCheck"		column="gather_check"		jdbcType="CHAR"/>
-        <result property="tag"			    column="club_tag"			jdbcType="VARCHAR"/>
-        <result property="clubDeleteCheck"	column="club_delete_check"	jdbcType="CHAR"/>
-        <result property="likeCheck"		column="like_check"	        jdbcType="CHAR"/>
+        <result property="clubNum" column="club_num" jdbcType="INTEGER"/>
+        <result property="clubMasterId" column="club_master_id" jdbcType="VARCHAR"/>
+        <result property="interList" column="inter_list" jdbcType="CHAR"/>
+        <result property="clubName" column="club_name" jdbcType="VARCHAR"/>
+        <result property="clubText" column="club_text" jdbcType="VARCHAR"/>
+        <result property="villCode" column="vill_code" jdbcType="CHAR"/>
+        <result property="currentCluber" column="current_cluber" jdbcType="INTEGER"/>
+        <result property="clubCreateDate" column="club_create_date" jdbcType="DATE"/>
+        <result property="clubImage" column="club_image" jdbcType="VARCHAR"/>
+        <result property="gatherCheck" column="gather_check" jdbcType="CHAR"/>
+        <result property="tag" column="club_tag" jdbcType="VARCHAR"/>
+        <result property="clubDeleteCheck" column="club_delete_check" jdbcType="CHAR"/>
+        <result property="likeCheck" column="like_check" jdbcType="CHAR"/>
     </resultMap>
 
     <resultMap type="com.project.domain.Cluber" id="CluberResultMap">
-        <result property="clubUserNum"		column="club_user_num"      jdbcType="INTEGER"/>
-        <result property="user.userId"		column="user_id"		    jdbcType="VARCHAR"/>
-        <result property="user.userImage"	column="user_image"		    jdbcType="VARCHAR"/>
-        <result property="clubNum"			column="club_num"			jdbcType="INTEGER"/>
-        <result property="cluberStatus"		column="cluber_status"		jdbcType="CHAR"/>
-        <result property="clubRegDate"		column="club_reg_date"		jdbcType="DATE"/>
-        <result property="clubApplyDate"	column="club_apply_date"	jdbcType="DATE"/>
-        <result property="cluberText"	    column="cluber_text"	    jdbcType="VARCHAR"/>
-        <result property="clubOutText"		column="club_out_text"		jdbcType="VARCHAR"/>
-        <result property="clubOutDate"		column="club_out_date"		jdbcType="DATE"/>
-        <result property="blacklistDate"	column="blacklist_date"		jdbcType="DATE"/>
-        <result property="blacklistText"	column="blacklist_text"	    jdbcType="VARCHAR"/>
-        <result property="blacklistCheck"	column="blacklist_check"	jdbcType="CHAR"/>
+        <result property="clubUserNum" column="club_user_num" jdbcType="INTEGER"/>
+        <result property="user.userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="user.userImage" column="user_image" jdbcType="VARCHAR"/>
+        <result property="clubNum" column="club_num" jdbcType="INTEGER"/>
+        <result property="cluberStatus" column="cluber_status" jdbcType="CHAR"/>
+        <result property="clubRegDate" column="club_reg_date" jdbcType="DATE"/>
+        <result property="clubApplyDate" column="club_apply_date" jdbcType="DATE"/>
+        <result property="cluberText" column="cluber_text" jdbcType="VARCHAR"/>
+        <result property="clubOutText" column="club_out_text" jdbcType="VARCHAR"/>
+        <result property="clubOutDate" column="club_out_date" jdbcType="DATE"/>
+        <result property="blacklistDate" column="blacklist_date" jdbcType="DATE"/>
+        <result property="blacklistText" column="blacklist_text" jdbcType="VARCHAR"/>
+        <result property="blacklistCheck" column="blacklist_check" jdbcType="CHAR"/>
     </resultMap>
 
     <resultMap type="com.project.domain.ClubMasterBoard" id="ClubMasterBoardResultMap">
-        <result property="boardNum"		column="club_master_board_num"  jdbcType="INTEGER"/>
-        <result property="clubNum"		column="club_num"		        jdbcType="INTEGER"/>
-        <result property="userId"	    column="user_id"		        jdbcType="VARCHAR"/>
-        <result property="title"		column="title"			        jdbcType="VARCHAR"/>
-        <result property="text"		    column="text"		            jdbcType="VARCHAR"/>
-        <result property="regDate"		column="reg_date"		        jdbcType="DATE"/>
-        <result property="updateDate"	column="update_date"	        jdbcType="DATE"/>
-        <collection property="files"    column="club_master_board_num" ofType="com.project.domain.File" select="getClubMasterBoardFiles"/>
+        <result property="boardNum" column="club_master_board_num" jdbcType="INTEGER"/>
+        <result property="clubNum" column="club_num" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="text" column="text" jdbcType="VARCHAR"/>
+        <result property="regDate" column="reg_date" jdbcType="DATE"/>
+        <result property="updateDate" column="update_date" jdbcType="DATE"/>
+        <collection property="files" column="club_master_board_num" ofType="com.project.domain.File"
+                    select="getClubMasterBoardFiles"/>
     </resultMap>
 
     <resultMap type="com.project.domain.File" id="FileResultMap">
-        <result property="fileNum"		    column="file_num"           jdbcType="INTEGER"/>
-        <result property="boardNum"		    column="board_num"		    jdbcType="VARCHAR"/>
-        <result property="boardCategory"	column="board_category"		jdbcType="VARCHAR"/>
-        <result property="fileName"		    column="file_name"			jdbcType="INTEGER"/>
+        <result property="fileNum" column="file_num" jdbcType="INTEGER"/>
+        <result property="boardNum" column="board_num" jdbcType="VARCHAR"/>
+        <result property="boardCategory" column="board_category" jdbcType="VARCHAR"/>
+        <result property="fileName" column="file_name" jdbcType="INTEGER"/>
     </resultMap>
 
     <select id="getClubMasterBoardFiles" resultMap="FileResultMap">
-        SELECT * FROM files WHERE board_num = #{clubMasterBoardNum} AND board_category = '04'
+        SELECT *
+        FROM files
+        WHERE board_num = #{clubMasterBoardNum}
+          AND board_category = '04'
+        ORDER BY file_num DESC
     </select>
 
     <resultMap type="com.project.domain.CalendarCluber" id="CalendarCluberResultMap">
-        <result property="clubCalendarApplyNum"	column="club_calendar_apply_num"    jdbcType="INTEGER"/>
-        <result property="clubCalendarNum"		column="club_calendar_num"		    jdbcType="VARCHAR"/>
-        <result property="user.userId"		    column="user_id"		            jdbcType="VARCHAR"/>
-        <result property="user.userImage"	    column="user_image"		            jdbcType="VARCHAR"/>
-        <result property="applyStatus"		    column="apply_status"			    jdbcType="INTEGER"/>
-        <result property="applyDate"		    column="apply_date"			        jdbcType="INTEGER"/>
+        <result property="clubCalendarApplyNum" column="club_calendar_apply_num" jdbcType="INTEGER"/>
+        <result property="clubCalendarNum" column="club_calendar_num" jdbcType="VARCHAR"/>
+        <result property="user.userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="user.userImage" column="user_image" jdbcType="VARCHAR"/>
+        <result property="applyStatus" column="apply_status" jdbcType="INTEGER"/>
+        <result property="applyDate" column="apply_date" jdbcType="INTEGER"/>
     </resultMap>
 
     <!--여기서부터 쿼리 시작-->
@@ -75,8 +80,7 @@
     <!--모임 만들기-->
     <insert id="addClub" parameterType="com.project.domain.Club">
         INSERT
-        INTO club(
-                  club_num,
+        INTO club(club_num,
                   club_master_id,
                   inter_list,
                   club_name,
@@ -87,10 +91,8 @@
                   club_image,
                   gather_check,
                   club_tag,
-                  club_delete_check
-                  )
-        VALUES (
-                seq_club.NEXTVAL,
+                  club_delete_check)
+        VALUES (seq_club.NEXTVAL,
                 #{clubMasterId:VARCHAR},
                 #{interList:CHAR},
                 #{clubName:VARCHAR},
@@ -101,39 +103,38 @@
                 #{clubImage:VARCHAR},
                 1,
                 #{tag:VARCHAR},
-                0
-               )
+                0)
     </insert>
 
     <!--모임장 등록-->
     <insert id="addClubMasterNewClub" parameterType="com.project.domain.Club">
-    INSERT
-    INTO club_user(
-    club_user_num,
-    user_id,
-    user_image,
-    club_num,
-    cluber_status,
-    club_reg_date,
-    club_apply_date
-    ) VALUES(
-    seq_club_user.nextval,
-    #{clubMasterId:VARCHAR},
-    (SELECT user_image FROM users WHERE user_id = #{clubMasterId}),
-    (<include refid="getNewClubNum"/>),
-    '6',
-    SYSDATE,
-    SYSDATE
-    )
+        INSERT
+        INTO club_user(
+        club_user_num,
+        user_id,
+        user_image,
+        club_num,
+        cluber_status,
+        club_reg_date,
+        club_apply_date
+        ) VALUES(
+        seq_club_user.nextval,
+        #{clubMasterId:VARCHAR},
+        (SELECT user_image FROM users WHERE user_id = #{clubMasterId}),
+        (<include refid="getNewClubNum"/>),
+        '6',
+        SYSDATE,
+        SYSDATE
+        )
     </insert>
 
     <!--새 모임의 모임번호 찾기-->
     <sql id="getNewClubNum">
-        SELECT * 
-        FROM (SELECT club_num 
-              FROM club 
-              WHERE club_master_id = #{clubMasterId} 
-              ORDER BY club_num DESC) 
+        SELECT *
+        FROM (SELECT club_num
+              FROM club
+              WHERE club_master_id = #{clubMasterId}
+              ORDER BY club_num DESC)
         WHERE ROWNUM = 1
     </sql>
 
@@ -212,13 +213,15 @@
     <!--그냥 다 찾기-->
     <select id="listClub" parameterType="map" resultMap="ClubResultMap">
         SELECT c.*, l.like_check
-        FROM club c, (SELECT board_num,
-                             like_check
-                      FROM likes
-                      WHERE board_category = '12'
-                        AND user_id = #{userId}) l
+        FROM club c,
+             (SELECT board_num,
+                     like_check
+              FROM likes
+              WHERE board_category = '12'
+                AND user_id = #{userId}) l
         WHERE c.club_delete_check = '0'
           AND c.club_num = l.board_num(+)
+        ORDER BY club_num DESC
     </select>
 
     <!--clubService.addCluberApply-->
@@ -226,23 +229,20 @@
     <!--이미 탈퇴했었으면 새로운 레코드 등록-->
     <insert id="addCluberApply" parameterType="com.project.domain.Cluber">
         INSERT
-        INTO club_user(
-            club_user_num,
-            user_id,
-            user_image,
-            club_num,
-            cluber_text,
-            cluber_status,
-            club_apply_date
-        ) VALUES(
-                    seq_club_user.nextval,
-                    #{user.userId},
-                    #{user.userImage},
-                    #{clubNum},
-                    #{cluberText},
-                    '2',
-                    SYSDATE
-                )
+        INTO club_user(club_user_num,
+                       user_id,
+                       user_image,
+                       club_num,
+                       cluber_text,
+                       cluber_status,
+                       club_apply_date)
+        VALUES (seq_club_user.nextval,
+                #{user.userId},
+                #{user.userImage},
+                #{clubNum},
+                #{cluberText},
+                '2',
+                SYSDATE)
     </insert>
 
     <!--clubService.updateCluberApply-->
@@ -261,7 +261,7 @@
     <!--신청 수정 시 조회-->
     <select id="getCluberApplyUpdate" parameterType="com.project.domain.Cluber" resultMap="CluberResultMap">
         SELECT club_user_num,
-               cluber_text
+        cluber_text
         FROM club_user
         <where>
             club_num = #{clubNum}
@@ -283,15 +283,17 @@
     <!--신청 목록 조회-->
     <select id="listCluberApply" parameterType="int" resultMap="CluberResultMap">
         SELECT club_user_num,
-               user_id,
-               user_image,
-               club_apply_date,
-               cluber_text
+        user_id,
+        user_image,
+        club_apply_date,
+        cluber_text,
+        club_num
         FROM club_user
         <where>
-        club_num = #{clubNum}
-        AND cluber_status = '2'
+            club_num = #{clubNum}
+            AND cluber_status = '2'
         </where>
+        ORDER BY club_user_num DESC
     </select>
 
     <!--clubService.getCluberApply-->
@@ -300,7 +302,7 @@
         SELECT cluber_text
         FROM club_user
         <where>
-            club_user_num = #{value}
+            club_user_num = #{clubUserNum}
         </where>
     </select>
 
@@ -310,9 +312,11 @@
     <update id="processCluberApply" parameterType="map">
         UPDATE club_user
         <set>
-            cluber_status = <if test="result=='accept'">'4'</if>
-                            <if test="result=='reject'">'3'</if>,
-            club_reg_date = SYSDATE
+            cluber_status =
+            <if test="result=='accept'">'4',
+                club_reg_date = SYSDATE
+            </if>
+            <if test="result=='reject'">'3'</if>
         </set>
         <where>
             club_user_num = #{clubUserNum}
@@ -388,8 +392,9 @@
     <update id="deleteCluber" parameterType="map">
         UPDATE club_user
         <set>
-            cluber_status = <if test="kickoutCheck=='F'.toString()">'7'</if>
-                            <if test="kickoutCheck=='T'.toString()">'8'</if>,
+            cluber_status =
+            <if test="kickoutCheck=='F'.toString()">'7'</if>
+            <if test="kickoutCheck=='T'.toString()">'8'</if>,
             club_out_text = #{cluber.clubOutText},
             club_out_date = SYSDATE
         </set>
@@ -422,7 +427,7 @@
 
     <!--clubService.listCluber-->
     <!--모임원 목록 조회-->
-    <select id="listCluber" parameterType="int" resultMap="CluberResultMap">
+    <select id="back_listCluber" parameterType="int" resultMap="CluberResultMap">
         SELECT club_user_num,
                user_id,
                user_image,
@@ -438,7 +443,63 @@
                blacklist_check
         FROM club_user
         WHERE club_num = #{clubNum}
-          AND cluber_status IN ('4','5','6','7','8')
+          AND cluber_status IN ('4', '5', '6', '7', '8')
+        ORDER BY club_user_num DESC
+    </select>
+
+    <sql id="listCluberSql">
+        SELECT club_user_num,
+        user_id,
+        user_image,
+        club_num,
+        cluber_status,
+        club_reg_date,
+        club_apply_date,
+        cluber_text,
+        club_out_text,
+        club_out_date,
+        blacklist_date,
+        blacklist_text,
+        blacklist_check
+        FROM club_user
+        WHERE club_num = #{clubNum}
+        AND cluber_status IN (
+        <if test="search.searchCondition == 0">
+            '4', '5', '6'
+        </if>
+        <if test="search.searchCondition == 1">
+            '7', '8'</if>)
+        ORDER BY club_user_num DESC
+    </sql>
+
+    <select id="getTotalCluber" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM (
+        <include refid="listCluberSql"/>
+        )
+    </select>
+
+    <select id="listCluber" parameterType="map" resultMap="CluberResultMap">
+        SELECT * FROM (
+        SELECT ROWNUM row_num, vt.* FROM (
+        <include refid="listCluberSql"/>
+        ) vt
+        <if test="search.currentPage*search.pageSize!=0">
+            WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}
+        </if>
+        )
+        <where>
+            <if test="search.currentPage*search.pageSize!=0">
+                row_num >= ((#{search.currentPage}-1)*#{search.pageSize}+1)
+            </if>
+        </where>
+    </select>
+
+    <select id="getCluberCondition" parameterType="map" resultType="String">
+        SELECT cluber_status
+        FROM club_user
+        WHERE club_num = #{clubNum}
+          AND user_id = #{user.userId}
+          AND cluber_status in ('4', '5', '6')
     </select>
 
     <!--clubService.getCluber-->
@@ -473,25 +534,22 @@
     <!--블랙리스트 추가-->
     <insert id="addClubBlacklist" parameterType="com.project.domain.Cluber">
         INSERT
-        INTO club_user(
-                       club_user_num,
+        INTO club_user(club_user_num,
                        user_id,
                        user_image,
                        club_num,
                        cluber_status,
                        blacklist_date,
                        blacklist_text,
-                       blacklist_check
-        ) VALUES(
-                    seq_club_user.nextval,
-                    #{user.userId},
-                    (SELECT user_image FROM users WHERE user_id = #{user.userId}),
-                    #{clubNum},
-                    '9',
-                    SYSDATE,
-                    #{blacklistText},
-                    '1'
-                )
+                       blacklist_check)
+        VALUES (seq_club_user.nextval,
+                #{user.userId},
+                (SELECT user_image FROM users WHERE user_id = #{user.userId}),
+                #{clubNum},
+                '9',
+                SYSDATE,
+                #{blacklistText},
+                '1')
     </insert>
 
     <!--clubService.updateClubBlacklist-->
@@ -499,7 +557,9 @@
     <update id="updateClubBlacklist" parameterType="map">
         UPDATE club_user
         <set>
-            blacklist_check=<if test='process=="T"'>'1'</if><if test='process=="F"'>'2'</if>
+            blacklist_check=
+            <if test='process=="T"'>'1'</if>
+            <if test='process=="F"'>'2'</if>
         </set>
         <where>
             club_user_num IN
@@ -511,7 +571,7 @@
 
     <!--clubService.listClubBlacklist-->
     <!--모임 블랙리스트 목록 조회-->
-    <select id="listClubBlacklist" parameterType="int" resultMap="CluberResultMap">
+    <select id="back_listClubBlacklist" parameterType="int" resultMap="CluberResultMap">
         SELECT club_user_num,
                user_id,
                user_image,
@@ -520,6 +580,44 @@
         FROM club_user
         WHERE club_num = #{clubNum}
           AND cluber_status = '9'
+    </select>
+
+    <sql id="listClubBlacklistSql">
+        SELECT club_user_num,
+        user_id,
+        user_image,
+        blacklist_date,
+        blacklist_check
+        FROM club_user
+        WHERE club_num = #{clubNum}
+        AND cluber_status = '9'
+        <choose>
+            <when test="search.searchCondition==1">AND blacklist_check = '1'</when>
+            <when test="search.searchCondition==2">AND blacklist_check = '2'</when>
+        </choose>
+        ORDER BY blacklist_date DESC
+    </sql>
+
+    <select id="getTotalClubBlacklist" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM (
+        <include refid="listClubBlacklistSql"/>
+        )
+    </select>
+
+    <select id="listClubBlacklist" parameterType="map" resultMap="CluberResultMap">
+        SELECT * FROM (
+        SELECT ROWNUM row_num, vt.* FROM (
+        <include refid="listClubBlacklistSql"/>
+        ) vt
+        <if test="search.currentPage*search.pageSize!=0">
+            WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}
+        </if>
+        )
+        <where>
+            <if test="search.currentPage*search.pageSize!=0">
+                row_num >= ((#{search.currentPage}-1)*#{search.pageSize}+1)
+            </if>
+        </where>
     </select>
 
     <!--clubService.getClubBlacklist-->
@@ -540,12 +638,12 @@
                                title,
                                text,
                                reg_date)
-        VALUES(seq_club_master_board.NEXTVAL,
-               #{clubNum},
-               #{userId},
-               #{title},
-               #{text},
-               SYSDATE)
+        VALUES (seq_club_master_board.NEXTVAL,
+                #{clubNum},
+                #{userId},
+                #{title},
+                #{text},
+                SYSDATE)
     </insert>
 
     <!--신규 넘버 조회-->
@@ -556,7 +654,7 @@
               FROM club_master_board
               WHERE user_id = #{userId}
               ORDER BY reg_date DESC)
-        WHERE ROWNUM=1
+        WHERE ROWNUM = 1
     </select>
 
     <!--파일 등록-->
@@ -566,7 +664,7 @@
                    board_num,
                    board_category,
                    file_name)
-        VALUES(seq_files.NEXTVAL, #{boardNum}, '04', #{fileName})
+        VALUES (seq_files.NEXTVAL, #{boardNum}, '04', #{fileName})
     </insert>
 
     <!--clubService.updateClubMasterBoard-->
@@ -585,17 +683,20 @@
 
     <!--현재 파일 조회-->
     <select id="listClubMasterBoardCurrentFile" parameterType="int" resultType="String">
-        SELECT file_name FROM files WHERE board_num = #{clubMasterBoardNum} AND board_category = '04'
+        SELECT file_name
+        FROM files
+        WHERE board_num = #{clubMasterBoardNum}
+          AND board_category = '04'
     </select>
 
     <!--파일 삭제-->
-    <delete id="deleteClubMasterBoardFile" parameterType="com.project.domain.ClubMasterBoard">
+    <delete id="deleteClubMasterBoardFile" parameterType="map">
         DELETE files
         <where>
             board_num = #{boardNum}
             AND board_category = '04'
-            <foreach collection="files" item="file" open="AND file_name NOT IN (" separator="," close=")">
-                #{file.fileName}
+            <foreach collection="deleteFileNames" item="fileName" open="AND file_name IN (" separator="," close=")">
+                #{fileName}
             </foreach>
         </where>
     </delete>
@@ -611,7 +712,7 @@
 
     <!--clubService.listClubMasterBoard-->
     <!--모임 공지사항 목록 조회-->
-    <select id="listClubMasterBoard" parameterType="int" resultMap="ClubMasterBoardResultMap">
+    <select id="back_listClubMasterBoard" parameterType="int" resultMap="ClubMasterBoardResultMap">
         SELECT club_master_board_num,
                user_id,
                title,
@@ -619,6 +720,41 @@
                update_date
         FROM club_master_board
         WHERE club_num = #{clubNum}
+        ORDER BY reg_date DESC
+    </select>
+
+    <sql id="listClubMasterBoardSql">
+        SELECT club_master_board_num,
+               user_id,
+               title,
+               reg_date,
+               update_date
+        FROM club_master_board
+        WHERE club_num = #{clubNum}
+          AND title LIKE ('%' || #{search.searchKeyword} || '%')
+        ORDER BY reg_date DESC
+    </sql>
+
+    <select id="getTotalClubMasterBoard" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM (
+        <include refid="listClubMasterBoardSql"/>
+        )
+    </select>
+
+    <select id="listClubMasterBoard" parameterType="map" resultMap="ClubMasterBoardResultMap">
+        SELECT * FROM (
+        SELECT ROWNUM row_num, vt.* FROM (
+        <include refid="listClubMasterBoardSql"/>
+        ) vt
+        <if test="search.currentPage*search.pageSize!=0">
+            WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}
+        </if>
+        )
+        <where>
+            <if test="search.currentPage*search.pageSize!=0">
+                row_num >= ((#{search.currentPage}-1)*#{search.pageSize}+1)
+            </if>
+        </where>
     </select>
 
     <!--clubService.getClubMasterBoard-->
@@ -640,18 +776,18 @@
     <insert id="addClubCalendarApply" parameterType="map">
         INSERT
         INTO club_calendar_apply(club_calendar_apply_num,
-                                 club_calendar_num,
-                                 user_id,
-                                 apply_status,
-                                 user_image,
-                                 apply_date)
+        club_calendar_num,
+        user_id,
+        apply_status,
+        user_image,
+        apply_date)
         VALUES(seq_club_calendar_apply.NEXTVAL,
-               #{calendarCluber.clubCalendarNum},
-               #{calendarCluber.user.userId},
-                <if test='applyAutoCheck=="2"'>'1'</if>
-                <if test='applyAutoCheck=="1"'>'0'</if>,
-               #{calendarCluber.user.userImage},
-               SYSDATE)
+        #{calendarCluber.clubCalendarNum},
+        #{calendarCluber.user.userId},
+        <if test='applyAutoCheck=="2"'>'1'</if>
+        <if test='applyAutoCheck=="1"'>'0'</if>,
+        #{calendarCluber.user.userImage},
+        SYSDATE)
     </insert>
 
     <!--clubService.deleteClubCalendarApply-->
@@ -669,14 +805,15 @@
     <!--모임 일정 참여 신청 목록-->
     <select id="listClubCalendarApply" parameterType="map" resultMap="CalendarCluberResultMap">
         SELECT club_calendar_apply_num,
-               user_id,
-               user_image,
-               apply_date
+        user_id,
+        user_image,
+        apply_date
         FROM club_calendar_apply
         <where>
             apply_status = #{applyStatus}
             AND club_calendar_num = #{clubCalendarNum}
         </where>
+        ORDER BY club_calendar_apply_num DESC
     </select>
 
     <!--clubService.updateClubCalendarApply-->
@@ -684,11 +821,13 @@
     <update id="updateClubCalendarApply" parameterType="map">
         UPDATE club_calendar_apply
         <set>
-            apply_status =  <if test='process=="accept"'>1</if>
-                            <if test='process=="reject"'>2</if>
+            apply_status =
+            <if test='process=="accept"'>1</if>
+            <if test='process=="reject"'>2</if>
         </set>
         <where>
             club_calendar_apply_num = #{clubCalendarApplyNum}
         </where>
     </update>
+
 </mapper>

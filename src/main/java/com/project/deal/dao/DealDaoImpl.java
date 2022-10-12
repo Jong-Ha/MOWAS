@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.naming.directory.SearchControls;
 import java.util.List;
+import java.util.Map;
 
 @Repository("dealDaoImpl")
 public class DealDaoImpl implements DealDao{
@@ -43,10 +44,10 @@ sqlSession.delete("DealMapper.deleteDeal", deal);
     }
 
     @Override
-    public List<Deal> getListDeal(Search search) throws Exception {
+    public List<Deal> getListDeal(Map<String, Object> map) throws Exception {
         System.out.println("이거 맞아요 ?");
-
-        return sqlSession.selectList("DealMapper.getListDeal", search);
+        System.out.println(map+"getlistDeal daoimpl");
+        return sqlSession.selectList("DealMapper.getListDeal", map);
     }
 
     @Override
