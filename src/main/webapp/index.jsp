@@ -23,6 +23,12 @@
                 });
         });
 
+        $(function (){
+            $(".site").on("click", function (){
+                $(self.location).attr("href", "site/listMasterBoard");
+            })
+        })
+
     </script>
 </head>
 <body class="is-preload">
@@ -48,7 +54,7 @@
                 <li><a>모임 관리</a></li>
                 <li><a class="commu">커뮤니티</a></li>
                 <li><a href="/deal/getListDeal">중고 거래</a></li>
-                <li><a href="">공지 사항</a></li>
+                <li><a class="site">공지 사항</a></li>
                 <!--<li><a href="#elements">Elements</a></li>-->
             </ul>
         </nav>
