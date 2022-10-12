@@ -141,6 +141,9 @@ public class SiteServiceImpl implements SiteService {
         totalCountmap.put("where", "clubReportList");
         int totalCount = siteDao.getTotalCount(totalCountmap);
 
+        System.out.println("++++totalCount:: " +totalCount+ "++++++");
+
+
         Map<String,Object> map = new HashMap<String, Object>();
 
         map.put("list", list);
@@ -154,6 +157,10 @@ public class SiteServiceImpl implements SiteService {
         siteDao.processClubReport(clubReport);
     }
 
+    @Override
+    public void processClubRereport(ClubReport clubReport) throws Exception {
+        siteDao.processClubRereport(clubReport);
+    }
     @Override
     public void deleteClubReport(int clubReportNo) throws Exception {
         siteDao.deleteClubReport(clubReportNo);
