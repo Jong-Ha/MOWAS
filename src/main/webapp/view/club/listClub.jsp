@@ -43,6 +43,15 @@
     </script>
 </head>
 <body>
+
+<input type="button" class="addClub" value="모임 만들기">
+<input type="button" class="clubLogin" value="로그인">
+<label>
+    아이디 : <input type="text" name="userId" value="user01">
+</label>
+${user.userId}
+<br>
+<br>
 <c:forEach items="${list}" var="club">
     <div>
         <a href="/club/getClub/${club.clubNum}">${club}</a>
@@ -52,13 +61,5 @@
         <br/>
     </div>
 </c:forEach>
-
-<input type="button" class="addClub" value="모임 만들기">
-<input type="button" class="clubLogin" value="로그인">
-<label>
-    아이디 : <input type="text" name="userId" value="">
-</label>
-${user.userId}
-<br>
 </body>
 </html>

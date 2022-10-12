@@ -17,6 +17,7 @@
         <result property="boardCategory"    column="board_category"     jdbcType="INTEGER"/>
     </resultMap>
 
+
     <resultMap id="liikeSelect" type="like">
         <result property="likeNum"          column="like_num"           jdbcType="INTEGER"/>
         <result property="userId"           column="user_id"            jdbcType="VARCHAR"/>
@@ -24,6 +25,7 @@
         <result property="boardNum"         column="board_num"          jdbcType="VARCHAR"/>
         <result property="likeCheck"        column="like_check"         jdbcType="VARCHAR"/>
     </resultMap>
+
 
     <resultMap id="comemntSelect" type="comment">
         <result property="commentNum"     column="comment_num"     jdbcType="INTEGER"/>
@@ -49,27 +51,29 @@
     <insert id="addVillBoard" parameterType="villBoard">
         INSERT INTO
             vill_board (vill_board_num,user_id, vill_code ,vill_title,vill_text ,vill_tag,reg_date,board_category)
-            VALUES ( seq_vill_board.NEXTVAL
-                    ,#{userId}
-                    ,#{villCode}
-                    ,#{villTitle}
-                    ,#{villText}
-                    ,#{villTag}
-                    ,SYSDATE
-                    ,#{boardCategory}
-                   )
+        VALUES ( seq_vill_board.NEXTVAL
+               ,#{userId}
+               ,#{villCode}
+               ,#{villTitle}
+               ,#{villText}
+               ,#{villTag}
+               ,SYSDATE
+               ,#{boardCategory}
+               )
     </insert>
+
 
     <update id="updateVillBoard" parameterType="villBoard">
         UPDATE vill_board
-            <set>
-                vill_title = #{villTitle}
-                ,vill_text = #{villText}
-                ,vill_tag = #{villTag}
-                ,reg_date = SYSDATE
-            </set>
+        <set>
+            vill_title = #{villTitle}
+            ,vill_text = #{villText}
+            ,vill_tag = #{villTag}
+            ,reg_date = SYSDATE
+        </set>
         WHERE vill_board_num = #{villBoardNum}
     </update>
+
 
     <delete id="deleteVillBoard" parameterType="int">
         DELETE vill_board
@@ -82,29 +86,29 @@
         WHERE vill_board_num = #{villBoardNum}
     </select>
 
+
     <select id="listVillBoard" parameterType="String" resultMap="villBoardSelect">
         SELECT *
         FROM vill_board
         WHERE vill_code LIKE '%'||#{villCode}||'%'
     </select>
 
-
     <!--종아요-->
     <insert id="addLike" parameterType="map">
         INSERT INTO
             likes (like_num,user_id,board_category,board_num,like_check)
-            VALUES (seq_likes.NEXTVAL
-                    ,#{userId}
-                    ,#{boardCategory}
-                    ,#{boardNum}
-                    ,#{likeCheck} )
+        VALUES (seq_likes.NEXTVAL
+               ,#{userId}
+               ,#{boardCategory}
+               ,#{boardNum}
+               ,#{likeCheck} )
     </insert>
 
     <update id="updateLike" parameterType="map">
         UPDATE likes
-            <set>
-                like_check = #{likeCheck}
-            </set>
+        <set>
+            like_check = #{likeCheck}
+        </set>
         WHERE board_num = #{boardNum}
         AND board_category = #{boardCategory}
         AND user_id = #{userId}
@@ -113,9 +117,10 @@
     <select id="checkLike" parameterType="map" resultType="String">
         SELECT LIKE_CHECK FROM likes
         WHERE board_num = #{boardNum}
-        AND board_category = #{boardCategory}
-        AND user_id = #{userId}
+          AND board_category = #{boardCategory}
+          AND user_id = #{userId}
     </select>
+
 
     <update id="updateLikeCount" parameterType="map">
         UPDATE
@@ -152,7 +157,6 @@
             WHERE vill_board_num = #{boardNum}
         </if>
     </update>
-
     <select id="getLikeCount" parameterType="map" resultType="int">
         SELECT like_count
         <if test="boardCategory == 1 or boardCategory == 2">
@@ -200,36 +204,36 @@
     <insert id="addComment" parameterType="comment">
         INSERT INTO
             comments(comment_num,user_id,club_num,board_Num,board_category,comment_check,comment_text,reg_date)
-            VALUES(seq_comments.NEXTVAL
-                    ,#{userId}
-                    ,#{clubNum}
-                    ,#{boardNum}
-                    ,#{boardCategory}
-                    ,#{commentCheck}
-                    ,#{commentText}
-                    ,SYSDATE)
+        VALUES(seq_comments.NEXTVAL
+              ,#{userId}
+              ,#{clubNum}
+              ,#{boardNum}
+              ,#{boardCategory}
+              ,#{commentCheck}
+              ,#{commentText}
+              ,SYSDATE)
     </insert>
 
     <update id="updateComment" parameterType="comment">
         UPDATE comments
-            <set>
-                comment_text = #{commentText}
-            </set>
+        <set>
+            comment_text = #{commentText}
+        </set>
         WHERE comment_num = #{commentNum}
     </update>
 
     <update id="deleteComment" parameterType="comment">
         UPDATE comments
-            <set>
-                comment_check = #{commentCheck}
-            </set>
+        <set>
+            comment_check = #{commentCheck}
+        </set>
         WHERE comment_num = #{commentNum}
     </update>
 
     <select id="listComment"  parameterType="map" resultMap="comemntSelect">
         SELECT * FROM comments
         WHERE board_num = #{boardNum}
-        AND board_category = #{boardCategory}
+          AND board_category = #{boardCategory}
     </select>
 
     <!--대댓글-->
@@ -253,6 +257,10 @@
         WHERE recomment_num = #{recommentNum}
     </update>
 
+    <delete id="deleteRecomment" parameterType="int">
+        DELETE recomment
+        WHERE recomment_num = #{recommentNun}
+    </delete>
 
     <select id="listRecomment" parameterType="map" resultMap="recommentSelect">
         select * from RECOMMENT
@@ -262,18 +270,20 @@
     <!--게시글 지우기-->
     <delete id="deleteBoard" parameterType="map">
         DELETE
-            <if test="boardCategory == 1 || boardCategory == 2">
-                club_calendar_review
-                WHERE club_calendar_review_num = #{boardNum}
-            </if>
-            <if test="boardCategory == 3">
-                vill_board
-                WHERE vill_board_num=#{boardNum}
-            </if>
-            <if test="boardCategory == 12">
-                recomment
-                WHERE recomment_num = #{boardNum}
-            </if>
+        <if test="boardCategory == 1 || boardCategory == 2">
+            club_calendar_review
+            WHERE club_calendar_review_num = #{boardNum}
+        </if>
+        <if test="boardCategory == 3">
+            vill_board
+            WHERE vill_board_num=#{boardNum}
+        </if>
+        <if test="boardCategory == 12">
+            recomment
+            WHERE recomment_num = #{boardNum}
+        </if>
     </delete>
+
+
 
 </mapper>

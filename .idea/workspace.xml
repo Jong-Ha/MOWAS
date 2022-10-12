@@ -9,19 +9,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="LJH 2022.10.06&#10;&#10;모임 좋아요 기능 추가">
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="BJW 2022.10.10&#10;&#10;CommunityMapper.xml 업로드">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/getClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/getClub.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listCalendarCluber.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listCalendarCluber.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClubBlacklist.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClubBlacklist.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClubCalendarApply.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClubCalendarApply.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listCluberApply.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listCluberApply.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/club/service/ClubServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/club/service/ClubServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubCalendarRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubCalendarRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/community/controller/CommunityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/community/controller/CommunityController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/chat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/src/chat.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/chat.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/chat.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/chatIcon.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/calender.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/calender.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/get/getClubCalenderReview.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/get/getClubCalenderReview.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/get/getVillBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/get/getVillBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/list/Community.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/list/Community.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/list/clubCalenderReviewShortList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/list/clubCalenderReviewShortList.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/update/updateVillBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/update/updateVillBoard.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,12 +47,15 @@
       <list>
         <option value="Class" />
         <option value="Interface" />
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+        <option value="CSS File" />
         <option value="Jsp File" />
       </list>
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="BJW" />
+    <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
     <excluded-from-favorite>
@@ -100,18 +114,22 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/MainProject/MOWAS/src/main/webapp/view/club",
+    "javascript.nodejs.core.library.configured.version": "16.17.1",
+    "javascript.nodejs.core.library.typings.version": "16.11.64",
+    "last_opened_file_path": "C:/Project/MOWAS/src/main/webapp/chat",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "전역 라이브러리",
+    "project.structure.last.edited": "아티팩트",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.12528735",
-    "settings.editor.selected.configurable": "preferences.keymap",
+    "project.structure.side.proportion": "0.75258917",
+    "settings.editor.selected.configurable": "File.Encoding",
     "spring.configuration.checksum": "0644e903b0ad21f514b0480754c0a1e2"
   },
   "keyToStringList": {
@@ -122,17 +140,17 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Project\MOWAS\src\main\webapp\chat" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\layout" />
+      <recent name="C:\Devspace\MOWAS\src\main\webapp\chat" />
       <recent name="C:\MainProject\MOWAS\src\main\webapp\view\club" />
       <recent name="C:\Devspace\MOWAS\src\main\resources\sql" />
-      <recent name="C:\Devspace\MOWAS\src\main\java\com\project\user\dao" />
-      <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community\update" />
-      <recent name="C:\Devspace\MOWAS\src\main\webapp\resources\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\903-15\IdeaProjects\MOWAS\src\main\webapp\view\user" />
-      <recent name="C:\Devspace\MOWAS\src\main\webapp\resources\OpenSource" />
-      <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community\list" />
-      <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community\add" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\resources\css" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\chat" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\view\community" />
+      <recent name="C:\Devspace\MOWAS\src\main\webapp\chat\src" />
       <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community\get" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -143,7 +161,7 @@
       <recent name="com.project.notice.service" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat 서버.Tomcat 9.0.58">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.58">
     <configuration name="ClubServiceTest.getCluber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MOWAS" />
       <extension name="coverage">
@@ -160,7 +178,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ClubServiceTest.getCluberApply" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ClubServiceTest.listCluber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MOWAS" />
       <extension name="coverage">
         <pattern>
@@ -170,7 +188,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="club.service" />
       <option name="MAIN_CLASS_NAME" value="club.service.ClubServiceTest" />
-      <option name="METHOD_NAME" value="getCluberApply" />
+      <option name="METHOD_NAME" value="listCluber" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -224,8 +242,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tomcat 9.0.58" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.58" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="1.8" nameIsGenerated="true">
-      <option name="COMMON_VM_ARGUMENTS" value="-DFile.encoding=UTF-8 -Dconsole.encoding=UTF-8" />
+    <configuration name="Tomcat 9.0.58" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.58" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="COMMON_VM_ARGUMENTS" value="-Dfile.encoding=UTF-8" />
       <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
       <deployment>
@@ -236,7 +254,7 @@
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="6810ff30-a4ac-43f4-8479-4c28491a2878" />
+        <option name="BASE_DIRECTORY_NAME" value="5d1078a4-8d78-4118-a728-d99e73c8721e" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -244,7 +262,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="53158" />
+        <option name="DEBUG_PORT" value="50935" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -314,20 +332,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.ClubServiceTest.getCluberApply" />
       <item itemvalue="JUnit.ClubServiceTest.getCluber" />
+      <item itemvalue="JUnit.ClubServiceTest.listCluber" />
       <item itemvalue="JUnit.ClubServiceTest.listCluberApply" />
       <item itemvalue="JUnit.ClubServiceTest.updateClubCalendarApply" />
       <item itemvalue="JUnit.ClubServiceTest.updateCluber" />
-      <item itemvalue="Tomcat 서버.Tomcat 9.0.58" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.58" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ClubServiceTest.listCluberApply" />
-        <item itemvalue="JUnit.ClubServiceTest.getCluberApply" />
-        <item itemvalue="JUnit.ClubServiceTest.getCluber" />
         <item itemvalue="JUnit.ClubServiceTest.updateCluber" />
         <item itemvalue="JUnit.ClubServiceTest.updateClubCalendarApply" />
+        <item itemvalue="JUnit.ClubServiceTest.listCluberApply" />
+        <item itemvalue="JUnit.ClubServiceTest.listCluber" />
+        <item itemvalue="JUnit.ClubServiceTest.getCluber" />
       </list>
     </recent_temporary>
   </component>
@@ -356,10 +374,16 @@
       <workItem from="1664791732816" duration="7276000" />
       <workItem from="1664799031582" duration="4279000" />
       <workItem from="1664842795721" duration="15620000" />
-      <workItem from="1665130668613" duration="190000" />
-      <workItem from="1665130875501" duration="382000" />
-      <workItem from="1665131266802" duration="50000" />
-      <workItem from="1665131327325" duration="7334000" />
+      <workItem from="1665101871408" duration="13800000" />
+      <workItem from="1665205163303" duration="12667000" />
+      <workItem from="1665232920730" duration="12301000" />
+      <workItem from="1665245682095" duration="6591000" />
+      <workItem from="1665280971315" duration="19422000" />
+      <workItem from="1665325850457" duration="8794000" />
+      <workItem from="1665375840443" duration="19763000" />
+      <workItem from="1665406219687" duration="3645000" />
+      <workItem from="1665449757216" duration="2068000" />
+      <workItem from="1665452254749" duration="29397000" />
     </task>
     <task id="LOCAL-00001" summary="설정">
       <created>1664436990723</created>
@@ -382,12 +406,12 @@
       <option name="project" value="LOCAL" />
       <updated>1664804126823</updated>
     </task>
-    <task id="LOCAL-00004" summary="LJH 2022.10.06&#10;&#10;컨트롤러 =&gt; jsp 연결 완료&#10;모임, 가입, 모임원, 블랙리스트, 공지사항 컨트롤러 완성&#10;RestController 작업 필요">
-      <created>1665057807442</created>
+    <task id="LOCAL-00004" summary="BJW 2022.10.09&#10;&#10;댓글 대댓글 등록,수정,삭제하면 uri가 안변하고 화면에 바로 결과 출력 되게 json으로 처리 하였음">
+      <created>1665252557462</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1665057807442</updated>
+      <updated>1665252557462</updated>
     </task>
     <option name="localTasksCounter" value="5" />
     <servers />
@@ -428,7 +452,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="BJW" />
                       </list>
                     </value>
                   </entry>
@@ -482,8 +506,9 @@
     <MESSAGE value="BJW 2022.09.30&#10;&#10;mian.jsp / js파일/ css파일 추가" />
     <MESSAGE value="BJW 2022.10.01&#10;&#10;커뮤니티 jsp 완성, navigation 경로 완성" />
     <MESSAGE value="BJW 2022.10.03&#10;&#10;댓글,대댓글,조회수 json으로 처리 calender add성공 pom.xml에 jdbc드라이버 dependency 관개 맷음,&#10;spring-mybatis mybatise 버전 충돌 해결" />
-    <MESSAGE value="LJH 2022.10.06&#10;&#10;컨트롤러 =&gt; jsp 연결 완료&#10;모임, 가입, 모임원, 블랙리스트, 공지사항 컨트롤러 완성&#10;RestController 작업 필요" />
-    <option name="LAST_COMMIT_MESSAGE" value="LJH 2022.10.06&#10;&#10;컨트롤러 =&gt; jsp 연결 완료&#10;모임, 가입, 모임원, 블랙리스트, 공지사항 컨트롤러 완성&#10;RestController 작업 필요" />
+    <MESSAGE value="BJW 2022.10.09&#10;&#10;댓글 대댓글 등록,수정,삭제하면 uri가 안변하고 화면에 바로 결과 출력 되게 json으로 처리 하였음" />
+    <MESSAGE value="BJW 2022.10.10&#10;&#10;파일 업로드 json으로 처리 하기, 일정 캘린더 api 사용해서 fullcalendar로 display 완성, 캘린더 list로 불러올떄 겹치는 문제 해결해야함&#10;채팅 작업 시작" />
+    <option name="LAST_COMMIT_MESSAGE" value="BJW 2022.10.10&#10;&#10;파일 업로드 json으로 처리 하기, 일정 캘린더 api 사용해서 fullcalendar로 display 완성, 캘린더 list로 불러올떄 겹치는 문제 해결해야함&#10;채팅 작업 시작" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

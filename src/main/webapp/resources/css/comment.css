@@ -1,0 +1,273 @@
+.wap {
+    font-size: 1em;
+    width: 1000px;
+    height: 680px;
+    border-radius: 10px;
+}
+
+
+.usedbox {
+    margin-top: 20px;
+    padding: 5px;
+    height: 500px;
+}
+
+.thumbnailBox {
+    padding: 5px;
+    width: 50%;
+    float: left;
+}
+
+.textbox {
+    padding: 5px;
+    height: 500px;
+    width: 50%;
+    float: right;
+    background: #fff;
+    border-radius: 10px;
+    font-size: 0.7em;
+}
+
+.textboxrow {
+    margin-top: 20px;
+    font-size: 1.6em;
+    font-weight: bolder
+}
+
+.likebox {
+    height: 75px;
+    background: #ffff;
+    margin-top: -30px;
+    border-radius: 5px;
+}
+.body {
+    text-align: -webkit-center;
+}
+
+.topbar {
+    margin-bottom: 70px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.navbar {
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.btnlf {
+    margin-left: 20px;
+}
+
+.textint {
+    font-size: 0.2em;
+    margin-top: -20px;
+}
+
+.login {
+    float: left;
+    margin-right: 20px;
+}
+
+.alrim {
+    font-size: 0.1rem;
+    width: 45px;
+}
+
+.loginbox {
+    width: 80px;
+    font-size: 0.1rem;
+}
+
+.carditem {
+    display: flex;
+    flex-direction: column;
+}
+
+.cardbox {
+    display: flex;
+    flex-direction: row;
+}
+
+.like {
+    font-size: 0.1rem;
+    width: 45px;
+    outline: 0;
+    border: none;
+    background-color: #fff;
+}
+
+.usedbox {
+    margin-top: 20px;
+    padding: 5px;
+    height: 500px;
+}
+
+.thumbnailBox {
+    padding: 5px;
+    width: 50%;
+    float: left;
+}
+
+.textbox {
+    padding: 5px;
+    height: 500px;
+    width: 50%;
+    float: right;
+    background: #fff;
+    border-radius: 10px;
+    font-size: 0.7em;
+}
+
+.textboxrow {
+    margin-top: 20px;
+    font-size: 1.6em;
+    font-weight: bolder
+}
+
+.likebox {
+    height: 75px;
+    background: #ffff;
+    margin-top: -30px;
+    border-radius: 5px;
+}
+
+/* 댓글 */
+.commentbox {
+    width: 750px;
+    border: 1px solid;
+    border-radius: 10px;
+    margin-bottom: 50px;
+    margin-top: 90px;
+    background: #fff;
+}
+
+.commentadd {
+    width: 600px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.addcomment {
+    -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    -moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    -ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    -o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    display: block;
+    margin: 20px auto;
+    max-width: 180px;
+    text-decoration: none;
+    border-radius: 4px;
+    padding: 20px 30px;
+    color: rgba(30, 22, 54, 0.6);
+    box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+}
+
+.addcomment:hover {
+    color: rgba(255, 255, 255, 0.85);
+    box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+}
+.allComment{
+    margin-left: -40px;
+}
+
+.commentList {
+    width: 600px;
+}
+
+.commentText {
+    background: #adb5bd;
+    border-radius: 10px;
+    height: 80px;
+    width: 700px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+
+}
+
+.RecommentText {
+    background: #adb5bd;
+    border-radius: 10px;
+    height: 80px;
+    width: 500px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+}
+
+.commentitembox {
+    width: 140px;
+    height: 80px;
+}
+
+.Recommentitembox {
+    width: 170px;
+    height: 80px;
+}
+
+.commentitem {
+    height: 50%;
+    width: 100%;
+}
+
+.Recommentitem {
+    height: 50%;
+    width: 100%;
+}
+
+.bntbox {
+    position: absolute;
+}
+
+.addbox {
+    float: left;
+    height: 40px;
+    width: 80px;
+}
+
+.addbox > button {
+    width: 76px;
+    height: 37px;
+    font-size: 0.5em;
+}
+
+.updatebox > button {
+    width: 46px;
+    height: 20px;
+    font-size: 0.5em;
+}
+
+.itmesize {
+    width: 0.7em;
+    height: 0.7em;
+    margin-top: -10px;
+}
+
+.itembutton {
+    height: 30px;
+}
+
+.delete,
+.update {
+    font-size: 0.5em;
+}
+
+.commentTexts {
+    width: 480px;
+    align-self: center;
+    float: left;
+    height: 50px;
+    font-size: 0.8em;
+}
+
+.RecommentTexts {
+    width: 530px;
+    align-self: center;
+    float: left;
+    height: 50px;
+    font-size: 0.8em;
+}
+
+.buttonMargin{
+    margin-right: 2px;
+}

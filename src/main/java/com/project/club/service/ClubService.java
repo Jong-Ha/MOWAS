@@ -1,11 +1,10 @@
 package com.project.club.service;
 
-import com.project.domain.CalendarCluber;
-import com.project.domain.Club;
-import com.project.domain.ClubMasterBoard;
-import com.project.domain.Cluber;
+import com.project.common.Search;
+import com.project.domain.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ClubService {
 
@@ -13,6 +12,7 @@ public interface ClubService {
     public Club updateClub(Club club);
     public void deleteClub(Club club);
     public Club getClub(int clubNum);
+    public String getCluberCondition(User user, int clubNum);
     public List<Club> listClub(String userId);
     public void addCluberApply(Cluber cluber);
     public void updateCluberApply(Cluber cluber);
@@ -28,18 +28,18 @@ public interface ClubService {
     public int getCluberDelete(Cluber cluber);
     public void addClubBlacklist(Cluber cluber);
     public void updateClubBlacklist(String process, List<Integer> clubUserNumList);
-    public List<Cluber> listClubBlacklist(int clubNum);
+    public Map<String, Object> listClubBlacklist(Search search, int clubNum);
     public String getClubBlacklist(int clubUserNum);
     public int addClubMasterBoard(ClubMasterBoard clubMasterBoard);
-    public void updateClubMasterBoard(ClubMasterBoard clubMasterBoard);
-    public void deleteClubMasterBoard(int clubMasterBoardNum);
-    public List<ClubMasterBoard> listClubMasterBoard(int clubNum);
+    public void updateClubMasterBoard(ClubMasterBoard clubMasterBoard, List<String> deleteFileNames);
+    public List<String> deleteClubMasterBoard(int clubMasterBoardNum);
+    public Map<String, Object> listClubMasterBoard(Search search, int clubNum);
     public ClubMasterBoard getClubMasterBoard(int clubMasterBoardNum);
     public void addClubCalendarApply(CalendarCluber calendarCluber, String applyAutoCheck);
     public void deleteClubCalendarApply(int clubCalendarNum, String userId);
     public List<CalendarCluber>listClubCalendarApply(int clubCalendarNum, String applyStatus);
     public void updateClubCalendarApply(int clubCalendarApplyNum, String process);
-    public List<Cluber> listCluber(int clubNum);
+    public Map<String, Object> listCluber(Search search, int clubNum);
     public Cluber getCluber(int clubUserNum);
     public void updateCluber(Cluber cluber);
 }

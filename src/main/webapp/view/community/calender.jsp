@@ -25,7 +25,6 @@
         // -----------------------------------------------------------------
 
         var all_events = null;
-
         all_events = lodinCalender();
         new Draggable(containerEl, {
             itemSelector: '.fc-event',
@@ -47,7 +46,7 @@
             },
             editable: true,  // 수정가능 여부
             droppable: true, // 드레그 드랍 여부
-            events  : all_events,
+            events: all_events,
             drop: function (info) {
                 // is the "remove after drop" checkbox checked?
                 if (checkbox.checked) {
@@ -55,119 +54,82 @@
                     info.draggedEl.parentNode.removeChild(info.draggedEl);
                 }
             },
+            eventClick: function(info) {
+                window.open(
+                    "/clubCal/getClubCalender?clubCalenderNum="+info.event.id,  "모임 일정 후기글 수정",
+                    "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no"
+                )
+            },
 
             locale: 'ko'
         });
 
         calendar.render();
-    });
-
-
-    //일정 저장 하기
-    $(function () {
-
-        $(".allSave").on("click", function () {
-
-            var allEevent = calendar.getEvents();// calender의 모든 event의 정보를 array형태로 가져온다.
-
-            var event = new Array();
-
-            for (let i = 0; i < allEevent.length; i++) {
-
-                var obj = new Object();
-
-                obj.title = allEevent[i]._def.title// 이벤트 명칭
-                obj.allday = allEevent[i]._def.allDay// 하루종일인지 알려주는 boolen값 t/f
-                obj.start = allEevent[i]._instance.range.start; // 시작 시간
-                obj.end = allEevent[i]._instance.range.end; //끝시간
-
-                event.push(obj); // data를 json으로 만들고 Array객체에 집어 넣기
-            }
-
-            var JSONData = JSON.stringify(event);
-
-            console.log(JSONData);
-
-            savedata(JSONData);
-        });
 
     });
 
-    function lodinCalender(){
+    function lodinCalender() {
+
+        var result_val = null;
+
+        var clubNum = $(".clubNum").val();
 
         $.ajax({
-            url: "/clubcal/json/getCalender",
+            url: "/clubCal/json/getListCalender",
             method: "POST",
             contentType: 'application/json; charset=utf-8',
             dataType: "json",
-            data: {},
-            type: "text",
-
+            async : false,
+            data: JSON.stringify({
+                "clubNum": clubNum
+            }),
             success: function (JSONData, status) {
-                alert(status);
+                result_val = new Array;
+
+                $.each(JSONData, function (indext, item) {
+                    console.log(item);
+
+                    result_val.push(item);
+
+                })
 
             }
-        });
+
+        })
+                console.log(result_val);
+                return result_val;
+
     }
 
-    function savedata(JSONData) {
-
-        alert("일정을 저장합니다");
-
-        var JSONData = JSONData
-
-        //console.log(JSONData);
-
-        $.ajax({
-            url: "/user/json/calender",
-            method: "POST",
-            contentType: 'application/json; charset=utf-8',
-            dataType: "json",
-            data: JSON.stringify({
-                data: JSONData
-            }),
-            type: "text",
-
-            success: function (JSONData, status) {
-                alert(status);
-
-            }
-
-        });
-
-    };
 
 
-    //일정 추가 하기
-    $(function () {
 
-        $(".addDay").on("click", function () {
-          /*  var dateStr = prompt('Enter a date in YYYY-MM-DD format');
-            var date = new Date(dateStr + 'T00:00:00'); // 입력할 시간
+    $(".addDay").on("click", function () {
+        /*  var dateStr = prompt('Enter a date in YYYY-MM-DD format');
+          var date = new Date(dateStr + 'T00:00:00'); // 입력할 시간
 
 
-            if (!isNaN(date.valueOf())) { // 입력할 시간이 valueCheck
-                calendar.addEvent({
-                    title: dataTitle,
-                    start: date,
-                    Text: dateText,
-                    allDay: true
-                });
-                alert('Great. Now, update your database...');
-            } else {
-                alert('Invalid date.');
-            }*/
-            // 팝업창 오픈
-            alert("리뷰창 오픈 ");
+          if (!isNaN(date.valueOf())) { // 입력할 시간이 valueCheck
+              calendar.addEvent({
+                  title: dataTitle,
+                  start: date,
+                  Text: dateText,
+                  allDay: true
+              });
+              alert('Great. Now, update your database...');
+          } else {
+              alert('Invalid date.');
+          }*/
+        // 팝업창 오픈
+        alert("리뷰창 오픈 ");
 
-            var pop = window.open(
-             "/view/community/add/addClubCalender.jsp","리뷰페이지",
-                "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
+        var pop = window.open(
+            "/view/community/add/addClubCalender.jsp", "리뷰페이지",
+            "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
 
-
-        });
 
     });
+
 
 
 </script>
@@ -182,7 +144,7 @@
 <body>
 
 <div class='demo-topbar'>
-
+    <input hidden class="clubNum" value="10001">
     <div id='external-events'
          style="float: left; width: 20%; margin-top: 75px; padding: 5px;">
 
@@ -216,15 +178,15 @@
             후 제거</label>
         </p>
     </div>
-        <div id='calendar-container' style="float: left; width: 50%; font-size: 0.7em; ">
-            <div style="height: 30px; text-align: center; font-size: 30px; font-weight: bold; color: rgba(69, 69, 199, 0.721); margin-bottom: 20px;">
-                나의 일정
-            </div>
-            <input type="button" class="allSave" value="전체 저장">
-            <input type="button" class="addDay" value="일정 추가">
-            <div id='calendar'></div>
+    <div id='calendar-container' style="float: left; width: 50%; font-size: 0.7em; ">
+        <div style="height: 30px; text-align: center; font-size: 30px; font-weight: bold; color: rgba(69, 69, 199, 0.721); margin-bottom: 20px;">
+            나의 일정
         </div>
+        <input type="button" class="allSave" value="전체 저장">
+        <input type="button" class="addDay" value="일정 추가">
+        <div id='calendar'></div>
     </div>
+</div>
 
 </body>
 </html>
