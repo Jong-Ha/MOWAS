@@ -2,6 +2,7 @@ package com.project.deal.dao;
 
 import com.project.common.Search;
 import com.project.domain.Deal;
+import com.project.domain.File;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -54,6 +55,23 @@ sqlSession.delete("DealMapper.deleteDeal", deal);
     public int getTotalCount(Search search) throws Exception {
         return sqlSession.selectOne("DealMapper.getTotalCount",search);
     }
+    @Override
+    public void addDealBoardFile(File file) {
+        sqlSession.insert("DealMapper.addDealBoardFile", file);
+    }
 
+    @Override
+    public void deleteDealBoardFile(Map<String, Object> map) {
+        sqlSession.delete("DealMapper.deleteDealBoardFile", map);
+    }
+    @Override
+    public List<String> listDealBoardFile(int dealBoardNum) {
+        return sqlSession.selectList("DealMapper.listDealBoardFile", dealBoardNum);
+    }
+    @Override
+    public int getDealNum(String userId) {
+        System.out.println(userId);
+        return sqlSession.selectOne("DealMapper.getDealNum", userId);
+    }
 
 }

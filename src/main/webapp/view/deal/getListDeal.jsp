@@ -68,11 +68,11 @@
     // });
     $(function () {
       $(".deal").on("click", function () {
-        location.href = "/deal/getListDeal?boardCategory=" + 8;
+        location.href = "/deal/getListDeal?boardCategory=08";
       });
 
       $(".dealRequest").on("click", function () {
-        location.href = "/deal/getListDeal?boardCategory=" + 9;
+        location.href = "/deal/getListDeal?boardCategory=09";
       })
     });
   </script>

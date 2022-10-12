@@ -3,6 +3,7 @@ package com.project.deal.service;
 import com.project.common.Search;
 import com.project.deal.dao.DealDao;
 import com.project.domain.Deal;
+import com.project.domain.File;
 import com.project.site.dao.SiteDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -27,10 +28,24 @@ public class DealServiceImpl implements DealService {
         System.out.println(this.getClass());
     }
     @Override
-    public void addDeal(Deal deal) throws Exception{
+    public int addDeal(Deal deal) throws Exception{
         dealDao.addDeal(deal);
         System.out.println("addDeal serviceImpl");
-;
+        System.out.println("addDeal serviceImpl"+deal);
+        System.out.println("addDeal serviceImpl");
+        System.out.println("뭔데 ㅜㅜ"+dealDao.getDealNum(deal.getUser().getUserId()));
+        int dealBoardNum = dealDao.getDealNum(deal.getUser().getUserId());
+        List<File> files = deal.getFiles();
+        for(File file : files){
+            file.setFileName(file.getFileName());
+            file.setBoardNum(dealBoardNum);
+            file.setBoardCategory(deal.getBoardCategory());
+            file.setFileName(file.getFileName());
+            dealDao.addDealBoardFile(file);
+        }
+        System.out.println(dealBoardNum);
+        return dealBoardNum;
+
     }
 
     @Override
@@ -54,7 +69,7 @@ public class DealServiceImpl implements DealService {
     }
 
     @Override
-    public Map<String, Object> getListDeal(Search search,int boardCategory) throws Exception {
+    public Map<String, Object> getListDeal(Search search,String boardCategory) throws Exception {
         Map<String, Object> map2=new HashMap<>();
         map2.put("search", search);
         map2.put("boardCategory",boardCategory);

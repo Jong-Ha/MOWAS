@@ -25,7 +25,60 @@
         <result property="dealEndDate" column="deal_end_date" jdbcType="DATE"/>
         <result property="dealDate" column="deal_date" jdbcType="DATE"/>
         <result property="dealLocation" column="deal_location" jdbcType="VARCHAR"/>
+        <collection property="files" column="deal_board_num" ofType="com.project.domain.File"
+                    select="getDealBoardFiles"/>
     </resultMap>
+    <select id="getDealBoardFiles" resultMap="dealSelectMap">
+        SELECT *
+        FROM files
+        WHERE board_num = #{dealBoardNum}
+          AND board_category = '08'
+        OR board_category ='09'
+        ORDER BY file_num DESC
+    </select>
+
+
+    <!--현재 파일 조회-->
+    <select id="listDealBoardFile" parameterType="int" resultType="String">
+        SELECT file_name
+        FROM files
+        WHERE board_num = #{dealBoardNum}
+          AND board_category = '08' OR AND board_category = '09'
+    </select>
+
+    <!--파일 삭제-->
+    <delete id="deleteClubMasterBoardFile" parameterType="map">
+        DELETE files
+        <where>
+            board_num = #{boardNum}
+            AND board_category = '08' OR board_category = '09'
+            <foreach collection="deleteFileNames" item="fileName" open="AND file_name IN (" separator="," close=")">
+                #{fileName}
+            </foreach>
+        </where>
+    </delete>
+
+    <!--파일 등록-->
+    <insert id="addDealBoardFile" parameterType="com.project.domain.File">
+        INSERT
+        INTO files(file_num,
+                   board_num,
+                   board_category,
+                   file_name)
+        VALUES (seq_files.NEXTVAL, #{boardNum}, #{boardCategory}, #{fileName})
+    </insert>
+    <!--신규 넘버 조회-->
+    <select id="getDealNum" parameterType="String" resultType="int">
+        SELECT deal_board_num
+        FROM (SELECT ROWNUM,
+                     deal_board_num
+              FROM deal
+              WHERE user_id = #{userId}
+              ORDER BY deal_reg_date DESC)
+        WHERE ROWNUM = 1
+    </select>
+
+
 <!--게시물 작성-->
     <insert id="addDeal" parameterType="deal">
         INSERT INTO deal(deal_board_num,
@@ -54,7 +107,7 @@ values (seq_deal.NEXTVAL,
         #{villCode:VARCHAR})
     </insert>
 <!--    &lt;!&ndash;게시물 상세조회&ndash;&gt;-->
-    <select id="getDeal" parameterType="int" resultMap="DealSelectMap">
+    <select id="getDeal" parameterType="int" resultMap="dealSelectMap">
         SELECT
             deal_board_num,
             user_id,
@@ -62,7 +115,8 @@ values (seq_deal.NEXTVAL,
             deal_text,
             price,
             product_name,
-            tag
+            tag,
+            board_category
 from deal
 where deal_board_num=#{dealBoardNum}
     </select>
@@ -91,9 +145,8 @@ where deal_board_num=#{dealBoardNum}
         </where>
     </delete>
     <!--게시물 목록 조회.. .-->
-    <select id="getListDeal" parameterType="map" resultMap="DealSelectMap">
-        SELECT *
-        FROM (	SELECT inner_table.* , ROWNUM AS row_seq
+    <select id="getListDeal" parameterType="map" resultMap="dealSelectMap">
+       	SELECT inner_table.* , ROWNUM AS row_seq
         FROM		(	SELECT deal_board_num, deal_title, deal_text, user_id, deal_reg_date ,tag
         FROM deal
 <if test="boardCategory !=0 ">
@@ -114,7 +167,7 @@ where deal_board_num=#{dealBoardNum}
         </if>
 
         ORDER BY deal_board_num ) inner_table
-        WHERE ROWNUM >= 0 )
+        WHERE ROWNUM >= 0
 
     </select>
 
@@ -136,5 +189,6 @@ where deal_board_num=#{dealBoardNum}
             </where>
         </if> ) countTable
     </select>
+
 
 </mapper>

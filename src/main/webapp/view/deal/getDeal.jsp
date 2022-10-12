@@ -30,6 +30,36 @@ Product vo=(Product)request.getAttribute("vo");
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script>
+        // $(function () {
+        //     var dealNum = $(this).parent().children("[name='dealBoardNum']").val();
+        //     var boardCategory=$(this).parent().children("[name='boardCategory']").val();
+        //
+        //     $.ajax({
+        //         url : "/deal/json/getLikeCheck",
+        //         method : "POST",
+        //         data : JSON.stringify({
+        //             "boardNum" : dealNum,
+        //             "boardCategory" : boardCategory
+        //         }),
+        //         dataType: "json",
+        //         headers: {
+        //             "Accept": "application/json",
+        //             "Content-Type": "application/json; charset=UTF-8"
+        //         },
+        //         success:function (JSONData) {
+        //             alter("성공 ?")
+        //             if (JSONData.like === 'n') {
+        //                 alert("누름")
+        //                 $(".likeToggle").val("좋아요 해제") ;
+        //             } else {
+        //                 alert("뺌")
+        //                 $(".likeToggle").val("좋아요!");
+        //             }
+        //         }
+        //     })
+        //
+        // })
+
         $(function() {
             // $(document).ready(function(){
             // var dealNum = $(this).parent().children("[name='dealBoardNum']").val();
@@ -85,7 +115,9 @@ Product vo=(Product)request.getAttribute("vo");
                         if (JSONData.like === 'n') {
                              alert("누름")
                             $(".likeToggle").val("좋아요 해제") ;
-                        } else {
+                        }else if(JSONData.like=='null'){
+                            $(".likeToggle").val
+                        } else{
                              alert("뺌")
                             $(".likeToggle").val("좋아요!");
                         }
@@ -186,10 +218,14 @@ Product vo=(Product)request.getAttribute("vo");
 
 
 <body>
+<c:forEach items="${clubMasterBoard.files}" var="i">
+    <img src="/resources/${i.fileName}" alt="거래 게시글 사진"><br>
+    <br>
+</c:forEach>
 ${deal}<br>
 <div>
 
-    <input type="button" class="likeToggle" value="${deal.likeCheck=='y'?'좋아요 해제':'좋아요!'}">
+    <input type="button" class="likeToggle" value="${likeCheck == 'y'?'좋아요 해제':'좋아요!'}">
     <input type="hidden" name="dealBoardNum" value="${deal.dealBoardNum}">
     <input type="hidden" name="boardCategory" value="${deal.boardCategory}">
     <br/>

@@ -33,7 +33,7 @@ public class DealServiceTest {
         Deal deal =new Deal();
         User user=new User();
         deal.setDealBoardNum(10022);
-        deal.setBoardCategory(8);
+        deal.setBoardCategory("08");
         user.setUserId("user01");
 
         deal.setUser(user);

@@ -2,6 +2,7 @@ package com.project.deal.dao;
 
 import com.project.common.Search;
 import com.project.domain.Deal;
+import com.project.domain.File;
 
 import javax.naming.directory.SearchControls;
 import java.util.List;
@@ -19,4 +20,9 @@ public interface DealDao {
    //public List<Deal> listDeal();
    public int getTotalCount(Search search) throws Exception ;
     // 게시판 currentPage Row 만  return
+
+public int getDealNum(String userId);
+    public void addDealBoardFile(File file);
+    public List<String> listDealBoardFile(int dealBoardNum);
+    public void deleteDealBoardFile(Map<String, Object> map);
 }
