@@ -2,6 +2,7 @@ package com.project.deal.dao;
 
 import com.project.common.Search;
 import com.project.domain.Deal;
+import com.project.domain.File;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.naming.directory.SearchControls;
 import java.util.List;
+import java.util.Map;
 
 @Repository("dealDaoImpl")
 public class DealDaoImpl implements DealDao{
@@ -38,21 +40,38 @@ public class DealDaoImpl implements DealDao{
     }
 
     @Override
-    public void deleteDeal(Deal deal)throws Exception {
-sqlSession.delete("DealMapper.deleteDeal", deal);
+    public void deleteDeal(int dealBoardNum)throws Exception {
+sqlSession.delete("DealMapper.deleteDeal", dealBoardNum);
     }
 
     @Override
-    public List<Deal> getListDeal(Search search) throws Exception {
+    public List<Deal> getListDeal(Map<String, Object> map) throws Exception {
         System.out.println("이거 맞아요 ?");
-        System.out.println(search+"getlistDeal daoimpl");
-        return sqlSession.selectList("DealMapper.getListDeal", search);
+        System.out.println(map+"getlistDeal daoimpl");
+        return sqlSession.selectList("DealMapper.getListDeal", map);
     }
 
     @Override
     public int getTotalCount(Search search) throws Exception {
         return sqlSession.selectOne("DealMapper.getTotalCount",search);
     }
+    @Override
+    public void addDealBoardFile(File file) {
+        sqlSession.insert("DealMapper.addDealBoardFile", file);
+    }
 
+    @Override
+    public void deleteDealBoardFile(Map<String, Object> map) {
+        sqlSession.delete("DealMapper.deleteDealBoardFile", map);
+    }
+    @Override
+    public List<String> listDealBoardFile(int dealBoardNum) {
+        return sqlSession.selectList("DealMapper.listDealBoardFile", dealBoardNum);
+    }
+    @Override
+    public int getDealNum(String userId) {
+        System.out.println(userId);
+        return sqlSession.selectOne("DealMapper.getDealNum", userId);
+    }
 
 }

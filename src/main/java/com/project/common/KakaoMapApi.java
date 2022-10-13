@@ -103,16 +103,19 @@ public class KakaoMapApi {
 
             if(roadAddress == null){
                 JSONObject subsubJobj = (JSONObject) subJobj.get("address");
-                value = (String) subsubJobj.get("address_name");
+                //value = (String) subsubJobj.get("address_name");
+                value = (String) subsubJobj.get("region_3depth_name");
 
             }else{
-                value = (String) roadAddress.get("address_name");
+                //value = (String) roadAddress.get("address_name");
+                value = (String) roadAddress.get("region_3depth_name");
             }
 
             if(value.equals("") || value==null){
                 subJobj = (JSONObject) jArray.get(1);
                 subJobj = (JSONObject) subJobj.get("address");
-                value =(String) subJobj.get("address_name");
+                //value =(String) subJobj.get("address_name");
+                value =(String) subJobj.get("region_3depth_name");
             }
         }
         return value;

@@ -115,6 +115,11 @@ public class SiteDaoImpl implements SiteDao{
     }
 
     @Override
+    public void processClubRereport(ClubReport clubReport) throws Exception {
+        sqlSession.update("SiteMapper.processClubRereport", clubReport);
+    }
+
+    @Override
     public void deleteClubReport(int clubReportNo) throws Exception {
         sqlSession.delete("SiteMapper.deleteClubReport", clubReportNo);
     }
