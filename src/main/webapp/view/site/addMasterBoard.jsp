@@ -32,10 +32,12 @@
 </head>
 <body>
 
-  <!-- <form enctype="multipart/form-data"> -->
-    <form class="form-horizontal" name="detailForm">
+  <form enctype="multipart/form-data">
+    <!--<form class="form-horizontal" name="detailForm">-->
       <label>
-      <input type="hidden" name="adminId" value="${user.userId}">
+      <%--<input type="hidden" name="adminId" value="${user.userId}">--%>
+        <input type="hidden" name="adminId" value="admin">
+
 
         <div class="container">
 
@@ -67,7 +69,7 @@
 
       제목<input type="text" name="mbTitle" value=""><br>
       내용<input type="text" name="mbText" value=""><br>
-      <!-- 파일<input type="file" name="file" multiple="multiple"/><br> -->
+      파일<input type="file" name="file" multiple="multiple"/><br>
     </label>
 
   <div class="col-md-12 text-center ">
