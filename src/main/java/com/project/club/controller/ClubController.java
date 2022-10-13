@@ -482,4 +482,59 @@ public class ClubController {
         model.addAllAttributes(map);
         return "/view/club/listClubMasterBoard.jsp";
     }
+
+    @RequestMapping(value = "listVote/{roomId}", method = RequestMethod.GET)
+    public String listVote(@PathVariable String roomId, Model model){
+        model.addAttribute("list",clubService.listVote(roomId));
+        return "/view/club/listVote.jsp";
+    }
+
+    @RequestMapping(value = "getVote/{voteNum}", method = RequestMethod.GET)
+    public String getVote(@PathVariable int voteNum, Model model){
+        model.addAttribute("vote", clubService.getVote(voteNum));
+        return "/view/club/getVote.jsp";
+    }
+
+    @RequestMapping(value = "addVote/{roomId}", method = RequestMethod.GET)
+    public String addVoteView(@PathVariable String roomId, @ModelAttribute("vote")Vote vote){
+        return "/view/club/addVote.jsp";
+    }
+
+    @RequestMapping(value = "addVote", method = RequestMethod.POST)
+    public String addVote(@ModelAttribute("vote")Vote vote){
+        if(vote.getMultiVoteCheck()==null){
+            vote.setMultiVoteCheck("0");
+        }
+        if(vote.getHideVoteCheck()==null){
+            vote.setHideVoteCheck("0");
+        }
+        if(vote.getEndDateCheck()==null){
+            vote.setEndDateCheck("0");
+            vote.setEndDate(null);
+        }
+        clubService.addVote(vote);
+        return "redirect:/club/listVote/"+vote.getRoomId();
+    }
+
+    @RequestMapping(value = "updateVote/{voteNum}", method = RequestMethod.GET)
+    public String updateVoteView(@PathVariable int voteNum, Model model){
+        model.addAttribute("vote", clubService.getVote(voteNum));
+        return "/view/club/updateVote.jsp";
+    }
+
+    @RequestMapping(value = "updateVote", method = RequestMethod.POST)
+    public String updateVote(@ModelAttribute("vote")Vote vote){
+        if(vote.getMultiVoteCheck()==null){
+            vote.setMultiVoteCheck("0");
+        }
+        if(vote.getHideVoteCheck()==null){
+            vote.setHideVoteCheck("0");
+        }
+        if(vote.getEndDateCheck()==null){
+            vote.setEndDateCheck("0");
+            vote.setEndDate(null);
+        }
+        clubService.updateVote(vote);
+        return "redirect:/club/getVote/"+vote.getVoteNum();
+    }
 }

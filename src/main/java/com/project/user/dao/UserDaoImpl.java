@@ -30,7 +30,9 @@ public class UserDaoImpl implements UserDao{
     }
 
     public void addInterList(UserInterList interList)throws Exception{
+        System.out.println("여기는 addInterList 디에이오임플 시작이다");
         sqlSession.insert("UserMapper.addInterList", interList);
+        System.out.println("여기는 addInterList 디에이오임플 종료이다");
     }
 
     public void deleteInterList(UserInterList interList)throws Exception{
@@ -39,6 +41,10 @@ public class UserDaoImpl implements UserDao{
 
     public User getUser(String userId)throws Exception{
         return sqlSession.selectOne("UserMapper.getUser", userId);
+    }
+
+    public void updateLcd(String msg)throws Exception{
+        sqlSession.selectOne("UserMapper.updateLcd", msg);
     }
 
     public void updateUser(User user)throws Exception{

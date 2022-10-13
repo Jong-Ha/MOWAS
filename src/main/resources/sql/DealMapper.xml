@@ -28,7 +28,15 @@
         <collection property="files" column="deal_board_num" ofType="com.project.domain.File"
                     select="getDealBoardFiles"/>
     </resultMap>
-    <select id="getDealBoardFiles" resultMap="dealSelectMap">
+
+    <resultMap type="com.project.domain.File" id="FileResultMap">
+        <result property="fileNum" column="file_num" jdbcType="INTEGER"/>
+        <result property="boardNum" column="board_num" jdbcType="VARCHAR"/>
+        <result property="boardCategory" column="board_category" jdbcType="VARCHAR"/>
+        <result property="fileName" column="file_name" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="getDealBoardFiles" resultMap="FileResultMap">
         SELECT *
         FROM files
         WHERE board_num = #{dealBoardNum}
@@ -43,7 +51,7 @@
         SELECT file_name
         FROM files
         WHERE board_num = #{dealBoardNum}
-          AND board_category = '08' OR AND board_category = '09'
+          AND board_category = '08' OR board_category = '09'
     </select>
 
     <!--파일 삭제-->
@@ -65,7 +73,7 @@
                    board_num,
                    board_category,
                    file_name)
-        VALUES (seq_files.NEXTVAL, #{boardNum}, #{boardCategory}, #{fileName})
+        VALUES (seq_files.NEXTVAL, #{boardNum}, #{boardCategory:CHAR}, #{fileName})
     </insert>
     <!--신규 넘버 조회-->
     <select id="getDealNum" parameterType="String" resultType="int">

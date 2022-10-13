@@ -88,12 +88,12 @@ public class ClubServiceImpl implements ClubService {
     public void updateCluberApply(int clubNum, int clubUserNum, String result) {
         Map<String, Object> map = new HashMap<String, Object>();
 
-        map.put("result",result);
-        map.put("clubUserNum",clubUserNum);
-        map.put("clubNum",clubNum);
+        map.put("result", result);
+        map.put("clubUserNum", clubUserNum);
+        map.put("clubNum", clubNum);
 
         clubDao.processCluberApply(map);
-        if(result.equals("accept")){
+        if (result.equals("accept")) {
             clubDao.updateClubNewCluber(clubNum);
         }
     }
@@ -118,7 +118,7 @@ public class ClubServiceImpl implements ClubService {
     @Override
     public void deleteCluber(Cluber cluber, String kickoutCheck) {
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("cluber",cluber);
+        map.put("cluber", cluber);
         map.put("kickoutCheck", kickoutCheck);
         clubDao.deleteCluber(map);
         clubDao.updateClubDeleteCluber(cluber.getClubNum());
@@ -137,7 +137,7 @@ public class ClubServiceImpl implements ClubService {
     @Override
     public void updateClubBlacklist(String process, List<Integer> clubUserNumList) {
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("process",process);
+        map.put("process", process);
         map.put("list", clubUserNumList);
         clubDao.updateClubBlacklist(map);
     }
@@ -146,7 +146,7 @@ public class ClubServiceImpl implements ClubService {
     public Map<String, Object> listClubBlacklist(Search search, int clubNum) {
         Map<String, Object> map = new HashMap<>();
         map.put("search", search);
-        map.put("clubNum",clubNum);
+        map.put("clubNum", clubNum);
         map.put("list", clubDao.listClubBlacklist(map));
         map.put("totalCount", clubDao.getTotalClubBlacklist(map));
         return map;
@@ -162,11 +162,11 @@ public class ClubServiceImpl implements ClubService {
         clubDao.addClubMasterBoard(clubMasterBoard);
         int clubMasterBoardNum = clubDao.getClubMasterBoardNum(clubMasterBoard.getUserId());
         List<File> files = clubMasterBoard.getFiles();
-        for(File file : files){
+        for (File file : files) {
             file.setBoardNum(clubMasterBoardNum);
             clubDao.addClubMasterBoardFile(file);
         }
-        return  clubMasterBoardNum;
+        return clubMasterBoardNum;
     }
 
     @Override
@@ -177,14 +177,14 @@ public class ClubServiceImpl implements ClubService {
         //삭제된 파일 날리기
         Map<String, Object> map = new HashMap<>();
         map.put("boardNum", clubMasterBoard.getBoardNum());
-        map.put("deleteFileNames",deleteFileNames);
-        if(deleteFileNames!=null){
+        map.put("deleteFileNames", deleteFileNames);
+        if (deleteFileNames != null) {
             clubDao.deleteClubMasterBoardFile(map);
         }
 
         //새로운 파일 등록
         List<File> files = clubMasterBoard.getFiles();
-        for(File file : files){
+        for (File file : files) {
             file.setBoardNum(clubMasterBoard.getBoardNum());
             clubDao.addClubMasterBoardFile(file);
         }
@@ -201,7 +201,7 @@ public class ClubServiceImpl implements ClubService {
         Map<String, Object> map = new HashMap<>();
         List<String> deleteFileNames = new ArrayList<>();
         map.put("boardNum", clubMasterBoardNum);
-        map.put("deleteFileNames",deleteFileNames);
+        map.put("deleteFileNames", deleteFileNames);
         //deleteFileNames가 널이면 실행 안됨
         //deleteFileNames.size가 0이면 모든 파일 삭제
         List<String> deleteFiles = clubDao.listClubMasterBoardCurrentFile(clubMasterBoardNum);
@@ -212,12 +212,12 @@ public class ClubServiceImpl implements ClubService {
     @Override
     public Map<String, Object> listClubMasterBoard(Search search, int clubNum) {
         Map<String, Object> map = new HashMap<>();
-        map.put("search",search);
-        map.put("clubNum",clubNum);
+        map.put("search", search);
+        map.put("clubNum", clubNum);
         int totalCount = clubDao.getTotalClubMasterBoard(map);
         List<ClubMasterBoard> list = clubDao.listClubMasterBoard(map);
-        map.put("totalCount",totalCount);
-        map.put("list",list);
+        map.put("totalCount", totalCount);
+        map.put("list", list);
         return map;
     }
 
@@ -245,8 +245,8 @@ public class ClubServiceImpl implements ClubService {
     @Override
     public List<CalendarCluber> listClubCalendarApply(int clubCalendarNum, String applyStatus) {
         Map<String, Object> map = new HashMap<>();
-        map.put("clubCalendarNum",clubCalendarNum);
-        map.put("applyStatus",applyStatus);
+        map.put("clubCalendarNum", clubCalendarNum);
+        map.put("applyStatus", applyStatus);
         return clubDao.listClubCalendarApply(map);
     }
 
@@ -261,12 +261,12 @@ public class ClubServiceImpl implements ClubService {
     @Override
     public Map<String, Object> listCluber(Search search, int clubNum) {
         Map<String, Object> map = new HashMap<>();
-        map.put("clubNum",clubNum);
-        map.put("search",search);
+        map.put("clubNum", clubNum);
+        map.put("search", search);
         int totalCount = clubDao.getTotalCluber(map);
         List<Cluber> list = clubDao.listCluber(map);
-        map.put("totalCount",totalCount);
-        map.put("list",list);
+        map.put("totalCount", totalCount);
+        map.put("list", list);
         return map;
     }
 
@@ -278,5 +278,64 @@ public class ClubServiceImpl implements ClubService {
     @Override
     public void updateCluber(Cluber cluber) {
         clubDao.updateCluber(cluber);
+    }
+
+    @Override
+    public void addVote(Vote vote) {
+        clubDao.addVote(vote);
+    }
+
+    @Override
+    public void updateVote(Vote vote) {
+        clubDao.updateVote(vote);
+    }
+
+    @Override
+    public void deleteVote(int voteNum) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("voteNum", voteNum);
+        clubDao.deleteVoter(map);
+        clubDao.deleteVote(voteNum);
+    }
+
+    @Override
+    public List<Vote> listVote(String roomId) {
+        return clubDao.listVote(roomId);
+    }
+
+    @Override
+    public Vote getVote(int voteNum) {
+        return clubDao.getVote(voteNum);
+    }
+
+    @Override
+    public List<Voter> listVoter(Voter voter) {
+        return clubDao.listVoter(voter);
+    }
+
+    @Override
+    public void addVoter(List<String> voterItems, String userId, int voteNum) {
+        for (String voteItem : voterItems) {
+            Voter voter = new Voter();
+            voter.setVoteItem(voteItem);
+            voter.setUserId(userId);
+            voter.setVoteNum(voteNum);
+            clubDao.addVoter(voter);
+        }
+    }
+
+    @Override
+    public void updateVoter(List<String> voterItems, String userId, int voteNum) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("voteNum", voteNum);
+        map.put("userId", userId);
+        clubDao.deleteVoter(map);
+        for (String voteItem : voterItems) {
+            Voter voter = new Voter();
+            voter.setVoteItem(voteItem);
+            voter.setUserId(userId);
+            voter.setVoteNum(voteNum);
+            clubDao.addVoter(voter);
+        }
     }
 }

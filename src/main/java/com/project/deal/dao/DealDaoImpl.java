@@ -40,8 +40,8 @@ public class DealDaoImpl implements DealDao{
     }
 
     @Override
-    public void deleteDeal(Deal deal)throws Exception {
-sqlSession.delete("DealMapper.deleteDeal", deal);
+    public void deleteDeal(int dealBoardNum)throws Exception {
+sqlSession.delete("DealMapper.deleteDeal", dealBoardNum);
     }
 
     @Override
