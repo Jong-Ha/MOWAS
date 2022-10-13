@@ -5,5 +5,6 @@
   </component>
   <component name="SqlResolveMappings">
     <file url="file://$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" scope="{&quot;node&quot;:{  &quot;@negative&quot;:&quot;1&quot;,  &quot;group&quot;:{   &quot;@kind&quot;:&quot;root&quot;,   &quot;node&quot;:{    &quot;name&quot;:{     &quot;@qname&quot;:&quot;a880c5af-8b7c-45aa-a213-e9b8674d51a0&quot;    },    &quot;group&quot;:{     &quot;@kind&quot;:&quot;schema&quot;,     &quot;node&quot;:{      &quot;name&quot;:{       &quot;@qname&quot;:&quot;MOWAS&quot;      }     }    }   }  } }}" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/sql/UserMapper.xml" scope="{&quot;node&quot;:{  &quot;@negative&quot;:&quot;1&quot;,  &quot;group&quot;:{   &quot;@kind&quot;:&quot;root&quot;,   &quot;node&quot;:{    &quot;@negative&quot;:&quot;1&quot;   }  } }}" />
   </component>
 </project>

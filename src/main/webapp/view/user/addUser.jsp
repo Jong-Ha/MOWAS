@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,20 +16,16 @@
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 
     <style>
-    .wap{
-    	width: 800px;
-    }
+    .wap{ width: 800px; }
     tr { height:30px; }
     td { border-bottom:1px solid #CCC; font-size:12px; }
     span { cursor:pointer }
-
-
     </style>
   <script type="text/javascript">
 
     $(function (){
       $(".emailKey").on("click",function (){
-        alert('ÀÌ¸ŞÀÏÀÎÁõ¹öÆ°?');
+        alert('ì´ë©”ì¼ì¸ì¦ë²„íŠ¼?');
         $.ajax({
           url: "/user/json/mailSender",
           method :"POST",
@@ -42,12 +38,12 @@
             $(".emailYC").css("display",'');
           }
         });
-        alert('ajax Á¾·á');
+        alert('ajax ì¢…ë£Œ');
         //$("form").attr("method", "POST").attr("action", "/user/mailSender").submit();
          // self.location="/user/mailSender";
       });
       $(".smsKey").on("click",function (){
-        alert('¹®ÀÚÀÎÁõ¹öÆ°?');
+        alert('ë¬¸ìì¸ì¦ë²„íŠ¼?');
         $.ajax({
           url : "/user/json/smsSend",
           method: "POST",
@@ -59,7 +55,7 @@
             $(".smsYC").css("display",'');
           }
         });
-        alert('ajax Á¾·á');
+        alert('ajax ì¢…ë£Œ');
         //$("form").attr("method", "POST").attr("action", "/user/smsSend").submit();
         // self.location="/user/mailSender";
       });
@@ -83,47 +79,6 @@
         }
       });
 
-
-      $(".addUser").on("click",function (){
-        var id=$("input[name='id']").val();
-        var pw=$("input[name='password']").val();
-        var pw2=$("input[name='password2]").val();
-        var name=$("input[name='username']").val();
-
-        var gender=$("input[name='gender']").val();
-        var email=$("input[id='CheckEamil']").val();
-        var phone=$("input[id='CheckPhone']").val();
-
-        if(id == null || id.length <1){
-          alert("¾ÆÀÌµğ´Â ¹İµå½Ã ÀÔ·ÂÇÏ¼Å¾ß ÇÕ´Ï´Ù.");
-          return;//ÇØ´ç ¸Ş¼­µå(Æã¼Ç)À» Á¾·áÇÑ´Ù
-        }
-        if(pw == null || pw.length <1){
-          alert("ÆĞ½º¿öµå´Â  ¹İµå½Ã ÀÔ·ÂÇÏ¼Å¾ß ÇÕ´Ï´Ù.");
-          return;
-        }
-        if(pw2 == null || pw2.length <1){
-          alert("ÆĞ½º¿öµå È®ÀÎÀº  ¹İµå½Ã ÀÔ·ÂÇÏ¼Å¾ß ÇÕ´Ï´Ù.");
-          return;
-        }
-        if(name == null || name.length <1){
-          alert("ÀÌ¸§Àº  ¹İµå½Ã ÀÔ·ÂÇÏ¼Å¾ß ÇÕ´Ï´Ù.");
-          return;
-        }
-
-        if( pw != pw2 ) {
-          alert("ºñ¹Ğ¹øÈ£ È®ÀÎÀÌ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
-          $("input:text[name='password2']").focus();
-          return;
-        }
-
-
-        $("form").attr("method","POST").attr("action","/user/addUser").submit();
-
-      });
-
-
-
        $(".CheckRrd").on("click",function (){
          var rrdCheck=$("input[name='rrd']").val();
          alert(rrdCheck)
@@ -139,149 +94,331 @@
                   alert(map)
                   if (map.result) {
                     $(".rrdtext").show();
-                    $(".rrdtext").html('È¸¿ø°¡ÀÔÇÒ ¼ö ÀÖ½À´Ï´Ù');
+                    $(".rrdtext").html('íšŒì›ê°€ì…í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤');
                   } else {
                     $(".rrdtext").show();
-                    $(".rrdtext").html('ÀÌ¹Ì °¡ÀÔÇÑ È¸¿øÀÔ´Ï´Ù');
+                    $(".rrdtext").html('ì´ë¯¸ ê°€ì…í•œ íšŒì›ì…ë‹ˆë‹¤');
                   }
                 }
                 });
-         alert('ÀÌ°ÇµÇ³¶?')
+         alert('ì´ê±´ë˜ë‚­?')
               });
 
       $(".addInter").on("click", function (){
         $("#oridata input[type=checkbox]:checked").filter(function() {
-          alert('aaaaa');
           $("#movedata").append("<tr>" + $(this).parent().parent().html() + "</tr>");
-          alert('bbbbb');
           $(this).parent().parent().remove();
+        });
+      });
+/*
           $.ajax({
             url : "/user/json/interListControl",
             method : "POST",
-
             data : JSON.stringify({
-
               userId : $(".userId").val(),
               interList : $('#oridata input[type=checkbox]:checked').val()
             }),
             contentType : "application/json",
             dataType : "json",
             success : function (){
-              alert('µğºñÀúÀå¼º°ø');
-
+              alert('ë””ë¹„ì €ì¥ì„±ê³µ');
+            },
+            error : function (){
+              alert('ë””ë¹„ì €ì¥ì‹¤íŒ¨');
             }
           });
-          alert('ajaxÁ¾·á');
-        });
-      });
+
+ */
 
       $(".removeInter").on("click", function () {
         $("#movedata input[type=checkbox]:checked").filter(function() {
-          alert('ccccc');
           $("#oridata").append("<tr>" + $(this).parent().parent().html() + "</tr>");
-          alert('dddddd');
           $(this).parent().parent().remove();
+        });
+      });
+      /*
           $.ajax({
             url : "/user/json/deleteInter",
             method : "POST",
-
             data : JSON.stringify({
-
               userId : $(".userId").val(),
               interList : $('#oridata input[type=checkbox]:checked').val()
             }),
             contentType : "application/json",
             dataType : "json",
             success : function (){
-              alert('µğºñ»èÁ¦¼º°ø');
-
+              alert('ë””ë¹„ì‚­ì œì„±ê³µ');
+            },
+            error : function (){
+              alert('ë””ë¹„ì‚­ì œì‹¤íŒ¨');
             }
           });
-          alert('ajaxÁ¾·á');
-        });
+          */
+
+      $("form").on("submit",function (){
+       /*
+        var id=$("input[name='userId']").val();
+        var pw=$("input[name='password']").val();
+        var pw2=$("input[name='password2']").val();
+        var name=$("input[name='userName']").val();
+        var rrd=$("input[name='rrd']").val();
+        var male=$("input[name='gender']:checked").val();
+        var female=$("input[name='gender']:checked").val();
+        var email=$("input[id='CheckEamil']").val();
+        var phone=$("input[id='CheckPhone']").val();
+
+
+        if(id == null || id.length <1){
+          alert("ì•„ì´ë””ëŠ” ë°˜ë“œì‹œ ì…ë ¥í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.");
+          return false;//í•´ë‹¹ ë©”ì„œë“œ(í‘ì…˜)ì„ ì¢…ë£Œí•œë‹¤
+        }
+        if(pw == null || pw.length <1){
+          alert("íŒ¨ìŠ¤ì›Œë“œëŠ”  ë°˜ë“œì‹œ ì…ë ¥í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.");
+          return false;
+        }
+        if(pw2 == null || pw2.length <1){
+          alert("íŒ¨ìŠ¤ì›Œë“œ í™•ì¸ì€  ë°˜ë“œì‹œ ì…ë ¥í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.");
+          return false;
+        }
+        if(name == null || name.length <1){
+          alert("ì´ë¦„ì€  ë°˜ë“œì‹œ ì…ë ¥í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.");
+          return false;
+        }
+
+        if( pw != pw2 ) {
+          alert("ë¹„ë°€ë²ˆí˜¸ í™•ì¸ì´ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+          $("input:text[name='password2']").focus();
+          return false;
+        }
+        if(rrd == null || rrd.length <1){
+          alert("ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸ëŠ”  ë°˜ë“œì‹œ ì…ë ¥í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.");
+          return false;
+        }
+        if(male.length <1 && female.length <1){
+          alert("ì„±ë³„ì€  ë°˜ë“œì‹œ ì…ë ¥í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.");
+          return false;
+        }
+        if(email.length <1 && phone.length <1){
+          alert("ì´ë©”ì¼ ë˜ëŠ” íœ´ëŒ€í°ë²ˆí˜¸ ì¸ì¦ì€ ë°˜ë“œì‹œ ì¸ì¦í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.");
+          return false;
+        }
+        // if(addressView == null){
+        //   alert("ë™ë„¤ì¸ì¦ì€ ë°˜ë“œì‹œ ì¸ì¦í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.");
+        //   return false;
+        // }
+*/
+        var address="";
+        if($("#address").val() !="" && $("#addressDetail").val() !="") {
+          var address = $("#address").val() + " " + $("#addressDetail").val();
+        }
+
+        console.log('address');
+
+
+        $("form").attr("method","POST").attr("action","/user/addUser").submit();
+
       });
 
       $(function (){
         $(".cancle").on("click",function (){
-          $("form")[0].reset();
+          history.go(-1);
         });
       });
 
     });
 
-  </script>
-
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=064b845197ba0a5631091cfb59197ad2&libraries=services"></script>
-<script>
-  var mapContainer = document.getElementById('map'), // Áöµµ¸¦ Ç¥½ÃÇÒ div
-          mapOption = {
-            center: new kakao.maps.LatLng(33.450701, 126.570667), // ÁöµµÀÇ Áß½ÉÁÂÇ¥
-            level: 3 // ÁöµµÀÇ È®´ë ·¹º§
-          };
-
-  var map = new kakao.maps.Map(mapContainer, mapOption); // Áöµµ¸¦ »ı¼ºÇÕ´Ï´Ù
-
-  // ¸¶Ä¿°¡ Ç¥½ÃµÉ À§Ä¡ÀÔ´Ï´Ù
-  var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667);
-
-  // ¸¶Ä¿¸¦ »ı¼ºÇÕ´Ï´Ù
-  var marker = new kakao.maps.Marker({
-    position: markerPosition
-  });
-
-  // ¸¶Ä¿°¡ Áöµµ À§¿¡ Ç¥½ÃµÇµµ·Ï ¼³Á¤ÇÕ´Ï´Ù
-  marker.setMap(map);
 
 
-  if (navigator.geolocation) {
 
-    // GeoLocationÀ» ÀÌ¿ëÇØ¼­ Á¢¼Ó À§Ä¡¸¦ ¾ò¾î¿É´Ï´Ù
-    navigator.geolocation.getCurrentPosition(function(position) {
 
-      var lat = position.coords.latitude, // À§µµ
-              lon = position.coords.longitude; // °æµµ
-
-      var locPosition = new kakao.maps.LatLng(lat, lon), // ¸¶Ä¿°¡ Ç¥½ÃµÉ À§Ä¡¸¦ geolocationÀ¸·Î ¾ò¾î¿Â ÁÂÇ¥·Î »ı¼ºÇÕ´Ï´Ù
-              message = '<div style="padding:5px;">¿©±â¿¡ °è½Å°¡¿ä?!</div>'; // ÀÎÆ÷À©µµ¿ì¿¡ Ç¥½ÃµÉ ³»¿ëÀÔ´Ï´Ù
-
-      // ¸¶Ä¿¿Í ÀÎÆ÷À©µµ¿ì¸¦ Ç¥½ÃÇÕ´Ï´Ù
-      displayMarker(locPosition, message);
-
-      // self.location = "/map/json/myLocation?longitude=" + lon + "&latitude=" + lat;
-
-    });
-
-  } else { // HTML5ÀÇ GeoLocationÀ» »ç¿ëÇÒ ¼ö ¾øÀ»¶§ ¸¶Ä¿ Ç¥½Ã À§Ä¡¿Í ÀÎÆ÷À©µµ¿ì ³»¿ëÀ» ¼³Á¤ÇÕ´Ï´Ù
-
-    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
-            message = 'geolocationÀ» »ç¿ëÇÒ¼ö ¾ø¾î¿ä..'
-
-    displayMarker(locPosition, message);
+  /// @brief ì£¼ì†Œê²€ìƒ‰ì°½ - í‚¤ë³´ë“œ Enterí‚¤ ì…ë ¥
+  function enterSearch() {
+    var evt_code = (window.netscape) ? event.which : event.keyCode;
+    if (evt_code == 13) {
+      event.keyCode = 0;
+      getAddr();
+    }
   }
 
-  function displayMarker(locPosition, message) {
+  //ë„ë¡œëª…ì£¼ì†Œ
+  function getAddr(){
+// ì ìš©ì˜ˆ (api í˜¸ì¶œ ì „ì— ê²€ìƒ‰ì–´ ì²´í¬)
+    var keyword = document.getElementById("searchAddr");
+    if (!checkSearchedWord(keyword))
+    {
+      return ;
+    }
 
-    // ¸¶Ä¿¸¦ »ı¼ºÇÕ´Ï´Ù
-    var marker = new kakao.maps.Marker({
-      map: map,
-      position: locPosition
+    $.ajax({
+      url :"http://www.juso.go.kr/addrlink/addrLinkApiJsonp.do"
+      ,type:"post"
+      ,data:{
+        confmKey : "devU01TX0FVVEgyMDIyMTAxMjA5MTEyNjExMzA0NTI="
+        , currentPage : document.getElementById("currentPage").value
+        , countPerPage : document.getElementById("countPerPage").value
+        , keyword : keyword.value
+        , resultType : "json"
+      }
+      ,dataType:"jsonp"
+      ,crossDomain:true
+      ,success:function(jsonStr){
+        $("#list").html("");
+        var errCode =
+                jsonStr.results.common.errorCode;
+        var errDesc =
+                jsonStr.results.common.errorMessage;
+
+        if(errCode!= "0"){
+          alert(errCode+"="+errDesc);
+        }else{
+          if(jsonStr!= null){
+            makeListJson(jsonStr);
+            console.log(jsonStr);
+            // JSONë°ì´í„° HTMLí˜•íƒœë¡œ ë³€í™˜
+          }
+        }
+      },error: function(xhr,status, error){
+        alert("ì—ëŸ¬ë°œìƒ");
+      }
     });
-
-    var iwContent = message, // ÀÎÆ÷À©µµ¿ì¿¡ Ç¥½ÃÇÒ ³»¿ë
-            iwRemoveable = true;
-
-    // ÀÎÆ÷À©µµ¿ì¸¦ »ı¼ºÇÕ´Ï´Ù
-    var infowindow = new kakao.maps.InfoWindow({
-      content : iwContent,
-      removable : iwRemoveable
-    });
-
-    // ÀÎÆ÷À©µµ¿ì¸¦ ¸¶Ä¿À§¿¡ Ç¥½ÃÇÕ´Ï´Ù
-    infowindow.open(map, marker);
-
-    // Áöµµ Áß½ÉÁÂÇ¥¸¦ Á¢¼ÓÀ§Ä¡·Î º¯°æÇÕ´Ï´Ù
-    map.setCenter(locPosition);
   }
+
+  /// @brief ì£¼ì†Œê²€ìƒ‰ì°½ - ì£¼ì†Œì§€ ì„ íƒ
+  function makeListJson(jsonStr) {
+    let htmlStr = "<thead><tr><th style='width:70px;'>ìš°í¸ë²ˆí˜¸</th><th>ì£¼ì†Œ</th></tr></thead><tbody>";
+    if(jsonStr.results.common.totalCount > 0) {
+      jQuery("#totoalOutcome").css("display", "block");
+      jQuery("#totalCnt").html(jsonStr.results.common.totalCount);
+
+      jQuery(jsonStr.results.juso).each(function() {
+        let zipNo = this.zipNo;                  // ìš°í¸ë²ˆí˜¸
+        let roadAddr = this.roadAddr;        // ë„ë¡œëª… ì£¼ì†Œ
+        let jibunAddr = this.jibunAddr;       // ì§€ë²ˆ ì£¼ì†Œ
+
+        htmlStr += "<tr style='border:1px;'>";
+        htmlStr += "<td>";
+        htmlStr += "<a href='javascript:;' onClick='inputTextAddress(\""+zipNo+"\", \""+roadAddr+"\");'>";
+        htmlStr += zipNo;
+        htmlStr += "</a>";
+        htmlStr += "</td>";
+        htmlStr += "<td>";
+       // htmlStr += "<a href='javascript:;' onClick='inputTextAddress(\""+zipNo+"\", \""+roadAddr+"\");'>";
+       // htmlStr += "ë„ë¡œëª… : " + roadAddr;
+       // htmlStr += "</a>";
+       // htmlStr += "<br/>";
+        htmlStr += "<a href='javascript:;' onClick='inputTextAddress(\""+zipNo+"\", \""+jibunAddr+"\");'>";
+        htmlStr += "ì§€ë²ˆ : " + jibunAddr;
+        htmlStr += "</a>";
+        htmlStr += "</td>";
+        htmlStr += "</tr>";
+      });
+      pageMake(jsonStr);
+    } else {
+      htmlStr += "<tr><td colspan='2'>ì¡°íšŒëœ ë°ì´í„°ê°€ ì•ŠìŠµë‹ˆë‹¤.<br/>ë‹¤ì‹œ ê²€ìƒ‰í•˜ì—¬ ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.</td></tr>";
+    }
+    htmlStr += "</tbody>";
+    jQuery("#list").html(htmlStr);
+  }
+  /// @brief ì£¼ì†Œê²€ìƒ‰ì°½ - ì£¼ì†Œì§€ ì‚½ì…
+  function inputTextAddress(zipcode, address) {
+    document.getElementById("zipCode").value = zipcode;
+    document.getElementById("address").value = address;
+  }
+  /// @brief ì£¼ì†Œê²€ìƒ‰ì°½ - ì—´ê¸°
+  function addressWindowOpen() {
+    jQuery("#wrap").slideDown();
+    jQuery("#searchAddr").focus();
+  }
+  /// @brief ì£¼ì†Œê²€ìƒ‰ì°½ - ë‹«ê¸°
+  function addressWindowClose() {
+    jQuery("#wrap").slideUp();
+    jQuery("#searchAddr").val("");
+    jQuery("#totoalOutcome").css("display", "none");
+    jQuery("#list").empty();
+    jQuery("#pagingList").empty();
+    jQuery("#currentPage").val("1");
+  }
+  //íŠ¹ìˆ˜ë¬¸ì, íŠ¹ì •ë¬¸ìì—´(sql ì˜ˆì•½ì–´ì˜ ì•ë’¤ ê³µë°± í¬í•¨) ì œê±°
+  function checkSearchedWord(obj){
+    console.log(obj);
+    if(obj.value.length > 0){
+      //íŠ¹ìˆ˜ë¬¸ì ì œê±°
+      var expText = /[%=><]/ ;
+      if(expText.test(obj.value) == true){
+        alert("íŠ¹ìˆ˜ë¬¸ìë¥¼ ì…ë ¥ í• ìˆ˜ ì—†ìŠµë‹ˆë‹¤.") ;
+        obj.value = obj.value.split(expText).join("");
+        return false;
+      }
+
+      //íŠ¹ì •ë¬¸ìì—´(sqlì˜ˆì•½ì–´ì˜ ì•ë’¤ê³µë°±í¬í•¨) ì œê±°
+      var sqlArray = new Array(
+              //sql ì˜ˆì•½ì–´
+              "OR", "SELECT", "INSERT", "DELETE", "UPDATE", "CREATE", "DROP", "EXEC", "UNION", "FETCH", "DECLARE", "TRUNCATE"
+      );
+
+      var regex;
+      for(var i=0; i<sqlArray.length; i++){
+        regex = new RegExp( sqlArray[i] ,"gi") ;
+
+        if (regex.test(obj.value) ) {
+          alert("\"" + sqlArray[i]+"\"ì™€(ê³¼) ê°™ì€ íŠ¹ì •ë¬¸ìë¡œ ê²€ìƒ‰í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
+          obj.value =obj.value.replace(regex, "");
+          return false;
+        }
+      }
+    }
+    return true ;
+  }
+  /// @brief ì£¼ì†Œê²€ìƒ‰ì°½ - í˜ì´ì§• ìƒì„±
+  function pageMake(jsonStr) {
+    var total = jsonStr.results.common.totalCount;				// ì´ê±´ìˆ˜
+    var pageNum = document.getElementById("currentPage").value;	// í˜„ì¬í˜ì´ì§€
+    var pageBlock = Number(document.getElementById("countPerPage").value);	// í˜ì´ì§€ë‹¹ ì¶œë ¥ ê°œìˆ˜
+    var paggingStr = "";
+
+    // ê²€ìƒ‰ ê°¯ìˆ˜ê°€ í˜ì´ì§€ë‹¹ ì¶œë ¥ê°¯ìˆ˜ë³´ë‹¤ ì‘ìœ¼ë©´ í˜ì´ì§•ì„ ë‚˜íƒ€ë‚´ì§€ ì•ŠëŠ”ë‹¤.
+    if(total > pageBlock) {
+      var totalPages = Math.floor((total - 1) / pageNum) + 1;
+      var firstPage = Math.floor((pageNum - 1) / pageBlock) * pageBlock + 1;
+
+      if(firstPage <= 0) { firstPage = 1; };
+
+      var lastPage = (firstPage - 1) + pageBlock;
+
+      if(lastPage > totalPages) { lastPage = totalPages; };
+
+      var nextPage = lastPage + 1;
+      var prePage = firstPage - pageBlock;
+
+      if(firstPage > pageBlock) {
+        paggingStr += "<a href='javascript:;' onClick='goPage(" + prePage + ");'>â—€</a>";
+        paggingStr += "&nbsp;";
+      }
+
+      for(let num = firstPage; lastPage >= num; num++) {
+        if(pageNum == num) {
+          paggingStr += "<a style='font-weight:bold;color:#0000FF;' href='javascript:;'>" + num + "</a>";
+          paggingStr += "&nbsp;";
+        } else {
+          paggingStr += "<a href='javascript:;' onClick='goPage(" + num + ");'>" + num + "</a>";
+          paggingStr += "&nbsp;";
+        }
+      }
+
+      if(lastPage < totalPages) {
+        paggingStr += "<a href='javascript:;' onClick='goPage(" + nextPage + ");'>â–¶</a>";
+      }
+    }
+    jQuery("#pagingList").html(paggingStr);
+  }
+  /// @brief í˜ì´ì§• ì´ë™
+  function goPage(pageNum) {
+    document.getElementById("currentPage").value = pageNum;
+    getAddr();
+  }
+
+
+
 </script>
  <body class="bg-light">
     
@@ -291,238 +428,303 @@
   <main>
     <div class="py-5 text-center">
       <img class="d-block mx-auto mb-4"  alt="" width="72" height="57">
-      <h2>È¸¿ø°¡ÀÔ</h2>
-      <p class="lead">Á¤º¸¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä</p>
+      <h2>íšŒì›ê°€ì…</h2>
+      <p class="lead">ì •ë³´ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”</p>
     </div>
 
       <hr>
 
-      <div class="col-md-7 col-lg-8">
 
-        <form class="needs-validation" novalidate>
-          <div class="row g-3">
-            <div class="col-sm">
-              <label for="id" class="form-label">¾ÆÀÌµğ</label>
-              <input type="text" class="form-control userId" id="Id" name="userId" maxLength="20" required>
-              <div class="invalid-feedback">
-                Valid first name is required.
-              </div>
-            </div>
+    <form class="needs-validation" novalidate>
+      <div class="row g-3">
+        <div class="col-sm">
+          <label for="id" class="form-label">ì•„ì´ë””</label>
+          <input type="text" class="form-control userId" id="Id" name="userId" maxLength="20" required>
+        </div>
 
-            <div class="col-12">
-              <label for="password" class="form-label">ºñ¹Ğ¹øÈ£</label>
-              <div class="input-group has-validation">
-                <input type="password" class="form-control" id="password" name="password" minLength="8" maxLength="20" required>
-                <div class="invalid-feedback"></div>
-              </div>
-            </div>
-            <div class="col-12">
-              <label for="password2" class="form-label">ºñ¹Ğ¹øÈ£ È®ÀÎ</label>
-              <div class="input-group has-validation">
-                <input type="password" class="form-control" id="password2" name="password2" minLength="8" maxLength="20" required>
-                <div class="invalid-feedback"></div>
-              </div>
-            </div>
-
-
-            <div class="col-12">
-              <label for="username" class="form-label">ÀÌ¸§</label>
-              <div class="input-group has-validation">
-                <input type="text" class="form-control" id="username" name="userName"  required>
-              <div class="invalid-feedback">
-                  Your username is required.
-                </div>
-              </div>
-            </div>
-
-            <div class="col-12 ">
-              <label for="rrd" class="form-label">ÁÖ¹Îµî·Ï¹øÈ£</label>
-              <div input="hidden" class="rrdtext" ></div>
-              <div class="input-group has-validation">
-                <input type="text" class="form-control" id="rrd" name="rrd"  required>
-                <div class="invalid-feedback"></div>
-              </div>
-              <button type="button" class="btn btn-primary btn-sm CheckRrd">Áßº¹ È®ÀÎ</button>
-            </div>
-
-
-            <div class="col-12">
-              ¼ºº°
-                <input type="radio" class="form-check-input" id="male" name="gender" value="male" checked required>³²ÀÚ
-                <input type="radio" class="form-check-input" id="female" name="gender" value="female" required>¿©ÀÚ
-                <div class="invalid-feedback"></div>
-
-            </div>
-            <h6>ÀÌ¸ŞÀÏ ¶Ç´Â ÈŞ´ëÆù¹øÈ£ ÀÎÁõÇÏ±â(ÅÃ1)</h6>
-            <div class="col-12">
-              <label for="CheckEamil" class="form-label"><input type="radio" class="form-check-input" id="CheckEamil" required>
-              ÀÌ¸ŞÀÏ</label>
-              <input type="email" class="form-control userEmail" id="email" name="email" >
-              <input type="text" class="form-control CheckEmailKey" value="ÀÎÁõ¹øÈ£ ÀÔ·Â" >
-              <button type="button" class="btn btn-primary btn-sm emailKey">ÀÎÁõ¹øÈ£ ¿äÃ»</button>
-              <button type="button" class="btn btn-secondary btn-sm CheckEmailKey2">ÀÎÁõ È®ÀÎ</button>
-              <span class="emailInfor" style="display: none;">
-                <strong class="text-danger" >ÀÎÁõ¹øÈ£°¡ Æ²·È½À´Ï´Ù</strong>
-              </span>
-              <span class="emailYC" style="display: none">ÀÎÁõ¹øÈ£°¡ ¹ß¼ÛµÇ¾ú½À´Ï´Ù</span>
-              <span class="emailInforYes" style="display: none;">
-                ÀÎÁõµÇ¾ú½À´Ï´Ù
-              </span>
-            </div>
-
-            <div class="col-12">
-              <label for="CheckPhone" class="form-label"><input type="radio" class="form-check-input" id="CheckPhone" required>
-              ÈŞ´ëÆù¹øÈ£</label>
-            <input type="tel" class="form-control userPhone" name="phone" >
-            <input type="text" class="form-control" id="CheckSms" value="ÀÎÁõ¹øÈ£ ÀÔ·Â" >
-            <button type="button" class="btn btn-primary btn-sm smsKey">ÀÎÁõ¹øÈ£ ¿äÃ»</button>
-              <button type="button" class="btn btn-secondary btn-sm CheckSmsKey">ÀÎÁõ È®ÀÎ</button>
-              <span class="smsNo" style="display: none;">
-              <strong class="text-danger" >ÀÎÁõ¹øÈ£°¡ Æ²·È½À´Ï´Ù</strong>
-              </span>
-              <span class="smsYC" style="display: none">ÀÎÁõ¹øÈ£°¡ ¹ß¼ÛµÇ¾ú½À´Ï´Ù</span>
-              <span class="smsYes" style="display: none;">
-                ÀÎÁõµÇ¾ú½À´Ï´Ù
-              </span>
-            </div>
+        <div class="col-12">
+          <label for="password" class="form-label">ë¹„ë°€ë²ˆí˜¸</label>
+          <div class="input-group has-validation">
+            <input type="password" class="form-control" id="password" name="password"  required>
           </div>
+        </div>
 
-            <div class="col-12">
-              <label for="address" class="form-label">µ¿³×ÀÎÁõ</label>
-              <br>¼­¿ïÆ¯º°½Ã</br>
-              <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  ¹«½¼±¸
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" >¼ºµ¿±¸</a></li>
-                  <li><a class="dropdown-item" >Áß±¸</a></li>
-                  <li><a class="dropdown-item" >±¤Áø±¸</a></li>
-                </ul>
-                <input type="text" id="ssv3-location-label" name="villCode" required>
-                <button type="button" class="btn btn-primary btn-sm">µ¿³×ÀÎÁõ ¿äÃ»</button>
+        <div class="col-12">
+          <label for="password2" class="form-label">ë¹„ë°€ë²ˆí˜¸ í™•ì¸</label>
+          <div class="input-group has-validation">
+            <input type="password" class="form-control" id="password2" name="password2"  required>
+          </div>
+        </div>
 
-              <div class="invalid-feedback">
-                Please enter your shipping address.
-              </div>
-            </div>
+        <div class="col-12">
+          <label for="userName" class="form-label">ì´ë¦„</label>
+          <div class="input-group has-validation">
+            <input type="text" class="form-control" id="userName" name="userName"  required>
+          </div>
+        </div>
 
-              <div  id="map" style="width:500px;height:400px;"></div>
-
-              µ¿³×ÀÎÁõ °á°ú
-              <input type="text" class="form-control" id="address"  required>
-
-              <div class="col-12">
-                °ü½É¸ñ·Ï ¼±ÅÃ(ÃÖ´ë 13°³)
-              </div>
+        <div class="col-12 ">
+          <label for="rrd" class="form-label">ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸</label>
+          <div input="hidden" class="rrdtext" ></div>
+          <div class="input-group has-validation">
+            <input type="text" class="form-control" id="rrd" name="rrd"  required>
+          </div>
+          <button type="button" class="btn btn-primary btn-sm CheckRrd">ì¤‘ë³µ í™•ì¸</button>
+        </div>
 
 
-              <div style="float:left; padding:5px; border:1px solid #000; width:140px; height:400px;">
-                <table id="oridata" class="interList" cellspacing="0" cellpadding="0" width="100%">
-                  <tr>
-                    <td><input type="checkbox"  class="list1"/></td>
-                    <td>½ºÆ÷Ã÷</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox" class="list2"/></td>
-                    <td>¹İ·Áµ¿¹°</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox" class="list3"/></td>
-                    <td>À½¾Ç</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox" class="list4"/></td>
-                    <td>µ¶¼­</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox" class="list5"/></td>
-                    <td>°ÔÀÓ</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox" class="list6"/></td>
-                    <td>À°¾Æ</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox" class="list7"/></td>
-                    <td>°ø¿¬</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox" class="list8"/></td>
-                    <td>°ø¿¹</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox" class="list9"/></td>
-                    <td>´í½º</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox" class="list10"/></td>
-                    <td>ÀÚµ¿Â÷</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox" class="list11"/></td>
-                    <td>»çÁø</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox" class="list12"/></td>
-                    <td>¿©Çà</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox" class="list13"/></td>
-                    <td>±âÅ¸</td>
-                  </tr>
-                </table>
-              </div>
+        <div class="col-12">
+          ì„±ë³„<label for="male" class="form-label">
+          <input type="radio" class="form-check-input" id="male" name="gender" value="ë‚¨ì" required>ë‚¨ì</label>
+          <label for="female" class="form-label">
+            <input type="radio" class="form-check-input" id="female" name="gender" value="ì—¬ì" required>ì—¬ì</label>
+        </div>
 
-              <div style="float:left; padding:5px; padding-top:130px;">
-                <span input="button" class="addInter">¢º</span>
-                <br />
-                <span input="button" class="removeInter">¢¸</span>
-              </div>
+        <h6>ì´ë©”ì¼ ë˜ëŠ” íœ´ëŒ€í°ë²ˆí˜¸ ì¸ì¦í•˜ê¸°(íƒ1)</h6>
 
-              <div style="float:left; padding:5px; border:1px solid #000; width:140px; height:400px;">
-                <table id="movedata" cellspacing="0" cellpadding="0" width="100%">
-                </table>
-              </div>
+        <div class="col-12">
+          <label for="CheckEamil" class="form-label"><input type="radio" class="form-check-input" id="CheckEamil" name="email&phone" required>
+            ì´ë©”ì¼</label>
+          <input type="email" class="form-control userEmail" id="email" name="email" >
+          <input type="text" class="form-control CheckEmailKey" placeholder="ì¸ì¦ë²ˆí˜¸ ì…ë ¥"  >
+          <button type="button" class="btn btn-primary btn-sm emailKey">ì¸ì¦ë²ˆí˜¸ ìš”ì²­</button>
+          <button type="button" class="btn btn-secondary btn-sm CheckEmailKey2">ì¸ì¦ í™•ì¸</button>
+          <span class="emailInfor" style="display: none;">
+                <strong class="text-danger" >ì¸ì¦ë²ˆí˜¸ê°€ í‹€ë ¸ìŠµë‹ˆë‹¤</strong>
+              </span>
+          <span class="emailYC" style="display: none">ì¸ì¦ë²ˆí˜¸ê°€ ë°œì†¡ë˜ì—ˆìŠµë‹ˆë‹¤</span>
+          <span class="emailInforYes" style="display: none;">
+                ì¸ì¦ë˜ì—ˆìŠµë‹ˆë‹¤
+              </span>
+          <div>
+          <label for="CheckPhone" class="form-label"><input type="radio" class="form-check-input" id="CheckPhone" name="email&phone" required>
+            íœ´ëŒ€í°ë²ˆí˜¸</label>
+          </div>
+          <input type="tel" class="form-control userPhone" name="phone" >
+          <input type="text" class="form-control" id="CheckSms" placeholder="ì¸ì¦ë²ˆí˜¸ ì…ë ¥" >
+          <button type="button" class="btn btn-primary btn-sm smsKey">ì¸ì¦ë²ˆí˜¸ ìš”ì²­</button>
+          <button type="button" class="btn btn-secondary btn-sm CheckSmsKey">ì¸ì¦ í™•ì¸</button>
+          <span class="smsNo" style="display: none;">
+              <strong class="text-danger" >ì¸ì¦ë²ˆí˜¸ê°€ í‹€ë ¸ìŠµë‹ˆë‹¤</strong>
+              </span>
+          <span class="smsYC" style="display: none">ì¸ì¦ë²ˆí˜¸ê°€ ë°œì†¡ë˜ì—ˆìŠµë‹ˆë‹¤</span>
+          <span class="smsYes" style="display: none;">
+                ì¸ì¦ë˜ì—ˆìŠµë‹ˆë‹¤
+              </span>
+      </div>
+
+      <div class="col-12">
+        <label for="address" class="form-label">ë™ë„¤ì¸ì¦</label>
+      </div>
+
+      <div class="col-12">
+        <input type="hidden" id="currentPage" value="1" style="text-align:center;"/>
+        <input type="hidden" id="countPerPage" value="5" style="text-align:center;"/>
+        <input type=text id="zipCode" value="" onClick="addressWindowOpen();" placeholder="00000" readOnly />
+        <a class="btn btn-info btn-sm" href='javascript:void(0);' onclick="addressWindowOpen();">ìš°í¸ë²ˆí˜¸ ì°¾ê¸°</a>
+        <div id="wrap" style="display: none;">
+          <a class="btn btn-danger" id="closeBtn" href='javascript:void(0);' onclick="addressWindowClose();"><i class="fa fa-remove"></i></a>
+          <div>
+            <input type="text" id="searchAddr" value="" onkeydown="enterSearch();" placeholder="ë„ë¡œëª…ì£¼ì†Œ, ê±´ë¬¼ëª… ë˜ëŠ” ì§€ë²ˆ ì…ë ¥"/>
+            <a class="btn btn-info btn-sm" href='javascript:void(0);' onclick="getAddr();">ì£¼ì†Œê²€ìƒ‰</a>
+          </div>
+          <div>
+            <div id="totoalOutcome">ê²€ìƒ‰ê²°ê³¼ : <span id="totalCnt">0</span></div>
+            <table id="list" style="width: 100%; border: 1px;"></table>
+          </div>
+          <div id="pagingList" style='text-align:center;'></div>
+        </div>
+        <div style="height:5px;"></div>
+        <input type="text" id="address" value="" placeholder="ë„ë¡œëª… ì£¼ì†Œ, ì§€ë²ˆ ì£¼ì†Œ" name="villCode" readonly/>
+        <input type="text" id="addressDetail" value=""  name="villCode" placeholder="ìƒì„¸ì£¼ì†Œ"/>
+        <div style="height:5px;"></div>
 
 
+        <button type="button" class="btn btn-primary btn-sm">ë™ë„¤ì¸ì¦ ìš”ì²­</button>
+
+      </div>
+
+      <div  id="map" style="width:500px;height:400px;"></div>
+
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=064b845197ba0a5631091cfb59197ad2&libraries=services"></script>
+        <script>
+          var mapContainer = document.getElementById('map'), // ì§€ë„ë¥¼ í‘œì‹œí•  div
+                  mapOption = {
+                    center: new kakao.maps.LatLng(33.450701, 126.570667), // ì§€ë„ì˜ ì¤‘ì‹¬ì¢Œí‘œ
+                    level: 3 // ì§€ë„ì˜ í™•ëŒ€ ë ˆë²¨
+                  };
+
+          var map = new kakao.maps.Map(mapContainer, mapOption); // ì§€ë„ë¥¼ ìƒì„±í•©ë‹ˆë‹¤
+
+          // ë§ˆì»¤ê°€ í‘œì‹œë  ìœ„ì¹˜ì…ë‹ˆë‹¤
+          var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667);
+
+          // ë§ˆì»¤ë¥¼ ìƒì„±í•©ë‹ˆë‹¤
+          var marker = new kakao.maps.Marker({
+            position: markerPosition
+          });
+
+          // ë§ˆì»¤ê°€ ì§€ë„ ìœ„ì— í‘œì‹œë˜ë„ë¡ ì„¤ì •í•©ë‹ˆë‹¤
+          marker.setMap(map);
+
+
+          if (navigator.geolocation) {
+
+            // GeoLocationì„ ì´ìš©í•´ì„œ ì ‘ì† ìœ„ì¹˜ë¥¼ ì–»ì–´ì˜µë‹ˆë‹¤
+            navigator.geolocation.getCurrentPosition(function(position) {
+
+              var lat = position.coords.latitude, // ìœ„ë„
+                      lon = position.coords.longitude; // ê²½ë„
+
+              var locPosition = new kakao.maps.LatLng(lat, lon), // ë§ˆì»¤ê°€ í‘œì‹œë  ìœ„ì¹˜ë¥¼ geolocationìœ¼ë¡œ ì–»ì–´ì˜¨ ì¢Œí‘œë¡œ ìƒì„±í•©ë‹ˆë‹¤
+                      message = '<div style="padding:5px;">ì—¬ê¸°ì— ê³„ì‹ ê°€ìš”?!</div>'; // ì¸í¬ìœˆë„ìš°ì— í‘œì‹œë  ë‚´ìš©ì…ë‹ˆë‹¤
+
+              // ë§ˆì»¤ì™€ ì¸í¬ìœˆë„ìš°ë¥¼ í‘œì‹œí•©ë‹ˆë‹¤
+              displayMarker(locPosition, message);
+
+              // self.location = "/map/json/myLocation?longitude=" + lon + "&latitude=" + lat;
+
+            });
+
+          } else { // HTML5ì˜ GeoLocationì„ ì‚¬ìš©í•  ìˆ˜ ì—†ì„ë•Œ ë§ˆì»¤ í‘œì‹œ ìœ„ì¹˜ì™€ ì¸í¬ìœˆë„ìš° ë‚´ìš©ì„ ì„¤ì •í•©ë‹ˆë‹¤
+
+            var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
+                    message = 'geolocationì„ ì‚¬ìš©í• ìˆ˜ ì—†ì–´ìš”..'
+
+            displayMarker(locPosition, message);
+          }
+
+          function displayMarker(locPosition, message) {
+
+            // ë§ˆì»¤ë¥¼ ìƒì„±í•©ë‹ˆë‹¤
+            var marker = new kakao.maps.Marker({
+              map: map,
+              position: locPosition
+            });
+
+            var iwContent = message, // ì¸í¬ìœˆë„ìš°ì— í‘œì‹œí•  ë‚´ìš©
+                    iwRemoveable = true;
+
+            // ì¸í¬ìœˆë„ìš°ë¥¼ ìƒì„±í•©ë‹ˆë‹¤
+            var infowindow = new kakao.maps.InfoWindow({
+              content : iwContent,
+              removable : iwRemoveable
+            });
+
+            // ì¸í¬ìœˆë„ìš°ë¥¼ ë§ˆì»¤ìœ„ì— í‘œì‹œí•©ë‹ˆë‹¤
+            infowindow.open(map, marker);
+
+            // ì§€ë„ ì¤‘ì‹¬ì¢Œí‘œë¥¼ ì ‘ì†ìœ„ì¹˜ë¡œ ë³€ê²½í•©ë‹ˆë‹¤
+            map.setCenter(locPosition);
+          }
+        </script>
 
 
 
+      <div class="col-12">ë™ë„¤ì¸ì¦ ê²°ê³¼
+      <input type="text" class="form-control" id="addressView"  required>
+      </div>
 
-              <div class="col-md-4">
-              <label for="userImage" class="form-label">È¸¿ø »çÁø µî·Ï</label>
-              <input type="file" id="userImage" name="userImage">
-            </div>
+      <div class="col-12">
+        ê´€ì‹¬ëª©ë¡ ì„ íƒ(ìµœëŒ€ 13ê°œ)
+      </div>
 
-              <div class="hiddem">
-            <input type="hidden" class="masterCheck" name="masterCheck" value="0">
-            <input type="hidden" class="userStatus" name="userStatus" value="0">
-            <input type="hidden" class="lcd" name="lcd" value="2022-10-10">
-              <input type="hidden" class="loginCheck" name="loginCheck" value="0">
-              <input type="hidden" class="psd" name="psd" value="">
-              <input type="hidden" class="ped" name="ped" value="">
-              <input type="hidden" class="ppt" name="ppt" value="0">
-              <input type="hidden" class="reviewPt" name="reviewPt" value="0">
+      <div >
+      <div style="float:left; padding:5px; border:1px solid #000; width:140px; height:400px;">
+        <table id="oridata" class="interList" cellspacing="0" cellpadding="0" width="100%">
+          <tr>
+            <td><input type="checkbox"  id="list1" name="interList" value="01"/></td>
+            <td>ìŠ¤í¬ì¸ </td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="list2" name="interList" value="02"/></td>
+            <td>ë°˜ë ¤ë™ë¬¼</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="list3" name="interList" value="03"/></td>
+            <td>ìŒì•…</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="list4" name="interList" value="04"/></td>
+            <td>ë…ì„œ</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="list5" name="interList" value="05"/></td>
+            <td>ê²Œì„</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="list6" name="interList" value="06"/></td>
+            <td>ìœ¡ì•„</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="list7" name="interList" value="07"/></td>
+            <td>ê³µì—°</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="list8" name="interList" value="08"/></td>
+            <td>ê³µì˜ˆ</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="list9" name="interList" value="09"/></td>
+            <td>ëŒ„ìŠ¤</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="list10" name="interList" value="10"/></td>
+            <td>ìë™ì°¨</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="list11" name="interList" value="11"/></td>
+            <td>ì‚¬ì§„</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="list12" name="interList" value="12"/></td>
+            <td>ì—¬í–‰</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="list13" name="interList" value="13"/></td>
+            <td>ê¸°íƒ€</td>
+          </tr>
+        </table>
+      </div>
+
+      <div style="float:left; padding:5px; padding-top:130px;">
+        <span input="button" class="addInter">â–¶</span>
+        <br />
+        <span input="button" class="removeInter">â—€</span>
+      </div>
+
+      <div style="float:left; padding:5px; border:1px solid #000; width:140px; height:400px;">
+        <table id="movedata" cellspacing="0" cellpadding="0" width="100%">
+        </table>
+      </div>
+      </div>
+
+      <div class="col-12">
+        <label for="userImage" class="form-label">íšŒì› ì‚¬ì§„ ë“±ë¡ *ì„ íƒì‚¬í•­*</label>
+        <input type="file" id="userImage" name="userImage">
+      </div>
+
+      <div class="hiddem">
+        <input type="hidden" class="masterCheck" name="masterCheck" value="1">
+        <input type="hidden" class="userStatus" name="userStatus" value="1">
+        <input type="hidden" class="lcd" name="lcd" value="2022-10-10">
+        <input type="hidden" class="loginCheck" name="loginCheck" value="1">
+        <input type="hidden" class="psd" name="psd" value="">
+        <input type="hidden" class="ped" name="ped" value="">
+        <input type="hidden" class="ppt" name="ppt" value="0">
+        <input type="hidden" class="reviewPt" name="reviewPt" value="0">
       </div>
 
 
-          </div>
-            <hr>
+      <hr>
             <div class="col-12">
-            <button class="w-100 btn btn-primary btn-lg cancle" type="button"> Ãë¼Ò</button>
-            <button class="w-100 btn btn-primary btn-lg addUser" type="submit"> È¸¿ø°¡ÀÔ</button>
-              <div class="invalid-feedback">
-            </div>
+            <button class="w-100 btn btn-primary btn-lg cancle" type="button"> ì·¨ì†Œ</button>
+            <button class="w-100 btn btn-primary btn-lg addUser" type="submit"> íšŒì›ê°€ì…</button>
           </div>
-
-        </form>
       </div>
+    </form>
+
   </main>
-    </div>
-
-</div>
-
 
   <footer class="my-5 pt-5 text-muted text-center text-small">
     <p class="mb-1">&copy; 2017-2022 Company Name</p>
@@ -532,6 +734,7 @@
       <li class="list-inline-item"><a href="#">Support</a></li>
     </ul>
   </footer>
+</div>
 </div>
 </body>
 </html>

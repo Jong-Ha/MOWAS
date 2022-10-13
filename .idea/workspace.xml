@@ -10,29 +10,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="BJW 2022.10.10&#10;&#10;CommunityMapper.xml 업로드">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubCalendarRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubCalendarRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/community/controller/CommunityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/community/controller/CommunityController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/chat.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/src/chat.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/chat.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/chat.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/chatIcon.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/calender.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/calender.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/get/getClubCalenderReview.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/get/getClubCalenderReview.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/get/getVillBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/get/getVillBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/list/Community.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/list/Community.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/list/clubCalenderReviewShortList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/list/clubCalenderReviewShortList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/update/updateVillBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/update/updateVillBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/service/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/jdbc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/DealMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/DealMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/main.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +116,7 @@
     "WebServerToolWindowFactoryState": "false",
     "javascript.nodejs.core.library.configured.version": "16.17.1",
     "javascript.nodejs.core.library.typings.version": "16.11.64",
-    "last_opened_file_path": "C:/Project/MOWAS/src/main/webapp/chat",
+    "last_opened_file_path": "C:/Project/MOWAS/src/main/webapp/view/user",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -140,18 +136,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Project\MOWAS\src\main\webapp\view\user" />
       <recent name="C:\Project\MOWAS\src\main\webapp\chat" />
       <recent name="C:\Project\MOWAS\src\main\webapp\layout" />
       <recent name="C:\Devspace\MOWAS\src\main\webapp\chat" />
       <recent name="C:\MainProject\MOWAS\src\main\webapp\view\club" />
-      <recent name="C:\Devspace\MOWAS\src\main\resources\sql" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Project\MOWAS\src\main\webapp\resources\images" />
       <recent name="C:\Project\MOWAS\src\main\webapp\resources\css" />
       <recent name="C:\Project\MOWAS\src\main\webapp\chat" />
       <recent name="C:\Project\MOWAS\src\main\webapp\view\community" />
       <recent name="C:\Devspace\MOWAS\src\main\webapp\chat\src" />
-      <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community\get" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.project.user.service" />
@@ -161,7 +157,7 @@
       <recent name="com.project.notice.service" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.58">
+  <component name="RunManager" selected="Tomcat 서버.Tomcat 9.0.58">
     <configuration name="ClubServiceTest.getCluber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MOWAS" />
       <extension name="coverage">
@@ -337,7 +333,7 @@
       <item itemvalue="JUnit.ClubServiceTest.listCluberApply" />
       <item itemvalue="JUnit.ClubServiceTest.updateClubCalendarApply" />
       <item itemvalue="JUnit.ClubServiceTest.updateCluber" />
-      <item itemvalue="Tomcat Server.Tomcat 9.0.58" />
+      <item itemvalue="Tomcat 서버.Tomcat 9.0.58" />
     </list>
     <recent_temporary>
       <list>
@@ -384,6 +380,7 @@
       <workItem from="1665406219687" duration="3645000" />
       <workItem from="1665449757216" duration="2068000" />
       <workItem from="1665452254749" duration="29397000" />
+      <workItem from="1665530452563" duration="66244000" />
     </task>
     <task id="LOCAL-00001" summary="설정">
       <created>1664436990723</created>
@@ -452,7 +449,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="BJW" />
+                        <option value="JHK" />
                       </list>
                     </value>
                   </entry>
