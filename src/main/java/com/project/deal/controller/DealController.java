@@ -2,19 +2,24 @@ package com.project.deal.controller;
 
 import com.project.common.Page;
 import com.project.common.Search;
+import com.project.community.service.CommunityService;
 import com.project.deal.service.DealService;
 import com.project.domain.*;
+import com.project.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.io.File;
 import javax.servlet.http.HttpSession;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/deal/*")
@@ -22,6 +27,13 @@ public class DealController {
 @Autowired
     @Qualifier("dealServiceImpl")
     private DealService dealService;
+    @Autowired
+    @Qualifier("userServiceImpl")
+    private UserService userService;
+    @Autowired
+    @Qualifier("communityServiceImpl")
+    private CommunityService commuService;
+
 public DealController(){
     System.out.println(this.getClass());
 }
@@ -30,69 +42,414 @@ public DealController(){
 
     @Value("#{commonProperties['pageSize']}")
     int pageSize;
+    @Value("#{commonProperties['resourcesPath']}")
+    String resourcesPath;
+
+    @Value("#{commonProperties['dealImagePath']}")
+    String clubImagePath;
+
+    @Value("#{commonProperties['dealBoardPath']}")
+    String dealBoardPath;
+
+    @RequestMapping(value = "login")
+    public String login(HttpSession session, @RequestParam("userId") String userId,@RequestParam(value = "dealBoardNum", required = false) int dealBoardNum) throws Exception{
+        User user = userService.getUser(userId);
+        session.setAttribute("user",user);
+        return "/deal/getDeal/"+dealBoardNum;
+    }
+
     @RequestMapping(value = "/addDeal", method = RequestMethod.GET)
     public String addDeal() throws Exception{
         System.out.println("");
         System.out.println("daifjd;alsflk'dsd");
         return "forward:/view/deal/addDeal.jsp";
     }
-   @RequestMapping(value = "/addDeal", method =RequestMethod.POST)
-    public String addDeal(@ModelAttribute("deal")Deal deal, Model model, HttpSession session)throws Exception{
-    System.out.println("/deal/addDeal : post");
+    @RequestMapping(value = "/addDeal", method =RequestMethod.POST)
+    public String addDeal(@ModelAttribute("deal")Deal deal, MultipartHttpServletRequest multi,HttpSession session)throws Exception{
+        System.out.println("/deal/addDeal : post");
+        deal.setUser((User) session.getAttribute("user"));
+        ////파일 업로드
+        //파일 추출
+        List<MultipartFile> mfs = multi.getFiles("file");
+        System.out.println(mfs);
+        //저장할 파일이 있는지 validation check
+        if(mfs.size()>0 && !mfs.get(0).getOriginalFilename().equals("")){
+            //저장할 리스트 생성
+            List<com.project.domain.File> files = new ArrayList<>();
+            //추출된 파일 업로드
+            for (MultipartFile mf : mfs) {
+                //파일이 이미지인지 validation check
+                if (Objects.requireNonNull(mf.getContentType()).substring(0, mf.getContentType().indexOf("/")).equals("image")) {
+                    //파일 경로 및 이름 유니크하게 생성
+                    String fileName = dealBoardPath + UUID.randomUUID() + mf.getOriginalFilename();
+                    java.io.File uploadFile = new java.io.File(fileName);
+                    //파일 업로드
+                    mf.transferTo(uploadFile);
+                    //리스트에 파일 저장
+                    com.project.domain.File file = new com.project.domain.File();
+                    file.setFileName(fileName);
+                    files.add(file);
+                }
+            }
+            //domain 객체에 리스트 저장
+            deal.setFiles(files);
+        }
 
-        User user =new User();
-      session.getAttribute("user");
-      deal.setUser((User)session.getAttribute("user"));
-      // deal.setUserId(((User)session.getAttribute("user")).getUserId());
-    dealService.addDeal(deal);
-    System.out.println(deal);
-    model.addAttribute("deal",deal);
-    return "forward:/view/deal/getListDeal.jsp";
-   }
+        //모임 공지사항 등록
+       dealService.addDeal(deal);
+
+
+
+
+//
+//        System.out.println("판매 구매 입니다" + deal);
+//        List<MultipartFile> mfs = multi.getFiles("file");
+//        System.out.println(mfs);
+//        //저장할 파일이 있는지 validation check
+//        if(mfs.size()>0 && !mfs.get(0).getOriginalFilename().equals("")) {
+//            //저장할 리스트 생성
+//            List<com.project.domain.File> files = new ArrayList<>();
+//            //추출된 파일 업로드
+//            for (MultipartFile mf : mfs) {
+//                //파일이 이미지인지 validation check
+//                if (Objects.requireNonNull(mf.getContentType()).substring(0, mf.getContentType().indexOf("/")).equals("image")) {
+//                    //파일 경로 및 이름 유니크하게 생성
+//                    String fileName = dealBoardPath + UUID.randomUUID() + mf.getOriginalFilename();
+//                    java.io.File uploadFile = new java.io.File(fileName);
+//                    //파일 업로드
+//                    mf.transferTo(uploadFile);
+//                    //리스트에 파일 저장
+//                    //리스트에 파일 저장
+//                    com.project.domain.File file = new com.project.domain.File();
+//                    file.setFileName(fileName);
+//                    files.add(file);
+//                }
+//            }
+//            //domain 객체에 리스트 저장
+//            deal.setFiles(files);
+//        }
+//            User user =new User();
+//            session.getAttribute("user");
+//            deal.setUser((User)session.getAttribute("user"));
+//            //  deal.setUserId(((User)session.getAttribute("user")).getUserId());
+//            dealService.addDeal(deal);
+//            System.out.println(deal);
+//            model.addAttribute("deal",deal);
+//
+
+
+
+
+
+
+//       System.out.println("파일 업로드 진입 : " + file);
+//
+//       List<Map<String, String>> fileList = new ArrayList<>();
+//       for (int i = 0; i < file.size(); i++) {
+//           String fileName = file.get(i).getOriginalFilename();
+//           System.out.println("파일 이름 : " + fileName);
+//           Map<String, String> map = new HashMap<>();
+//           map.put("fileName", fileName);
+//           fileList.add(map);
+//
+//           try {
+//               file.get(i).transferTo(new File("/uploadFiles/" + fileList.get(i).get("fileName")));
+//               System.out.println("업로드 성공");
+//           } catch (Exception e) {
+//               e.printStackTrace();
+//           }
+//       }
+            return "forward:/deal/getListDeal";
+        }
     @RequestMapping(value = "getDeal/{dealBoardNum}")
-    public String getDeal(Model model, @PathVariable int dealBoardNum) throws Exception {
+    public String getDeal(Model model, @PathVariable int dealBoardNum,HttpSession session) throws Exception {
         Deal deal = dealService.getDeal(dealBoardNum);
+//Object User=session.getAttribute("userId");
+        //String boardCategory = String.valueOf(deal.getBoardCategory());
+        System.out.println(deal.getBoardCategory());
+//String likeCheck =commuService.getLikeCheck((String)session.getAttribute("userId"),dealBoardNum, (Integer.parseInt(deal.getBoardCategory())));
+       String likeCheck =commuService.getLikeCheck("user01",dealBoardNum, (Integer.parseInt(deal.getBoardCategory())));
+
+        System.out.println("likecheck"+likeCheck);
         model.addAttribute("deal", deal);
+        model.addAttribute("likeCheck",likeCheck);
         return "/view/deal/getDeal.jsp";
     }
 
+
+
+
+
     @RequestMapping(value = "getListDeal")
-    public String getListDeal(@ModelAttribute("search") Search search, Model model,HttpServletRequest request) throws Exception {
+    public String getListDeal(@ModelAttribute("search") Search search, Model model,HttpServletRequest request
+                            ,@RequestParam(value = "boardCategory", defaultValue = "0") String boardCategory) throws Exception {
         System.out.println("getListDeal : GET POST");
+
+        System.out.println(boardCategory);
+
         if(search.getCurrentPage()==0) {
             search.setCurrentPage(1);
         }
-        Map<String , Object> map=dealService.getListDeal(search);
+        System.out.println(search);
 
-        Page resultPage=new Page(search.getCurrentPage(),((Integer)map.get("totalCount")).intValue(),pageUnit,pageSize);
-        System.out.println(resultPage);
+        if(boardCategory == "08"){
 
-    model.addAttribute("list", (List<Deal>)map.get("list"));
-        System.out.println(map.get("list"));
-       model.addAttribute("resultPage", resultPage);
-        model.addAttribute("search", search);
-        System.out.println("여기까지 ? ? !!1111");
-        System.out.println(map);
+            Map<String , Object> map=dealService.getListDeal(search, boardCategory);
+
+
+            Page resultPage=new Page(search.getCurrentPage(),((Integer)map.get("totalCount")).intValue(),pageUnit,pageSize);
+            System.out.println(resultPage);
+
+
+            System.out.println(map.get("list"));
+            model.addAttribute("list", (List<Deal>)map.get("list"));
+            model.addAttribute("resultPage", resultPage);
+            model.addAttribute("search", search);
+
+        } else if (boardCategory == "09") {
+
+            Map<String , Object> map=dealService.getListDeal(search, boardCategory);
+            Page resultPage=new Page(search.getCurrentPage(),((Integer)map.get("totalCount")).intValue(),pageUnit,pageSize);
+            System.out.println(resultPage);
+            model.addAttribute("list", (List<Deal>)map.get("list"));
+            model.addAttribute("resultPage", resultPage);
+            model.addAttribute("search", search);
+        }else {
+
+            Map<String, Object> map = dealService.getListDeal(search, boardCategory);
+            Deal deal = new Deal();
+
+            Page resultPage = new Page(search.getCurrentPage(), ((Integer) map.get("totalCount")).intValue(), pageUnit, pageSize);
+            System.out.println(resultPage);
+
+
+            System.out.println(map.get("list"));
+            model.addAttribute("list", (List<Deal>)map.get("list"));
+            model.addAttribute("resultPage", resultPage);
+            model.addAttribute("search", search);
+            System.out.println("여기까지 ? ? !!1111");
+            System.out.println(map);
+        }
         return "forward:/view/deal/getListDeal.jsp";
     }
+//    @RequestMapping(value = "getListDeal")
+//    public String getListDeal(@ModelAttribute("search") Search search, Model model,HttpServletRequest request,
+//                              @RequestParam("boardCategory") int boardCategory, @ModelAttribute("deal") Deal deal) throws Exception {
+//        System.out.println("getListDeal : GET POST");
+//        if(search.getCurrentPage()==0) {
+//            search.setCurrentPage(1);
+//        }
+//
+//
+//        System.out.println(search);
+//        Map<String , Object> map=dealService.getListDeal(search);
+//
+//        Page resultPage=new Page(search.getCurrentPage(),((Integer)map.get("totalCount")).intValue(),pageUnit,pageSize);
+//        System.out.println(resultPage);
+//
+//        model.addAttribute("list", (List<Deal>)map.get("list"));
+//        System.out.println(map.get("list"));
+//        model.addAttribute("resultPage", resultPage);
+//        model.addAttribute("search", search);
+//        System.out.println("여기까지 ? ? !!1111");
+//        System.out.println(map);
+////if(deal.getBoardCategory()==8) {
+////    return "/view/deal/getListDeal.jsp";
+////} if(deal.getBoardCategory()==9){
+////    return "/view/deal/getListDeal.jsp";
+////}
+//        return null;
+//    }
+
+
+
+
+
 
     @RequestMapping(value="updateDeal/{dealBoardNum}", method=RequestMethod.GET)
     public String updateDealView(@PathVariable("dealBoardNum") int dealBoardNum, Model model ) throws Exception {
+
         Deal deal = dealService.getDeal(dealBoardNum);
-        dealService.updateDeal(deal);
+        int fileSize = deal.getFiles().size();
+       // model.addAttribute("deal", deal);
+        model.addAttribute("fileSize", fileSize);
+    //    dealService.updateDeal(deal);
 
         model.addAttribute("deal", deal);
         return "forward:/view/deal/updateDeal.jsp";
 
     }
-    @RequestMapping(value="updateDeal", method=RequestMethod.POST)
-    public String updateDeal(@ModelAttribute("deal") Deal deal ,Model model) throws Exception {
+    @RequestMapping(value="updateDeal",method = RequestMethod.POST)
+    public String updateDeal(@ModelAttribute("deal") Deal deal ,Model model,MultipartHttpServletRequest multi, @RequestParam(value = "deleteFileName", required = false) List<String> deleteFileNames) throws Exception {
+//        ////파일 업로드
+//        //파일 추출
+//        List<MultipartFile> mfs = multi.getFiles("file");
+//        System.out.println(mfs);
+//        //저장할 파일이 있는지 validation check
+//        if(mfs.size()>0 && !mfs.get(0).getOriginalFilename().equals("")){
+//            //저장할 리스트 생성
+//            List<com.project.domain.File> files = new ArrayList<>();
+//            //추출된 파일 업로드
+//            for (MultipartFile mf : mfs) {
+//                //파일이 이미지인지 validation check
+//                if (Objects.requireNonNull(mf.getContentType()).substring(0, mf.getContentType().indexOf("/")).equals("image")) {
+//                    //파일 경로 및 이름 유니크하게 생성
+//                    String fileName = dealBoardPath + UUID.randomUUID() + mf.getOriginalFilename();
+//                    java.io.File uploadFile = new java.io.File(fileName);
+//                    //파일 업로드
+//                    mf.transferTo(uploadFile);
+//                    //리스트에 파일 저장
+//                    com.project.domain.File file = new com.project.domain.File();
+//                    file.setFileName(fileName);
+//                    files.add(file);
+//                }
+//            }
+//            //domain 객체에 리스트 저장
+//            deal.setFiles(files);
+//        }
+//
+//        //모임 공지사항 등록
+//        dealService.addDeal(deal);
 
-        dealService.updateDeal(deal);
-        model.addAttribute("dealBoardNum",deal.getDealBoardNum());
+            ////파일 업로드
+            //파일 추출
+            List<MultipartFile> mfs = multi.getFiles("file");
+            System.out.println(mfs);
+            //저장할 리스트 생성
+           // List<com.project.domain.File> files = new ArrayList<>();
+        List<com.project.domain.File> files = new ArrayList<>();
+            //저장할 파일이 있는지 validation check
+            if(mfs.size()>0 && !mfs.get(0).getOriginalFilename().equals("")){
+                //추출된 파일 업로드
+                for (MultipartFile mf : mfs) {
+                    //파일이 이미지인지 validation check
+                    if (Objects.requireNonNull(mf.getContentType()).substring(0, mf.getContentType().indexOf("/")).equals("image")) {
+                        //파일 경로 및 이름 유니크하게 생성
+                        String fileName = dealBoardPath + UUID.randomUUID() + mf.getOriginalFilename();
+                        java.io.File uploadFile = new java.io.File(fileName);
+                        //파일 업로드
+                        mf.transferTo(uploadFile);
+                        //리스트에 파일 저장
+                        com.project.domain.File file = new com.project.domain.File();
+                        file.setFileName(fileName);
+                        files.add(file);
+                    }
+                }
+            }
+            //domain 객체에 리스트 저장
+            deal.setFiles(files);
+
+            //모임 공지사항 수정
+            //서비스에서 일부러 에러 발생해서 롤백 - 검증용
+            try {
+                dealService.updateDeal(deal, deleteFileNames);
+            }catch (Exception e){
+                System.out.println(e.getStackTrace());
+            }
+
+            //기존파일 삭제
+//        System.out.println("deleteFileNames : "+deleteFileNames);
+            if (deleteFileNames != null) {
+                for(String deleteFileName : deleteFileNames){
+                    java.io.File deleteFile = new java.io.File(resourcesPath+deleteFileName);
+                    if(deleteFile.exists()){
+                        if(deleteFile.delete()){
+                            System.out.println("file deleted");
+                        }else {
+                            System.out.println("cannot delete");
+                        }
+                    }
+                }
+            }
+
+      //  model.addAttribute("deal",dealService.getDeal(deal.getDealBoardNum()));
+        System.out.println( dealService.getDeal(deal.getDealBoardNum()));
+        System.out.println(deal.getDealBoardNum());
         return "forward:/view/deal/getDeal.jsp";
+        //        ////파일 업로드
+//        //파일 추출
+//        List<MultipartFile> mfs = multi.getFiles("file");
+//        System.out.println(mfs);
+//        //저장할 리스트 생성
+//        List<com.project.domain.File> files = new ArrayList<>();
+//        //저장할 파일이 있는지 validation check
+//        if(mfs.size()>0 && !mfs.get(0).getOriginalFilename().equals("")){
+//            //추출된 파일 업로드
+//            for (MultipartFile mf : mfs) {
+//                //파일이 이미지인지 validation check
+//                if (Objects.requireNonNull(mf.getContentType()).substring(0, mf.getContentType().indexOf("/")).equals("image")) {
+//                    //파일 경로 및 이름 유니크하게 생성
+//                    String fileName = dealBoardPath + UUID.randomUUID() + mf.getOriginalFilename();
+//                    java.io.File uploadFile = new java.io.File(fileName);
+//                    //파일 업로드
+//                    mf.transferTo(uploadFile);
+//                    //리스트에 파일 저장
+//                    com.project.domain.File file = new com.project.domain.File();
+//                    file.setFileName(fileName);
+//                    files.add(file);
+//                }
+//            }
+//        }
+//        //domain 객체에 리스트 저장
+//        deal.setFiles(files);
+//
+//        //모임 공지사항 수정
+//        //서비스에서 일부러 에러 발생해서 롤백 - 검증용
+////        try {
+////            dealService.updateDeal(deal, deleteFileNames);
+////        }catch (Exception e){
+////            System.out.println(e.getStackTrace());
+////        }
+//
+//        //기존파일 삭제
+////        System.out.println("deleteFileNames : "+deleteFileNames);
+//        if (deleteFileNames != null) {
+//            for(String deleteFileName : deleteFileNames){
+//                java.io.File deleteFile = new java.io.File(resourcesPath+deleteFileName);
+//                if(deleteFile.exists()){
+//                    if(deleteFile.delete()){
+//                        System.out.println("file deleted");
+//                    }else {
+//                        System.out.println("cannot delete");
+//                    }
+//                }
+//            }
+//        }
+//
+//        dealService.updateDeal(deal);
+//        model.addAttribute("dealBoardNum",deal.getDealBoardNum());
+//        return "forward:/view/deal/getDeal.jsp";
+    }
+    @RequestMapping(value = "deleteDeal/{dealBoardNum}")
+    public String deleteDeal(@PathVariable int dealBoardNum) throws Exception {
+    //    Deal deal = new Deal();
+      //  deal.setDealBoardNum(dealBoardNum);
+       // deal.
+        List<String> deleteFileNames = dealService.deleteDeal(dealBoardNum);
+        ////기존파일 삭제
+        //확인
+//        System.out.println("deleteFileNames : "+deleteFileNames);
+        //validation check
+        if (deleteFileNames != null) {
+            //각 항목 삭제
+            for (String deleteFileName : deleteFileNames) {
+                //파일 설정
+                java.io.File deleteFile = new java.io.File(resourcesPath + deleteFileName);
+                //파일이 있으면 삭제
+                if (deleteFile.exists()) {
+                    if (deleteFile.delete()) {
+                        System.out.println("file deleted");
+                    } else {
+                        System.out.println("cannot delete");
+                    }
+                }
+            }
+
+        }
+        return "redirect:/deal/getListDeal";
     }
 }
+
 
 
 

@@ -51,5 +51,7 @@ public interface SiteDao {
 
     public void processClubReport(ClubReport clubReport) throws Exception;
 
+    public void processClubRereport(ClubReport clubReport) throws Exception;
+
     public void deleteClubReport(int clubReportNo) throws Exception;
 }

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,98 +7,419 @@
 <title>Insert title here</title>
 </head>
    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
     <title>Bootstrap Example</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+
     <style>
-    .wap{
-    	width: 800px;
-    }
+    .wap{ width: 800px; }
+    tr { height:30px; }
+    td { border-bottom:1px solid #CCC; font-size:12px; }
+    span { cursor:pointer }
     </style>
   <script type="text/javascript">
 
     $(function (){
       $(".emailKey").on("click",function (){
-        alert('�̸���������ư?');
-        $("form").attr("method", "POST").attr("action", "/user/mailSender").submit();
+        alert('이메일인증버튼?');
+        $.ajax({
+          url: "/user/json/mailSender",
+          method :"POST",
+          data: {
+            email : $(".userEmail").val()
+          },
+          dataType :"json",
+          success : function ({JSONData, status}){
+            alert(status);
+            $(".emailYC").css("display",'');
+          }
+        });
+        alert('ajax 종료');
+        //$("form").attr("method", "POST").attr("action", "/user/mailSender").submit();
          // self.location="/user/mailSender";
       });
       $(".smsKey").on("click",function (){
-        alert('����������ư?');
-        $("form").attr("method", "POST").attr("action", "/user/smsSend").submit();
+        alert('문자인증버튼?');
+        $.ajax({
+          url : "/user/json/smsSend",
+          method: "POST",
+          data : {
+            phone : $(".userPhone").val()
+          },
+          dataType: "json",
+          success : function (){
+            $(".smsYC").css("display",'');
+          }
+        });
+        alert('ajax 종료');
+        //$("form").attr("method", "POST").attr("action", "/user/smsSend").submit();
         // self.location="/user/mailSender";
       });
-      $(".CheckEmailKey").on("click",function (){
-        result=true;
-        if(value!=1234){
-          result=false;
+
+      $(".CheckEmailKey2").on("click",function (){
+        var CheckEmailKey = $(".CheckEmailKey").val();
+         alert(CheckEmailKey);
+        if(CheckEmailKey!=1234){
+          $('.emailInfor').css('display','');
+        }else{
+          $(".emailInforYes").css('display','');
         }
       });
       $(".CheckSmsKey").on("click",function (){
-        result=true;
-        if(value!=1234){
-          result=false;
+        var CheckSms = $("#CheckSms").val();
+        alert(CheckSms);
+        if(CheckSms!=1234){
+          $('.smsNo').css('display','');
+        }else{
+          $(".smsYes").css('display','');
         }
       });
 
-      $(".addUser").on("click",function (){
-        var id=$("input[name='id']").val();
-        var pw=$("input[name='password']").val();
-        var pw2=$("input[name='password2]").val();
-        var name=$("input[name='username']").val();
+       $(".CheckRrd").on("click",function (){
+         var rrdCheck=$("input[name='rrd']").val();
+         alert(rrdCheck)
+           $.ajax({
+                     url: "/user/json/checkDupRrd",
+                   method : "POST",
+                  data :{
+                  rrd : rrdCheck
+                    },
+             dataType: "json",
+             success :
+                function (map) {
+                  alert(map)
+                  if (map.result) {
+                    $(".rrdtext").show();
+                    $(".rrdtext").html('회원가입할 수 있습니다');
+                  } else {
+                    $(".rrdtext").show();
+                    $(".rrdtext").html('이미 가입한 회원입니다');
+                  }
+                }
+                });
+         alert('이건되낭?')
+              });
 
-        var gender=$("input[name='gender']").val();
+      $(".addInter").on("click", function (){
+        $("#oridata input[type=checkbox]:checked").filter(function() {
+          $("#movedata").append("<tr>" + $(this).parent().parent().html() + "</tr>");
+          $(this).parent().parent().remove();
+        });
+      });
+/*
+          $.ajax({
+            url : "/user/json/interListControl",
+            method : "POST",
+            data : JSON.stringify({
+              userId : $(".userId").val(),
+              interList : $('#oridata input[type=checkbox]:checked').val()
+            }),
+            contentType : "application/json",
+            dataType : "json",
+            success : function (){
+              alert('디비저장성공');
+            },
+            error : function (){
+              alert('디비저장실패');
+            }
+          });
+
+ */
+
+      $(".removeInter").on("click", function () {
+        $("#movedata input[type=checkbox]:checked").filter(function() {
+          $("#oridata").append("<tr>" + $(this).parent().parent().html() + "</tr>");
+          $(this).parent().parent().remove();
+        });
+      });
+      /*
+          $.ajax({
+            url : "/user/json/deleteInter",
+            method : "POST",
+            data : JSON.stringify({
+              userId : $(".userId").val(),
+              interList : $('#oridata input[type=checkbox]:checked').val()
+            }),
+            contentType : "application/json",
+            dataType : "json",
+            success : function (){
+              alert('디비삭제성공');
+            },
+            error : function (){
+              alert('디비삭제실패');
+            }
+          });
+          */
+
+      $("form").on("submit",function (){
+       /*
+        var id=$("input[name='userId']").val();
+        var pw=$("input[name='password']").val();
+        var pw2=$("input[name='password2']").val();
+        var name=$("input[name='userName']").val();
+        var rrd=$("input[name='rrd']").val();
+        var male=$("input[name='gender']:checked").val();
+        var female=$("input[name='gender']:checked").val();
         var email=$("input[id='CheckEamil']").val();
         var phone=$("input[id='CheckPhone']").val();
 
 
+        if(id == null || id.length <1){
+          alert("아이디는 반드시 입력하셔야 합니다.");
+          return false;//해당 메서드(펑션)을 종료한다
+        }
+        if(pw == null || pw.length <1){
+          alert("패스워드는  반드시 입력하셔야 합니다.");
+          return false;
+        }
+        if(pw2 == null || pw2.length <1){
+          alert("패스워드 확인은  반드시 입력하셔야 합니다.");
+          return false;
+        }
+        if(name == null || name.length <1){
+          alert("이름은  반드시 입력하셔야 합니다.");
+          return false;
+        }
+
+        if( pw != pw2 ) {
+          alert("비밀번호 확인이 일치하지 않습니다.");
+          $("input:text[name='password2']").focus();
+          return false;
+        }
+        if(rrd == null || rrd.length <1){
+          alert("주민등록번호는  반드시 입력하셔야 합니다.");
+          return false;
+        }
+        if(male.length <1 && female.length <1){
+          alert("성별은  반드시 입력하셔야 합니다.");
+          return false;
+        }
+        if(email.length <1 && phone.length <1){
+          alert("이메일 또는 휴대폰번호 인증은 반드시 인증하셔야 합니다.");
+          return false;
+        }
+        // if(addressView == null){
+        //   alert("동네인증은 반드시 인증하셔야 합니다.");
+        //   return false;
+        // }
+*/
+        var address="";
+        if($("#address").val() !="" && $("#addressDetail").val() !="") {
+          var address = $("#address").val() + " " + $("#addressDetail").val();
+        }
+
+        console.log('address');
 
 
         $("form").attr("method","POST").attr("action","/user/addUser").submit();
 
       });
 
-
-
- /*      $(".CheckRrd").on("click",function (){
-         var rrdCheck=$("input[name='rrd']").val();
-         alert(rrdCheck)
-           $.post("/user/json/checkDupRrd",
-              {
-
-                  rrd : rrdCheck
-                },
-                function (map){
-                  if(map.result) {
-                    $(".rrdtext").show();
-                    $(".rrdtext").html('ȸ�������� �� �ֽ��ϴ�');
-                  } else{
-                    $(".rrdtext").show();
-                    $(".rrdtext").html('�̹� ������ ȸ���Դϴ�');
-                  }
-
-                });
-         alert('�̰ǵǳ�?')
-              });
-*/
-
-
-
-
-
-
-
       $(function (){
         $(".cancle").on("click",function (){
-          $("form")[0].reset();
+          history.go(-1);
         });
       });
 
     });
 
-  </script>
+
+
+
+
+  /// @brief 주소검색창 - 키보드 Enter키 입력
+  function enterSearch() {
+    var evt_code = (window.netscape) ? event.which : event.keyCode;
+    if (evt_code == 13) {
+      event.keyCode = 0;
+      getAddr();
+    }
+  }
+
+  //도로명주소
+  function getAddr(){
+// 적용예 (api 호출 전에 검색어 체크)
+    var keyword = document.getElementById("searchAddr");
+    if (!checkSearchedWord(keyword))
+    {
+      return ;
+    }
+
+    $.ajax({
+      url :"http://www.juso.go.kr/addrlink/addrLinkApiJsonp.do"
+      ,type:"post"
+      ,data:{
+        confmKey : "devU01TX0FVVEgyMDIyMTAxMjA5MTEyNjExMzA0NTI="
+        , currentPage : document.getElementById("currentPage").value
+        , countPerPage : document.getElementById("countPerPage").value
+        , keyword : keyword.value
+        , resultType : "json"
+      }
+      ,dataType:"jsonp"
+      ,crossDomain:true
+      ,success:function(jsonStr){
+        $("#list").html("");
+        var errCode =
+                jsonStr.results.common.errorCode;
+        var errDesc =
+                jsonStr.results.common.errorMessage;
+
+        if(errCode!= "0"){
+          alert(errCode+"="+errDesc);
+        }else{
+          if(jsonStr!= null){
+            makeListJson(jsonStr);
+            console.log(jsonStr);
+            // JSON데이터 HTML형태로 변환
+          }
+        }
+      },error: function(xhr,status, error){
+        alert("에러발생");
+      }
+    });
+  }
+
+  /// @brief 주소검색창 - 주소지 선택
+  function makeListJson(jsonStr) {
+    let htmlStr = "<thead><tr><th style='width:70px;'>우편번호</th><th>주소</th></tr></thead><tbody>";
+    if(jsonStr.results.common.totalCount > 0) {
+      jQuery("#totoalOutcome").css("display", "block");
+      jQuery("#totalCnt").html(jsonStr.results.common.totalCount);
+
+      jQuery(jsonStr.results.juso).each(function() {
+        let zipNo = this.zipNo;                  // 우편번호
+        let roadAddr = this.roadAddr;        // 도로명 주소
+        let jibunAddr = this.jibunAddr;       // 지번 주소
+
+        htmlStr += "<tr style='border:1px;'>";
+        htmlStr += "<td>";
+        htmlStr += "<a href='javascript:;' onClick='inputTextAddress(\""+zipNo+"\", \""+roadAddr+"\");'>";
+        htmlStr += zipNo;
+        htmlStr += "</a>";
+        htmlStr += "</td>";
+        htmlStr += "<td>";
+       // htmlStr += "<a href='javascript:;' onClick='inputTextAddress(\""+zipNo+"\", \""+roadAddr+"\");'>";
+       // htmlStr += "도로명 : " + roadAddr;
+       // htmlStr += "</a>";
+       // htmlStr += "<br/>";
+        htmlStr += "<a href='javascript:;' onClick='inputTextAddress(\""+zipNo+"\", \""+jibunAddr+"\");'>";
+        htmlStr += "지번 : " + jibunAddr;
+        htmlStr += "</a>";
+        htmlStr += "</td>";
+        htmlStr += "</tr>";
+      });
+      pageMake(jsonStr);
+    } else {
+      htmlStr += "<tr><td colspan='2'>조회된 데이터가 않습니다.<br/>다시 검색하여 주시기 바랍니다.</td></tr>";
+    }
+    htmlStr += "</tbody>";
+    jQuery("#list").html(htmlStr);
+  }
+  /// @brief 주소검색창 - 주소지 삽입
+  function inputTextAddress(zipcode, address) {
+    document.getElementById("zipCode").value = zipcode;
+    document.getElementById("address").value = address;
+  }
+  /// @brief 주소검색창 - 열기
+  function addressWindowOpen() {
+    jQuery("#wrap").slideDown();
+    jQuery("#searchAddr").focus();
+  }
+  /// @brief 주소검색창 - 닫기
+  function addressWindowClose() {
+    jQuery("#wrap").slideUp();
+    jQuery("#searchAddr").val("");
+    jQuery("#totoalOutcome").css("display", "none");
+    jQuery("#list").empty();
+    jQuery("#pagingList").empty();
+    jQuery("#currentPage").val("1");
+  }
+  //특수문자, 특정문자열(sql 예약어의 앞뒤 공백 포함) 제거
+  function checkSearchedWord(obj){
+    console.log(obj);
+    if(obj.value.length > 0){
+      //특수문자 제거
+      var expText = /[%=><]/ ;
+      if(expText.test(obj.value) == true){
+        alert("특수문자를 입력 할수 없습니다.") ;
+        obj.value = obj.value.split(expText).join("");
+        return false;
+      }
+
+      //특정문자열(sql예약어의 앞뒤공백포함) 제거
+      var sqlArray = new Array(
+              //sql 예약어
+              "OR", "SELECT", "INSERT", "DELETE", "UPDATE", "CREATE", "DROP", "EXEC", "UNION", "FETCH", "DECLARE", "TRUNCATE"
+      );
+
+      var regex;
+      for(var i=0; i<sqlArray.length; i++){
+        regex = new RegExp( sqlArray[i] ,"gi") ;
+
+        if (regex.test(obj.value) ) {
+          alert("\"" + sqlArray[i]+"\"와(과) 같은 특정문자로 검색할 수 없습니다.");
+          obj.value =obj.value.replace(regex, "");
+          return false;
+        }
+      }
+    }
+    return true ;
+  }
+  /// @brief 주소검색창 - 페이징 생성
+  function pageMake(jsonStr) {
+    var total = jsonStr.results.common.totalCount;				// 총건수
+    var pageNum = document.getElementById("currentPage").value;	// 현재페이지
+    var pageBlock = Number(document.getElementById("countPerPage").value);	// 페이지당 출력 개수
+    var paggingStr = "";
+
+    // 검색 갯수가 페이지당 출력갯수보다 작으면 페이징을 나타내지 않는다.
+    if(total > pageBlock) {
+      var totalPages = Math.floor((total - 1) / pageNum) + 1;
+      var firstPage = Math.floor((pageNum - 1) / pageBlock) * pageBlock + 1;
+
+      if(firstPage <= 0) { firstPage = 1; };
+
+      var lastPage = (firstPage - 1) + pageBlock;
+
+      if(lastPage > totalPages) { lastPage = totalPages; };
+
+      var nextPage = lastPage + 1;
+      var prePage = firstPage - pageBlock;
+
+      if(firstPage > pageBlock) {
+        paggingStr += "<a href='javascript:;' onClick='goPage(" + prePage + ");'>◀</a>";
+        paggingStr += "&nbsp;";
+      }
+
+      for(let num = firstPage; lastPage >= num; num++) {
+        if(pageNum == num) {
+          paggingStr += "<a style='font-weight:bold;color:#0000FF;' href='javascript:;'>" + num + "</a>";
+          paggingStr += "&nbsp;";
+        } else {
+          paggingStr += "<a href='javascript:;' onClick='goPage(" + num + ");'>" + num + "</a>";
+          paggingStr += "&nbsp;";
+        }
+      }
+
+      if(lastPage < totalPages) {
+        paggingStr += "<a href='javascript:;' onClick='goPage(" + nextPage + ");'>▶</a>";
+      }
+    }
+    jQuery("#pagingList").html(paggingStr);
+  }
+  /// @brief 페이징 이동
+  function goPage(pageNum) {
+    document.getElementById("currentPage").value = pageNum;
+    getAddr();
+  }
+
+
+
+</script>
  <body class="bg-light">
     
 <div class="container" style="text-align: -webkit-center;">
@@ -107,171 +428,303 @@
   <main>
     <div class="py-5 text-center">
       <img class="d-block mx-auto mb-4"  alt="" width="72" height="57">
-      <h2>ȸ������</h2>
-      <p class="lead">������ �Է����ּ���</p>
+      <h2>회원가입</h2>
+      <p class="lead">정보를 입력해주세요</p>
     </div>
 
       <hr>
 
-      <div class="col-md-7 col-lg-8">
 
-        <form class="needs-validation" novalidate>
-          <div class="row g-3">
-            <div class="col-sm">
-              <label for="id" class="form-label">���̵�</label>
-              <input type="text" class="form-control" id="Id" name="userId" maxLength="20" required>
-              <div class="invalid-feedback">
-                Valid first name is required.
-              </div>
-            </div>
+    <form class="needs-validation" novalidate>
+      <div class="row g-3">
+        <div class="col-sm">
+          <label for="id" class="form-label">아이디</label>
+          <input type="text" class="form-control userId" id="Id" name="userId" maxLength="20" required>
+        </div>
 
-            <div class="col-12">
-              <label for="password" class="form-label">��й�ȣ</label>
-              <div class="input-group has-validation">
-                <input type="password" class="form-control" id="password" name="password" minLength="8" maxLength="20" required>
-                <div class="invalid-feedback"></div>
-              </div>
-            </div>
-            <div class="col-12">
-              <label for="password2" class="form-label">��й�ȣ Ȯ��</label>
-              <div class="input-group has-validation">
-                <input type="password" class="form-control" id="password2" name="password2" minLength="8" maxLength="20" required>
-                <div class="invalid-feedback"></div>
-              </div>
-            </div>
-
-
-            <div class="col-12">
-              <label for="username" class="form-label">�̸�</label>
-              <div class="input-group has-validation">
-                <input type="text" class="form-control" id="username" name="userName"  required>
-              <div class="invalid-feedback">
-                  Your username is required.
-                </div>
-              </div>
-            </div>
-
-            <div class="col-12 ">
-              <label for="rrd" class="form-label">�ֹε�Ϲ�ȣ</label>
-              <div hidden class="rrdtext">������?���Ǥ���</div>
-              <div class="input-group has-validation">
-                <input type="text" class="form-control" id="rrd" name="rrd" maxLength="14" required>
-                <div class="invalid-feedback"></div>
-              </div>
-              <button type="button" class="btn btn-primary btn-sm CheckRrd">�ߺ� Ȯ��</button>
-            </div>
-
-
-            <div class="col-12">
-              ����
-                <input type="radio" class="form-check-input" id="male" name="gender" value="male" checked required>����
-                <input type="radio" class="form-check-input" id="female" name="gender" value="female" required>����
-                <div class="invalid-feedback"></div>
-
-            </div>
-            <h6>�̸��� �Ǵ� �޴�����ȣ �����ϱ�(��1)</h6>
-            <div class="col-12">
-              <label for="CheckEamil" class="form-label"><input type="radio" class="form-check-input" id="CheckEamil" required>
-              �̸���</label>
-              <input type="email" class="form-control userEmail" id="email" name="email" >
-              <input type="text" class="form-control CheckEmailKey" value="������ȣ �Է�" required>
-              <button type="button" class="btn btn-primary btn-sm emailKey">������ȣ ��û</button>
-              <button type="button" class="btn btn-secondary btn-sm CheckEmailKey">���� Ȯ��</button>
-            </div>
-
-            <div class="col-12">
-              <label for="CheckPhone" class="form-label"><input type="radio" class="form-check-input" id="CheckPhone" required>
-              �޴�����ȣ</label>
-            <input type="tel" class="form-control" name="phone" >
-            <input type="text" class="form-control" id="CheckSms" value="������ȣ �Է�" >
-            <button type="button" class="btn btn-primary btn-sm smsKey">������ȣ ��û</button>
-              <button type="button" class="btn btn-secondary btn-sm CheckSmsKey">���� Ȯ��</button>
-            </div>
+        <div class="col-12">
+          <label for="password" class="form-label">비밀번호</label>
+          <div class="input-group has-validation">
+            <input type="password" class="form-control" id="password" name="password"  required>
           </div>
+        </div>
 
-            <div class="col-12">
-              <label for="address" class="form-label">��������</label>
-              <br>����Ư����</br>
-              <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  ������
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" >������</a></li>
-                  <li><a class="dropdown-item" >�߱�</a></li>
-                  <li><a class="dropdown-item" >������</a></li>
-                </ul>
-                <input type="text" id="ssv3-location-label" name="villCode" required>
-                <button type="button" class="btn btn-primary btn-sm">�������� ��û</button>
-
-              <div class="invalid-feedback">
-                Please enter your shipping address.
-              </div>
-            </div>
-              �������� ���
-              <input type="text" class="form-control" id="address"  required>
-
-            <div class="col-12">
-
-              <button class="btn btn-secondary dropdown-toggle" type="button" name="interList" data-bs-toggle="dropdown" aria-expanded="false">
-                ���ɸ��
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown1" >������</a></li>
-                <li><a class="dropdown2" >�ݷ�����</a></li>
-                <li><a class="dropdown3" >����</a></li>
-                <li><a class="dropdown4" >����</a></li>
-                <li><a class="dropdown5" >����</a></li>
-                <li><a class="dropdown6" >����</a></li>
-                <li><a class="dropdown7" >����</a></li>
-                <li><a class="dropdown8" >����</a></li>
-                <li><a class="dropdown9" >����</a></li>
-                <li><a class="dropdown10" >�ڵ���</a></li>
-                <li><a class="dropdown11" >����</a></li>
-                <li><a class="dropdown12" >����</a></li>
-                <li><a class="dropdown13" >��Ÿ</a></li>
-              </ul>
-              <button type="button" class="btn btn-primary btn-sm interList">���ɸ�� �߰�</button>
-            </div>
-
-            <div class="col-md-5">
-              <label for="myInterList" class="form-label">�� ���ɸ�� (�ִ� 13��)</label>
-              <input type="text" id="myInterList">
-            </div>
-
-
-
-            <div class="col-md-4">
-              <label for="userImage" class="form-label">ȸ�� ���� ���</label>
-              <input type="file" id="userImage" name="userImage">
-            </div>
-
-            <input hidden class="masterCheck" name="masterCheck" value="0">
-            <input hidden class="userStatus" name="userStatus" value="0">
-            <input hidden class="lcd" name="lcd" value="2022-10-10">
-              <input hidden class="loginCheck" name="loginCheck" value="0">
-              <input hidden class="psd" name="psd" value="">
-              <input hidden class="ped" name="ped" value="">
-              <input hidden class="ppt" name="ppt" value="0">
-              <input hidden class="reviewPt" name="reviewPt" value="0">
-
-
+        <div class="col-12">
+          <label for="password2" class="form-label">비밀번호 확인</label>
+          <div class="input-group has-validation">
+            <input type="password" class="form-control" id="password2" name="password2"  required>
           </div>
-            <hr>
-            <div class="col-12">
-            <button class="w-100 btn btn-primary btn-lg cancle" type="button"> ���</button>
-            <button class="w-100 btn btn-primary btn-lg addUser" type="submit"> ȸ������</button>
-              <div class="invalid-feedback">
-            </div>
-          </div>
+        </div>
 
-        </form>
+        <div class="col-12">
+          <label for="userName" class="form-label">이름</label>
+          <div class="input-group has-validation">
+            <input type="text" class="form-control" id="userName" name="userName"  required>
+          </div>
+        </div>
+
+        <div class="col-12 ">
+          <label for="rrd" class="form-label">주민등록번호</label>
+          <div input="hidden" class="rrdtext" ></div>
+          <div class="input-group has-validation">
+            <input type="text" class="form-control" id="rrd" name="rrd"  required>
+          </div>
+          <button type="button" class="btn btn-primary btn-sm CheckRrd">중복 확인</button>
+        </div>
+
+
+        <div class="col-12">
+          성별<label for="male" class="form-label">
+          <input type="radio" class="form-check-input" id="male" name="gender" value="남자" required>남자</label>
+          <label for="female" class="form-label">
+            <input type="radio" class="form-check-input" id="female" name="gender" value="여자" required>여자</label>
+        </div>
+
+        <h6>이메일 또는 휴대폰번호 인증하기(택1)</h6>
+
+        <div class="col-12">
+          <label for="CheckEamil" class="form-label"><input type="radio" class="form-check-input" id="CheckEamil" name="email&phone" required>
+            이메일</label>
+          <input type="email" class="form-control userEmail" id="email" name="email" >
+          <input type="text" class="form-control CheckEmailKey" placeholder="인증번호 입력"  >
+          <button type="button" class="btn btn-primary btn-sm emailKey">인증번호 요청</button>
+          <button type="button" class="btn btn-secondary btn-sm CheckEmailKey2">인증 확인</button>
+          <span class="emailInfor" style="display: none;">
+                <strong class="text-danger" >인증번호가 틀렸습니다</strong>
+              </span>
+          <span class="emailYC" style="display: none">인증번호가 발송되었습니다</span>
+          <span class="emailInforYes" style="display: none;">
+                인증되었습니다
+              </span>
+          <div>
+          <label for="CheckPhone" class="form-label"><input type="radio" class="form-check-input" id="CheckPhone" name="email&phone" required>
+            휴대폰번호</label>
+          </div>
+          <input type="tel" class="form-control userPhone" name="phone" >
+          <input type="text" class="form-control" id="CheckSms" placeholder="인증번호 입력" >
+          <button type="button" class="btn btn-primary btn-sm smsKey">인증번호 요청</button>
+          <button type="button" class="btn btn-secondary btn-sm CheckSmsKey">인증 확인</button>
+          <span class="smsNo" style="display: none;">
+              <strong class="text-danger" >인증번호가 틀렸습니다</strong>
+              </span>
+          <span class="smsYC" style="display: none">인증번호가 발송되었습니다</span>
+          <span class="smsYes" style="display: none;">
+                인증되었습니다
+              </span>
       </div>
+
+      <div class="col-12">
+        <label for="address" class="form-label">동네인증</label>
+      </div>
+
+      <div class="col-12">
+        <input type="hidden" id="currentPage" value="1" style="text-align:center;"/>
+        <input type="hidden" id="countPerPage" value="5" style="text-align:center;"/>
+        <input type=text id="zipCode" value="" onClick="addressWindowOpen();" placeholder="00000" readOnly />
+        <a class="btn btn-info btn-sm" href='javascript:void(0);' onclick="addressWindowOpen();">우편번호 찾기</a>
+        <div id="wrap" style="display: none;">
+          <a class="btn btn-danger" id="closeBtn" href='javascript:void(0);' onclick="addressWindowClose();"><i class="fa fa-remove"></i></a>
+          <div>
+            <input type="text" id="searchAddr" value="" onkeydown="enterSearch();" placeholder="도로명주소, 건물명 또는 지번 입력"/>
+            <a class="btn btn-info btn-sm" href='javascript:void(0);' onclick="getAddr();">주소검색</a>
+          </div>
+          <div>
+            <div id="totoalOutcome">검색결과 : <span id="totalCnt">0</span></div>
+            <table id="list" style="width: 100%; border: 1px;"></table>
+          </div>
+          <div id="pagingList" style='text-align:center;'></div>
+        </div>
+        <div style="height:5px;"></div>
+        <input type="text" id="address" value="" placeholder="도로명 주소, 지번 주소" name="villCode" readonly/>
+        <input type="text" id="addressDetail" value=""  name="villCode" placeholder="상세주소"/>
+        <div style="height:5px;"></div>
+
+
+        <button type="button" class="btn btn-primary btn-sm">동네인증 요청</button>
+
+      </div>
+
+      <div  id="map" style="width:500px;height:400px;"></div>
+
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=064b845197ba0a5631091cfb59197ad2&libraries=services"></script>
+        <script>
+          var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+                  mapOption = {
+                    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                    level: 3 // 지도의 확대 레벨
+                  };
+
+          var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+          // 마커가 표시될 위치입니다
+          var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667);
+
+          // 마커를 생성합니다
+          var marker = new kakao.maps.Marker({
+            position: markerPosition
+          });
+
+          // 마커가 지도 위에 표시되도록 설정합니다
+          marker.setMap(map);
+
+
+          if (navigator.geolocation) {
+
+            // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+            navigator.geolocation.getCurrentPosition(function(position) {
+
+              var lat = position.coords.latitude, // 위도
+                      lon = position.coords.longitude; // 경도
+
+              var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+                      message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
+
+              // 마커와 인포윈도우를 표시합니다
+              displayMarker(locPosition, message);
+
+              // self.location = "/map/json/myLocation?longitude=" + lon + "&latitude=" + lat;
+
+            });
+
+          } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+
+            var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
+                    message = 'geolocation을 사용할수 없어요..'
+
+            displayMarker(locPosition, message);
+          }
+
+          function displayMarker(locPosition, message) {
+
+            // 마커를 생성합니다
+            var marker = new kakao.maps.Marker({
+              map: map,
+              position: locPosition
+            });
+
+            var iwContent = message, // 인포윈도우에 표시할 내용
+                    iwRemoveable = true;
+
+            // 인포윈도우를 생성합니다
+            var infowindow = new kakao.maps.InfoWindow({
+              content : iwContent,
+              removable : iwRemoveable
+            });
+
+            // 인포윈도우를 마커위에 표시합니다
+            infowindow.open(map, marker);
+
+            // 지도 중심좌표를 접속위치로 변경합니다
+            map.setCenter(locPosition);
+          }
+        </script>
+
+
+
+      <div class="col-12">동네인증 결과
+      <input type="text" class="form-control" id="addressView"  required>
+      </div>
+
+      <div class="col-12">
+        관심목록 선택(최대 13개)
+      </div>
+
+      <div >
+      <div style="float:left; padding:5px; border:1px solid #000; width:140px; height:400px;">
+        <table id="oridata" class="interList" cellspacing="0" cellpadding="0" width="100%">
+          <tr>
+            <td><input type="checkbox"  id="list1" name="interList" value="01"/></td>
+            <td>스포츠</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="list2" name="interList" value="02"/></td>
+            <td>반려동물</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="list3" name="interList" value="03"/></td>
+            <td>음악</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="list4" name="interList" value="04"/></td>
+            <td>독서</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="list5" name="interList" value="05"/></td>
+            <td>게임</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="list6" name="interList" value="06"/></td>
+            <td>육아</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="list7" name="interList" value="07"/></td>
+            <td>공연</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="list8" name="interList" value="08"/></td>
+            <td>공예</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="list9" name="interList" value="09"/></td>
+            <td>댄스</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="list10" name="interList" value="10"/></td>
+            <td>자동차</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="list11" name="interList" value="11"/></td>
+            <td>사진</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="list12" name="interList" value="12"/></td>
+            <td>여행</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="list13" name="interList" value="13"/></td>
+            <td>기타</td>
+          </tr>
+        </table>
+      </div>
+
+      <div style="float:left; padding:5px; padding-top:130px;">
+        <span input="button" class="addInter">▶</span>
+        <br />
+        <span input="button" class="removeInter">◀</span>
+      </div>
+
+      <div style="float:left; padding:5px; border:1px solid #000; width:140px; height:400px;">
+        <table id="movedata" cellspacing="0" cellpadding="0" width="100%">
+        </table>
+      </div>
+      </div>
+
+      <div class="col-12">
+        <label for="userImage" class="form-label">회원 사진 등록 *선택사항*</label>
+        <input type="file" id="userImage" name="userImage">
+      </div>
+
+      <div class="hiddem">
+        <input type="hidden" class="masterCheck" name="masterCheck" value="1">
+        <input type="hidden" class="userStatus" name="userStatus" value="1">
+        <input type="hidden" class="lcd" name="lcd" value="2022-10-10">
+        <input type="hidden" class="loginCheck" name="loginCheck" value="1">
+        <input type="hidden" class="psd" name="psd" value="">
+        <input type="hidden" class="ped" name="ped" value="">
+        <input type="hidden" class="ppt" name="ppt" value="0">
+        <input type="hidden" class="reviewPt" name="reviewPt" value="0">
+      </div>
+
+
+      <hr>
+            <div class="col-12">
+            <button class="w-100 btn btn-primary btn-lg cancle" type="button"> 취소</button>
+            <button class="w-100 btn btn-primary btn-lg addUser" type="submit"> 회원가입</button>
+          </div>
+      </div>
+    </form>
+
   </main>
-    </div>
-
-</div>
-
 
   <footer class="my-5 pt-5 text-muted text-center text-small">
     <p class="mb-1">&copy; 2017-2022 Company Name</p>
@@ -281,6 +734,7 @@
       <li class="list-inline-item"><a href="#">Support</a></li>
     </ul>
   </footer>
+</div>
 </div>
 </body>
 </html>

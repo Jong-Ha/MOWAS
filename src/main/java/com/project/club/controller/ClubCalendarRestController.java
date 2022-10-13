@@ -138,19 +138,19 @@ public class ClubCalendarRestController<list> {
         return 0;
     }
 
- /*   @RequestMapping("deleteBoard")
-    public void deleteBoard(@RequestBody)*/
+
 
     //일정 가져오기
     @RequestMapping("getListCalender")
-    public Map<String, Object> getListCalender(@RequestBody ClubCalendar calender) {
+    public List<Map<String, Object>> getListCalender(@RequestBody ClubCalendar calender) {
 
         System.out.println("calender의 정보 : " + calender);
 
-        Map<String, Object> map = calenderService.getListCalender(calender);
+        List<Map<String, Object>>  list = calenderService.getListCalender(calender);
 
-        System.out.println("이거지~ : " + map);
-        return map;
+        System.out.println("이거지~ : " + list);
+
+        return list;
     }
 
     @RequestMapping("fileUpload")
@@ -181,6 +181,24 @@ public class ClubCalendarRestController<list> {
         }
 
         return 0;
+    }
+
+    @RequestMapping("listCalenderReview")
+    public String listCalenderReview(@RequestParam("boardCategory")int boardCategory
+            ,Model model,HttpServletRequest request){
+        System.out.println(boardCategory);
+        Map<String, Object> map = calenderService.listCalenderReview(boardCategory);
+
+        model.addAttribute("list", map.get("list"));
+
+        if (boardCategory == 1){
+            return "forward:/view/community/list/clubCalenderReviewList.jsp";
+        } else if (boardCategory == 2) {
+            return "forward:/view/community/list/clubCalenderReviewShortList.jsp";
+        }
+
+        return null;
+
     }
 }
 

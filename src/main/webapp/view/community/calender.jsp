@@ -84,11 +84,14 @@
                 "clubNum": clubNum
             }),
             success: function (JSONData, status) {
+                result_val = new Array;
 
-                result_va = JSONData
+                $.each(JSONData, function (indext, item) {
+                    console.log(item);
 
-                result_val = new Array(result_va);
+                    result_val.push(item);
 
+                })
 
             }
 

@@ -40,23 +40,34 @@
     //============= "가입"  Event 연결 =============
     $(function() {
       //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-      $( "button.btn.btn-primary" ).on("click" , function() {
+      $( "button.btn.addDeal").on("click" , function() {
         fncAddUser();
       });
     });
 
 
     //============= "취소"  Event 처리 및  연결 =============
-    $(function() {
-      //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-      $("a[href='#' ]").on("click" , function() {
-        $("form")[0].reset();
-      });
-    });
+
 
     function fncAddUser() {
         $("form").attr("method" , "POST").attr("action" , "/deal/addDeal").submit();
     }
+    // $(function () {
+    // $(".addDeal").on("click", function () {
+    //
+    //     $("form").attr("method", "post").attr("action", "/deal/addDeal").attr("enctype", "multipart/form-data").submit();
+    // });
+    //     $(".close").on("click", function () {
+    //         window.history(-1);
+    //     });
+    // });
+    $("input:file").on("change",function(){
+      if($(this)[0].files.length>10){
+        alert('파일 갯수를 초과하였습니다.');
+        $(this).val('');
+      }
+    })
+
   </script>
 
 
@@ -75,24 +86,35 @@
 
 <!--  화면구성 div Start /////////////////////////////////////-->
 <h1>게시글 생성</h1>
-<form method="POST">
- <input type="hidden" name="user.userId"/>
+<form enctype="multipart/form-data" method="post">
+ <input type="hidden" name="user.userId" value="${user.userId}"/>
   <div class="form-group">
     <div class="col-sm-2">
-      <select class="form-control" name="board_category" id="board_category">
-        <option value="8" >판매</option>
-        <option value="9" >판매요청</option>
+      <select class="form-control" name="boardCategory" id="board_category">
+        <option value="08" >판매</option>
+        <option value="09" >판매요청</option>
       </select>
     </div>
   </div>
-  <p>제목 : <input type="text" name="deal_title" /></p>
-  <p>카테고리 : <input type="text" name="board_category" /></p>
-  <p>가격 : <input type="text" name="price" /></p>
-  <p>상품명 : <input type="text" name="product_name" /></p>
-  <p>내용 : <input type="text" name="deal_text" /></p>
-  <p>태그 : <input type="text" name="tag" /></p>
-  <p><input type="submit" value="저장" class="btn btn-primary"/>
+<%--    <div class="row">--%>
+<%--        <div class="col-xs-4 col-xs-2 ">--%>
+<%--            <strong>파일--%>
+<%--                <input type="file" name="file" value="파일 첨부">--%>
+<%--            </strong>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+  <p>제목 : <input type="text" name="dealTitle" value="" /></p>
+  <p>가격 : <input type="text" name="price"value="" /></p>
+  <p>상품명 : <input type="text" name="productName" value=""/></p>
+ <p> 파일<input type="file" name="file" multiple="multiple"/></p>
+  <p>내용 : <input type="text" name="dealText" value=""/></p>
+  <p>태그 : <input type="text" name="tag" value=""/></p>
+  <p>동네 : <input type="text" name="villCode" value=""/></p>
+    <p><input type="submit" value="저장" class="addDeal"/></p>
+<%--<p><button type="button" class="addDeal">등록</button></p>--%>
 </form>
+      <p><button type="button" class="btn btn-secondary btn-lg close">닫기</button></p>
+
 </body>
 
 </html>

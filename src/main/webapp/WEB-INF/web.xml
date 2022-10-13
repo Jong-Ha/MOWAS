@@ -45,8 +45,8 @@
         <load-on-startup>1</load-on-startup>
         <multipart-config>
             <location>C:\Project\MOWAS\src\main\webapp\resources</location>
-            <max-file-size>20971520</max-file-size>
-            <max-request-size>41943040</max-request-size>
+            <max-file-size>524288000</max-file-size>
+            <max-request-size>524288000</max-request-size>
             <file-size-threshold>20971520</file-size-threshold>
         </multipart-config>
     </servlet>

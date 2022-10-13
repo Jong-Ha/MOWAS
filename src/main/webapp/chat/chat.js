@@ -25,6 +25,8 @@ function LiModel(name, msg, time){
     this.msg = msg;
     this.time = time;
 
+    console.log("이건 서버" + name,msg,time);
+
     this.makeLi = ()=>{
         const li = document.createElement("li");
         li.innerText = '<span className="profile">' +
@@ -36,4 +38,6 @@ function LiModel(name, msg, time){
         chatList.appendChild(li);
 
     }
+
+
 }

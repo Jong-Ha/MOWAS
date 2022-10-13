@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository("userDaoImpl")
 public class UserDaoImpl implements UserDao{
     @Autowired
@@ -28,11 +30,21 @@ public class UserDaoImpl implements UserDao{
     }
 
     public void addInterList(UserInterList interList)throws Exception{
+        System.out.println("여기는 addInterList 디에이오임플 시작이다");
         sqlSession.insert("UserMapper.addInterList", interList);
+        System.out.println("여기는 addInterList 디에이오임플 종료이다");
+    }
+
+    public void deleteInterList(UserInterList interList)throws Exception{
+        sqlSession.delete("UserMapper.deleteInterList", interList);
     }
 
     public User getUser(String userId)throws Exception{
         return sqlSession.selectOne("UserMapper.getUser", userId);
+    }
+
+    public void updateLcd(String msg)throws Exception{
+        sqlSession.selectOne("UserMapper.updateLcd", msg);
     }
 
     public void updateUser(User user)throws Exception{
@@ -41,6 +53,14 @@ public class UserDaoImpl implements UserDao{
 
     public User checkDupRrd(String rrd)throws Exception{
         return sqlSession.selectOne("UserMapper.checkDupRrd", rrd);
+    }
+
+    public List<User> listUser(User user)throws Exception{
+       return sqlSession.selectList("UserMapper.listUser", user);
+    }
+
+    public User getUserDetail(String userId)throws Exception{
+        return sqlSession.selectOne("UserMapper.getUserDetail", userId);
     }
 
 

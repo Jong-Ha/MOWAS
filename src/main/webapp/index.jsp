@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="resources/css/main.css" />
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <noscript><link rel="stylesheet" href="resources/css/noscript.css"/></noscript>
+    <script type="text/javascript" src="/resources/OpenSource/js/jquery.cookie.js"></script>
 
 
     <script type="text/javascript">
@@ -22,6 +23,21 @@
                     location.href="/club/listClub"
                 });
         });
+        /*
+        $(function (){
+            $(".loginView").on("click", function (){
+                alert('과연?')
+                $(self.location).attr("href", "user/login");
+
+            })
+        })
+        */
+
+        $(function (){
+            $(".site").on("click", function (){
+                $(self.location).attr("href", "site/listMasterBoard");
+            })
+        })
 
     </script>
 </head>
@@ -44,11 +60,11 @@
         </div>
         <nav>
             <ul>
-                <li><a href="/view/user/login.jsp">로그인</a></li>
+                <li ><a href="/view/user/main.jsp"> 메인화면</a></li>
                 <li><a>모임 관리</a></li>
                 <li><a class="commu">커뮤니티</a></li>
                 <li><a href="/deal/getListDeal">중고 거래</a></li>
-                <li><a href="">공지 사항</a></li>
+                <li><a class="site">공지 사항</a></li>
                 <!--<li><a href="#elements">Elements</a></li>-->
             </ul>
         </nav>

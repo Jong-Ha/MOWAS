@@ -291,7 +291,7 @@
     </div>
 </div>
 
-
+<jsp:include page="/layout/chatIcon.jsp"/>
 
 </body>
 </html>
