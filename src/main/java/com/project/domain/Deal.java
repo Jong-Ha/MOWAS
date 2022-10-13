@@ -3,7 +3,7 @@ package com.project.domain;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
+import org.springframework.web.multipart.MultipartFile;
 import java.sql.Date;
 import java.util.List;
 
@@ -13,7 +13,7 @@ import java.util.List;
 public class Deal {
     private User user;
     private int dealBoardNum;
-    private int boardCategory;
+    private String boardCategory;
     private int dealStatus;
     private String dealTitle;
     private String dealText;
@@ -33,4 +33,5 @@ public class Deal {
     private String dealLocation;
     List<File> files;
     private String likeCheck;
+    private String dealImage;
 }

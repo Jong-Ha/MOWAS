@@ -1,6 +1,7 @@
 package com.project.deal.service;
 
 import com.project.common.Search;
+import com.project.domain.ClubMasterBoard;
 import com.project.domain.Deal;
 
 import java.util.List;
@@ -8,11 +9,16 @@ import java.util.Map;
 
 
 public interface DealService {
-    public void addDeal(Deal deal) throws Exception;
-
+    public int addDeal(Deal deal) throws Exception;
+    public void updateDeal(Deal deal,List<String> deleteFileNames)throws Exception;
+    public List<String> deleteDeal(int dealBoardNum) throws Exception;
     public Deal getDeal(int dealBoardNum)throws Exception;
-    public void updateDeal(Deal deal)throws Exception;
+    public Map<String, Object> getListDeal(Search search, String boardCategory) throws Exception ;
+   // public int addDealBoard(Deal deal);
+//   public int addClubMasterBoard(ClubMasterBoard clubMasterBoard);
+//    public void updateClubMasterBoard(ClubMasterBoard clubMasterBoard, List<String> deleteFileNames);
+//    public List<String> deleteClubMasterBoard(int clubMasterBoardNum);
+//    public ClubMasterBoard getClubMasterBoard(int clubMasterBoardNum);
+//    public Map<String, Object> listClubMasterBoard(Search search, int clubNum);
 
-    public void deleteDeal(Deal deal) throws Exception;
-    public Map<String, Object> getListDeal(Search search, int boardCategory) throws Exception ;
 }

@@ -33,7 +33,7 @@ public class DealServiceTest {
         Deal deal =new Deal();
         User user=new User();
         deal.setDealBoardNum(10022);
-        deal.setBoardCategory(8);
+        deal.setBoardCategory("08");
         user.setUserId("user01");
 
         deal.setUser(user);
@@ -52,29 +52,29 @@ public class DealServiceTest {
 
     }
 
-    @Test
-    public void updateDeal()throws Exception{
-
-        Deal deal =new Deal();
-        User user = new User();
-        user.setUserId("user20");
-        deal.setDealTitle("111");
-        deal.setDealStatus(2);
-        deal.setDealText("111");
-        deal.setProductName("111");
-        deal.setPrice(111);
-        deal.setTag("111");
-        deal.setDealBoardNum(10001);
-
-    dealService.updateDeal(deal);
-
-    }
-    @Test
-    public void deleteDeal()throws Exception{
-        Deal deal = new Deal();
-        deal.setDealBoardNum(10009);
-        dealService.deleteDeal(deal);
-    }
+//    @Test
+//    public void updateDeal()throws Exception{
+//
+//        Deal deal =new Deal();
+//        User user = new User();
+//        user.setUserId("user20");
+//        deal.setDealTitle("111");
+//        deal.setDealStatus(2);
+//        deal.setDealText("111");
+//        deal.setProductName("111");
+//        deal.setPrice(111);
+//        deal.setTag("111");
+//        deal.setDealBoardNum(10001);
+//
+//    dealService.updateDeal(deal);
+//
+//    }
+//    @Test
+//    public void deleteDeal()throws Exception{
+//        Deal deal = new Deal();
+//        deal.setDealBoardNum(10009);
+//        dealService.deleteDeal(deal);
+//    }
  //   @Test
 //    public void testGetListDeal()throws Exception{
 //        Search search = new Search();

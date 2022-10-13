@@ -149,26 +149,6 @@ public class CommunityController {
         return null;
     }
 
-    @RequestMapping("chatList")
-    public String chatList() {
-
-        return "/chat/chatList.jsp";
-    }
-    //채팅 navigation
-    @RequestMapping("getChat")
-    public String getChat(@RequestParam("chatCategory") int chatCategory) {
-
-        if (chatCategory == 1) {
-            return "/chat/getChat.jsp";
-        }else if (chatCategory == 2) {
-            return "/chat/clubChat.jsp";
-        }else if (chatCategory == 3) {
-            return "/chat/dealChat.jsp";
-        }else if (chatCategory == 4) {
-            return "/chat/siteChat.jsp";
-        }
-        return null;
-    }
 
 
 }

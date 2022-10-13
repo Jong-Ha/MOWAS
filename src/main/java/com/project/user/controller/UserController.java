@@ -2,6 +2,7 @@ package com.project.user.controller;
 
 import com.project.common.Search;
 import com.project.domain.User;
+import com.project.domain.UserInterList;
 import com.project.user.service.UserService;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,7 @@ public class UserController {
     @Qualifier("userServiceImpl")
     private UserService userService;
 
+
     public UserController(){
         System.out.println(this.getClass());
     }
@@ -46,6 +48,7 @@ public class UserController {
     @Value("#{commonProperties['pageSize']}")
     int pageSize;
 
+
     @RequestMapping(value = "addUser",method = RequestMethod.GET)
     public String addUser() throws Exception{
         System.out.println("/user/addUser : GET 실행");
@@ -53,9 +56,14 @@ public class UserController {
     }
 
     @RequestMapping(value = "addUser",method = RequestMethod.POST)
-    public String addUser(@ModelAttribute("user") User user) throws Exception{
+    public String addUser(@ModelAttribute User user,@ModelAttribute UserInterList interList) throws Exception{
         System.out.println("/user/addUser : POST 실행");
+        System.out.println("user 값은 ? :"+user);
+        System.out.println("interList의 값은 ? :"+interList);
+
         userService.addUser(user);
+        //userService.addInterList(interList);
+        System.out.println("/user/addUser : POST 종료");
         return "forward:/view/user/main.jsp";
     }
 
@@ -87,6 +95,7 @@ public class UserController {
     @RequestMapping(value = "logout", method = RequestMethod.GET)
     public String logout(HttpSession session, HttpServletResponse response) {
         session.removeAttribute("user");
+        System.out.println("세션user의 값은? : "+session.getAttribute("user"));
         Cookie cookie = new Cookie("keepLogin", null);
         cookie.setMaxAge(0);
         cookie.setPath("/");
@@ -184,4 +193,22 @@ public class UserController {
         System.out.println("여기는 mailSender 컨트롤러 종료이다");
     }
 
+    @RequestMapping(value="kakaoLogin", method=RequestMethod.GET)
+    public String kakaoLogin(@RequestParam(value = "code", required = false) String code) throws Exception {
+        System.out.println("#########" + code);
+        String access_Token = userService.getAccessToken(code);
+
+        HashMap<String, Object> userInfo = userService.getUserInfo(access_Token);
+        System.out.println("###access_Token#### : " + access_Token);
+        System.out.println("###email#### : " + userInfo.get("email"));
+        System.out.println("###userImage#### : " + userInfo.get("userImage"));
+        System.out.println("###gender#### : " + userInfo.get("gender"));
+
+
+        return "forward:/view/user/main.jsp";
+
+    }
+
 }
+
+
