@@ -121,3 +121,40 @@ html, body {
 .received .message{
     background: #ffffff;
 }
+
+
+.wap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.chatBox {
+    padding: 5px 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    border: 2px solid #2c262669;
+}
+
+.potoBox {
+    width: 170px;
+    height: 150px;
+}
+
+.poto {
+    padding: 5px 5px 5px;
+    width: 157px;
+    height: 150px;
+}
+
+
+
+
+.chatText {
+    font-size: 0.8rem;
+}

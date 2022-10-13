@@ -19,6 +19,8 @@ WebSocket은 ws프로토콜을 이용하는 양뱡향 통신 방식
 //서버 생성 (express) 모듈 추출 해서 express 상수에 저장
 //express 모듈로 서버를 실행하려면 http 모듈이 필요하다.
 const express = require("express");
+//파일을 입출력 처리 할떄 쓰는 모듈 추출
+const fs = require("fs");
 //http 모듈 추출후 http상수에 담는다.
 const http = require("http");
 // 상수 app에 express에 저장되어있는 express모듈을 저장한다
@@ -31,6 +33,24 @@ const server = http.createServer(app);
 const socketIO = require("socket.io");
 //현재 시간을 알기 위해 moment모듈을 추출후 moment에 담는다
 const moment = require("moment")
+//mongoBD 모듈 추출후  mongoose상수에 담음
+const mongoose = require('mongoose');
+
+//클라이언트에서 query에 있는 roomId 가져오기
+
+
+mongoose.connect('mongodb://192.168.0.13:27017/');
+
+var db = mongoose.connection;
+
+db.on('error', function () {
+    console.log('연동 실패');
+})
+
+db.once('open', function () {
+    console.log("연동 성공!")
+})
+
 
 //soketIO에 server를 담고 io상수에 담는다
 const io = socketIO(server, {
@@ -51,26 +71,156 @@ const port = process.env.port || 5000
 /*io.on("connection", (socket) => {
     console.log("연결 완료")*/
 
+//moongoDB에 Schema 생성
+var room = mongoose.Schema({
+    userId: ['string'],
+    roomId: 'string',
+    chatCategory: 'string',
+    roomName: 'string'
+});
+
+//moongoDB에 Schema 생성
+var msg = mongoose.Schema({
+    userId: ['string'],
+    roomId: 'string',
+    chatCategory: 'string',
+    msg: 'string',
+    time: 'string',
+    rtime: 'number',
+})
+
+//정의된 스키마르 객체처럼 사용할수 있도록 model()함수로 컴파일
+
+var Msg = mongoose.model('chat', msg);
+
+var Room = mongoose.model("test", room);
+
+
+var chatlist = io.of('/chatlist');
+chatlist.on('connection', (socket) => {
+
+    const userId = socket.handshake.query.userId
+    const chatCategory = socket.handshake.query.chatCategory
+
+    Room.find({'userId': userId, 'chatCategory': chatCategory}, function (error, room) {
+
+        console.log('--- Room ---');
+
+        if (error) {
+            // console.log(error);
+        } else {
+            chatlist.emit("list", room);
+           // var rs = []
+            for (let i = 0; i < room.length; i++) {
+                // console.log(room[i].roomId);
+                Msg.find({'roomId': room[i].roomId}, function (error, msg) {
+                    // console.log("마지막 매시지 : " + msg);
+               /*     var r1 = JSON.stringify(room[i]);
+                    var r2 = JSON.parse(r1);
+
+                    r2.msg = msg[0];
+                    rs.push(r2);*/
+                    // console.log("list로 보낼 data : " + rs);
+                    // console.log("list로 보낼 data : " + rs);
+                    // chatlist.emit("list", rs);
+
+                    chatlist.emit("msg", msg);
+
+                }).sort({_id: -1}).limit(1)
+
+
+
+            }
+
+        }
+
+    })
+
+    socket.on('disconnect', () => {
+        console.log('끝!')
+    })
+
+})
+;
+
+
 //room 생성
 const onebyone = io.of('/onebyone');
+
 onebyone.on('connection', (socket) => {
 
-    //클라이언트에서 query에 있는 roomId 가져오기
     const roomId = socket.handshake.query.roomId
+
+    //socket에 roomId를 join
     socket.join(roomId);
 
-        //클라이언트에게 받은 data를 server에 받음
-        socket.on("chatting", (data) => {
-            console.log(data);
-            //서버가 현재 접속해 있는 모든 클라이언트에게 data를 전달 한다
+    console.log("roomId onebyone : " + roomId);
 
-            onebyone.to(roomId).emit("chatting", {
-                name: data.name,
-                msg: data.msg,
-                time: moment(new Date()).format("h:mm A")
-            })
-        })
+    Room.find({'roomId': roomId}, function (error, room) {
+        console.log(room);
+        console.log('--- onebyone ---');
+        if (error) {
+            console.log(error);
+        } else {
+            console.log("남의 데이터 가져오기" + room);
+        }
     })
+
+    Msg.find({'roomId': roomId}, function (error, msg) {
+        console.log(msg);
+        console.log('--- onebyone ---');
+        if (error) {
+            console.log(error);
+        } else {
+            onebyone.to(roomId).emit("json", msg);
+
+            console.log("내 테이터 가져 오기" + msg);
+        }
+    })
+
+    //클라이언트에게 받은 data를 server에 받음
+    socket.on("chatting", (data) => {
+        console.log(data);
+
+        //서버가 현재 접속해 있는 모든 클라이언트에게 data를 전달 한다
+        onebyone.to(roomId).emit("chatting", {
+            name: data.name,
+            msg: data.msg,
+            time: moment(new Date()).format("h:mm A")
+        });
+
+        // test객체를 new로 생성 해서 값을 입력
+        var newMsg = new Msg({
+            userId: data.name,
+            roomId: roomId,
+            msg: data.msg,
+            time: moment(new Date()).format("h:mm A"),
+            rtime: moment(new Date())
+        });
+
+        //데이터를 저장
+        newMsg.save((error, data, res) => {
+            if (error) {
+                console.log(error);
+            } else {
+                Msg.find({'roomId': roomId}, function (error, msg) {
+                    console.log(msg);
+                    console.log('--- onebyone ---');
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        onebyone.to(roomId).emit("json", {msg});
+
+                        console.log("내 테이터 가져 오기" + msg);
+                    }
+                })
+                console.log('성공이다!!!!!');
+            }
+        });
+
+
+    })
+})
 
 // namesoaces 설정 하기
 const clubChat = io.of('/clubChat');
