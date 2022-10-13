@@ -30,6 +30,9 @@
             $(".addClubMasterBoard").on("click",function(){
                 location.href="/club/addClubMasterBoard/${club.clubNum}"
             })
+            $(".listVote").on("click",function(){
+                location.href="/club/listVote/${club.clubNum}"
+            })
 
             // 확인용
             $(".listClubMasterBoard").on("click",function(){
@@ -92,6 +95,7 @@ ${club}<br>
 <input type="button" class="addCluberApply" value="가입 신청">
 <input type="button" class="updateCluberApply" value="가입 신청 수정">
 <input type="button" class="addClubreport" value="모임 신고">
+<input type="button" class="listVote" value="투표 목록">
 <br><br>
 <input type="button" class="listClubMasterBoard" value="모임 공지사항"><br>
 <input type="button" class="addClubMasterBoard" value="모임 공지사항 작성">

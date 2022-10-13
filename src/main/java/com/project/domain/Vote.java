@@ -14,7 +14,7 @@ public class Vote {
     }
 
     private int voteNum;
-    private int chatNum;
+    private String roomId;
     private String voteMasterId;
     private String voteTitle;
     private String voteText;
@@ -24,7 +24,7 @@ public class Vote {
     private Date voteDate;
     private Date endDate;
     private String endCheck;
-    private int totalVote;
+    private int totalVoter;
     private String voteItem1;
     private String voteItem2;
     private String voteItem3;

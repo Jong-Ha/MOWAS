@@ -42,4 +42,12 @@ public interface ClubService {
     public Map<String, Object> listCluber(Search search, int clubNum);
     public Cluber getCluber(int clubUserNum);
     public void updateCluber(Cluber cluber);
+    public void addVote(Vote vote);
+    public void updateVote(Vote vote);
+    public List<Vote> listVote(String roomId);
+    public Vote getVote(int voteNum);
+    public void addVoter(List<String> voterItems, String userId, int voteNum);
+    public List<Voter> listVoter(Voter voter);
+    public void updateVoter(List<String> voterItems, String userId, int voteNum);
+    public void deleteVote(int voteNum);
 }

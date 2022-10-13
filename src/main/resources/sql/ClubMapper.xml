@@ -57,7 +57,7 @@
         <result property="fileName" column="file_name" jdbcType="INTEGER"/>
     </resultMap>
 
-    <select id="getClubMasterBoardFiles" resultMap="FileResultMap">
+    <select id="getClubMasterBoardFiles" parameterType="int" resultMap="FileResultMap">
         SELECT *
         FROM files
         WHERE board_num = #{clubMasterBoardNum}
@@ -72,6 +72,38 @@
         <result property="user.userImage" column="user_image" jdbcType="VARCHAR"/>
         <result property="applyStatus" column="apply_status" jdbcType="INTEGER"/>
         <result property="applyDate" column="apply_date" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap type="com.project.domain.Vote" id="VoteResultMap">
+        <result property="voteNum" column="vote_num" jdbcType="INTEGER"/>
+        <result property="roomId" column="room_id" jdbcType="VARCHAR"/>
+        <result property="voteMasterId" column="vote_master_id" jdbcType="VARCHAR"/>
+        <result property="voteTitle" column="vote_title" jdbcType="VARCHAR"/>
+        <result property="voteText" column="vote_text" jdbcType="VARCHAR"/>
+        <result property="multiVoteCheck" column="multi_vote_check" jdbcType="VARCHAR"/>
+        <result property="hideVoteCheck" column="hide_vote_check" jdbcType="VARCHAR"/>
+        <result property="endDate" column="vote_end_date" jdbcType="DATE"/>
+        <result property="endDateCheck" column="vote_end_date_check" jdbcType="VARCHAR"/>
+        <result property="voteDate" column="vote_date" jdbcType="DATE"/>
+        <result property="endCheck" column="vote_end_check" jdbcType="VARCHAR"/>
+        <result property="voteItem1" column="vote_item_1" jdbcType="VARCHAR"/>
+        <result property="voteItem2" column="vote_item_2" jdbcType="VARCHAR"/>
+        <result property="voteItem3" column="vote_item_3" jdbcType="VARCHAR"/>
+        <result property="voteItem4" column="vote_item_4" jdbcType="VARCHAR"/>
+        <result property="voteItem5" column="vote_item_5" jdbcType="VARCHAR"/>
+        <result property="totalVoter" column="total_voter" jdbcType="INTEGER"/>
+        <result property="voter1" column="voter1" jdbcType="INTEGER"/>
+        <result property="voter2" column="voter2" jdbcType="INTEGER"/>
+        <result property="voter3" column="voter3" jdbcType="INTEGER"/>
+        <result property="voter4" column="voter4" jdbcType="INTEGER"/>
+        <result property="voter5" column="voter5" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap type="com.project.domain.Voter" id="VoterResultMap">
+        <result property="voterNum" column="voter_num" jdbcType="INTEGER"/>
+        <result property="voteNum" column="vote_num" jdbcType="INTEGER"/>
+        <result property="voteItem" column="vote_item" jdbcType="VARCHAR"/>
+        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--여기서부터 쿼리 시작-->
@@ -829,5 +861,163 @@
             club_calendar_apply_num = #{clubCalendarApplyNum}
         </where>
     </update>
+
+    <!--clubService.addVote-->
+    <!--투표 등록-->
+    <insert id="addVote" parameterType="com.project.domain.Vote">
+        INSERT INTO vote(vote_num,
+                         room_id,
+                         vote_master_id,
+                         vote_title,
+                         vote_text,
+                         multi_vote_check,
+                         hide_vote_check,
+                         vote_end_date,
+                         vote_end_date_check,
+                         vote_date,
+                         vote_end_check,
+                         vote_item_1,
+                         vote_item_2,
+                         vote_item_3,
+                         vote_item_4,
+                         vote_item_5)
+        VALUES (seq_vote.NEXTVAL,
+                #{roomId},
+                #{voteMasterId},
+                #{voteTitle},
+                #{voteText},
+                #{multiVoteCheck},
+                #{hideVoteCheck},
+                #{endDate:DATE},
+                #{endDateCheck},
+                SYSDATE,
+                '0',
+                #{voteItem1},
+                #{voteItem2:VARCHAR},
+                #{voteItem3:VARCHAR},
+                #{voteItem4:VARCHAR},
+                #{voteItem5:VARCHAR})
+    </insert>
+
+    <!--clubService.updateVote-->
+    <!--투표 수정-->
+    <!--엔드체크 있으면 마감변경, 없으면 내용 변경-->
+    <update id="updateVote" parameterType="com.project.domain.Vote">
+        UPDATE VOTE
+        SET
+        <if test="endCheck!=null">vote_end_check = #{endCheck}</if>
+        <if test="endCheck==null">
+            vote_title = #{voteTitle},
+            vote_text = #{voteText},
+            multi_vote_check = #{multiVoteCheck},
+            hide_vote_check = #{hideVoteCheck},
+            vote_end_date_check = #{endDateCheck},
+            vote_end_date = #{endDate:DATE},
+            vote_item_1 = #{voteItem1},
+            vote_item_2 = #{voteItem2:VARCHAR},
+            vote_item_3 = #{voteItem3:VARCHAR},
+            vote_item_4 = #{voteItem4:VARCHAR},
+            vote_item_5 = #{voteItem5:VARCHAR}
+        </if>
+        WHERE vote_num = #{voteNum}
+    </update>
+
+    <!--clubService.deleteVote-->
+    <!--투표 삭제-->
+    <delete id="deleteVote" parameterType="int">
+        DELETE vote
+        WHERE vote_num = #{voteNum}
+    </delete>
+
+    <!--clubService.deleteVote-->
+    <!--clubService.updateVoter-->
+    <!--제출 투표 삭제-->
+    <!--아이디 있으면 그사람 것만, 없으면 전체 삭제 => 투표 삭제를 위함-->
+    <delete id="deleteVoter" parameterType="map">
+        DELETE voter
+        WHERE
+        vote_num = #{voteNum}
+        <if test="userId != null">AND user_id = #{userId}</if>
+    </delete>
+
+    <!--clubService.listVote-->
+    <!--투표 리스트-->
+    <select id="listVote" parameterType="string" resultMap="VoteResultMap">
+        select vote_num,
+               room_id,
+               vote_master_id,
+               vote_title,
+               vote_end_date,
+               vote_end_date_check,
+               vote_date,
+               vote_end_check
+        FROM vote
+        WHERE room_id = #{roomId}
+    </select>
+
+    <!--clubService.getVote-->
+    <!--투표 상세-->
+    <select id="getVote" parameterType="int" resultMap="VoteResultMap">
+        select vote_num,
+               room_id,
+               vote_master_id,
+               vote_title,
+               vote_text,
+               multi_vote_check,
+               hide_vote_check,
+               vote_end_date,
+               vote_end_date_check,
+               vote_date,
+               vote_end_check,
+               vote_item_1,
+               vote_item_2,
+               vote_item_3,
+               vote_item_4,
+               vote_item_5,
+               (select COUNT(*)
+                FROM voter
+                where vote_num = #{voteNum}
+                  and VOTE_ITEM = (select vote_item_1 from VOTE where VOTE_NUM = #{voteNum})) voter1,
+               (select COUNT(*)
+                FROM voter
+                where vote_num = #{voteNum}
+                  and VOTE_ITEM = (select vote_item_2 from VOTE where VOTE_NUM = #{voteNum})) voter2,
+               (select COUNT(*)
+                FROM voter
+                where vote_num = #{voteNum}
+                  and VOTE_ITEM = (select vote_item_3 from VOTE where VOTE_NUM = #{voteNum})) voter3,
+               (select COUNT(*)
+                FROM voter
+                where vote_num = #{voteNum}
+                  and VOTE_ITEM = (select vote_item_4 from VOTE where VOTE_NUM = #{voteNum})) voter4,
+               (select COUNT(*)
+                FROM voter
+                where vote_num = #{voteNum}
+                  and VOTE_ITEM = (select vote_item_5 from VOTE where VOTE_NUM = #{voteNum})) voter5,
+               (select COUNT(distinct user_id) FROM voter where vote_num = #{voteNum})        total_voter
+        FROM vote
+        WHERE vote_num = #{voteNum}
+    </select>
+
+    <!--clubService.listVoter-->
+    <!--clubService.updateVoter-->
+    <!--제출 투표 조회-->
+    <!--유저 아이디 있으면 수정용으로 내거 조회, 없으면 해당 투표 제출자 조회-->
+    <select id="listVoter" parameterType="com.project.domain.Voter" resultMap="VoterResultMap">
+        SELECT voter_num, vote_num, vote_item, user_id
+        FROM voter
+        WHERE vote_num = #{voteNum}
+        <if test="userId==null">AND vote_item = #{voteItem}</if>
+        <if test="userId!=null">AND user_id = #{userId}</if>
+    </select>
+
+    <!--clubService.addVoter-->
+    <!--clubService.updateVoter-->
+    <!--투표 제출-->
+    <!--업데이트시 다 삭제 후 다시 등록-->
+    <insert id="addVoter" parameterType="com.project.domain.Voter">
+        insert into voter(voter_num, vote_num, vote_item, user_id)
+        VALUES (SEQ_VOTER.nextval, #{voteNum}, #{voteItem}, #{userId})
+    </insert>
 
 </mapper>

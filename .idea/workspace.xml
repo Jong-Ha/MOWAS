@@ -10,31 +10,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="LJH 2022.10.11&#10;&#10;모임 공지사항, 모임 블랙리스트 검색조건 및 페이징 처리&#10;모임원 목록과 탈퇴모임원 보기 나눔&#10;탈퇴 모임원 보기의 경우 페이징 처리&#10;&#10;모임생성, 수정 파일 업로드 및 수정 시 기존 이미지 삭제 구현 완료&#10;모임 공지사항 등록 파일 업로드 구현 완료">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-03__10_35__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-03__10_36__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-03_오후_10_35_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2022-10-03_오후_10_36_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/common.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/common.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/Vote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/Vote.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/Voter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/Voter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/jdbc.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/04d37cc2-5010-4bac-ad86-c9421e005f44다운로드.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/20330e1a-e7b4-433d-bcc9-024e9b382228네이버.jfif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/6258da9d-2d9b-4efe-8719-29316343c221카톡.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/6caab437-b2ce-49df-babf-72fc5655c54c다운로드.jfif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/7918c1fa-ee87-410a-83a4-526558742e95라이언.jfif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/966c8d9d-874b-4ed1-af1f-eaabf1441743bit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/b474d2d5-50ba-40e4-8f77-953454a33d06애플.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/d3232a93-db37-42b1-8dde-c9a635e9e0a6비트캠프.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/e9716165-3b60-4b12-87cc-3418da2aae1f넹이버.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/f636fc74-9c0d-4524-9f48-1fd3091eda8b카카오.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/updateClubMasterBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/updateClubMasterBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/DealMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/DealMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/getClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/getClub.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/club/service/ClubServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/club/service/ClubServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -104,7 +94,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Project/MOWAS",
+    "last_opened_file_path": "C:/Project/MOWAS/src/main/webapp/view/club",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -112,7 +102,7 @@
     "project.structure.last.edited": "전역 라이브러리",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.12528735",
-    "settings.editor.selected.configurable": "preferences.keymap",
+    "settings.editor.selected.configurable": "SQL Resolution Scopes",
     "spring.configuration.checksum": "0644e903b0ad21f514b0480754c0a1e2"
   },
   "keyToStringList": {
@@ -123,11 +113,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Project\MOWAS\src\main\webapp\view\club" />
       <recent name="C:\MainProject\MOWAS\src\main\webapp\view\club" />
       <recent name="C:\Devspace\MOWAS\src\main\resources\sql" />
       <recent name="C:\Devspace\MOWAS\src\main\java\com\project\user\dao" />
       <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community\update" />
-      <recent name="C:\Devspace\MOWAS\src\main\webapp\resources\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\903-15\IdeaProjects\MOWAS\src\main\webapp\view\user" />
@@ -144,8 +134,8 @@
       <recent name="com.project.notice.service" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat 서버.Tomcat 9.0.58">
-    <configuration name="ClubServiceTest.getCluber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ClubServiceTest.listVote">
+    <configuration name="ClubServiceTest.deleteVote" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MOWAS" />
       <extension name="coverage">
         <pattern>
@@ -155,13 +145,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="club.service" />
       <option name="MAIN_CLASS_NAME" value="club.service.ClubServiceTest" />
-      <option name="METHOD_NAME" value="getCluber" />
+      <option name="METHOD_NAME" value="deleteVote" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ClubServiceTest.getCluberApply" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ClubServiceTest.getVote" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MOWAS" />
       <extension name="coverage">
         <pattern>
@@ -171,13 +161,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="club.service" />
       <option name="MAIN_CLASS_NAME" value="club.service.ClubServiceTest" />
-      <option name="METHOD_NAME" value="getCluberApply" />
+      <option name="METHOD_NAME" value="getVote" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ClubServiceTest.listCluberApply" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ClubServiceTest.listVote" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MOWAS" />
       <extension name="coverage">
         <pattern>
@@ -187,13 +177,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="club.service" />
       <option name="MAIN_CLASS_NAME" value="club.service.ClubServiceTest" />
-      <option name="METHOD_NAME" value="listCluberApply" />
+      <option name="METHOD_NAME" value="listVote" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ClubServiceTest.updateClubCalendarApply" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ClubServiceTest.listVoter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MOWAS" />
       <extension name="coverage">
         <pattern>
@@ -203,13 +193,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="club.service" />
       <option name="MAIN_CLASS_NAME" value="club.service.ClubServiceTest" />
-      <option name="METHOD_NAME" value="updateClubCalendarApply" />
+      <option name="METHOD_NAME" value="listVoter" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ClubServiceTest.updateCluber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ClubServiceTest.updateVoter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MOWAS" />
       <extension name="coverage">
         <pattern>
@@ -219,7 +209,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="club.service" />
       <option name="MAIN_CLASS_NAME" value="club.service.ClubServiceTest" />
-      <option name="METHOD_NAME" value="updateCluber" />
+      <option name="METHOD_NAME" value="updateVoter" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -315,20 +305,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.ClubServiceTest.getCluberApply" />
-      <item itemvalue="JUnit.ClubServiceTest.getCluber" />
-      <item itemvalue="JUnit.ClubServiceTest.listCluberApply" />
-      <item itemvalue="JUnit.ClubServiceTest.updateClubCalendarApply" />
-      <item itemvalue="JUnit.ClubServiceTest.updateCluber" />
+      <item itemvalue="JUnit.ClubServiceTest.deleteVote" />
+      <item itemvalue="JUnit.ClubServiceTest.getVote" />
+      <item itemvalue="JUnit.ClubServiceTest.listVote" />
+      <item itemvalue="JUnit.ClubServiceTest.listVoter" />
+      <item itemvalue="JUnit.ClubServiceTest.updateVoter" />
       <item itemvalue="Tomcat 서버.Tomcat 9.0.58" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ClubServiceTest.updateCluber" />
-        <item itemvalue="JUnit.ClubServiceTest.updateClubCalendarApply" />
-        <item itemvalue="JUnit.ClubServiceTest.listCluberApply" />
-        <item itemvalue="JUnit.ClubServiceTest.getCluber" />
-        <item itemvalue="JUnit.ClubServiceTest.getCluberApply" />
+        <item itemvalue="JUnit.ClubServiceTest.listVote" />
+        <item itemvalue="JUnit.ClubServiceTest.getVote" />
+        <item itemvalue="JUnit.ClubServiceTest.deleteVote" />
+        <item itemvalue="JUnit.ClubServiceTest.listVoter" />
+        <item itemvalue="JUnit.ClubServiceTest.updateVoter" />
       </list>
     </recent_temporary>
   </component>
@@ -363,6 +353,7 @@
       <workItem from="1665131327325" duration="7334000" />
       <workItem from="1665387151403" duration="25398000" />
       <workItem from="1665454790100" duration="8748000" />
+      <workItem from="1665533657959" duration="27513000" />
     </task>
     <task id="LOCAL-00001" summary="설정">
       <created>1664436990723</created>
