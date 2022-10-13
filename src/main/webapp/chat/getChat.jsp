@@ -14,7 +14,7 @@
 <div class="wrapper">
     <div class="user-container">
         <label for="nickname">대화</label>
-        <input type="text" value="${user.userId}" id="nickname">
+        <input type="text" value="${user.userId}"id="nickname">
     </div>
     <div class="display-container">
         <ul class="chatting-list">
@@ -39,15 +39,45 @@
 <script>
     $(function () {
 
-
         //app.js에 있는 io상수를 socket상수에 담는다
         const socket = io("http://localhost:5000/onebyone", {
             cors: {origin: '*'},
             query : {
-                roomId : 1235
+                roomId : '${roomId}'
             }
 
         });
+
+        socket.on("json",(msg) =>{
+
+            console.log(msg);
+
+            $(".chatting-list *").remove();
+
+            $.each(msg , (index, item) => {
+
+                    //li 상수에 li테크를 만드는 method를 담는다
+                    const li = document.createElement("li");
+                    //내가 작성한건지 상대방이 작성한건지 비교하는 method
+                    li.classList.add(nickname.value === this.name ? "sent" : "received")
+                    //li에 html을 넣는다
+                    li.innerHTML = '<span class="profile">' +
+                        '<span class="user">' + item.userId + '</span>' +
+                        '<img class="userimg" src="https://placeimg.com/50/50/any" alt="any">' +
+                        '</span>' +
+                        '<span class="message">' + item.msg + '</span>' +
+                        '<span class="time">' + item.time + '</span>';
+
+                    //catList에 li의 html을 append한다
+
+
+
+                    chatList.appendChild(li);
+            })
+        });
+
+
+
         //dom을 사용해서 클라이언트에서 기록되는 내용을 가지고온다
         const nickname = document.querySelector("#nickname");
         const chatList = document.querySelector(".chatting-list");
@@ -110,6 +140,7 @@
                 chatList.appendChild(li);
             }
         }
+
     })
 </script>
 </body>
