@@ -48,7 +48,7 @@
     </resultMap>
 
     <!--우리 동네 게시판-->
-    <insert id="addVillBoard" parameterType="villBoard">
+    <insert id="addVillBoard" parameterType="villBoard" useGeneratedKeys="true">
         INSERT INTO
             vill_board (vill_board_num,user_id, vill_code ,vill_title,vill_text ,vill_tag,reg_date,board_category)
         VALUES ( seq_vill_board.NEXTVAL
@@ -60,6 +60,9 @@
                ,SYSDATE
                ,#{boardCategory}
                )
+        <selectKey resultType="int" keyProperty="villBoardNum" order="BEFORE">
+            SELECT seq_vill_board.NEXTVAL FROM DUAL
+        </selectKey>
     </insert>
 
 

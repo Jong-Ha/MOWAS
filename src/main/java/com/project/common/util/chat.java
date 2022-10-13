@@ -33,6 +33,7 @@ public class chat {
             model.addAttribute("roomId", roomId);
 
             return "/chat/getChat.jsp";
+
         }else if (chatCategory == 2) {
             return "/chat/clubChat.jsp";
         }else if (chatCategory == 3) {
