@@ -12,10 +12,10 @@
         <result property="userStatus" column="user_status" jdbcType="CHAR"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
         <result property="userName" column="user_name" jdbcType="VARCHAR"/>
-        <result property="rrd" column="rrd" jdbcType="NUMERIC"/>
+        <result property="rrd" column="rrd" jdbcType="VARCHAR"/>
         <result property="gender" column="gender" jdbcType="VARCHAR"/>
         <result property="email" column="email" jdbcType="VARCHAR"/>
-        <result property="phone" column="phone" jdbcType="NUMERIC"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
         <result property="villCode" column="vill_code" jdbcType="VARCHAR"/>
         <result property="userImage" column="user_Image" jdbcType="VARCHAR"/>
         <result property="lcd" column="lcd" jdbcType="DATE"/>
@@ -32,17 +32,25 @@
         <result property="interList" column="inter_list" jdbcType="CHAR"/>
     </resultMap>
 
+
+
     <insert      id="addUser"     parameterType="user" >
         INSERT INTO users(user_id, master_check, user_status, password, user_name, rrd, gender, email,
                           phone, vill_code, user_image, lcd, login_check, psd, ped, ppt, review_pt)
-        values(#{userId:VARCHAR}, #{masterCheck:CHAR}, #{userStatus:CHAR}, #{password:VARCHAR}, #{userName:VARCHAR}, #{rrd:NUMERIC}, #{gender:VARCHAR}, #{email:VARCHAR},
-               #{phone:NUMERIC}, #{villCode:VARCHAR}, #{userImage:VARCHAR}, #{lcd,jdbcType=DATE}, #{loginCheck:CHAR}, #{psd,jdbcType=DATE}, #{ped,jdbcType=DATE}, #{ppt:NUMERIC}, #{reviewPt:NUMERIC})
+        values(#{userId:VARCHAR}, #{masterCheck:CHAR}, #{userStatus:CHAR}, #{password:VARCHAR}, #{userName:VARCHAR}, #{rrd:VARCHAR},
+               #{gender:VARCHAR}, #{email:VARCHAR}, #{phone:VARCHAR}, #{villCode:VARCHAR}, #{userImage:VARCHAR},
+               #{lcd,jdbcType=DATE}, #{loginCheck:CHAR}, #{psd,jdbcType=DATE}, #{ped,jdbcType=DATE}, #{ppt:NUMERIC}, #{reviewPt:NUMERIC})
     </insert>
 
-    <insert      id="addInterList"     parameterType="interList" >
+    <insert      id="addInterList"     parameterType="com.project.domain.UserInterList" >
         INSERT INTO user_inter_list(user_inter_list_num, user_id, inter_list)
         values(seq_user_inter_list_num.nextval, #{userId}, #{interList})
     </insert>
+
+    <delete id="deleteInterList" parameterType="com.project.domain.UserInterList">
+        delete from user_inter_list
+        where user_id=#{userId} and inter_list=#{interList}
+    </delete>
 
     <select id="getUser"    parameterType="String" resultMap="userSelectMap">
         SELECT user_id, master_check, user_status, password, user_name, gender, email,
@@ -69,22 +77,31 @@
         WHERE user_id=#{userId}
     </update>
 
-    <!--<select id="listUser" parameterType="Search" resultMap="userSelectmap">
-        select * from(
-        select Rownum row _num, vt.* from(
-        <include refid="listUser2"/>) vt
-        <include refid="">
-
-    </include>
-            )
-
+    <select  id="listUser"  parameterType="user"	resultMap="userSelectMap">
+    SELECT *
+    from users
     </select>
 
     <sql id="listUser2">
         select
-            user_id, lcd, review_pt, ppt, psd, ped, user_status
+            user_id, lcd, review_pt, ppt, psd, ped, userStatus
         from users
+    </sql>
 
-    </sql>-->
+    <select id="userInfor" parameterType="user" resultMap="userSelectMap" >
+        select a.user_id, a.password, a.user_name, a.rrd, a.gender, a.email, a.phone, a.vill_code, b.inter_list, a.user_image, a.lcd, a.psd, a.ped, a.ppt, a.review_pt
+        from users a, user_inter_list b
+        where a.user_id=b.user_id and a.user_id=(select a.user_id from users a where a.user_id IN (#{userId}) )
+    </select>
+
+    <select id="getUserDetail" parameterType="String" resultMap="userSelectMap">
+        select a.user_id, a.user_status, a.user_name, a.rrd, a.gender, a.email, a.phone, a.vill_code, b.inter_list, a.user_image, a.lcd, a.psd, a.ped, a.ppt, a.review_pt
+        from users a, user_inter_list b
+        where a.user_id=b.user_id and a.user_id=(select a.user_id from users a where a.user_id IN (#{userId}) )
+    </select>
+
+
+
+
 
 </mapper>

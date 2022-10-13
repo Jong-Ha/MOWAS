@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,15 +14,8 @@
     <title>Bootstrap Example</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-
-    <script type="text/javascript">
-        $(function () {
-            $(".commu").on("click",function () {
-                location.href = "/commu/main"
-            })
-        })
-
-    </script>
+<script type="text/javascript" src="/resources/OpenSource/js/jquery.cookie.js"></script>
+    
     
     
     <style>
@@ -74,9 +68,15 @@
     </style>
     <script type="text/javascript">
         $(function () {
-            $(".logoutStart").on("click", function () {
+            $(".logout").on("click", function () {
                 alert('로그아웃 되나?');
-                location.href = "/view/user/main.jsp"
+                location.href = "/user/logout";
+            });
+        });
+        $(function () {
+            $(".login").on("click", function () {
+                alert('로그인 되나?');
+                self.location = "/user/login";
             });
         });
 
@@ -120,8 +120,14 @@
           	<img src="pngwing.png" style="width: 30px; margin-right: 10px;">
           	<div class="login">
 		        <div class="d-grid gap-2">
-				  	<button type="button" class="btn btn-outline-primary btnlf loginbox logoutStart">로그아웃</button>
-        			<button class="btn btn-outline-success btnlf loginbox myPage" type="button">마이페이지</button>
+                    <c:if test="${$.cookie('keepId')!=undefined}">
+                    <button type="button" class="btn btn-outline-primary btnlf loginbox login">로그인</button>
+                    </c:if>
+                    <c:if test="${$.cookie('keepId')==undefined}">
+				  	<button type="button" class="btn btn-outline-primary btnlf loginbox logout">로그아웃</button>
+                    </c:if>
+                    <button class="btn btn-outline-success btnlf loginbox myPage" type="button"><a href="myPage.jsp">마이페이지</a></button>
+
 				</div>
             </div>
               <button type="button" class="btn btn-primary position-relative alrim">
@@ -186,7 +192,7 @@
    <nav class="shadow-lg navbar navbar-expand-lg bg-light" style="margin-bottom: 50px;">
    	    <button type="button" class="btn btn-outline-primary btnlf">모임 목록</button>
         <button class="btn btn-outline-success btnlf" type="submit">판매 구매 게시글</button>
-   		<button type="button" class="btn btn-outline-danger btnlf commu">커뮤니티</button>
+   		<button type="button" class="btn btn-outline-danger btnlf">커뮤니티</button>
 		<button type="button" class="btn btn-outline-warning btnlf">공지 사항</button>
    </nav>
     
