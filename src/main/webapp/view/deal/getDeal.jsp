@@ -218,7 +218,7 @@ Product vo=(Product)request.getAttribute("vo");
 
 
 <body>
-<c:forEach items="${clubMasterBoard.files}" var="i">
+<c:forEach items="${deal.files}" var="i">
     <img src="/resources/${i.fileName}" alt="거래 게시글 사진"><br>
     <br>
 </c:forEach>
