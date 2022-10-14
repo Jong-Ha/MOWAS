@@ -11,9 +11,9 @@
             rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css"
           rel="stylesheet">
+    <link href="/resources/css/comment.css"  rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <link>
     <title>Bootstrap Example</title>
 
     <script type="text/javascript">
@@ -254,7 +254,7 @@
                         })
 
                         $(".updateRecomment").on("click", function () {
-                            $(this).parents(".allComment").find("#updateRecomment").toggle();
+                            $(this).parents(".allComment").find("#updateRecomment").slideToggle();
                         })
 
                         $(".addUpdateRecomment").on("click", function () {

@@ -253,7 +253,7 @@
                         })
 
                         $(".updateRecomment").on("click", function () {
-                            $(this).parents(".allComment").find("#updateRecomment").toggle();
+                            $(this).parents(".allComment").find("#updateRecomment").slideToggle();
                         })
 
                         $(".addUpdateRecomment").on("click", function () {
@@ -372,6 +372,8 @@
             $(".delete").on("click", function () {
                 var boardNum = $(".boardNum").val();
                 var boardCategory = $(".boardCategory").val()
+                alert(boardNum);
+                boardNum *=1;
 
                 const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
@@ -391,7 +393,7 @@
                     reverseButtons: true
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        location.href = "/commu/deleteBoard?boardNum=" + boardNum + "&boardCategory=" + boardCategory
+                        location.href = "/commu/deleteBoard?boardNum="+boardNum+"&boardCategory="+boardCategory
                         swalWithBootstrapButtons.fire(
                             '삭제 성공!',
                             'success'
@@ -407,6 +409,20 @@
                     }
                 })
             });
+
+            $(".update").on("click", function () {
+                var boardNum = $(".boardNum").val();
+                var boardCategory = $(".boardCategory").val()
+
+
+
+                window.open(
+                    "/commu/updateVillBoard?boardNum="+boardNum+"&boardCategory="+boardCategory, "우리 동네 게시글 수정",
+                    "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no"
+                )
+            });
+
+
             /*댓글*/
             $(".addcomment").on("click", function () {
                 var commentText = $(".addCommentText").val();
@@ -439,15 +455,7 @@
             })
 
 
-            $(".update").on("click", function () {
-                var boardNum = $(".villBoardNum").val();
-                var boardCategory = $(".boardCategory").val()
 
-                window.open(
-                    "/commu/updateVillBoard?boardNum=" + boardNum, "우리 동네 게시글 수정",
-                    "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no"
-                )
-            })
         })
     </script>
 

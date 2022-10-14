@@ -61,10 +61,12 @@
                 reverseButtons: true
             }).then((result) => {
                 if (result.isConfirmed) {
-                    location.href = "/commu/deleteBoard?boardNum="+boardNum+"&boardCategory="+boardCategory
                     swalWithBootstrapButtons.fire(
                         '삭제 성공!',
-                        'success'
+                        'success',
+                    setTimeout(()=>{
+                        location.href = "/commu/deleteBoard?boardNum="+boardNum+"&boardCategory="+boardCategory
+                        }, 1500)
                     )
                 } else if (
                     /* Read more about handling dismissals below */

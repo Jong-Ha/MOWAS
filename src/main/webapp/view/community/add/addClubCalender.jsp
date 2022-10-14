@@ -64,15 +64,15 @@
                     url: "/clubCal/json/addClubCalender",
                     method: "post",
                     data: JSON.stringify({
-                        "calenderTitle" :calenderTitle,
+                        "calenderTitle": calenderTitle,
                         "calenderText": calenderText,
-                        "clubDate" : clubDate,
+                        "clubDate": clubDate,
                         "location": location,
                         "file": file,
-                        "noticeCheck" : noticeCheck,
+                        "noticeCheck": noticeCheck,
                         "noticeTime": noticeTime,
                         "calendarApplyCheck": calendarApplyCheck,
-                        "applyAutoCheck" : applyAutoCheck
+                        "applyAutoCheck": applyAutoCheck
                     }),
                     dataType: "json",
                     contentType: "application/json; charset=UTF-8",
@@ -80,66 +80,72 @@
                         console.log(JSONData);
                         var boardNum = JSONData
 
-                        //form 테그를 불러와서 form변수에 등록
-                        var form = document.querySelector("form");
-                        //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
-                        var formData = new FormData(form);
-                        //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
-                        var fileSize = $("#file")[0].files;
-                        console.log(fileSize.length);
-                        //formData에 해당 게시글 번호, 게시글 category append
-                        formData.append("boardNum", boardNum);
-                        formData.append("boardCategoru", boardCategory);
+                        var file = $("#file").length
 
-                        //file길이 만큼 for문으로 formData에 append함
-                        for (var i = 0; i < fileSize.length; i++) {
-                            formData.append("form", fileSize[i]);
-                            //파일이 잘 들어 갔는지 확인
-                            console.log(fileSize[i]);
-                        }
-                        //formData에 들어 있는 boardNum과 file의 정보를 비동기식으로 보냄
-                        //파일은 json형식으로 보낼수 없기 떄문에 contentType, processData, dataType을 false로 지정
-                        $.ajax({
-                            url: "/clubCal/json/fileUpload",
-                            type: "post",
-                            processData: false,
-                            contentType: false,
-                            cache: false,
-                            timeout: 600000,
-                            data: formData,
-                            headers: {'cache-control': 'no-cache', 'pragma': 'no-cache'},
-                            enctype: "multipart/form-data",
-                            success: function (result) {
+                        if (file > 0) {
 
-                                console.log(result);
-                                // 성공시 해당 창을 닫고 부모창을 reload
-                                Swal.fire({
-                                    position: 'top-end',
-                                    icon: 'success',
-                                    title: 'Your work has been saved',
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                });
 
-                                setTimeout(function () {
-                                    opener.location.reload();
-                                    window.close();
-                                }, 2000);
-                                //error 발생시 그냥 창을 닫음
-                            }, error: function () {
-                                Swal.fire({
-                                    position: 'top-end',
-                                    icon: 'success',
-                                    title: 'Your work has been saved',
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                });
-                                setTimeout(function () {
-                                    window.close();
-                                }, 2000);
+                            //form 테그를 불러와서 form변수에 등록
+                            var form = document.querySelector("form");
+                            //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
+                            var formData = new FormData(form);
+                            //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
+                            var fileSize = $("#file")[0].files;
+                            console.log(fileSize.length);
+                            //formData에 해당 게시글 번호, 게시글 category append
+                            formData.append("boardNum", boardNum);
+                            formData.append("boardCategoru", boardCategory);
+
+                            //file길이 만큼 for문으로 formData에 append함
+                            for (var i = 0; i < fileSize.length; i++) {
+                                formData.append("form", fileSize[i]);
+                                //파일이 잘 들어 갔는지 확인
+                                console.log(fileSize[i]);
                             }
+                            //formData에 들어 있는 boardNum과 file의 정보를 비동기식으로 보냄
+                            //파일은 json형식으로 보낼수 없기 떄문에 contentType, processData, dataType을 false로 지정
+                            $.ajax({
+                                url: "/clubCal/json/fileUpload",
+                                type: "post",
+                                processData: false,
+                                contentType: false,
+                                cache: false,
+                                timeout: 600000,
+                                data: formData,
+                                headers: {'cache-control': 'no-cache', 'pragma': 'no-cache'},
+                                enctype: "multipart/form-data",
+                                success: function (result) {
+                                    console.log(result);
 
-                        })
+                                }
+                            })
+                        }
+                        console.log(result);
+                        // 성공시 해당 창을 닫고 부모창을 reload
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Your work has been saved',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        setTimeout(function () {
+                            opener.location.reload();
+                            window.close();
+                        }, 2000);
+                        //error 발생시 그냥 창을 닫음
+                    }, error: function () {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Your work has been saved',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        setTimeout(function () {
+                            window.close();
+                        }, 2000);
 
                     }
                 });
@@ -204,7 +210,7 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
                     <strong>위치
-                        <input type="button location" name="location" value="위치 입력">
+                        <input type="button" name="location" value="위치 입력">
                     </strong>
                 </div>
             </div>
@@ -215,7 +221,7 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
                     <strong>파일
-                        <input type="file file" name="file" value="파일 첨부">
+                        <input type="file" multiple name="file" value="파일 첨부">
                     </strong>
                 </div>
             </div>
@@ -241,7 +247,8 @@
 
             <div class="form-check form-switch">
                 추가 참여 여부
-                <input class="form-check-input check calendarApplyCheck" name="calendarApplyCheck" type="checkbox" role="switch"
+                <input class="form-check-input check calendarApplyCheck" name="calendarApplyCheck" type="checkbox"
+                       role="switch"
                        id="flexSwitchCheckDefault2">
                 <label class="form-check-label" for="flexSwitchCheckDefault2"></label>
             </div>

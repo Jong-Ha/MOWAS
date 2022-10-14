@@ -54,9 +54,9 @@
                     info.draggedEl.parentNode.removeChild(info.draggedEl);
                 }
             },
-            eventClick: function(info) {
+            eventClick: function (info) {
                 window.open(
-                    "/clubCal/getClubCalender?clubCalenderNum="+info.event.id,  "모임 일정 후기글 수정",
+                    "/clubCal/getClubCalender?clubCalenderNum=" + info.event.id, "모임 일정 후기글 수정",
                     "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no"
                 )
             },
@@ -79,7 +79,7 @@
             method: "POST",
             contentType: 'application/json; charset=utf-8',
             dataType: "json",
-            async : false,
+            async: false,
             data: JSON.stringify({
                 "clubNum": clubNum
             }),
@@ -96,40 +96,22 @@
             }
 
         })
-                console.log(result_val);
-                return result_val;
+        console.log(result_val);
+        return result_val;
 
     }
 
 
+    $(function () {
 
+        $(".addDay").on("click", function () {
 
-    $(".addDay").on("click", function () {
-        /*  var dateStr = prompt('Enter a date in YYYY-MM-DD format');
-          var date = new Date(dateStr + 'T00:00:00'); // 입력할 시간
+            window.open(
+                "/view/community/add/addClubCalender.jsp", "리뷰페이지",
+                "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
 
-
-          if (!isNaN(date.valueOf())) { // 입력할 시간이 valueCheck
-              calendar.addEvent({
-                  title: dataTitle,
-                  start: date,
-                  Text: dateText,
-                  allDay: true
-              });
-              alert('Great. Now, update your database...');
-          } else {
-              alert('Invalid date.');
-          }*/
-        // 팝업창 오픈
-        alert("리뷰창 오픈 ");
-
-        var pop = window.open(
-            "/view/community/add/addClubCalender.jsp", "리뷰페이지",
-            "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
-
-
-    });
-
+        });
+    })
 
 
 </script>

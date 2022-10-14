@@ -164,7 +164,7 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
                     <strong>위치
-                        <input type="button location" name="location" value="위치 입력">
+                        <input type="button" name="location" value="위치 입력">
                     </strong>
                 </div>
             </div>
@@ -175,20 +175,51 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
                     <strong>파일
-                        <input type="file file" name="file" value="파일 첨부">
+                        <input type="file" name="file" value="파일 첨부">
                     </strong>
                 </div>
             </div>
 
             <hr/>
 
-            알림 시간
-            <hr>
-
-            <input type="time" class="noticeTime" value="${clubCalender.noticeTime}" name="noticeTime">
+            <div class="form-check form-switch">
+                알림 설정 여부
+                <input class="form-check-input check noticeCheck" name="noticeCheck" type="checkbox" role="switch"
+                       id="flexSwitchCheckDefault1">
+                <label class="form-check-label" for="flexSwitchCheckDefault1"></label>
+            </div>
 
 
             <hr/>
+
+            알림 시간 설정
+            <hr>
+            <input type="time" class="noticeTime" name="noticeTime">
+
+            <hr/>
+
+            <div class="form-check form-switch">
+                추가 참여 여부
+                <input class="form-check-input check calendarApplyCheck" name="calendarApplyCheck" type="checkbox"
+                       role="switch"
+                       id="flexSwitchCheckDefault2">
+                <label class="form-check-label" for="flexSwitchCheckDefault2"></label>
+            </div>
+
+
+            <hr/>
+
+
+            <div class="form-check form-switch">
+                자동 참여 가능
+                <input class="form-check-input check applyAutoCheck" name="applyAutoCheck" type="checkbox" role="switch"
+                       id="flexSwitchCheckDefault3">
+                <label class="form-check-label" for="flexSwitchCheckDefault3"></label>
+            </div>
+
+
+            <hr/>
+
 
 
             <div class="row">

@@ -67,7 +67,9 @@
                     swalWithBootstrapButtons.fire(
                         '삭제 성공!',
                         'success',
-                    location.href = "/commu/deleteBoard?boardNum="+boardNum+"&boardCategory="+boardCategory
+                        setTimeout(()=>{
+                            location.href = "/commu/deleteBoard?boardNum="+boardNum+"&boardCategory="+boardCategory
+                        }, 1500)
                     )
                 } else if (
                     /* Read more about handling dismissals below */
@@ -88,8 +90,6 @@
             var boardNum =  $(this).parents(".cardbox").find(".CalenderReviewNum").val();
             var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val();
             var likeText =  $(this).parents(".cardbox").find(".likeText")
-
-
 
             $.ajax({
                 url: "/commu/json/addLike",
