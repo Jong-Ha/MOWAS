@@ -4,6 +4,7 @@ import com.project.common.Page;
 import com.project.common.Search;
 import com.project.domain.ClubReport;
 import com.project.domain.CommunityReport;
+import com.project.domain.File;
 import com.project.domain.MasterBoard;
 import com.project.site.dao.SiteDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,13 @@ public class SiteServiceImpl implements SiteService {
     @Override
     public void addMasterBoard(MasterBoard masterBoard) throws Exception {
         siteDao.addMasterBoard(masterBoard);
+        System.out.println(masterBoard.getMasterBoardNo());
+        List<File> files = masterBoard.getFiles();
+
+        for(File file : files) {
+            file.setBoardNum(masterBoard.getMasterBoardNo());
+            siteDao.addMasterBoardFiles(file);
+        }
     }
 
     @Override

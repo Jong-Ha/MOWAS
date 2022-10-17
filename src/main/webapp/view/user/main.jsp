@@ -1,5 +1,6 @@
+<%@ page import="com.project.domain.User" %>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+         pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -68,15 +69,16 @@
     </style>
     <script type="text/javascript">
         $(function () {
-            $(".logout").on("click", function () {
-                alert('로그아웃 되나?');
-                location.href = "/user/logout";
+            $(".login").on("click", function () {
+                alert('로그인 화면으로 이동');
+                self.location = "/view/user/login.jsp";
             });
         });
+
         $(function () {
-            $(".login").on("click", function () {
-                alert('로그인 되나?');
-                self.location = "/user/login";
+            $(".logout").on("click", function () {
+                alert('로그아웃 되나?');
+                self.location = "/user/logout";
             });
         });
 
@@ -118,15 +120,19 @@
             </li>
           </ul>
           	<img src="pngwing.png" style="width: 30px; margin-right: 10px;">
-          	<div class="login">
+          	<div class="loginButton">
 		        <div class="d-grid gap-2">
-                    <c:if test="${$.cookie('keepId')!=undefined}">
+                    <%
+                    User users =(User)session.getAttribute("user");
+
+                    if(users==null){%>
                     <button type="button" class="btn btn-outline-primary btnlf loginbox login">로그인</button>
-                    </c:if>
-                    <c:if test="${$.cookie('keepId')==undefined}">
+                    <%}else{%>
 				  	<button type="button" class="btn btn-outline-primary btnlf loginbox logout">로그아웃</button>
-                    </c:if>
+                    <%}%>
                     <button class="btn btn-outline-success btnlf loginbox myPage" type="button"><a href="myPage.jsp">마이페이지</a></button>
+
+                    user: <%=users%><br/>
 
 				</div>
             </div>

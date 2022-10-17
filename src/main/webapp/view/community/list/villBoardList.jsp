@@ -22,7 +22,7 @@
             var villBoardNum = $(this).parents(".cardbox").find(".villNum").val();
             var boardCategory = $(".boardCategory").val()
             console.log(villBoardNum);
-            location.href = "/commu/getVillBoard?villBoardNum="+villBoardNum+"&boardCategory="+boardCategory;
+            location.href = "/commu/getVillBoard?villBoardNum=" + villBoardNum + "&boardCategory=" + boardCategory;
         })
 
         $(".add").on("click", function () {
@@ -34,7 +34,7 @@
             var boardNum = $(this).parents(".cardbox").find(".villNum").val();
 
             window.open(
-                "/commu/updateVillBoard?boardNum="+boardNum, "우리 동네 게시글 수정",
+                "/commu/updateVillBoard?boardNum=" + boardNum, "우리 동네 게시글 수정",
                 "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no"
             )
         });
@@ -61,10 +61,12 @@
                 reverseButtons: true
             }).then((result) => {
                 if (result.isConfirmed) {
-                    location.href = "/commu/deleteBoard?boardNum="+boardNum+"&boardCategory="+boardCategory
                     swalWithBootstrapButtons.fire(
                         '삭제 성공!',
-                        'success'
+                        'success',
+                        setTimeout(() => {
+                            location.href = "/commu/deleteBoard?boardNum=" + boardNum + "&boardCategory=" + boardCategory
+                        }, 1500)
                     )
                 } else if (
                     /* Read more about handling dismissals below */
@@ -81,10 +83,10 @@
         /*좋아요*/
         $(".likeButton").on("click", function () {
 
-            var likeCount =$(this).parents(".cardbox").find(".likeText").html();
+            var likeCount = $(this).parents(".cardbox").find(".likeText").html();
             var boardNum = $(this).parents(".cardbox").find(".villNum").val();
             var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val()
-            var  likeText = $(this).parents(".cardbox").find(".likeText")
+            var likeText = $(this).parents(".cardbox").find(".likeText")
 
             $.ajax({
                 url: "/commu/json/addLike",
@@ -163,6 +165,34 @@
         margin-right: -700px;
     }
 
+    .get {
+        overflow: hidden;
+    }
+
+    .get img {
+        transition: all 0.2s linear;
+    }
+
+    .get:hover img {
+        transform: scale(1.1);
+    }
+
+    .text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .potoBox{
+
+        cursor: pointer;
+        padding: 1px;
+        width: 294px;
+        height: 200px;
+        overflow: hidden;
+        border-radius: 0 0 5px 5px;
+        border-bottom: 2px solid #0a090945
+    }
+
 </style>
 
 <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
@@ -170,7 +200,7 @@
 
 <!-- Example Code -->
 <div class="wap">
-    <input  hidden class="boardCategory" value ="3">
+    <input hidden class="boardCategory" value="03">
 
     <jsp:include page="/layout/toolbar.jsp"/>
 
@@ -190,18 +220,28 @@
         <div class="row row-cols-1 row-cols-md-3 g-4 cardbox">
             <input hidden class="villNum" value="${villBoard.villBoardNum}">
             <input hidden class="boardCategory" value="${villBoard.boardCategory}">
+
             <div class="col villBox">
-                <div class="card h-100">
-                    <svg class="bd-placeholder-img card-img-top get" width="100%" height="180"
-                         xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap"
-                         preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="#868e96"></rect>
-                        <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-                    </svg>
+
+                <div class="card h-100 shadow-lg">
+
+                    <div id="carouselExampleSlidesOnly" class="carousel slide potoBox" data-bs-ride="carousel"
+                         style="cursor: pointer">
+
+                        <c:forEach var="File" items="${villBoard.file}">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active get">
+                                    <img class="poto" width="100%" height="100%" src="/resources${File.fileName }"
+                                         alt="any">
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </div>
 
                     <div class="card-body carditem">
-                        <h5 class="card-title">${villBoard.villTitle}
+                        <h5 class="card-title">${villBoard.villTitle} </h5>
 
+                        <div class="itemBox">
                             <button type="button" class="btn btn-primary position-relative buttonBox likeButton">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                      class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
@@ -228,22 +268,29 @@
                                 </svg>
                             </button>
 
-                            <button type="button" class="btn btn-info update" style="font-size: 0.5em;">수정</button>
-                            <button type="button" class="btn btn-warning delete " style="font-size: 0.5em;">삭제
-                            </button>
+                            <c:if test="${user.userId  eq villBoard.userId}">
+                                <button type="button" class="btn btn-outline-primary update" style="font-size: 0.5em;">
+                                    수정
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary delete "
+                                        style="font-size: 0.5em;">삭제
+                                </button>
+                            </c:if>
+                            <hr>
 
-                        </h5>
 
-                        <div class="card-text">
-                                ${villBoard.villText}
+                            <div class="card-text text" style="font-size: 0.5em">
+                                    ${villBoard.villText}
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
+                        <small class="text-muted">등록 날짜는 : ${villBoard.regDate}일 입니다</small>
                     </div>
                 </div>
             </div>
         </div>
+
     </c:forEach>
 
 </div>

@@ -14,7 +14,8 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <!--  ///////////////////////// CSS ////////////////////////// -->
     <style>
-        body {
+        body > div.container {
+            margin-top: 10px;
             padding-top : 50px;
         }
     </style>
@@ -42,7 +43,7 @@
             });
 
             //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-            $( "button.btn.btn-primary" ).on("click" , function() {
+            $( ".addMb" ).on("click" , function() {
 
                 $(self.location).attr("href", "/site/addMasterBoard");
             });
@@ -78,9 +79,9 @@
 
                 <div class="form-group">
                     <select class="form-control" name="searchCondition" >
-                        <option value="0"  ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" : "" }>공지번호</option>
-                        <option value="1"  ${ ! empty search.searchCondition && search.searchCondition==1 ? "selected" : "" }>공지제목</option>
-                        <option value="2"  ${ ! empty search.searchCondition && search.searchCondition==2 ? "selected" : "" }>공지내용</option>
+                        <option value="0"  ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" : "" }>번호</option>
+                        <option value="1"  ${ ! empty search.searchCondition && search.searchCondition==1 ? "selected" : "" }>제목</option>
+                        <option value="2"  ${ ! empty search.searchCondition && search.searchCondition==2 ? "selected" : "" }>내용</option>
                     </select>
                 </div>
 
@@ -132,6 +133,7 @@
                 <td align="left">${mb.mbText}</td>
                 <td align="left">${mb.adminId}</td>
                 <td align="left">${mb.mbRegDate}</td>
+                <td align="left"><a href="/site/getMasterBoard/${mb.masterBoardNo}"> ▼ </a></td>
             </tr>
         </c:forEach>
 
@@ -147,7 +149,7 @@
     </div>
 
     <div class="col-md-12 text-center ">
-        <button type="button" class="btn btn-primary" >추 가</button>
+        <button type="button" class="addMb" >추 가</button>
         <a class="btn btn-default btn" href = "#" role="button">취 소 </a>
     </div>
 

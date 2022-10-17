@@ -129,7 +129,7 @@ public class CommunityController {
                               @RequestParam("boardCategory") int boardCategory
             , Model model, HttpSession session, HttpServletResponse response) throws UnsupportedEncodingException {
 
-        // commuService.deleteBoard(boardNum,boardCategory);
+        commuService.deleteBoard(boardNum,boardCategory);
 
         /*session.getAttribute("villCode");*/
 

@@ -5,6 +5,7 @@ import com.project.common.Page;
 import com.project.common.Search;
 import com.project.domain.ClubReport;
 import com.project.domain.CommunityReport;
+import com.project.domain.File;
 import com.project.domain.MasterBoard;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,11 @@ public class SiteDaoImpl implements SiteDao{
     public void addMasterBoard(MasterBoard masterBoard) {
 
         sqlSession.insert("SiteMapper.addMasterBoard", masterBoard);
+    }
+    @Override
+    public void addMasterBoardFiles(File file) {
+
+        sqlSession.insert("SiteMapper.addMasterBoardFiles", file);
     }
 
     @Override

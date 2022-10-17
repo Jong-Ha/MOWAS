@@ -54,5 +54,14 @@ public interface ClubDao {
     public int getTotalCluber(Map<String, Object> map);
     public Cluber getCluber(int clubUserNum);
     public void updateCluber(Cluber cluber);
+    public void addVote(Vote vote);
+    public void updateVote(Vote vote);
+    public void deleteVote(int voteNum);
+    public void deleteVoter(Map<String, Object> map);
+    public List<Vote> listVote(String roomId);
+    public void updateVoteEndDate(String roomId);
+    public Vote getVote(Map<String, Object> map);
+    public List<Voter> listVoter(Voter voter);
+    public void addVoter(Voter voter);
 
 }

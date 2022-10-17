@@ -17,6 +17,10 @@
 <body>
 <div class="wap">
     <jsp:include page="/layout/chatbar.jsp"/>
+    <label>
+        <input type="text" name="userId">
+    </label>
+    <input type="button" class="addOneChat" value="채팅만들기">
     <div class="chatList">
 
 
@@ -28,21 +32,33 @@
 
 
     $(function () {
+        $(".addOneChat").on("click", function(){
+            location.href = "/chat/addOneChat/"+$('[name="userId"]').val()
+        })
 
-        const socket = io("http://localhost:5000/chatlist", {
+        const socket = io("http://192.168.0.234:5000/chatlist", {
             cors: {origin: '*'},
             query: {
                 userId: '${user.userId}',
-                chatCategory: 'one'
+                chatCategory: 'onebyone'
             }
         })
         socket.on("list", (room) => {
+
+            console.log(room)
 
             $(".chatList").html("");
 
             $.each(room, function(index, item) {
 
                 console.log(item);
+
+                var chatter;
+                if(item.users[0].userId==='${user.userId}'){
+                    chatter = item.users[1].userId
+                }else {
+                    chatter = item.users[0].userId
+                }
 
                 var chatList = ' <div class="card shadow-lg chatBox" style="max-width: 500px; margin-bottom: 20px">' +
                                 '<input hidden class="roomId" value="'+item.roomId+'">'+
@@ -52,7 +68,7 @@
                                 '</div>' +
                                 '<div class="col-md-8 chatText">' +
                                 '<div class="card-body " >' +
-                                '<h5 class="card-title">'+item.roomName+'</h5>' +
+                                '<h5 class="card-title">'+chatter+'</h5>' +
                                 '<hr>' +
                                 '<p class="card-text lastchatText"></p>' +
                                 '<hr>' +

@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,6 +22,7 @@ public class VilBoard {
     private int viewCount;
     private int likeCount;
     private int boardCategory;
+    private List<File> file;
 
 }
 

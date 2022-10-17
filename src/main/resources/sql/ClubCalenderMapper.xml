@@ -33,6 +33,13 @@
         <result property="boardCategory"            column="board_category"              jdbcType="INTEGER"/>
     </resultMap>
 
+    <resultMap type="com.project.domain.File" id="FileResultMap">
+        <result property="fileNum" column="file_num" jdbcType="INTEGER"/>
+        <result property="boardNum" column="board_num" jdbcType="VARCHAR"/>
+        <result property="boardCategory" column="board_category" jdbcType="VARCHAR"/>
+        <result property="fileName" column="file_name" jdbcType="INTEGER"/>
+    </resultMap>
+
     <!--모임 일정 -->
     <insert id="addClubCalender" parameterType="clubCalender">
         INSERT INTO
@@ -96,7 +103,6 @@
                     ,SYSDATE
                     ,#{boardCategory}
                     )
-
         </if>
         <if test="boardCategory == 2">
             club_calendar_review(club_calendar_review_num,club_calendar_num,club_num,user_id,review_range,review_title,board_category,reg_date)
@@ -110,7 +116,7 @@
                 ,SYSDATE)
         </if>
         <selectKey keyProperty="clubCalenderReviewNum" resultType="int" order="AFTER">
-           SELECT seq_club_calendar_review.NEXTVAL FROM DUAL
+           SELECT seq_club_calendar_review.CURRVAL FROM DUAL
         </selectKey>
     </insert>
 
@@ -146,5 +152,22 @@
         AND REVIEW_RANGE = '1'
     </select>
 
+    <!--파일 등록-->
+    <insert id="addFileUpload" parameterType="map">
+        INSERT
+        INTO files(file_num,
+                   board_num,
+                   board_category,
+                   file_name)
+        VALUES (seq_files.NEXTVAL, #{boardNum}, #{boardCategory}, #{fileName})
+    </insert>
+
+    <select id="getListFile" parameterType="map" resultMap="FileResultMap">
+        SELECT *
+        FROM files
+        WHERE board_num = #{boardNum}
+            AND board_category = #{boardCategory}
+        ORDER BY file_num DESC
+    </select>
 
 </mapper>

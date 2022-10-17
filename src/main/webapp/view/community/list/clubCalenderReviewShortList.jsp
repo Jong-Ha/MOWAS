@@ -21,6 +21,8 @@
 
 <script type="text/javascript">
     $(function () {
+        console.log('${user.userId}');
+
 
         $(".add").on("click", function () {
 
@@ -64,7 +66,9 @@
                     swalWithBootstrapButtons.fire(
                         '삭제 성공!',
                         'success',
-                        location.href = "/commu/deleteBoard?boardNum="+boardNum+"&boardCategory="+boardCategory
+                        setTimeout(()=>{
+                            location.href = "/commu/deleteBoard?boardNum="+boardNum+"&boardCategory="+boardCategory
+                        }, 1500)
                     )
                 } else if (
                     /* Read more about handling dismissals below */
@@ -232,9 +236,10 @@
                                     </svg>
                                 </button>
 
-                                <button type="button" class="btn btn-outline-primary itembutton update">수정</button>
-                                <button type="button" class="btn btn-outline-secondary itembutton delete">삭제</button>
-
+                                <c:if test="${user.userId eq ClubCalendarReview.userId}">
+                                    <button type="button" class="btn btn-outline-primary itembutton update">수정${user.userId}</button>
+                                    <button type="button" class="btn btn-outline-secondary itembutton delete">삭제</button>
+                                </c:if>
                             </h5>
                         </div>
                         <div class="card-footer">
