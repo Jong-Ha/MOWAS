@@ -2,6 +2,7 @@ package com.project.deal.service;
 
 import com.project.common.Search;
 import com.project.deal.dao.DealDao;
+import com.project.domain.ClubMasterBoard;
 import com.project.domain.Deal;
 import com.project.domain.File;
 import com.project.site.dao.SiteDao;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,26 +36,18 @@ public class DealServiceImpl implements DealService {
         System.out.println("addDeal serviceImpl");
         System.out.println("addDeal serviceImpl"+deal);
         System.out.println("addDeal serviceImpl");
-        System.out.println("뭔데 ㅜㅜ"+dealDao.getDealNum(deal.getUser().getUserId()));
+       // System.out.println("뭔데 ㅜㅜ"+dealDao.getDealNum(deal.getUser().getUserId()));
         int dealBoardNum = dealDao.getDealNum(deal.getUser().getUserId());
+        String boardCategory=deal.getBoardCategory();
         List<File> files = deal.getFiles();
         for(File file : files){
             file.setFileName(file.getFileName());
             file.setBoardNum(dealBoardNum);
-            file.setBoardCategory(deal.getBoardCategory());
-            file.setFileName(file.getFileName());
+            file.setBoardCategory(boardCategory);
             dealDao.addDealBoardFile(file);
         }
         System.out.println(dealBoardNum);
         return dealBoardNum;
-
-    }
-
-    @Override
-    public Deal getDeal(int dealBoardNum) throws Exception{
-        System.out.println("getDeal serviceImpl");
-
-        return dealDao.getDeal(dealBoardNum);
 
     }
 
@@ -97,22 +91,45 @@ public class DealServiceImpl implements DealService {
     }
 
     @Override
-    public Map<String, Object> getListDeal(Search search,String boardCategory) throws Exception {
-        Map<String, Object> map2=new HashMap<>();
-        map2.put("search", search);
-        map2.put("boardCategory",boardCategory);
-
-
-
-
-        List<Deal> list=dealDao.getListDeal(map2);
-        int totalCount = dealDao.getTotalCount(search);
-        System.out.println("여기까지는 옴 ?");
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("list", list );
-        map.put("totalCount", new Integer(totalCount));
-
+    public Map<String, Object> getListDeal(Search search, String boardCategory) throws Exception {
+        Map<String, Object> map = new HashMap<>();
+        map.put("search",search);
+        map.put("boardCategory",boardCategory);
+        int totalCount = dealDao.getTotalCount(map);
+        List<Deal> list = dealDao.getListDeal(map);
+        map.put("totalCount",totalCount);
+        map.put("list",list);
         return map;
+
+
+
+
+//        Map<String, Object> map2=new HashMap<>();
+  //      map2.put("search", search);
+    //    map2.put("boardCategory",boardCategory);
+//        List<Deal> list=dealDao.getListDeal(map2);
+//        int totalCount = dealDao.getTotalCount(search);
+//        System.out.println("여기까지는 옴 ?");
+//        Map<String, Object> map = new HashMap<String, Object>();
+//        map.put("list", list );
+//        map.put("totalCount", new Integer(totalCount));
+
+        //return map;
+    }
+
+//    @Override
+//    public List<String> addReview(Deal dea) throws Exception {
+//        dealDao.addReview
+//        return ;
+//
+//    }
+
+    @Override
+    public Deal getDeal(int dealBoardNum) throws Exception{
+        System.out.println("getDeal serviceImpl");
+
+        return dealDao.getDeal(dealBoardNum);
+
     }
 
 //    @Override

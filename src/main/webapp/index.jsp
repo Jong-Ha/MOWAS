@@ -11,6 +11,7 @@
     <script type="text/javascript" src="/resources/OpenSource/js/jquery.cookie.js"></script>
 
 
+
     <script type="text/javascript">
         $(function (){
             $(".commu").on("click",
@@ -61,7 +62,7 @@
                 <li class="loginView">로그인</li>
                 <li><a>모임 관리</a></li>
                 <li><a class="commu">커뮤니티</a></li>
-                <li><a href="/deal/getListDeal">중고 거래</a></li>
+                <li><a href="/deal/getListDeal?boardCategory=08">중고 거래</a></li>
                 <li><a class="site">공지 사항</a></li>
                 <!--<li><a href="#elements">Elements</a></li>-->
             </ul>

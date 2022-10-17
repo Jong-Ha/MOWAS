@@ -40,13 +40,25 @@
 
     // ============= "가입"  Event 연결 =============
     $(function() {
-      //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-      $( "button.btn.btn-primary" ).on("click" , function() {
-        self.location = "/deal/getDeal?dealBoardNum="+$(this).children().val();
-      });
-      $(".dealLogin").on("click",function(){
-        location.href="/deal/login?userId="+$("input[name='userId']").val()
+      $(".paging").on("click",function(){
+
+        $("#currentPage").val($(this).text())
+        $("form").submit()
       })
+      $("form").on("submit",function(){
+
+
+        $(this).attr("action","/deal/getListDeal?${deal.boardCategory}").attr("method","post")
+      })
+
+
+      // //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+      // $( "button.btn.btn-primary" ).on("click" , function() {
+      //   self.location = "/deal/getDeal?dealBoardNum="+$(this).children().val();
+      // });
+      // $(".dealLogin").on("click",function(){
+      //   location.href="/deal/login?userId="+$("input[name='userId']").val()
+      // })
 
 
     });
@@ -68,11 +80,17 @@
     // });
     $(function () {
       $(".deal").on("click", function () {
-        location.href = "/deal/getListDeal?boardCategory=08";
+
+         location.href = "/deal/getListDeal?boardCategory="+$(".deal").val();
+
+        //$(this).attr("action","/deal/getListDeal/08").attr("method","post")
       });
 
       $(".dealRequest").on("click", function () {
-        location.href = "/deal/getListDeal?boardCategory=09";
+        alert($(".dealRequest").val());
+        location.href = "/deal/getListDeal?boardCategory="+$(".dealRequest").val();
+
+       // $(this).attr("action","/deal/getListDeal/09").attr("method","post")
       })
     });
   </script>
@@ -91,51 +109,48 @@
 </div>
 <!-- ToolBar End /////////////////////////////////////-->
 <!-- table 위쪽 검색 Start /////////////////////////////////////-->
-<div class="row">
+<%--<div class="row">--%>
 
-  <div class="col-md-6 text-left">
-    <p class="text-primary">
-      전체  ${resultPage.totalCount } 건수, 현재 ${resultPage.currentPage}  페이지
-    </p>
+<%--  <div class="col-md-6 text-left">--%>
+<%--    <p class="text-primary">--%>
+<%--      전체  ${resultPage.totalCount } 건수, 현재 ${resultPage.currentPage}  페이지--%>
+<%--    </p>--%>
+<%--  </div>--%>
+
+<%--  <div class="col-md-6 text-right">--%>
+<%--    <form class="form-inline" name="detailForm">--%>
+
+<%--      <div class="form-group">--%>
+<%--        <select class="form-control" name="searchCondition" >--%>
+<%--          <option value="0"  ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" : "" }>제품명</option>--%>
+<%--          <option value="1"  ${ ! empty search.searchCondition && search.searchCondition==1 ? "selected" : "" }>태그</option>--%>
+<%--        </select>--%>
+<%--      </div>--%>
+
+<%--      <div class="form-group">--%>
+<%--        <label class="sr-only" for="searchKeyword">검색어</label>--%>
+<%--        <input type="text" class="form-control" id="searchKeyword" name="searchKeyword"  placeholder="검색어"--%>
+<%--               value="${! empty search.searchKeyword ? search.searchKeyword : '' }"  >--%>
+<%--      </div>--%>
+
+<%--      <button type="button" class="btn btn-default">검색</button>--%>
+
+<%--      <!-- PageNavigation 선택 페이지 값을 보내는 부분 -->--%>
+<%--      <input type="hidden" id="currentPage" name="currentPage" value=""/>--%>
+
+<%--    </form>--%>
+<%--  </div>--%>
+
+<%--</div>--%>
+<form>
+<div class="form-group">
+  <div class="col-sm-2">
+    <button type="button" class="deal" value="08">판매</button>
+    <button type="button" class="dealRequest" value="09">판매요청</button>
+<input hidden class="boardCategory"value="${boardCategory}">
   </div>
-
-  <div class="col-md-6 text-right">
-    <form class="form-inline" name="detailForm">
-
-      <div class="form-group">
-        <select class="form-control" name="searchCondition" >
-          <option value="0"  ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" : "" }>제품명</option>
-          <option value="1"  ${ ! empty search.searchCondition && search.searchCondition==1 ? "selected" : "" }>태그</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label class="sr-only" for="searchKeyword">검색어</label>
-        <input type="text" class="form-control" id="searchKeyword" name="searchKeyword"  placeholder="검색어"
-               value="${! empty search.searchKeyword ? search.searchKeyword : '' }"  >
-      </div>
-
-      <button type="button" class="btn btn-default">검색</button>
-
-      <!-- PageNavigation 선택 페이지 값을 보내는 부분 -->
-      <input type="hidden" id="currentPage" name="currentPage" value=""/>
-
-    </form>
-  </div>
-
 </div>
-<!-- table 위쪽 검색 Start /////////////////////////////////////-->
 
-<!--  화면구성 div Start /////////////////////////////////////-->
-
-
-  <div class="form-group">
-    <div class="col-sm-2">
-      <button type="button" class="deal">판매</button>
-      <button type="button" class="dealRequest">판매요청</button>
-
-    </div>
-  </div>
   <table class="table table-hover table-striped" >
 
     <thead>
@@ -152,17 +167,36 @@
     <c:forEach items="${list}" var="deal">
 
     <tr>
-
+      <input type="hidden" name="dealBoardNum" value="${deal.dealBoardNum}">
       <td align="left">   ${deal.dealBoardNum}</td>
       <td align="left">    ${deal.dealTitle}</td>
       <td align="left">    ${deal.dealText}</td>
       <td align="left"><a href="/deal/getDeal/${deal.dealBoardNum}">상세보기</a></td>
 
-    </c:forEach>
+      </c:forEach>
       <a href="/deal/addDeal"> <input type="button" class="addDeal" value="거래 만들기"></a>
     </tbody>
 
   </table>
+  <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" var="i">
+    <span class="paging">${i}</span>
+  </c:forEach>
+  <label>
+    <input type="hidden" id="currentPage" name="currentPage" value="1">
+    <input type="text" name="searchKeyword" value="${search.searchKeyword}">
+  </label>
+  <input type="submit" value="검색">
+</form>
+
+
+
+<!-- table 위쪽 검색 Start /////////////////////////////////////-->
+
+<!--  화면구성 div Start /////////////////////////////////////-->
+
+
+
+
 <input type="button" class="clubLogin" value="로그인">
 <label>
   아이디 : <input type="text" name="userId" value="">
