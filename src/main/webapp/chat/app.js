@@ -27,6 +27,8 @@ const http = require("http");
 const app = express();
 // path모듈 추출후 상수 path에 저장
 const path = require("path");
+//파일 업로드 모듈
+const multer = require("multer");
 // 상수 server에 http모듈의 메서드 createServer를 사용해서 express를 서버로 등록함
 const server = http.createServer(app);
 // socket.io모듈을 추출 후 soketIO 상수에 담는다
@@ -85,6 +87,7 @@ var msg = mongoose.Schema({
     roomId: 'string',
     chatCategory: 'string',
     msg: 'string',
+    flie : 'string',
     time: 'string',
     rtime: 'number'
 })
@@ -105,7 +108,6 @@ chatlist.on('connection', (socket) => {
     Room.find({'users.userId': userId, chatCategory: chatCategory}, function (error, room) {
 
         console.log('--- Room ---');
-        console.log(room)
 
         if (error) {
             // console.log(error);
@@ -141,6 +143,11 @@ chatlist.on('connection', (socket) => {
     })
 
 })
+
+
+
+
+
 
 
 //room 생성
@@ -185,7 +192,7 @@ onebyone.on('connection', (socket) => {
     // })
 
     Msg.find({'roomId': roomId}, function (error, msg) {
-        console.log(msg);
+        // console.log(msg);
         console.log('--- onebyone ---');
         if (error) {
             console.log(error);
@@ -198,13 +205,14 @@ onebyone.on('connection', (socket) => {
 
     //클라이언트에게 받은 data를 server에 받음
     socket.on("chatting", (data) => {
-        console.log(data);
+        // console.log(data);
 
         // test객체를 new로 생성 해서 값을 입력
         var newMsg = new Msg({
             userId: data.name,
             roomId: roomId,
             msg: data.msg,
+            flie : data.file,
             time: moment(new Date()).format("h:mm A"),
             rtime: moment(new Date())
         });
@@ -213,11 +221,7 @@ onebyone.on('connection', (socket) => {
         // console.log(roomId)
 
         // 서버가 현재 접속해 있는 모든 클라이언트에게 data를 전달 한다
-        onebyone.to(roomId).emit("chatting", newMsg/*{
-            name: data.name,
-            msg: data.msg,
-            time: moment(new Date()).format("h:mm A")
-        }*/);
+        onebyone.to(roomId).emit("chatting", newMsg);
 
         //데이터를 저장
         newMsg.save((error, data, res) => {
@@ -225,14 +229,14 @@ onebyone.on('connection', (socket) => {
                 console.log(error);
             } else {
                 Msg.find({'roomId': roomId}, function (error, msg) {
-                    console.log(msg);
+                    // console.log(msg);
                     console.log('--- onebyone ---');
                     if (error) {
                         console.log(error);
                     } else {
                         onebyone.to(roomId).emit("json", msg);
 
-                        console.log("내 테이터 가져 오기" + msg);
+                        // console.log("내 테이터 가져 오기" + msg);
                     }
                 })
                 console.log('성공이다!!!!!');
@@ -249,6 +253,15 @@ onebyone.on('connection', (socket) => {
     });
 
 })
+
+
+
+
+
+
+
+
+
 
 // namesoaces 설정 하기
 const clubChat = io.of('/clubChat');

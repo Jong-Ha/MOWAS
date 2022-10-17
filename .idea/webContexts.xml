@@ -9,6 +9,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/club/addClubMasterBoard.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/club" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/club/getClub.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/club" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/club" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/community/add/addClubCalenderReviewShort.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/community/add" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/community/addCalender.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/community" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/community/calender.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/community" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/community/clubPage.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/community" />
@@ -18,6 +19,9 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/community/list/clubCalenderReviewList.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/community/list" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/community/list/villBoardList.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/community/list" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/community/update/updateClubCalenderReviewShort.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/community/update" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/deal/getDeal.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/deal" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/site/clubMap.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/site" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/site/getMasterBoard.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/site" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/user" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/user/listUser.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/user" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/user/login.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/user" />

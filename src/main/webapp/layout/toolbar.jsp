@@ -6,6 +6,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<script>
+
+  $(function () {
+    $(".login").on("click", function () {
+      self.location = "/view/user/login.jsp";
+    });
+  });
+
+</script>
 <html>
 <head>
     <title>Title</title>
@@ -74,7 +84,7 @@
         <img src="${pageContext.request.contextPath}/resources/images/pngwing.png" style="width: 30px; margin-right: 10px;">
         <div class="login">
           <div class="d-grid gap-2">
-            <button type="button" class="btn btn-outline-primary btnlf loginbox" style="font-size: 0.5em;">로그아웃</button>
+            <button type="button" class="btn btn-outline-primary btnlf loginbox login" style="font-size: 0.5em;">로그인</button>
             <button class="btn btn-outline-success btnlf loginbox" style="font-size: 0.5em;" type="submit">마이패이지</button>
           </div>
         </div>
