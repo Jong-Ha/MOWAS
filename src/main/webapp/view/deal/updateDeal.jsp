@@ -27,6 +27,7 @@
 
       //파일 삭제 버튼
       $(".deleteFile").on("click",function(){
+        alert("${deal.files}");
         var size = $("#fileSize");
         size.parent().append('<input type="hidden" name="deleteFileName" value="'+$(this).parent().attr('id')+'">')
         $(this).parent().remove()
@@ -47,6 +48,7 @@
   <label>
     <input type="hidden" name="boardCategory" value="${deal.boardCategory}">
     <input type="hidden" name="dealBoardNum" value="${deal.dealBoardNum}">
+    <input type="hidden" id="fileSize" value="${fileSize}">
     dealTitle : <input type="text" name="dealTitle" value="${deal.dealTitle}"><br>
     dealStatus : <select name="dealStatus">
     <option value="01" ${deal.dealStatus == '01'? 'selected':''}>판매전</option>
@@ -68,8 +70,8 @@
     price : <input type="text" name="price" value="${deal.price}"><br>
     tag : <input type="text" name="tag" value="${deal.tag}"><br>
 
-  <input type="button" class="updateDeal" value="거래 수정">
   </label>
 </form>
+<input type="button" class="updateDeal" value="거래 수정">
 </body>
 </html>

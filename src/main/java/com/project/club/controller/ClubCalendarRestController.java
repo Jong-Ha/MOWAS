@@ -20,10 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/clubCal/json/*")
@@ -35,28 +32,12 @@ public class ClubCalendarRestController<list> {
 
     /*캘린더 등록 ajax 처리*/
     @RequestMapping("addClubCalender")
-    public int addClubCalender(@RequestBody ClubCalendar calender
-            /*, @RequestParam("file") List<MultipartFile> file*/, HttpSession session) {
+    public int addClubCalender(@RequestBody ClubCalendar calender, HttpSession session) {
 
         User user = (User) session.getAttribute("user");
 
         System.out.println(calender);
 
-    /* List<Map<String, String>> fileList = new ArrayList<>();
-        for (int i = 0; i < file.size(); i++) {
-            String fileName = file.get(i).getOriginalFilename();
-            System.out.println("파일 이름 : " + fileName);
-            Map<String, String> map = new HashMap<>();
-            map.put("fileName", fileName);
-            fileList.add(map);
-
-            try {
-                file.get(i).transferTo(new File("/uploadFiles/" + fileList.get(i).get("fileName")));
-                System.out.println("업로드 성공");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }*/
 
         calender.setLocation("창원시 진해구 소사동");
         /*자동 참여*/
@@ -81,7 +62,6 @@ public class ClubCalendarRestController<list> {
 
         System.out.println("addClubCalender 진입 " + calender);
 
-        calender.setClubNum(10001);
 
         calenderService.addCalender(calender);
 
@@ -155,8 +135,8 @@ public class ClubCalendarRestController<list> {
 
     @RequestMapping("fileUpload")
     public int fileUpload(@RequestParam("form") List<MultipartFile> file
-                          ,@RequestParam("boardNum") int boardNum
-                          ,@RequestParam("boardCategoru") int boardCategory
+                          ,@RequestParam("boardNum") String boardNum
+                          ,@RequestParam("boardCategoru") String boardCategory
                           ,HttpServletRequest request, HttpServletResponse response) {
 
         System.out.println("json으로 보낸 : " + file);
@@ -166,14 +146,18 @@ public class ClubCalendarRestController<list> {
         List<Map<String, String>> fileList = new ArrayList<>();
 
         for (int i = 0; i < file.size(); i++) {
-            String fileName = file.get(i).getOriginalFilename();
+            String fileName = "/uploadFiles/"+UUID.randomUUID()+file.get(i).getOriginalFilename();
             System.out.println("파일 이름 : " + fileName);
             Map<String, String> map = new HashMap<>();
             map.put("fileName", fileName);
+            map.put("boardNum", boardNum);
+            map.put("boardCategory", boardCategory);
             fileList.add(map);
+            calenderService.addFileUpload(map);
 
+            System.out.println("파일 업로드의 정보 : " + map);
             try {
-                file.get(i).transferTo(new File("/uploadFiles/" + fileList.get(i).get("fileName")));
+                file.get(i).transferTo(new File( fileList.get(i).get("fileName")));
                 System.out.println("업로드 성공");
             } catch (Exception e) {
                 e.printStackTrace();

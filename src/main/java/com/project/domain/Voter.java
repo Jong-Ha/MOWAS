@@ -13,6 +13,6 @@ public class Voter {
 
     private int voterNum;
     private int voteNum;
-    private int voteItem;
+    private String voteItem;
     private String userId;
 }

@@ -39,9 +39,9 @@
     <select id="getDealBoardFiles" resultMap="FileResultMap">
         SELECT *
         FROM files
-        WHERE board_num = #{dealBoardNum}
-          AND board_category = '08'
-        OR board_category ='09'
+        WHERE board_num = #{boardNum}
+          AND (board_category = '08'
+        OR board_category ='09')
         ORDER BY file_num DESC
     </select>
 
@@ -50,16 +50,16 @@
     <select id="listDealBoardFile" parameterType="int" resultType="String">
         SELECT file_name
         FROM files
-        WHERE board_num = #{dealBoardNum}
+        WHERE board_num = #{boardNum}
           AND board_category = '08' OR board_category = '09'
     </select>
 
     <!--파일 삭제-->
-    <delete id="deleteClubMasterBoardFile" parameterType="map">
+    <delete id="deleteDealBoardFile" parameterType="map">
         DELETE files
         <where>
             board_num = #{boardNum}
-            AND board_category = '08' OR board_category = '09'
+            AND (board_category = '08' OR board_category = '09')
             <foreach collection="deleteFileNames" item="fileName" open="AND file_name IN (" separator="," close=")">
                 #{fileName}
             </foreach>
@@ -73,7 +73,7 @@
                    board_num,
                    board_category,
                    file_name)
-        VALUES (seq_files.NEXTVAL, #{boardNum}, #{boardCategory:CHAR}, #{fileName})
+        VALUES (seq_files.NEXTVAL, #{boardNum}, #{boardCategory}, #{fileName})
     </insert>
     <!--신규 넘버 조회-->
     <select id="getDealNum" parameterType="String" resultType="int">
@@ -145,6 +145,7 @@ where deal_board_num=#{dealBoardNum}
 
         <where> deal_board_num=#{dealBoardNum}</where>
     </update>
+
     <!--게시물 삭제-->
     <delete id="deleteDeal" parameterType="int">
         DELETE deal
@@ -152,37 +153,76 @@ where deal_board_num=#{dealBoardNum}
             deal_board_num=#{dealBoardNum}
         </where>
     </delete>
+
+
+
+
+    <sql id="listDealBoardSql">
+        SELECT deal_board_num,
+               user_id,
+               deal_title,
+
+               deal_reg_date
+
+        FROM deal
+        WHERE board_category = #{boardCategory}
+          AND deal_title LIKE ('%' || #{search.searchKeyword} || '%')
+        ORDER BY deal_reg_date DESC
+    </sql>
+
+
     <!--게시물 목록 조회.. .-->
     <select id="getListDeal" parameterType="map" resultMap="dealSelectMap">
-       	SELECT inner_table.* , ROWNUM AS row_seq
-        FROM		(	SELECT deal_board_num, deal_title, deal_text, user_id, deal_reg_date ,tag
-        FROM deal
-<if test="boardCategory !=0 ">
-    <where> board_category=#{boardCategory}</where>
-</if>
-        <if test="searchCondition != null">
-            <where>
-
-                <if test="(searchCondition == 0 and searchKeyword !='' )">
-                    deal_title = #{searchKeyword}
-                </if>
-                <if test="(searchCondition == 1 and searchKeyword !='') ">
-                    tag = #{searchKeyword}
-                </if>
-
-
-            </where>
+        SELECT * FROM (
+        SELECT ROWNUM row_num, vt.* FROM (
+        <include refid="listDealBoardSql"/>
+        ) vt
+        <if test="search.currentPage*search.pageSize!=0">
+            WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}
         </if>
+        )
+        <where>
+            <if test="search.currentPage*search.pageSize!=0">
+                row_num >= ((#{search.currentPage}-1)*#{search.pageSize}+1)
+            </if>
+        </where>
+    </select>
+<!--    <select id="getListDeal" parameterType="map" resultMap="dealSelectMap">-->
+<!--       	SELECT inner_table.* , ROWNUM AS row_seq-->
+<!--        FROM		(	SELECT deal_board_num, deal_title, deal_text, user_id, deal_reg_date ,tag-->
+<!--        FROM deal-->
+<!--<if test="boardCategory !=0 ">-->
+<!--    <where> board_category=#{boardCategory}</where>-->
+<!--</if>-->
+<!--        <if test="searchCondition != null">-->
+<!--            <where>-->
 
-        ORDER BY deal_board_num ) inner_table
-        WHERE ROWNUM >= 0
+<!--                <if test="(searchCondition == 0 and searchKeyword !='' )">-->
+<!--                    deal_title = #{searchKeyword}-->
+<!--                </if>-->
+<!--                <if test="(searchCondition == 1 and searchKeyword !='') ">-->
+<!--                    tag = #{searchKeyword}-->
+<!--                </if>-->
 
+
+<!--            </where>-->
+<!--        </if>-->
+
+<!--        ORDER BY deal_board_num ) inner_table-->
+<!--        WHERE ROWNUM >= 0-->
+
+<!--    </select>-->
+
+    <select id="getTotalCount" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM (
+        <include refid="listDealBoardSql"/>
+        )
     </select>
 
 <!--    WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum}-->
 
 
-    <select  id="getTotalCount"  parameterType="search"	 resultType="int">
+  <!--  <select  id="getTotalCount"  parameterType="search"	 resultType="int">
         SELECT COUNT(*)
         FROM(	SELECT deal_board_num,deal_title,deal_text
         FROM deal
@@ -197,6 +237,6 @@ where deal_board_num=#{dealBoardNum}
             </where>
         </if> ) countTable
     </select>
-
+-->
 
 </mapper>

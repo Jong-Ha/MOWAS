@@ -19,7 +19,7 @@ public interface DealDao {
 
     public List<Deal>  getListDeal(Map<String, Object> map) throws Exception ;
    //public List<Deal> listDeal();
-   public int getTotalCount(Search search) throws Exception ;
+   public int getTotalCount(Map<String, Object> map) throws Exception ;
     // 게시판 currentPage Row 만  return
 
     public void addDealBoardFile(File file);

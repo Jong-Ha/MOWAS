@@ -195,9 +195,10 @@ public class CommunityRestController {
 
         villBoard.setUserId(user.getUserId());
         villBoard.setVillCode("창원");
+
         communityService.addVillBoard(villBoard);
 
-        return 0;
+        return villBoard.getVillBoardNum();
     }
 
     @RequestMapping(value = "updateVillBoard" , method = RequestMethod.POST)

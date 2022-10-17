@@ -255,4 +255,49 @@ public class ClubDaoImpl implements ClubDao {
     public void updateCluber(Cluber cluber) {
         sqlSession.update("ClubMapper.updateCluber", cluber);
     }
+
+    @Override
+    public void addVote(Vote vote) {
+        sqlSession.insert("ClubMapper.addVote",vote);
+    }
+
+    @Override
+    public void updateVote(Vote vote) {
+        sqlSession.update("ClubMapper.updateVote",vote);
+    }
+
+    @Override
+    public void deleteVote(int voteNum) {
+        sqlSession.delete("ClubMapper.deleteVote",voteNum);
+    }
+
+    @Override
+    public void deleteVoter(Map<String, Object> map) {
+        sqlSession.delete("ClubMapper.deleteVoter",map);
+    }
+
+    @Override
+    public List<Vote> listVote(String roomId) {
+        return sqlSession.selectList("ClubMapper.listVote", roomId);
+    }
+
+    @Override
+    public void updateVoteEndDate(String roomId) {
+        sqlSession.update("ClubMapper.updateVoteEndDate",roomId);
+    }
+
+    @Override
+    public Vote getVote(Map<String, Object> map) {
+        return sqlSession.selectOne("ClubMapper.getVote", map);
+    }
+
+    @Override
+    public List<Voter> listVoter(Voter voter) {
+        return sqlSession.selectList("ClubMapper.listVoter", voter);
+    }
+
+    @Override
+    public void addVoter(Voter voter) {
+        sqlSession.insert("ClubMapper.addVoter",voter);
+    }
 }

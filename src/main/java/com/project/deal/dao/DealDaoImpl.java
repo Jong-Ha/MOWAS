@@ -28,20 +28,20 @@ public class DealDaoImpl implements DealDao{
             sqlSession.insert("DealMapper.addDeal", deal);
     }
 
-    public Deal getDeal(int dealBoradNum) throws Exception {
-        System.out.println("DAOIMPL"+dealBoradNum);
-        return sqlSession.selectOne("DealMapper.getDeal", dealBoradNum);
-    }
-
-
     @Override
     public void updateDeal(Deal deal)throws Exception {
         sqlSession.update("DealMapper.updateDeal", deal);
     }
 
+
     @Override
     public void deleteDeal(int dealBoardNum)throws Exception {
 sqlSession.delete("DealMapper.deleteDeal", dealBoardNum);
+    }
+
+    public Deal getDeal(int dealBoradNum) throws Exception {
+        System.out.println("DAOIMPL"+dealBoradNum);
+        return sqlSession.selectOne("DealMapper.getDeal", dealBoradNum);
     }
 
     @Override
@@ -52,8 +52,8 @@ sqlSession.delete("DealMapper.deleteDeal", dealBoardNum);
     }
 
     @Override
-    public int getTotalCount(Search search) throws Exception {
-        return sqlSession.selectOne("DealMapper.getTotalCount",search);
+    public int getTotalCount(Map<String, Object> map) throws Exception {
+        return sqlSession.selectOne("DealMapper.getTotalCount",map);
     }
     @Override
     public void addDealBoardFile(File file) {

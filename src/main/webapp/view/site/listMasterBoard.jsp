@@ -8,14 +8,69 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>List MasterBoard</title>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <!-- Bootstrap -->
+    <link href="bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
     <!--  ///////////////////////// CSS ////////////////////////// -->
     <style>
-        body {
-            padding-top : 50px;
+        .container {
+            width: 70%;
+            margin: 0 auto;			/* 가로로 중앙에 배치 */
+            padding-top: 10%;		/* 테두리와 내용 사이의 패딩 여백 */
+        }
+
+        #list {
+            text-align: center;
+        }
+
+        #write {
+            text-align: right;
+        }
+
+        /* Bootstrap 수정 */
+        .table > thead {
+            background-color: #b3c6ff;
+        }
+        .table > thead > tr > th {
+            text-align: center;
+        }
+        .table-hover > tbody > tr:hover {
+            background-color: #e6ecff;
+        }
+        .table > tbody > tr > td {
+            text-align: center;
+        }
+        .table > tbody > tr > #title {
+            text-align: left;
+        }
+
+        div > #paging {
+            text-align: center;
+        }
+
+        .hit {
+            animation-name: blink;
+            animation-duration: 1.5s;
+            animation-timing-function: ease;
+            animation-iteration-count: infinite;
+            /* 위 속성들을 한 줄로 표기하기 */
+            /* -webkit-animation: blink 1.5s ease infinite; */
+        }
+
+        /* 애니메이션 지점 설정하기 */
+        /* 익스플로러 10 이상, 최신 모던 브라우저에서 지원 */
+        @keyframes blink {
+            from {color: white;}
+            30% {color: yellow;}
+            to {color: red; font-weight: bold;}
+            /* 0% {color:white;}
+            30% {color: yellow;}
+            100% {color:red; font-weight: bold;} */
         }
     </style>
 
@@ -42,9 +97,14 @@
             });
 
             //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-            $( "button.btn.btn-primary" ).on("click" , function() {
+            $( ".addMb" ).on("click" , function() {
 
                 $(self.location).attr("href", "/site/addMasterBoard");
+            });
+
+            $( ".commReport" ).on("click" , function() {
+
+                $(self.location).attr("href", "/site/listCommunityReport");
             });
 
             //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
@@ -78,9 +138,9 @@
 
                 <div class="form-group">
                     <select class="form-control" name="searchCondition" >
-                        <option value="0"  ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" : "" }>공지번호</option>
-                        <option value="1"  ${ ! empty search.searchCondition && search.searchCondition==1 ? "selected" : "" }>공지제목</option>
-                        <option value="2"  ${ ! empty search.searchCondition && search.searchCondition==2 ? "selected" : "" }>공지내용</option>
+                        <option value="0"  ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" : "" }>번호</option>
+                        <option value="1"  ${ ! empty search.searchCondition && search.searchCondition==1 ? "selected" : "" }>제목</option>
+                        <option value="2"  ${ ! empty search.searchCondition && search.searchCondition==2 ? "selected" : "" }>내용</option>
                     </select>
                 </div>
 
@@ -103,52 +163,49 @@
 
 
     <!--  table Start /////////////////////////////////////-->
-    <table class="table table-hover table-striped" >
-
+    <table class="table table-hover table-striped table-bordered" >
         <thead>
-
-        <tr>
-
-            <th align="left">No</th>
-            <th align="left" >제목</th>
-            <th align="left">내용</th>
-            <th align="left">작성자</th>
-            <th align="left">날짜</th>
-
-        </tr>
-        </thead>
-
-        <tbody>
-
-        <c:set var="i" value="0" />
-        <c:forEach var="mb" items="${list}">
-            <c:set var="i" value="${ i+1 }" />
             <tr>
-                <td align="center">${ i }</td>
-                <td align="left"  title="Click : 제목">
-                ${mb.mbTitle}
-                    <input id="mbNo" type="hidden" value="${mb.masterBoardNo }"/>
-                </td>
-                <td align="left">${mb.mbText}</td>
-                <td align="left">${mb.adminId}</td>
-                <td align="left">${mb.mbRegDate}</td>
+                <th width="10%">번호</th>
+                <th width="50%" >제목</th>
+                <th width="10%">작성자</th>
+                <th width="10%">날짜</th>
+                <th width="10%">상세보기</th>
             </tr>
-        </c:forEach>
-
+        </thead>
+        <tbody>
+            <c:set var="i" value="0" />
+            <c:forEach var="mb" items="${list}">
+                <c:set var="i" value="${ i+1 }" />
+                <tr>
+                    <td>${ i }</td>
+                    <td>${mb.mbTitle}
+                        <input id="mbNo" type="hidden" value="${mb.masterBoardNo }"/>
+                        <%--<c:set var = "now" value="<%=new java.util.Date()%>"/>
+                        <c:if test="${mb.mbRegDate}">
+                            <span class="new">new</span>
+                        </c:if>--%>
+                    </td>
+                    <td>${mb.adminId}</td>
+                    <td>${mb.mbRegDate}</td>
+                    <td><a href="/site/getMasterBoard/${mb.masterBoardNo}"> ▼ </a></td>
+                </tr>
+            </c:forEach>
         </tbody>
-
-
     </table>
     <!--  table End /////////////////////////////////////-->
 
-    <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" var="i">
-        <span class="paging">${i}</span>
-    </c:forEach>
+    <div id ="paging">
+        <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" var="i">
+            <span class="paging">${i}</span>
+        </c:forEach>
+    </div>
     </div>
 
     <div class="col-md-12 text-center ">
-        <button type="button" class="btn btn-primary" >추 가</button>
+        <button type="button" class="addMb" >추 가</button>
         <a class="btn btn-default btn" href = "#" role="button">취 소 </a>
+        <button type="button" class="commReport" >커뮤니티신고</button>
     </div>
 
     </body>
