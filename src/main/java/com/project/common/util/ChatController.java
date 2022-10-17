@@ -3,14 +3,24 @@ package com.project.common.util;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpSession;
+import java.util.UUID;
+
 @Controller
 @RequestMapping("/chat/*")
-public class chat {
+public class ChatController {
+
+    @RequestMapping("addOneChat/{userId}")
+    public String addOneChat(@PathVariable String userId, Model model) {
+
+        model.addAttribute("roomId", UUID.randomUUID().toString());
+
+        return "/chat/getChat.jsp";
+    }
 
     @RequestMapping("chatList")
     public String chatList(Model model, HttpSession session) {

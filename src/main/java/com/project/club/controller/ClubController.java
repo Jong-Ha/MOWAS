@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.*;
 
 @Controller
@@ -124,18 +125,18 @@ public class ClubController {
         }
 
         //파일 업데이트
-        club = clubService.updateClub(club);
+        clubService.updateClub(club);
 
         //기존파일 삭제
 //        System.out.println("deleteFileName : "+deleteFileName);
         if (deleteFileName != null) {
 //            System.out.println("first if");
-            java.io.File deleteFile = new java.io.File(resourcesPath+deleteFileName);
-            if(deleteFile.exists()){
+            java.io.File deleteFile = new java.io.File(resourcesPath + deleteFileName);
+            if (deleteFile.exists()) {
 //                System.out.println("second if");
-                if(deleteFile.delete()){
+                if (deleteFile.delete()) {
                     System.out.println("file deleted");
-                }else {
+                } else {
                     System.out.println("cannot delete");
                 }
             }
@@ -303,7 +304,7 @@ public class ClubController {
         List<MultipartFile> mfs = multi.getFiles("file");
         System.out.println(mfs);
         //저장할 파일이 있는지 validation check
-        if(mfs.size()>0 && !mfs.get(0).getOriginalFilename().equals("")){
+        if (mfs.size() > 0 && !mfs.get(0).getOriginalFilename().equals("")) {
             //저장할 리스트 생성
             List<File> files = new ArrayList<>();
             //추출된 파일 업로드
@@ -354,7 +355,7 @@ public class ClubController {
         //저장할 리스트 생성
         List<File> files = new ArrayList<>();
         //저장할 파일이 있는지 validation check
-        if(mfs.size()>0 && !mfs.get(0).getOriginalFilename().equals("")){
+        if (mfs.size() > 0 && !mfs.get(0).getOriginalFilename().equals("")) {
             //추출된 파일 업로드
             for (MultipartFile mf : mfs) {
                 //파일이 이미지인지 validation check
@@ -378,19 +379,19 @@ public class ClubController {
         //서비스에서 일부러 에러 발생해서 롤백 - 검증용
         try {
             clubService.updateClubMasterBoard(clubMasterBoard, deleteFileNames);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getStackTrace());
         }
 
         //기존파일 삭제
 //        System.out.println("deleteFileNames : "+deleteFileNames);
         if (deleteFileNames != null) {
-            for(String deleteFileName : deleteFileNames){
-                java.io.File deleteFile = new java.io.File(resourcesPath+deleteFileName);
-                if(deleteFile.exists()){
-                    if(deleteFile.delete()){
+            for (String deleteFileName : deleteFileNames) {
+                java.io.File deleteFile = new java.io.File(resourcesPath + deleteFileName);
+                if (deleteFile.exists()) {
+                    if (deleteFile.delete()) {
                         System.out.println("file deleted");
-                    }else {
+                    } else {
                         System.out.println("cannot delete");
                     }
                 }
@@ -410,14 +411,14 @@ public class ClubController {
         //validation check
         if (deleteFileNames != null) {
             //각 항목 삭제
-            for(String deleteFileName : deleteFileNames){
+            for (String deleteFileName : deleteFileNames) {
                 //파일 설정
-                java.io.File deleteFile = new java.io.File(resourcesPath+deleteFileName);
+                java.io.File deleteFile = new java.io.File(resourcesPath + deleteFileName);
                 //파일이 있으면 삭제
-                if(deleteFile.exists()){
-                    if(deleteFile.delete()){
+                if (deleteFile.exists()) {
+                    if (deleteFile.delete()) {
                         System.out.println("file deleted");
-                    }else {
+                    } else {
                         System.out.println("cannot delete");
                     }
                 }
@@ -484,57 +485,91 @@ public class ClubController {
     }
 
     @RequestMapping(value = "listVote/{roomId}", method = RequestMethod.GET)
-    public String listVote(@PathVariable String roomId, Model model){
-        model.addAttribute("list",clubService.listVote(roomId));
+    public String listVote(@PathVariable String roomId, Model model) {
+        model.addAttribute("list", clubService.listVote(roomId));
         return "/view/club/listVote.jsp";
     }
 
     @RequestMapping(value = "getVote/{voteNum}", method = RequestMethod.GET)
-    public String getVote(@PathVariable int voteNum, Model model){
-        model.addAttribute("vote", clubService.getVote(voteNum));
+    public String getVote(@PathVariable int voteNum, Model model, HttpSession session) {
+        String userId = ((User) session.getAttribute("user")).getUserId();
+        model.addAttribute("vote", clubService.getVote(voteNum, userId));
+//        Voter voter = new Voter();
+//        voter.setUserId(userId);
+//        voter.setVoteNum(voteNum);
+//        model.addAttribute("myVoter", clubService.listVoter(voter));
         return "/view/club/getVote.jsp";
     }
 
     @RequestMapping(value = "addVote/{roomId}", method = RequestMethod.GET)
-    public String addVoteView(@PathVariable String roomId, @ModelAttribute("vote")Vote vote){
+    public String addVoteView(@PathVariable String roomId, @ModelAttribute("vote") Vote vote) {
         return "/view/club/addVote.jsp";
     }
 
     @RequestMapping(value = "addVote", method = RequestMethod.POST)
-    public String addVote(@ModelAttribute("vote")Vote vote){
-        if(vote.getMultiVoteCheck()==null){
+    public String addVote(@ModelAttribute("vote") Vote vote) {
+        if (vote.getMultiVoteCheck() == null) {
             vote.setMultiVoteCheck("0");
         }
-        if(vote.getHideVoteCheck()==null){
+        if (vote.getHideVoteCheck() == null) {
             vote.setHideVoteCheck("0");
         }
-        if(vote.getEndDateCheck()==null){
+        if (vote.getEndDateCheck() == null) {
             vote.setEndDateCheck("0");
-            vote.setEndDate(null);
         }
         clubService.addVote(vote);
-        return "redirect:/club/listVote/"+vote.getRoomId();
+        return "redirect:/club/listVote/" + vote.getRoomId();
     }
 
     @RequestMapping(value = "updateVote/{voteNum}", method = RequestMethod.GET)
-    public String updateVoteView(@PathVariable int voteNum, Model model){
-        model.addAttribute("vote", clubService.getVote(voteNum));
+    public String updateVoteView(@PathVariable int voteNum, Model model, HttpSession session) {
+        String userId = ((User) session.getAttribute("user")).getUserId();
+        model.addAttribute("vote", clubService.getVote(voteNum, userId));
         return "/view/club/updateVote.jsp";
     }
 
     @RequestMapping(value = "updateVote", method = RequestMethod.POST)
-    public String updateVote(@ModelAttribute("vote")Vote vote){
-        if(vote.getMultiVoteCheck()==null){
+    public String updateVote(@ModelAttribute("vote") Vote vote) {
+        if (vote.getMultiVoteCheck() == null) {
             vote.setMultiVoteCheck("0");
         }
-        if(vote.getHideVoteCheck()==null){
+        if (vote.getHideVoteCheck() == null) {
             vote.setHideVoteCheck("0");
         }
-        if(vote.getEndDateCheck()==null){
+        if (vote.getEndDateCheck() == null) {
             vote.setEndDateCheck("0");
             vote.setEndDate(null);
         }
         clubService.updateVote(vote);
-        return "redirect:/club/getVote/"+vote.getVoteNum();
+        return "redirect:/club/getVote/" + vote.getVoteNum();
+    }
+
+    @RequestMapping(value = "deleteVote/{roomId}/{voteNum}", method = RequestMethod.GET)
+    public String deleteVote(@PathVariable int voteNum, @PathVariable String roomId) {
+        clubService.deleteVote(voteNum);
+        return "redirect:/club/listVote/" + roomId;
+    }
+
+//    @RequestMapping(value = "addVoter", method = RequestMethod.POST)
+//    public String addVoter(@RequestParam("voteItem") List<String> voteItems, @RequestParam("voteNum") int voteNum, HttpSession session) {
+//        String userId = ((User) session.getAttribute("user")).getUserId();
+//        clubService.addVoter(voteItems, userId, voteNum);
+//        return "redirect:/club/getVote/" + voteNum;
+//    }
+
+    @RequestMapping(value = "updateVoter", method = RequestMethod.POST)
+    public String updateVoter(@RequestParam("voteItem") List<String> voteItems, @RequestParam("voteNum") int voteNum, HttpSession session) {
+        String userId = ((User) session.getAttribute("user")).getUserId();
+        clubService.updateVoter(voteItems, userId, voteNum);
+        return "redirect:/club/getVote/" + voteNum;
+    }
+
+    @RequestMapping(value = "endVote/{voteNum}", method = RequestMethod.GET)
+    public String endVote(@PathVariable int voteNum) {
+        Vote vote = new Vote();
+        vote.setVoteNum(voteNum);
+        vote.setEndCheck("1");
+        clubService.updateVote(vote);
+        return "redirect:/club/getVote/" + voteNum;
     }
 }

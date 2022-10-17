@@ -156,7 +156,7 @@
           */
 
       $("form").on("submit",function (){
-       /*
+
         var id=$("input[name='userId']").val();
         var pw=$("input[name='password']").val();
         var pw2=$("input[name='password2']").val();
@@ -206,7 +206,7 @@
         //   alert("동네인증은 반드시 인증하셔야 합니다.");
         //   return false;
         // }
-*/
+
         var address="";
         if($("#address").val() !="" && $("#addressDetail").val() !="") {
           var address = $("#address").val() + " " + $("#addressDetail").val();

@@ -24,9 +24,8 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public Club updateClub(Club club) {
+    public void updateClub(Club club) {
         clubDao.updateClub(club);
-        return clubDao.getClub(club.getClubNum());
     }
 
     @Override
@@ -300,12 +299,16 @@ public class ClubServiceImpl implements ClubService {
 
     @Override
     public List<Vote> listVote(String roomId) {
+        clubDao.updateVoteEndDate(roomId);
         return clubDao.listVote(roomId);
     }
 
     @Override
-    public Vote getVote(int voteNum) {
-        return clubDao.getVote(voteNum);
+    public Vote getVote(int voteNum, String userId) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("voteNum", voteNum);
+        map.put("userId",userId);
+        return clubDao.getVote(map);
     }
 
     @Override
@@ -313,16 +316,16 @@ public class ClubServiceImpl implements ClubService {
         return clubDao.listVoter(voter);
     }
 
-    @Override
-    public void addVoter(List<String> voterItems, String userId, int voteNum) {
-        for (String voteItem : voterItems) {
-            Voter voter = new Voter();
-            voter.setVoteItem(voteItem);
-            voter.setUserId(userId);
-            voter.setVoteNum(voteNum);
-            clubDao.addVoter(voter);
-        }
-    }
+//    @Override
+//    public void addVoter(List<String> voterItems, String userId, int voteNum) {
+//        for (String voteItem : voterItems) {
+//            Voter voter = new Voter();
+//            voter.setVoteItem(voteItem);
+//            voter.setUserId(userId);
+//            voter.setVoteNum(voteNum);
+//            clubDao.addVoter(voter);
+//        }
+//    }
 
     @Override
     public void updateVoter(List<String> voterItems, String userId, int voteNum) {

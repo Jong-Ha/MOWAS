@@ -49,9 +49,8 @@ public class ClubServiceTest {
         club.setClubImage("미지미지");
         club.setTag("#tag1 #tag2 #tag3");
 
-        Club result = clubService.updateClub(club);
+//        Club result = clubService.updateClub(club);
 
-        System.out.println(result);
     }
 
     @Test
@@ -355,7 +354,7 @@ public class ClubServiceTest {
         vote.setMultiVoteCheck("0");
         vote.setHideVoteCheck("0");
         vote.setEndDateCheck("1");
-        vote.setEndDate(new Date(122, 9, 14));
+//        vote.setEndDate(new Date(122, 9, 14));
         vote.setVoteItem1("11");
 
         clubService.addVote(vote);
@@ -387,7 +386,7 @@ public class ClubServiceTest {
 
     @Test
     public void getVote() {
-        System.out.println(clubService.getVote(10006));
+        System.out.println(clubService.getVote(10006, "user01"));
     }
 
     @Test
@@ -401,7 +400,7 @@ public class ClubServiceTest {
 
         int voteNum = 10006;
 
-        clubService.addVoter(voterItems,userId,voteNum);
+//        clubService.addVoter(voterItems,userId,voteNum);
     }
 
     @Test

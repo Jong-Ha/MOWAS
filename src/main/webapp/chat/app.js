@@ -73,7 +73,7 @@ const port = process.env.port || 5000
 
 //moongoDB에 Schema 생성
 var room = mongoose.Schema({
-    userId: ['string'],
+    users: [{userId: 'string', regDate: 'number'}],
     roomId: 'string',
     chatCategory: 'string',
     roomName: 'string'
@@ -86,14 +86,14 @@ var msg = mongoose.Schema({
     chatCategory: 'string',
     msg: 'string',
     time: 'string',
-    rtime: 'number',
+    rtime: 'number'
 })
 
 //정의된 스키마르 객체처럼 사용할수 있도록 model()함수로 컴파일
 
-var Msg = mongoose.model('chat', msg);
+var Msg = mongoose.model('msg', msg);
 
-var Room = mongoose.model("test", room);
+var Room = mongoose.model("room", room);
 
 
 var chatlist = io.of('/chatlist');
@@ -102,24 +102,25 @@ chatlist.on('connection', (socket) => {
     const userId = socket.handshake.query.userId
     const chatCategory = socket.handshake.query.chatCategory
 
-    Room.find({'userId': userId, 'chatCategory': chatCategory}, function (error, room) {
+    Room.find({'users.userId': userId, chatCategory: chatCategory}, function (error, room) {
 
         console.log('--- Room ---');
+        console.log(room)
 
         if (error) {
             // console.log(error);
         } else {
             chatlist.emit("list", room);
-           // var rs = []
+            // var rs = []
             for (let i = 0; i < room.length; i++) {
                 // console.log(room[i].roomId);
                 Msg.find({'roomId': room[i].roomId}, function (error, msg) {
                     // console.log("마지막 매시지 : " + msg);
-               /*     var r1 = JSON.stringify(room[i]);
-                    var r2 = JSON.parse(r1);
+                    /*     var r1 = JSON.stringify(room[i]);
+                         var r2 = JSON.parse(r1);
 
-                    r2.msg = msg[0];
-                    rs.push(r2);*/
+                         r2.msg = msg[0];
+                         rs.push(r2);*/
                     // console.log("list로 보낼 data : " + rs);
                     // console.log("list로 보낼 data : " + rs);
                     // chatlist.emit("list", rs);
@@ -127,7 +128,6 @@ chatlist.on('connection', (socket) => {
                     chatlist.emit("msg", msg);
 
                 }).sort({_id: -1}).limit(1)
-
 
 
             }
@@ -141,7 +141,6 @@ chatlist.on('connection', (socket) => {
     })
 
 })
-;
 
 
 //room 생성
@@ -150,21 +149,40 @@ const onebyone = io.of('/onebyone');
 onebyone.on('connection', (socket) => {
 
     const roomId = socket.handshake.query.roomId
+    const userId1 = socket.handshake.query.userId1
+    const userId2 = socket.handshake.query.userId2
+    console.log(userId1)
+    console.log(userId2)
+    //방이 없으면 새롭게 생성
+    Room.findOne({roomId: roomId}, function (error, result) {
+        if (result == null) {
+            result = new Room({
+                users: [{userId: userId1, regDate: moment(new Date())}, {
+                    userId: userId2,
+                    regDate: moment(new Date())
+                }],
+                roomId: roomId, chatCategory: 'onebyone', roomName: roomId
+            })
+            result.save(function(error, result){
+
+            })
+        }
+    })
 
     //socket에 roomId를 join
     socket.join(roomId);
 
     console.log("roomId onebyone : " + roomId);
 
-    Room.find({'roomId': roomId}, function (error, room) {
-        console.log(room);
-        console.log('--- onebyone ---');
-        if (error) {
-            console.log(error);
-        } else {
-            console.log("남의 데이터 가져오기" + room);
-        }
-    })
+    // Room.find({'roomId': roomId}, function (error, room) {
+    //     console.log(room);
+    //     console.log('--- onebyone ---');
+    //     if (error) {
+    //         console.log(error);
+    //     } else {
+    //         console.log("남의 데이터 가져오기" + room);
+    //     }
+    // })
 
     Msg.find({'roomId': roomId}, function (error, msg) {
         console.log(msg);
@@ -174,20 +192,13 @@ onebyone.on('connection', (socket) => {
         } else {
             onebyone.to(roomId).emit("json", msg);
 
-            console.log("내 테이터 가져 오기" + msg);
+            // console.log("내 테이터 가져 오기" + msg);
         }
     })
 
     //클라이언트에게 받은 data를 server에 받음
     socket.on("chatting", (data) => {
         console.log(data);
-
-        //서버가 현재 접속해 있는 모든 클라이언트에게 data를 전달 한다
-        onebyone.to(roomId).emit("chatting", {
-            name: data.name,
-            msg: data.msg,
-            time: moment(new Date()).format("h:mm A")
-        });
 
         // test객체를 new로 생성 해서 값을 입력
         var newMsg = new Msg({
@@ -197,6 +208,16 @@ onebyone.on('connection', (socket) => {
             time: moment(new Date()).format("h:mm A"),
             rtime: moment(new Date())
         });
+
+        // console.log(newMsg)
+        // console.log(roomId)
+
+        // 서버가 현재 접속해 있는 모든 클라이언트에게 data를 전달 한다
+        onebyone.to(roomId).emit("chatting", newMsg/*{
+            name: data.name,
+            msg: data.msg,
+            time: moment(new Date()).format("h:mm A")
+        }*/);
 
         //데이터를 저장
         newMsg.save((error, data, res) => {
@@ -209,7 +230,7 @@ onebyone.on('connection', (socket) => {
                     if (error) {
                         console.log(error);
                     } else {
-                        onebyone.to(roomId).emit("json", {msg});
+                        onebyone.to(roomId).emit("json", msg);
 
                         console.log("내 테이터 가져 오기" + msg);
                     }
@@ -218,8 +239,15 @@ onebyone.on('connection', (socket) => {
             }
         });
 
-
     })
+
+    socket.on('disconnect', () => {
+        //사용자가 퇴장했음을 퇴장자 본인을 제외한 다른 사람들에게 알려준다.
+        socket.broadcast.to(roomId).emit('leave');
+        socket.leave(roomId);
+        console.log('접속 종료');
+    });
+
 })
 
 // namesoaces 설정 하기
@@ -275,6 +303,5 @@ siteChat.on('connection', (socket) => {
         })
     })
 })
-
 
 server.listen(port, () => console.log('server is running ' + port));
