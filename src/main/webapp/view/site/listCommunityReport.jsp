@@ -102,11 +102,6 @@
                 $(self.location).attr("href", "/site/addMasterBoard");
             });
 
-            $( ".commReport" ).on("click" , function() {
-
-                $(self.location).attr("href", "/site/listCommunityReport");
-            });
-
             //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
             $("a[href='#' ]").on("click" , function() {
                 $("form")[0].reset();
@@ -121,7 +116,7 @@
 <div class="container">
 
     <div class="page-header text-info">
-        <h3>공지사항</h3>
+        <h3>커뮤니티 신고 리스트</h3>
     </div>
 
     <!-- table 위쪽 검색 Start /////////////////////////////////////-->
@@ -167,28 +162,33 @@
         <thead>
             <tr>
                 <th width="10%">번호</th>
-                <th width="50%" >제목</th>
-                <th width="10%">작성자</th>
-                <th width="10%">날짜</th>
-                <th width="10%">상세보기</th>
+                <th width="30%" >신고받은 회원</th>
+                <th width="20%">게시글종류</th>
+                <th width="15%">게시글번호</th>
+                <th width="15%">신고날짜</th>
+                <th width="10%">처리여부</th>
             </tr>
         </thead>
         <tbody>
             <c:set var="i" value="0" />
-            <c:forEach var="mb" items="${list}">
+            <c:forEach var="cr" items="${list}">
                 <c:set var="i" value="${ i+1 }" />
                 <tr>
-                    <td>${ i }</td>
-                    <td>${mb.mbTitle}
-                        <input id="mbNo" type="hidden" value="${mb.masterBoardNo }"/>
+                    <td><a href="/site/getCommunityReport/${cr.reportNo}">${ i }</a>
+                        <input id="crNo" type="hidden" value="${cr.reportNo }"/>
+                    </td>
+                    <td>${cr.reportedId}
+
                         <%--<c:set var = "now" value="<%=new java.util.Date()%>"/>
                         <c:if test="${mb.mbRegDate}">
                             <span class="new">new</span>
                         </c:if>--%>
                     </td>
-                    <td>${mb.adminId}</td>
-                    <td>${mb.mbRegDate}</td>
-                    <td><a href="/site/getMasterBoard/${mb.masterBoardNo}"> ▼ </a></td>
+                    <td>${cr.boardCategory}</td>
+                    <td>${cr.boardNo}</td>
+                    <td>${cr.reportDate}"</td>
+                    <td>${cr.processResult}"</td>
+
                 </tr>
             </c:forEach>
         </tbody>
@@ -203,9 +203,8 @@
     </div>
 
     <div class="col-md-12 text-center ">
-        <button type="button" class="addMb" >추 가</button>
+        <button type="button" class="addCr" >추 가</button>
         <a class="btn btn-default btn" href = "#" role="button">취 소 </a>
-        <button type="button" class="commReport" >커뮤니티신고</button>
     </div>
 
     </body>

@@ -1,5 +1,6 @@
 package com.project.user.service;
 
+import com.project.domain.CommunityReport;
 import com.project.domain.User;
 import com.project.domain.UserInterList;
 import com.project.user.dao.UserDao;
@@ -46,6 +47,15 @@ public class UserServiceImpl implements UserService{
         return userDao.getUser(userId);
     }
 
+    public User getUserEmail(String email)throws Exception{
+          return userDao.getUserEmail(email);
+    }
+
+    public User getUser2(String email)throws Exception{
+          User dbUser2 = userDao.getUser2(email);
+          return dbUser2;
+    }
+
     public User loginUser(User user)throws Exception{
           User dbUser = userDao.getUser(user.getUserId());
           return dbUser;
@@ -57,6 +67,17 @@ public class UserServiceImpl implements UserService{
 
     public void updateUser(User user)throws Exception{
         userDao.updateUser(user);
+    }
+    public void updatePsd(User user)throws Exception{
+          userDao.updatePsd(user);
+    }
+
+    public void updatePed(User user)throws Exception{
+        userDao.updatePed(user);
+    }
+
+    public void updateUserStatus(String userId)throws Exception{
+          userDao.updateUserStatus(userId);
     }
 
     public boolean checkDupId(String userId)throws Exception{
@@ -86,9 +107,18 @@ public class UserServiceImpl implements UserService{
         return map;
     }
 
-    public User getUserDetail(String userId)throws Exception{
+    public Map<String, Object> getUserDetail(String userId)throws Exception{
           User userDetail = userDao.getUserDetail(userId);
-          return userDetail;
+          List<UserInterList> listInterList = userDao.listInterList(userId);
+
+
+          Map<String, Object> map = new HashMap<String, Object>();
+          System.out.println("유저임플 userDetail값 : "+userDetail);
+          System.out.println("유저임플 listInterList값 : "+listInterList);
+        map.put("userDetail", userDetail);
+          map.put("listInterList", listInterList);
+
+          return map;
     }
 
     public String getAccessToken (String authorize_code) {
@@ -197,6 +227,12 @@ public class UserServiceImpl implements UserService{
 
 
         return userInfo;
+    }
+
+    public void addNaverUser(User user)throws Exception{
+
+        userDao.addNaverUser(user);
+
     }
 
 

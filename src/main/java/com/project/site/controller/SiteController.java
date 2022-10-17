@@ -1,6 +1,7 @@
 package com.project.site.controller;
 import com.project.common.Page;
 import com.project.common.Search;
+import com.project.domain.CommunityReport;
 import com.project.domain.File;
 import com.project.domain.MasterBoard;
 import com.project.domain.User;
@@ -143,5 +144,68 @@ public class SiteController {
 
         model.addAttribute("masterBoard", masterBoard);
         return "redirect:/site/listMasterBoard";
+    }
+
+    @RequestMapping(value = "getCommunityReport/{communityReportNo}", method = RequestMethod.GET)
+    public String getCommunityReport(@PathVariable int communityReportNo, Model model) throws Exception {
+        System.out.println("/site/getCommunityReport : GET");
+        CommunityReport communityReport = siteService.getCommunityReport(communityReportNo);
+        model.addAttribute("communityReport", communityReport);
+        return "forward:/view/site/getCommunityReport.jsp";
+    }
+
+    @RequestMapping(value = "listCommunityReport")
+    public String listCommunityReport(@ModelAttribute("search") Search search, Model model) throws Exception {
+        System.out.println("/site/listCommunityReport : GET / POST");
+
+        if(search.getCurrentPage() == 0 ){
+            search.setCurrentPage(1);
+        }
+        search.setPageSize(pageSize);
+
+        Map<String , Object> map = siteService.listCommunityReport(search);
+
+        Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
+        System.out.println("resultPage : " + resultPage);
+        System.out.println("list : " + map.get("list"));
+
+        model.addAttribute("list", map.get("list"));
+        model.addAttribute("resultPage", resultPage);
+        model.addAttribute("search", search);
+
+        return "forward:/view/site/listCommunityReport.jsp";
+    }
+
+    @RequestMapping(value="updateCommunityReport/{reportNo}", method=RequestMethod.GET)
+    public String updateCommunityReport(@PathVariable int reportNo , Model model) throws Exception {
+        System.out.println("/site/updateCommunityReport : GET");
+
+        CommunityReport communityReport = siteService.getCommunityReport(reportNo);
+
+        siteService.processCommunityReport(communityReport);
+
+        model.addAttribute("communityReport", communityReport);
+        return "forward:/view/site/updateCommunityReport.jsp";
+    }
+
+    @RequestMapping(value="updateCommunityReport", method=RequestMethod.POST)
+    public String updateCommunityReport(@ModelAttribute("communityReport") CommunityReport communityReport) throws Exception {
+        System.out.println("/site/updateMasterBoard : POST");
+
+        siteService.processCommunityReport(communityReport);
+
+        return "redirect:/site/getCommunityReport/" +communityReport.getReportNo();
+    }
+
+    @RequestMapping(value="deleteCommunityBoard/{reportNo}", method=RequestMethod.GET)
+    public String deleteCommunityReport(@PathVariable int reportNo , Model model) throws Exception {
+        System.out.println("/site/deleteCommunityReport : GET");
+
+        CommunityReport communityReport = siteService.getCommunityReport(reportNo);
+
+        siteService.deleteCommunityReport(reportNo);
+
+        model.addAttribute("communityReport", communityReport);
+        return "redirect:/site/listCommunityReport";
     }
 }

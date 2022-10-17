@@ -52,7 +52,7 @@ public class KakaoMapApi {
         StringBuffer response = new StringBuffer();
 
         //Kakao REST API Key값 입력
-        String auth = "KakaoAK " + "b6ebc978fd15666147bd090e0e7ae4c5";
+        String auth = "KakaoAK " + "6230abede953ee2dbfed27975e15f04a";
 
         //URL 占쏙옙占쏙옙
         URL url = new URL(apiUrl);
@@ -151,7 +151,7 @@ public class KakaoMapApi {
         URL Url = new URL(url);
 
         HttpsURLConnection conn = (HttpsURLConnection) Url.openConnection();
-        String auth ="KakaoAK " +"b6ebc978fd15666147bd090e0e7ae4c5";
+        String auth ="KakaoAK " +"6230abede953ee2dbfed27975e15f04a";
         conn.setRequestMethod("GET");
         conn.setRequestProperty("X-Requested-With", "curl");
         conn.setRequestProperty("Authorization", auth);

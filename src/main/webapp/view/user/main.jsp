@@ -70,15 +70,20 @@
     <script type="text/javascript">
         $(function () {
             $(".login").on("click", function () {
-                alert('로그인 화면으로 이동');
                 self.location = "/view/user/login.jsp";
             });
         });
 
         $(function () {
             $(".logout").on("click", function () {
-                alert('로그아웃 되나?');
                 self.location = "/user/logout";
+            });
+        });
+        $(function () {
+            $("#myPage").on("click", function () {
+                var userId = $("#modelUser").val();
+                alert('유저아이디'+userId);
+                self.location = "/myPage/getMyPage?userId="+userId;
             });
         });
 
@@ -124,17 +129,24 @@
 		        <div class="d-grid gap-2">
                     <%
                     User users =(User)session.getAttribute("user");
+                    User naverUser =(User)session.getAttribute("naverUser");
+                    User naverUser2 =(User)session.getAttribute("naverUser2");
 
-                    if(users==null){%>
+
+                    if(users==null && naverUser==null && naverUser2==null){%>
                     <button type="button" class="btn btn-outline-primary btnlf loginbox login">로그인</button>
                     <%}else{%>
 				  	<button type="button" class="btn btn-outline-primary btnlf loginbox logout">로그아웃</button>
+                    <button class="btn btn-outline-success btnlf loginbox" id="myPage" type="button">마이페이지</button>
                     <%}%>
-                    <button class="btn btn-outline-success btnlf loginbox myPage" type="button"><a href="myPage.jsp">마이페이지</a></button>
+
 
                     user: <%=users%><br/>
+                    naverUser: <%=naverUser%><br/>
+                    naverUser2: <%=naverUser2%><br/>
 
 				</div>
+                <div><input type="hidden" id="modelUser" name="userId" value="${user.userId}"></div>
             </div>
               <button type="button" class="btn btn-primary position-relative alrim">
 			  	Inbox

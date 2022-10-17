@@ -21,6 +21,11 @@
             self.location ="/user/listUserDetail?userId="+userId;
         });
     });
+    $(function (){
+        $("#myPage").on("click" , function (){
+            self.location = "/view/myPage/getMyPage.jsp"
+        });
+    });
             //$(".idd").text().trim();
             //self.location ="/user/listUserDetail?userId="+$(".idd");
             //$("form").attr("method" , "POST").attr("action" , "/user/listUserDetail").submit();
@@ -62,7 +67,7 @@
 
     </tbody>
 </table>
-<button type="button" class="sang">상세조회</button>
+    <button type="button" id="myPage">마이페이지</button>
 </form>
 </body>
 </html>
