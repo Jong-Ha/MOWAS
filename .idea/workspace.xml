@@ -10,63 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="LJH 2022.10.17&#10;&#10;listClub.jsp 만듬&#10;채팅기능 개선&#10;jsp 백업본 생성">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/OpenSource/js/jquery.datetimepicker.full.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/jquery.datetimepicker.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubImages/7a136937-a874-4c58-ab7a-337bcbfbe463작은이미지.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubImages/bcac14bc-77b3-4cd2-9679-84c2ed921a89가로로김.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubImages/e12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/addClub.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/addClubBlacklist.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/addClubMasterBoard.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/addCluberApply.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/addVote.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/deleteCluber.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/getClub.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/getClubMasterBoard.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/getCluber.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/getVote.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/listCalendarCluber.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/listClub.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/listClubBlacklist.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/listClubCalendarApply.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/listClubMasterBoard.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/listCluber.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/listCluberApply.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/listVote.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/updateClub.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/updateClubMasterBoard.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/updateCluber.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/updateCluberApply.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/updateVote.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/common/util/chat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/common/util/ChatController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/Club.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/Club.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/Vote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/Vote.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/DealMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/DealMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/chatList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/chatList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/getChat.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/getChat.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/.bin/nodemon" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/.bin/nodemon" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/.bin/nodemon.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/.bin/nodemon.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/addVote.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/addVote.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/getVote.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/getVote.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/updateVote.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/updateVote.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/club/service/ClubServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/club/service/ClubServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +27,8 @@
         <option value="Class" />
         <option value="Interface" />
         <option value="Jsp File" />
+        <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -130,28 +77,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Project/MOWAS/src/main/webapp/view/club/bak&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;전역 라이브러리&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.12528735&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;SQL Resolution Scopes&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;0644e903b0ad21f514b0480754c0a1e2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Project/MOWAS/src/main/webapp/view/club/bak",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "전역 라이브러리",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.12528735",
+    "settings.editor.selected.configurable": "SQL Resolution Scopes",
+    "spring.configuration.checksum": "0644e903b0ad21f514b0480754c0a1e2"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;oracle&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "oracle"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Project\MOWAS\src\main\webapp\view\club\bak" />
@@ -161,11 +109,11 @@
       <recent name="C:\MainProject\MOWAS\src\main\webapp\view\club" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Project\MOWAS\src\main\webapp\resources\club" />
       <recent name="C:\Users\903-15\IdeaProjects\MOWAS\src\main\webapp\view\user" />
       <recent name="C:\Devspace\MOWAS\src\main\webapp\resources\OpenSource" />
       <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community\list" />
       <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community\add" />
-      <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community\get" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.project.user.service" />
@@ -465,7 +413,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="LJH" />
                       </list>
                     </value>
                   </entry>
