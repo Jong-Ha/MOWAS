@@ -54,9 +54,9 @@
                     info.draggedEl.parentNode.removeChild(info.draggedEl);
                 }
             },
-            eventClick: function(info) {
+            eventClick: function (info) {
                 window.open(
-                    "/clubCal/getClubCalender?clubCalenderNum="+info.event.id,  "모임 일정 후기글 수정",
+                    "/clubCal/getClubCalender?clubCalenderNum=" + info.event.id, "모임 일정 후기글 수정",
                     "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no"
                 )
             },
@@ -69,19 +69,20 @@
     });
 
     function lodinCalender() {
+        var boardNum = $(".boardNum").val()
 
         var result_val = null;
 
-        var clubNum = $(".clubNum").val();
 
         $.ajax({
             url: "/clubCal/json/getListCalender",
             method: "POST",
             contentType: 'application/json; charset=utf-8',
             dataType: "json",
-            async : false,
+            async: false,
             data: JSON.stringify({
-                "clubNum": clubNum
+                "clubNum": boardNum
+
             }),
             success: function (JSONData, status) {
                 result_val = new Array;
@@ -96,40 +97,22 @@
             }
 
         })
-                console.log(result_val);
-                return result_val;
+        console.log(result_val);
+        return result_val;
 
     }
 
 
+    $(function () {
 
+        $(".addDay").on("click", function () {
 
-    $(".addDay").on("click", function () {
-        /*  var dateStr = prompt('Enter a date in YYYY-MM-DD format');
-          var date = new Date(dateStr + 'T00:00:00'); // 입력할 시간
+            window.open(
+                "/view/community/add/addClubCalender.jsp", "리뷰페이지",
+                "top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
 
-
-          if (!isNaN(date.valueOf())) { // 입력할 시간이 valueCheck
-              calendar.addEvent({
-                  title: dataTitle,
-                  start: date,
-                  Text: dateText,
-                  allDay: true
-              });
-              alert('Great. Now, update your database...');
-          } else {
-              alert('Invalid date.');
-          }*/
-        // 팝업창 오픈
-        alert("리뷰창 오픈 ");
-
-        var pop = window.open(
-            "/view/community/add/addClubCalender.jsp", "리뷰페이지",
-            "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
-
-
-    });
-
+        });
+    })
 
 
 </script>
@@ -144,47 +127,11 @@
 <body>
 
 <div class='demo-topbar'>
-    <input hidden class="clubNum" value="10001">
-    <div id='external-events'
-         style="float: left; width: 20%; margin-top: 75px; padding: 5px;">
-
-        <p>
-            <strong>일정 목록</strong>
-        </p>
-
-        <div
-                class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-            <div class='fc-event-main'>My Event 1</div>
-        </div>
-        <div
-                class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-            <div class='fc-event-main'>My Event 2</div>
-        </div>
-        <div
-                class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-            <div class='fc-event-main'>My Event 3</div>
-        </div>
-        <div
-                class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-            <div class='fc-event-main'>My Event 4</div>
-        </div>
-        <div
-                class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-            <div class='fc-event-main'>My Event 5</div>
-        </div>
-
-        <p>
-            <input type='checkbox' id='drop-remove'/> <label for='drop-remove'>드레그
-            후 제거</label>
-        </p>
-    </div>
+    <div id='external-events' style="float: left; width: 20%; margin-top: 75px; padding: 5px; margin-bottom: 50px;"> </div>
     <div id='calendar-container' style="float: left; width: 50%; font-size: 0.7em; ">
-        <div style="height: 30px; text-align: center; font-size: 30px; font-weight: bold; color: rgba(69, 69, 199, 0.721); margin-bottom: 20px;">
-            나의 일정
-        </div>
-        <input type="button" class="allSave" value="전체 저장">
-        <input type="button" class="addDay" value="일정 추가">
+        <div style="height: 30px; text-align: center; font-size: 30px; font-weight: bold; color: rgba(69, 69, 199, 0.721); margin-bottom: 20px;"> 모임 일정 </div>
         <div id='calendar'></div>
+        <input type="button" class="addCalender" value="모임 일정 작성">
     </div>
 </div>
 

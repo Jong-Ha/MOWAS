@@ -9,16 +9,64 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="KSM 2022.10.12&#10;&#10;재커밋">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="LJH 2022.10.17&#10;&#10;listClub.jsp 만듬&#10;채팅기능 개선&#10;jsp 백업본 생성">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/OpenSource/js/jquery.datetimepicker.full.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/jquery.datetimepicker.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubImages/7a136937-a874-4c58-ab7a-337bcbfbe463작은이미지.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubImages/bcac14bc-77b3-4cd2-9679-84c2ed921a89가로로김.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubImages/e12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/addClub.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/addClubBlacklist.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/addClubMasterBoard.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/addCluberApply.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/addVote.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/deleteCluber.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/getClub.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/getClubMasterBoard.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/getCluber.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/getVote.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/listCalendarCluber.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/listClub.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/listClubBlacklist.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/listClubCalendarApply.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/listClubMasterBoard.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/listCluber.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/listCluberApply.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/listVote.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/updateClub.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/updateClubMasterBoard.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/updateCluber.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/updateCluberApply.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/updateVote.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/controller/SiteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/controller/SiteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/controller/SiteRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/controller/SiteRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/common/util/chat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/common/util/ChatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/Club.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/Club.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/Vote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/Vote.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/sql/DealMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/DealMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/SiteMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/SiteMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/getMasterBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/getMasterBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/listMasterBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/listMasterBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/updateCommunityReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/updateCommunityReport.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/chatList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/chatList.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/getChat.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/getChat.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/.bin/nodemon" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/.bin/nodemon" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/.bin/nodemon.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/.bin/nodemon.ps1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/addVote.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/addVote.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/getVote.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/getVote.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/updateVote.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/updateVote.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/club/service/ClubServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/club/service/ClubServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +86,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="BJW" />
+    <option name="BRANCH" value="origin/master" />
   </component>
   <component name="Git.Settings">
     <option name="PUSH_TAGS">
@@ -87,7 +135,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/workspace/MOWAS/src/main/webapp/view/site&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Project/MOWAS/src/main/webapp/view/club/bak&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -106,11 +154,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\workspace\MOWAS\src\main\webapp\view\site" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\view\club\bak" />
       <recent name="C:\Project\MOWAS\src\main\webapp\view\club" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\resources\OpenSource\js" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\resources\css" />
       <recent name="C:\MainProject\MOWAS\src\main\webapp\view\club" />
-      <recent name="C:\Devspace\MOWAS\src\main\resources\sql" />
-      <recent name="C:\Devspace\MOWAS\src\main\java\com\project\user\dao" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\903-15\IdeaProjects\MOWAS\src\main\webapp\view\user" />
@@ -303,15 +351,15 @@
       <item itemvalue="JUnit.ClubServiceTest.listVote" />
       <item itemvalue="JUnit.ClubServiceTest.listVoter" />
       <item itemvalue="JUnit.ClubServiceTest.updateVoter" />
-      <item itemvalue="Tomcat Server.Tomcat 9.0.58" />
+      <item itemvalue="Tomcat 서버.Tomcat 9.0.58" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ClubServiceTest.updateVoter" />
+        <item itemvalue="JUnit.ClubServiceTest.listVoter" />
         <item itemvalue="JUnit.ClubServiceTest.listVote" />
         <item itemvalue="JUnit.ClubServiceTest.getVote" />
         <item itemvalue="JUnit.ClubServiceTest.deleteVote" />
-        <item itemvalue="JUnit.ClubServiceTest.listVoter" />
-        <item itemvalue="JUnit.ClubServiceTest.updateVoter" />
       </list>
     </recent_temporary>
   </component>
@@ -347,8 +395,8 @@
       <workItem from="1665387151403" duration="25398000" />
       <workItem from="1665454790100" duration="8748000" />
       <workItem from="1665533657959" duration="27513000" />
-      <workItem from="1665725150093" duration="16255000" />
-      <workItem from="1665965663470" duration="2237000" />
+      <workItem from="1665649090993" duration="48206000" />
+      <workItem from="1665935988156" duration="3862000" />
     </task>
     <task id="LOCAL-00001" summary="설정">
       <created>1664436990723</created>
@@ -417,7 +465,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="KSM" />
+                        <option value="origin/master" />
                       </list>
                     </value>
                   </entry>
@@ -473,7 +521,9 @@
     <MESSAGE value="BJW 2022.10.03&#10;&#10;댓글,대댓글,조회수 json으로 처리 calender add성공 pom.xml에 jdbc드라이버 dependency 관개 맷음,&#10;spring-mybatis mybatise 버전 충돌 해결" />
     <MESSAGE value="LJH 2022.10.06&#10;&#10;컨트롤러 =&gt; jsp 연결 완료&#10;모임, 가입, 모임원, 블랙리스트, 공지사항 컨트롤러 완성&#10;RestController 작업 필요" />
     <MESSAGE value="LJH 2022.10.11&#10;&#10;모임 공지사항, 모임 블랙리스트 검색조건 및 페이징 처리&#10;모임원 목록과 탈퇴모임원 보기 나눔&#10;탈퇴 모임원 보기의 경우 페이징 처리&#10;&#10;모임생성, 수정 파일 업로드 및 수정 시 기존 이미지 삭제 구현 완료&#10;모임 공지사항 등록 파일 업로드 구현 완료" />
-    <option name="LAST_COMMIT_MESSAGE" value="LJH 2022.10.11&#10;&#10;모임 공지사항, 모임 블랙리스트 검색조건 및 페이징 처리&#10;모임원 목록과 탈퇴모임원 보기 나눔&#10;탈퇴 모임원 보기의 경우 페이징 처리&#10;&#10;모임생성, 수정 파일 업로드 및 수정 시 기존 이미지 삭제 구현 완료&#10;모임 공지사항 등록 파일 업로드 구현 완료" />
+    <MESSAGE value="LJH 2022.10.13&#10;&#10;투표 비즈니스 로직 및 기본 jsp, controller 구현&#10;RestController 구현하여 ajax를 이용한 기능 구현 필요" />
+    <MESSAGE value="LJH 2022.10.17&#10;&#10;listClub.jsp 만듬&#10;채팅기능 개선&#10;jsp 백업본 생성" />
+    <option name="LAST_COMMIT_MESSAGE" value="LJH 2022.10.17&#10;&#10;listClub.jsp 만듬&#10;채팅기능 개선&#10;jsp 백업본 생성" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

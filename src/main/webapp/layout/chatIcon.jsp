@@ -31,7 +31,7 @@
       right: 0;
       z-index: 1;
       margin-top: 600px;
-      margin-left: 1250px;
+      margin-left: 1450px;
       text-align:center;
     }
     .chatBox{

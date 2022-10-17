@@ -182,13 +182,19 @@ public DealController(){
 
     @RequestMapping(value = "getListDeal")
     public String getListDeal(@ModelAttribute("search") Search search, Model model,HttpServletRequest request
-                            ,@RequestParam(value = "boardCategory", defaultValue = "0") String boardCategory) throws Exception {
+                            ,@RequestParam(value = "boardCategory", defaultValue = "08") String boardCategory) throws Exception {
         System.out.println("getListDeal : GET POST");
 
         System.out.println(boardCategory);
 
-        if(search.getCurrentPage()==0) {
+        if (search.getCurrentPage() == 0) {
             search.setCurrentPage(1);
+        }
+        if (search.getPageSize() == 0) {
+            search.setPageSize(pageSize);
+        }
+        if (search.getSearchKeyword() == null) {
+            search.setSearchKeyword("");
         }
         System.out.println(search);
 
@@ -214,10 +220,11 @@ public DealController(){
             model.addAttribute("list", (List<Deal>)map.get("list"));
             model.addAttribute("resultPage", resultPage);
             model.addAttribute("search", search);
+            model.addAttribute("boardCategory","09");
         }else {
 
             Map<String, Object> map = dealService.getListDeal(search, boardCategory);
-            Deal deal = new Deal();
+
 
             Page resultPage = new Page(search.getCurrentPage(), ((Integer) map.get("totalCount")).intValue(), pageUnit, pageSize);
             System.out.println(resultPage);
@@ -274,43 +281,13 @@ public DealController(){
        // model.addAttribute("deal", deal);
         model.addAttribute("fileSize", fileSize);
     //    dealService.updateDeal(deal);
-
+        System.out.println("+updatedealvire ="+deal);
         model.addAttribute("deal", deal);
         return "forward:/view/deal/updateDeal.jsp";
 
     }
     @RequestMapping(value="updateDeal",method = RequestMethod.POST)
-    public String updateDeal(@ModelAttribute("deal") Deal deal ,Model model,MultipartHttpServletRequest multi, @RequestParam(value = "deleteFileName", required = false) List<String> deleteFileNames) throws Exception {
-//        ////파일 업로드
-//        //파일 추출
-//        List<MultipartFile> mfs = multi.getFiles("file");
-//        System.out.println(mfs);
-//        //저장할 파일이 있는지 validation check
-//        if(mfs.size()>0 && !mfs.get(0).getOriginalFilename().equals("")){
-//            //저장할 리스트 생성
-//            List<com.project.domain.File> files = new ArrayList<>();
-//            //추출된 파일 업로드
-//            for (MultipartFile mf : mfs) {
-//                //파일이 이미지인지 validation check
-//                if (Objects.requireNonNull(mf.getContentType()).substring(0, mf.getContentType().indexOf("/")).equals("image")) {
-//                    //파일 경로 및 이름 유니크하게 생성
-//                    String fileName = dealBoardPath + UUID.randomUUID() + mf.getOriginalFilename();
-//                    java.io.File uploadFile = new java.io.File(fileName);
-//                    //파일 업로드
-//                    mf.transferTo(uploadFile);
-//                    //리스트에 파일 저장
-//                    com.project.domain.File file = new com.project.domain.File();
-//                    file.setFileName(fileName);
-//                    files.add(file);
-//                }
-//            }
-//            //domain 객체에 리스트 저장
-//            deal.setFiles(files);
-//        }
-//
-//        //모임 공지사항 등록
-//        dealService.addDeal(deal);
-
+    public String updateDeal(@ModelAttribute("deal") Deal deal,MultipartHttpServletRequest multi, @RequestParam(value = "deleteFileName", required = false) List<String> deleteFileNames) throws Exception {
             ////파일 업로드
             //파일 추출
             List<MultipartFile> mfs = multi.getFiles("file");
@@ -348,7 +325,7 @@ public DealController(){
             }
 
             //기존파일 삭제
-//        System.out.println("deleteFileNames : "+deleteFileNames);
+       System.out.println("deleteFileNames : "+deleteFileNames);
             if (deleteFileNames != null) {
                 for(String deleteFileName : deleteFileNames){
                     java.io.File deleteFile = new java.io.File(resourcesPath+deleteFileName);
@@ -365,7 +342,7 @@ public DealController(){
       //  model.addAttribute("deal",dealService.getDeal(deal.getDealBoardNum()));
         System.out.println( dealService.getDeal(deal.getDealBoardNum()));
         System.out.println(deal.getDealBoardNum());
-        return "forward:/view/deal/getDeal.jsp";
+        return "redirect:/deal/getDeal/"+deal.getDealBoardNum();
         //        ////파일 업로드
 //        //파일 추출
 //        List<MultipartFile> mfs = multi.getFiles("file");
@@ -428,7 +405,7 @@ public DealController(){
         List<String> deleteFileNames = dealService.deleteDeal(dealBoardNum);
         ////기존파일 삭제
         //확인
-//        System.out.println("deleteFileNames : "+deleteFileNames);
+       System.out.println("deleteFileNames : "+deleteFileNames);
         //validation check
         if (deleteFileNames != null) {
             //각 항목 삭제

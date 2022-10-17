@@ -3,6 +3,7 @@ package com.project.club.service;
 import com.project.club.dao.ClubCalendarDao;
 import com.project.domain.ClubCalendar;
 import com.project.domain.ClubCalendarReview;
+import com.project.domain.File;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -46,9 +47,22 @@ public class ClubCalendarServiceImpl implements ClubCalendarService {
 
     @Override
     public Map<String, Object> listCalenderReview(int boardCategory) {
+
         List<ClubCalendarReview> list =  clubCalendarDao.listCalenderReview(boardCategory);
 
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<String, Object>();;
+
+
+        //파일 리스트 가져오기
+        int i = 0;
+        for (ClubCalendarReview calenderReview : list){
+
+            calenderReview.setFile(clubCalendarDao.getListFile(list.get(i).getClubCalenderReviewNum(),
+                    list.get(i).getBoardCategory()));
+
+            System.out.println("/n 캘린더 넘버의 정보 " + list.get(i).getClubCalenderReviewNum());
+            i += 1;
+        }
 
         map.put("list", list);
 
@@ -57,7 +71,13 @@ public class ClubCalendarServiceImpl implements ClubCalendarService {
 
     @Override
     public ClubCalendarReview getCalenderReview(int clubCalenderReviewNum) {
-        return clubCalendarDao.getCalenderReview(clubCalenderReviewNum);
+
+        ClubCalendarReview clubCalendarReview = clubCalendarDao.getCalenderReview(clubCalenderReviewNum);
+
+        clubCalendarReview.setFile(clubCalendarDao.getListFile(clubCalendarReview.getClubCalenderReviewNum(),
+                                                                 clubCalendarReview.getBoardCategory()));
+
+        return clubCalendarReview;
     }
 
     @Override
@@ -68,10 +88,9 @@ public class ClubCalendarServiceImpl implements ClubCalendarService {
 
         Map<String,Object> map = null;
         List<Map<String, Object>> list2 = new ArrayList<>();
+
         for (int i = 0; i < list.size(); i++) {
             map = new HashMap<>();
-
-
 
             map.put("id", list.get(i).getClubCalenderNum());
             map.put("start", list.get(i).getClubDate());
@@ -82,6 +101,11 @@ public class ClubCalendarServiceImpl implements ClubCalendarService {
         }
         System.out.println("map 덮어 쓰기 " + map);
         return list2;
+    }
+
+    @Override
+    public void addFileUpload(Map<String, String> map) {
+        clubCalendarDao.addFileUpload(map);
     }
 
 

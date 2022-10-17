@@ -9,7 +9,7 @@ import java.util.Map;
 public interface ClubService {
 
     public Club addClub(Club club);
-    public Club updateClub(Club club);
+    public void updateClub(Club club);
     public void deleteClub(Club club);
     public Club getClub(int clubNum);
     public String getCluberCondition(User user, int clubNum);
@@ -45,8 +45,8 @@ public interface ClubService {
     public void addVote(Vote vote);
     public void updateVote(Vote vote);
     public List<Vote> listVote(String roomId);
-    public Vote getVote(int voteNum);
-    public void addVoter(List<String> voterItems, String userId, int voteNum);
+    public Vote getVote(int voteNum, String userId);
+//    public void addVoter(List<String> voterItems, String userId, int voteNum);
     public List<Voter> listVoter(Voter voter);
     public void updateVoter(List<String> voterItems, String userId, int voteNum);
     public void deleteVote(int voteNum);

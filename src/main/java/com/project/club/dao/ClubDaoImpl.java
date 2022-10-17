@@ -282,8 +282,13 @@ public class ClubDaoImpl implements ClubDao {
     }
 
     @Override
-    public Vote getVote(int voteNum) {
-        return sqlSession.selectOne("ClubMapper.getVote", voteNum);
+    public void updateVoteEndDate(String roomId) {
+        sqlSession.update("ClubMapper.updateVoteEndDate",roomId);
+    }
+
+    @Override
+    public Vote getVote(Map<String, Object> map) {
+        return sqlSession.selectOne("ClubMapper.getVote", map);
     }
 
     @Override

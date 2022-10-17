@@ -97,6 +97,12 @@
         <result property="voter3" column="voter3" jdbcType="INTEGER"/>
         <result property="voter4" column="voter4" jdbcType="INTEGER"/>
         <result property="voter5" column="voter5" jdbcType="INTEGER"/>
+        <result property="myVoter1" column="my_voter1" jdbcType="INTEGER"/>
+        <result property="myVoter2" column="my_voter2" jdbcType="INTEGER"/>
+        <result property="myVoter3" column="my_voter3" jdbcType="INTEGER"/>
+        <result property="myVoter4" column="my_voter4" jdbcType="INTEGER"/>
+        <result property="myVoter5" column="my_voter5" jdbcType="INTEGER"/>
+        <result property="voterCheck" column="voter_check" jdbcType="INTEGER"/>
     </resultMap>
 
     <resultMap type="com.project.domain.Voter" id="VoterResultMap">
@@ -199,7 +205,9 @@
             club_name = #{clubName},
             club_text = #{clubText},
             vill_code = #{villCode},
-            club_image = #{clubImage},
+            <if test="clubImage!=null">
+                club_image = #{clubImage},
+            </if>
             gather_check = #{gatherCheck},
             club_tag = #{tag}
         </set>
@@ -888,7 +896,7 @@
                 #{voteText},
                 #{multiVoteCheck},
                 #{hideVoteCheck},
-                #{endDate:DATE},
+                TO_Date(#{endDate}, 'yyyy-mm-dd hh24:mi'),
                 #{endDateCheck},
                 SYSDATE,
                 '0',
@@ -898,6 +906,16 @@
                 #{voteItem4:VARCHAR},
                 #{voteItem5:VARCHAR})
     </insert>
+
+    <!--clubService.updateVoteEndDate-->
+    <!--투표 수정-->
+    <!--시간되면 마감-->
+    <update id="updateVoteEndDate" parameterType="com.project.domain.Vote">
+        UPDATE VOTE
+        SET vote_end_check = '1'
+        WHERE room_id = #{roomId}
+          AND (vote_end_date &lt; SYSDATE)
+    </update>
 
     <!--clubService.updateVote-->
     <!--투표 수정-->
@@ -912,7 +930,7 @@
             multi_vote_check = #{multiVoteCheck},
             hide_vote_check = #{hideVoteCheck},
             vote_end_date_check = #{endDateCheck},
-            vote_end_date = #{endDate:DATE},
+            vote_end_date = TO_Date(#{endDate},'yyyy-mm-dd hh24:mi'),
             vote_item_1 = #{voteItem1},
             vote_item_2 = #{voteItem2:VARCHAR},
             vote_item_3 = #{voteItem3:VARCHAR},
@@ -947,7 +965,7 @@
                room_id,
                vote_master_id,
                vote_title,
-               vote_end_date,
+               TO_CHAR(vote_end_date, 'yyyy"-"mm"-"dd hh24:mi') as vote_end_date,
                vote_end_date_check,
                vote_date,
                vote_end_check
@@ -957,7 +975,7 @@
 
     <!--clubService.getVote-->
     <!--투표 상세-->
-    <select id="getVote" parameterType="int" resultMap="VoteResultMap">
+    <select id="getVote" parameterType="map" resultMap="VoteResultMap">
         select vote_num,
                room_id,
                vote_master_id,
@@ -965,7 +983,7 @@
                vote_text,
                multi_vote_check,
                hide_vote_check,
-               vote_end_date,
+               TO_CHAR(vote_end_date, 'yyyy"-"mm"-"dd hh24:mi') as                            vote_end_date,
                vote_end_date_check,
                vote_date,
                vote_end_check,
@@ -994,7 +1012,36 @@
                 FROM voter
                 where vote_num = #{voteNum}
                   and VOTE_ITEM = (select vote_item_5 from VOTE where VOTE_NUM = #{voteNum})) voter5,
-               (select COUNT(distinct user_id) FROM voter where vote_num = #{voteNum})        total_voter
+               (select COUNT(*)
+                FROM voter
+                where vote_num = #{voteNum}
+                  AND user_id = #{userId}
+                  and VOTE_ITEM = (select vote_item_1 from VOTE where VOTE_NUM = #{voteNum})) my_voter1,
+               (select COUNT(*)
+                FROM voter
+                where vote_num = #{voteNum}
+                  AND user_id = #{userId}
+                  and VOTE_ITEM = (select vote_item_2 from VOTE where VOTE_NUM = #{voteNum})) my_voter2,
+               (select COUNT(*)
+                FROM voter
+                where vote_num = #{voteNum}
+                  AND user_id = #{userId}
+                  and VOTE_ITEM = (select vote_item_3 from VOTE where VOTE_NUM = #{voteNum})) my_voter3,
+               (select COUNT(*)
+                FROM voter
+                where vote_num = #{voteNum}
+                  AND user_id = #{userId}
+                  and VOTE_ITEM = (select vote_item_4 from VOTE where VOTE_NUM = #{voteNum})) my_voter4,
+               (select COUNT(*)
+                FROM voter
+                where vote_num = #{voteNum}
+                  AND user_id = #{userId}
+                  and VOTE_ITEM = (select vote_item_5 from VOTE where VOTE_NUM = #{voteNum})) my_voter5,
+               (select COUNT(distinct user_id) FROM voter where vote_num = #{voteNum})        total_voter,
+               (select COUNT(distinct user_id)
+                FROM voter
+                where vote_num = #{voteNum}
+                  AND user_id = #{userId})                                                    voter_check
         FROM vote
         WHERE vote_num = #{voteNum}
     </select>

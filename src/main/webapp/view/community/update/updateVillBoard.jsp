@@ -15,6 +15,9 @@
     <!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->
 
     <!-- include libraries(jQuery, bootstrap) -->
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -80,66 +83,72 @@
 
                         var boardNum = JSONData
 
-                        //form 테그를 불러와서 form변수에 등록
-                        var form = document.querySelector("form");
-                        //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
-                        var formData = new FormData(form);
-                        //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
-                        var fileSize = $("#file")[0].files;
-                        console.log(fileSize.length);
-                        //formData에 해당 게시글 번호, 게시글 category append
-                        formData.append("boardNum", boardNum);
-                        formData.append("boardCategoru", boardCategory);
+                        if (file > 0) {
 
-                        //file길이 만큼 for문으로 formData에 append함
-                        for (var i = 0; i < fileSize.length; i++) {
-                            formData.append("form", fileSize[i]);
-                            //파일이 잘 들어 갔는지 확인
-                            console.log(fileSize[i]);
-                        }
-                        //formData에 들어 있는 boardNum과 file의 정보를 비동기식으로 보냄
-                        //파일은 json형식으로 보낼수 없기 떄문에 contentType, processData, dataType을 false로 지정
-                        $.ajax({
-                            url: "/clubCal/json/fileUpload",
-                            type: "post",
-                            processData: false,
-                            contentType: false,
-                            cache: false,
-                            timeout: 600000,
-                            data: formData,
-                            headers: {'cache-control': 'no-cache', 'pragma': 'no-cache'},
-                            enctype: "multipart/form-data",
-                            success: function (result) {
+                            //form 테그를 불러와서 form변수에 등록
+                            var form = document.querySelector("form");
+                            //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
+                            var formData = new FormData(form);
+                            //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
+                            var fileSize = $("#file")[0].files;
+                            console.log(fileSize.length);
+                            //formData에 해당 게시글 번호, 게시글 category append
+                            formData.append("boardNum", boardNum);
+                            formData.append("boardCategoru", boardCategory);
 
-                                console.log(result);
-                                // 성공시 해당 창을 닫고 부모창을 reload
-                                Swal.fire({
-                                    position: 'top-end',
-                                    icon: 'success',
-                                    title: 'Your work has been saved',
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                });
-
-                                setTimeout(function () {
-                                    opener.location.reload();
-                                    window.close();
-                                }, 2000);
-                                //error 발생시 그냥 창을 닫음
-                            }, error: function () {
-                                Swal.fire({
-                                    position: 'top-end',
-                                    icon: 'success',
-                                    title: 'Your work has been saved',
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                });
-                                setTimeout(function () {
-                                    window.close();
-                                }, 2000);
+                            //file길이 만큼 for문으로 formData에 append함
+                            for (var i = 0; i < fileSize.length; i++) {
+                                formData.append("form", fileSize[i]);
+                                //파일이 잘 들어 갔는지 확인
+                                console.log(fileSize[i]);
                             }
+                            //formData에 들어 있는 boardNum과 file의 정보를 비동기식으로 보냄
+                            //파일은 json형식으로 보낼수 없기 떄문에 contentType, processData, dataType을 false로 지정
+                            $.ajax({
+                                url: "/clubCal/json/fileUpload",
+                                type: "post",
+                                processData: false,
+                                contentType: false,
+                                cache: false,
+                                timeout: 600000,
+                                data: formData,
+                                headers: {'cache-control': 'no-cache', 'pragma': 'no-cache'},
+                                enctype: "multipart/form-data",
+                                success: function (result) {
 
-                        })
+                                    console.log(result);
+
+                                }
+
+                            })
+                        }
+
+
+                        // 성공시 해당 창을 닫고 부모창을 reload
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Your work has been saved',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        setTimeout(function () {
+                            opener.location.reload();
+                            window.close();
+                        }, 2000);
+                        //error 발생시 그냥 창을 닫음
+                    }, error: function () {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Your work has been saved',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        setTimeout(function () {
+                            window.close();
+                        }, 2000);
 
                     }
                 });
@@ -149,7 +158,13 @@
             $(".close").on("click", function () {
                 window.close();
             });
-        });
+
+            var input = document.querySelector(".villTag")
+            var tagify = new Tagify(input, {});
+
+            tagify.on('add', function (e) {
+            });
+        })
 
 
     </script>
@@ -166,7 +181,7 @@
             <input hidden class="boardCategory" value="${villBoard.boardCategory}">
 
             <div class="page-header">
-                <h3 class=" text-info">우리 동네 게시글 작성</h3>
+                <h3 class=" text-info">우리 동네 게시글 수정</h3>
             </div>
 
             <div class="row">
