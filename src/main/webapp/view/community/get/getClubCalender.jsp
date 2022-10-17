@@ -46,7 +46,34 @@
     <script type="text/javascript">
 
         //============= 회원정보수정 Event  처리 =============
+
+
         $(function () {
+            const date = new Date();
+
+            const year = date.getFullYear();
+            const month = ('0' + (date.getMonth() + 1)).slice(-2);
+            const day = ('0' + date.getDate()).slice(-2);
+            const dateStr = year + '-' + month + '-' + day;
+
+            var Cdate = $(".clubDate").val()
+
+            const date2 = new Date(dateStr);
+            const date3 = new Date(Cdate);
+
+
+            if (date3 < date2) {
+
+                var button = '<button class="btn btn-primary addReview">' +
+                    '모임 일정 후기글 작성' +
+                    '</button>' +
+                    '<button class="btn btn-primary addShort">' +
+                    '모임 일정 쇼츠' +
+                    '</button>'
+
+
+                $(".addBox").append(button);
+            }
 
             $(".submit").on("click", function () {
 
@@ -64,15 +91,15 @@
                     url: "/clubCal/json/addClubCalender",
                     method: "post",
                     data: JSON.stringify({
-                        "calenderTitle" :calenderTitle,
+                        "calenderTitle": calenderTitle,
                         "calenderText": calenderText,
-                        "clubDate" : clubDate,
+                        "clubDate": clubDate,
                         "location": location,
                         "file": file,
-                        "noticeCheck" : noticeCheck,
+                        "noticeCheck": noticeCheck,
                         "noticeTime": noticeTime,
                         "calendarApplyCheck": calendarApplyCheck,
-                        "applyAutoCheck" : applyAutoCheck
+                        "applyAutoCheck": applyAutoCheck
                     }),
                     dataType: "json",
                     contentType: "application/json; charset=UTF-8",
@@ -110,6 +137,8 @@
             $(".close").on("click", function () {
                 window.close();
             });
+
+
         });
 
 
@@ -124,14 +153,19 @@
     <div class="wap">
         <div class="container">
 
-            <div class="page-header">
-                <h3 class=" text-info">모임 일정 작성</h3>
+            <div class="page-header" style="display: flex; flex-direction: row-reverse;">
+                <h3 class=" text-info">모임 일정</h3>
             </div>
+            <div class="borderBox">
+                <div class="addBox" style=" float: right; display: flex; flex-direction: column;">
 
+                </div>
+            </div>
             <div class="row">
                 <div class="col-xs-4 col-xs-2"><strong>제 목</strong></div>
                 <div class="col-xs-8 col-xs-4">
-                    <input type="text" class="form-control calenderTitle"  name="calenderTitle" value="${clubCalender.calenderTitle}"/>
+                    <input type="text" class="form-control calenderTitle" name="calenderTitle"
+                           value="${clubCalender.calenderTitle}"/>
                 </div>
             </div>
 
@@ -141,7 +175,7 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2"><strong>일정 내용</strong></div>
                 <div class="col-xs-8 col-xs-4">
-                    <textarea class="form-control calenderText"  name="calenderText"
+                    <textarea class="form-control calenderText" name="calenderText"
                               style=" height: 200px;  width: 500px;  margin-bottom: 20px;">${clubCalender.calenderText}</textarea>
                 </div>
             </div>
@@ -152,7 +186,8 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
                     <strong>일정 날짜
-                        <input class="form-control clubDate" value="${clubCalender.clubDate}" name="clubDate" type="date">
+                        <input class="form-control clubDate" value="${clubCalender.clubDate}" name="clubDate"
+                               type="date">
                     </strong>
                 </div>
             </div>
@@ -184,7 +219,9 @@
 
             <div class="form-check form-switch">
                 알림 설정 여부
-                <input class="form-check-input check noticeCheck" name="noticeCheck" type="checkbox" role="switch"
+                <input class="form-check-input check noticeCheck"
+                       name="noticeCheck" ${ (clubCalender.noticeCheck eq 2) ? 'checked' : ''} type="checkbox"
+                       role="switch"
                        id="flexSwitchCheckDefault1">
                 <label class="form-check-label" for="flexSwitchCheckDefault1"></label>
             </div>
@@ -194,15 +231,13 @@
 
             알림 시간 설정
             <hr>
-            <input type="time" class="noticeTime" name="noticeTime">
-
+            <input type="time" class="noticeTime" name="noticeTime" value="${clubCalender.noticeTime}">
             <hr/>
 
             <div class="form-check form-switch">
                 추가 참여 여부
-                <input class="form-check-input check calendarApplyCheck" name="calendarApplyCheck" type="checkbox"
-                       role="switch"
-                       id="flexSwitchCheckDefault2">
+                <input class="form-check-input check calendarApplyCheck" ${(clubCalender.calendarApplyCheck eq 2) ? 'checked' : ''}
+                       name="calendarApplyCheck" type="checkbox" role="switch" id="flexSwitchCheckDefault2">
                 <label class="form-check-label" for="flexSwitchCheckDefault2"></label>
             </div>
 
@@ -212,14 +247,15 @@
 
             <div class="form-check form-switch">
                 자동 참여 가능
-                <input class="form-check-input check applyAutoCheck" name="applyAutoCheck" type="checkbox" role="switch"
+                <input class="form-check-input check applyAutoCheck"
+                       name="applyAutoCheck" ${ (clubCalender.applyAutoCheck eq 2) ? 'checked' : ''} type="checkbox"
+                       role="switch"
                        id="flexSwitchCheckDefault3">
                 <label class="form-check-label" for="flexSwitchCheckDefault3"></label>
             </div>
 
 
             <hr/>
-
 
 
             <div class="row">
@@ -234,6 +270,24 @@
         </div>
     </div>
 </form>
+<script>
+    $(function (){
+
+        $(".addReview").on("click", function () {
+            window.open(
+                "/view/community/add/addClubCalenderReview.jsp", "모임 일정 후기글 작성",
+                "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
+        });
+
+        $(".addShort").on("click", function () {
+            window.open(
+                "/view/community/add/addClubCalenderReviewShort.jsp", "모임 일정 후기글 작성",
+                "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
+        });
+
+    });
+
+</script>
 
 </body>
 

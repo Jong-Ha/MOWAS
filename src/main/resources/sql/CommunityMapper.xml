@@ -60,8 +60,8 @@
                ,SYSDATE
                ,#{boardCategory}
                )
-        <selectKey resultType="int" keyProperty="villBoardNum" order="BEFORE">
-            SELECT seq_vill_board.NEXTVAL FROM DUAL
+        <selectKey keyProperty="villBoardNum" resultType="int"  order="AFTER">
+            SELECT seq_vill_board.CURRVAL FROM DUAL
         </selectKey>
     </insert>
 

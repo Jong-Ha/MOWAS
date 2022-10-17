@@ -50,11 +50,11 @@
 
             $(".submit").on("click", function () {
 
+                var clubNum = $(".clubNum").val();
                 var calenderTitle = $(".calenderTitle").val()
                 var calenderText = $(".calenderText").val()
                 var clubDate = $(".clubDate").val()
                 var location = $(".location").val()
-                var file = $(".file").val()
                 var noticeCheck = $(".noticeCheck").val()
                 var noticeTime = $(".noticeTime").val()
                 var calendarApplyCheck = $(".calendarApplyCheck").val()
@@ -64,11 +64,11 @@
                     url: "/clubCal/json/addClubCalender",
                     method: "post",
                     data: JSON.stringify({
+                        "clubNum" : clubNum,
                         "calenderTitle": calenderTitle,
                         "calenderText": calenderText,
                         "clubDate": clubDate,
                         "location": location,
-                        "file": file,
                         "noticeCheck": noticeCheck,
                         "noticeTime": noticeTime,
                         "calendarApplyCheck": calendarApplyCheck,
@@ -77,13 +77,13 @@
                     dataType: "json",
                     contentType: "application/json; charset=UTF-8",
                     success: function (JSONData, result) {
+                        alert(result);
                         console.log(JSONData);
                         var boardNum = JSONData
 
                         var file = $("#file").length
 
                         if (file > 0) {
-
 
                             //form 테그를 불러와서 form변수에 등록
                             var form = document.querySelector("form");
@@ -156,6 +156,9 @@
             $(".close").on("click", function () {
                 window.close();
             });
+
+            const date = new Date();
+           if($(".clubDate").val() > date.toString());
         });
 
 
@@ -167,6 +170,8 @@
 
 <form>
     <!--  화면구성 div Start /////////////////////////////////////-->
+    <input hidden class="clubNum" value="${club.clubNum}">
+
     <div class="wap">
         <div class="container">
 
@@ -210,7 +215,7 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
                     <strong>위치
-                        <input type="button" name="location" value="위치 입력">
+                        <input type="text" name="location" value="위치 입력">
                     </strong>
                 </div>
             </div>

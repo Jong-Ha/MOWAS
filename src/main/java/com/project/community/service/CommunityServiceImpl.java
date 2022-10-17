@@ -1,10 +1,8 @@
 package com.project.community.service;
 
+import com.project.club.dao.ClubCalendarDao;
 import com.project.community.dao.CommunityDao;
-import com.project.domain.ClubCalendar;
-import com.project.domain.Comment;
-import com.project.domain.Recomment;
-import com.project.domain.VilBoard;
+import com.project.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -19,6 +17,10 @@ public class CommunityServiceImpl implements CommunityService {
     @Autowired
     @Qualifier("communityDaoImpl")
     private CommunityDao commuDao;
+
+    @Autowired
+    @Qualifier("clubCalenderDaoImpl")
+    private ClubCalendarDao clubCalendarDao;
 
     @Override
     public void addClubCalender(ClubCalendar commu) throws Exception {
@@ -67,6 +69,16 @@ public class CommunityServiceImpl implements CommunityService {
 
         Map<String, Object> map = new HashMap<String, Object>();
 
+        int i = 0;
+        for (VilBoard villBoard : list){
+
+            villBoard.setFile(clubCalendarDao.getListFile(list.get(i).getVillBoardNum(),
+                    list.get(i).getBoardCategory()));
+
+            System.out.println("/n 우동 넘버의 정보 " + list.get(i).getVillBoardNum());
+            i += 1;
+        }
+
         map.put("list", list);
 
         return map;
@@ -74,7 +86,14 @@ public class CommunityServiceImpl implements CommunityService {
 
     @Override
     public VilBoard getVillBoard(int villBoardNum) {
-        return commuDao.getVillBoard(villBoardNum);
+        VilBoard villBoard = new VilBoard();
+
+        villBoard = commuDao.getVillBoard(villBoardNum);
+
+        villBoard.setFile(clubCalendarDao.getListFile(villBoard.getVillBoardNum(),
+                villBoard.getBoardCategory()));
+
+        return villBoard;
     }
 
     @Override

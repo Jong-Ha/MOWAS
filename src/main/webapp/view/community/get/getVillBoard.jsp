@@ -11,6 +11,7 @@
             rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css"
           rel="stylesheet">
+    <link href="/resources/css/comment.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
@@ -473,87 +474,30 @@
         <div class="usedbox">
             <div class="thumbnailBox">
                 <div class="shadow-lg midle"
-                     style="margin-bottom: 50px; margin-top: -3px;">
-                    <div id="carouselExampleDark"
-                         class=" shadow-lg carousel carousel-dark slide"
-                         data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleDark"
-                                    data-bs-slide-to="0" class="active" aria-label="Slide 1"
-                                    aria-current="true"></button>
-                            <button type="button" data-bs-target="#carouselExampleDark"
-                                    data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
-                            <button type="button" data-bs-target="#carouselExampleDark"
-                                    data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
-                        </div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active" data-bs-interval="10000">
-                                <svg
-                                        class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
-                                        width="800" height="400" xmlns="http://www.w3.org/2000/svg"
-                                        role="img" aria-label="Placeholder: First slide"
-                                        preserveAspectRatio="xMidYMid slice" focusable="false">
-                                    <title>Placeholder</title>
-                                    <rect width="100%" height="100%"
-                                          fill="#f5f5f5"></rect>
-                                    <text x="50%" y="50%" fill="#aaa" dy=".3em">First slide</text>
-                                </svg>
-
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>First slide label</h5>
-                                    <p>Some representative placeholder content for the first
-                                        slide.</p>
+                     style="margin-bottom: 50px; margin-top: -3px; width: 490px; overflow: hidden; height: 400px;">
+                    <div id="carouselExampleDark" class=" shadow-lg carousel carousel-dark slide" data-bs-ride="carousel">
+                        <c:set var="i" value="0"/>
+                        <c:forEach var="File" items="${villBoard.file}">
+                            <c:set var="i" value="${i+1}"/>
+                            <div class="carousel-inner" >
+                                <div class="carousel-item active" data-bs-interval="10000">
+                                    <img src="/resources${File.fileName}" width="490px" height="400px">
                                 </div>
                             </div>
-                            <div class="carousel-item" data-bs-interval="2000">
-                                <svg
-                                        class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
-                                        width="800" height="400" xmlns="http://www.w3.org/2000/svg"
-                                        role="img" aria-label="Placeholder: Second slide"
-                                        preserveAspectRatio="xMidYMid slice" focusable="false">
-                                    <title>Placeholder</title>
-                                    <rect width="100%" height="100%"
-                                          fill="#eee"></rect>
-                                    <text x="50%" y="50%" fill="#bbb" dy=".3em">Second slide</text>
-                                </svg>
 
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>Second slide label</h5>
-                                    <p>Some representative placeholder content for the second
-                                        slide.</p>
-                                </div>
-                            </div>
-                            <div class=" carousel-item">
-                                <svg
-                                        class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
-                                        width="800" height="400" xmlns="http://www.w3.org/2000/svg"
-                                        role="img" aria-label="Placeholder: Third slide"
-                                        preserveAspectRatio="xMidYMid slice" focusable="false">
-                                    <title>Placeholder</title>
-                                    <rect width="100%" height="100%"
-                                          fill="#e5e5e5"></rect>
-                                    <text x="50%" y="50%" fill="#999" dy=".3em">Third slide</text>
-                                </svg>
-
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>Third slide label</h5>
-                                    <p>Some representative placeholder content for the third
-                                        slide.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button"
-                                data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </c:forEach>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev" >
+                            <span class="carousel-control-prev-icon" aria-hidden="true" style="z-index: 3; position: absolute;"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button"
-                                data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true" style="z-index: 3; position: absolute;"></span>
+                            <span class="visually-hidden" >Next</span>
                         </button>
+
                     </div>
                 </div>
+
                 <div class="likebox shadow-lg">
                     <div class="itembox" style="padding: 20px;">
                         <button type="button"
@@ -615,8 +559,10 @@
                                         d="M6.956 14.534c.065.936.952 1.659 1.908 1.42l.261-.065a1.378 1.378 0 0 0 1.012-.965c.22-.816.533-2.512.062-4.51.136.02.285.037.443.051.713.065 1.669.071 2.516-.211.518-.173.994-.68 1.2-1.272a1.896 1.896 0 0 0-.234-1.734c.058-.118.103-.242.138-.362.077-.27.113-.568.113-.856 0-.29-.036-.586-.113-.857a2.094 2.094 0 0 0-.16-.403c.169-.387.107-.82-.003-1.149a3.162 3.162 0 0 0-.488-.9c.054-.153.076-.313.076-.465a1.86 1.86 0 0 0-.253-.912C13.1.757 12.437.28 11.5.28H8c-.605 0-1.07.08-1.466.217a4.823 4.823 0 0 0-.97.485l-.048.029c-.504.308-.999.61-2.068.723C2.682 1.815 2 2.434 2 3.279v4c0 .851.685 1.433 1.357 1.616.849.232 1.574.787 2.132 1.41.56.626.914 1.28 1.039 1.638.199.575.356 1.54.428 2.591z"/>
                             </svg>
                         </button>
-                        <button type="button" class="btn btn-outline-primary itembutton update">수정</button>
-                        <button type="button" class="btn btn-outline-secondary itembutton delete">삭제</button>
+                        <c:if test="${user.userId eq villBoard.userId}">
+                            <button type="button" class="btn btn-outline-primary itembutton update">수정</button>
+                            <button type="button" class="btn btn-outline-secondary itembutton delete">삭제</button>
+                        </c:if>
 
 
                     </div>
@@ -624,29 +570,34 @@
             </div>
 
             <div class="textbox shadow-lg">
-                <div class="container">
+                <div class="container" style="    padding: 5px 5px;">
                     <div class="row textboxrow">
-                        <div class="col-2">제목</div>
-                        <div class="col-10">${villBoard.villTitle}</div>
+                        <div class="col-2 border-reight">제목</div>
+                        <div class="col-10 textfloat">${villBoard.villTitle}</div>
                     </div>
+                    <hr>
 
 
                     <div class="row textboxrow">
-                        <div class="col-2">작성자</div>
+                        <div class="col-2 border-reight">작성자</div>
                         <div class="col-10">${villBoard.userId}</div>
                     </div>
 
+                    <hr>
+
                     <div class="row textboxrow">
-                        <div class="col-2">태그</div>
+                        <div class="col-2 border-reight">태그</div>
                         <div class="col-10">${villBoard.villTag}</div>
                     </div>
+
+                    <hr>
 
                     <div class="row textboxrow">
                         <div class="col-2">내용</div>
                         <div class="col-10">
                             <label for="exampleFormControlTextarea1" class="form-label"></label>
                             <textarea class="form-control" id="exampleFormControlTextarea1"
-                                      rows="3" style="height: 316px; font-size: 0.4em;"
+                                      rows="3" style="height: 279px; font-size: 0.4em;"
                                       placeholder="${villBoard.villText}"></textarea>
                         </div>
                     </div>

@@ -4,90 +4,100 @@
 <head>
     <title>getClub</title>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script>
-        $(function(){
-            $(".updateClub").on("click",function(){
-                location.href="/club/updateClub/${club.clubNum}"
-            })
-            $(".deleteClub").on("click",function(){
-                var check = confirm("진짜 삭제?");
-                if(check==true){
-                    location.href="/club/deleteClub/${club.clubNum}"
+</head>
+<script>
+    $(function(){
+        $(".updateClub").on("click",function(){
+            location.href="/club/updateClub/${club.clubNum}"
+        })
+        $(".deleteClub").on("click",function(){
+            var check = confirm("진짜 삭제?");
+            if(check==true){
+                location.href="/club/deleteClub/${club.clubNum}"
+            }
+        })
+        $(".listCluber").on("click",function(){
+            location.href="/club/listCluber/${club.clubNum}"
+        })
+        $(".deleteCluber").on("click",function(){
+            location.href="/club/deleteCluber/F?clubNum=${club.clubNum}"
+        })
+        $(".addCluberApply").on("click",function(){
+            location.href="/club/addCluberApply/${club.clubNum}"
+        })
+        $(".updateCluberApply").on("click",function(){
+            location.href="/club/updateCluberApply/${club.clubNum}"
+        })
+        $(".addClubMasterBoard").on("click",function(){
+            location.href="/club/addClubMasterBoard/${club.clubNum}"
+        })
+        $(".listVote").on("click",function(){
+            location.href="/club/listVote/${club.clubNum}"
+        })
+
+        // 확인용
+        $(".listClubMasterBoard").on("click",function(){
+            location.href="/club/listClubMasterBoard/${club.clubNum}"
+        })
+
+        $(".addCalender").on("click", ()=>{
+            alert(${club.clubNum});
+
+            window.open(
+            "/clubCal/addCalender?clubNum=${club.clubNum}", "리뷰페이지",
+                "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
+
+        });
+
+        // 일정 참여 신청 관련
+        $(".addClubCalendarApply").on("click",function(){
+            $.ajax({
+                url : "/club/json/addClubCalendarApply",
+                method : "POST",
+                data : JSON.stringify({
+                    "clubCalendarNum" : 10003,
+                    "userId" : "${user.userId}",
+                    "userImage" : "${user.userImage}",
+                    //1이면 확인 2면 자동
+                    "applyAutoCheck" : "1"
+                }),
+                dataType : "JSON",
+                headers:{
+                    "Accept":"application/json",
+                    "Content-Type":"application/json; charset=UTF-8"
+                },
+                success: function () {
+                    $(".addClubCalendarApply").toggle()
+                    $(".deleteClubCalendarApply").toggle()
                 }
             })
-            $(".listCluber").on("click",function(){
-                location.href="/club/listCluber/${club.clubNum}"
-            })
-            $(".deleteCluber").on("click",function(){
-                location.href="/club/deleteCluber/F?clubNum=${club.clubNum}"
-            })
-            $(".addCluberApply").on("click",function(){
-                location.href="/club/addCluberApply/${club.clubNum}"
-            })
-            $(".updateCluberApply").on("click",function(){
-                location.href="/club/updateCluberApply/${club.clubNum}"
-            })
-            $(".addClubMasterBoard").on("click",function(){
-                location.href="/club/addClubMasterBoard/${club.clubNum}"
-            })
-            $(".listVote").on("click",function(){
-                location.href="/club/listVote/${club.clubNum}"
-            })
-
-            // 확인용
-            $(".listClubMasterBoard").on("click",function(){
-                location.href="/club/listClubMasterBoard/${club.clubNum}"
-            })
-
-            // 일정 참여 신청 관련
-            $(".addClubCalendarApply").on("click",function(){
-                $.ajax({
-                    url : "/club/json/addClubCalendarApply",
-                    method : "POST",
-                    data : JSON.stringify({
-                        "clubCalendarNum" : 10003,
-                        "userId" : "${user.userId}",
-                        "userImage" : "${user.userImage}",
-                        //1이면 확인 2면 자동
-                        "applyAutoCheck" : "1"
-                    }),
-                    dataType : "JSON",
-                    headers:{
-                        "Accept":"application/json",
-                        "Content-Type":"application/json; charset=UTF-8"
-                    },
-                    success: function () {
-                        $(".addClubCalendarApply").toggle()
-                        $(".deleteClubCalendarApply").toggle()
-                    }
-                })
-            })
-            //참여 신청 취소
-            $(".deleteClubCalendarApply").on("click",function(){
-                $.ajax({
-                    url : "/club/json/deleteClubCalendarApply",
-                    method : "POST",
-                    data : JSON.stringify({
-                        "clubCalendarNum" : 10003,
-                        "userId" : "${user.userId}"
-                    }),
-                    dataType : "JSON",
-                    headers:{
-                        "Accept":"application/json",
-                        "Content-Type":"application/json; charset=UTF-8"
-                    },
-                    success: function () {
-                        $(".addClubCalendarApply").toggle()
-                        $(".deleteClubCalendarApply").toggle()
-                    }
-                })
+        })
+        //참여 신청 취소
+        $(".deleteClubCalendarApply").on("click",function(){
+            $.ajax({
+                url : "/club/json/deleteClubCalendarApply",
+                method : "POST",
+                data : JSON.stringify({
+                    "clubCalendarNum" : 10003,
+                    "userId" : "${user.userId}"
+                }),
+                dataType : "JSON",
+                headers:{
+                    "Accept":"application/json",
+                    "Content-Type":"application/json; charset=UTF-8"
+                },
+                success: function () {
+                    $(".addClubCalendarApply").toggle()
+                    $(".deleteClubCalendarApply").toggle()
+                }
             })
         })
-    </script>
-</head>
+    })
+</script>
 <body>
 <img src="/resources/${club.clubImage}" alt="모임이미지"><br>
 ${club}<br>
+<input hidden class="boardNum" value="${club.clubNum}">
 <input type="button" class="updateClub" value="모임 수정">
 <input type="button" class="deleteClub" value="모임 삭제">
 <input type="button" class="listCluber" value="모임원 목록">
@@ -105,7 +115,7 @@ ${club}<br>
 <input type="button" class="addClubCalendarApply" value="모임 일정 참여">
 <input type="button" class="deleteClubCalendarApply" style="display: none" value="모임 일정 참여 취소">
 <br>
-<input type="button" class="addClubCalendar" value="모임 일정 작성">
+<input type="button" class="addCalender" value="모임 일정 작성">
 <br><br>
 <input type="button" class="listClubCalendarReviewList" value="모임 후기글"><br>
 <input type="button" class="addClubCalendarReviewList" value="모임 후기글 작성">
@@ -113,5 +123,8 @@ ${club}<br>
 <input type="button" class="listClubCalendarReviewShortList" value="모임 후기쇼츠"><br>
 <input type="button" class="addClubCalendarReviewShortList" value="모임 후기쇼츠 작성">
 <br><br>
+<hr>
+<hr>
+<jsp:include page="/view/community/calender.jsp"/>
 </body>
 </html>

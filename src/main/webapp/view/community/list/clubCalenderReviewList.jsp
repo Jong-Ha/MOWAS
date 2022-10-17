@@ -28,22 +28,22 @@
             var boardCategory = $(".boardCategory").val()
             console.log(clubCalenderReviewNum);
 
-            location.href = "/clubCal/getClubCalenderReview?clubCalenderReviewNum="+clubCalenderReviewNum+"&boardCategory="+boardCategory;
+            location.href = "/clubCal/getClubCalenderReview?clubCalenderReviewNum=" + clubCalenderReviewNum + "&boardCategory=" + boardCategory;
         })
 
         $(".update").on("click", function () {
-            var boardNum =  $(this).parents(".cardbox").find(".CalenderReviewNum").val();
+            var boardNum = $(this).parents(".cardbox").find(".CalenderReviewNum").val();
             var boardCatagory = $(".boardCategory").val()
             console.log(boardNum);
 
             window.open(
-                "/clubCal/updateClubCalenderReview?clubCalenderReviewNum="+boardNum+"&boardCategory="+boardCatagory, "모임 일정 후기글 수정",
+                "/clubCal/updateClubCalenderReview?clubCalenderReviewNum=" + boardNum + "&boardCategory=" + boardCatagory, "모임 일정 후기글 수정",
                 "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no"
             )
         });
 
         $(".delete").on("click", function () {
-            var boardNum =  $(this).parents(".cardbox").find(".CalenderReviewNum").val();
+            var boardNum = $(this).parents(".cardbox").find(".CalenderReviewNum").val();
             var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val();
 
             const swalWithBootstrapButtons = Swal.mixin({
@@ -67,8 +67,8 @@
                     swalWithBootstrapButtons.fire(
                         '삭제 성공!',
                         'success',
-                        setTimeout(()=>{
-                            location.href = "/commu/deleteBoard?boardNum="+boardNum+"&boardCategory="+boardCategory
+                        setTimeout(() => {
+                            location.href = "/commu/deleteBoard?boardNum=" + boardNum + "&boardCategory=" + boardCategory
                         }, 1500)
                     )
                 } else if (
@@ -87,9 +87,9 @@
         $(".likeButton").on("click", function () {
 
             var likeCount = $(this).parents(".cardbox").find(".likeText").html();
-            var boardNum =  $(this).parents(".cardbox").find(".CalenderReviewNum").val();
+            var boardNum = $(this).parents(".cardbox").find(".CalenderReviewNum").val();
             var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val();
-            var likeText =  $(this).parents(".cardbox").find(".likeText")
+            var likeText = $(this).parents(".cardbox").find(".likeText")
 
             $.ajax({
                 url: "/commu/json/addLike",
@@ -172,13 +172,42 @@
         font-size: 0.5em;
     }
 
+    .get {
+        width: 100px;
+        height: 200px;
+        overflow: hidden;
+    }
+
+    .get img {
+        transition: all 0.2s linear;
+    }
+
+    .get:hover img {
+        transform: scale(1.1);
+    }
+    .potoBox{
+        cursor: pointer;
+        padding: 1px;
+        width: 294px;
+        height: 200px;
+        overflow: hidden;
+        border-radius: 0 0 5px 5px;
+        border-bottom: 2px solid #0a090945
+    }
+
+    .text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 </style>
 </head>
 <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 
-<!-- Example Code -->
+
 <div class="wap">
-    <input hidden class="boardCategory" value="1">
+    <input hidden class="boardCategory" value="01">
+
     <%--상단 툴바--%>
     <jsp:include page="/layout/toolbar.jsp"/>
 
@@ -198,19 +227,24 @@
             <div class="col reviewBox">
                 <input hidden class="CalenderReviewNum" value="${ClubCalendarReview.clubCalenderReviewNum}">
                 <input hidden class="boardCategory" value="${ClubCalendarReview.boardCategory}">
-                <div class="card h-100">
-                    <div class="get" style="cursor: pointer">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="180"
-                             xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap"
-                             preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#868e96"></rect>
-                            <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-                        </svg>
+
+                <div class="card h-100 shadow-lg">
+
+                    <div id="carouselExampleSlidesOnly" class="carousel slide potoBox" data-bs-ride="carousel">
+
+                        <c:forEach var="File" items="${ClubCalendarReview.file}">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active get">
+                                    <img class="poto" width="100%" height="100%"  src="/resources${File.fileName }" alt="any">
+                                </div>
+                            </div>
+                        </c:forEach>
                     </div>
 
                     <div class="card-body carditem">
-                        <h5 class="card-title">${ClubCalendarReview.reviewTitle}
+                        <h5 class="card-title">${ClubCalendarReview.reviewTitle} </h5>
 
+                        <div class="itemBox">
                             <button type="button" class="btn btn-primary position-relative buttonBox likeButton">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                      class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
@@ -237,17 +271,24 @@
                                 </svg>
                             </button>
 
-                            <button type="button" class="btn btn-outline-primary itembutton update">수정</button>
-                            <button type="button" class="btn btn-outline-secondary itembutton delete">삭제</button>
+                            <c:if test="${user.userId eq ClubCalendarReview.userId}">
+                                <button type="button" class="btn btn-outline-primary  update" style="font-size: 0.5rem">
+                                    수정
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary delete"
+                                        style="font-size: 0.5rem">
+                                    삭제
+                                </button>
+                            </c:if>
+                            <hr>
 
-                        </h5>
-
-                        <div class="card-text" style="width: 100px; font-size: 0.5em">
-                                ${ClubCalendarReview.reviewText}
+                            <div class="card-text text" style="width: 100px; font-size: 0.5em">
+                                    ${ClubCalendarReview.reviewText}
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
+                        <small class="text-muted">등록된 날짜는 : ${ClubCalendarReview.regDate}일 입니다</small>
                     </div>
                 </div>
             </div>

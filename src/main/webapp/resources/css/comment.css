@@ -27,110 +27,119 @@
     background: #fff;
     border-radius: 10px;
     font-size: 0.7em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .textboxrow {
-    margin-top: 20px;
-    font-size: 1.6em;
-    font-weight: bolder
+margin-top: 20px;
+font-size: 1.6em;
+font-weight: bolder
 }
 
 .likebox {
-    height: 75px;
-    background: #ffff;
-    margin-top: -30px;
-    border-radius: 5px;
+height: 75px;
+background: #ffff;
+margin-top: -30px;
+border-radius: 5px;
 }
 .body {
-    text-align: -webkit-center;
+text-align: -webkit-center;
 }
 
 .topbar {
-    margin-bottom: 70px;
-    margin-top: 20px;
-    border-radius: 10px;
+margin-bottom: 70px;
+margin-top: 20px;
+border-radius: 10px;
 }
 
 .navbar {
-    justify-content: center;
-    border-radius: 10px;
+justify-content: center;
+border-radius: 10px;
 }
 
 .btnlf {
-    margin-left: 20px;
+margin-left: 20px;
 }
 
 .textint {
-    font-size: 0.2em;
-    margin-top: -20px;
+font-size: 0.2em;
+margin-top: -20px;
 }
 
 .login {
-    float: left;
-    margin-right: 20px;
+float: left;
+margin-right: 20px;
 }
 
 .alrim {
-    font-size: 0.1rem;
-    width: 45px;
+font-size: 0.1rem;
+width: 45px;
 }
 
 .loginbox {
-    width: 80px;
-    font-size: 0.1rem;
+width: 80px;
+font-size: 0.1rem;
 }
 
 .carditem {
-    display: flex;
-    flex-direction: column;
+display: flex;
+flex-direction: column;
 }
 
 .cardbox {
-    display: flex;
-    flex-direction: row;
+display: flex;
+flex-direction: row;
 }
 
 .like {
-    font-size: 0.1rem;
-    width: 45px;
-    outline: 0;
-    border: none;
-    background-color: #fff;
+font-size: 0.1rem;
+width: 45px;
+outline: 0;
+border: none;
+background-color: #fff;
 }
 
 .usedbox {
-    margin-top: 20px;
-    padding: 5px;
-    height: 500px;
+margin-top: 20px;
+padding: 5px;
+height: 500px;
 }
 
 .thumbnailBox {
-    padding: 5px;
-    width: 50%;
-    float: left;
+padding: 5px;
+width: 50%;
+float: left;
 }
 
 .textbox {
-    padding: 5px;
-    height: 500px;
-    width: 50%;
-    float: right;
-    background: #fff;
-    border-radius: 10px;
-    font-size: 0.7em;
+padding: 5px;
+height: 500px;
+width: 50%;
+float: right;
+background: #fff;
+border-radius: 10px;
+font-size: 0.7em;
+}
+.border-reight{
+    border-right: 1px solid #0000004d;
+}
+.textfloat{
+    display: flex;
 }
 
 .textboxrow {
-    margin-top: 20px;
-    font-size: 1.6em;
-    font-weight: bolder
+margin-top: 20px;
+font-size: 1.6em;
+font-weight: bolder
 }
 
 .likebox {
-    height: 75px;
-    background: #ffff;
-    margin-top: -30px;
-    border-radius: 5px;
+height: 75px;
+background: #ffff;
+margin-top: -30px;
+border-radius: 5px;
 }
 
 /* 댓글 */

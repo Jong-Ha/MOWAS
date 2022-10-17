@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,4 +24,6 @@ public class ClubCalendarReview {
     private Date updateDate;
     private int boardCategory;
     private Date clubDate;
+    //파일을 담을 list파일
+    private List<File> file;
 }
