@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MyPageMapper">
+
+    <resultMap id="userSelectMap" type="user">
+        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="masterCheck" column="master_check" jdbcType="CHAR"/>
+        <result property="userStatus" column="user_status" jdbcType="CHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+        <result property="rrd" column="rrd" jdbcType="VARCHAR"/>
+        <result property="gender" column="gender" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="villCode" column="vill_code" jdbcType="VARCHAR"/>
+        <result property="userImage" column="user_Image" jdbcType="VARCHAR"/>
+        <result property="lcd" column="lcd" jdbcType="DATE"/>
+        <result property="loginCheck" column="login_check" jdbcType="CHAR"/>
+        <result property="psd" column="psd" jdbcType="DATE"/>
+        <result property="ped" column="ped" jdbcType="DATE"/>
+        <result property="ppt" column="ppt" jdbcType="NUMERIC"/>
+        <result property="reviewPt" column="review_pt" jdbcType="NUMERIC"/>
+        <result property="loginType" column="login_type" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="interListSelectMap" type="interList">
+        <result property="userInterListNum" column="user_inter_list_num" jdbcType="NUMERIC"/>
+        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="interList" column="inter_list" jdbcType="CHAR"/>
+    </resultMap>
+
+    <resultMap id="villBoardSelect" type="villBoard">
+        <result property="villBoardNum"     column="vill_board_num"     jdbcType="INTEGER"/>
+        <result property="userId"    column="user_id"            jdbcType="VARCHAR"/>
+        <result property="villCode"         column="vill_code"          jdbcType="VARCHAR"/>
+        <result property="villTitle"        column="vill_title"         jdbcType="VARCHAR"/>
+        <result property="villText"         column="vill_text"          jdbcType="VARCHAR"/>
+        <result property="villTag"          column="vill_tag"           jdbcType="VARCHAR"/>
+        <result property="regDate"          column="reg_date"           jdbcType="DATE"/>
+        <result property="viewCount"        column="view_count"         jdbcType="INTEGER"/>
+        <result property="likeCount"        column="like_count"         jdbcType="INTEGER"/>
+        <result property="boardCategory"    column="board_category"     jdbcType="INTEGER"/>
+    </resultMap>
+
+
+    <resultMap id="liikeSelect" type="like">
+        <result property="likeNum"          column="like_num"           jdbcType="INTEGER"/>
+        <result property="userId"           column="user_id"            jdbcType="VARCHAR"/>
+        <result property="boardCategory"    column="board_category"     jdbcType="VARCHAR"/>
+        <result property="boardNum"         column="board_num"          jdbcType="VARCHAR"/>
+        <result property="likeCheck"        column="like_check"         jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <resultMap id="comemntSelect" type="comment">
+        <result property="commentNum"     column="comment_num"     jdbcType="INTEGER"/>
+        <result property="userId"  column="user_id"         jdbcType="VARCHAR"/>
+        <result property="clubNum"        column="club_num"       jdbcType="INTEGER"/>
+        <result property="boardNum"       column="board_Num"       jdbcType="INTEGER"/>
+        <result property="boardCategory"  column="board_category"  jdbcType="VARCHAR"/>
+        <result property="commentCheck"   column="comment_check"   jdbcType="VARCHAR"/>
+        <result property="commentText"   column="comment_text"   jdbcType="VARCHAR"/>
+        <result property="regDate"        column="reg_date"        jdbcType="DATE"/>
+    </resultMap>
+
+    <resultMap id="recommentSelect" type="recomment">
+        <result property="recommentNum"     column="recomment_num"     jdbcType="INTEGER"/>
+        <result property="commentNum"       column="comment_num"       jdbcType="INTEGER"/>
+        <result property="userId"           column="user_id"           jdbcType="VARCHAR"/>
+        <result property="boardCategory"    column="board_category"    jdbcType="VARCHAR"/>
+        <result property="recommentText"    column="recomment_text"    jdbcType="VARCHAR"/>
+        <result property="regDate"          column="reg_date"          jdbcType="DATE"/>
+    </resultMap>
+
+    <resultMap type="com.project.domain.Club" id="ClubResultMap">
+        <result property="clubNum" column="club_num" jdbcType="INTEGER"/>
+        <result property="clubMasterId" column="club_master_id" jdbcType="VARCHAR"/>
+        <result property="interList" column="inter_list" jdbcType="CHAR"/>
+        <result property="clubName" column="club_name" jdbcType="VARCHAR"/>
+        <result property="clubText" column="club_text" jdbcType="VARCHAR"/>
+        <result property="villCode" column="vill_code" jdbcType="CHAR"/>
+        <result property="currentCluber" column="current_cluber" jdbcType="INTEGER"/>
+        <result property="clubCreateDate" column="club_create_date" jdbcType="DATE"/>
+        <result property="clubImage" column="club_image" jdbcType="VARCHAR"/>
+        <result property="gatherCheck" column="gather_check" jdbcType="CHAR"/>
+        <result property="tag" column="club_tag" jdbcType="VARCHAR"/>
+        <result property="clubDeleteCheck" column="club_delete_check" jdbcType="CHAR"/>
+        <result property="likeCheck" column="like_check" jdbcType="CHAR"/>
+    </resultMap>
+
+    <resultMap type="com.project.domain.ClubMasterBoard" id="ClubMasterBoardResultMap">
+        <result property="boardNum" column="club_master_board_num" jdbcType="INTEGER"/>
+        <result property="clubNum" column="club_num" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="text" column="text" jdbcType="VARCHAR"/>
+        <result property="regDate" column="reg_date" jdbcType="DATE"/>
+        <result property="updateDate" column="update_date" jdbcType="DATE"/>
+        <collection property="files" column="club_master_board_num" ofType="com.project.domain.File"
+                    select="getClubMasterBoardFiles"/>
+    </resultMap>
+
+    <select id="getMyPage"    parameterType="String" resultMap="userSelectMap">
+        SELECT user_id, master_check, user_status, password, user_name, gender, email,
+               phone, vill_code, user_image, lcd, login_check, psd, ped, ppt, review_pt, login_type
+        FROM users
+        WHERE user_id=#{userId}
+    </select>
+
+    <select id="getMyInfor" parameterType="String" resultMap="userSelectMap" >
+        SELECT user_id, password, user_name, rrd, gender, email, phone, vill_code, user_image, lcd, psd, ped, ppt, review_pt, login_type
+        FROM users
+        WHERE user_id=#{userId}
+    </select>
+
+    <select id="getMyInforInterList" parameterType="String" resultMap="interListSelectMap" >
+        SELECT inter_list
+        FROM user_inter_list
+        WHERE user_id=#{userId}
+    </select>
+
+    <select id="getMyVillBoard" parameterType="String" resultMap="villBoardSelect" >
+        SELECT vill_title, view_count, like_count, reg_date
+        FROM vill_board
+        WHERE user_id=#{userId}
+    </select>
+
+    <select id="getMyClubBoard" parameterType="String" resultMap="ClubResultMap" >
+        SELECT title, reg_date, user_id, club_num
+        FROM club_master_board
+        WHERE user_id=#{userId}
+    </select>
+
+</mapper>

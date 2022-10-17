@@ -156,7 +156,7 @@
           */
 
       $("form").on("submit",function (){
-       /*
+
         var id=$("input[name='userId']").val();
         var pw=$("input[name='password']").val();
         var pw2=$("input[name='password2']").val();
@@ -206,7 +206,7 @@
         //   alert("동네인증은 반드시 인증하셔야 합니다.");
         //   return false;
         // }
-*/
+
         var address="";
         if($("#address").val() !="" && $("#addressDetail").val() !="") {
           var address = $("#address").val() + " " + $("#addressDetail").val();
@@ -224,6 +224,12 @@
           history.go(-1);
         });
       });
+
+
+
+
+
+
 
     });
 
@@ -419,6 +425,7 @@
 
 
 
+
 </script>
  <body class="bg-light">
     
@@ -540,7 +547,15 @@
         <div style="height:5px;"></div>
 
 
-        <button type="button" class="btn btn-primary btn-sm">동네인증 요청</button>
+
+        <button type="button" class="btn btn-primary btn-sm" id="checkAddress" name="checkAddress">동네인증 요청</button>
+
+        <div class="col-12">
+          <input type="hidden" class="form-control" id="addressTrue" value="동네인증 되었습니다" readonly>
+        </div>
+        <div class="col-12">
+          <input type="hidden" class="form-control" id="addressFalse" value="동네인증 실패. 현재위치를 확인해주세요" readonly>
+        </div>
 
       </div>
 
@@ -575,6 +590,40 @@
 
               var lat = position.coords.latitude, // 위도
                       lon = position.coords.longitude; // 경도
+
+            $(function (){
+
+
+              $("#checkAddress").on("click", function (){
+                console.log($("#address").val())
+                // console.log(window['lat'])
+                // console.log(window['lon'])
+                $.ajax({
+                  url : "/user/json/checkAddress",
+                  method : "POST",
+                  data : JSON.stringify({
+                    villCode : $("#address").val(),
+                    lat : position.coords.latitude,
+                    lon : position.coords.longitude
+                  }),
+                  dataType : "JSON",
+                  processData : true,
+                  contentType : "application/json",
+                  success : function (result){
+                    if(result==true) {
+                      $("#addressTrue").attr("type","text").css("color","red");
+                      $("#map").fadeOut();
+                    }else {
+                      $("#addressFalse").attr("type","text").css("color","red");
+                    }
+                  },
+                  error : function (){
+                    alert('지도 인증 실패');
+                  }
+                })
+              })
+            })
+
 
               var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
                       message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
@@ -621,9 +670,7 @@
 
 
 
-      <div class="col-12">동네인증 결과
-      <input type="text" class="form-control" id="addressView"  required>
-      </div>
+
 
       <div class="col-12">
         관심목록 선택(최대 13개)
@@ -713,6 +760,7 @@
         <input type="hidden" class="ped" name="ped" value="">
         <input type="hidden" class="ppt" name="ppt" value="0">
         <input type="hidden" class="reviewPt" name="reviewPt" value="0">
+        <input type="hidden" class="logintype" name="logintype" value="1">
       </div>
 
 
