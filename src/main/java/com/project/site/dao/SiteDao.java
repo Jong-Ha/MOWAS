@@ -4,6 +4,7 @@ import com.project.common.Page;
 import com.project.common.Search;
 import com.project.domain.ClubReport;
 import com.project.domain.CommunityReport;
+import com.project.domain.File;
 import com.project.domain.MasterBoard;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public interface SiteDao {
     // MaterBoard CRUD
     public void addMasterBoard(MasterBoard masterBoard) throws Exception;
 
+    public void addMasterBoardFiles(File file) throws Exception;
     public void updateMasterBoard(MasterBoard masterBoard) throws Exception;
 
     public MasterBoard getMasterBoard(int materBoardNo) throws Exception;
