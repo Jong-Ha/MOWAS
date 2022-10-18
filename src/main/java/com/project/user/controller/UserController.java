@@ -74,10 +74,6 @@ public class UserController {
         model.addAttribute("user", user);
         return "forward:/view/user/getUserDetail.jsp";
     }
-    @RequestMapping(value = "login2",method = RequestMethod.GET)
-    public String login2(){
-        return "forward:/view/user/login.jsp";
-    }
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String login(@CookieValue(value = "keepId",required = false)String userId,@CookieValue(value = "keepLogin",required = false)String password, HttpSession session){
@@ -134,11 +130,53 @@ public class UserController {
         System.out.println("여기는 listUserDetailil 컨트롤러 시작이다");
         System.out.println("userId 값은? : "+userId);
 
-        User listUserDetail =userService.getUserDetail(userId);
-        model.addAttribute("userListDetail", listUserDetail);
+        Map<String, Object> map =userService.getUserDetail(userId);
+        System.out.println("유저 컨트롤러 map 값은? :"+map);
+        model.addAttribute("map", map);
         return "forward:/view/user/getUserDetail.jsp";
     }
 
+    @RequestMapping(value="updatePsd", method = RequestMethod.GET)
+    public String updatePsd(@RequestParam(value = "userId") String userId,Model model)throws Exception{
+        System.out.println("여기는 updatePsd 컨트롤러 시작이다");
+
+
+        Map<String, Object> map =userService.getUserDetail(userId);
+        System.out.println("유저 updatePsd 컨트롤러 map 값은? :"+map);
+        model.addAttribute("map", map);
+        System.out.println("여기는 updatePsd 컨트롤러 종료이다");
+        return "forward:/view/user/updatePsd.jsp";
+    }
+
+    @RequestMapping(value = "listupdatedUser", method = RequestMethod.POST)
+    public String listupdatedUser(@ModelAttribute User user, UserInterList interList, Model model)throws Exception{
+        System.out.println("user"+user);
+        System.out.println("interlis 의 값"+interList);
+        //System.out.println("userId"+userId);
+
+        userService.updatePsd(user);
+        userService.updatePed(user);
+        Map<String, Object> map =userService.getUserDetail(user.getUserId());
+        System.out.println("유저 updatePsd 컨트롤러 map 값은? :"+map);
+        model.addAttribute("map", map);
+        System.out.println("여기는 listupdatedUser 컨트롤러 종료이다");
+
+        return "forward:/view/user/getUserDetail.jsp";
+    }
+
+    @RequestMapping(value="kickoutUser", method = RequestMethod.GET)
+    public String kickoutUser(@RequestParam(value = "userId") String userId,Model model)throws Exception{
+        System.out.println("여기는 kickoutUser 컨트롤러 시작이다");
+        System.out.println("userId의갑은?"+userId);
+
+       userService.updateUserStatus(userId);
+
+        System.out.println("유저현황 업데이트 완료");
+        Map<String, Object> map =userService.getUserDetail(userId);
+        System.out.println("유저 컨트롤러 map 값은? :"+map);
+        model.addAttribute("map", map);
+        return "forward:/view/user/getUserDetail.jsp";
+    }
 
 
     @RequestMapping(value = "mailSender",method = RequestMethod.POST)
@@ -204,9 +242,12 @@ public class UserController {
         System.out.println("###userImage#### : " + userInfo.get("userImage"));
         System.out.println("###gender#### : " + userInfo.get("gender"));
 
-
         return "forward:/view/user/main.jsp";
+    }
 
+    @RequestMapping(value="callBack", method=RequestMethod.GET)
+    public String callBack(){
+        return "/view/user/callBack.jsp";
     }
 
 }
