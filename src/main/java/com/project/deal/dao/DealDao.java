@@ -27,7 +27,9 @@ public interface DealDao {
     public void deleteDealBoardFile(Map<String, Object> map);
     public int getDealNum(String userId);
 
-
+public Deal getUserId(int dealBoardNum);
+public void updateReview(Deal deal);
+public int getReviewPt(Deal deal);
     //--------------------------------------------------------------------
 //    public void addClubMasterBoard(ClubMasterBoard clubMasterBoard);
 //    public void updateClubMasterBoard(ClubMasterBoard clubMasterBoard);
