@@ -77,11 +77,11 @@
     <!--  ///////////////////////// JavaScript ////////////////////////// -->
     <script type="text/javascript">
 
-        function fncGetMasterBoardList(currentPage) {
+        function fncGetCommunityReportList(currentPage) {
             /* 	document.getElementById("currentPage").value = currentPage;
                    document.detailForm.submit();	 */
             $("#currentPage").val(currentPage)
-            $("form").attr("method" , "POST").attr("action" , "/site/listMasterBoard").submit();
+            $("form").attr("method" , "POST").attr("action" , "/site/listCommunityReport").submit();
         }
 
 
@@ -93,13 +93,13 @@
 
             //$( "td.ct_btn01:contains('검색')" ).on("click" , function() {
             $( "button.btn.btn-default" ).on("click" , function() {
-                fncGetMasterBoardList(1);
+                fncGetCommunityReportList(1);
             });
 
             //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-            $( ".addMb" ).on("click" , function() {
+            $( ".addCr" ).on("click" , function() {
 
-                $(self.location).attr("href", "/site/addMasterBoard");
+                $(self.location).attr("href", "/site/addCommunityReport?reportedId=user01&boardCategory=01&boardNo=10020");
             });
 
             //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)

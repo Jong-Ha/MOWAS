@@ -107,6 +107,11 @@
                 $(self.location).attr("href", "/site/listCommunityReport");
             });
 
+            $( ".clubMap" ).on("click" , function() {
+
+                $(self.location).attr("href", "/view/site/clubMap.jsp");
+            });
+
             //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
             $("a[href='#' ]").on("click" , function() {
                 $("form")[0].reset();
@@ -206,6 +211,7 @@
         <button type="button" class="addMb" >추 가</button>
         <a class="btn btn-default btn" href = "#" role="button">취 소 </a>
         <button type="button" class="commReport" >커뮤니티신고</button>
+        <button type="button" class="clubMap" >클럽맵 Test</button>
     </div>
 
     </body>

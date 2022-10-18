@@ -5,7 +5,8 @@
   Time: 오후 7:32
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"
+         pageEncoding="UTF-8"%>
 <html>
 <head>
     <title> club Map</title>
@@ -29,14 +30,28 @@
 
   <script type="text/javascript">
 
-    //============= 회원정보수정 Event  처리 =============
+    function getClubVilCode(longitude, latitude) {
+      var sendData = "longitude=" + longitude + "&latitude=" + latitude;
+
+      $.ajax({
+        url: '/site/json/clubMap',
+        method: 'POST',
+        data: sendData,
+        success: function (vilCode) {
+          //$(".searchLocation").html(vilCode);
+          alert(vilCode);
+        }
+      })
+    }
+
     $(function() {
       //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
       $( "button:contains('확인')" ).on("click" , function() {
-        self.location = "/club/json/addClub?longitude=" + latlng.getLng() + "&latitude=" + latlng.getLng();
+          $(opener.document).find(".searchLocation").html($('[name="asdf"]').val())
+          $(opener.document).find('[name="searchLocation"]').val($('[name="asdf"]').val())
+          window.close()
       });
     });
-
   </script>
 </head>
 
@@ -78,11 +93,11 @@
 
     var resultDiv = document.getElementById('clickLatlng');
     resultDiv.innerHTML = message;
+    getClubVilCode(latlng.getLng(), latlng.getLat());
 
   });
 </script>
-${kakaoMapApi.latitude = latlng.getLat()}
-${kakaoMapApi.longitude = latlng.getLng()}
+
 <div class="col-md-4 text-center col-md-offset-1">
     <button type="button" class="btn btn-primary">확인</button>
 </div>

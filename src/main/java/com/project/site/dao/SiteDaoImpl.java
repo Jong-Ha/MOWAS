@@ -87,7 +87,7 @@ public class SiteDaoImpl implements SiteDao{
 
     @Override
     public  List<CommunityReport>listCommunityReportProcess(Search search) throws Exception {
-        return sqlSession.selectList("SiteMapper.listCommunityReportProcess", search);
+       return sqlSession.selectList("SiteMapper.listCommunityReportProcess", search);
     }
 
     @Override
