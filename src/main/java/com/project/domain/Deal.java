@@ -34,4 +34,7 @@ public class Deal {
     List<File> files;
     private String likeCheck;
     private String dealImage;
+
+
+
 }

@@ -16,16 +16,18 @@
 <html lang="ko">
 
 <head>
-  <meta charset="EUC-KR">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- 참조 : http://getbootstrap.com/css/   참조 -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+  <title>Bootstrap Example</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
 
   <!--  ///////////////////////// CSS ////////////////////////// -->
   <style>
@@ -92,116 +94,263 @@
 
        // $(this).attr("action","/deal/getListDeal/09").attr("method","post")
       })
+      $(".dealBox").on('click', function (e) {
+        alert("hi")
+        var dealBoardNum= $(this).find(".dealBoardNum").val()
+        alert(dealBoardNum);
+        location.href = "/deal/getDeal/"+dealBoardNum;
+
+      })
+      $(".addDeal").on("click", function () {
+        location.href = "/deal/addDeal"
+      })
     });
   </script>
 
 
+  <style>
+    .body {
+      text-align: -webkit-center;
+    }
+
+    .wap {
+      width: 1000px;
+    }
+
+    .carditem {
+      height: 210px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-title {
+      width: 250px;
+      font-size: 1.2em;
+    }
+
+    .cardbox {
+      display: flex;
+      flex-direction: row;
+      margin: 6px;
+      float: left;
+    }
+
+    button.buttonBox {
+      font-size: 0.7em;
+      /* float: left; */
+      /* size: b4; */
+      height: 25px;
+      width: 5px;
+    }
+
+    .col.dealBox {
+      width: 320px;
+    }
+
+    .add {
+      /*margin-right: 800px;*/
+      margin-bottom: 50px;
+    }
+
+    .card-img-top {
+      text-align: center;
+      width: 100%;
+      height: 200px;
+    }
+
+    .card-img-top > img {
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+    }
+
+    svg {
+      font-size: 40px;
+    }
+
+    .dealTag {
+      height: 210px;
+      --bs-btn-color: #000000;
+      --bs-btn-border-color: #000000;
+      --bs-btn-hover-color: #000000;
+      --bs-btn-hover-bg: #fff;
+      --bs-btn-hover-border-color: #000000;
+      --bs-btn-focus-shadow-rgb: 13,110,253;
+      --bs-btn-active-color: #000000;
+      --bs-btn-active-bg: #fff;
+      --bs-btn-active-border-color: #000000;
+      --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+      --bs-btn-disabled-color: #000000;
+      --bs-btn-disabled-bg: transparent;
+      --bs-btn-disabled-border-color: #000000;
+      --bs-gradient: none;
+    }
+
+  </style>
 
 </head>
 
-<body>
 
 <!-- ToolBar Start /////////////////////////////////////-->
-<div class="navbar  navbar-default">
-  <div class="container">
-    <a class="navbar-brand" href="/index.jsp">Model2 MVC Shop</a>
-  </div>
-</div>
-<!-- ToolBar End /////////////////////////////////////-->
-<!-- table 위쪽 검색 Start /////////////////////////////////////-->
-<%--<div class="row">--%>
 
-<%--  <div class="col-md-6 text-left">--%>
-<%--    <p class="text-primary">--%>
-<%--      전체  ${resultPage.totalCount } 건수, 현재 ${resultPage.currentPage}  페이지--%>
-<%--    </p>--%>
-<%--  </div>--%>
+<body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 
-<%--  <div class="col-md-6 text-right">--%>
-<%--    <form class="form-inline" name="detailForm">--%>
-
-<%--      <div class="form-group">--%>
-<%--        <select class="form-control" name="searchCondition" >--%>
-<%--          <option value="0"  ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" : "" }>제품명</option>--%>
-<%--          <option value="1"  ${ ! empty search.searchCondition && search.searchCondition==1 ? "selected" : "" }>태그</option>--%>
-<%--        </select>--%>
-<%--      </div>--%>
-
-<%--      <div class="form-group">--%>
-<%--        <label class="sr-only" for="searchKeyword">검색어</label>--%>
-<%--        <input type="text" class="form-control" id="searchKeyword" name="searchKeyword"  placeholder="검색어"--%>
-<%--               value="${! empty search.searchKeyword ? search.searchKeyword : '' }"  >--%>
-<%--      </div>--%>
-
-<%--      <button type="button" class="btn btn-default">검색</button>--%>
-
-<%--      <!-- PageNavigation 선택 페이지 값을 보내는 부분 -->--%>
-<%--      <input type="hidden" id="currentPage" name="currentPage" value=""/>--%>
-
-<%--    </form>--%>
-<%--  </div>--%>
-
-<%--</div>--%>
-<form>
-<div class="form-group">
-  <div class="col-sm-2">
-    <button type="button" class="deal" value="08">판매</button>
-    <button type="button" class="dealRequest" value="09">판매요청</button>
-<input hidden class="boardCategory"value="${boardCategory}">
-  </div>
-</div>
-
-  <table class="table table-hover table-striped" >
-
-    <thead>
-    <tr>
-      <th align="left">번호</th>
-      <th align="left">제목</th>
-      <th align="left">내용</th>
-    </tr>
-    </thead>
-
-    <tbody>
-
-    <c:set var="i" value="0" />
-    <c:forEach items="${list}" var="deal">
-
-    <tr>
-      <input type="hidden" name="dealBoardNum" value="${deal.dealBoardNum}">
-      <td align="left">   ${deal.dealBoardNum}</td>
-      <td align="left">    ${deal.dealTitle}</td>
-      <td align="left">    ${deal.dealText}</td>
-      <td align="left"><a href="/deal/getDeal/${deal.dealBoardNum}">상세보기</a></td>
-
-      </c:forEach>
-      <a href="/deal/addDeal"> <input type="button" class="addDeal" value="거래 만들기"></a>
-    </tbody>
-
-  </table>
-  <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" var="i">
-    <span class="paging">${i}</span>
-  </c:forEach>
-  <label>
-    <input type="hidden" id="currentPage" name="currentPage" value="1">
-    <input type="text" name="searchKeyword" value="${search.searchKeyword}">
-  </label>
-  <input type="submit" value="검색">
-</form>
-
-
-
-<!-- table 위쪽 검색 Start /////////////////////////////////////-->
-
-<!--  화면구성 div Start /////////////////////////////////////-->
-
-
-
-
-<input type="button" class="clubLogin" value="로그인">
+<input type="button" class="Login" value="로그인">
 <label>
-  아이디 : <input type="text" name="userId" value="">
+  아이디 : <input type="text" name="userId" value="user01">
 </label>
 ${user.userId}
+<!-- Example Code -->
+<div class="wap">
+
+  <%--상단 툴바--%>
+  <jsp:include page="/layout/toolbar.jsp"/>
+
+  <div class="add" style="display:flex;justify-content: space-between;align-items: center;">
+    <button class="btn btn-primary addDeal">
+      거래 만들기
+    </button>
+    <div>
+      <button class="btn btn-primary deal" value="08">
+        판매
+      </button>
+      <button class="btn btn-primary dealRequest" value="09">
+        판매요청
+      </button>
+      <button class="btn btn-primary searchTag">
+        태그
+      </button>
+    </div>
+  </div>
+
+
+
+    <c:forEach var="deal" items="${list}">
+
+      <div class="row row-cols-1 row-cols-md-3 g-4 cardbox">
+        <div class="col dealBox">
+          <input type="hidden" name="dealBoardNum" class="dealBoardNum" value="${deal.dealBoardNum}">
+          <div class="card h-100">
+<%--            <c:forEach var="File" items="${Deal.files}">--%>
+<%--              <div class="carousel-inner">--%>
+<%--                <div class="carousel-item active get">--%>
+<%--                  <img class="poto" width="100%" height="100%"  src="/resources/${File.fileName }" alt="any">--%>
+<%--                </div>--%>
+<%--              </div>--%>
+<%--            </c:forEach>--%>
+
+
+  <div class="card-img-top" style="cursor: pointer">
+    <img src="/resources/${deal.files[0].fileName}" alt="거래이미지">
+  </div>
+
+
+
+            <div class="card-body carditem">
+              <h3 class="card-title">${deal.dealTitle}</h3>
+              <div class="row g-3">
+                <div class="col-6">
+                  <div class="badge bg-primary text-wrap" style="width: 6rem;">
+                      <c:if test="${deal.dealStatus == 0}">
+                            거래전
+                      </c:if>
+                    <c:if test="${deal.dealStatus ==1}">
+                      거래중
+                    </c:if>
+                    <c:if test="${deal.dealStatus ==2}">
+                      거래완료
+                    </c:if>
+                  </div>
+                  <div class="badge bg-primary text-wrap" style="width: 6rem;">
+                      ${deal.villCode}
+                  </div>
+                  <div class="badge bg-primary text-wrap" style="width: 6rem;">
+                  ${deal.price}
+                  </div>
+                </div>
+
+              </div>
+              <button type="button" class="btn btn-outline-primary dealTag">${deal.tag}</button>
+            </div>
+
+              <%--<div class="card-footer">
+                  <small class="text-muted">Last updated 3 mins ago</small>
+              </div>--%>
+          </div>
+        </div>
+      </div> </c:forEach>
+
+
+
+  </div>
+
+
 </body>
 
+
 </html>
+
+
+
+<%--<jsp:include page="/layout/toolbar.jsp"/>--%>
+
+<%--<form>--%>
+<%--<div class="form-group">--%>
+<%--  <nav class="shadow-lg navbar navbar-expand-lg bg-light commuBox">--%>
+
+<%--    <button type="button" class="btn btn-outline-primary btnlf deal" value="08">판매</button>--%>
+<%--    <button type="button" class="btn btn-outline-secondary btnlf dealRequest" value="09">판매요청</button>--%>
+<%--  </nav>--%>
+
+<%--</div>--%>
+
+<%--  <table class="table table-hover table-striped" >--%>
+
+<%--    <thead>--%>
+<%--    <tr>--%>
+<%--      <th align="left">번호</th>--%>
+<%--      <th align="left">제목</th>--%>
+<%--      <th align="left">내용</th>--%>
+<%--    </tr>--%>
+<%--    </thead>--%>
+
+<%--    <tbody>--%>
+
+<%--    <c:set var="i" value="0" />--%>
+<%--    <c:forEach items="${list}" var="deal">--%>
+
+<%--    <tr>--%>
+<%--      <input type="hidden" name="dealBoardNum" value="${deal.dealBoardNum}">--%>
+<%--      <td align="left">   ${deal.dealBoardNum}</td>--%>
+<%--      <td align="left">    ${deal.dealTitle}</td>--%>
+<%--      <td align="left">    ${deal.dealText}</td>--%>
+<%--      <td align="left"><a href="/deal/getDeal/${deal.dealBoardNum}">상세보기</a></td>--%>
+
+<%--      </c:forEach>--%>
+<%--      <a href="/deal/addDeal"> <input type="button" class="addDeal" value="거래 만들기"></a>--%>
+<%--    </tbody>--%>
+
+<%--  </table>--%>
+<%--  <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" var="i">--%>
+<%--    <span class="paging">${i}</span>--%>
+<%--  </c:forEach>--%>
+<%--  <label>--%>
+<%--    <input type="hidden" id="currentPage" name="currentPage" value="1">--%>
+<%--    <input type="text" name="searchKeyword" value="${search.searchKeyword}">--%>
+<%--  </label>--%>
+<%--  <input type="submit" value="검색">--%>
+<%--</form>--%>
+
+
+
+
+<%--<input type="button" class="clubLogin" value="로그인">--%>
+<%--<label>--%>
+<%--  아이디 : <input type="text" name="userId" value="">--%>
+<%--</label>--%>
+<%--${user.userId}--%>
+
+<%--</body>--%>
+
+
+<%--</html>--%>
