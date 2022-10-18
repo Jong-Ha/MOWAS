@@ -2,6 +2,9 @@
          pageEncoding="utf-8"
          import="java.text.DateFormat, java.util.Date"
 %>
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +12,7 @@
     <title>Insert title here</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 </head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,9 +21,6 @@
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="/resources/OpenSource/js/jquery.cookie.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-
-
-
 
 <style>
     .wap {
@@ -40,8 +41,7 @@
 <script type="text/javascript">
 
 
-
-    $("#floatingInput").focus();
+    $("#userId").focus();
 
     function fncLogin() {
             var id = $("input:text").val();
@@ -96,14 +96,14 @@
 
     $(function (){
         $('input[name="userId"]').focus();
-        console.log('keepId : '+$.cookie('keepId'))
+        console.log('keepId의 값은? : '+$.cookie('keepId'))
         if($.cookie('keepId')!=undefined){
             $('#keepId').prop('checked',true);
             $('#keepLogin').prop('disabled',!$('#keepId').prop('checked'));
             $('input[name="userId"]').val($.cookie('keepId'));
             $('input[name="password"]').focus();
         }
-        console.log('keepLogin : '+$.cookie('keepLogin'))
+        console.log('keepLogin의 값은? : '+$.cookie('keepLogin'))
         if($.cookie('keepLogin')!=undefined){
             $('#keepLogin').prop('checked',true);
             $('input[name="password"]').val($.cookie('keepLogin'));
@@ -111,12 +111,12 @@
         $('#keepId').on('click',function (){
             $('#keepLogin').prop('disabled', !$(this).prop('checked'));
         });
+
         $(".loginStart").bind('click',function (){
-            alert('로그인버튼클릭');
             fncLogin();
         });
         $('input[name="password"]').on('keydown', function (key){
-            if(key.keyCode == 4){
+            if(key.keyCode == 13){
                 fncLogin();
             }
         })
@@ -127,7 +127,52 @@
         });
     });
 
+    $(function (){
+        $("#naverIdLogin").on("click", function (){
 
+      var naverLogin = new naver.LoginWithNaverId(
+         {
+            clientId: "LVp6wWTSWO4roaPEeGxT",
+            // 본인의 Client ID로 수정, 띄어쓰기는 사용하지 마세요.
+            callbackUrl: "http://localhost:8080/user/callBack",
+            // 본인의 callBack url로 수정하세요.
+            isPopup: false,// 팝업창으로 로그인을 진행할 것인지?
+            loginButton: {color: "green", type: 3, height: 70}
+            // 버튼 타입 ( 색상, 타입, 크기 변경 가능 )
+            // 네이버 로그인버튼 디자인 설정. 한번 바꿔보세요:D
+        }
+    );
+    naverLogin.init();
+    });
+    });
+
+       // 선언된 naverLogin 을 이용하여 유저 (사용자) 정보를 불러오는데
+        // 함수 내부에서 naverLogin을 선언하였기에 지역변수처리가 되어
+        // userinfo 정보를 추출하는 것은 지역변수와 같은 함수에서 진행주어야한다.
+        // 아래와 같이 로그인한 유저 ( 사용자 ) 정보를 직접 접근하여 추출가능하다.
+        // 이때, 데이터는 첫 연동시 정보 동의한 데이터만 추출 가능하다.
+        // 백엔드 개발자가 정보를 전달해준다면 아래 요기! 라고 작성된 부분까지는
+        // 코드 생략이 가능하다.
+    // 네이버 소셜 로그인 (네아로) 는 URL 에 엑세스 토큰이 붙어서 전달된다.
+    // 우선 아래와 같이 토큰을 추출 할 수 있으며,
+    // 3부에 작성 될 Redirect 페이지를 통해 빠르고, 깨끗하게 처리가 가능하다.
+
+        // console.log, alert 창을 통해 토큰이 잘 추출 되는지 확인하자!
+
+        // 이후 로컬 스토리지 또는 state에 저장하여 사용하자!
+        // localStorage.setItem('access_token', token)
+        // setGetToken(token)
+
+    // 화면 첫 렌더링이후 바로 실행하기 위해 useEffect 를 사용하였다.
+
+
+// var naver_id_login = new naver_id_login("LVp6wWTSWO4roaPEeGxT", "http://localhost:8080/user/login");
+// var state = naver_id_login.getUniqState();
+// naver_id_login.setButton("white", 2,40);
+// naver_id_login.setDomain("http://localhost:8080/user/login");
+// naver_id_login.setState(state);
+// naver_id_login.setPopup();
+// naver_id_login.init_naver_id_login();
 
 /*
     $(function (){
@@ -256,8 +301,55 @@
         }
     })
 */
+    /*
+    var naverLogin = new naver.LoginWithNaverId(
+        {
+            clientId: "LVp6wWTSWO4roaPEeGxT", //내 애플리케이션 정보에 cliendId를 입력해줍니다.
+            callbackUrl: "http://localhost:8080/view/user/main.jsp", // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
+            isPopup: false,
+            callbackHandle: true
+        }
+    );
+
+    naverLogin.init();
+
+    window.addEventListener('load', function () {
+        naverLogin.getLoginStatus(function (status) {
+            if (status) {
+                var email = naverLogin.user.getEmail(); // 필수로 설정할것을 받아와 아래처럼 조건문을 줍니다.
+
+                console.log(naverLogin.user);
+
+                if( email == undefined || email == null) {
+                    alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
+                    naverLogin.reprompt();
+                    return;
+                }
+            } else {
+                console.log("callback 처리에 실패하였습니다.");
+            }
+        });
+    });
 
 
+    var testPopUp;
+    function openPopUp() {
+        testPopUp= window.open("https://nid.naver.com/nidlogin.logout", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,width=1,height=1");
+    }
+    function closePopUp(){
+        testPopUp.close();
+    }
+
+    function naverLogout() {
+        openPopUp();
+        setTimeout(function() {
+            closePopUp();
+        }, 1000);
+
+
+    }
+
+*/
 
 
 </script>
@@ -276,16 +368,16 @@
                     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
                     <div class="form-floating">
-                        <input type="text" class="form-control userId" id="floatingInput" placeholder="Id" name="userId">
-                        <label for="floatingInput" >ID</label>
+                        <input type="text" class="form-control userId" id="userId" placeholder="Id" name="userId">
+                        <label for="userId" >ID</label>
                     </div>
                     <!--<div class="form-floating">
                         <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
                         <label for="floatingInput">Email address</label>
                     </div>-->
                     <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" >
-                        <label for="floatingPassword">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Password" name="password" >
+                        <label for="password">Password</label>
                     </div>
 
                     <div class="checkbox mb-3">
@@ -305,12 +397,44 @@
 
                         <img src="/resources/images/kakao_login_medium_wide.png" style="height:50px">
                         <!-- 이미지는 카카오 개발자센터에서 제공하는 login 이미지를 사용했습니다. -->
-
                     </a>
 
-                    <!--<button class="btn btn-outline-info btnlf kakao"  type="button">카카오로그인</button>
-                    <button class="btn btn-outline-info btnlf kakaologout"  type="button">카카오로그아웃</button>
-                    <button class="btn btn-outline-info btnlf kakaodelete"  type="button">카카오삭제</button>-->
+
+                    <div id="naverIdLogin" >
+                        <img src="/resources/images/naverLogin.png" style="height:50px">
+                    </div>
+
+                    <div id="naver_id_login"></div>
+                    <!-- //네이버 로그인 버튼 노출 영역 -->
+                    <script type="text/javascript">
+                        var naver_id_login = new naver_id_login("LVp6wWTSWO4roaPEeGxT", "http://localhost:8080/user/callBack");
+                        var state = naver_id_login.getUniqState();
+                        naver_id_login.setButton("white", 2,40);
+                        naver_id_login.setDomain("YOUR_SERVICE_URL");
+                        naver_id_login.setState(state);
+                        naver_id_login.setPopup();
+                        naver_id_login.init_naver_id_login();
+                    </script>
+
+
+
+                    <!--<div id="naver_id_login"></div>
+                        <div id="naverIdLogin"></div>-->
+                <%--
+                    String clientId = "LVp6wWTSWO4roaPEeGxT";//애플리케이션 클라이언트 아이디값";
+                    String redirectURI = URLEncoder.encode("http://localhost:8080/user/login", "UTF-8");
+                    SecureRandom random = new SecureRandom();
+                    String state = new BigInteger(130, random).toString();
+                    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+                    apiURL += "&client_id=" + clientId;
+                    apiURL += "&redirect_uri=" + redirectURI;
+                    apiURL += "&state=" + state;
+                    session.setAttribute("state", state);
+                --%>
+
+
+
+
 
 
                     <p class="mt-5 mb-3 text-muted">&copy; 2017-2022</p>
@@ -322,6 +446,19 @@
     </form>
 
 </main>
+<script>
 
+    $(document).ready(function (){
+        var id = $("input:text").val();
+        var pw = $("input:password").val();
+        var keepId = $("#keepId").prop('checked');
+        var keepLogin = $("#keepLogin").prop('checked');
+        console.log('자동로그인keepId'+keepId);
+        console.log('자동로그인keeplogin'+keepLogin);
+        if (keepId && keepLogin ){
+            fncLogin();
+        }
+    })
+</script>
 </body>
 </html>

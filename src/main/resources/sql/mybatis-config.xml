@@ -27,6 +27,7 @@
 		<typeAlias alias="like" type="com.project.domain.Like"/>
 		<typeAlias alias="comment" type="com.project.domain.Comment"/>
 		<typeAlias alias="recomment" type="com.project.domain.Recomment"/>
+		<!--<typeAlias alias="myPage" type="com.project.domain.myPage" />-->
 	</typeAliases>
 
 	 <!-- SQL Definition :: file include -->
@@ -37,8 +38,8 @@
 		<mapper resource="sql/ClubMapper.xml" />
 		<mapper resource="sql/DealMapper.xml" />
 		<mapper resource="sql/CommunityMapper.xml" />
+		<mapper resource="sql/MyPageMapper.xml" />
 		<!--<mapper resource="sql/UserMapper.xml" />
-		<mapper resource="sql/UserMapper.xml" />
 		<mapper resource="sql/UserMapper.xml" />
 		<mapper resource="sql/UserMapper.xml" />
 		<mapper resource="sql/UserMapper.xml" />

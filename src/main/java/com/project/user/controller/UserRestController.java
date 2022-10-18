@@ -29,14 +29,18 @@ import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
+import java.time.LocalDate;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static com.project.common.KakaoMapApi.coordToAddress;
 
 @RestController
 @RequestMapping("/user/json/*")
 public class UserRestController {
+
+
 
     @Autowired
     @Qualifier("userServiceImpl")
@@ -45,23 +49,59 @@ public class UserRestController {
     @RequestMapping(value = "checkDupRrd", method = RequestMethod.POST)
     public Map<String, Object> checkDupRrd(@RequestParam String rrd) throws Exception {
         System.out.println("json/checkDupRrd : POST 실행");
-        System.out.println("rrd의 값1 : " + rrd);
         boolean result = userService.checkDupRrd(rrd);
-        System.out.println("rrd의 값2 : " + rrd);
+
         Map<String, Object> map = new HashMap<String, Object>();
 
         map.put("result", new Boolean(result));
         System.out.println("result의 값 : " + result);
         map.put("rrd", rrd);
-        System.out.println("rrd의 값3 : " + rrd);
+        System.out.println("rrd의 값 : " + rrd);
         return map;
     }
 
+    @RequestMapping(value = "userId", method = RequestMethod.POST)
+    public boolean userId(@RequestParam String userId) throws Exception {
+        System.out.println("json/userName : POST 실행");
+        System.out.println("userId 값 : " + userId);
+        boolean result = userService.checkDupId(userId);
+
+        return result;
+    }
+
+    @RequestMapping(value = "password", method = RequestMethod.POST)
+    public boolean password(@RequestParam String password) throws Exception {
+        System.out.println("json/password : POST 실행");
+        System.out.println("password 값 : " + password);
+
+        String patten = "^[A-Za-z[0-9]]{8,16}$";
+        boolean result = Pattern.matches(patten, password);
+
+
+        return result;
+    }
+    @RequestMapping(value = "password2", method = RequestMethod.POST)
+    public boolean password2(@RequestParam String password, @RequestParam String password2) throws Exception {
+        System.out.println("json/password2 : POST 실행");
+        System.out.println("password 값 : " + password);
+        System.out.println("password2 값 : " + password2);
+
+        if(password.equals(password2)){
+            boolean result =true;
+            System.out.println("result값"+result);
+            return result;
+        }else {
+            boolean result =false;
+            System.out.println("result값"+result);
+            return result;
+        }
+    }
+
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public User login(@RequestBody User user, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public User login(@RequestBody User user, HttpSession session, HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
         System.out.println("/user/json/login : POST 실행");
         System.out.println("user의 값은? : " + user);
-
+/*
         Cookie lastDate= null;
         String msg ="";
         boolean found = false;
@@ -98,7 +138,7 @@ public class UserRestController {
         }
 
         System.out.println("msg : "+msg);
-
+*/
         try {
             User dbVO = userService.loginUser(user);
             System.out.println("dbVO 값은? : " + dbVO);
@@ -108,6 +148,7 @@ public class UserRestController {
                 //System.out.println("lcd업데이트 유저 :"+dbVO);
                 session.setAttribute("user", dbVO);
                 user = dbVO;
+                model.addAttribute("user", user);
 
             }
             System.out.println("session 값 : " + session);
@@ -116,9 +157,6 @@ public class UserRestController {
             user = null;
             System.out.println("로그인 실패");
         }
-
-
-
         return user;
     }
 
@@ -144,6 +182,58 @@ public class UserRestController {
 
         userService.deleteInterList(interList);
         System.out.println("여기는 deleteInter 종료이다");
+    }
+/*
+    @RequestMapping(value = "psd7", method = RequestMethod.POST)
+    public Map<String, Object> psd7(@RequestBody Map<String, Object> map) throws Exception {
+        System.out.println("여기는 psd7컨트롤 시작이다");
+        System.out.println("psd의 값은 ? :" + map.get("psd"));
+        System.out.println("pptDate의 값은 ? :" + map.get("pptDate"));
+        System.out.println("ped의 값은 ? :" + map.get("ped"));
+
+        String pptDate = map.get("pptDate").toString();
+
+        String psd = map.get("psd").toString().substring(0,11).replace("-","");
+        String ped = map.get("ped").toString().substring(0,11).replace("-","");
+
+        System.out.println("psd의 값은? "+psd);
+        System.out.println("ped의 값은? "+ped);
+        System.out.println("pptDate의 값은? "+pptDate);
+
+        map.put("psd", psd);
+        map.put("ped", ped);
+        map.put("pptDate", pptDate);
+        System.out.println("여기는 psd7컨트롤 종료이다");
+        return map;
+    }
+*/
+    @RequestMapping(value = "checkAddress", method = RequestMethod.POST)
+    public boolean checkAddress(@RequestBody Map<String, String> map)throws Exception{
+        System.out.println("villCode의 값은 ? :"+map.get("villCode"));
+        System.out.println("lat의 값은 ? :"+map.get("lat"));
+        System.out.println("lon의 값은 ? :"+map.get("lon"));
+
+        String villcode = map.get("villCode");
+        String lat = map.get("lat");
+        String lon = map.get("lon");
+
+       // String lat = "37.4994558";
+       // String lon = "127.0290206";
+
+        String location = "";
+        location = coordToAddress(lon, lat);
+        System.out.println("location 의 값은??? : "+location);
+
+        boolean check = villcode.contains(location);
+        System.out.println("check 의 값은 ?? : "+check);
+        if(check == true){
+            boolean result=true;
+            return result;
+        }else {
+            boolean result=false;
+            return result;
+        }
+
     }
 
     @RequestMapping(value = "mailSender", method = RequestMethod.POST)
@@ -228,6 +318,70 @@ public class UserRestController {
 
     }
 
+    @RequestMapping(value="naverSave", method=RequestMethod.POST)
+    public @ResponseBody String naverSave(@RequestParam("n_name") String n_name,
+        @RequestParam("n_email") String n_email, @RequestParam("n_profilImage") String n_profilImage,
+        @RequestParam("n_gender") String n_gender, HttpSession session ) throws Exception {
+        System.out.println("#############################################");
+        //System.out.println(n_id);
+        System.out.println(n_name);
+        System.out.println(n_email);
+        System.out.println(n_profilImage);
+        System.out.println(n_gender);
+        //System.out.println(n_birthday);
+        //System.out.println(n_birthyear);
+        //System.out.println(phone);
+
+        System.out.println("#############################################");
+
+            User user = new User();
+            //user.setUserId(n_id);
+            user.setUserName(n_name);
+            user.setEmail(n_email);
+            user.setUserImage(n_profilImage);
+            user.setGender(n_gender);
+            user.setLoginType("3");
+
+            String email = n_email;
+        User dbEmail = userService.getUserEmail(email);
+           System.out.println("dbemail의 값은 ? :"+dbEmail);
+        System.out.println("dbemail의 email값은 ? :"+dbEmail.getEmail());
+        System.out.println("인자값 email의 값은? :"+email);
+           if(email!=dbEmail.getEmail()){
+
+               System.out.printf("");
+               User naverUser2 = userService.getUser2(email);
+               session.setAttribute("naverUser2", naverUser2);
+
+                }else{
+
+               System.out.printf("같지않을때 실행");
+               String no = "";
+               Random rand = new Random();
+
+               for (int i = 0; i < 4; i++) {
+                   String ran = Integer.toString(rand.nextInt(10));
+                   no += ran;
+               }
+               user.setUserId("naverId" + no);
+               System.out.println("네이버 유저 정보 : " + user);
+               System.out.println("네이버로그인 겟유저아이디 값 : "+user.getUserId());
+
+               userService.addNaverUser(user);
+               User naverUser = userService.getUser(user.getUserId());
+               session.setAttribute("naverUser", naverUser);
+
+           }
+
+            // ajax에서 성공 결과에서 ok인지 no인지에 따라 다른 페이지에 갈 수 있게끔 result의 기본값을 "no"로 선언
+        String result = "no";
+
+        if(user!=null) {
+            // user가 비어있지 않는다는건 데이터를 잘 받아왔다는 뜻이므로 result를 "ok"로 설정
+            result = "ok";
+        }
+        return result;
+    }
 
 }
 

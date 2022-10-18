@@ -24,6 +24,7 @@
         <result property="ped" column="ped" jdbcType="DATE"/>
         <result property="ppt" column="ppt" jdbcType="NUMERIC"/>
         <result property="reviewPt" column="review_pt" jdbcType="NUMERIC"/>
+        <result property="loginType" column="login_type" jdbcType="VARCHAR"/>
     </resultMap>
 
     <resultMap id="interListSelectMap" type="interList">
@@ -36,10 +37,10 @@
 
     <insert      id="addUser"     parameterType="user" >
         INSERT INTO users(user_id, master_check, user_status, password, user_name, rrd, gender, email,
-                          phone, vill_code, user_image, lcd, login_check, psd, ped, ppt, review_pt)
+                          phone, vill_code, user_image, lcd, login_check, psd, ped, ppt, review_pt, LOGIN_TYPE)
         values(#{userId:VARCHAR}, #{masterCheck:CHAR}, #{userStatus:CHAR}, #{password:VARCHAR}, #{userName:VARCHAR}, #{rrd:VARCHAR},
                #{gender:VARCHAR}, #{email:VARCHAR}, #{phone:VARCHAR}, #{villCode:VARCHAR}, #{userImage:VARCHAR},
-               #{lcd,jdbcType=DATE}, #{loginCheck:CHAR}, #{psd,jdbcType=DATE}, #{ped,jdbcType=DATE}, #{ppt:NUMERIC}, #{reviewPt:NUMERIC})
+               #{lcd,jdbcType=DATE}, #{loginCheck:CHAR}, #{psd,jdbcType=DATE}, #{ped,jdbcType=DATE}, #{ppt:NUMERIC}, #{reviewPt:NUMERIC}, #{loginType:VARCHAR})
     </insert>
 
     <insert      id="addInterList"     parameterType="com.project.domain.UserInterList" >
@@ -54,9 +55,22 @@
 
     <select id="getUser"    parameterType="String" resultMap="userSelectMap">
         SELECT user_id, master_check, user_status, password, user_name, gender, email,
-               phone, vill_code, user_image, lcd, login_check, psd, ped, ppt, review_pt
+               phone, vill_code, user_image, lcd, login_check, psd, ped, ppt, review_pt, login_type
         FROM users
         WHERE user_id=#{userId}
+    </select>
+
+    <select id="getUser2"    parameterType="String" resultMap="userSelectMap">
+        SELECT user_id, master_check, user_status, password, user_name, gender, email,
+               phone, vill_code, user_image, lcd, login_check, psd, ped, ppt, review_pt, login_type
+        FROM users
+        WHERE email=#{email}
+    </select>
+
+    <select id="getUserEmail"    parameterType="String" resultMap="userSelectMap">
+        SELECT email
+        FROM users
+        WHERE email=#{email}
     </select>
 
     <update id="updateLcd" parameterType="String" >
@@ -90,25 +104,56 @@
     from users
     </select>
 
-    <sql id="listUser2">
-        select
-            user_id, lcd, review_pt, ppt, psd, ped, userStatus
-        from users
-    </sql>
 
-    <select id="userInfor" parameterType="user" resultMap="userSelectMap" >
-        select a.user_id, a.password, a.user_name, a.rrd, a.gender, a.email, a.phone, a.vill_code, b.inter_list, a.user_image, a.lcd, a.psd, a.ped, a.ppt, a.review_pt
-        from users a, user_inter_list b
-        where a.user_id=b.user_id and a.user_id=(select a.user_id from users a where a.user_id IN (#{userId}) )
-    </select>
+
 
     <select id="getUserDetail" parameterType="String" resultMap="userSelectMap">
-        select a.user_id, a.user_status, a.user_name, a.rrd, a.gender, a.email, a.phone, a.vill_code, b.inter_list, a.user_image, a.lcd, a.psd, a.ped, a.ppt, a.review_pt
-        from users a, user_inter_list b
-        where a.user_id=b.user_id and a.user_id=(select a.user_id from users a where a.user_id IN (#{userId}) )
+        SELECT user_id, user_status, user_name, gender, email, phone, vill_code, user_image, lcd, psd, ped, ppt, review_pt, login_type
+        FROM users
+        WHERE user_id=#{userId}
+    </select>
+
+    <select id="listInterList" parameterType="String" resultMap="interListSelectMap">
+        SELECT inter_list
+        FROM user_inter_list
+        WHERE user_id=#{userId}
     </select>
 
 
+
+    <insert id="addNaverUser" parameterType="user" >
+        INSERT INTO users (user_id, user_name, email, user_image, gender, login_type)
+        values (#{userId:VARCHAR}, #{userName:VARCHAR}, #{email:VARCHAR}, #{userImage:VARCHAR}, #{gender:VARCHAR}, #{loginType:VARCHAR})
+    </insert>
+    
+    <insert id="addKakaoUser" parameterType="user">
+        INSERT INTO users (user_id)
+        VALUES (#{userId:VARCHAR})
+    </insert>
+
+    <update id="updatePsd" parameterType="user"  >
+        UPDATE users
+         <set>
+             psd=#{psd}
+         </set>
+         WHERE user_id=#{userId}
+    </update>
+
+    <update id="updatePed" parameterType="user" >
+        UPDATE users
+        <set>
+            ped=#{ped}
+        </set>
+        WHERE user_id=#{userId}
+    </update>
+
+    <update id="updateUserStatus" parameterType="String" >
+        UPDATE users
+        <set>
+            user_status='4'
+        </set>
+        WHERE user_id=#{userId}
+    </update>
 
 
 

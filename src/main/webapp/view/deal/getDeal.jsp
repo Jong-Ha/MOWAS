@@ -18,17 +18,27 @@ Product vo=(Product)request.getAttribute("vo");
 <head>
 
     <title>상품 목록조회</title>
-    <meta charset="EUC-KR">
 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+            rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css"
+          rel="stylesheet">
+    <link href="/resources/css/comment.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <title>Bootstrap Example</title>
     <!-- 참조 : http://getbootstrap.com/css/   참조 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<%--    <meta name="viewport" content="width=device-width, initial-scale=1.0" />--%>
 
-    <!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<%--    <!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->--%>
+<%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >--%>
+<%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >--%>
+<%--    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>--%>
+<%--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>--%>
+<%--    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>--%>
     <script>
         // $(function () {
         //     var dealNum = $(this).parent().children("[name='dealBoardNum']").val();
@@ -188,6 +198,24 @@ Product vo=(Product)request.getAttribute("vo");
                 }
             })
         });
+        $(function (){
+            /* 리뷰쓰기 */
+            $(".reply_button_wrap").on("click", function(e){
+
+                e.preventDefault();
+
+                const userId = '${user.userId}';
+                const dealId = '${deal.dealId}';
+
+                let popUrl = "/deal/review/${dealBoardNum}";
+
+
+                console.log(popUrl);
+                let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes";
+
+                window.open(popUrl,"리뷰 쓰기",popOption);
+            });
+        })
 
 
 
@@ -210,6 +238,130 @@ Product vo=(Product)request.getAttribute("vo");
             padding-top : 50px;
         }
 
+
+        /* 리뷰쓰기 버튼 */
+        .reply_button_wrap{
+            padding : 10px;
+        }
+        .reply_button_wrap button{
+            background-color: #365fdd;
+            color: white;
+            font-weight: bold;
+            font-size: 15px;
+            padding: 5px 12px;
+            cursor: pointer;
+        }
+        .reply_button_wrap button:hover{
+            background-color: #1347e7;
+        }
+
+        /* 리뷰 영역 */
+        .content_bottom{
+            width: 80%;
+            margin : auto;
+        }
+        .reply_content_ul{
+            list-style: none;
+        }
+        .comment_wrap{
+            position: relative;
+            border-bottom: 1px dotted #d4d4d4;
+            padding: 14px 0 10px 0;
+            font-size: 12px;
+        }
+        /* 리뷰 머리 부분 */
+        .reply_top{
+            padding-bottom: 10px;
+        }
+        .id_span{
+            padding: 0 15px 0 3px;
+            font-weight: bold;
+        }
+        .date_span{
+            padding: 0 15px 0;
+        }
+        /* 리뷰 컨텐트 부분 */
+        .reply_bottom{
+            padding-bottom: 10px;
+        }
+
+
+        /* 리뷰 선 */
+        .reply_line{
+            width : 80%;
+            margin : auto;
+            border-top:1px solid #c6c6cf;
+        }
+
+        /* 리뷰 제목 */
+        .reply_subject h2{
+            padding: 15px 0 5px 5px;
+        }
+
+        /* pageMaker */
+        .repy_pageInfo_div{
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+        .pageMaker{
+            list-style: none;
+            display: inline-block;
+        }
+        .pageMaker_btn{
+            float: left;
+            width: 25px;
+            height: 25px;
+            line-height: 25px;
+            margin-left: 20px;
+            font-size: 10px;
+            cursor: pointer;
+        }
+        .active{
+            border : 2px solid black;
+            font-weight:400;
+        }
+        .next, .prev {
+            border: 1px solid #ccc;
+            padding: 0 10px;
+        }
+
+        /* 리뷰 없는 경우 div */
+        .reply_not_div{
+            text-align: center;
+        }
+        .reply_not_div span{
+            display: block;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        /* 리뷰 수정 삭제 버튼 */
+        .update_reply_btn{
+            font-weight: bold;
+            background-color: #b7b399;
+            display: inline-block;
+            width: 40px;
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+            margin: 0 5px 0 30px;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+        }
+        .delete_reply_btn{
+            font-weight: bold;
+            background-color: #e7578f;
+            display: inline-block;
+            width: 40px;
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+        }
     </style>
     <link rel="stylesheet" href="/css/admin.css" type="text/css">
     <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -218,6 +370,10 @@ Product vo=(Product)request.getAttribute("vo");
 
 
 <body>
+<%-- toolbar 시작--%>
+<jsp:include page="/layout/toolbar.jsp"/>
+<%-- toolbar 종료--%>
+
 <c:forEach items="${deal.files}" var="i">
     <img src="/resources/${i.fileName}" alt="거래 게시글 사진"><br>
     <br>
@@ -235,6 +391,16 @@ ${deal}<br>
 <input type="button" class="updateDeal" value="거래 수정">
 <input type="button" class="deleteDeal" value="거래 삭제">
 <input type="button" class="#" value="채팅하기">
+
+<div class="reply_subject">리뷰</div>
+<div class="replypt">${deal.reviewPt}</div>
+<div class="replypt">${point}</div>
+
+
+<div class="reply_button_wrap">
+    <button>리뷰 쓰기</button>
+</div>
+
 
 <input type="button" class="dealLogin" value="로그인">
 <label>

@@ -16,7 +16,7 @@
         <result property="price" column="price" jdbcType="INTEGER"/>
         <result property="tag" column="deal_tag" jdbcType="VARCHAR"/>
         <result property="viewCount" column="view_count" jdbcType="INTEGER"/>
-        <result property="villCode" column="vill_code" jdbcType="VARCHAR"/>
+        <result property="user.villCode" column="vill_code" jdbcType="VARCHAR"/>
         <result property="dealId" column="deal_id" jdbcType="VARCHAR"/>
         <result property="dealModeCheck" column="deal_mode_check" jdbcType="CHAR"/>
         <result property="charNum" column="char_num" jdbcType="INTEGER"/>
@@ -124,7 +124,11 @@ values (seq_deal.NEXTVAL,
             price,
             product_name,
             tag,
-            board_category
+            board_category,
+            review,
+            review_pt,
+            deal_id
+        vill_code
 from deal
 where deal_board_num=#{dealBoardNum}
     </select>
@@ -238,5 +242,26 @@ where deal_board_num=#{dealBoardNum}
         </if> ) countTable
     </select>
 -->
+    <select id="getUserId" resultType="com.project.domain.Deal">
 
+        select user_id, review,review_pt from deal
+        where deal_board_num = #{dealBoardNum}
+
+
+    </select>
+   <update id="updateReview" parameterType="deal">
+       update  DEAL
+<set>
+            review=#{review},
+           review_pt=#{reviewPt},
+           deal_status=3,
+           deal_id=#{dealId}
+</set>
+<where>deal_board_num=#{dealBoardNum}</where>
+   </update>
+    <select id="getReviewPt" parameterType="deal" resultType="int">
+        select AVG(review_pt)
+from deal
+where user_id = #{user.userId}
+    </select>
 </mapper>

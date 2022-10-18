@@ -32,6 +32,8 @@ public class User {
     private int ppt;
     private int reviewPt;
 
+    private String loginType;
+
     public User() {
     }
 
@@ -171,26 +173,44 @@ public class User {
         this.reviewPt = reviewPt;
     }
 
+    public String getInterList() {
+        return interList;
+    }
+
+    public void setInterList(String interList) {
+        this.interList = interList;
+    }
+
+    public String getLoginType() {
+        return loginType;
+    }
+
+    public void setLoginType(String loginType) {
+        this.loginType = loginType;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "userId='" + userId + '\'' +
+                ", interList='" + interList + '\'' +
                 ", masterCheck='" + masterCheck + '\'' +
                 ", userStatus='" + userStatus + '\'' +
                 ", password='" + password + '\'' +
                 ", userName='" + userName + '\'' +
-                ", rrd=" + rrd +
+                ", rrd='" + rrd + '\'' +
                 ", gender='" + gender + '\'' +
                 ", email='" + email + '\'' +
-                ", phone=" + phone +
+                ", phone='" + phone + '\'' +
                 ", villCode='" + villCode + '\'' +
                 ", userImage='" + userImage + '\'' +
-                ", lcd=" + lcd +
+                ", lcd='" + lcd + '\'' +
                 ", loginCheck='" + loginCheck + '\'' +
-                ", psd=" + psd +
-                ", ped=" + ped +
+                ", psd='" + psd + '\'' +
+                ", ped='" + ped + '\'' +
                 ", ppt=" + ppt +
                 ", reviewPt=" + reviewPt +
+                ", loginType='" + loginType + '\'' +
                 '}';
     }
 }

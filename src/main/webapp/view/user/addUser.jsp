@@ -25,7 +25,6 @@
 
     $(function (){
       $(".emailKey").on("click",function (){
-        alert('이메일인증버튼?');
         $.ajax({
           url: "/user/json/mailSender",
           method :"POST",
@@ -34,16 +33,12 @@
           },
           dataType :"json",
           success : function ({JSONData, status}){
-            alert(status);
+            console.log(status);
             $(".emailYC").css("display",'');
           }
         });
-        alert('ajax 종료');
-        //$("form").attr("method", "POST").attr("action", "/user/mailSender").submit();
-         // self.location="/user/mailSender";
       });
       $(".smsKey").on("click",function (){
-        alert('문자인증버튼?');
         $.ajax({
           url : "/user/json/smsSend",
           method: "POST",
@@ -55,9 +50,6 @@
             $(".smsYC").css("display",'');
           }
         });
-        alert('ajax 종료');
-        //$("form").attr("method", "POST").attr("action", "/user/smsSend").submit();
-        // self.location="/user/mailSender";
       });
 
       $(".CheckEmailKey2").on("click",function (){
@@ -79,29 +71,24 @@
         }
       });
 
-       $(".CheckRrd").on("click",function (){
-         var rrdCheck=$("input[name='rrd']").val();
-         alert(rrdCheck)
+       $("#rrd").on("keyup",function (){
+         var rrd=$("input[name='rrd']").val();
            $.ajax({
                      url: "/user/json/checkDupRrd",
                    method : "POST",
                   data :{
-                  rrd : rrdCheck
+                  rrd : rrd
                     },
              dataType: "json",
              success :
                 function (map) {
-                  alert(map)
-                  if (map.result) {
-                    $(".rrdtext").show();
-                    $(".rrdtext").html('회원가입할 수 있습니다');
+                  if (map.result==true) {
+                    $("#rrdChk").css("display", 'none');
                   } else {
-                    $(".rrdtext").show();
-                    $(".rrdtext").html('이미 가입한 회원입니다');
+                    $("#rrdChk").css("display", "");
                   }
                 }
                 });
-         alert('이건되낭?')
               });
 
       $(".addInter").on("click", function (){
@@ -155,6 +142,68 @@
           });
           */
 
+      $("#userId").on("keyup",function (){
+          $.ajax({
+            url: "/user/json/userId",
+            method: "POST",
+            data: {
+              userId: $("#userId").val()
+            },
+            dataType: "json",
+            success: function (result) {
+              if (result==true) {
+                $("#idChk").css("display", 'none');
+              } else {
+                $("#idChk").css("display", "");
+              }
+            },
+            error: function () {
+              alert('아이디유효성검사실패');
+            }
+          });
+      })
+        $("#password").on("keyup",function () {
+          $.ajax({
+            url: "/user/json/password",
+            method: "POST",
+            data: {
+              password : $("#password").val()
+            },
+            dataType: "json",
+            success: function (result) {
+              if (result == true) {
+                $("#passwordChk").css("display", 'none');
+              } else {
+                $("#passwordChk").css("display", "");
+              }
+            },
+            error: function () {
+              alert('비밀번호유효성검사실패');
+            }
+          });
+        })
+          $("#password2").on("keyup",function (){
+            $.ajax({
+              url: "/user/json/password2",
+              method: "POST",
+              data: {
+                password : $("#password").val(),
+                password2: $("#password2").val()
+              },
+              dataType: "json",
+              success: function (result) {
+                if (result==true) {
+                  $("#password2Chk").css("display", 'none');
+                } else {
+                  $("#password2Chk").css("display", "");
+                }
+              },
+              error: function () {
+                alert('비밀번호확인 유효성검사실패');
+              }
+            });
+      });
+
       $("form").on("submit",function (){
 
         var id=$("input[name='userId']").val();
@@ -166,6 +215,7 @@
         var female=$("input[name='gender']:checked").val();
         var email=$("input[id='CheckEamil']").val();
         var phone=$("input[id='CheckPhone']").val();
+        var interList=$("input[name='interList']").val();
 
 
         if(id == null || id.length <1){
@@ -182,7 +232,7 @@
         }
         if(name == null || name.length <1){
           alert("이름은  반드시 입력하셔야 합니다.");
-          return false;
+          return false;//해당 메서드(펑션)을 종료한다
         }
 
         if( pw != pw2 ) {
@@ -194,12 +244,12 @@
           alert("주민등록번호는  반드시 입력하셔야 합니다.");
           return false;
         }
-        if(male.length <1 && female.length <1){
+        if(male == false && female ==false){
           alert("성별은  반드시 입력하셔야 합니다.");
           return false;
         }
-        if(email.length <1 && phone.length <1){
-          alert("이메일 또는 휴대폰번호 인증은 반드시 인증하셔야 합니다.");
+        if(email== false && phone ==false){
+          alert("이메일 또는 휴대폰번호는 반드시 인증하셔야 합니다.");
           return false;
         }
         // if(addressView == null){
@@ -212,7 +262,6 @@
           var address = $("#address").val() + " " + $("#addressDetail").val();
         }
 
-        console.log('address');
 
 
         $("form").attr("method","POST").attr("action","/user/addUser").submit();
@@ -224,6 +273,12 @@
           history.go(-1);
         });
       });
+
+
+
+
+
+
 
     });
 
@@ -419,6 +474,7 @@
 
 
 
+
 </script>
  <body class="bg-light">
     
@@ -435,26 +491,35 @@
       <hr>
 
 
-    <form class="needs-validation" novalidate>
+    <form class="needs-validation" novalidate enctype="multipart/form-data">
       <div class="row g-3">
         <div class="col-sm">
-          <label for="id" class="form-label">아이디</label>
-          <input type="text" class="form-control userId" id="Id" name="userId" maxLength="20" required>
+          <label for="userId" class="form-label">아이디</label>
+          <input type="text" class="form-control" id="userId" name="userId" maxLength="20" required>
         </div>
 
+        <span id="idChk" style="display: none;">
+                <strong class="text-danger" >이미 가입된 아이디입니다</strong>
+        </span>
         <div class="col-12">
           <label for="password" class="form-label">비밀번호</label>
           <div class="input-group has-validation">
-            <input type="password" class="form-control" id="password" name="password"  required>
+            <input type="password" class="form-control" id="password" name="password" maxLength="16" required>
           </div>
         </div>
+        <span id="passwordChk" style="display: none;">
+                <strong class="text-danger" >영문,숫자 혼합, 8~16글자로 입력해주세요</strong>
+        </span>
 
         <div class="col-12">
           <label for="password2" class="form-label">비밀번호 확인</label>
           <div class="input-group has-validation">
-            <input type="password" class="form-control" id="password2" name="password2"  required>
+            <input type="password" class="form-control" id="password2" name="password2" maxLength="16" required>
           </div>
         </div>
+        <span id="password2Chk" style="display: none;">
+                <strong class="text-danger" >비밀번호가 틀렸습니다</strong>
+        </span>
 
         <div class="col-12">
           <label for="userName" class="form-label">이름</label>
@@ -465,12 +530,14 @@
 
         <div class="col-12 ">
           <label for="rrd" class="form-label">주민등록번호</label>
-          <div input="hidden" class="rrdtext" ></div>
           <div class="input-group has-validation">
             <input type="text" class="form-control" id="rrd" name="rrd"  required>
           </div>
-          <button type="button" class="btn btn-primary btn-sm CheckRrd">중복 확인</button>
-        </div>
+            <span id="rrdChk" style="display: none;" >
+              <strong class="text-danger" >이미 가입한 회원입니다</strong>
+              </span>
+
+
 
 
         <div class="col-12">
@@ -540,7 +607,15 @@
         <div style="height:5px;"></div>
 
 
-        <button type="button" class="btn btn-primary btn-sm">동네인증 요청</button>
+
+        <button type="button" class="btn btn-primary btn-sm" id="checkAddress" name="checkAddress">동네인증 요청</button>
+
+        <div class="col-12">
+          <input type="hidden" class="form-control" id="addressTrue" value="동네인증 되었습니다" readonly>
+        </div>
+        <div class="col-12">
+          <input type="hidden" class="form-control" id="addressFalse" value="동네인증 실패. 현재위치를 확인해주세요" readonly>
+        </div>
 
       </div>
 
@@ -575,6 +650,40 @@
 
               var lat = position.coords.latitude, // 위도
                       lon = position.coords.longitude; // 경도
+
+            $(function (){
+
+
+              $("#checkAddress").on("click", function (){
+                console.log($("#address").val())
+                // console.log(window['lat'])
+                // console.log(window['lon'])
+                $.ajax({
+                  url : "/user/json/checkAddress",
+                  method : "POST",
+                  data : JSON.stringify({
+                    villCode : $("#address").val(),
+                    lat : position.coords.latitude,
+                    lon : position.coords.longitude
+                  }),
+                  dataType : "JSON",
+                  processData : true,
+                  contentType : "application/json",
+                  success : function (result){
+                    if(result==true) {
+                      $("#addressTrue").attr("type","text").css("color","red");
+                      $("#map").fadeOut();
+                    }else {
+                      $("#addressFalse").attr("type","text").css("color","red");
+                    }
+                  },
+                  error : function (){
+                    alert('지도 인증 실패');
+                  }
+                })
+              })
+            })
+
 
               var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
                       message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
@@ -619,13 +728,90 @@
           }
         </script>
 
+          <span>
+          <span class="form-check">
+            <input class="form-check-input" type="checkbox" value="스포츠" id="list01" name="interList" >
+            <label class="form-check-label" for="list01">
+              스포츠
+            </label>
+          </span>
+          <span class="form-check">
+            <input class="form-check-input" type="checkbox" value="반려동물" id="list02" name="interList" >
+            <label class="form-check-label" for="list02">
+              반려동물
+            </label>
+          </span>
+          <span class="form-check">
+            <input class="form-check-input" type="checkbox" value="음악" id="list03" name="interList" >
+            <label class="form-check-label" for="list03">
+              음악
+            </label>
+          </span>
+            <span class="form-check">
+            <input class="form-check-input" type="checkbox" value="독서" id="list04" name="interList" >
+            <label class="form-check-label" for="list04">
+              독서
+            </label>
+          </span>
+            <span class="form-check">
+            <input class="form-check-input" type="checkbox" value="게임" id="list05" name="interList" >
+            <label class="form-check-label" for="list05">
+              게임
+            </label>
+          </span>
+            <span class="form-check">
+            <input class="form-check-input" type="checkbox" value="육아" id="list06" name="interList" >
+            <label class="form-check-label" for="list06">
+              육아
+            </label>
+          </span>
+            <span class="form-check">
+            <input class="form-check-input" type="checkbox" value="공연" id="list07" name="interList" >
+            <label class="form-check-label" for="list07">
+              공연
+            </label>
+          </span>
+            <span class="form-check">
+            <input class="form-check-input" type="checkbox" value="공예" id="list08" name="interList" >
+            <label class="form-check-label" for="list08">
+              공예
+            </label>
+          </span>
+            <span class="form-check">
+            <input class="form-check-input" type="checkbox" value="댄스" id="list09" name="interList" >
+            <label class="form-check-label" for="list02">
+              댄스
+            </label>
+          </span>
+            <span class="form-check">
+            <input class="form-check-input" type="checkbox" value="자동차" id="list10" name="interList" >
+            <label class="form-check-label" for="list09">
+              자동차
+            </label>
+          </span>
+            <span class="form-check">
+            <input class="form-check-input" type="checkbox" value="사진" id="list11" name="interList" >
+            <label class="form-check-label" for="list10">
+              사진
+            </label>
+          </span>
+            <span class="form-check">
+            <input class="form-check-input" type="checkbox" value="여행" id="list12" name="interList" >
+            <label class="form-check-label" for="list11">
+              여행
+            </label>
+          </span>
+            <span class="form-check">
+            <input class="form-check-input" type="checkbox" value="기타" id="list13" name="interList" >
+            <label class="form-check-label" for="list12">
+              기타
+            </label>
+          </span>
+            </span>
 
-
-      <div class="col-12">동네인증 결과
-      <input type="text" class="form-control" id="addressView"  required>
-      </div>
-
+<!--
       <div class="col-12">
+
         관심목록 선택(최대 13개)
       </div>
 
@@ -698,21 +884,26 @@
         </table>
       </div>
       </div>
+      -->
+
 
       <div class="col-12">
-        <label for="userImage" class="form-label">회원 사진 등록 *선택사항*</label>
-        <input type="file" id="userImage" name="userImage">
+        <label for="file" class="form-label">회원 사진 등록 *선택사항*</label>
+        <input type="file" id="file" name="file" >
       </div>
 
+
       <div class="hiddem">
+        <input type="hidden" id="interListCheck" value="true">
         <input type="hidden" class="masterCheck" name="masterCheck" value="1">
         <input type="hidden" class="userStatus" name="userStatus" value="1">
         <input type="hidden" class="lcd" name="lcd" value="2022-10-10">
-        <input type="hidden" class="loginCheck" name="loginCheck" value="1">
         <input type="hidden" class="psd" name="psd" value="">
         <input type="hidden" class="ped" name="ped" value="">
         <input type="hidden" class="ppt" name="ppt" value="0">
         <input type="hidden" class="reviewPt" name="reviewPt" value="0">
+        <input type="hidden" class="loginType" name="loginType" value="1">
+        <input type="hidden" id="idcheck" value="false">
       </div>
 
 
@@ -721,6 +912,7 @@
             <button class="w-100 btn btn-primary btn-lg cancle" type="button"> 취소</button>
             <button class="w-100 btn btn-primary btn-lg addUser" type="submit"> 회원가입</button>
           </div>
+        </div>
       </div>
     </form>
 

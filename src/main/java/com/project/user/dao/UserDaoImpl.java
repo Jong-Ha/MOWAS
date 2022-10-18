@@ -43,6 +43,14 @@ public class UserDaoImpl implements UserDao{
         return sqlSession.selectOne("UserMapper.getUser", userId);
     }
 
+    public User getUserEmail(String email)throws Exception{
+        System.out.println("유저Dao임플 이멜값 :"+email);
+         return sqlSession.selectOne("UserMapper.getUserEmail", email);
+    }
+
+    public User getUser2(String email)throws Exception{
+        return sqlSession.selectOne("UserMapper.getUser2", email);
+    }
     public void updateLcd(String msg)throws Exception{
         sqlSession.selectOne("UserMapper.updateLcd", msg);
     }
@@ -50,6 +58,21 @@ public class UserDaoImpl implements UserDao{
     public void updateUser(User user)throws Exception{
         sqlSession.update("UserMapper.updateUser", user);
     }
+
+    public void updatePsd(User user)throws Exception{
+        System.out.println("유저Dao임플 userId값1"+user.getUserId());
+        sqlSession.update("UserMapper.updatePsd", user);
+        System.out.println("유저Dao임플 userId값2"+user.getUserId());
+    }
+
+    public void updatePed(User user)throws Exception{
+        sqlSession.update("UserMapper.updatePed", user);
+    }
+
+    public void updateUserStatus(String userId)throws Exception{
+        sqlSession.update("UserMapper.updateUserStatus", userId);
+    }
+
 
     public User checkDupRrd(String rrd)throws Exception{
         return sqlSession.selectOne("UserMapper.checkDupRrd", rrd);
@@ -63,5 +86,15 @@ public class UserDaoImpl implements UserDao{
         return sqlSession.selectOne("UserMapper.getUserDetail", userId);
     }
 
+    public List<UserInterList> listInterList(String userId)throws Exception{
+
+        List<UserInterList> sampleCode =  sqlSession.selectList("UserMapper.listInterList", userId);
+        System.out.println("sampleCode의 값은? "+sampleCode);
+        return sampleCode;
+    }
+
+    public void addNaverUser(User user)throws Exception{
+        sqlSession.insert("UserMapper.addNaverUser", user);
+    }
 
 }

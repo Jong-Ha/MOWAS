@@ -74,4 +74,17 @@ sqlSession.delete("DealMapper.deleteDeal", dealBoardNum);
         return sqlSession.selectOne("DealMapper.getDealNum", userId);
     }
 
+    @Override
+    public Deal getUserId(int dealBoardNum) {
+        return sqlSession.selectOne("DealMapper.getUserId", dealBoardNum);
+    }
+
+    public void updateReview(Deal deal){
+     sqlSession.update("DealMapper.updateReview",deal);
+    }
+
+    public int getReviewPt(Deal deal){
+        System.out.println("dealDao get reViewPt"+deal);
+        return sqlSession.selectOne("DealMapper.getReviewPt",deal);
+    }
 }

@@ -5,14 +5,14 @@ import com.project.community.service.CommunityService;
 import com.project.deal.service.DealService;
 import com.project.domain.Deal;
 import com.project.domain.User;
+import com.project.domain.VilBoard;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -143,4 +143,15 @@ public class DealRestController {
         }
         return 0;
     }
+    @RequestMapping(value = "addReview" , method = RequestMethod.POST)
+    public int addVillBarod(@RequestBody Deal deal , HttpSession session) throws Exception {
+        System.out.println("여기 restController에 들어간건가요 ?"+deal);
+        User user=(User) session.getAttribute("user");
+                deal.setDealId(user.getUserId());
+                dealService.updateReview(deal);
+                return deal.getDealBoardNum();
+
+
+    }
+
 }
