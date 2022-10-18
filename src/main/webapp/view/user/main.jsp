@@ -82,7 +82,6 @@
         $(function () {
             $("#myPage").on("click", function () {
                 var userId = $("#modelUser").val();
-                alert('유저아이디'+userId);
                 self.location = "/myPage/getMyPage?userId="+userId;
             });
         });
@@ -124,7 +123,7 @@
               <a class="nav-link disabled">Link</a>
             </li>
           </ul>
-          	<img src="pngwing.png" style="width: 30px; margin-right: 10px;">
+          	<img src="/resources/images/pngwing.png" style="width: 30px; margin-right: 10px;">
           	<div class="loginButton">
 		        <div class="d-grid gap-2">
                     <%

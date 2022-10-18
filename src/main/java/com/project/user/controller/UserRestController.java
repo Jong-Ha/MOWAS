@@ -31,12 +31,16 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static com.project.common.KakaoMapApi.coordToAddress;
 
 @RestController
 @RequestMapping("/user/json/*")
 public class UserRestController {
+
+
 
     @Autowired
     @Qualifier("userServiceImpl")
@@ -45,23 +49,59 @@ public class UserRestController {
     @RequestMapping(value = "checkDupRrd", method = RequestMethod.POST)
     public Map<String, Object> checkDupRrd(@RequestParam String rrd) throws Exception {
         System.out.println("json/checkDupRrd : POST 실행");
-        System.out.println("rrd의 값1 : " + rrd);
         boolean result = userService.checkDupRrd(rrd);
-        System.out.println("rrd의 값2 : " + rrd);
+
         Map<String, Object> map = new HashMap<String, Object>();
 
         map.put("result", new Boolean(result));
         System.out.println("result의 값 : " + result);
         map.put("rrd", rrd);
-        System.out.println("rrd의 값3 : " + rrd);
+        System.out.println("rrd의 값 : " + rrd);
         return map;
+    }
+
+    @RequestMapping(value = "userId", method = RequestMethod.POST)
+    public boolean userId(@RequestParam String userId) throws Exception {
+        System.out.println("json/userName : POST 실행");
+        System.out.println("userId 값 : " + userId);
+        boolean result = userService.checkDupId(userId);
+
+        return result;
+    }
+
+    @RequestMapping(value = "password", method = RequestMethod.POST)
+    public boolean password(@RequestParam String password) throws Exception {
+        System.out.println("json/password : POST 실행");
+        System.out.println("password 값 : " + password);
+
+        String patten = "^[A-Za-z[0-9]]{8,16}$";
+        boolean result = Pattern.matches(patten, password);
+
+
+        return result;
+    }
+    @RequestMapping(value = "password2", method = RequestMethod.POST)
+    public boolean password2(@RequestParam String password, @RequestParam String password2) throws Exception {
+        System.out.println("json/password2 : POST 실행");
+        System.out.println("password 값 : " + password);
+        System.out.println("password2 값 : " + password2);
+
+        if(password.equals(password2)){
+            boolean result =true;
+            System.out.println("result값"+result);
+            return result;
+        }else {
+            boolean result =false;
+            System.out.println("result값"+result);
+            return result;
+        }
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public User login(@RequestBody User user, HttpSession session, HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
         System.out.println("/user/json/login : POST 실행");
         System.out.println("user의 값은? : " + user);
-
+/*
         Cookie lastDate= null;
         String msg ="";
         boolean found = false;
@@ -98,7 +138,7 @@ public class UserRestController {
         }
 
         System.out.println("msg : "+msg);
-
+*/
         try {
             User dbVO = userService.loginUser(user);
             System.out.println("dbVO 값은? : " + dbVO);

@@ -19,8 +19,9 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/community/list/clubCalenderReviewList.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/community/list" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/community/list/villBoardList.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/community/list" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/community/update/updateClubCalenderReviewShort.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/community/update" />
-        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/myPage/updateMyInfor.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/myPage" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/deal/getDeal.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/deal" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/myPage/getMyPage.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/myPage" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/myPage/updateMyInfor.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/myPage" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/site/clubMap.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/site" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/site/getMasterBoard.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/site" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/user" />
