@@ -14,6 +14,10 @@ public interface DealService {
     public List<String> deleteDeal(int dealBoardNum) throws Exception;
     public Deal getDeal(int dealBoardNum)throws Exception;
     public Map<String, Object> getListDeal(Search search, String boardCategory) throws Exception ;
+    public Deal getUserId(int dealBoardNum) throws Exception;
+    public void updateReview(Deal deal)throws Exception;
+
+    public int getReviewPt(Deal deal) throws Exception;
 
 //    public int addReview(Deal deal) throws Exception;
  //   public List<String> deleteReview(int dealBoardNum) throws Exception;

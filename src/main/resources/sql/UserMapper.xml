@@ -150,7 +150,7 @@
     <update id="updateUserStatus" parameterType="String" >
         UPDATE users
         <set>
-            user_status='04'
+            user_status='4'
         </set>
         WHERE user_id=#{userId}
     </update>

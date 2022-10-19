@@ -40,15 +40,6 @@
 <link href="" rel="stylesheet">
 <script type="text/javascript">
 
-    $(document).ready(function (){
-        var id = $("input:text").val();
-        var pw = $("input:password").val();
-        var keepId = $("#keepId").prop('checked');
-        var keepLogin = $("#keepLogin").prop('checked');
-        if (keepId && keepLogin ){
-            fncLogin();
-        }
-    })
 
     $("#userId").focus();
 
@@ -122,7 +113,6 @@
         });
 
         $(".loginStart").bind('click',function (){
-            alert('로그인버튼클릭');
             fncLogin();
         });
         $('input[name="password"]').on('keydown', function (key){
@@ -456,6 +446,19 @@
     </form>
 
 </main>
+<script>
 
+    $(document).ready(function (){
+        var id = $("input:text").val();
+        var pw = $("input:password").val();
+        var keepId = $("#keepId").prop('checked');
+        var keepLogin = $("#keepLogin").prop('checked');
+        console.log('자동로그인keepId'+keepId);
+        console.log('자동로그인keeplogin'+keepLogin);
+        if (keepId && keepLogin ){
+            fncLogin();
+        }
+    })
+</script>
 </body>
 </html>

@@ -30,6 +30,10 @@
                 alert('회원 탈퇴 되었습니다');
             }
         });
+        $(".bbb").on("click",function (){
+            var userPhoto = $(".userPhoto").val();
+            window.open("/resources/"+userPhoto+"", "userPhoto", "height=500, width=500");
+        })
     });
 
 </script>
@@ -54,7 +58,10 @@
 신뢰온도 ${map.user.reviewPt}<br/>
 패널티 시작 날짜 ${map.user.psd}<br/>
 패널티 종료 날짜 ${map.user.ped}<br/>
-회원 사진 ${map.user.userImage}<br/>
+<span class="bbb">
+회원 사진 <img id="userImage" style="width: 15%;" src="/resources/${map.user.userImage}"><br/>
+    <input type="hidden" class="userPhoto" value="${map.user.userImage}">
+</span>
 
 <button type="button" class="listUser" id="updateClick">내 정보 수정하기</button>
 <button type="button" class="listUser" id="userOut">회원탈퇴 하기</button>

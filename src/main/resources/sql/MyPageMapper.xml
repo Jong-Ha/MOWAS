@@ -76,6 +76,35 @@
         <result property="regDate"          column="reg_date"          jdbcType="DATE"/>
     </resultMap>
 
+    <resultMap id="clubCalenderSelect" type="clubCalender">
+        <result property="clubCalenderNum"    column="club_calendar_num"    jdbcType="INTEGER"/>
+        <result property="clubNum"            column="club_num"             jdbcType="INTEGER"/>
+        <result property="regDate"            column="reg_date"              jdbcType="DATE"/>
+        <result property="calenderTitle"      column="calendar_title"       jdbcType="VARCHAR"/>
+        <result property="calenderText"       column="calendar_text"        jdbcType="VARCHAR"/>
+        <result property="clubDate"           column="club_date"            jdbcType="DATE"/>
+        <result property="location"           column="location"             jdbcType="VARCHAR"/>
+        <result property="noticeCheck"        column="notice_check"         jdbcType="VARCHAR"/>
+        <result property="noticeTime"         column="notice_time"          jdbcType="VARCHAR"/>
+        <result property="calendarApplyCheck" column="calendar_apply_check" jdbcType="VARCHAR"/>
+        <result property="applyAutoCheck"     column="apply_auto_check"     jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="calenderReviewSelect" type="calenderReview">
+        <result property="clubCalenderReviewNum"    column="club_calendar_review_num"    jdbcType="INTEGER"/>
+        <result property="clubCalenderNum"          column="club_calendar_num"           jdbcType="INTEGER"/>
+        <result property="clubNum"                  column="club_num"                    jdbcType="INTEGER"/>
+        <result property="userId"            column="user_id"                     jdbcType="VARCHAR"/>
+        <result property="reviewRange"              column="review_range"                jdbcType="VARCHAR"/>
+        <result property="reviewTitle"              column="review_title"                jdbcType="VARCHAR"/>
+        <result property="reviewText"               column="review_text"                 jdbcType="VARCHAR"/>
+        <result property="regDate"                  column="reg_date"                    jdbcType="DATE"/>
+        <result property="viewCount"                column="view_count"                  jdbcType="INTEGER"/>
+        <result property="likeConunt"               column="like_count"                  jdbcType="INTEGER"/>
+        <result property="updateDate"               column="update_date"                 jdbcType="DATE"/>
+        <result property="boardCategory"            column="board_category"              jdbcType="INTEGER"/>
+    </resultMap>
+
     <resultMap type="com.project.domain.Club" id="ClubResultMap">
         <result property="clubNum" column="club_num" jdbcType="INTEGER"/>
         <result property="clubMasterId" column="club_master_id" jdbcType="VARCHAR"/>
@@ -100,8 +129,66 @@
         <result property="text" column="text" jdbcType="VARCHAR"/>
         <result property="regDate" column="reg_date" jdbcType="DATE"/>
         <result property="updateDate" column="update_date" jdbcType="DATE"/>
-        <collection property="files" column="club_master_board_num" ofType="com.project.domain.File"
-                    select="getClubMasterBoardFiles"/>
+        <!--<collection property="files" column="club_master_board_num" ofType="com.project.domain.File"
+                    select="getClubMasterBoardFiles"/>-->
+    </resultMap>
+
+    <resultMap id="dealSelectMap" type="deal">
+        <result property="dealBoardNum" column="deal_board_num" jdbcType="INTEGER"/>
+        <result property="boardCategory" column="board_category" jdbcType="CHAR"/>
+        <result property="dealStatus" column="deal_status" jdbcType="CHAR"/>
+        <result property="user.userId"		    column="user_id"		            jdbcType="VARCHAR"/>
+        <result property="dealTitle" column="deal_title" jdbcType="VARCHAR"/>
+        <result property="dealText" column="deal_text" jdbcType="VARCHAR"/>
+        <result property="dealRegDate" column="deal_reg_date" jdbcType="DATE"/>
+        <result property="productName" column="product_name" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="INTEGER"/>
+        <result property="tag" column="deal_tag" jdbcType="VARCHAR"/>
+        <result property="viewCount" column="view_count" jdbcType="INTEGER"/>
+        <result property="villCode" column="vill_code" jdbcType="VARCHAR"/>
+        <result property="dealId" column="deal_id" jdbcType="VARCHAR"/>
+        <result property="dealModeCheck" column="deal_mode_check" jdbcType="CHAR"/>
+        <result property="charNum" column="char_num" jdbcType="INTEGER"/>
+        <result property="review" column="review" jdbcType="VARCHAR"/>
+        <result property="reviewPt" column="review_pt" jdbcType="INTEGER"/>
+        <result property="dealEndDate" column="deal_end_date" jdbcType="DATE"/>
+        <result property="dealDate" column="deal_date" jdbcType="DATE"/>
+        <result property="dealLocation" column="deal_location" jdbcType="VARCHAR"/>
+        <!--<collection property="files" column="deal_board_num" ofType="com.project.domain.File"
+                    select="getDealBoardFiles"/>-->
+    </resultMap>
+
+    <resultMap type="com.project.domain.File" id="FileResultMap">
+        <result property="fileNum" column="file_num" jdbcType="INTEGER"/>
+        <result property="boardNum" column="board_num" jdbcType="VARCHAR"/>
+        <result property="boardCategory" column="board_category" jdbcType="VARCHAR"/>
+        <result property="fileName" column="file_name" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="MasterBoardSelectMap" type="masterBoard">
+        <result property="masterBoardNo" 	column="master_board_num"   jdbcType="INTEGER"/>
+        <result property="adminId"	column="admin_id" 		 jdbcType="VARCHAR"/>
+        <result property="mbCategory" column="mb_category" 	 jdbcType="CHAR"/>
+        <result property="mbTitle" column="mb_title"         jdbcType="VARCHAR"/>
+        <result property="mbText" 	column="mb_text" 		jdbcType="VARCHAR"/>
+        <result property="mbRegDate" 	column="reg_date"       jdbcType="DATE"/>
+        <collection property="files" column="master_board_num" ofType="com.project.domain.File"
+                    select="getMasterBoardFiles"/>
+    </resultMap>
+
+    <resultMap id="CommunityReportSelectMap" type="communityReport">
+        <result property="reportNo" 	column="report_num"   jdbcType="INTEGER"/>
+        <result property="boardNo"	column="board_num" 		 jdbcType="INTEGER"/>
+        <result property="boardCategory" column="board_category" 	 jdbcType="CHAR"/>
+        <result property="reportId" column="report_id"         jdbcType="VARCHAR"/>
+        <result property="reportedId" column="reported_id"         jdbcType="VARCHAR"/>
+        <result property="adminId" 	column="admin_id" 		jdbcType="VARCHAR"/>
+        <result property="reportBasis" column="report_basis"         jdbcType="CHAR"/>
+        <result property="reportDate" 	column="report_date"       jdbcType="DATE"/>
+        <result property="reportText" 	column="report_text"       jdbcType="VARCHAR"/>
+        <result property="ppt" 	column="ppt"       jdbcType="INTEGER"/>
+        <result property="pptDate" 	column="ppt_date"       jdbcType="DATE"/>
+        <result property="processResult" 	column="process_result"       jdbcType="VARCHAR"/>
     </resultMap>
 
     <select id="getMyPage"    parameterType="String" resultMap="userSelectMap">
@@ -124,15 +211,83 @@
     </select>
 
     <select id="getMyVillBoard" parameterType="String" resultMap="villBoardSelect" >
-        SELECT vill_title, view_count, like_count, reg_date
+        SELECT *
         FROM vill_board
         WHERE user_id=#{userId}
     </select>
 
-    <select id="getMyClubBoard" parameterType="String" resultMap="ClubResultMap" >
-        SELECT title, reg_date, user_id, club_num
+    <select id="getMyClubBoard" parameterType="String" resultMap="ClubMasterBoardResultMap" >
+        SELECT title, reg_date, user_id, club_num, club_master_board_num
         FROM club_master_board
         WHERE user_id=#{userId}
     </select>
+
+    <select id="getMyClubCalendarReview" parameterType="String" resultMap="calenderReviewSelect" >
+        SELECT *
+        FROM club_calendar_review
+        WHERE user_id=#{userId}
+    </select>
+
+    <select id="getMydealBoard" parameterType="String" resultMap="dealSelectMap" >
+        SELECT deal_title , deal_reg_date, user_id, view_count, deal_board_num
+        FROM deal
+        WHERE user_id=#{userId}
+    </select>
+
+    <select id="getMyComment" parameterType="String" resultMap="comemntSelect" >
+        SELECT *
+        FROM comments
+        WHERE user_id=#{userId}
+    </select>
+
+    <select id="getMyRecomment" parameterType="String" resultMap="recommentSelect" >
+        SELECT *
+        FROM recomment
+        WHERE user_id=#{userId}
+    </select>
+
+    <select id="getMyvillBoardLike" parameterType="String" resultMap="villBoardSelect" >
+        SELECT *
+        FROM likes a, vill_board b
+        WHERE a.board_category = b.board_category and a.user_id=#{userId}
+    </select>
+
+    <select id="getMyclubCalendarReviewLike" parameterType="String" resultMap="calenderReviewSelect" >
+        SELECT *
+        FROM likes a, club_calendar_review b
+        WHERE a.board_category = b.board_category and a.user_id=#{userId}
+    </select>
+
+    <select id="getMydealBoardLike" parameterType="String" resultMap="dealSelectMap" >
+        SELECT *
+        FROM likes a, deal b
+        WHERE a.board_category = b.board_category and a.user_id=#{userId}
+    </select>
+
+    <!--가입한 모임 조회-->
+    <select id="getMyClub" parameterType="String" resultMap="ClubResultMap" >
+        SELECT a.cluber_status, b.inter_list, b.club_name, b.vill_code, b.club_image, b.gather_check, b.club_tag
+        FROM club_user a, club b
+        WHERE a.club_num = b.club_num and a.user_id=#{userId}
+    </select>
+
+    <select id="getMyDeal" parameterType="String" resultMap="dealSelectMap" >
+        SELECT user_id, product_name, deal_id, review, review_pt, deal_end_date, price
+        FROM deal
+        WHERE user_id=#{userId} and deal_status='3'
+    </select>
+
+    <select id="getMyReport" parameterType="String" resultMap="CommunityReportSelectMap" >
+        SELECT report_id, reported_id, report_basis, report_date, report_text, process_result
+        FROM community_report
+        WHERE report_id=#{userId}
+    </select>
+
+    <select id="getMyPpt" parameterType="String" resultMap="CommunityReportSelectMap" >
+        SELECT board_category, board_num, report_basis, ppt, ppt_date
+        FROM community_report
+        WHERE reported_id=#{userId}
+    </select>
+
 
 </mapper>
