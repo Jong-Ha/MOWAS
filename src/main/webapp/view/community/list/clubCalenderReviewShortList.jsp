@@ -179,9 +179,10 @@
 <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 <input hidden class="userId" value="${user.userId}">
 <!-- Example Code -->
+    <jsp:include page="/layout/toolbar.jsp"/>
+
 <div class="wap">
 
-    <jsp:include page="/layout/toolbar.jsp"/>
 
 
     <jsp:include page="/layout/commubar.jsp"/>
