@@ -46,27 +46,38 @@
         //============= 회원정보수정 Event  처리 =============
         $(function () {
 
-            $(".submit").on("click", function () {
+            $("input:file").on("change", function () {
 
+                if($(this)[0].files.length > 1){
+                    alert("파일의 갯수가 초과 했습니다");
+                    $(this).val('');
+                }
+            })
+
+
+            $(".submit").on("click", function () {
+                var clubNum = $(".clubNum").val()
+                var clubCalenderNum = $(".clubCalenderNum").val();
                 var boardCategory = $(".boardCategory").val();
                 var reviewTitle = $(".reviewTitle").val();
                 var reviewRange = $(".reviewRange").val();
-                var file = $(".file").val();
 
                 $.ajax({
                     url: "/clubCal/json/addClubCalenderReview",
                     method: "post",
                     data: JSON.stringify({
+                        "clubNum": clubNum,
+                        "clubCalenderNum": clubCalenderNum,
                         "boardCategory": boardCategory,
                         "reviewTitle": reviewTitle,
                         "reviewRange": reviewRange,
-                        "file": file
                     }),
                     dataType: "json",
                     contentType: "application/json; charset=UTF-8",
                     success: function (JSONData, result) {
                         // 등록에 성공하면 해당 boardNum을 return 해서 출력 하고 변수에 등록
                         console.log(JSONData);
+
                         var boardNum = JSONData
 
                         var file = $("#file").length
@@ -109,20 +120,23 @@
                                 }
 
                             })
-                        }
-                        // 성공시 해당 창을 닫고 부모창을 reload
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Your work has been saved',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
 
-                        setTimeout(function () {
-                            opener.location.reload();
-                            window.close();
-                        }, 2000);
+                            // 성공시 해당 창을 닫고 부모창을 reload
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Your work has been saved',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+
+                            setTimeout(function () {
+                                opener.location.reload();
+                                window.close();
+                            }, 2000);
+
+
+                        }
                         //error 발생시 그냥 창을 닫음
                     }, error: function () {
                         Swal.fire({
@@ -137,6 +151,7 @@
                         }, 2000);
 
                     }
+
                 });
 
             });
@@ -156,6 +171,8 @@
 
 <form>
     <!--  화면구성 div Start /////////////////////////////////////-->
+    <input hidden class="clubNum" value="${clubCalendar.clubNum}">
+    <input hidden class="clubCalenderNum" value="${clubCalendar.clubCalenderNum}">
 
     <input type="hidden" class="boardCategory" name="boardCategory" value="02">
     <div class="wap">
@@ -178,7 +195,7 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
                     <strong>파일
-                        <input id="file" type="file" class="file" name="file" value="영상 첨부">
+                        <input id="file" multiple type="file" class="file" name="file" value="영상 첨부">
                     </strong>
                 </div>
             </div>
@@ -197,7 +214,7 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
                     <strong>모임 일정 날짜
-                        <input type="date" name="clubCalenderDate" value="모임 일정 날짜">
+                        <input type="date" name="clubCalenderDate" value="${clubCalendar.clubDate}">
                     </strong>
                 </div>
             </div>
@@ -207,7 +224,7 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
                     <strong>위치
-                        <input type="button" name="location" value="위치 입력">
+                        <input type="text" name="location" value="${clubCalendar.location}">
                     </strong>
                 </div>
             </div>

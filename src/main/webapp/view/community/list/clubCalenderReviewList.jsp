@@ -85,28 +85,38 @@
 
 
         $(".likeButton").on("click", function () {
+            var userId = $(".userId").val();
 
-            var likeCount = $(this).parents(".cardbox").find(".likeText").html();
-            var boardNum = $(this).parents(".cardbox").find(".CalenderReviewNum").val();
-            var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val();
-            var likeText = $(this).parents(".cardbox").find(".likeText")
+            console.log("유저의 아이디는 : " + userId);
 
-            $.ajax({
-                url: "/commu/json/addLike",
-                type: "POST",
-                data: JSON.stringify({
-                    "likeCount": likeCount,
-                    "boardNum": boardNum,
-                    "boardCategory": boardCategory
-                }),
-                dataType: "JSON",
-                contentType: 'application/json; charset=UTF-8',
-                success: function (JSONData, result) {
-                    likeText.html(JSONData)
-                }
-            })
+            if ( userId === '' || userId === null) {
+                alert("로그인후 사용해 주세요")
+
+            } else if (userId !== '') {
+
+                var likeCount = $(this).parents(".cardbox").find(".likeText").html();
+                var boardNum = $(this).parents(".cardbox").find(".CalenderReviewNum").val();
+                var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val();
+                var likeText = $(this).parents(".cardbox").find(".likeText")
+
+                $.ajax({
+                    url: "/commu/json/addLike",
+                    type: "POST",
+                    data: JSON.stringify({
+                        "likeCount": likeCount,
+                        "boardNum": boardNum,
+                        "boardCategory": boardCategory
+                    }),
+                    dataType: "JSON",
+                    contentType: 'application/json; charset=UTF-8',
+                    success: function (JSONData, result) {
+                        likeText.html(JSONData)
+                    }
+                })
+            }
         })
-    });
+    })
+
 
 
 </script>
@@ -185,7 +195,8 @@
     .get:hover img {
         transform: scale(1.1);
     }
-    .potoBox{
+
+    .potoBox {
         cursor: pointer;
         padding: 1px;
         width: 294px;
@@ -202,6 +213,7 @@
     }
 </style>
 </head>
+<input hidden class="userId" value="${user.userId}">
 <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 
 
@@ -235,7 +247,8 @@
                         <c:forEach var="File" items="${ClubCalendarReview.file}">
                             <div class="carousel-inner">
                                 <div class="carousel-item active get">
-                                    <img class="poto" width="100%" height="100%"  src="/resources${File.fileName }" alt="any">
+                                    <img class="poto" width="100%" height="100%" src="/resources/${File.fileName}"
+                                         alt="any">
                                 </div>
                             </div>
                         </c:forEach>

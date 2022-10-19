@@ -84,6 +84,7 @@
     const chatInput = document.querySelector(".chatting-input");
     const sendButton = document.querySelector(".send-button");
     const displayContainer = document.querySelector(".display-container");
+
     $(function () {
 
         //app.js에 있는 io상수를 socket상수에 담는다
