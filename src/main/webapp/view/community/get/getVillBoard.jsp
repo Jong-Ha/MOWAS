@@ -199,12 +199,12 @@
                                 console.log(item.recommentNum);
 
                                 str +=
-                                    '<div class="arrow " style="display: flex; position: absolute; font-size: 3rem;  margin-left: 100px;">'+
+                                    '<div class="arrow " style="display: flex; position: absolute; font-size: 3rem;  margin-left: 100px; flex-direction: column;">'+
                                     '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">'+
                                         '<path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>'+
                                     '</svg>'+
                                     '</div>'+
-                                    "<div class='RecommentList' style='display: flex'>" +
+                                    "<div class='RecommentList' style='display: flex; flex-direction: column;'>" +
                                     "<div class='input-group flex-nowrap RecommentText shadow-lg' style='width: 510px; margin-left: 210px; background: #ebcdcdb8;'>"+
                                     "<input hidden class='recommentNum' value='" + item.recommentNum + "'>" +
                                     "<input hidden class='recommentUser' value='" + item.userId + "'>" +
@@ -699,15 +699,20 @@
 
 <body class="bg-light">
 
+<jsp:include page="/layout/toolbar.jsp"/>
+
 <div class="container" style="text-align: -webkit-center;">
     <input hidden class="boardNum" value="${villBoard.villBoardNum}">
     <input hidden class="boardCategory" value="${villBoard.boardCategory}">
     <input hidden class="userId" value="${user.userId}">
+
+    <jsp:include page="/layout/commubar.jsp"/>
+
     <div class="wap shadow-lg">
 
-        <jsp:include page="/layout/toolbar.jsp"/>
 
-        <jsp:include page="/layout/commubar.jsp"/>
+
+
         <div class="usedbox">
             <div class="thumbnailBox">
                 <div class="shadow-lg midle"

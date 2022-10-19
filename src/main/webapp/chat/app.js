@@ -91,7 +91,8 @@ var msg = mongoose.Schema({
     msg: 'string',
     flie : 'string',
     time: 'string',
-    rtime: 'number'
+    rtime: 'number',
+    unreadUser : ['string']
 })
 
 //정의된 스키마르 객체처럼 사용할수 있도록 model()함수로 컴파일

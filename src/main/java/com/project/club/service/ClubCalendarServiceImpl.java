@@ -87,6 +87,7 @@ public class ClubCalendarServiceImpl implements ClubCalendarService {
 
 
         Map<String,Object> map = null;
+
         List<Map<String, Object>> list2 = new ArrayList<>();
 
         for (int i = 0; i < list.size(); i++) {

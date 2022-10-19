@@ -131,6 +131,7 @@
                         });
 
                         setTimeout(function () {
+                            opener.location.reload();
                             window.close();
                         }, 2000);
                         //error 발생시 그냥 창을 닫음

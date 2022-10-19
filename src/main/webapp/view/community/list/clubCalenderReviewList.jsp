@@ -189,7 +189,7 @@
     }
 
     .cardbox {
-        transition: all 0.2s linear;
+        transition: all 0.1s linear;
     }
 
     .cardbox:hover  {
