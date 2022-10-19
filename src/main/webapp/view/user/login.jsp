@@ -75,7 +75,7 @@
                     "Content-Type" : "application/json"
                 },
                 success : function (JSONData){
-                    alert('JSONData ==>'+JSONData);
+                    //alert('JSONData ==>'+JSONData);
                     if(keepId){
                         $.cookie('keepId',id,{ expires : 365,path : '/'});
                     }else {
@@ -401,18 +401,18 @@
 
 
                     <div id="naverIdLogin" >
-                        <img src="/resources/images/naverLogin.png" style="height:50px">
+                        <img src="/resources/images/naverLogin.png" style="height:50px; width: 70%;">
                     </div>
 
                     <div id="naver_id_login"></div>
                     <!-- //네이버 로그인 버튼 노출 영역 -->
                     <script type="text/javascript">
-                        var naver_id_login = new naver_id_login("LVp6wWTSWO4roaPEeGxT", "http://localhost:8080/user/callBack");
+                        var naver_id_login =  new window.naver_id_login("LVp6wWTSWO4roaPEeGxT", "http://localhost:8080/user/callBack");
                         var state = naver_id_login.getUniqState();
                         naver_id_login.setButton("white", 2,40);
-                        naver_id_login.setDomain("YOUR_SERVICE_URL");
+                        naver_id_login.setDomain("http://localhost:8080/");
                         naver_id_login.setState(state);
-                        naver_id_login.setPopup();
+                        naver_id_login.setPopup(false);
                         naver_id_login.init_naver_id_login();
                     </script>
 
@@ -432,11 +432,6 @@
                     session.setAttribute("state", state);
                 --%>
 
-
-
-
-
-
                     <p class="mt-5 mb-3 text-muted">&copy; 2017-2022</p>
 
                 </div>
@@ -448,7 +443,7 @@
 </main>
 <script>
 
-    $(document).ready(function (){
+    $(document).load(function (){
         var id = $("input:text").val();
         var pw = $("input:password").val();
         var keepId = $("#keepId").prop('checked');

@@ -24,12 +24,15 @@ public class CommunityRestController {
 
     /* 댓글 대댓글*/
     @RequestMapping(value = "addComment", method = RequestMethod.POST)
-    public int addComment(@RequestBody Comment comment) throws ParseException {
+    public int addComment(@RequestBody Comment comment
+                        ,HttpSession session) throws ParseException {
         System.out.println(comment);
 
+        User user = (User)session.getAttribute("user");
 
-        comment.setUserId("user01");
+        comment.setUserId(user.getUserId());
         comment.setCommentCheck("n");
+
 
        communityService.addComment(comment);
 
@@ -63,11 +66,15 @@ public class CommunityRestController {
         return 0;
     }
     @RequestMapping("addRecomment")
-    public int addReComment(@RequestBody Recomment recomment){
+    public int addReComment(@RequestBody Recomment recomment
+                            ,HttpSession session){
+
+
+        User user = (User)session.getAttribute("user");
 
         System.out.println("대댓글의 내영 : " + recomment);
 
-        recomment.setUserId("user01");
+        recomment.setUserId(user.getUserId());
         recomment.setBoardCategory("11");
 
         communityService.addRecomment(recomment);
@@ -129,7 +136,8 @@ public class CommunityRestController {
     }
 
     @RequestMapping(value = "addLike")
-    public int addLike(@RequestBody String Board, HttpSession session) throws ParseException {
+    public int addLike(@RequestBody String Board
+                        ,HttpSession session) throws ParseException {
 
         JSONParser parser = new JSONParser();
 
@@ -149,7 +157,9 @@ public class CommunityRestController {
         System.out.println(likeCount);
 
         /*String userId = session.getAttribute("userId");*/
-        String userId = "user01";
+        User user = (User)session.getAttribute("user");
+
+        String userId = user.getUserId();
 
         /*좋아요 유무 체크*/
         String likeCheck = communityService.getLikeCheck(userId,boardNum,boardCategory);
@@ -158,10 +168,13 @@ public class CommunityRestController {
         if( likeCheck == null) {
             /*게시글에 좋아요 count +1*/
             communityService.updateLikeCount(boardNum,boardCategory,likeCount);
+
             /*좋아요 add*/
             communityService.addLike(userId,boardNum,boardCategory);
+
             /*좋아요 count 화면으로 return*/
             return communityService.getLikeCount(boardNum, boardCategory);
+
          /*좋아요 체크가 y면 좋아요 count -1*/
         } else if (likeCheck.equals("y")) {
 

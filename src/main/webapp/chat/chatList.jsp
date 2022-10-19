@@ -55,6 +55,7 @@
 
                 var chatter;
                 if(item.users[0].userId==='${user.userId}'){
+
                     chatter = item.users[1].userId
                 }else {
                     chatter = item.users[0].userId

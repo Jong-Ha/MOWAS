@@ -18,6 +18,7 @@ WebSocket은 ws프로토콜을 이용하는 양뱡향 통신 방식
 
 //서버 생성 (express) 모듈 추출 해서 express 상수에 저장
 //express 모듈로 서버를 실행하려면 http 모듈이 필요하다.
+
 const express = require("express");
 //파일을 입출력 처리 할떄 쓰는 모듈 추출
 const fs = require("fs");
@@ -35,6 +36,7 @@ const server = http.createServer(app);
 const socketIO = require("socket.io");
 //현재 시간을 알기 위해 moment모듈을 추출후 moment에 담는다
 const moment = require("moment")
+
 //mongoBD 모듈 추출후  mongoose상수에 담음
 const mongoose = require('mongoose');
 
@@ -89,7 +91,8 @@ var msg = mongoose.Schema({
     msg: 'string',
     flie : 'string',
     time: 'string',
-    rtime: 'number'
+    rtime: 'number',
+    unreadUser : ['string']
 })
 
 //정의된 스키마르 객체처럼 사용할수 있도록 model()함수로 컴파일
@@ -158,8 +161,10 @@ onebyone.on('connection', (socket) => {
     const roomId = socket.handshake.query.roomId
     const userId1 = socket.handshake.query.userId1
     const userId2 = socket.handshake.query.userId2
+
     console.log(userId1)
     console.log(userId2)
+
     //방이 없으면 새롭게 생성
     Room.findOne({roomId: roomId}, function (error, result) {
         if (result == null) {

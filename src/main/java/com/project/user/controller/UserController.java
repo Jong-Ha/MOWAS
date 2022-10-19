@@ -14,10 +14,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.mail.*;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import javax.mail.internet.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -57,8 +58,8 @@ public class UserController {
 
     @RequestMapping(value = "addUser",method = RequestMethod.POST)
     public String addUser(@ModelAttribute User user,@ModelAttribute UserInterList interList,
-                          @RequestParam(value = "file") MultipartFile file,HttpSession session
-                          ) throws Exception{
+                          @RequestParam(value = "file") MultipartFile file,HttpSession session,
+                          Model model) throws Exception{
         System.out.println("/user/addUser : POST 실행");
         System.out.println("user 값은 ? :"+user);
         System.out.println("interList의 값은 ? :"+interList);
@@ -100,17 +101,21 @@ public class UserController {
             userService.addUser(user);
 
             session.setAttribute("user", user);
+            model.addAttribute("user", user);
 
         }else{
             String userImage = userImagePath+"pngwing.png";
             user.setUserImage(userImage);
             userService.addUser(user);
+
             session.setAttribute("user", user);
+            model.addAttribute("user", user);
         }
 
         System.out.println("/user/addUser : POST 종료");
-        return "forward:/view/user/main.jsp";
+        return "forward:/view/user/interList.jsp";
     }
+
 
     @RequestMapping(value = "getUser", method = RequestMethod.GET)
     public String getUser(@RequestParam("userId")String userId, Model model)throws Exception{
@@ -258,7 +263,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "mailSender",method = RequestMethod.POST)
-    public void mailSender(HttpServletRequest request, ModelMap mo,@RequestParam(value="email", required = false)String email) throws AddressException, MessagingException {
+    public void mailSender(HttpServletRequest request, Model model,@RequestParam(value="email", required = false)String email) throws AddressException, MessagingException {
 
         System.out.println("여기는 mailSender 컨트롤러 시작이다");
         System.out.println("email의 값은? : "+email);
@@ -271,6 +276,13 @@ public class UserController {
         final String password = "fbbetmkwbszeacug";  //네이버 이메일 비밀번호를 입력해주세요.
         int port=465; //포트번호
 
+//        Random rand = new Random();
+//        String emailNo="";
+//        for(int i=0;i<4;i++){
+//            String ran = Integer.toString(rand.nextInt(10));
+//            emailNo += ran;
+//        }
+//        System.out.println("emailNo의 값은 ::::: "+emailNo);
 
         // 메일 내용
         String recipient = email;    //받는 사람의 메일주소를 입력해주세요.
@@ -280,7 +292,7 @@ public class UserController {
 
         Properties props = System.getProperties(); // 정보를 담기 위한 객체 생성
 
-        // SMTP 서버 정보 설정
+        // SMTP 서버 정보 설정(구글 smtp서버 설정하기)
         props.put("mail.smtp.host", host);
         props.put("mail.smtp.port", port);
         props.put("mail.smtp.auth", "true");
@@ -291,6 +303,7 @@ public class UserController {
         Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
             String un=username;
             String pw=password;
+            //인증서버를 만드는 코드이다
             protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
                 return new javax.mail.PasswordAuthentication(un, pw);
             }
@@ -306,8 +319,10 @@ public class UserController {
         mimeMessage.setText(body);        //내용셋팅
         Transport.send(mimeMessage); //javax.mail.Transport.send() 이용
 
+       //model.addAttribute("no",emailNo);
         System.out.println("여기는 mailSender 컨트롤러 종료이다");
     }
+
 
     @RequestMapping(value="kakaoLogin", method=RequestMethod.GET)
     public String kakaoLogin(@RequestParam(value = "code", required = false) String code) throws Exception {

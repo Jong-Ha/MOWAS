@@ -29,8 +29,8 @@ public class Club {
     private String clubDeleteCheck;
     private String likeCheck;
 
-    public void setInterList(String interList){
-        switch (Integer.parseInt(interList)){
+    public void parseInterList(){
+        switch (Integer.parseInt(this.interList)){
             case 1:
                 this.interList = "독서";
                 break;

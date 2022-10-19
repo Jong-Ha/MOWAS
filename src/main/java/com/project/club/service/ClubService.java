@@ -13,7 +13,7 @@ public interface ClubService {
     public void deleteClub(Club club);
     public Club getClub(int clubNum);
     public String getCluberCondition(User user, int clubNum);
-    public List<Club> listClub(String userId);
+    public List<Club> listClub(String userId, Search search, String searchLocation, List<String> searchInterList, List<String> searchTag);
     public void addCluberApply(Cluber cluber);
     public void updateCluberApply(Cluber cluber);
     public Cluber getCluberApplyUpdate(Cluber cluber);
