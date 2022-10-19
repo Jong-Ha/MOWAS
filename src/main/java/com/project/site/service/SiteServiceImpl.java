@@ -164,6 +164,24 @@ public class SiteServiceImpl implements SiteService {
     }
 
     @Override
+    public Map<String, Object> listClubReportProcess(Search search) throws Exception {
+        List<ClubReport> list = siteDao.listClubReportProcess(search);
+
+        Map<String,Object> totalCountmap = new HashMap<String, Object>();
+        totalCountmap.put("where", "clubReportList");
+        int totalCount = siteDao.getTotalCount(totalCountmap);
+
+        System.out.println("++++totalCount:: " +totalCount+ "++++++");
+
+        Map<String,Object> map = new HashMap<String, Object>();
+
+        map.put("list", list);
+        map.put("totalCount", new Integer(totalCount));
+
+        return map;
+    }
+
+    @Override
     public void processClubReport(ClubReport clubReport) throws Exception {
         siteDao.processClubReport(clubReport);
     }

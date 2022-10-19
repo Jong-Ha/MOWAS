@@ -12,9 +12,10 @@
 <html>
 <head>
     <title>List MasterBoard</title>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <!-- Bootstrap -->
-    <link href="bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
 
     <!--  ///////////////////////// CSS ////////////////////////// -->
     <style>

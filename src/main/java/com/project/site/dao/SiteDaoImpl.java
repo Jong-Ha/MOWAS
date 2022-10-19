@@ -115,6 +115,10 @@ public class SiteDaoImpl implements SiteDao{
         return sqlSession.selectList("SiteMapper.listClubReport", search);
     }
 
+    public List<ClubReport> listClubReportProcess(Search search) throws Exception {
+        return sqlSession.selectList("SiteMapper.listClubReportProcess", search);
+    }
+
     @Override
     public void processClubReport(ClubReport clubReport) throws Exception {
         sqlSession.update("SiteMapper.processClubReport", clubReport);

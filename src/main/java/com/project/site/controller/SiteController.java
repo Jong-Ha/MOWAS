@@ -1,10 +1,8 @@
 package com.project.site.controller;
+import com.project.club.service.ClubService;
 import com.project.common.Page;
 import com.project.common.Search;
-import com.project.domain.CommunityReport;
-import com.project.domain.File;
-import com.project.domain.MasterBoard;
-import com.project.domain.User;
+import com.project.domain.*;
 import com.project.site.service.SiteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,6 +23,10 @@ public class SiteController {
     @Autowired
     @Qualifier("siteServiceImpl")
     private SiteService siteService;
+
+    @Autowired
+    @Qualifier("clubServiceImpl")
+    private ClubService clubService;
 
     public SiteController() {
         System.out.println(this.getClass());
@@ -262,5 +264,104 @@ public class SiteController {
         model.addAttribute("search", search);
 
         return "forward:/view/site/listCommunityReportProcess.jsp";
+    }
+
+    @RequestMapping(value = "listClubReport")
+    public String listClubReport(@ModelAttribute("search") Search search, Model model) throws Exception {
+        System.out.println("/site/listClubReport : GET / POST");
+
+        if(search.getCurrentPage() == 0 ){
+            search.setCurrentPage(1);
+        }
+        search.setPageSize(pageSize);
+
+        Map<String , Object> map = siteService.listClubReport(search);
+
+        Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
+        System.out.println("resultPage : " + resultPage);
+        System.out.println("list : " + map.get("list"));
+
+        model.addAttribute("list", map.get("list"));
+        model.addAttribute("resultPage", resultPage);
+        model.addAttribute("search", search);
+
+        return "forward:/view/site/listClubReport.jsp";
+    }
+
+    @RequestMapping(value = "getClubReport/{clubReportNo}/{clubNum}", method = RequestMethod.GET)
+    public String getClubReport(@PathVariable int clubReportNo, @PathVariable int clubNum, Model model) throws Exception {
+        System.out.println("/site/getClubReport : GET");
+        Club club = clubService.getClub(clubNum);
+        System.out.println(club);
+        ClubReport clubReport = siteService.getClubReport(clubReportNo);
+        model.addAttribute("clubReport", clubReport);
+        model.addAttribute("club", club);
+        return "forward:/view/site/getClubReport.jsp";
+    }
+
+    @RequestMapping(value="updateClubReport/{clubReportNo}", method=RequestMethod.GET)
+    public String updateClubReport(@PathVariable int clubReportNo , Model model) throws Exception {
+        System.out.println("/site/updateClubReport : GET");
+
+        ClubReport clubReport = siteService.getClubReport(clubReportNo);
+
+        siteService.processClubReport(clubReport);
+
+        model.addAttribute("clubReport", clubReport);
+        return "forward:/view/site/updateClubReport.jsp";
+    }
+
+    @RequestMapping(value="updateClubReport", method=RequestMethod.POST)
+    public String updateClubReport(@ModelAttribute("clubReport") ClubReport clubReport) throws Exception {
+        System.out.println("/site/updateClubReport : POST");
+
+        siteService.processClubReport(clubReport);
+
+        return "redirect:/site/listClubReportProcess";
+    }
+
+    @RequestMapping(value="updateClubRereport", method=RequestMethod.POST)
+    public String updateClubRereport(@ModelAttribute("clubReport") ClubReport clubReport) throws Exception {
+        System.out.println("/site/updateClubRereport : POST");
+
+        siteService.processClubRereport(clubReport);
+
+        return "redirect:/site/listClubReportProcess";
+    }
+
+    @RequestMapping(value="deleteClubBoard/{reportNo}", method=RequestMethod.GET)
+    public String deleteClubReport(@PathVariable int clubReportNo , Model model) throws Exception {
+        System.out.println("/site/deleteClubReport : GET");
+
+        ClubReport clubReport = siteService.getClubReport(clubReportNo);
+
+        siteService.deleteClubReport(clubReportNo);
+
+        model.addAttribute("clubReport", clubReportNo);
+        return "redirect:/site/listClubReport";
+    }
+
+    @RequestMapping(value = "listClubReportProcess")
+    public String listClubReportProcess(@ModelAttribute("search") Search search, @RequestParam int clubNum, Model model) throws Exception {
+        System.out.println("/site/listClubReport : GET / POST");
+
+        if(search.getCurrentPage() == 0 ){
+            search.setCurrentPage(1);
+        }
+        search.setPageSize(pageSize);
+
+        Map<String , Object> map = siteService.listClubReportProcess(search);
+        Club club = clubService.getClub(clubNum);
+
+        Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
+        System.out.println("resultPage : " + resultPage);
+        System.out.println("list : " + map.get("list"));
+
+        model.addAttribute("list", map.get("list"));
+        model.addAttribute("resultPage", resultPage);
+        model.addAttribute("search", search);
+        model.addAttribute("club", club);
+
+        return "forward:/view/site/listClubReportProcess.jsp";
     }
 }
