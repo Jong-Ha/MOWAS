@@ -80,29 +80,40 @@
             })
         });
 
+
         /*좋아요*/
         $(".likeButton").on("click", function () {
+            var userId = $(".userId").val();
 
-            var likeCount = $(this).parents(".cardbox").find(".likeText").html();
-            var boardNum = $(this).parents(".cardbox").find(".villNum").val();
-            var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val()
-            var likeText = $(this).parents(".cardbox").find(".likeText")
+            console.log(userId);
 
-            $.ajax({
-                url: "/commu/json/addLike",
-                type: "POST",
-                data: JSON.stringify({
-                    "likeCount": likeCount,
-                    "boardNum": boardNum,
-                    "boardCategory": boardCategory
-                }),
-                dataType: "JSON",
-                contentType: 'application/json; charset=UTF-8',
-                success: function (JSONData, result) {
+            if (userId === '' || userId === null) {
+                alert("로그인후 사용해주세요");
 
-                    likeText.html(JSONData);
-                }
-            });
+            } else if (userId !== '') {
+
+
+                var likeCount = $(this).parents(".cardbox").find(".likeText").html();
+                var boardNum = $(this).parents(".cardbox").find(".villNum").val();
+                var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val()
+                var likeText = $(this).parents(".cardbox").find(".likeText")
+
+                $.ajax({
+                    url: "/commu/json/addLike",
+                    type: "POST",
+                    data: JSON.stringify({
+                        "likeCount": likeCount,
+                        "boardNum": boardNum,
+                        "boardCategory": boardCategory
+                    }),
+                    dataType: "JSON",
+                    contentType: 'application/json; charset=UTF-8',
+                    success: function (JSONData, result) {
+
+                        likeText.html(JSONData);
+                    }
+                });
+            }
         });
 
     });
@@ -182,7 +193,8 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
-    .potoBox{
+
+    .potoBox {
 
         cursor: pointer;
         padding: 1px;
@@ -197,7 +209,7 @@
 
 <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 
-
+<input hidden class="userId" value="${user.userId}">
 <!-- Example Code -->
 <div class="wap">
     <input hidden class="boardCategory" value="03">
@@ -225,13 +237,14 @@
 
                 <div class="card h-100 shadow-lg">
 
-                    <div id="carouselExampleSlidesOnly" class="carousel slide potoBox" data-bs-ride="carousel"
+                    <div id="carouselExampleSlidesOnly " class="carousel slide potoBox get" data-bs-ride="carousel"
                          style="cursor: pointer">
 
                         <c:forEach var="File" items="${villBoard.file}">
                             <div class="carousel-inner">
                                 <div class="carousel-item active get">
-                                    <img class="poto" width="100%" height="100%" src="/resources${File.fileName }"
+                                    <img class="poto" width="100%" height="100%"
+                                         src="/resources/villBoardFiles${File.fileName }"
                                          alt="any">
                                 </div>
                             </div>

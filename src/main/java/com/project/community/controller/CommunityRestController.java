@@ -158,10 +158,13 @@ public class CommunityRestController {
         if( likeCheck == null) {
             /*게시글에 좋아요 count +1*/
             communityService.updateLikeCount(boardNum,boardCategory,likeCount);
+
             /*좋아요 add*/
             communityService.addLike(userId,boardNum,boardCategory);
+
             /*좋아요 count 화면으로 return*/
             return communityService.getLikeCount(boardNum, boardCategory);
+
          /*좋아요 체크가 y면 좋아요 count -1*/
         } else if (likeCheck.equals("y")) {
 

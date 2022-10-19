@@ -29,12 +29,13 @@
 
     <resultMap id="comemntSelect" type="comment">
         <result property="commentNum"     column="comment_num"     jdbcType="INTEGER"/>
-        <result property="userId"  column="user_id"         jdbcType="VARCHAR"/>
+        <result property="userId"         column="user_id"         jdbcType="VARCHAR"/>
         <result property="clubNum"        column="club_num"       jdbcType="INTEGER"/>
         <result property="boardNum"       column="board_Num"       jdbcType="INTEGER"/>
         <result property="boardCategory"  column="board_category"  jdbcType="VARCHAR"/>
         <result property="commentCheck"   column="comment_check"   jdbcType="VARCHAR"/>
-        <result property="commentText"   column="comment_text"   jdbcType="VARCHAR"/>
+        <result property="commentText"    column="comment_text"    jdbcType="VARCHAR"/>
+        <result property="likeCount"      column="like_count"      jdbcType="INTEGER"/>
         <result property="regDate"        column="reg_date"        jdbcType="DATE"/>
     </resultMap>
 
@@ -44,6 +45,7 @@
         <result property="userId"           column="user_id"           jdbcType="VARCHAR"/>
         <result property="boardCategory"    column="board_category"    jdbcType="VARCHAR"/>
         <result property="recommentText"    column="recomment_text"    jdbcType="VARCHAR"/>
+        <result property="likeCount"        column="like_count"        jdbcType="INTEGER"/>
         <result property="regDate"          column="reg_date"          jdbcType="DATE"/>
     </resultMap>
 
@@ -141,6 +143,21 @@
             </set>
             WHERE vill_board_num =#{boardNum}
         </if>
+        <if test="boardCategory==10">
+            comments
+            <set>
+                like_count = #{likeCount}+1
+            </set>
+            where comment_num = #{boardNum}
+        </if>
+        <if test="boardCategory==11">
+            recomment
+            <set>
+                like_count = #{likeCount}+1
+            </set>
+            where recomment_num = #{boardNum}
+        </if>
+
     </update>
 
     <update id="deleteLikeCount" parameterType="map">
@@ -159,6 +176,20 @@
             </set>
             WHERE vill_board_num = #{boardNum}
         </if>
+        <if test="boardCategory == 10">
+            comments
+            <set>
+                like_count = #{likeCount} -1
+            </set>
+            WHERE comment_num = #{boardNum}
+        </if>
+        <if test="boardCategory == 11">
+            recomment
+            <set>
+                like_count = #{likeCount} -1
+            </set>
+            WHERE recomment_num = #{boardNum}
+        </if>
     </update>
     <select id="getLikeCount" parameterType="map" resultType="int">
         SELECT like_count
@@ -170,6 +201,15 @@
             FROM vill_board
             WHERE vill_board_num = #{boardNum}
         </if>
+        <if test="boardCategory == 10">
+            FROM comments
+            WHERE comment_num = #{boardNum}
+        </if>
+        <if test="boardCategory == 11">
+            FROM recomment
+            WHERE recomment_num = #{boardNum}
+        </if>
+
     </select>
 
     <!--조회수-->

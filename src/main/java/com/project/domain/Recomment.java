@@ -16,5 +16,6 @@ public class Recomment {
     private String boardCategory;
     private String recommentText;
     private Date regDate;
+    private int likeCount;
 
 }

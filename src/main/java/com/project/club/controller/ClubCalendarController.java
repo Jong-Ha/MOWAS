@@ -104,41 +104,40 @@ public class ClubCalendarController {
         return "/view/community/get/getClubCalender.jsp";
     }
 
+    @RequestMapping(value = "addClubCalenderReview", method = RequestMethod.GET)
+    public String addClubCalenderReview(@RequestParam("clubCalenderNum")int clubCalenderNum
+                                        ,@RequestParam("boardCategory") String boardCategory
+                                        ,Model model){
 
+         ClubCalendar clubCalendar = calenderService.getCalender(clubCalenderNum);
+
+
+        String[] date = clubCalendar.getClubDate().split(" ");
+
+        clubCalendar.setClubDate(date[0]);
+
+        model.addAttribute("clubCalendar", clubCalendar);
+
+
+        if(boardCategory.equals("01")) {
+            return "/view/community/add/addClubCalenderReview.jsp";
+        } else if (boardCategory.equals("02")) {
+            return "/view/community/add/addClubCalenderReviewShort.jsp";
+        }
+
+        return null;
+    }
 
     /*모임 일정 후기 쇼츠*/
     @RequestMapping(value = "addClubCalenderReview", method = RequestMethod.POST)
-    public String addClubCalenderReview(@ModelAttribute("clubCalenderReview") ClubCalendarReview calenderReview
-            /*, @RequestParam("file") List<MultipartFile> file*/ ,HttpSession session) {
+    public String addClubCalenderReview(@ModelAttribute("clubCalenderReview") ClubCalendarReview calenderReview,HttpSession session) {
 
-      /*  System.out.println("파일 업로드 진입 : " + file);*/
 
         User user = (User)session.getAttribute("user");
 
         System.out.println("모임 일정 후기 Data : " + calenderReview);
 
-
-        /*  List<Map<String, String>> fileList = new ArrayList<>();
-        for (int i = 0; i < file.size(); i++) {
-            String fileName = file.get(i).getOriginalFilename();
-            System.out.println("파일 이름 : " + fileName);
-            Map<String, String> map = new HashMap<>();
-            map.put("fileName", fileName);
-            fileList.add(map);
-
-            try {
-                file.get(i).transferTo(new File("/uploadFiles/" + fileList.get(i).get("fileName")));
-                System.out.println("업로드 성공");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }*/
-
-        calenderReview.setClubCalenderNum(10001);
-
         calenderReview.setUserId(user.getUserId());
-
-        calenderReview.setClubNum(10002);
 
         if(calenderReview.getBoardCategory() == 1) {
             calenderService.addCalenderReview(calenderReview);

@@ -46,11 +46,19 @@
 
         $(function () {
 
+            $(".file").on("change", function () {
+                if ($(this)[0].files.length > 10){
+                    alert("파일의 갯수가 초과 했습니다");
+                    $(this).val('');
+                }
+            })
 
             // 등록 버튼 클릭시 해당 이벤트 실핼
             $(".submit").on("click", function () {
 
                 //등록할 내용을 가져와서 변수 등록
+                var clubCalender = $(".clubCalnderNum").val()
+                var clubNum = $(".clubNum").val()
                 var reviewTitle = $(".reviewTitle").val();
                 var reviewText = $(".reviewText").val();
                 var reviewRange = $(".reviewRange").val();
@@ -61,6 +69,8 @@
                     url: "/clubCal/json/addClubCalenderReview",
                     method: "post",
                     data: JSON.stringify({
+                        "clubCalenderNum" : clubCalender,
+                        "clubNum" : clubNum,
                         "boardCategory": boardCategory,
                         "reviewTitle": reviewTitle,
                         "reviewText": reviewText,
@@ -77,6 +87,9 @@
                         var file = ("#file").length
 
                         if (file > 0) {
+
+
+
 
                             //form 테그를 불러와서 form변수에 등록
                             var form = document.querySelector("form");
@@ -114,6 +127,7 @@
                                 }
 
                             })
+
                         }
                         // 성공시 해당 창을 닫고 부모창을 reload
                         Swal.fire({
@@ -163,6 +177,8 @@
 <input type="hidden" class="boardCategory" name="boardCategory" value="01">
 
 <div class="wap">
+    <input hidden class="clubNum" value="${clubCalendar.clubNum}">
+    <input hidden class="clubCalnderNum" value="${clubCalendar.clubCalenderNum}">
     <div class="container">
 
         <div class="page-header">
@@ -212,7 +228,7 @@
         <div class="row">
             <div class="col-xs-4 col-xs-2 ">
                 <strong>모임 일정 날짜
-                    <input type="date" name="" value="모임 일정 날짜">
+                    <input type="date" name="clubCalenderDate" value="${clubCalendar.clubDate}" placeholder="${clubCalendar.clubDate}">
                 </strong>
             </div>
         </div>
@@ -222,7 +238,7 @@
         <div class="row">
             <div class="col-xs-4 col-xs-2 ">
                 <strong>위치
-                    <input type="button" name="location" value="위치 입력">
+                    <input type="text" name="location" value="${clubCalendar.location}">
                 </strong>
             </div>
         </div>
