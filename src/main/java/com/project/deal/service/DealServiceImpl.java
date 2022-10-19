@@ -36,6 +36,7 @@ public class DealServiceImpl implements DealService {
         System.out.println("addDeal serviceImpl");
         System.out.println("addDeal serviceImpl"+deal);
         System.out.println("addDeal serviceImpl");
+        deal.setVillCode(deal.getUser().getVillCode());
        // System.out.println("뭔데 ㅜㅜ"+dealDao.getDealNum(deal.getUser().getUserId()));
         int dealBoardNum = dealDao.getDealNum(deal.getUser().getUserId());
         String boardCategory=deal.getBoardCategory();
@@ -93,12 +94,14 @@ public class DealServiceImpl implements DealService {
     @Override
     public Map<String, Object> getListDeal(Search search, String boardCategory) throws Exception {
         Map<String, Object> map = new HashMap<>();
+
         map.put("search",search);
         map.put("boardCategory",boardCategory);
         int totalCount = dealDao.getTotalCount(map);
         List<Deal> list = dealDao.getListDeal(map);
         map.put("totalCount",totalCount);
         map.put("list",list);
+        System.out.println(list+"되는건가요 list");
         return map;
 
 
@@ -117,6 +120,20 @@ public class DealServiceImpl implements DealService {
         //return map;
     }
 
+    @Override
+    public Deal getUserId(int dealBoardNum) throws Exception {
+        System.out.println("serviceImpl"+dealBoardNum);
+
+        return dealDao.getDeal(dealBoardNum);
+    }
+
+    @Override
+    public void updateReview(Deal deal) throws Exception {
+        System.out.println("왜 안가 ? "+deal);
+        dealDao.updateReview(deal);
+    }
+
+
 //    @Override
 //    public List<String> addReview(Deal dea) throws Exception {
 //        dealDao.addReview
@@ -130,6 +147,11 @@ public class DealServiceImpl implements DealService {
 
         return dealDao.getDeal(dealBoardNum);
 
+    }
+    public int getReviewPt(Deal deal) throws Exception{
+        System.out.println("service Impl reviewPt");
+        System.out.println(deal.getReviewPt());
+        return dealDao.getReviewPt(deal);
     }
 
 //    @Override

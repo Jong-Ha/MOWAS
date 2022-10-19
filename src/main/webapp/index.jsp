@@ -24,15 +24,6 @@
                     location.href="/club/listClub"
                 });
         });
-        /*
-        $(function (){
-            $(".loginView").on("click", function (){
-                alert('과연?')
-                $(self.location).attr("href", "user/login");
-
-            })
-        })
-        */
 
         $(function (){
             $(".site").on("click", function (){

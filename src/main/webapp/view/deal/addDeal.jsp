@@ -109,7 +109,7 @@
  <p> 파일<input type="file" name="file" multiple="multiple"/></p>
   <p>내용 : <input type="text" name="dealText" value=""/></p>
   <p>태그 : <input type="text" name="tag" value=""/></p>
-  <p>동네 : <input type="text" name="villCode" value=""/></p>
+<%--  <p>동네 : <input type="text" name="villCode" value=""/></p>--%>
     <p><input type="submit" value="저장" class="addDeal"/></p>
 <%--<p><button type="button" class="addDeal">등록</button></p>--%>
 </form>

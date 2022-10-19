@@ -4,6 +4,7 @@ import com.project.club.service.ClubService;
 import com.project.common.Page;
 import com.project.common.Search;
 import com.project.domain.*;
+import com.project.myPage.service.MyPageService;
 import com.project.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -30,6 +31,10 @@ public class ClubController {
     @Autowired
     @Qualifier("userServiceImpl")
     private UserService userService;
+
+    @Autowired
+    @Qualifier("myPageServiceImpl")
+    private MyPageService myPageService;
 
     @Value("#{commonProperties['pageSize']}")
     int pageSize;
@@ -62,7 +67,7 @@ public class ClubController {
     }
 
     @RequestMapping(value = "addClub", method = RequestMethod.POST)
-    public String addClub(@ModelAttribute("club") Club club, @ModelAttribute("file") MultipartFile file, HttpSession session) throws Exception {
+    public String addClub(@ModelAttribute("club") Club club, @ModelAttribute("file") MultipartFile file, HttpSession session, @RequestParam("clubTags")List<String> clubTags) throws Exception {
 //        System.out.println(file);
 //        System.out.println(file.getOriginalFilename());//real.png
 //        System.out.println(file.getName());
@@ -77,19 +82,58 @@ public class ClubController {
             club.setClubImage(fileName);
         }
 
+        StringBuilder clubTag = new StringBuilder();
+
+        for(String s : clubTags){
+            clubTag.append("#").append(s).append(" ");
+        }
+
+        club.setTag(clubTag.toString().trim());
+
+        club.setInterList(club.getStrInterList());
+
         club = clubService.addClub(club);
         return "redirect:/club/getClub/" + club.getClubNum();
     }
 
     @RequestMapping(value = "listClub")
-    public String listClub(Model model, HttpSession session) {
+    public String listClub(Model model, HttpSession session, @RequestParam(value = "searchLocation", required = false) String searchLocation, @RequestParam(value = "searchTag", required = false) List<String> searchTag, @RequestParam(value = "searchInterList", required = false) List<String> searchInterList, @ModelAttribute("search") Search search) throws Exception {
+        if (search.getCurrentPage() == 0) {
+            search.setCurrentPage(1);
+        }
+        search.setPageSize(pageSize);
+        search.setSearchCondition("1");
+//        System.out.println(searchLocation);
+        System.out.println(searchTag);
+//        System.out.println(searchInterList);
         User user = (User) session.getAttribute("user");
         String userId = "";
         if (user != null) {
             userId = user.getUserId();
+            if(searchLocation==null){
+                searchLocation = ((User)session.getAttribute("user")).getVillCode();
+                searchInterList = new ArrayList<>();
+                for(UserInterList uil : (List<UserInterList>) myPageService.getMyInfor(userId).get("interList")){
+                    String str = null;
+                    int item = Integer.parseInt(uil.getInterList().trim());
+                    if(item<10){
+                        str = "0"+item;
+                    }else {
+                        str = ""+item;
+                    }
+                    searchInterList.add(str);
+                }
+            }
+        }else {
+            if(searchLocation==null){
+                searchLocation="역삼1동";
+            }
         }
-        List<Club> list = clubService.listClub(userId);
+        List<Club> list = clubService.listClub(userId,search,searchLocation,searchInterList,searchTag);
         model.addAttribute("list", list);
+        model.addAttribute("searchTag",searchTag);
+        model.addAttribute("searchLocation",searchLocation);
+        model.addAttribute("searchInterList",searchInterList);
         return "/view/club/listClub.jsp";
     }
 

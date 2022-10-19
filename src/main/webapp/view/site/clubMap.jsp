@@ -33,7 +33,10 @@
     $(function() {
       //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
       $( "button:contains('확인')" ).on("click" , function() {
-        self.location = "/club/json/addClub?longitude=" + latlng.getLng() + "&latitude=" + latlng.getLng();
+        // self.location = "/club/json/addClub?longitude=" + latlng.getLng() + "&latitude=" + latlng.getLng();
+        $(opener.document).find(".searchLocation").html($('[name="asdf"]').val())
+        $(opener.document).find('[name="searchLocation"]').val($('[name="asdf"]').val())
+        window.close()
       });
     });
 
@@ -45,7 +48,7 @@
 <p><em>지도를 클릭해주세요!</em></p>
 <div id="clickLatlng"></div>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fdddcf3f747ce062a0dc0af6d4a8b009&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bfc3f948468dbd85bd27fc9cd803d68b&libraries=services"></script>
 <script>
   var mapContainer = document.getElementById('map'), // 지도를 표시할 div
           mapOption = {
@@ -81,11 +84,11 @@
 
   });
 </script>
-${kakaoMapApi.latitude = latlng.getLat()}
-${kakaoMapApi.longitude = latlng.getLng()}
+<%--${kakaoMapApi.latitude = latlng.getLat()}--%>
+<%--${kakaoMapApi.longitude = latlng.getLng()}--%>
 <div class="col-md-4 text-center col-md-offset-1">
+  <input type="text" name="asdf" value="qwer">
     <button type="button" class="btn btn-primary">확인</button>
 </div>
-
 </body>
 </html>

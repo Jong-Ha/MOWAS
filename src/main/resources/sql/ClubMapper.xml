@@ -251,7 +251,7 @@
     <!--리스트 조건걸어서 찾기-->
 
     <!--그냥 다 찾기-->
-    <select id="listClub" parameterType="map" resultMap="ClubResultMap">
+    <select id="back_listClub" parameterType="map" resultMap="ClubResultMap">
         SELECT c.*, l.like_check
         FROM club c,
              (SELECT board_num,
@@ -262,6 +262,53 @@
         WHERE c.club_delete_check = '0'
           AND c.club_num = l.board_num(+)
         ORDER BY club_num DESC
+    </select>
+
+    <sql id="listClubSql">
+        SELECT c.*, l.like_check
+        FROM club c,
+        (SELECT board_num,
+        like_check
+        FROM likes
+        WHERE board_category = '12'
+        AND user_id = #{userId}) l
+        WHERE c.club_delete_check = '0'
+        AND c.club_num = l.board_num(+)
+        AND vill_code = #{searchLocation}
+        <if test="searchInterList!=null">
+            <foreach collection="searchInterList" item="i" open="AND inter_list IN (" separator="," close=")">
+                #{i}
+            </foreach>
+        </if>
+        <if test="(searchTag!=null and searchTag!='')">
+            <foreach collection="searchTag" item="i" open="AND (club_tag LIKE ('%'||"
+                     separator="||'%') OR club_tag LIKE('%'||" close="||'%'))">
+                #{i}
+            </foreach>
+        </if>
+        ORDER BY gather_check DESC, club_num DESC
+    </sql>
+
+    <select id="getTotalClub" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM (
+        <include refid="listClubSql"/>
+        )
+    </select>
+
+    <select id="listClub" parameterType="map" resultMap="ClubResultMap">
+        SELECT * FROM (
+        SELECT ROWNUM row_num, vt.* FROM (
+        <include refid="listClubSql"/>
+        ) vt
+        <if test="search.currentPage*search.pageSize!=0">
+            WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}
+        </if>
+        )
+        <where>
+            <if test="search.currentPage*search.pageSize!=0">
+                row_num >= ((#{search.currentPage}-1)*#{search.pageSize}+1)
+            </if>
+        </where>
     </select>
 
     <!--clubService.addCluberApply-->
