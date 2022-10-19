@@ -90,8 +90,6 @@ public class ClubController {
 
         club.setTag(clubTag.toString().trim());
 
-        club.setInterList(club.getStrInterList());
-
         club = clubService.addClub(club);
         return "redirect:/club/getClub/" + club.getClubNum();
     }
@@ -130,6 +128,9 @@ public class ClubController {
             }
         }
         List<Club> list = clubService.listClub(userId,search,searchLocation,searchInterList,searchTag);
+        for(Club club : list){
+            club.parseInterList();
+        }
         model.addAttribute("list", list);
         model.addAttribute("searchTag",searchTag);
         model.addAttribute("searchLocation",searchLocation);
@@ -147,7 +148,15 @@ public class ClubController {
             session.removeAttribute(String.valueOf(clubNum));
         }
         Club club = clubService.getClub(clubNum);
+        List<String> tagList = new ArrayList<>();
+        for(String tag : club.getTag().split("#")){
+            if(!tag.equals("")){
+                tagList.add(tag.trim());
+            }
+        }
+        club.parseInterList();
         model.addAttribute("club", club);
+        model.addAttribute("tagList", tagList);
         return "/view/club/getClub.jsp";
     }
 
@@ -158,7 +167,7 @@ public class ClubController {
     }
 
     @RequestMapping(value = "updateClub", method = RequestMethod.POST)
-    public String updateClub(@ModelAttribute("club") Club club, @ModelAttribute("file") MultipartFile file, @RequestParam(value = "deleteFileName", required = false) String deleteFileName) throws Exception {
+    public String updateClub(@ModelAttribute("club") Club club, @ModelAttribute("file") MultipartFile file, @RequestParam(value = "deleteFileName", required = false) String deleteFileName, @RequestParam("clubTags")List<String> clubTags) throws Exception {
         //새로운 파일 업로드
         if (Objects.requireNonNull(file.getContentType()).substring(0, file.getContentType().indexOf("/")).equals("image")) {
             String fileName = clubImagePath + UUID.randomUUID() + file.getOriginalFilename();
@@ -167,6 +176,18 @@ public class ClubController {
             file.transferTo(uploadFile);
             club.setClubImage(fileName);
         }
+
+        if(club.getGatherCheck()==null){
+            club.setGatherCheck("0");
+        }
+
+        StringBuilder clubTag = new StringBuilder();
+
+        for(String s : clubTags){
+            clubTag.append("#").append(s).append(" ");
+        }
+
+        club.setTag(clubTag.toString().trim());
 
         //파일 업데이트
         clubService.updateClub(club);

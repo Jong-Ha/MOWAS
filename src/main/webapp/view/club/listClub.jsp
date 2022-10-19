@@ -31,10 +31,11 @@
 ${user.userId}
 <%--여기까지--%>
 
+<%--상단 툴바--%>
+<jsp:include page="/layout/toolbar.jsp"/>
+
 <!-- Example Code -->
 <div class="wap">
-    <%--상단 툴바--%>
-    <jsp:include page="/layout/toolbar.jsp"/>
 
     <form id="listForm">
         <div style="display: none" class="tagForm">
@@ -46,6 +47,8 @@ ${user.userId}
         <c:forEach items="${searchInterList}" var="i">
             <input type="hidden" name="searchedInterList" value="${i}">
         </c:forEach>
+
+        <%--관심목록 검색 입력 모달 시작--%>
         <div class="modal fade" id="searchInterListDialog" tabindex="-1" aria-labelledby="exampleModalLabel"
              aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -106,8 +109,10 @@ ${user.userId}
                 </div>
             </div>
         </div>
+        <%--관심목록 검색 입력 모달 끝--%>
 
     </form>
+    <%--태그 입력 모달 시작--%>
     <div class="modal fade" id="searchTagDialog" tabindex="-1" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -128,7 +133,9 @@ ${user.userId}
             </div>
         </div>
     </div>
+    <%--태그 입력 모달 끝--%>
 
+    <%--버튼 모음 시작--%>
     <div class="add" style="display:flex;justify-content: space-between;align-items: center;">
         <button class="btn btn-primary addClub" data-bs-toggle="modal" data-bs-target="#addClub">
             모임 만들기
@@ -152,12 +159,15 @@ ${user.userId}
             </button>
         </div>
     </div>
+    <%--버튼 모음 끝--%>
 
     <c:if test="${empty list}">
         <div class="p-5 mb-4 bg-light rounded-3">
             <div class="container-fluid py-5">
                 <h1 class="display-5 fw-bold">조회된 모임이 없습니다</h1><br>
-                <button class="btn btn-primary btn-lg addClub" type="button">모임 만들기</button>
+                <button class="btn btn-primary btn-lg addClub" type="button" data-bs-toggle="modal"
+                        data-bs-target="#addClub">모임 만들기
+                </button>
             </div>
         </div>
     </c:if>
@@ -213,6 +223,8 @@ ${user.userId}
 
         </c:forEach>
     </div>
+
+    <%--모임 만들기 모달창 시작--%>
     <div class="modal fade" id="addClub" tabindex="-1" aria-labelledby="addClubLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -240,7 +252,7 @@ ${user.userId}
 
                         <div class="input-group mb-3">
                             <div class="form-floating">
-                                <select class="form-select" id="interListView" name="interListView" required>
+                                <select class="form-select" id="interList" name="interList" required>
                                     <option value="00" selected>선택하세요</option>
                                     <option value="01">독서</option>
                                     <option value="02">자동차</option>
@@ -256,14 +268,14 @@ ${user.userId}
                                     <option value="12">게임</option>
                                     <option value="13">그외</option>
                                 </select>
-                                <label for="interListView">관심목록</label>
+                                <label for="interList">관심목록</label>
                             </div>
                         </div>
 
                         <div class="input-group mb-3">
                             <button class="btn btn-outline-secondary" type="button" id="button-addon1">주요활동위치</button>
                             <input type="text" class="form-control" placeholder="" name="villCode" id="villCode"
-                                   >
+                            >
                         </div>
 
                         <div class="mb-3">
@@ -273,7 +285,8 @@ ${user.userId}
 
                         <div class="input-group mb-3">
                             <div class="form-floating">
-                                <input type="text" class="tagify shadow-lg" id="clubTag" style="border-radius: 7px;" placeholder="태그 : Enter!">
+                                <input type="text" class="tagify shadow-lg" id="clubTag" style="border-radius: 7px;"
+                                       placeholder="태그 : Enter!">
                                 <label for="clubTag" style="display: none">태그 : Enter!</label>
                             </div>
                         </div>
@@ -285,6 +298,8 @@ ${user.userId}
             </div>
         </div>
     </div>
+    <%--모임 만들기 모달창 끝--%>
+
 </div>
 </body>
 </html>

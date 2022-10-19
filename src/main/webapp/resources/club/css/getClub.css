@@ -1,0 +1,78 @@
+.clubinfo {
+    margin-top: 50px;
+    border-radius: 10px;
+    height: 125px;
+}
+
+.clubinfo > div {
+    width: 500px;
+}
+
+.clubInfoLeft > div {
+    margin-top: 10px;
+    margin-left: 10px;
+    text-align: left;
+}
+
+.clubInfoRight > div {
+    margin-top: 10px;
+    padding-right: 20px;
+    text-align: right;
+}
+
+.wap {
+    width: 1000px;
+}
+
+.clubBoarder {
+    height: 500px;
+    margin-bottom: 50px;
+    background: #e9ecef;
+    border-radius: 10px;
+}
+
+.font {
+    font-size: 0.5em;
+}
+
+.modal-footer > * {
+    margin-right: 200px;
+}
+
+.tagify {
+    width: 100%;
+    max-width: 700px;
+}
+
+.tagify--outside {
+    border: 0;
+}
+
+.tagify--outside .tagify__input {
+    order: -1;
+    flex: 100%;
+    border: 1px solid var(--tags-border-color);
+    margin-bottom: 1em;
+    transition: .1s;
+}
+
+.tagify--outside .tagify__input:hover {
+    border-color: var(--tags-hover-border-color);
+}
+
+.tagify--outside.tagify--focus .tagify__input {
+    transition: 0s;
+    border-color: var(--tags-focus-border-color);
+}
+
+.tagify.form-control {
+    height: calc(12rem);
+}
+
+.tagify__input {
+    text-align: left;
+}
+
+tags.tagify {
+    border-radius: 7px;
+}
