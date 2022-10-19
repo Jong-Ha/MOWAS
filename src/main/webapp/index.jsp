@@ -60,6 +60,14 @@
                 <!--<li><a href="#elements">Elements</a></li>-->
             </ul>
         </nav>
+        <nav>
+            <ul>
+                <li ><a href="/club/feane/about">about</a></li>
+                <li ><a href="/club/feane/book">book</a></li>
+                <li ><a href="/club/feane/index">index</a></li>
+                <li ><a href="/club/feane/menu">menu</a></li>
+            </ul>
+        </nav>
     </header>
 
 

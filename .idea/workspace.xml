@@ -10,18 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="LJH 2022.10.17&#10;&#10;css, js, jsp 구분">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/Club.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/Club.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/css/listClub.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/css/listClub.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/js/listClub.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/js/listClub.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/addClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/addClub.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/clubMap.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/clubMap.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/club/service/ClubServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/club/service/ClubServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +84,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Project/MOWAS/src/main/webapp/resources/OpenSource/js",
+    "last_opened_file_path": "C:/Project/MOWAS/src/main/webapp/view/club/boot",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -112,11 +104,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Project\MOWAS\src\main\webapp\view\club\boot" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\resources\feane" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\view" />
       <recent name="C:\Project\MOWAS\src\main\webapp\resources\OpenSource\js" />
       <recent name="C:\Project\MOWAS\src\main\webapp\view\club\bak" />
-      <recent name="C:\Project\MOWAS\src\main\webapp\view\club" />
-      <recent name="C:\Project\MOWAS\src\main\webapp\resources\css" />
-      <recent name="C:\MainProject\MOWAS\src\main\webapp\view\club" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Project\MOWAS\src\main\webapp\resources\club" />
@@ -430,7 +422,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="LJH" />
+                        <option value="origin/master" />
                       </list>
                     </value>
                   </entry>

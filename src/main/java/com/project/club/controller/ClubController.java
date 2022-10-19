@@ -616,4 +616,9 @@ public class ClubController {
         clubService.updateVote(vote);
         return "redirect:/club/getVote/" + voteNum;
     }
+
+    @RequestMapping(value = "feane/{page}", method = RequestMethod.GET)
+    public String feane(@PathVariable String page) {
+        return "/view/feane/"+page+".jsp";
+    }
 }
