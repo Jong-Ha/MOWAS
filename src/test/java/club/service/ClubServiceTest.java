@@ -75,7 +75,7 @@ public class ClubServiceTest {
     public void listClub() {
         String userId = "user01";
 
-        System.out.println(clubService.listClub(userId));
+//        System.out.println(clubService.listClub(userId));
     }
 
     @Test

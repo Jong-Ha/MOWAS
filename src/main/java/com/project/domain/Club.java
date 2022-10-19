@@ -20,6 +20,7 @@ public class Club {
     private String clubText;
     private int currentCluber;
     private String interList;
+    private String strInterList;
     private String villCode;
     private Date clubCreateDate;
     private int clubChatNum;

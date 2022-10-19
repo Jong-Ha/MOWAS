@@ -9,9 +9,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="LJH 2022.10.17&#10;&#10;listClub.jsp 만듬&#10;채팅기능 개선&#10;jsp 백업본 생성">
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="LJH 2022.10.17&#10;&#10;css, js, jsp 구분">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/Club.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/Club.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/css/listClub.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/css/listClub.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/js/listClub.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/js/listClub.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/addClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/addClub.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/clubMap.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/clubMap.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/club/service/ClubServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/club/service/ClubServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +37,8 @@
         <option value="Class" />
         <option value="Interface" />
         <option value="Jsp File" />
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -82,7 +92,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Project/MOWAS/src/main/webapp/view/club/bak",
+    "last_opened_file_path": "C:/Project/MOWAS/src/main/webapp/resources/OpenSource/js",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -91,7 +101,7 @@
     "project.structure.last.edited": "전역 라이브러리",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.12528735",
-    "settings.editor.selected.configurable": "SQL Resolution Scopes",
+    "settings.editor.selected.configurable": "preferences.editor.code.editing",
     "spring.configuration.checksum": "0644e903b0ad21f514b0480754c0a1e2"
   },
   "keyToStringList": {
@@ -102,9 +112,9 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Project\MOWAS\src\main\webapp\resources\OpenSource\js" />
       <recent name="C:\Project\MOWAS\src\main\webapp\view\club\bak" />
       <recent name="C:\Project\MOWAS\src\main\webapp\view\club" />
-      <recent name="C:\Project\MOWAS\src\main\webapp\resources\OpenSource\js" />
       <recent name="C:\Project\MOWAS\src\main\webapp\resources\css" />
       <recent name="C:\MainProject\MOWAS\src\main\webapp\view\club" />
     </key>
@@ -123,7 +133,7 @@
       <recent name="com.project.notice.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ClubServiceTest.listVote">
+  <component name="RunManager" selected="Tomcat 서버.Tomcat 9.0.58">
     <configuration name="ClubServiceTest.deleteVote" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MOWAS" />
       <extension name="coverage">
@@ -205,7 +215,7 @@
       </method>
     </configuration>
     <configuration name="Tomcat 9.0.58" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.58" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="1.8" nameIsGenerated="true">
-      <option name="COMMON_VM_ARGUMENTS" value="-DFile.encoding=UTF-8 -Dconsole.encoding=UTF-8" />
+      <option name="COMMON_VM_ARGUMENTS" value="-DFile.encoding=UTF-8;-Dconsole.encoding=UTF-8" />
       <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
       <deployment>
@@ -374,7 +384,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665057807442</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="LJH 2022.10.17&#10;&#10;css, js, jsp 구분">
+      <created>1665970754672</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1665970754672</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -471,7 +488,8 @@
     <MESSAGE value="LJH 2022.10.11&#10;&#10;모임 공지사항, 모임 블랙리스트 검색조건 및 페이징 처리&#10;모임원 목록과 탈퇴모임원 보기 나눔&#10;탈퇴 모임원 보기의 경우 페이징 처리&#10;&#10;모임생성, 수정 파일 업로드 및 수정 시 기존 이미지 삭제 구현 완료&#10;모임 공지사항 등록 파일 업로드 구현 완료" />
     <MESSAGE value="LJH 2022.10.13&#10;&#10;투표 비즈니스 로직 및 기본 jsp, controller 구현&#10;RestController 구현하여 ajax를 이용한 기능 구현 필요" />
     <MESSAGE value="LJH 2022.10.17&#10;&#10;listClub.jsp 만듬&#10;채팅기능 개선&#10;jsp 백업본 생성" />
-    <option name="LAST_COMMIT_MESSAGE" value="LJH 2022.10.17&#10;&#10;listClub.jsp 만듬&#10;채팅기능 개선&#10;jsp 백업본 생성" />
+    <MESSAGE value="LJH 2022.10.17&#10;&#10;css, js, jsp 구분" />
+    <option name="LAST_COMMIT_MESSAGE" value="LJH 2022.10.17&#10;&#10;css, js, jsp 구분" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -106,15 +106,3 @@ svg {
     transition:0s;
     border-color: var(--tags-focus-border-color);
 }
-
-.tagify.form-control {
-    height: calc(12rem);
-}
-
-.tagify__input{
-    text-align: left;
-}
-
-tags.tagify{
-    border-radius: 7px;
-}
