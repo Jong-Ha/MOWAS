@@ -1,42 +1,40 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+         pageEncoding="utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>addClub</title>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script>
-        $(function(){
-            $(".addClub").on("click",function(){
-                $("form").attr("method","post").attr("action","/club/addClub").submit();
-            })
-        })
-    </script>
+    <title>MOWAS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="/resources/club/js/listClub.js"></script>
+    <link href="/resources/club/css/listClub.css" rel="stylesheet" type="text/css"/>
 </head>
-<body>
-<form enctype="multipart/form-data">
-    <label>
-        clubName : <input type="text" name="clubName" value=""><br>
-        clubText : <textarea name="clubText"></textarea><br>
-        interList : <select name="interList">
-        <option value="01">독서</option>
-        <option value="02">자동차</option>
-        <option value="03">반려동물</option>
-        <option value="04">공예</option>
-        <option value="05">스포츠</option>
-        <option value="06">댄스</option>
-        <option value="07">여행</option>
-        <option value="08">사진</option>
-        <option value="09">육아</option>
-        <option value="10">공연</option>
-        <option value="11">음악</option>
-        <option value="12">게임</option>
-        <option value="13">그외</option>
-    </select><br>
-        villCode : <input type="text" name="villCode" value=""><br>
-        clubImage : <input type="file" name="file"><br>
-        tag : <input type="text" name="tag" value=""><br>
-    </label>
-    <input type="button" class="addClub" value="모임 만들기">
-</form>
+<body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
+
+<!-- Example Code -->
+<div class="wap">
+    <%--상단 툴바--%>
+    <jsp:include page="/layout/toolbar.jsp"/>
+
+    <form>
+
+    </form>
+
+
+
+</div>
 </body>
 </html>
+

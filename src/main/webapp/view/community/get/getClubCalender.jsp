@@ -138,6 +138,28 @@
                 window.close();
             });
 
+            var calenderNum = $(".calenderNum").val();
+
+            $(".addReview").on("click", function () {
+                window.open(
+                    "/clubCal/addClubCalenderReview?clubCalenderNum="+calenderNum+"&boardCategory=01", "모임 일정 후기글 작성",
+                    "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
+
+                    window.close();
+
+            });
+
+            $(".addShort").on("click", function () {
+
+               window.open(
+                    "/clubCal/addClubCalenderReview?clubCalenderNum="+calenderNum+"&boardCategory=02", "모임 일정 후기글 쇼츠 작성",
+                    "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no"
+               );
+
+                window.close();
+
+            });
+
 
         });
 
@@ -151,6 +173,7 @@
 <form>
     <!--  화면구성 div Start /////////////////////////////////////-->
     <div class="wap">
+        <input class="calenderNum" hidden value="${clubCalender.clubCalenderNum}">
         <div class="container">
 
             <div class="page-header" style="display: flex; flex-direction: row-reverse;">
@@ -270,24 +293,6 @@
         </div>
     </div>
 </form>
-<script>
-    $(function (){
-
-        $(".addReview").on("click", function () {
-            window.open(
-                "/view/community/add/addClubCalenderReview.jsp", "모임 일정 후기글 작성",
-                "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
-        });
-
-        $(".addShort").on("click", function () {
-            window.open(
-                "/view/community/add/addClubCalenderReviewShort.jsp", "모임 일정 후기글 작성",
-                "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
-        });
-
-    });
-
-</script>
 
 </body>
 

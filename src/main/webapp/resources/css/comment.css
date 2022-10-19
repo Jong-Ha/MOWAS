@@ -1,8 +1,9 @@
 .wap {
+    margin-top: 70px;
     font-size: 1em;
     width: 1030px;
     padding: 5px 5px;
-    height: 810px;
+    height: 580px;
     border-radius: 10px;
 }
 
@@ -271,7 +272,7 @@ border-radius: 5px;
 }
 
 .RecommentTexts {
-    width: 530px;
+    width: 360px;
     align-self: center;
     float: left;
     height: 50px;
@@ -280,4 +281,16 @@ border-radius: 5px;
 
 .buttonMargin{
     margin-right: 2px;
+}
+
+
+.animation-init {
+    opacity: 0;
+    padding-top: 1em;
+}
+
+.animation-fade {
+    opacity: 1;
+    padding-top: 0;
+    transition: all 1s;
 }
