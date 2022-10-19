@@ -134,7 +134,7 @@ $(function(){
             alert("모임소개는 필수입니다")
             return;
         }
-        if($("#interListView").val()==='00'){
+        if($("#interList").val()==='00'){
             alert("관심목록은 필수입니다")
             return;
         }
@@ -147,7 +147,6 @@ $(function(){
         // }
         // alert(JSON.parse($("#clubTag").val()))
         let addForm = $("#addClubForm");
-        addForm.append('<input type="hidden" name="strInterList" value="'+$('[name="interListView"]').val()+'">')
         $.each(JSON.parse($("#clubTag").val()),function(index,item){
             addForm.append('<input type="hidden" name="clubTags" value="'+item.value+'">')
         })

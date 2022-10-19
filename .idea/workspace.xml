@@ -10,10 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="LJH 2022.10.17&#10;&#10;css, js, jsp 구분">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/Club.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/Club.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/css/addClub.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/js/addClub.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/js/listClub.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/js/listClub.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/bak/getClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/getClub.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/getClub.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/feane/book.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/feane/book.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/feane/menu.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/feane/menu.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +91,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Project/MOWAS/src/main/webapp/view/club/boot",
+    "last_opened_file_path": "C:/Project/MOWAS/src/main/webapp/view/club/gg",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -93,7 +100,7 @@
     "project.structure.last.edited": "전역 라이브러리",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.12528735",
-    "settings.editor.selected.configurable": "preferences.editor.code.editing",
+    "settings.editor.selected.configurable": "project.propCompiler",
     "spring.configuration.checksum": "0644e903b0ad21f514b0480754c0a1e2"
   },
   "keyToStringList": {
@@ -104,11 +111,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Project\MOWAS\src\main\webapp\view\club\boot" />
-      <recent name="C:\Project\MOWAS\src\main\webapp\resources\feane" />
-      <recent name="C:\Project\MOWAS\src\main\webapp\view" />
-      <recent name="C:\Project\MOWAS\src\main\webapp\resources\OpenSource\js" />
-      <recent name="C:\Project\MOWAS\src\main\webapp\view\club\bak" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\view\club\gg" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\view\club" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\resources\club\css" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\resources\club\js" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\resources\club" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Project\MOWAS\src\main\webapp\resources\club" />
@@ -383,7 +390,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665970754672</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="LJH 2022.10.19&#10;&#10;feane : jsp 파일 연결">
+      <created>1666146528047</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1666146528047</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -422,7 +436,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>
@@ -481,7 +495,8 @@
     <MESSAGE value="LJH 2022.10.13&#10;&#10;투표 비즈니스 로직 및 기본 jsp, controller 구현&#10;RestController 구현하여 ajax를 이용한 기능 구현 필요" />
     <MESSAGE value="LJH 2022.10.17&#10;&#10;listClub.jsp 만듬&#10;채팅기능 개선&#10;jsp 백업본 생성" />
     <MESSAGE value="LJH 2022.10.17&#10;&#10;css, js, jsp 구분" />
-    <option name="LAST_COMMIT_MESSAGE" value="LJH 2022.10.17&#10;&#10;css, js, jsp 구분" />
+    <MESSAGE value="LJH 2022.10.19&#10;&#10;feane : jsp 파일 연결" />
+    <option name="LAST_COMMIT_MESSAGE" value="LJH 2022.10.19&#10;&#10;feane : jsp 파일 연결" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
