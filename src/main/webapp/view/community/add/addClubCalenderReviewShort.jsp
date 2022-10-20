@@ -131,7 +131,6 @@
                             });
 
                             setTimeout(function () {
-                                opener.location.reload();
                                 window.close();
                             }, 2000);
 

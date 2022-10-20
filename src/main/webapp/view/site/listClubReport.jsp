@@ -12,10 +12,10 @@
 <html>
 <head>
     <title>List MasterBoard</title>
+    <!-- Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
-    <!-- Bootstrap -->
 
     <!--  ///////////////////////// CSS ////////////////////////// -->
     <style>
@@ -78,11 +78,11 @@
     <!--  ///////////////////////// JavaScript ////////////////////////// -->
     <script type="text/javascript">
 
-        function fncGetMasterBoardList(currentPage) {
+        function fncGetClubReportList(currentPage) {
             /* 	document.getElementById("currentPage").value = currentPage;
                    document.detailForm.submit();	 */
             $("#currentPage").val(currentPage)
-            $("form").attr("method" , "POST").attr("action" , "/site/listMasterBoard").submit();
+            $("form").attr("method" , "POST").attr("action" , "/site/listClubReport?clubNum=${param.clubNum}").submit();
         }
 
 
@@ -94,28 +94,13 @@
 
             //$( "td.ct_btn01:contains('검색')" ).on("click" , function() {
             $( "button.btn.btn-default" ).on("click" , function() {
-                fncGetMasterBoardList(1);
+                fncGetClubReportList(1);
             });
 
             //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-            $( ".addMb" ).on("click" , function() {
+            $( ".addCr" ).on("click" , function() {
 
-                $(self.location).attr("href", "/site/addMasterBoard");
-            });
-
-            $( ".commReport" ).on("click" , function() {
-
-                $(self.location).attr("href", "/site/listCommunityReport");
-            });
-
-            $( ".clubReport" ).on("click" , function() {
-
-                $(self.location).attr("href", "/site/listClubReport");
-            });
-
-            $( ".clubMap" ).on("click" , function() {
-
-                $(self.location).attr("href", "/view/site/clubMap.jsp");
+                $(self.location).attr("href", "/site/addClubReport?reportedId=user01&boardCategory=01&boardNo=10020");
             });
 
             //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
@@ -129,11 +114,10 @@
 </head>
 
 <body>
-
 <div class="container">
 
     <div class="page-header text-info">
-        <h3>공지사항</h3>
+        <h3>모임 신고 리스트</h3>
     </div>
 
     <!-- table 위쪽 검색 Start /////////////////////////////////////-->
@@ -179,28 +163,28 @@
         <thead>
             <tr>
                 <th width="10%">번호</th>
-                <th width="40%" >제목</th>
-                <th width="15%">작성자</th>
-                <th width="15%">날짜</th>
-                <th width="10%">상세보기</th>
+                <th width="30%" >모임 번호</th>
+                <th width="20%">모임신고기준</th>
+                <th width="15%">신고한 아이디</th>
+                <th width="15%">신고날짜</th>
+                <th width="10%">처리여부</th>
             </tr>
         </thead>
         <tbody>
             <c:set var="i" value="0" />
-            <c:forEach var="mb" items="${list}">
+            <c:forEach var="cr" items="${list}">
                 <c:set var="i" value="${ i+1 }" />
                 <tr>
-                    <td>${ i }</td>
-                    <td>${mb.mbTitle}
-                        <input id="mbNo" type="hidden" value="${mb.masterBoardNo }"/>
-                        <%--<c:set var = "now" value="<%=new java.util.Date()%>"/>
-                        <c:if test="${mb.mbRegDate}">
-                            <span class="new">new</span>
-                        </c:if>--%>
+                    <td><a href="/site/getClubReport/${cr.clubReportNo}/${cr.clubNum}">${ i }</a>
+                        <input id="crNo" type="hidden" value="${cr.clubReportNo }"/>
+                        <input type="hidden" name="clubNum" value="${cr.clubNum}"></td>
                     </td>
-                    <td>${mb.adminId}</td>
-                    <td>${mb.mbRegDate}</td>
-                    <td><a href="/site/getMasterBoard/${mb.masterBoardNo}"> ▼ </a></td>
+                    <td>${cr.clubNum}
+                    <td>${cr.crBasis}</td>
+                    <td>${cr.reportId}</td>
+                    <td>${cr.reportDate}</td>
+                    <td>${cr.reportResult}</td>
+
                 </tr>
             </c:forEach>
         </tbody>
@@ -215,11 +199,8 @@
     </div>
 
     <div class="col-md-12 text-center ">
-        <button type="button" class="addMb" >추 가</button>
+        <button type="button" class="addCr" >추 가</button>
         <a class="btn btn-default btn" href = "#" role="button">취 소 </a>
-        <button type="button" class="commReport" >커뮤니티신고</button>
-        <button type="button" class="clubReport" >모임신고</button>
-        <button type="button" class="clubMap" >클럽맵 Test</button>
     </div>
 
     </body>

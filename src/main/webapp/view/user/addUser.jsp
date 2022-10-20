@@ -16,28 +16,50 @@
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 
     <style>
-    .wap{ width: 800px; }
-    tr { height:30px; }
+    .wap{ width: 400px; }
+    tr { height:40px; }
     td { border-bottom:1px solid #CCC; font-size:12px; }
     span { cursor:pointer }
     </style>
   <script type="text/javascript">
 
-    $(function (){
-      $(".emailKey").on("click",function (){
-        $.ajax({
-          url: "/user/json/mailSender",
-          method :"POST",
-          data: {
-            email : $(".userEmail").val()
-          },
-          dataType :"json",
-          success : function ({JSONData, status}){
-            console.log(status);
-            $(".emailYC").css("display",'');
-          }
+    $(function () {
+        $(".emailKey").on("click", function () {
+            $.ajax({
+                url: "/user/json/mailSender",
+                method: "POST",
+                data: {
+                    email: $(".userEmail").val()
+                },
+                dataType: "json",
+                success: function ({JSONData, status}) {
+                    console.log(status);
+                    $(".emailYC").css("display", '');
+                }
+            });
         });
-      });
+
+
+
+            $(".emailImage").on("click", function () {
+
+                $.ajax({
+                    url: "/user/json/mailImage",
+                    method: "POST",
+                    data: {
+                        email: $(".userEmail").val()
+                    },
+                    dataType: "json",
+                    success: function ({JSONData, status}) {
+                        console.log(status);
+                        $(".emailYC").css("display", '');
+                    },
+                    error: function () {
+                        console.log('인증실패!');
+                    }
+                });
+            });
+
       $(".smsKey").on("click",function (){
         $.ajax({
           url : "/user/json/smsSend",
@@ -55,6 +77,8 @@
       $(".CheckEmailKey2").on("click",function (){
         var CheckEmailKey = $(".CheckEmailKey").val();
          alert(CheckEmailKey);
+         var emailNo = ${no.emailNo}
+             alert("랜덤 이메일 인증번호 :"+emailNo);
         if(CheckEmailKey!=1234){
           $('.emailInfor').css('display','');
         }else{
@@ -90,32 +114,15 @@
                 }
                 });
               });
+      /*
+            $(".addInter").on("click", function (){
+              $("#oridata input[type=checkbox]:checked").filter(function() {
+                $("#movedata").append("<tr>" + $(this).parent().parent().html() + "</tr>");
+                $(this).parent().parent().remove();
+              });
+            });
 
-      $(".addInter").on("click", function (){
-        $("#oridata input[type=checkbox]:checked").filter(function() {
-          $("#movedata").append("<tr>" + $(this).parent().parent().html() + "</tr>");
-          $(this).parent().parent().remove();
-        });
-      });
-/*
-          $.ajax({
-            url : "/user/json/interListControl",
-            method : "POST",
-            data : JSON.stringify({
-              userId : $(".userId").val(),
-              interList : $('#oridata input[type=checkbox]:checked').val()
-            }),
-            contentType : "application/json",
-            dataType : "json",
-            success : function (){
-              alert('디비저장성공');
-            },
-            error : function (){
-              alert('디비저장실패');
-            }
-          });
 
- */
 
       $(".removeInter").on("click", function () {
         $("#movedata input[type=checkbox]:checked").filter(function() {
@@ -123,23 +130,8 @@
           $(this).parent().parent().remove();
         });
       });
-      /*
-          $.ajax({
-            url : "/user/json/deleteInter",
-            method : "POST",
-            data : JSON.stringify({
-              userId : $(".userId").val(),
-              interList : $('#oridata input[type=checkbox]:checked').val()
-            }),
-            contentType : "application/json",
-            dataType : "json",
-            success : function (){
-              alert('디비삭제성공');
-            },
-            error : function (){
-              alert('디비삭제실패');
-            }
-          });
+      ///*
+
           */
 
       $("#userId").on("keyup",function (){
@@ -153,6 +145,7 @@
             success: function (result) {
               if (result==true) {
                 $("#idChk").css("display", 'none');
+
               } else {
                 $("#idChk").css("display", "");
               }
@@ -204,6 +197,7 @@
             });
       });
 
+
       $("form").on("submit",function (){
 
         var id=$("input[name='userId']").val();
@@ -211,10 +205,10 @@
         var pw2=$("input[name='password2']").val();
         var name=$("input[name='userName']").val();
         var rrd=$("input[name='rrd']").val();
-        var male=$("input[name='gender']:checked").val();
-        var female=$("input[name='gender']:checked").val();
-        var email=$("input[id='CheckEamil']").val();
-        var phone=$("input[id='CheckPhone']").val();
+        var male=$("#male").val();
+        var female=$("#femail").val();
+        var email=$("#CheckEamil").val();
+        var phone=$("#CheckPhone").val();
         var interList=$("input[name='interList']").val();
 
 
@@ -244,26 +238,23 @@
           alert("주민등록번호는  반드시 입력하셔야 합니다.");
           return false;
         }
-        if(male == false && female ==false){
+/*
+
+
+        if(male.is("checked")==false || female.is("checked")==false){
           alert("성별은  반드시 입력하셔야 합니다.");
           return false;
         }
-        if(email== false && phone ==false){
+        if(email.is("checked")==false || phone.is("checked")==false){
           alert("이메일 또는 휴대폰번호는 반드시 인증하셔야 합니다.");
           return false;
         }
-        // if(addressView == null){
-        //   alert("동네인증은 반드시 인증하셔야 합니다.");
-        //   return false;
-        // }
-
-        var address="";
-        if($("#address").val() !="" && $("#addressDetail").val() !="") {
-          var address = $("#address").val() + " " + $("#addressDetail").val();
+        if($("#addChk").val()==false){
+          alert("동네인증은 반드시 인증하셔야 합니다.");
+          return false;
         }
 
-
-
+*/
         $("form").attr("method","POST").attr("action","/user/addUser").submit();
 
       });
@@ -273,12 +264,6 @@
           history.go(-1);
         });
       });
-
-
-
-
-
-
 
     });
 
@@ -555,6 +540,7 @@
           <input type="email" class="form-control userEmail" id="email" name="email" >
           <input type="text" class="form-control CheckEmailKey" placeholder="인증번호 입력"  >
           <button type="button" class="btn btn-primary btn-sm emailKey">인증번호 요청</button>
+            <button type="button" class="btn btn-primary btn-sm emailImage">인증번호 이미지 요청</button>
           <button type="button" class="btn btn-secondary btn-sm CheckEmailKey2">인증 확인</button>
           <span class="emailInfor" style="display: none;">
                 <strong class="text-danger" >인증번호가 틀렸습니다</strong>
@@ -607,9 +593,10 @@
         <div style="height:5px;"></div>
 
 
-
+<div>
+        <input class="form-check-input" type="checkbox"  id="addChk" disabled="disabled" >
         <button type="button" class="btn btn-primary btn-sm" id="checkAddress" name="checkAddress">동네인증 요청</button>
-
+</div>
         <div class="col-12">
           <input type="hidden" class="form-control" id="addressTrue" value="동네인증 되었습니다" readonly>
         </div>
@@ -673,6 +660,7 @@
                     if(result==true) {
                       $("#addressTrue").attr("type","text").css("color","red");
                       $("#map").fadeOut();
+                      $("#addChk").prop("checked",true);
                     }else {
                       $("#addressFalse").attr("type","text").css("color","red");
                     }
@@ -728,163 +716,6 @@
           }
         </script>
 
-          <span>
-          <span class="form-check">
-            <input class="form-check-input" type="checkbox" value="스포츠" id="list01" name="interList" >
-            <label class="form-check-label" for="list01">
-              스포츠
-            </label>
-          </span>
-          <span class="form-check">
-            <input class="form-check-input" type="checkbox" value="반려동물" id="list02" name="interList" >
-            <label class="form-check-label" for="list02">
-              반려동물
-            </label>
-          </span>
-          <span class="form-check">
-            <input class="form-check-input" type="checkbox" value="음악" id="list03" name="interList" >
-            <label class="form-check-label" for="list03">
-              음악
-            </label>
-          </span>
-            <span class="form-check">
-            <input class="form-check-input" type="checkbox" value="독서" id="list04" name="interList" >
-            <label class="form-check-label" for="list04">
-              독서
-            </label>
-          </span>
-            <span class="form-check">
-            <input class="form-check-input" type="checkbox" value="게임" id="list05" name="interList" >
-            <label class="form-check-label" for="list05">
-              게임
-            </label>
-          </span>
-            <span class="form-check">
-            <input class="form-check-input" type="checkbox" value="육아" id="list06" name="interList" >
-            <label class="form-check-label" for="list06">
-              육아
-            </label>
-          </span>
-            <span class="form-check">
-            <input class="form-check-input" type="checkbox" value="공연" id="list07" name="interList" >
-            <label class="form-check-label" for="list07">
-              공연
-            </label>
-          </span>
-            <span class="form-check">
-            <input class="form-check-input" type="checkbox" value="공예" id="list08" name="interList" >
-            <label class="form-check-label" for="list08">
-              공예
-            </label>
-          </span>
-            <span class="form-check">
-            <input class="form-check-input" type="checkbox" value="댄스" id="list09" name="interList" >
-            <label class="form-check-label" for="list02">
-              댄스
-            </label>
-          </span>
-            <span class="form-check">
-            <input class="form-check-input" type="checkbox" value="자동차" id="list10" name="interList" >
-            <label class="form-check-label" for="list09">
-              자동차
-            </label>
-          </span>
-            <span class="form-check">
-            <input class="form-check-input" type="checkbox" value="사진" id="list11" name="interList" >
-            <label class="form-check-label" for="list10">
-              사진
-            </label>
-          </span>
-            <span class="form-check">
-            <input class="form-check-input" type="checkbox" value="여행" id="list12" name="interList" >
-            <label class="form-check-label" for="list11">
-              여행
-            </label>
-          </span>
-            <span class="form-check">
-            <input class="form-check-input" type="checkbox" value="기타" id="list13" name="interList" >
-            <label class="form-check-label" for="list12">
-              기타
-            </label>
-          </span>
-            </span>
-
-<!--
-      <div class="col-12">
-
-        관심목록 선택(최대 13개)
-      </div>
-
-      <div >
-      <div style="float:left; padding:5px; border:1px solid #000; width:140px; height:400px;">
-        <table id="oridata" class="interList" cellspacing="0" cellpadding="0" width="100%">
-          <tr>
-            <td><input type="checkbox"  id="list1" name="interList" value="01"/></td>
-            <td>스포츠</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="list2" name="interList" value="02"/></td>
-            <td>반려동물</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="list3" name="interList" value="03"/></td>
-            <td>음악</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="list4" name="interList" value="04"/></td>
-            <td>독서</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="list5" name="interList" value="05"/></td>
-            <td>게임</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="list6" name="interList" value="06"/></td>
-            <td>육아</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="list7" name="interList" value="07"/></td>
-            <td>공연</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="list8" name="interList" value="08"/></td>
-            <td>공예</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="list9" name="interList" value="09"/></td>
-            <td>댄스</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="list10" name="interList" value="10"/></td>
-            <td>자동차</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="list11" name="interList" value="11"/></td>
-            <td>사진</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="list12" name="interList" value="12"/></td>
-            <td>여행</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="list13" name="interList" value="13"/></td>
-            <td>기타</td>
-          </tr>
-        </table>
-      </div>
-
-      <div style="float:left; padding:5px; padding-top:130px;">
-        <span input="button" class="addInter">▶</span>
-        <br />
-        <span input="button" class="removeInter">◀</span>
-      </div>
-
-      <div style="float:left; padding:5px; border:1px solid #000; width:140px; height:400px;">
-        <table id="movedata" cellspacing="0" cellpadding="0" width="100%">
-        </table>
-      </div>
-      </div>
-      -->
 
 
       <div class="col-12">
@@ -910,7 +741,7 @@
       <hr>
             <div class="col-12">
             <button class="w-100 btn btn-primary btn-lg cancle" type="button"> 취소</button>
-            <button class="w-100 btn btn-primary btn-lg addUser" type="submit"> 회원가입</button>
+            <button class="w-100 btn btn-primary btn-lg addUser" type="submit"> 관심목록 선택</button>
           </div>
         </div>
       </div>

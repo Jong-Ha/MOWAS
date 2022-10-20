@@ -22,18 +22,18 @@
         self.location = "/deal/notice/${communityReport.reportNo}"
       }); --%>
 
-      $( "button:contains('게시글확인')" ).on("click" , function() {
+      $( "button:contains('알림')" ).on("click" , function() {
         self.location = "/site/listCommunityReport"
           //커뮤니티 게시글 확인 컨트롤러 호출
       });
 
       $( "button:contains('확인')" ).on("click" , function() {
-          $("form").attr("method","post").attr("action","/site/updateCommunityReport").submit();
+          $("form").attr("method","post").attr("action","/site/updateClubReport").submit();
 
       });
 
       $( "button:contains('취소')" ).on("click" , function() {
-        self.location = "/site/listCommunityReport"
+        self.location = "/site/listClubReport"
       });
     });
 
@@ -43,15 +43,15 @@
 <form class="form-horizontal" name="detailForm">
 
     <%--관리자 아이디 : ${masterBoard.adminId} </br>--%>
-    <input type="hidden" name="reportNo" value="${communityReport.reportNo}">
-
-    신고 받은 회원 ID : "${communityReport.reportedId} <button type="button" class="btn btn-primary">알림</button></br>
-    신고 날짜 : ${communityReport.reportDate}<br>
-    게시글 종류 : ${communityReport.boardCategory}<br>
-    게시글 번호 : ${communityReport.boardNo}<br>
-    신고 기준 : ${communityReport.reportBasis}<br>
-    신고 상세 내용 : ${communityReport.reportText}<br>
-    벌점<input type="number" name="ppt" value="${communityReport.ppt}"><br>
+    <input type="hidden" name="clubReportNo" value="${clubReport.reportNo}">
+        모임명: ${club.clubName}<br>
+        모임 번호 : "${clubReport.clubNum} <button type="button" class="btn btn-primary">알림</button></br>
+        모임장 아이디: ${club.clubMasterId}<br>
+        신고 날짜 : ${clubReport.reportDate}<br>
+        신고 상세 내용 : ${clubReport.reportText}<br>
+        이의 상세 내용 : ${clubReport.rereportText}<br>
+        이의 처리 <input type="number" name="rereportResult" value="${clubReport.rereportResult}"><br>
+        관리자아이디 : ${clubReport.AdminId}<br>
 
     <div class="col-md-4 text-center col-md-offset-1">
         <button type="button" class="btn btn-primary">확인</button>

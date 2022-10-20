@@ -5,7 +5,8 @@
   Time: 오후 7:32
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"
+         pageEncoding="UTF-8"%>
 <html>
 <head>
     <title> club Map</title>
@@ -29,17 +30,28 @@
 
   <script type="text/javascript">
 
-    //============= 회원정보수정 Event  처리 =============
+    function getClubVilCode(longitude, latitude) {
+      var sendData = "longitude=" + longitude + "&latitude=" + latitude;
+
+      $.ajax({
+        url: '/site/json/clubMap',
+        method: 'POST',
+        data: sendData,
+        success: function (vilCode) {
+          //$(".searchLocation").html(vilCode);
+          alert(vilCode);
+        }
+      })
+    }
+
     $(function() {
       //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
       $( "button:contains('확인')" ).on("click" , function() {
-        // self.location = "/club/json/addClub?longitude=" + latlng.getLng() + "&latitude=" + latlng.getLng();
-        $(opener.document).find(".searchLocation").html($('[name="asdf"]').val())
-        $(opener.document).find('[name="searchLocation"]').val($('[name="asdf"]').val())
-        window.close()
+          $(opener.document).find(".searchLocation").html($('[name="asdf"]').val())
+          $(opener.document).find('[name="searchLocation"]').val($('[name="asdf"]').val())
+          window.close()
       });
     });
-
   </script>
 </head>
 
@@ -48,7 +60,7 @@
 <p><em>지도를 클릭해주세요!</em></p>
 <div id="clickLatlng"></div>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bfc3f948468dbd85bd27fc9cd803d68b&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fdddcf3f747ce062a0dc0af6d4a8b009&libraries=services"></script>
 <script>
   var mapContainer = document.getElementById('map'), // 지도를 표시할 div
           mapOption = {
@@ -81,14 +93,15 @@
 
     var resultDiv = document.getElementById('clickLatlng');
     resultDiv.innerHTML = message;
+    getClubVilCode(latlng.getLng(), latlng.getLat());
 
   });
 </script>
-<%--${kakaoMapApi.latitude = latlng.getLat()}--%>
-<%--${kakaoMapApi.longitude = latlng.getLng()}--%>
+
 <div class="col-md-4 text-center col-md-offset-1">
   <input type="text" name="asdf" value="강남1동">
     <button type="button" class="btn btn-primary">확인</button>
 </div>
+
 </body>
 </html>

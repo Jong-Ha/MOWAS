@@ -160,7 +160,6 @@
             board_category,
             report_id,
             reported_id,
-            admin_id,
             report_basis,
             report_text,
             report_date,
@@ -171,7 +170,6 @@
                     #{boardCategory},
                     #{reportId},
                     #{reportedId},
-                    #{adminId},
                     #{reportBasis},
                     #{reportText},
                     SYSDATE,
@@ -198,9 +196,9 @@
         UPDATE community_report
         <set>
             ppt 		= #{ppt} ,
-            ppt_date		= SYSDATE,
             process_result = <if test='ppt==0'>'처리중'</if>
-                             <if test='ppt!=0'>'처리완료'</if>
+                             <if test='ppt!=0'>'처리완료'</if>,
+            ppt_date	= SYSDATE
         </set>
         WHERE report_num = #{reportNo}
     </update>
@@ -240,8 +238,9 @@
                                 <if test="searchCondition == 1 and searchKeyword !='' ">
                                     reported_id = #{searchKeyword}
                                 </if>
-                                </where>
+                                 </where>
                             </if>
+
                         ORDER BY report_num ) inner_table
                 WHERE ROWNUM &lt;= #{endRowNum} )
         WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum}
@@ -383,35 +382,72 @@
         WHERE club_report_num = #{clubReportNo}
     </update>
 
-    <select id="listClubReport"			parameterType="search"			resultMap="ClubReportSelectMap">
-        SELECT
-        inner_table.*
-        FROM (
-            SELECT
-                ROWNUM row_seq,
-                deep_inner.*
-                FROM (
-                    SELECT  cr.club_report_num,
-                            cr.club_num,
-                            cr.report_id,
-                            cr.admin_id,
-                            cr.cr_basis,
-                            cr.report_date,
-                            cr.report_text,
-                            cr.process_date,
-                            cr.report_result,
-                            cr.rereport_apply_check,
-                            cr.rereport_apply_date,
-                            cr.rereport_text,
-                            cr.rereport_result,
-                            c.club_master_id,
-                            c.club_name
-                        FROM club_report cr, club c
-                        WHERE cr.club_num = c.club_num
-                        ORDER BY cr.club_report_num DESC ) deep_inner
-                    WHERE ROWNUM &lt;= #{endRowNum} ) inner_table
-            WHERE inner_table.row_seq BETWEEN #{startRowNum} AND #{endRowNum}
+   <select id="listClubReport" parameterType="search" resultMap="ClubReportSelectMap">
+        SELECT *
+        FROM (	SELECT inner_table.* , ROWNUM AS row_seq
+        FROM(
+            SELECT  club_report_num,
+                    club_num,
+                    report_id,
+                    admin_id,
+                    cr_basis,
+                    report_date,
+                    report_text,
+                    process_date,
+                    report_result,
+                    rereport_apply_check,
+                    rereport_apply_date,
+                    rereport_text,
+                    rereport_result
+        FROM club_report
+        <if test="searchCondition != null">
+            <where>
+                <if test="searchCondition == 0 and searchKeyword !='' ">
+                    club_report_num = to_char(#{searchKeyword})
+                </if>
+                <if test="searchCondition == 1 and searchKeyword !='' ">
+                    report_id = #{searchKeyword}
+                </if>
+            </where>
+        </if>
+        ORDER BY club_report_num ) inner_table
+        WHERE ROWNUM &lt;= #{endRowNum} )
+        WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum}
     </select>
+
+    <select id="listClubReportProcess" parameterType="search" resultMap="ClubReportSelectMap">
+        SELECT *
+        FROM (	SELECT inner_table.* , ROWNUM AS row_seq
+        FROM(
+        SELECT  club_report_num,
+        club_num,
+        report_id,
+        admin_id,
+        cr_basis,
+        report_date,
+        report_text,
+        process_date,
+        report_result,
+        rereport_apply_check,
+        rereport_apply_date,
+        rereport_text,
+        rereport_result
+        FROM club_report
+        <if test="searchCondition != null">
+            <where>
+                <if test="searchCondition == 0 and searchKeyword !='' ">
+                    club_report_num = to_char(#{searchKeyword})
+                </if>
+                <if test="searchCondition == 1 and searchKeyword !='' ">
+                    report_id = #{searchKeyword}
+                </if>
+            </where>
+        </if>
+        ORDER BY club_report_num ) inner_table
+        WHERE ROWNUM &lt;= #{endRowNum} )
+        WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum}
+    </select>
+
 
     <!--파일 등록-->
     <insert id="addMasterBoardFiles" parameterType="com.project.domain.File">

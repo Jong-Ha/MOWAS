@@ -54,6 +54,7 @@
                     info.draggedEl.parentNode.removeChild(info.draggedEl);
                 }
             },
+
             eventClick: function (info) {
                 window.open(
                     "/clubCal/getClubCalender?clubCalenderNum=" + info.event.id, "모임 일정 후기글 수정",
@@ -98,6 +99,7 @@
 
         })
         console.log(result_val);
+
         return result_val;
 
     }

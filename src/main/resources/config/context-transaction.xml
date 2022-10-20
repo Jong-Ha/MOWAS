@@ -3,14 +3,15 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:websocket="http://www.springframework.org/schema/mvc"
+       xmlns:beans="http://www.springframework.org/schema/beans"
        xsi:schemaLocation=
                "http://www.springframework.org/schema/beans
 				 http://www.springframework.org/schema/beans/spring-beans.xsd
 				 http://www.springframework.org/schema/tx
 				 http://www.springframework.org/schema/tx/spring-tx.xsd
 				 http://www.springframework.org/schema/aop
-				 http://www.springframework.org/schema/aop/spring-aop.xsd">
+				 http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- PropertyPlaceholderConfigurer 로 로드된 resource 는 ${  } 로 접근 가능 -->
     <bean	id="propertyConfigurer"
@@ -35,6 +36,7 @@
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager" >
         <property name="dataSource" ref="dataSource"/>
     </bean>
+
 
     <!-- Transaction Advice 생성
             :: method : transaction 적용 Method
