@@ -9,17 +9,40 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="JHK 2022.10.18&#10;&#10;회원가입 파일업로드, 유효성검사 보완, 마이페이지 작성">
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="LJH 2022.10.17&#10;&#10;css, js, jsp 구분">
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/myPage/controller/MyPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/myPage/controller/MyPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/main.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/chat.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/chatList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/chatList.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/css/addClub.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/css/getClub.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/css/getClub.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/css/listClub.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/css/listClub.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/js/addClub.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/js/getClub.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/js/getClub.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/js/listClub.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/js/listClub.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubImages/21812e4d-7ea6-4952-9199-58e54c6e509f라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/bak/listCluberApply.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/listCluberApply.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/deleteCluber.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/deleteCluber.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/getClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/getClub.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/gg/clubCalenderReviewList.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listCluber.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listCluber.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listCluberApply.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listCluberApply.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/get/getClubCalenderReview.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/get/getClubCalenderReview.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/list/clubCalenderReviewList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/list/clubCalenderReviewList.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/clubMap.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/clubMap.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/club/service/ClubServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/club/service/ClubServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,32 +55,19 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
-        <option value="Interface" />
-        <option value="HTML File" />
-        <option value="JavaScript File" />
-        <option value="CSS File" />
         <option value="Jsp File" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="JUnit4 Test Class" />
       </list>
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="master" />
+    <option name="BRANCH" value="origin/master" />
   </component>
   <component name="Git.Settings">
-    <excluded-from-favorite>
-      <branch-storage>
-        <map>
-          <entry type="LOCAL">
-            <value>
-              <list>
-                <branch-info repo="$PROJECT_DIR$" source="master" />
-              </list>
-            </value>
-          </entry>
-        </map>
-      </branch-storage>
-    </excluded-from-favorite>
     <option name="PUSH_TAGS">
       <GitPushTagMode>
         <option name="argument" value="--tags" />
@@ -99,57 +109,65 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;16.17.1&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;16.11.64&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Project/MOWAS/src/main/webapp/view/user&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;아티팩트&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.75258917&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;0644e903b0ad21f514b0480754c0a1e2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
+    "last_opened_file_path": "C:/Project/MOWAS/src/main/webapp/resources/images",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "라이브러리",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.12528735",
+    "settings.editor.selected.configurable": "project.propCompiler",
+    "spring.configuration.checksum": "0644e903b0ad21f514b0480754c0a1e2"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;oracle&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "oracle"
     ]
   }
-}</component>
+}]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Project\MOWAS\src\main\webapp\view\user" />
-      <recent name="C:\Project\MOWAS\src\main\webapp\view\myPage" />
-      <recent name="C:\Project\MOWAS\src\main\resources\sql" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\resources\images" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\resources\club\js" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\resources\club\css" />
+      <recent name="C:\Project\MOWAS\src\main\resources\config" />
       <recent name="C:\Project\MOWAS\src\main\webapp\chat" />
-      <recent name="C:\Project\MOWAS\src\main\webapp\layout" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Project\MOWAS\src\main\webapp\resources\images" />
-      <recent name="C:\Project\MOWAS\src\main\webapp\resources\uploadFiles\userImages" />
-      <recent name="C:\Project\MOWAS\src\main\webapp\view\user" />
-      <recent name="C:\Project\MOWAS\src\main\webapp\view\myPage" />
-      <recent name="C:\Project\MOWAS\src\main\webapp\resources\css" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\resources\club" />
+      <recent name="C:\Users\903-15\IdeaProjects\MOWAS\src\main\webapp\view\user" />
+      <recent name="C:\Devspace\MOWAS\src\main\webapp\resources\OpenSource" />
+      <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community\list" />
+      <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community\add" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.project.common.dao" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.project.myPage.service" />
       <recent name="com.project.user.service" />
       <recent name="com.project.user.dao" />
       <recent name="com.project.user.controller" />
       <recent name="com.project.notice.dao" />
+      <recent name="com.project.notice.service" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat 서버.Tomcat 9.0.58">
-    <configuration name="ClubServiceTest.getCluber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.MongoDbDaoImplTest.deleteCluber">
+    <configuration name="ClubServiceTest.updateVoter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MOWAS" />
       <extension name="coverage">
         <pattern>
@@ -159,78 +177,78 @@
       </extension>
       <option name="PACKAGE_NAME" value="club.service" />
       <option name="MAIN_CLASS_NAME" value="club.service.ClubServiceTest" />
-      <option name="METHOD_NAME" value="getCluber" />
+      <option name="METHOD_NAME" value="updateVoter" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ClubServiceTest.listCluber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MongoDbDaoImplTest.addClub" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MOWAS" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="club.service.*" />
+          <option name="PATTERN" value="com.project.common.dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="club.service" />
-      <option name="MAIN_CLASS_NAME" value="club.service.ClubServiceTest" />
-      <option name="METHOD_NAME" value="listCluber" />
+      <option name="PACKAGE_NAME" value="com.project.common.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.project.common.dao.MongoDbDaoImplTest" />
+      <option name="METHOD_NAME" value="addClub" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ClubServiceTest.listCluberApply" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MongoDbDaoImplTest.addCluber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MOWAS" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="club.service.*" />
+          <option name="PATTERN" value="com.project.common.dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="club.service" />
-      <option name="MAIN_CLASS_NAME" value="club.service.ClubServiceTest" />
-      <option name="METHOD_NAME" value="listCluberApply" />
+      <option name="PACKAGE_NAME" value="com.project.common.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.project.common.dao.MongoDbDaoImplTest" />
+      <option name="METHOD_NAME" value="addCluber" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ClubServiceTest.updateClubCalendarApply" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MongoDbDaoImplTest.deleteClub" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MOWAS" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="club.service.*" />
+          <option name="PATTERN" value="com.project.common.dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="club.service" />
-      <option name="MAIN_CLASS_NAME" value="club.service.ClubServiceTest" />
-      <option name="METHOD_NAME" value="updateClubCalendarApply" />
+      <option name="PACKAGE_NAME" value="com.project.common.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.project.common.dao.MongoDbDaoImplTest" />
+      <option name="METHOD_NAME" value="deleteClub" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ClubServiceTest.updateCluber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MongoDbDaoImplTest.deleteCluber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MOWAS" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="club.service.*" />
+          <option name="PATTERN" value="com.project.common.dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="club.service" />
-      <option name="MAIN_CLASS_NAME" value="club.service.ClubServiceTest" />
-      <option name="METHOD_NAME" value="updateCluber" />
+      <option name="PACKAGE_NAME" value="com.project.common.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.project.common.dao.MongoDbDaoImplTest" />
+      <option name="METHOD_NAME" value="deleteCluber" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tomcat 9.0.58" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.58" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="COMMON_VM_ARGUMENTS" value="-Dfile.encoding=UTF-8" />
+    <configuration name="Tomcat 9.0.58" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.58" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="1.8" nameIsGenerated="true">
+      <option name="COMMON_VM_ARGUMENTS" value="-DFile.encoding=UTF-8;-Dconsole.encoding=UTF-8" />
       <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
       <deployment>
@@ -241,7 +259,7 @@
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="5d1078a4-8d78-4118-a728-d99e73c8721e" />
+        <option name="BASE_DIRECTORY_NAME" value="6810ff30-a4ac-43f4-8479-4c28491a2878" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -249,7 +267,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="50935" />
+        <option name="DEBUG_PORT" value="53158" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -319,20 +337,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.ClubServiceTest.getCluber" />
-      <item itemvalue="JUnit.ClubServiceTest.listCluber" />
-      <item itemvalue="JUnit.ClubServiceTest.listCluberApply" />
-      <item itemvalue="JUnit.ClubServiceTest.updateClubCalendarApply" />
-      <item itemvalue="JUnit.ClubServiceTest.updateCluber" />
+      <item itemvalue="JUnit.MongoDbDaoImplTest.addClub" />
+      <item itemvalue="JUnit.MongoDbDaoImplTest.addCluber" />
+      <item itemvalue="JUnit.MongoDbDaoImplTest.deleteClub" />
+      <item itemvalue="JUnit.MongoDbDaoImplTest.deleteCluber" />
+      <item itemvalue="JUnit.ClubServiceTest.updateVoter" />
       <item itemvalue="Tomcat 서버.Tomcat 9.0.58" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ClubServiceTest.updateCluber" />
-        <item itemvalue="JUnit.ClubServiceTest.updateClubCalendarApply" />
-        <item itemvalue="JUnit.ClubServiceTest.listCluberApply" />
-        <item itemvalue="JUnit.ClubServiceTest.listCluber" />
-        <item itemvalue="JUnit.ClubServiceTest.getCluber" />
+        <item itemvalue="JUnit.MongoDbDaoImplTest.deleteCluber" />
+        <item itemvalue="JUnit.MongoDbDaoImplTest.deleteClub" />
+        <item itemvalue="JUnit.MongoDbDaoImplTest.addCluber" />
+        <item itemvalue="JUnit.MongoDbDaoImplTest.addClub" />
+        <item itemvalue="JUnit.ClubServiceTest.updateVoter" />
       </list>
     </recent_temporary>
   </component>
@@ -361,19 +379,15 @@
       <workItem from="1664791732816" duration="7276000" />
       <workItem from="1664799031582" duration="4279000" />
       <workItem from="1664842795721" duration="15620000" />
-      <workItem from="1665101871408" duration="13800000" />
-      <workItem from="1665205163303" duration="12667000" />
-      <workItem from="1665232920730" duration="12301000" />
-      <workItem from="1665245682095" duration="6591000" />
-      <workItem from="1665280971315" duration="19422000" />
-      <workItem from="1665325850457" duration="8794000" />
-      <workItem from="1665375840443" duration="19763000" />
-      <workItem from="1665406219687" duration="3645000" />
-      <workItem from="1665449757216" duration="2068000" />
-      <workItem from="1665452254749" duration="29397000" />
-      <workItem from="1665530452563" duration="66244000" />
-      <workItem from="1665719038843" duration="110715000" />
-      <workItem from="1666174088425" duration="4691000" />
+      <workItem from="1665130668613" duration="190000" />
+      <workItem from="1665130875501" duration="382000" />
+      <workItem from="1665131266802" duration="50000" />
+      <workItem from="1665131327325" duration="7334000" />
+      <workItem from="1665387151403" duration="25398000" />
+      <workItem from="1665454790100" duration="8748000" />
+      <workItem from="1665533657959" duration="27513000" />
+      <workItem from="1665649090993" duration="48206000" />
+      <workItem from="1665935988156" duration="3862000" />
     </task>
     <task id="LOCAL-00001" summary="설정">
       <created>1664436990723</created>
@@ -396,21 +410,28 @@
       <option name="project" value="LOCAL" />
       <updated>1664804126823</updated>
     </task>
-    <task id="LOCAL-00004" summary="BJW 2022.10.09&#10;&#10;댓글 대댓글 등록,수정,삭제하면 uri가 안변하고 화면에 바로 결과 출력 되게 json으로 처리 하였음">
-      <created>1665252557462</created>
+    <task id="LOCAL-00004" summary="LJH 2022.10.06&#10;&#10;컨트롤러 =&gt; jsp 연결 완료&#10;모임, 가입, 모임원, 블랙리스트, 공지사항 컨트롤러 완성&#10;RestController 작업 필요">
+      <created>1665057807442</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1665252557462</updated>
+      <updated>1665057807442</updated>
     </task>
-    <task id="LOCAL-00005" summary="JHK 2022.10.17&#10;&#10;마이페이지 서비스 커밋">
-      <created>1665970425919</created>
+    <task id="LOCAL-00005" summary="LJH 2022.10.17&#10;&#10;css, js, jsp 구분">
+      <created>1665970754672</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1665970425919</updated>
+      <updated>1665970754672</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="LJH 2022.10.19&#10;&#10;feane : jsp 파일 연결">
+      <created>1666146528047</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1666146528047</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -449,7 +470,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="JHK" />
+                        <option value="origin/master" />
                       </list>
                     </value>
                   </entry>
@@ -503,22 +524,13 @@
     <MESSAGE value="BJW 2022.09.30&#10;&#10;mian.jsp / js파일/ css파일 추가" />
     <MESSAGE value="BJW 2022.10.01&#10;&#10;커뮤니티 jsp 완성, navigation 경로 완성" />
     <MESSAGE value="BJW 2022.10.03&#10;&#10;댓글,대댓글,조회수 json으로 처리 calender add성공 pom.xml에 jdbc드라이버 dependency 관개 맷음,&#10;spring-mybatis mybatise 버전 충돌 해결" />
-    <MESSAGE value="BJW 2022.10.09&#10;&#10;댓글 대댓글 등록,수정,삭제하면 uri가 안변하고 화면에 바로 결과 출력 되게 json으로 처리 하였음" />
-    <MESSAGE value="BJW 2022.10.10&#10;&#10;파일 업로드 json으로 처리 하기, 일정 캘린더 api 사용해서 fullcalendar로 display 완성, 캘린더 list로 불러올떄 겹치는 문제 해결해야함&#10;채팅 작업 시작" />
-    <MESSAGE value="JHK 2022.10.13&#10;&#10;회원가입 도로명주소 api 사용, 카카오로그인 구현(정보 받기, 디비저장 아직임)" />
-    <MESSAGE value="JHK 2022.10.17&#10;&#10;마이페이지 서비스 커밋" />
-    <option name="LAST_COMMIT_MESSAGE" value="JHK 2022.10.17&#10;&#10;마이페이지 서비스 커밋" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp</url>
-          <line>86</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="LJH 2022.10.06&#10;&#10;컨트롤러 =&gt; jsp 연결 완료&#10;모임, 가입, 모임원, 블랙리스트, 공지사항 컨트롤러 완성&#10;RestController 작업 필요" />
+    <MESSAGE value="LJH 2022.10.11&#10;&#10;모임 공지사항, 모임 블랙리스트 검색조건 및 페이징 처리&#10;모임원 목록과 탈퇴모임원 보기 나눔&#10;탈퇴 모임원 보기의 경우 페이징 처리&#10;&#10;모임생성, 수정 파일 업로드 및 수정 시 기존 이미지 삭제 구현 완료&#10;모임 공지사항 등록 파일 업로드 구현 완료" />
+    <MESSAGE value="LJH 2022.10.13&#10;&#10;투표 비즈니스 로직 및 기본 jsp, controller 구현&#10;RestController 구현하여 ajax를 이용한 기능 구현 필요" />
+    <MESSAGE value="LJH 2022.10.17&#10;&#10;listClub.jsp 만듬&#10;채팅기능 개선&#10;jsp 백업본 생성" />
+    <MESSAGE value="LJH 2022.10.17&#10;&#10;css, js, jsp 구분" />
+    <MESSAGE value="LJH 2022.10.19&#10;&#10;feane : jsp 파일 연결" />
+    <option name="LAST_COMMIT_MESSAGE" value="LJH 2022.10.19&#10;&#10;feane : jsp 파일 연결" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -2,6 +2,7 @@ package com.project.club.service;
 
 import com.project.club.dao.ClubDao;
 import com.project.common.Search;
+import com.project.common.dao.MongoDbDao;
 import com.project.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,11 +17,17 @@ public class ClubServiceImpl implements ClubService {
     @Qualifier("clubDaoImpl")
     ClubDao clubDao;
 
+    @Autowired
+    @Qualifier("mongoDbDaoImpl")
+    MongoDbDao mongoDbDao;
+
     @Override
     public Club addClub(Club club) {
         clubDao.addClub(club);
         clubDao.addClubMasterNewClub(club);
-        return clubDao.getClub(club);
+        club = clubDao.getClub(club);
+        mongoDbDao.addClub(club.getClubNum(), club.getClubName(), club.getClubMasterId());
+        return club;
     }
 
     @Override
@@ -30,6 +37,7 @@ public class ClubServiceImpl implements ClubService {
 
     @Override
     public void deleteClub(Club club) {
+        mongoDbDao.deleteClub(club.getClubNum());
         clubDao.deleteClub(club);
     }
 
@@ -39,7 +47,7 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public String getCluberCondition(User user, int clubNum) {
+    public Cluber getCluberCondition(User user, int clubNum) {
         Map<String, Object> map = new HashMap<>();
         map.put("user", user);
         map.put("clubNum", clubNum);
@@ -88,7 +96,7 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public void updateCluberApply(int clubNum, int clubUserNum, String result) {
+    public void updateCluberApply(int clubNum, int clubUserNum, String userId, String result) {
         Map<String, Object> map = new HashMap<String, Object>();
 
         map.put("result", result);
@@ -98,6 +106,7 @@ public class ClubServiceImpl implements ClubService {
         clubDao.processCluberApply(map);
         if (result.equals("accept")) {
             clubDao.updateClubNewCluber(clubNum);
+            mongoDbDao.addCluber(clubNum, userId);
         }
     }
 
@@ -125,6 +134,9 @@ public class ClubServiceImpl implements ClubService {
         map.put("kickoutCheck", kickoutCheck);
         clubDao.deleteCluber(map);
         clubDao.updateClubDeleteCluber(cluber.getClubNum());
+        System.out.println(cluber.getClubNum());
+        System.out.println(cluber.getUser().getUserId());
+        mongoDbDao.deleteCluber(cluber.getClubNum(), cluber.getUser().getUserId());
     }
 
     @Override

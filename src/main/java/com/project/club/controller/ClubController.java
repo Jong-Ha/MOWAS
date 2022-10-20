@@ -142,10 +142,10 @@ public class ClubController {
     public String getClub(Model model, @PathVariable int clubNum, HttpSession session) {
         User user = (User) session.getAttribute("user");
         if (user != null) {
-            String cluberStatus = clubService.getCluberCondition(user, clubNum);
-            session.setAttribute(String.valueOf(clubNum), cluberStatus);
+            Cluber currentCluber = clubService.getCluberCondition(user, clubNum);
+            session.setAttribute("currentCluber", currentCluber);
         } else {
-            session.removeAttribute(String.valueOf(clubNum));
+            session.removeAttribute("currentCluber");
         }
         Club club = clubService.getClub(clubNum);
         List<String> tagList = new ArrayList<>();
@@ -320,7 +320,8 @@ public class ClubController {
     }
 
     @RequestMapping(value = "deleteCluber", method = RequestMethod.POST)
-    public String deleteCluber(@ModelAttribute("cluber") Cluber cluber, @RequestParam("kickoutCheck") String kickoutCheck) {
+    public String deleteCluber(@ModelAttribute("cluber") Cluber cluber,@ModelAttribute("user") User user, @RequestParam("kickoutCheck") String kickoutCheck) {
+        cluber.setUser(user);
         clubService.deleteCluber(cluber, kickoutCheck);
         if (kickoutCheck.equals("T")) {
             return "redirect:/club/getCluber/" + cluber.getClubUserNum();

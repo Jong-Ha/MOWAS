@@ -1,0 +1,9 @@
+.buttonClass * {
+    height: 50px;
+    --bs-btn-line-height: 1;
+    --bs-btn-font-size: 15px;
+}
+
+.buttonClass img {
+    height: 32px;
+}

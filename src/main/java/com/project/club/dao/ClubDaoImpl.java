@@ -242,7 +242,7 @@ public class ClubDaoImpl implements ClubDao {
     }
 
     @Override
-    public String getCluberCondition(Map<String, Object> map) {
+    public Cluber getCluberCondition(Map<String, Object> map) {
         return sqlSession.selectOne("ClubMapper.getCluberCondition", map);
     }
 

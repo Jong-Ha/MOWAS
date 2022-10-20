@@ -131,7 +131,7 @@ public class ClubServiceTest {
         int clubUserNum = 10015;
         int clubNum = 10008;
 
-        clubService.updateCluberApply(clubNum, clubUserNum, result);
+//        clubService.updateCluberApply(clubNum, clubUserNum, result);
 
     }
 

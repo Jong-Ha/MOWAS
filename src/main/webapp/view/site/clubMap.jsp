@@ -99,6 +99,7 @@
 </script>
 
 <div class="col-md-4 text-center col-md-offset-1">
+  <input type="text" name="asdf" value="강남1동">
     <button type="button" class="btn btn-primary">확인</button>
 </div>
 
