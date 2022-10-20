@@ -16,7 +16,7 @@
         <result property="price" column="price" jdbcType="INTEGER"/>
         <result property="tag" column="deal_tag" jdbcType="VARCHAR"/>
         <result property="viewCount" column="view_count" jdbcType="INTEGER"/>
-        <result property="user.villCode" column="vill_code" jdbcType="VARCHAR"/>
+        <result property="villCode" column="vill_code" jdbcType="VARCHAR"/>
         <result property="dealId" column="deal_id" jdbcType="VARCHAR"/>
         <result property="dealModeCheck" column="deal_mode_check" jdbcType="CHAR"/>
         <result property="charNum" column="char_num" jdbcType="INTEGER"/>
@@ -128,7 +128,8 @@ values (seq_deal.NEXTVAL,
             review,
             review_pt,
             deal_id
-        vill_code
+        vill_code,
+            deal_status
 from deal
 where deal_board_num=#{dealBoardNum}
     </select>
@@ -165,8 +166,10 @@ where deal_board_num=#{dealBoardNum}
         SELECT deal_board_num,
                user_id,
                deal_title,
-
-               deal_reg_date
+               vill_code,
+               deal_reg_date,
+               price,
+               deal_status
 
         FROM deal
         WHERE board_category = #{boardCategory}
@@ -254,7 +257,7 @@ where deal_board_num=#{dealBoardNum}
 <set>
             review=#{review},
            review_pt=#{reviewPt},
-           deal_status=3,
+           deal_status='2',
            deal_id=#{dealId}
 </set>
 <where>deal_board_num=#{dealBoardNum}</where>
