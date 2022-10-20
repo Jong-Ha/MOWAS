@@ -16,12 +16,11 @@ import org.springframework.web.bind.annotation.*;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.*;
+import javax.mail.internet.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,12 +30,16 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static com.project.common.KakaoMapApi.coordToAddress;
 
 @RestController
 @RequestMapping("/user/json/*")
 public class UserRestController {
+
+
 
     @Autowired
     @Qualifier("userServiceImpl")
@@ -45,23 +48,59 @@ public class UserRestController {
     @RequestMapping(value = "checkDupRrd", method = RequestMethod.POST)
     public Map<String, Object> checkDupRrd(@RequestParam String rrd) throws Exception {
         System.out.println("json/checkDupRrd : POST 실행");
-        System.out.println("rrd의 값1 : " + rrd);
         boolean result = userService.checkDupRrd(rrd);
-        System.out.println("rrd의 값2 : " + rrd);
+
         Map<String, Object> map = new HashMap<String, Object>();
 
         map.put("result", new Boolean(result));
         System.out.println("result의 값 : " + result);
         map.put("rrd", rrd);
-        System.out.println("rrd의 값3 : " + rrd);
+        System.out.println("rrd의 값 : " + rrd);
         return map;
+    }
+
+    @RequestMapping(value = "userId", method = RequestMethod.POST)
+    public boolean userId(@RequestParam String userId) throws Exception {
+        System.out.println("json/userName : POST 실행");
+        System.out.println("userId 값 : " + userId);
+        boolean result = userService.checkDupId(userId);
+
+        return result;
+    }
+
+    @RequestMapping(value = "password", method = RequestMethod.POST)
+    public boolean password(@RequestParam String password) throws Exception {
+        System.out.println("json/password : POST 실행");
+        System.out.println("password 값 : " + password);
+
+        String patten = "^[A-Za-z[0-9]]{8,16}$";
+        boolean result = Pattern.matches(patten, password);
+
+
+        return result;
+    }
+    @RequestMapping(value = "password2", method = RequestMethod.POST)
+    public boolean password2(@RequestParam String password, @RequestParam String password2) throws Exception {
+        System.out.println("json/password2 : POST 실행");
+        System.out.println("password 값 : " + password);
+        System.out.println("password2 값 : " + password2);
+
+        if(password.equals(password2)){
+            boolean result =true;
+            System.out.println("result값"+result);
+            return result;
+        }else {
+            boolean result =false;
+            System.out.println("result값"+result);
+            return result;
+        }
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public User login(@RequestBody User user, HttpSession session, HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
         System.out.println("/user/json/login : POST 실행");
         System.out.println("user의 값은? : " + user);
-
+/*
         Cookie lastDate= null;
         String msg ="";
         boolean found = false;
@@ -98,7 +137,7 @@ public class UserRestController {
         }
 
         System.out.println("msg : "+msg);
-
+*/
         try {
             User dbVO = userService.loginUser(user);
             System.out.println("dbVO 값은? : " + dbVO);
@@ -126,47 +165,48 @@ public class UserRestController {
         session.removeAttribute("user");
     }
 
-    @RequestMapping(value = "interListControl", method = RequestMethod.POST)
-    public void interListControl(@RequestBody UserInterList interList) throws Exception {
-        System.out.println("여기는 interListControl 시작이다");
+    @RequestMapping(value = "addinterList", method = RequestMethod.POST)
+    public void addinterList(@RequestBody UserInterList interList) throws Exception {
+        System.out.println("여기는 addinterList 시작이다");
         System.out.println("interList의 값은 ? :" + interList);
 
         userService.addInterList(interList);
-        System.out.println("여기는 interListControl 종료이다");
+        System.out.println("여기는 addinterList 종료이다");
+
     }
 
-    @RequestMapping(value = "deleteInter", method = RequestMethod.POST)
-    public void deleteInter(@RequestBody UserInterList interList) throws Exception {
-        System.out.println("여기는 deleteInter 시작이다");
-        System.out.println("interList의 값은 ? :" + interList);
+        @RequestMapping(value = "deleteInter", method = RequestMethod.POST)
+        public void deleteInter(@RequestBody UserInterList interList) throws Exception {
+            System.out.println("여기는 deleteInter 시작이다");
+            System.out.println("interList의 값은 ? :" + interList);
 
-        userService.deleteInterList(interList);
-        System.out.println("여기는 deleteInter 종료이다");
-    }
-/*
-    @RequestMapping(value = "psd7", method = RequestMethod.POST)
-    public Map<String, Object> psd7(@RequestBody Map<String, Object> map) throws Exception {
-        System.out.println("여기는 psd7컨트롤 시작이다");
-        System.out.println("psd의 값은 ? :" + map.get("psd"));
-        System.out.println("pptDate의 값은 ? :" + map.get("pptDate"));
-        System.out.println("ped의 값은 ? :" + map.get("ped"));
+            userService.deleteInterList(interList);
+            System.out.println("여기는 deleteInter 종료이다");
+        }
+    /*
+        @RequestMapping(value = "psd7", method = RequestMethod.POST)
+        public Map<String, Object> psd7(@RequestBody Map<String, Object> map) throws Exception {
+            System.out.println("여기는 psd7컨트롤 시작이다");
+            System.out.println("psd의 값은 ? :" + map.get("psd"));
+            System.out.println("pptDate의 값은 ? :" + map.get("pptDate"));
+            System.out.println("ped의 값은 ? :" + map.get("ped"));
 
-        String pptDate = map.get("pptDate").toString();
+            String pptDate = map.get("pptDate").toString();
 
-        String psd = map.get("psd").toString().substring(0,11).replace("-","");
-        String ped = map.get("ped").toString().substring(0,11).replace("-","");
+            String psd = map.get("psd").toString().substring(0,11).replace("-","");
+            String ped = map.get("ped").toString().substring(0,11).replace("-","");
 
-        System.out.println("psd의 값은? "+psd);
-        System.out.println("ped의 값은? "+ped);
-        System.out.println("pptDate의 값은? "+pptDate);
+            System.out.println("psd의 값은? "+psd);
+            System.out.println("ped의 값은? "+ped);
+            System.out.println("pptDate의 값은? "+pptDate);
 
-        map.put("psd", psd);
-        map.put("ped", ped);
-        map.put("pptDate", pptDate);
-        System.out.println("여기는 psd7컨트롤 종료이다");
-        return map;
-    }
-*/
+            map.put("psd", psd);
+            map.put("ped", ped);
+            map.put("pptDate", pptDate);
+            System.out.println("여기는 psd7컨트롤 종료이다");
+            return map;
+        }
+    */
     @RequestMapping(value = "checkAddress", method = RequestMethod.POST)
     public boolean checkAddress(@RequestBody Map<String, String> map)throws Exception{
         System.out.println("villCode의 값은 ? :"+map.get("villCode"));
@@ -248,6 +288,57 @@ public class UserRestController {
 
         System.out.println("여기는 mailSender 컨트롤러 종료이다");
     }
+
+    @RequestMapping(value = "mailImage",method = RequestMethod.POST)
+    public void mailImage(HttpServletRequest request, ModelMap mo,@RequestParam(value="email", required = false)String email) throws AddressException, MessagingException {
+
+        System.out.println("여기는 mailImage 컨트롤러 시작이다");
+        System.out.println("email의 값은? : " + email);
+
+        try{
+            final String fromEmail = "gmltjs6550"; //requires valid gmail id
+            final String password = "djaqk6550!"; // correct password for gmail id
+            final String toEmail = email; // can be any email id
+
+            System.out.println("TLSEmail Start");
+            Properties props = new Properties();
+            props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
+            props.put("mail.smtp.port", "587"); //TLS Port
+            props.put("mail.smtp.auth", "true"); //enable authentication
+            props.put("mail.smtp.starttls.enable", "true"); //enable STARTTLS
+
+            //create Authenticator object to pass in Session.getInstance argument
+            Authenticator auth = new Authenticator() {
+                //override the getPasswordAuthentication method
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(fromEmail, password);
+                }
+            };
+            Session session = Session.getInstance(props, auth);
+
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(fromEmail));
+            message.addRecipient(javax.mail.Message.RecipientType.TO, new InternetAddress(toEmail));
+
+            System.out.println("Mail Check 2");
+
+            message.setSubject("Oil Error Report");
+            message.setText("emailMessage");
+
+            System.out.println("Mail Check 3");
+
+            Transport.send(message);
+            System.out.println("Mail Sent");
+        }catch(Exception ex){
+            System.out.println("Mail fail");
+            System.out.println(ex);
+        }
+
+
+
+        System.out.println("여기는 mailSender 컨트롤러 종료이다");
+    }
+
 
 
     @RequestMapping(value = "smsSend", method = RequestMethod.POST)

@@ -16,34 +16,51 @@
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 
     <style>
-    .wap{ width: 800px; }
-    tr { height:30px; }
+    .wap{ width: 400px; }
+    tr { height:40px; }
     td { border-bottom:1px solid #CCC; font-size:12px; }
     span { cursor:pointer }
     </style>
   <script type="text/javascript">
 
-    $(function (){
-      $(".emailKey").on("click",function (){
-        alert('이메일인증버튼?');
-        $.ajax({
-          url: "/user/json/mailSender",
-          method :"POST",
-          data: {
-            email : $(".userEmail").val()
-          },
-          dataType :"json",
-          success : function ({JSONData, status}){
-            alert(status);
-            $(".emailYC").css("display",'');
-          }
+    $(function () {
+        $(".emailKey").on("click", function () {
+            $.ajax({
+                url: "/user/json/mailSender",
+                method: "POST",
+                data: {
+                    email: $(".userEmail").val()
+                },
+                dataType: "json",
+                success: function ({JSONData, status}) {
+                    console.log(status);
+                    $(".emailYC").css("display", '');
+                }
+            });
         });
-        alert('ajax 종료');
-        //$("form").attr("method", "POST").attr("action", "/user/mailSender").submit();
-         // self.location="/user/mailSender";
-      });
+
+
+
+            $(".emailImage").on("click", function () {
+
+                $.ajax({
+                    url: "/user/json/mailImage",
+                    method: "POST",
+                    data: {
+                        email: $(".userEmail").val()
+                    },
+                    dataType: "json",
+                    success: function ({JSONData, status}) {
+                        console.log(status);
+                        $(".emailYC").css("display", '');
+                    },
+                    error: function () {
+                        console.log('인증실패!');
+                    }
+                });
+            });
+
       $(".smsKey").on("click",function (){
-        alert('문자인증버튼?');
         $.ajax({
           url : "/user/json/smsSend",
           method: "POST",
@@ -55,14 +72,13 @@
             $(".smsYC").css("display",'');
           }
         });
-        alert('ajax 종료');
-        //$("form").attr("method", "POST").attr("action", "/user/smsSend").submit();
-        // self.location="/user/mailSender";
       });
 
       $(".CheckEmailKey2").on("click",function (){
         var CheckEmailKey = $(".CheckEmailKey").val();
          alert(CheckEmailKey);
+         var emailNo = ${no.emailNo}
+             alert("랜덤 이메일 인증번호 :"+emailNo);
         if(CheckEmailKey!=1234){
           $('.emailInfor').css('display','');
         }else{
@@ -79,56 +95,34 @@
         }
       });
 
-       $(".CheckRrd").on("click",function (){
-         var rrdCheck=$("input[name='rrd']").val();
-         alert(rrdCheck)
+       $("#rrd").on("keyup",function (){
+         var rrd=$("input[name='rrd']").val();
            $.ajax({
                      url: "/user/json/checkDupRrd",
                    method : "POST",
                   data :{
-                  rrd : rrdCheck
+                  rrd : rrd
                     },
              dataType: "json",
              success :
                 function (map) {
-                  alert(map)
-                  if (map.result) {
-                    $(".rrdtext").show();
-                    $(".rrdtext").html('회원가입할 수 있습니다');
+                  if (map.result==true) {
+                    $("#rrdChk").css("display", 'none');
                   } else {
-                    $(".rrdtext").show();
-                    $(".rrdtext").html('이미 가입한 회원입니다');
+                    $("#rrdChk").css("display", "");
                   }
                 }
                 });
-         alert('이건되낭?')
               });
+      /*
+            $(".addInter").on("click", function (){
+              $("#oridata input[type=checkbox]:checked").filter(function() {
+                $("#movedata").append("<tr>" + $(this).parent().parent().html() + "</tr>");
+                $(this).parent().parent().remove();
+              });
+            });
 
-      $(".addInter").on("click", function (){
-        $("#oridata input[type=checkbox]:checked").filter(function() {
-          $("#movedata").append("<tr>" + $(this).parent().parent().html() + "</tr>");
-          $(this).parent().parent().remove();
-        });
-      });
-/*
-          $.ajax({
-            url : "/user/json/interListControl",
-            method : "POST",
-            data : JSON.stringify({
-              userId : $(".userId").val(),
-              interList : $('#oridata input[type=checkbox]:checked').val()
-            }),
-            contentType : "application/json",
-            dataType : "json",
-            success : function (){
-              alert('디비저장성공');
-            },
-            error : function (){
-              alert('디비저장실패');
-            }
-          });
 
- */
 
       $(".removeInter").on("click", function () {
         $("#movedata input[type=checkbox]:checked").filter(function() {
@@ -136,24 +130,73 @@
           $(this).parent().parent().remove();
         });
       });
-      /*
+      ///*
+
+          */
+
+      $("#userId").on("keyup",function (){
           $.ajax({
-            url : "/user/json/deleteInter",
-            method : "POST",
-            data : JSON.stringify({
-              userId : $(".userId").val(),
-              interList : $('#oridata input[type=checkbox]:checked').val()
-            }),
-            contentType : "application/json",
-            dataType : "json",
-            success : function (){
-              alert('디비삭제성공');
+            url: "/user/json/userId",
+            method: "POST",
+            data: {
+              userId: $("#userId").val()
             },
-            error : function (){
-              alert('디비삭제실패');
+            dataType: "json",
+            success: function (result) {
+              if (result==true) {
+                $("#idChk").css("display", 'none');
+
+              } else {
+                $("#idChk").css("display", "");
+              }
+            },
+            error: function () {
+              alert('아이디유효성검사실패');
             }
           });
-          */
+      })
+        $("#password").on("keyup",function () {
+          $.ajax({
+            url: "/user/json/password",
+            method: "POST",
+            data: {
+              password : $("#password").val()
+            },
+            dataType: "json",
+            success: function (result) {
+              if (result == true) {
+                $("#passwordChk").css("display", 'none');
+              } else {
+                $("#passwordChk").css("display", "");
+              }
+            },
+            error: function () {
+              alert('비밀번호유효성검사실패');
+            }
+          });
+        })
+          $("#password2").on("keyup",function (){
+            $.ajax({
+              url: "/user/json/password2",
+              method: "POST",
+              data: {
+                password : $("#password").val(),
+                password2: $("#password2").val()
+              },
+              dataType: "json",
+              success: function (result) {
+                if (result==true) {
+                  $("#password2Chk").css("display", 'none');
+                } else {
+                  $("#password2Chk").css("display", "");
+                }
+              },
+              error: function () {
+                alert('비밀번호확인 유효성검사실패');
+              }
+            });
+      });
+
 
       $("form").on("submit",function (){
 
@@ -162,10 +205,11 @@
         var pw2=$("input[name='password2']").val();
         var name=$("input[name='userName']").val();
         var rrd=$("input[name='rrd']").val();
-        var male=$("input[name='gender']:checked").val();
-        var female=$("input[name='gender']:checked").val();
-        var email=$("input[id='CheckEamil']").val();
-        var phone=$("input[id='CheckPhone']").val();
+        var male=$("#male").val();
+        var female=$("#femail").val();
+        var email=$("#CheckEamil").val();
+        var phone=$("#CheckPhone").val();
+        var interList=$("input[name='interList']").val();
 
 
         if(id == null || id.length <1){
@@ -182,7 +226,7 @@
         }
         if(name == null || name.length <1){
           alert("이름은  반드시 입력하셔야 합니다.");
-          return false;
+          return false;//해당 메서드(펑션)을 종료한다
         }
 
         if( pw != pw2 ) {
@@ -194,27 +238,23 @@
           alert("주민등록번호는  반드시 입력하셔야 합니다.");
           return false;
         }
-        if(male.length <1 && female.length <1){
+/*
+
+
+        if(male.is("checked")==false || female.is("checked")==false){
           alert("성별은  반드시 입력하셔야 합니다.");
           return false;
         }
-        if(email.length <1 && phone.length <1){
-          alert("이메일 또는 휴대폰번호 인증은 반드시 인증하셔야 합니다.");
+        if(email.is("checked")==false || phone.is("checked")==false){
+          alert("이메일 또는 휴대폰번호는 반드시 인증하셔야 합니다.");
           return false;
         }
-        // if(addressView == null){
-        //   alert("동네인증은 반드시 인증하셔야 합니다.");
-        //   return false;
-        // }
-
-        var address="";
-        if($("#address").val() !="" && $("#addressDetail").val() !="") {
-          var address = $("#address").val() + " " + $("#addressDetail").val();
+        if($("#addChk").val()==false){
+          alert("동네인증은 반드시 인증하셔야 합니다.");
+          return false;
         }
 
-        console.log('address');
-
-
+*/
         $("form").attr("method","POST").attr("action","/user/addUser").submit();
 
       });
@@ -224,12 +264,6 @@
           history.go(-1);
         });
       });
-
-
-
-
-
-
 
     });
 
@@ -442,26 +476,35 @@
       <hr>
 
 
-    <form class="needs-validation" novalidate>
+    <form class="needs-validation" novalidate enctype="multipart/form-data">
       <div class="row g-3">
         <div class="col-sm">
-          <label for="id" class="form-label">아이디</label>
-          <input type="text" class="form-control userId" id="Id" name="userId" maxLength="20" required>
+          <label for="userId" class="form-label">아이디</label>
+          <input type="text" class="form-control" id="userId" name="userId" maxLength="20" required>
         </div>
 
+        <span id="idChk" style="display: none;">
+                <strong class="text-danger" >이미 가입된 아이디입니다</strong>
+        </span>
         <div class="col-12">
           <label for="password" class="form-label">비밀번호</label>
           <div class="input-group has-validation">
-            <input type="password" class="form-control" id="password" name="password"  required>
+            <input type="password" class="form-control" id="password" name="password" maxLength="16" required>
           </div>
         </div>
+        <span id="passwordChk" style="display: none;">
+                <strong class="text-danger" >영문,숫자 혼합, 8~16글자로 입력해주세요</strong>
+        </span>
 
         <div class="col-12">
           <label for="password2" class="form-label">비밀번호 확인</label>
           <div class="input-group has-validation">
-            <input type="password" class="form-control" id="password2" name="password2"  required>
+            <input type="password" class="form-control" id="password2" name="password2" maxLength="16" required>
           </div>
         </div>
+        <span id="password2Chk" style="display: none;">
+                <strong class="text-danger" >비밀번호가 틀렸습니다</strong>
+        </span>
 
         <div class="col-12">
           <label for="userName" class="form-label">이름</label>
@@ -472,12 +515,14 @@
 
         <div class="col-12 ">
           <label for="rrd" class="form-label">주민등록번호</label>
-          <div input="hidden" class="rrdtext" ></div>
           <div class="input-group has-validation">
             <input type="text" class="form-control" id="rrd" name="rrd"  required>
           </div>
-          <button type="button" class="btn btn-primary btn-sm CheckRrd">중복 확인</button>
-        </div>
+            <span id="rrdChk" style="display: none;" >
+              <strong class="text-danger" >이미 가입한 회원입니다</strong>
+              </span>
+
+
 
 
         <div class="col-12">
@@ -495,6 +540,7 @@
           <input type="email" class="form-control userEmail" id="email" name="email" >
           <input type="text" class="form-control CheckEmailKey" placeholder="인증번호 입력"  >
           <button type="button" class="btn btn-primary btn-sm emailKey">인증번호 요청</button>
+            <button type="button" class="btn btn-primary btn-sm emailImage">인증번호 이미지 요청</button>
           <button type="button" class="btn btn-secondary btn-sm CheckEmailKey2">인증 확인</button>
           <span class="emailInfor" style="display: none;">
                 <strong class="text-danger" >인증번호가 틀렸습니다</strong>
@@ -547,9 +593,10 @@
         <div style="height:5px;"></div>
 
 
-
+<div>
+        <input class="form-check-input" type="checkbox"  id="addChk" disabled="disabled" >
         <button type="button" class="btn btn-primary btn-sm" id="checkAddress" name="checkAddress">동네인증 요청</button>
-
+</div>
         <div class="col-12">
           <input type="hidden" class="form-control" id="addressTrue" value="동네인증 되었습니다" readonly>
         </div>
@@ -613,6 +660,7 @@
                     if(result==true) {
                       $("#addressTrue").attr("type","text").css("color","red");
                       $("#map").fadeOut();
+                      $("#addChk").prop("checked",true);
                     }else {
                       $("#addressFalse").attr("type","text").css("color","red");
                     }
@@ -670,105 +718,32 @@
 
 
 
-
-
       <div class="col-12">
-        관심목록 선택(최대 13개)
+        <label for="file" class="form-label">회원 사진 등록 *선택사항*</label>
+        <input type="file" id="file" name="file" >
       </div>
 
-      <div >
-      <div style="float:left; padding:5px; border:1px solid #000; width:140px; height:400px;">
-        <table id="oridata" class="interList" cellspacing="0" cellpadding="0" width="100%">
-          <tr>
-            <td><input type="checkbox"  id="list1" name="interList" value="01"/></td>
-            <td>스포츠</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="list2" name="interList" value="02"/></td>
-            <td>반려동물</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="list3" name="interList" value="03"/></td>
-            <td>음악</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="list4" name="interList" value="04"/></td>
-            <td>독서</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="list5" name="interList" value="05"/></td>
-            <td>게임</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="list6" name="interList" value="06"/></td>
-            <td>육아</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="list7" name="interList" value="07"/></td>
-            <td>공연</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="list8" name="interList" value="08"/></td>
-            <td>공예</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="list9" name="interList" value="09"/></td>
-            <td>댄스</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="list10" name="interList" value="10"/></td>
-            <td>자동차</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="list11" name="interList" value="11"/></td>
-            <td>사진</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="list12" name="interList" value="12"/></td>
-            <td>여행</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="list13" name="interList" value="13"/></td>
-            <td>기타</td>
-          </tr>
-        </table>
-      </div>
-
-      <div style="float:left; padding:5px; padding-top:130px;">
-        <span input="button" class="addInter">▶</span>
-        <br />
-        <span input="button" class="removeInter">◀</span>
-      </div>
-
-      <div style="float:left; padding:5px; border:1px solid #000; width:140px; height:400px;">
-        <table id="movedata" cellspacing="0" cellpadding="0" width="100%">
-        </table>
-      </div>
-      </div>
-
-      <div class="col-12">
-        <label for="userImage" class="form-label">회원 사진 등록 *선택사항*</label>
-        <input type="file" id="userImage" name="userImage">
-      </div>
 
       <div class="hiddem">
+        <input type="hidden" id="interListCheck" value="true">
         <input type="hidden" class="masterCheck" name="masterCheck" value="1">
         <input type="hidden" class="userStatus" name="userStatus" value="1">
         <input type="hidden" class="lcd" name="lcd" value="2022-10-10">
-        <input type="hidden" class="loginCheck" name="loginCheck" value="1">
         <input type="hidden" class="psd" name="psd" value="">
         <input type="hidden" class="ped" name="ped" value="">
         <input type="hidden" class="ppt" name="ppt" value="0">
         <input type="hidden" class="reviewPt" name="reviewPt" value="0">
-        <input type="hidden" class="logintype" name="logintype" value="1">
+        <input type="hidden" class="loginType" name="loginType" value="1">
+        <input type="hidden" id="idcheck" value="false">
       </div>
 
 
       <hr>
             <div class="col-12">
             <button class="w-100 btn btn-primary btn-lg cancle" type="button"> 취소</button>
-            <button class="w-100 btn btn-primary btn-lg addUser" type="submit"> 회원가입</button>
+            <button class="w-100 btn btn-primary btn-lg addUser" type="submit"> 관심목록 선택</button>
           </div>
+        </div>
       </div>
     </form>
 

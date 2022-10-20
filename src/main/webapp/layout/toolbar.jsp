@@ -6,15 +6,27 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<script>
+<%@ page import="com.project.domain.User" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
 
   $(function () {
-    $(".login").on("click", function () {
+    $("#login1").on("click", function () {
       self.location = "/view/user/login.jsp";
     });
   });
-
+  $(function () {
+    $("#logout").on("click", function () {
+      self.location = "/user/logout";
+    });
+  });
+  $(function () {
+    $("#myPage").on("click", function () {
+      var userId = $("#modelUser").val();
+      self.location = "/myPage/getMyPage?userId="+userId;
+    });
+  });
 </script>
 <html>
 <head>
@@ -84,19 +96,34 @@
         <img src="${pageContext.request.contextPath}/resources/images/pngwing.png" style="width: 30px; margin-right: 10px;">
         <div class="login">
           <div class="d-grid gap-2">
-            <button type="button" class="btn btn-outline-primary btnlf loginbox login" style="font-size: 0.5em;">로그인</button>
-            <button class="btn btn-outline-success btnlf loginbox" style="font-size: 0.5em;" type="submit">마이패이지</button>
+            <%
+              User users =(User)session.getAttribute("user");
+              User naverUser =(User)session.getAttribute("naverUser");
+              User naverUser2 =(User)session.getAttribute("naverUser2");
+
+
+              if(users==null && naverUser==null && naverUser2==null){%>
+            <button type="button" class="btn btn-outline-primary btnlf loginbox" id="login1" style="font-size: 0.5em;">로그인</button>
+            <%}else{%>
+            <button type="button" class="btn btn-outline-primary btnlf loginbox" id="logout">로그아웃</button>
+            <button class="btn btn-outline-success btnlf loginbox" style="font-size: 0.5em;" id="myPage" type="button">마이페이지</button>
+            <%}%>
+
+
           </div>
         </div>
+      </div>
+      <div><input type="hidden" id="modelUser" name="userId" value="${user.userId}"></div>
+    </div>
         <button type="button" class="btn btn-primary position-relative alrim" style="font-size: 0.5em;">
           Inbox
           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
           99+</span>
 
         </button>
-      </div>
-    </div>
   </nav>
+  </div>
+    </div>
 </div>
 
 </body>

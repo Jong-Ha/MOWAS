@@ -13,8 +13,9 @@
 <head>
     <title>List MasterBoard</title>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
     <!-- Bootstrap -->
-    <link href="bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
     <!--  ///////////////////////// CSS ////////////////////////// -->
     <style>
@@ -107,6 +108,16 @@
                 $(self.location).attr("href", "/site/listCommunityReport");
             });
 
+            $( ".clubReport" ).on("click" , function() {
+
+                $(self.location).attr("href", "/site/listClubReport");
+            });
+
+            $( ".clubMap" ).on("click" , function() {
+
+                $(self.location).attr("href", "/view/site/clubMap.jsp");
+            });
+
             //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
             $("a[href='#' ]").on("click" , function() {
                 $("form")[0].reset();
@@ -118,6 +129,7 @@
 </head>
 
 <body>
+
 <div class="container">
 
     <div class="page-header text-info">
@@ -167,9 +179,9 @@
         <thead>
             <tr>
                 <th width="10%">번호</th>
-                <th width="50%" >제목</th>
-                <th width="10%">작성자</th>
-                <th width="10%">날짜</th>
+                <th width="40%" >제목</th>
+                <th width="15%">작성자</th>
+                <th width="15%">날짜</th>
                 <th width="10%">상세보기</th>
             </tr>
         </thead>
@@ -206,6 +218,8 @@
         <button type="button" class="addMb" >추 가</button>
         <a class="btn btn-default btn" href = "#" role="button">취 소 </a>
         <button type="button" class="commReport" >커뮤니티신고</button>
+        <button type="button" class="clubReport" >모임신고</button>
+        <button type="button" class="clubMap" >클럽맵 Test</button>
     </div>
 
     </body>

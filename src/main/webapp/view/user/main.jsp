@@ -24,7 +24,7 @@
     		text-align: -webkit-center;
     	}
     	.wap{
-    		 width: 1000px;    		
+    		 width: 1000px;
     	}
     	.topbar{
     		margin-bottom: 70px;
@@ -67,25 +67,8 @@
 			 background-color: #fff;
     		}
     </style>
-    <script type="text/javascript">
-        $(function () {
-            $(".login").on("click", function () {
-                self.location = "/view/user/login.jsp";
-            });
-        });
+  <script type="text/javascript">
 
-        $(function () {
-            $(".logout").on("click", function () {
-                self.location = "/user/logout";
-            });
-        });
-        $(function () {
-            $("#myPage").on("click", function () {
-                var userId = $("#modelUser").val();
-                alert('유저아이디'+userId);
-                self.location = "/myPage/getMyPage?userId="+userId;
-            });
-        });
 
     </script>
   </head>
@@ -93,7 +76,11 @@
 
     <!-- Example Code -->
    <div class="wap">
-   
+
+       <%--상단 툴바--%>
+       <jsp:include page="/layout/toolbar.jsp"/>
+
+           <%--
    <div class="topbar">
     <nav class="shadow-lg navbar navbar-expand-lg bg-light">
       <div class="container-fluid">
@@ -124,7 +111,7 @@
               <a class="nav-link disabled">Link</a>
             </li>
           </ul>
-          	<img src="pngwing.png" style="width: 30px; margin-right: 10px;">
+          	<img src="/resources/images/pngwing.png" style="width: 30px; margin-right: 10px;">
           	<div class="loginButton">
 		        <div class="d-grid gap-2">
                     <%
@@ -159,6 +146,7 @@
       </div>
     </nav>
     </div>
+           -->
     
     <div class="shadow-lg midle" style="margin-bottom: 50px;">
      <div id="carouselExampleDark" class=" shadow-lg carousel carousel-dark slide" data-bs-ride="carousel">
@@ -205,8 +193,9 @@
         <span class="visually-hidden">Next</span>
       </button>
     </div>
+
    </div>
-   
+ --%>
    <nav class="shadow-lg navbar navbar-expand-lg bg-light" style="margin-bottom: 50px;">
    	    <button type="button" class="btn btn-outline-primary btnlf">모임 목록</button>
         <button class="btn btn-outline-success btnlf" type="submit">판매 구매 게시글</button>

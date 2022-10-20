@@ -72,40 +72,25 @@ public class ClubCalendarRestController<list> {
     @RequestMapping("addClubCalenderReview")
     public int addClubCalenderReview(@RequestBody ClubCalendarReview calenderReview
             , HttpSession session) {
+
         System.out.println("모임 일정 등록 : " + calenderReview);
 
         User user = (User) session.getAttribute("user");
 
-        calenderReview.setClubCalenderNum(10001);
-
         calenderReview.setUserId(user.getUserId());
-
-        calenderReview.setClubNum(10002);
 
         /*category로 유효성 check*/
         if (calenderReview.getBoardCategory() == 1) {
+
              calenderService.addCalenderReview(calenderReview);
+
         } else if (calenderReview.getBoardCategory() == 2) {
+
              calenderService.addCalenderReview(calenderReview);
         }
+
         System.out.println("boardNum의 정보 : :" + calenderReview.getClubCalenderReviewNum());
 
-        /*파일 업로드*/
-        /*  List<Map<String, String>> fileList = new ArrayList<>();
-        for (int i = 0; i < file.size(); i++) {
-            String fileName = file.get(i).getOriginalFilename();
-            System.out.println("파일 이름 : " + fileName);
-            Map<String, String> map = new HashMap<>();
-            map.put("fileName", fileName);
-            fileList.add(map);
-
-            try {
-                file.get(i).transferTo(new File("/uploadFiles/" + fileList.get(i).get("fileName")));
-                System.out.println("업로드 성공");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }*/
         return calenderReview.getClubCalenderReviewNum();
     }
 
@@ -145,8 +130,18 @@ public class ClubCalendarRestController<list> {
 
         List<Map<String, String>> fileList = new ArrayList<>();
 
+        String fileName = null;
         for (int i = 0; i < file.size(); i++) {
-            String fileName = "/uploadFiles/"+UUID.randomUUID()+file.get(i).getOriginalFilename();
+
+            if(boardCategory.equals("01") || boardCategory.equals("02") ) {
+
+                fileName = "/uploadFiles/clubCalendarReviewFiles/" + UUID.randomUUID() + file.get(i).getOriginalFilename();
+
+            } else if (boardCategory.equals("03")) {
+
+                fileName = "/uploadFiles/villBoardFiles/" + UUID.randomUUID() + file.get(i).getOriginalFilename();
+            }
+
             System.out.println("파일 이름 : " + fileName);
             Map<String, String> map = new HashMap<>();
             map.put("fileName", fileName);

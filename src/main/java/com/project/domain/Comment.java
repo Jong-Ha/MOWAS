@@ -20,5 +20,6 @@ public class Comment {
     private String commentText;
     private Date regDate;
     private List<Recomment> recommentList;
+    private int likeCount;
 
 }
