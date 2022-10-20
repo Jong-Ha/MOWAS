@@ -80,7 +80,8 @@ var room = mongoose.Schema({
     users: [{userId: 'string', regDate: 'number'}],
     roomId: 'string',
     chatCategory: 'string',
-    roomName: 'string'
+    roomName: 'string',
+    boardNum: 'number'
 });
 
 //moongoDB에 Schema 생성
@@ -106,6 +107,8 @@ chatlist.on('connection', (socket) => {
 
     const userId = socket.handshake.query.userId
     const chatCategory = socket.handshake.query.chatCategory
+    console.log(userId)
+    console.log(chatCategory)
 
     Room.find({'users.userId': userId, chatCategory: chatCategory}, function (error, room) {
 
@@ -172,7 +175,7 @@ onebyone.on('connection', (socket) => {
                     userId: userId2,
                     regDate: moment(new Date())
                 }],
-                roomId: roomId, chatCategory: 'onebyone', roomName: roomId
+                roomId: roomId, chatCategory: 'onebyone', roomName: roomId, boardNum:0
             })
             result.save(function(error, result){
 

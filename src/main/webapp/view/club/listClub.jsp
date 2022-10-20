@@ -34,8 +34,16 @@ ${user.userId}
 <%--상단 툴바--%>
 <jsp:include page="/layout/toolbar.jsp"/>
 
+<div class="wrapper">
+    <div class="typing">
+        <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
+                    background-image: linear-gradient(transparent 60%, #F8CD07 40%);">
+            모임 찾기</h4>
+    </div>
+</div>
 <!-- Example Code -->
 <div class="wap">
+    <input type="hidden" class="userId" value="${user.userId}">
 
     <form id="listForm">
         <div style="display: none" class="tagForm">
@@ -59,6 +67,11 @@ ${user.userId}
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                        <div>
+                            <label>
+                                <input type="checkbox" class="totalInterList"> 전체선택
+                            </label>
+                        </div>
                         <div class="interList">
                             <label>
                                 <input type="checkbox" name="searchInterList" value="01"> 독서
@@ -171,6 +184,7 @@ ${user.userId}
             </div>
         </div>
     </c:if>
+
     <div class="listClub" style="display: grid;grid-template-columns: 1fr 1fr 1fr;">
         <c:forEach var="club" items="${list}">
             <div class="row row-cols-1 row-cols-md-3 g-4 cardbox">
@@ -225,79 +239,81 @@ ${user.userId}
     </div>
 
     <%--모임 만들기 모달창 시작--%>
-    <div class="modal fade" id="addClub" tabindex="-1" aria-labelledby="addClubLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="addClubLabel">모임 만들기</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="addClubForm" enctype="multipart/form-data">
-                        <div class="input-group mb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="clubName" name="clubName" placeholder="모임명"
-                                       required>
-                                <label for="clubName">모임명</label>
+    <c:if test="${!empty user}">
+        <div class="modal fade" id="addClub" tabindex="-1" aria-labelledby="addClubLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="addClubLabel">모임 만들기</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="addClubForm" enctype="multipart/form-data">
+                            <div class="input-group mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="clubName" name="clubName" placeholder="모임명"
+                                           required>
+                                    <label for="clubName">모임명</label>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="input-group mb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="clubText" name="clubText" placeholder="모임소개"
-                                       required>
-                                <label for="clubText">모임소개</label>
+                            <div class="input-group mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="clubText" name="clubText" placeholder="모임소개"
+                                           required>
+                                    <label for="clubText">모임소개</label>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="input-group mb-3">
-                            <div class="form-floating">
-                                <select class="form-select" id="interList" name="interList" required>
-                                    <option value="00" selected>선택하세요</option>
-                                    <option value="01">독서</option>
-                                    <option value="02">자동차</option>
-                                    <option value="03">반려동물</option>
-                                    <option value="04">공예</option>
-                                    <option value="05">스포츠</option>
-                                    <option value="06">댄스</option>
-                                    <option value="07">여행</option>
-                                    <option value="08">사진</option>
-                                    <option value="09">육아</option>
-                                    <option value="10">공연</option>
-                                    <option value="11">음악</option>
-                                    <option value="12">게임</option>
-                                    <option value="13">그외</option>
-                                </select>
-                                <label for="interList">관심목록</label>
+                            <div class="input-group mb-3">
+                                <div class="form-floating">
+                                    <select class="form-select" id="interList" name="interList" required>
+                                        <option value="00" selected>선택하세요</option>
+                                        <option value="01">독서</option>
+                                        <option value="02">자동차</option>
+                                        <option value="03">반려동물</option>
+                                        <option value="04">공예</option>
+                                        <option value="05">스포츠</option>
+                                        <option value="06">댄스</option>
+                                        <option value="07">여행</option>
+                                        <option value="08">사진</option>
+                                        <option value="09">육아</option>
+                                        <option value="10">공연</option>
+                                        <option value="11">음악</option>
+                                        <option value="12">게임</option>
+                                        <option value="13">그외</option>
+                                    </select>
+                                    <label for="interList">관심목록</label>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="input-group mb-3">
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon1">주요활동위치</button>
-                            <input type="text" class="form-control" placeholder="" name="villCode" id="villCode"
-                            >
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="file" class="form-label" style="display: none"></label>
-                            <input class="form-control" type="file" id="file" name="file">
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <div class="form-floating">
-                                <input type="text" class="tagify shadow-lg" id="clubTag" style="border-radius: 7px;"
-                                       placeholder="태그 : Enter!">
-                                <label for="clubTag" style="display: none">태그 : Enter!</label>
+                            <div class="input-group mb-3">
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon1">주요활동위치</button>
+                                <input type="text" class="form-control" placeholder="" name="villCode" id="villCode"
+                                >
                             </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary newClub" style="margin-right: 185px">모임 만들기</button>
+
+                            <div class="mb-3">
+                                <label for="file" class="form-label" style="display: none"></label>
+                                <input class="form-control" type="file" id="file" name="file">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="tagify shadow-lg" id="clubTag" style="border-radius: 7px;"
+                                           placeholder="태그 : Enter!">
+                                    <label for="clubTag" style="display: none">태그 : Enter!</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary newClub" style="margin-right: 185px">모임 만들기</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </c:if>
     <%--모임 만들기 모달창 끝--%>
 
 </div>

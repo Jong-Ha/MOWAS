@@ -18,6 +18,7 @@
         <input type="hidden" name="kickoutCheck" value="${kickoutCheck}">
         <input type="hidden" name="clubUserNum" value="${cluber.clubUserNum}">
         <input type="hidden" name="clubNum" value="${cluber.clubNum}">
+        <input type="hidden" name="userId" value="${cluber.user.userId}">
         userId : ${cluber.user.userId}
         강퇴사유<input type="text" name="clubOutText">
     </label>

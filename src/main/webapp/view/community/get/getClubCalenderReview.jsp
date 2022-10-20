@@ -691,17 +691,19 @@
 
 
 <body class="bg-light">
-
+<jsp:include page="/layout/toolbar.jsp"/>
 <div class="container" style="text-align: -webkit-center;">
     <input hidden class="userId" value="${user.userId}">
     <input hidden class="boardNum" value="${calenderReview.clubCalenderReviewNum}">
     <input hidden class="boardCategory" value="${calenderReview.boardCategory}">
 
+    <jsp:include page="/layout/commubar.jsp"/>
+
     <div class="wap shadow-lg">
 
-        <jsp:include page="/layout/toolbar.jsp"/>
 
-        <jsp:include page="/layout/commubar.jsp"/>
+
+
 
         <div class="usedbox">
             <div class="thumbnailBox">

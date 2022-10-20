@@ -27,7 +27,7 @@
 .clubBoarder {
     height: 500px;
     margin-bottom: 50px;
-    background: #e9ecef;
+    /*background: #e9ecef;*/
     border-radius: 10px;
 }
 
@@ -75,4 +75,13 @@
 
 tags.tagify {
     border-radius: 7px;
+}
+
+.clubTab {
+    margin-top: 50px;
+    justify-content: center;
+}
+
+.text-wrap {
+    cursor: default;
 }
