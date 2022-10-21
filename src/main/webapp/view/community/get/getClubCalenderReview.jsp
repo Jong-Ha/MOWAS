@@ -538,49 +538,53 @@
                         $(".chatComment").on("click", function () {
                             var commentUser = $(this).parents(".commentList").find(".commentUser").val();
 
-                            if (userId === commentUser) {
-                                alert("그거 맞냐고~")
-                            } else if (userId !== commentUser){
+                            if(userId === ''){
+                                alert("로그인후 이용 가능 합니다")
+                            }else {
 
-                                const swalWithBootstrapButtons = Swal.mixin({
-                                    customClass: {
-                                        confirmButton: 'btn btn-success',
-                                        cancelButton: 'btn btn-danger'
-                                    },
-                                    buttonsStyling: false
-                                })
+                                if (userId === commentUser) {
+                                    alert("그거 맞냐고~")
+                                } else if (userId !== commentUser) {
 
-                                swalWithBootstrapButtons.fire({
-                                    title: '해당 유저와 채팅을 하기겠습니까?',
-                                    text: "",
-                                    icon: 'warning',
-                                    showCancelButton: true,
-                                    confirmButtonText: '초대',
-                                    cancelButtonText: '취소',
-                                    reverseButtons: true
-                                }).then((result) => {
-                                    if (result.isConfirmed) {
-                                        swalWithBootstrapButtons.fire(
-                                            commentUser + ' 님이 초대 되었습니다',
-                                            'success',
-                                        )
-                                        setTimeout(() => (
-                                            window.open("/chat/addOneChat/" + commentUser, "채팅방",
-                                                "left=500, top=100, width=500px, height=500px, marginwidth=0, marginheight=0,")
+                                    const swalWithBootstrapButtons = Swal.mixin({
+                                        customClass: {
+                                            confirmButton: 'btn btn-success',
+                                            cancelButton: 'btn btn-danger'
+                                        },
+                                        buttonsStyling: false
+                                    })
 
-                                        ), 2500)
-                                    } else if (
-                                        /* Read more about handling dismissals below */
-                                        result.dismiss === Swal.DismissReason.cancel
-                                    ) {
-                                        swalWithBootstrapButtons.fire(
-                                            '초대 취소',
-                                            'error'
-                                        )
-                                    }
-                                })
+                                    swalWithBootstrapButtons.fire({
+                                        title: '해당 유저와 채팅을 하기겠습니까?',
+                                        text: "",
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        confirmButtonText: '초대',
+                                        cancelButtonText: '취소',
+                                        reverseButtons: true
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            swalWithBootstrapButtons.fire(
+                                                commentUser + ' 님이 초대 되었습니다',
+                                                'success',
+                                            )
+                                            setTimeout(() => (
+                                                window.open("/chat/addOneChat?userId=" + commentUser + "&chatNameSpace=onebyone", "채팅방",
+                                                    "left=500, top=100, width=500px, height=500px, marginwidth=0, marginheight=0,")
+
+                                            ), 2500)
+                                        } else if (
+                                            /* Read more about handling dismissals below */
+                                            result.dismiss === Swal.DismissReason.cancel
+                                        ) {
+                                            swalWithBootstrapButtons.fire(
+                                                '초대 취소',
+                                                'error'
+                                            )
+                                        }
+                                    })
+                                }
                             }
-
 
                         })
 
