@@ -87,7 +87,7 @@ public class SiteDaoImpl implements SiteDao{
 
     @Override
     public  List<CommunityReport>listCommunityReportProcess(Search search) throws Exception {
-        return sqlSession.selectList("SiteMapper.listCommunityReportProcess", search);
+       return sqlSession.selectList("SiteMapper.listCommunityReportProcess", search);
     }
 
     @Override
@@ -113,6 +113,10 @@ public class SiteDaoImpl implements SiteDao{
     @Override
     public List<ClubReport> listClubReport(Search search) throws Exception {
         return sqlSession.selectList("SiteMapper.listClubReport", search);
+    }
+
+    public List<ClubReport> listClubReportProcess(Search search) throws Exception {
+        return sqlSession.selectList("SiteMapper.listClubReportProcess", search);
     }
 
     @Override

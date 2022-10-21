@@ -1,10 +1,8 @@
 package com.project.site.controller;
+import com.project.club.service.ClubService;
 import com.project.common.Page;
 import com.project.common.Search;
-import com.project.domain.CommunityReport;
-import com.project.domain.File;
-import com.project.domain.MasterBoard;
-import com.project.domain.User;
+import com.project.domain.*;
 import com.project.site.service.SiteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.*;
 
@@ -24,6 +23,10 @@ public class SiteController {
     @Autowired
     @Qualifier("siteServiceImpl")
     private SiteService siteService;
+
+    @Autowired
+    @Qualifier("clubServiceImpl")
+    private ClubService clubService;
 
     public SiteController() {
         System.out.println(this.getClass());
@@ -146,10 +149,10 @@ public class SiteController {
         return "redirect:/site/listMasterBoard";
     }
 
-    @RequestMapping(value = "getCommunityReport/{communityReportNo}", method = RequestMethod.GET)
-    public String getCommunityReport(@PathVariable int communityReportNo, Model model) throws Exception {
+    @RequestMapping(value = "getCommunityReport/{reportNo}", method = RequestMethod.GET)
+    public String getCommunityReport(@PathVariable int reportNo, Model model) throws Exception {
         System.out.println("/site/getCommunityReport : GET");
-        CommunityReport communityReport = siteService.getCommunityReport(communityReportNo);
+        CommunityReport communityReport = siteService.getCommunityReport(reportNo);
         model.addAttribute("communityReport", communityReport);
         return "forward:/view/site/getCommunityReport.jsp";
     }
@@ -176,6 +179,37 @@ public class SiteController {
         return "forward:/view/site/listCommunityReport.jsp";
     }
 
+    @RequestMapping(value="addCommunityReport", method=RequestMethod.GET)
+    public String addCommunityReport(@RequestParam String reportedId, @RequestParam String boardCategory,
+                                     @RequestParam int boardNo,
+                                     @ModelAttribute ("communityReport") CommunityReport communityReport,
+                                     Model model,
+                                     HttpSession session) throws Exception {
+        System.out.println("/site/addCommunityReport : GET");
+        System.out.println("Reported Id :" +reportedId);
+        System.out.println("boardCategory :" +boardCategory);
+        System.out.println("boardNo :" +boardNo);
+
+        String userId = ((User) session.getAttribute("user")).getUserId();
+
+        communityReport.setReportId(userId);
+        communityReport.setReportedId(reportedId);
+        communityReport.setBoardCategory(boardCategory);
+        communityReport.setBoardNo(boardNo);
+
+        model.addAttribute("communityReport", communityReport);
+
+        return "forward:/view/site/addCommunityReport.jsp";
+    }
+
+    @RequestMapping(value="addCommunityReport", method=RequestMethod.POST)
+    public String addCommunityReport(@ModelAttribute ("communityReport") CommunityReport communityReport) throws Exception {
+        System.out.println("/site/addCommunityReport : POST");
+
+        siteService.addCommunityReport(communityReport);
+        return "redirect:/site/listCommunityReport.jsp";
+    }
+
     @RequestMapping(value="updateCommunityReport/{reportNo}", method=RequestMethod.GET)
     public String updateCommunityReport(@PathVariable int reportNo , Model model) throws Exception {
         System.out.println("/site/updateCommunityReport : GET");
@@ -190,11 +224,11 @@ public class SiteController {
 
     @RequestMapping(value="updateCommunityReport", method=RequestMethod.POST)
     public String updateCommunityReport(@ModelAttribute("communityReport") CommunityReport communityReport) throws Exception {
-        System.out.println("/site/updateMasterBoard : POST");
+        System.out.println("/site/updateCommunityReport : POST");
 
         siteService.processCommunityReport(communityReport);
 
-        return "redirect:/site/getCommunityReport/" +communityReport.getReportNo();
+        return "redirect:/site/listCommunityReportProcess";
     }
 
     @RequestMapping(value="deleteCommunityBoard/{reportNo}", method=RequestMethod.GET)
@@ -207,5 +241,144 @@ public class SiteController {
 
         model.addAttribute("communityReport", communityReport);
         return "redirect:/site/listCommunityReport";
+    }
+
+    @RequestMapping(value = "listCommunityReportProcess")
+    public String listCommunityReportProcess(@ModelAttribute("search") Search search, HttpServletRequest response, Model model) throws Exception {
+        System.out.println("/site/listCommunityReportProcess : GET / POST");
+
+        if(search.getCurrentPage() == 0 ){
+            search.setCurrentPage(1);
+        }
+        search.setPageSize(pageSize);
+
+        System.out.println(response);
+        Map<String , Object> map = siteService.listCommunityReportProcess(search);
+
+        Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
+        System.out.println("resultPage : " + resultPage);
+        System.out.println("list : " + map.get("list"));
+
+        model.addAttribute("list", map.get("list"));
+        model.addAttribute("resultPage", resultPage);
+        model.addAttribute("search", search);
+
+        return "forward:/view/site/listCommunityReportProcess.jsp";
+    }
+
+    @RequestMapping(value = "listClubReport")
+    public String listClubReport(@ModelAttribute("search") Search search, Model model) throws Exception {
+        System.out.println("/site/listClubReport : GET / POST");
+
+        if(search.getCurrentPage() == 0 ){
+            search.setCurrentPage(1);
+        }
+        search.setPageSize(pageSize);
+
+        Map<String , Object> map = siteService.listClubReport(search);
+
+        Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
+        System.out.println("resultPage : " + resultPage);
+        System.out.println("list : " + map.get("list"));
+
+        model.addAttribute("list", map.get("list"));
+        model.addAttribute("resultPage", resultPage);
+        model.addAttribute("search", search);
+
+        return "forward:/view/site/listClubReport.jsp";
+    }
+
+    @RequestMapping(value = "addClubReport", method = RequestMethod.POST)
+    public String addClubReport(@ModelAttribute("clubReport") ClubReport clubReport) throws Exception {
+        System.out.println("/site/addClubReport : POST");
+
+        siteService.addClubReport(clubReport);
+        return "redirect:/site/listClubReport";
+    }
+    @RequestMapping(value = "getClubReport/{clubReportNo}/{clubNum}", method = RequestMethod.GET)
+    public String getClubReport(@PathVariable int clubReportNo, @PathVariable int clubNum, Model model) throws Exception {
+        System.out.println("/site/getClubReport : GET");
+        Club club = clubService.getClub(clubNum);
+        System.out.println(club);
+        ClubReport clubReport = siteService.getClubReport(clubReportNo);
+        model.addAttribute("clubReport", clubReport);
+        model.addAttribute("club", club);
+        return "forward:/view/site/getClubReport.jsp";
+    }
+
+    @RequestMapping(value="updateClubReport/{clubReportNo}", method=RequestMethod.GET)
+    public String updateClubReport(@PathVariable int clubReportNo , Model model) throws Exception {
+        System.out.println("/site/updateClubReport : GET");
+
+        ClubReport clubReport = siteService.getClubReport(clubReportNo);
+
+        siteService.processClubReport(clubReport);
+
+        model.addAttribute("clubReport", clubReport);
+        return "forward:/view/site/updateClubReport.jsp";
+    }
+
+    @RequestMapping(value="updateClubReport", method=RequestMethod.POST)
+    public String updateClubReport(@ModelAttribute("clubReport") ClubReport clubReport) throws Exception {
+        System.out.println("/site/updateClubReport : POST");
+
+        siteService.processClubReport(clubReport);
+
+        return "redirect:/site/listClubReportProcess?clubNum="+clubReport.getClubNum();
+    }
+
+    @RequestMapping(value="updateClubRereport/{clubReportNo}", method=RequestMethod.GET)
+    public String updateClubRereport(@PathVariable int clubReportNo , Model model) throws Exception {
+        System.out.println("/site/updateClubRereport : GET");
+
+        ClubReport clubReport = siteService.getClubReport(clubReportNo);
+
+        //siteService.processClubRereport(clubReport);
+
+        model.addAttribute("clubReport", clubReport);
+        return "forward:/view/site/updateClubRereport.jsp";
+    }
+
+    @RequestMapping(value="updateClubRereport", method=RequestMethod.POST)
+    public String updateClubRereport(@ModelAttribute("clubReport") ClubReport clubReport) throws Exception {
+        System.out.println("/site/updateClubRereport : POST");
+
+        siteService.processClubRereport(clubReport);
+
+        return "redirect:/site/listClubReportProcess";
+    }
+
+    @RequestMapping(value="deleteClubBoard/{clubReportNo}", method=RequestMethod.GET)
+    public String deleteClubReport(@PathVariable int clubReportNo , Model model) throws Exception {
+        System.out.println("/site/deleteClubReport : GET");
+
+        ClubReport clubReport = siteService.getClubReport(clubReportNo);
+
+        siteService.deleteClubReport(clubReportNo);
+
+        model.addAttribute("clubReport", clubReportNo);
+        return "redirect:/site/listClubReport";
+    }
+
+    @RequestMapping(value = "listClubReportProcess")
+    public String listClubReportProcess(@ModelAttribute("search") Search search, Model model) throws Exception {
+        System.out.println("/site/listClubReportProcess : GET / POST");
+
+        if(search.getCurrentPage() == 0 ){
+            search.setCurrentPage(1);
+        }
+        search.setPageSize(pageSize);
+
+        Map<String , Object> map = siteService.listClubReportProcess(search);
+
+        Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
+        System.out.println("resultPage : " + resultPage);
+        System.out.println("list : " + map.get("list"));
+
+        model.addAttribute("list", map.get("list"));
+        model.addAttribute("resultPage", resultPage);
+        model.addAttribute("search", search);
+
+        return "forward:/view/site/listClubReportProcess.jsp";
     }
 }

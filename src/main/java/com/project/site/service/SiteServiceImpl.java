@@ -37,11 +37,14 @@ public class SiteServiceImpl implements SiteService {
     public void addMasterBoard(MasterBoard masterBoard) throws Exception {
         siteDao.addMasterBoard(masterBoard);
         System.out.println(masterBoard.getMasterBoardNo());
+
         List<File> files = masterBoard.getFiles();
 
-        for(File file : files) {
-            file.setBoardNum(masterBoard.getMasterBoardNo());
-            siteDao.addMasterBoardFiles(file);
+        if(files != null) {
+            for (File file : files) {
+                file.setBoardNum(masterBoard.getMasterBoardNo());
+                siteDao.addMasterBoardFiles(file);
+            }
         }
     }
 
@@ -154,6 +157,25 @@ public class SiteServiceImpl implements SiteService {
 
         Map<String,Object> map = new HashMap<String, Object>();
 
+        map.put("list", list);
+        map.put("totalCount", new Integer(totalCount));
+
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> listClubReportProcess(Search search) throws Exception {
+        List<ClubReport> list = siteDao.listClubReportProcess(search);
+
+        System.out.println("++++listClubReportProcess " +list);
+
+        Map<String,Object> totalCountmap = new HashMap<String, Object>();
+        totalCountmap.put("where", "clubReportList");
+        int totalCount = siteDao.getTotalCount(totalCountmap);
+
+        System.out.println("++++totalCount:: " +totalCount+ "++++++");
+
+        Map<String, Object> map = new HashMap<String, Object>();
         map.put("list", list);
         map.put("totalCount", new Integer(totalCount));
 

@@ -68,11 +68,13 @@ public DealController(){
     public String addDeal(@ModelAttribute("deal")Deal deal, MultipartHttpServletRequest multi,HttpSession session)throws Exception{
         System.out.println("/deal/addDeal : post");
         deal.setUser((User) session.getAttribute("user"));
+
         System.out.println("sefdaj'ejw'gkfdsgda dfda"+session.getAttribute("user"));
         String a=deal.getUser().getVillCode();
         System.out.println(a);
         deal.setVillCode(a);
-    ////파일 업로드
+
+        ////파일 업로드
         //파일 추출
         List<MultipartFile> mfs = multi.getFiles("file");
         System.out.println(mfs);
@@ -171,13 +173,10 @@ public DealController(){
 //Object User=session.getAttribute("userId");
         //String boardCategory = String.valueOf(deal.getBoardCategory());
         System.out.println(deal.getBoardCategory());
-        System.out.println(deal.getVillCode());
 //String likeCheck =commuService.getLikeCheck((String)session.getAttribute("userId"),dealBoardNum, (Integer.parseInt(deal.getBoardCategory())));
-       String likeCheck =commuService.getLikeCheck(deal.getUser().getUserId(),dealBoardNum, (Integer.parseInt(deal.getBoardCategory())));
-        int point=dealService.getReviewPt(deal);
+       String likeCheck =commuService.getLikeCheck("user01",dealBoardNum, (Integer.parseInt(deal.getBoardCategory())));
+
         System.out.println("likecheck"+likeCheck);
-        System.out.println("point는 몇점이죠 ??"+point);
-        model.addAttribute("point",point);
         model.addAttribute("deal", deal);
         model.addAttribute("likeCheck",likeCheck);
         return "/view/deal/getDeal.jsp";
@@ -189,9 +188,9 @@ public DealController(){
 
     @RequestMapping(value = "getListDeal")
     public String getListDeal(@ModelAttribute("search") Search search, Model model,HttpServletRequest request
-                            ,@RequestParam(value = "boardCategory", defaultValue = "08") String boardCategory,Deal deal) throws Exception {
+                            ,@RequestParam(value = "boardCategory", defaultValue = "08") String boardCategory, @RequestParam(value = "searchTag", required = false) List<String> searchTag) throws Exception {
         System.out.println("getListDeal : GET POST");
-       // System.out.println(deal.getPrice());
+
         System.out.println(boardCategory);
 
         if (search.getCurrentPage() == 0) {
@@ -207,30 +206,33 @@ public DealController(){
 
         if(boardCategory == "08"){
 
-            Map<String , Object> map=dealService.getListDeal(search, boardCategory);
+            Map<String , Object> map=dealService.getListDeal(search, boardCategory,searchTag);
 
 
             Page resultPage=new Page(search.getCurrentPage(),((Integer)map.get("totalCount")).intValue(),pageUnit,pageSize);
             System.out.println(resultPage);
 
 
-            System.out.println("여긴어디 나는누구 controller"+map.get("list"));
+            System.out.println(map.get("list"));
             model.addAttribute("list", (List<Deal>)map.get("list"));
             model.addAttribute("resultPage", resultPage);
             model.addAttribute("search", search);
+            model.addAttribute("searchTag",searchTag);
 
         } else if (boardCategory == "09") {
 
-            Map<String , Object> map=dealService.getListDeal(search, boardCategory);
+            Map<String , Object> map=dealService.getListDeal(search, boardCategory,searchTag);
             Page resultPage=new Page(search.getCurrentPage(),((Integer)map.get("totalCount")).intValue(),pageUnit,pageSize);
             System.out.println(resultPage);
             model.addAttribute("list", (List<Deal>)map.get("list"));
             model.addAttribute("resultPage", resultPage);
             model.addAttribute("search", search);
             model.addAttribute("boardCategory","09");
+            model.addAttribute("searchTag",searchTag);
+
         }else {
 
-            Map<String, Object> map = dealService.getListDeal(search, boardCategory);
+            Map<String, Object> map = dealService.getListDeal(search, boardCategory,searchTag);
 
 
             Page resultPage = new Page(search.getCurrentPage(), ((Integer) map.get("totalCount")).intValue(), pageUnit, pageSize);
@@ -241,6 +243,8 @@ public DealController(){
             model.addAttribute("list", (List<Deal>)map.get("list"));
             model.addAttribute("resultPage", resultPage);
             model.addAttribute("search", search);
+            model.addAttribute("searchTag",searchTag);
+
             System.out.println("여기까지 ? ? !!1111");
             System.out.println(map);
         }
@@ -432,21 +436,6 @@ public DealController(){
         }
         return "redirect:/deal/getListDeal";
     }
-    @RequestMapping("review/{dealBoardNum}")
-    public String replyEnrollWindowGET(String userId,@PathVariable("dealBoardNum") int dealBoardNum, Model model) throws Exception {
-        Deal deal = dealService.getUserId(dealBoardNum);
-        model.addAttribute("deal", deal);
-        model.addAttribute("userId", userId);
-        System.out.println(deal);
-        return "forward:/view/deal/review.jsp";
-    }
-//    @RequestMapping(value = "review",method = RequestMethod.POST)
-//    public String replyEnrollWindowPost(@ModelAttribute("deal") Deal deal, Model model) throws Exception {
-//        dealService.updateReview(deal);
-//        System.out.println("updateReview controller");
-//
-//        return "/view/deal/getDeal.jsp";
-//    }
 }
 
 

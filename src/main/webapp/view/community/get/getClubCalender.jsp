@@ -142,23 +142,26 @@
 
             $(".addReview").on("click", function () {
                 window.open(
-                    "/clubCal/addClubCalenderReview?clubCalenderNum="+calenderNum+"&boardCategory=01", "모임 일정 후기글 작성",
+                    "/clubCal/addClubCalenderReview?clubCalenderNum=" + calenderNum + "&boardCategory=01", "모임 일정 후기글 작성",
                     "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
 
-                    window.close();
+                window.close();
 
             });
 
             $(".addShort").on("click", function () {
 
-               window.open(
-                    "/clubCal/addClubCalenderReview?clubCalenderNum="+calenderNum+"&boardCategory=02", "모임 일정 후기글 쇼츠 작성",
+                window.open(
+                    "/clubCal/addClubCalenderReview?clubCalenderNum=" + calenderNum + "&boardCategory=02", "모임 일정 후기글 쇼츠 작성",
                     "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no"
-               );
+                );
 
                 window.close();
 
             });
+
+
+
 
 
         });
@@ -237,6 +240,10 @@
                     </strong>
                 </div>
             </div>
+
+            <hr/>
+
+
 
             <hr/>
 

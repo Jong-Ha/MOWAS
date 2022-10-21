@@ -581,12 +581,24 @@
         </where>
     </select>
 
-    <select id="getCluberCondition" parameterType="map" resultType="String">
-        SELECT cluber_status
+    <select id="getCluberCondition" parameterType="map" resultMap="CluberResultMap">
+        SELECT club_user_num,
+               user_id,
+               user_image,
+               club_num,
+               cluber_status,
+               club_reg_date,
+               club_apply_date,
+               cluber_text,
+               club_out_text,
+               club_out_date,
+               blacklist_date,
+               blacklist_text,
+               blacklist_check
         FROM club_user
         WHERE club_num = #{clubNum}
           AND user_id = #{user.userId}
-          AND cluber_status in ('4', '5', '6')
+          AND cluber_status in ('2','4', '5', '6')
     </select>
 
     <!--clubService.getCluber-->
@@ -857,6 +869,24 @@
         FROM club_master_board
         WHERE club_master_board_num = #{clubMasterBoardNum}
     </select>
+
+    <!--clubService.addCalendarCluber-->
+    <!--모임 일정 참여자 등록-->
+    <insert id="addCalendarCluber" parameterType="map">
+        INSERT
+        INTO club_calendar_apply(club_calendar_apply_num,
+        club_calendar_num,
+        user_id,
+        apply_status,
+        user_image,
+        apply_date)
+        VALUES(seq_club_calendar_apply.NEXTVAL,
+        #{clubCalendarNum},
+        #{userId},
+               '1',
+        (SELECT user_image FROM users WHERE user_id = ${userId}),
+        SYSDATE)
+    </insert>
 
     <!--clubService.addClubCalendarApply-->
     <!--모임 일정 참여 신청-->

@@ -2,6 +2,7 @@ package com.project.club.dao;
 
 import com.project.domain.ClubCalendar;
 import com.project.domain.ClubCalendarReview;
+import com.project.domain.Deal;
 import com.project.domain.File;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +81,12 @@ public class ClubCalendarDaoImpl implements ClubCalendarDao {
         System.out.println("파일 뽑을 정보 : " + map);
 
         return sqlSession.selectList("ClubCalenderMapper.getListFile", map);
+    }
+
+    @Override
+    public void addDealCalender(Deal deal) {
+
+        sqlSession.insert("DealMapper.addDealCalender", deal);
     }
 
 }

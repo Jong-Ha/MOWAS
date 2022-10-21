@@ -45,8 +45,10 @@
     <!--  ///////////////////////// JavaScript ////////////////////////// -->
     <script type="text/javascript">
 
+
         //============= 회원정보수정 Event  처리 =============
         $(function () {
+
 
             $(".submit").on("click", function () {
 
@@ -59,6 +61,16 @@
                 var noticeTime = $(".noticeTime").val()
                 var calendarApplyCheck = $(".calendarApplyCheck").val()
                 var applyAutoCheck = $(".applyAutoCheck").val()
+
+                var clubers = $(".clubers")
+
+                var cluber = new Array();
+
+                    $.each(clubers , function (index, item) {
+                        cluber.push($(item).val());
+                    })
+
+                console.log(cluber)
 
                 $.ajax({
                     url: "/clubCal/json/addClubCalender",
@@ -73,12 +85,14 @@
                         "noticeTime": noticeTime,
                         "calendarApplyCheck": calendarApplyCheck,
                         "applyAutoCheck": applyAutoCheck
+
                     }),
                     dataType: "json",
                     contentType: "application/json; charset=UTF-8",
                     success: function (JSONData, result) {
-                        alert(result);
+
                         console.log(JSONData);
+
                         var boardNum = JSONData
 
                         var file = $("#file").length
@@ -120,6 +134,22 @@
                                 }
                             })
                         }
+
+                        $.ajax({
+                            url : "/clubCal/json/addCluber",
+                            method: "post",
+                            data: JSON.stringify({
+                                "cluberList" : cluber,
+                                "clubNum" : clubNum
+                            }),
+                            dataType: "json",
+                            contentType: "application/json; charset=UTF-8",
+                            success: function (JSONData, result) {
+                                console.log(JSONData)
+                            }
+
+                        })
+
                         console.log(result);
                         // 성공시 해당 창을 닫고 부모창을 reload
                         Swal.fire({
@@ -132,7 +162,7 @@
 
                         setTimeout(function () {
                             opener.location.reload();
-                            window.close();
+                           /* window.close();*/
                         }, 2000);
                         //error 발생시 그냥 창을 닫음
                     }, error: function () {
@@ -144,11 +174,18 @@
                             timer: 1500
                         });
                         setTimeout(function () {
-                            window.close();
+                           /* window.close();*/
                         }, 2000);
 
                     }
                 });
+
+            });
+
+            $(".calenderCluber").on("click", function () {
+                window.open(
+                    "/clubCal/addCalenderCluber?clubNum=${club.clubNum}" , '_blnk'
+                    , "top=200, width=200px, height=700px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no")
 
             });
 
@@ -159,7 +196,8 @@
 
             const date = new Date();
            if($(".clubDate").val() > date.toString());
-        });
+        })
+
 
 
     </script>
@@ -230,6 +268,18 @@
                     </strong>
                 </div>
             </div>
+
+            <hr/>
+
+            <div class="row">
+                <div class="col-xs-4 col-xs-2 ">
+                    <strong>모임 인원 추가 하기
+                        <input type="button" class="calenderCluber" value="모임원 추가">
+                    </strong>
+                </div>
+            </div>
+
+
 
 
             <hr/>

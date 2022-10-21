@@ -12,9 +12,10 @@
 <html>
 <head>
     <title>List MasterBoard</title>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <!-- Bootstrap -->
-    <link href="bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
 
     <!--  ///////////////////////// CSS ////////////////////////// -->
     <style>
@@ -77,11 +78,11 @@
     <!--  ///////////////////////// JavaScript ////////////////////////// -->
     <script type="text/javascript">
 
-        function fncGetMasterBoardList(currentPage) {
+        function fncGetCommunityReportList(currentPage) {
             /* 	document.getElementById("currentPage").value = currentPage;
                    document.detailForm.submit();	 */
             $("#currentPage").val(currentPage)
-            $("form").attr("method" , "POST").attr("action" , "/site/listMasterBoard").submit();
+            $("form").attr("method" , "POST").attr("action" , "/site/listCommunityReport").submit();
         }
 
 
@@ -93,13 +94,13 @@
 
             //$( "td.ct_btn01:contains('검색')" ).on("click" , function() {
             $( "button.btn.btn-default" ).on("click" , function() {
-                fncGetMasterBoardList(1);
+                fncGetCommunityReportList(1);
             });
 
             //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-            $( ".addMb" ).on("click" , function() {
+            $( ".addCr" ).on("click" , function() {
 
-                $(self.location).attr("href", "/site/addMasterBoard");
+                $(self.location).attr("href", "/site/addCommunityReport?reportedId=user01&boardCategory=01&boardNo=10020");
             });
 
             //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)

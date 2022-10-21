@@ -9,39 +9,124 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="JHK 2022.10.17&#10;&#10;마이페이지 서비스 커밋">
+    <list default="true" id="c64ae9fb-5f1d-478d-981f-4d586fb34650" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/project/common/dao/MongoDbDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/project/common/dao/MongoDbDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/config/context-mongo.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/css/listCluber.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/js/listCluber.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/deal/css/getDeal.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/deal/js/getDeal.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/deal/js/listDeal.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/clubBlacklist.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/cluberApply.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/images/groupBlackllist.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubImages/513243f7-9f7f-464d-8e6f-8a154d661928애플.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubImages/69f67de9-2e42-4ad8-85cf-092257c2c917그냥 삼성.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubImages/f715268e-ddf8-4568-ad59-25cebad66533다운로드.jfif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubImages/fc05eced-7b19-44a9-834d-e83f520d229cbit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/0111e8a2-568c-4824-ba7b-97544c72e3ea가로로김.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/2f4c765e-5d56-49cd-a15d-a661b29fb09b다운로드.jfif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/677949c5-5be4-4d2f-b30e-31e138b346f9다운로드.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/8f15be02-97bc-4022-b76e-9afe9f204ccb그냥 삼성.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/9c3c5fe7-c794-4729-a603-6b4174240ff4bit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/c63b1802-f153-4807-bf10-d86ba0259ce3넹이버.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/de3c91fc-ad09-4aff-ac50-9cad41ae9d55네이버.jfif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/f402fc79-54be-4925-858e-e5c4b1566de6다음.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/masterBoardFiles/cbd991f3-bc64-494b-a14b-63ba9c367de1b.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/masterBoardFiles/d33f4687-30e5-4c9d-83fb-7abed134cc68a.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/masterBoardFiles/e0b83723-e41f-46f7-9fbf-a4368bb030c1a.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/backClose.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/community/add/addCalenderCluber.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/community/add/addDealCalender.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/notice/firebase-messaging-sw.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/site/addCommunityReport.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/site/getClubReport.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/site/listClubReport.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/site/listClubReportProcess.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/site/listCommunityReportProcess.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/site/updateClubReport.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/site/updateClubRereport.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubCalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubCalendarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubCalendarRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubCalendarRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubCalendarDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubCalendarDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubCalendarDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubCalendarDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/common/KakaoMapApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/common/KakaoMapApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/common/util/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/common/util/ChatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/community/controller/CommunityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/community/controller/CommunityController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/community/controller/CommunityRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/community/controller/CommunityRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/deal/controller/DealCalendarController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/deal/controller/DealController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/deal/controller/DealController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/deal/service/DealService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/deal/service/DealService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/deal/service/DealServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/deal/service/DealServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/ClubCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/ClubCalendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/Deal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/Deal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/myPage/controller/MyPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/myPage/controller/MyPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/myPage/dao/MyPageDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/myPage/dao/MyPageDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/service/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/controller/SiteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/controller/SiteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/controller/SiteRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/controller/SiteRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/dao/SiteDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/dao/SiteDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/dao/SiteDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/dao/SiteDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/service/SiteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/service/SiteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/service/SiteServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/service/SiteServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/context-common.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/context-common.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/context-transaction.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/context-transaction.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/ClubCalenderMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/ClubCalenderMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/DealMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/DealMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/SiteMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/SiteMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyInfor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyInfor.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyPage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyPage.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/updateMyInfor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/updateMyInfor.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/callBack.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/callBack.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/callback2.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/getUserDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/getUserDetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/go.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/interList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/addInterList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/kakaoDeveloper.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/kakaoLogin3.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/kakaoLoginJS.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/kakaoLoginRest.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/kakaoLoginjs2.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/main.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/naverLoginTest.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/chat.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/chatList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/chatList.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/dealChat.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/getChat.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/getChat.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/chatIcon.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/chatIcon.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/chatbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/chatbar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/css/addClub.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/deal/css/listDeal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/css/getClub.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/css/getClub.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/css/listClub.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/css/listClub.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/js/addClub.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/js/getClub.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/js/getClub.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/js/listClub.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/js/listClub.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubImages/21812e4d-7ea6-4952-9199-58e54c6e509f라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/bak/listCluberApply.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/listCluberApply.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/deleteCluber.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/deleteCluber.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/getClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/getClub.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/getCluber.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/getCluber.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/gg/clubCalenderReviewList.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClubBlacklist.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClubBlacklist.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listCluber.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listCluber.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listCluberApply.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listCluberApply.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/add/addClubCalender.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/add/addClubCalender.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/calender.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/calender.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/get/getClubCalender.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/get/getClubCalender.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/list/clubCalenderReviewList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/list/clubCalenderReviewList.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/deal/getDeal.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/deal/getDeal.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/deal/getListDeal.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/deal/getListDeal.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/notice/a.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/notice/a.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/addMasterBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/addMasterBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/clubMap.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/clubMap.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/listCommunityReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/listCommunityReport.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/listMasterBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/listMasterBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/updateCommunityReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/updateCommunityReport.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/club/service/ClubServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/club/service/ClubServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +149,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="master" />
+    <option name="BRANCH" value="origin/master" />
   </component>
   <component name="Git.Settings">
     <excluded-from-favorite>

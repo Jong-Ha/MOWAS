@@ -15,5 +15,9 @@
       </schema-mapping>
       <introspection-level>3</introspection-level>
     </data-source>
+    <data-source name="@192.168.0.13" uuid="56b10bbd-6f66-47cc-8311-04d2decc04e5">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="ORACLE" exact-version="0" />
+      <schema-mapping />
+    </data-source>
   </component>
 </project>

@@ -50,7 +50,7 @@ public interface ClubDao {
     public List<CalendarCluber>listClubCalendarApply(Map<String, Object> map);
     public void updateClubCalendarApply(Map<String, Object> map);
     public List<Cluber> listCluber(Map<String, Object> map);
-    public String getCluberCondition(Map<String, Object> map);
+    public Cluber getCluberCondition(Map<String, Object> map);
     public int getTotalCluber(Map<String, Object> map);
     public Cluber getCluber(int clubUserNum);
     public void updateCluber(Cluber cluber);
@@ -63,5 +63,6 @@ public interface ClubDao {
     public Vote getVote(Map<String, Object> map);
     public List<Voter> listVoter(Voter voter);
     public void addVoter(Voter voter);
+    public void addCalendarCluber(Map<String, Object> map);
 
 }

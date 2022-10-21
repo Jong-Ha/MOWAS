@@ -320,10 +320,10 @@ public class MyPageController {
     public String getClub(Model model, @PathVariable int clubNum, HttpSession session) {
         User user = (User) session.getAttribute("user");
         if (user != null) {
-            String cluberStatus = clubService.getCluberCondition(user, clubNum);
-            session.setAttribute(String.valueOf(clubNum), cluberStatus);
+            Cluber currentCluber = clubService.getCluberCondition(user, clubNum);
+            session.setAttribute("currentCluber", currentCluber);
         } else {
-            session.removeAttribute(String.valueOf(clubNum));
+            session.removeAttribute("currentCluber");
         }
         Club club = clubService.getClub(clubNum);
         model.addAttribute("club", club);

@@ -21,350 +21,32 @@ Product vo=(Product)request.getAttribute("vo");
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
-            rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css"
-          rel="stylesheet">
-    <link href="/resources/css/comment.css" rel="stylesheet">
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css"/>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="/resources/deal/js/getDeal.js"></script>
+    <link href="/resources/deal/css/getDeal.css" rel="stylesheet" type="text/css"/>
+
     <title>Bootstrap Example</title>
+
     <!-- 참조 : http://getbootstrap.com/css/   참조 -->
-<%--    <meta name="viewport" content="width=device-width, initial-scale=1.0" />--%>
+    <%--    <meta name="viewport" content="width=device-width, initial-scale=1.0" />--%>
 
-<%--    <!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->--%>
-<%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >--%>
-<%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >--%>
-<%--    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>--%>
-<%--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>--%>
-<%--    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>--%>
-    <script>
-        // $(function () {
-        //     var dealNum = $(this).parent().children("[name='dealBoardNum']").val();
-        //     var boardCategory=$(this).parent().children("[name='boardCategory']").val();
-        //
-        //     $.ajax({
-        //         url : "/deal/json/getLikeCheck",
-        //         method : "POST",
-        //         data : JSON.stringify({
-        //             "boardNum" : dealNum,
-        //             "boardCategory" : boardCategory
-        //         }),
-        //         dataType: "json",
-        //         headers: {
-        //             "Accept": "application/json",
-        //             "Content-Type": "application/json; charset=UTF-8"
-        //         },
-        //         success:function (JSONData) {
-        //             alter("성공 ?")
-        //             if (JSONData.like === 'n') {
-        //                 alert("누름")
-        //                 $(".likeToggle").val("좋아요 해제") ;
-        //             } else {
-        //                 alert("뺌")
-        //                 $(".likeToggle").val("좋아요!");
-        //             }
-        //         }
-        //     })
-        //
-        // })
+    <%--    <!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->--%>
+    <%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >--%>
+    <%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >--%>
+    <%--    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>--%>
+    <%--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>--%>
+    <%--    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>--%>
 
-        $(function() {
-            // $(document).ready(function(){
-            // var dealNum = $(this).parent().children("[name='dealBoardNum']").val();
-            // var boardCategory=$(this).parent().children("[name='boardCategory']").val();
-            //
-            // $.ajax({
-            //     url : "/deal/json/getLikeCheck",
-            //     method : "POST",
-            //     data : JSON.stringify({
-            //         "boardNum" : dealNum,
-            //         "boardCategory" : boardCategory
-            //     }),
-            //     dataType: "json",
-            //     headers: {
-            //         "Accept": "application/json",
-            //         "Content-Type": "application/json; charset=UTF-8"
-            //     },
-            //     success:function (JSONData) {
-            //         if (JSONData.like === 'n') {
-            //             alert("누름")
-            //             $(".likeToggle").val("좋아요 해제") ;
-            //         } else {
-            //             alert("뺌")
-            //             $(".likeToggle").val("좋아요!");
-            //         }
-            //     }
-            // })
-            // })
-            // $(".addClub").on("click",function(){
-            //     location.href="/club/addClub"
-            // })
-            $(".dealLogin").on("click",function(){
-                location.href="/deal/login?userId="+$("input[name='userId']").val()+"&dealBoardNum=${deal.dealBoardNum}";
-            })
-            $(".likeToggle").on("click", function () {
-                var dealNum = $(this).parent().children("[name='dealBoardNum']").val();
-                var boardCategory=$(this).parent().children("[name='boardCategory']").val();
-                $.ajax({
-                    url: "/deal/json/dealLike",
-                    method: "POST",
-                    data: JSON.stringify({
-                        "boardNum": dealNum,
-                        "boardCategory": boardCategory
-                    }),
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json; charset=UTF-8"
-                    },
-                    dataType: "JSON",
-                    success: function (JSONData, result) {
-                         alert(result)
-                        alert(JSONData);
-                        if (JSONData.like === 'n') {
-                             alert("누름")
-                            $(".likeToggle").val("좋아요 해제") ;
-                        }else if(JSONData.like=='null'){
-                            $(".likeToggle").val
-                        } else{
-                             alert("뺌")
-                            $(".likeToggle").val("좋아요!");
-                        }
-                    }
-                })
-            })
-        });
-            //$(".likeToggle").on("click",function(){
-
-        //
-        //         var likeCount =$(this).parents(".cardbox").find(".likeText").html();
-        //         var boardNum = $(this).parents(".cardbox").find(".boardNum").val();
-        //         var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val()
-        //         var  likeText = $(this).parents(".cardbox").find(".likeText")
-        //
-        //         $.ajax({
-        //             url: "/deal/json/addLike",
-        //             type: "POST",
-        //             data: JSON.stringify({
-        //                 "likeCount": likeCount,
-        //                 "boardNum": boardNum,
-        //                 "boardCategory": boardCategory
-        //             }),
-        //             dataType: "JSON",
-        //             contentType: 'application/json; charset=UTF-8',
-        //             success: function (JSONData, result) {
-        //
-        //                 likeText.html(JSONData);
-        //             }
-        //         })
-        //     });
-        // });
-
-        //
-        //         var dealBoardNum = $(this).parent().children("[name='dealBoardNum']").val();
-        //         var button = $(this);
-        //         $.ajax({
-        //             url: "/deal/json/dealLike",
-        //             type: "POST",
-        //             data: JSON.stringify({
-        //                 "boardNum": dealBoardNum,
-        //                 "boardCategory": "8"
-        //             }),
-        //             dataType: "JSON",
-        //             contentType: 'application/json; charset=UTF-8',
-        //
-        //             success: function () {
-        //                 // alert("ajax")
-        //                 if(button.val()==='좋아요!'){
-        //                     // alert("누름")
-        //                     button.val("좋아요 해제");
-        //                 }else{
-        //                     // alert("뺌")
-        //                     button.val("좋아요!");
-        //                 }
-        //             }
-        //         })
-        //     })
-        // })
-        $(function(){
-            $(".updateDeal").on("click",function(){
-                location.href="/deal/updateDeal/${deal.dealBoardNum}"
-            })
-            $(".deleteDeal").on("click",function(){
-                var check = confirm("진짜 삭제?");
-                if(check==true){
-                    location.href="/deal/deleteDeal/${deal.dealBoardNum}"
-                }
-            })
-        });
-        $(function (){
-            /* 리뷰쓰기 */
-            $(".reply_button_wrap").on("click", function(e){
-
-                e.preventDefault();
-
-                const userId = '${user.userId}';
-                const dealId = '${deal.dealId}';
-
-                let popUrl = "/deal/review/${dealBoardNum}";
-
-
-                console.log(popUrl);
-                let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes";
-
-                window.open(popUrl,"리뷰 쓰기",popOption);
-            });
-        })
-
-
-
-    </script>
-    <!-- Bootstrap Dropdown Hover CSS -->
-    <link href="/css/animate.min.css" rel="stylesheet">
-    <link href="/css/bootstrap-dropdownhover.min.css" rel="stylesheet">
-    <!-- Bootstrap Dropdown Hover JS -->
-    <script src="/javascript/bootstrap-dropdownhover.min.js"></script>
-
-
-    <!-- jQuery UI toolTip 사용 CSS-->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <!-- jQuery UI toolTip 사용 JS-->
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-    <!--  ///////////////////////// CSS ////////////////////////// -->
-    <style>
-        body {
-            padding-top : 50px;
-        }
-
-
-        /* 리뷰쓰기 버튼 */
-        .reply_button_wrap{
-            padding : 10px;
-        }
-        .reply_button_wrap button{
-            background-color: #365fdd;
-            color: white;
-            font-weight: bold;
-            font-size: 15px;
-            padding: 5px 12px;
-            cursor: pointer;
-        }
-        .reply_button_wrap button:hover{
-            background-color: #1347e7;
-        }
-
-        /* 리뷰 영역 */
-        .content_bottom{
-            width: 80%;
-            margin : auto;
-        }
-        .reply_content_ul{
-            list-style: none;
-        }
-        .comment_wrap{
-            position: relative;
-            border-bottom: 1px dotted #d4d4d4;
-            padding: 14px 0 10px 0;
-            font-size: 12px;
-        }
-        /* 리뷰 머리 부분 */
-        .reply_top{
-            padding-bottom: 10px;
-        }
-        .id_span{
-            padding: 0 15px 0 3px;
-            font-weight: bold;
-        }
-        .date_span{
-            padding: 0 15px 0;
-        }
-        /* 리뷰 컨텐트 부분 */
-        .reply_bottom{
-            padding-bottom: 10px;
-        }
-
-
-        /* 리뷰 선 */
-        .reply_line{
-            width : 80%;
-            margin : auto;
-            border-top:1px solid #c6c6cf;
-        }
-
-        /* 리뷰 제목 */
-        .reply_subject h2{
-            padding: 15px 0 5px 5px;
-        }
-
-        /* pageMaker */
-        .repy_pageInfo_div{
-            text-align: center;
-            margin-top: 30px;
-            margin-bottom: 40px;
-        }
-        .pageMaker{
-            list-style: none;
-            display: inline-block;
-        }
-        .pageMaker_btn{
-            float: left;
-            width: 25px;
-            height: 25px;
-            line-height: 25px;
-            margin-left: 20px;
-            font-size: 10px;
-            cursor: pointer;
-        }
-        .active{
-            border : 2px solid black;
-            font-weight:400;
-        }
-        .next, .prev {
-            border: 1px solid #ccc;
-            padding: 0 10px;
-        }
-
-        /* 리뷰 없는 경우 div */
-        .reply_not_div{
-            text-align: center;
-        }
-        .reply_not_div span{
-            display: block;
-            margin-top: 30px;
-            margin-bottom: 20px;
-        }
-
-        /* 리뷰 수정 삭제 버튼 */
-        .update_reply_btn{
-            font-weight: bold;
-            background-color: #b7b399;
-            display: inline-block;
-            width: 40px;
-            text-align: center;
-            height: 20px;
-            line-height: 20px;
-            margin: 0 5px 0 30px;
-            border-radius: 6px;
-            color: white;
-            cursor: pointer;
-        }
-        .delete_reply_btn{
-            font-weight: bold;
-            background-color: #e7578f;
-            display: inline-block;
-            width: 40px;
-            text-align: center;
-            height: 20px;
-            line-height: 20px;
-            border-radius: 6px;
-            color: white;
-            cursor: pointer;
-        }
-    </style>
-    <link rel="stylesheet" href="/css/admin.css" type="text/css">
-    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 </head>
 
 
@@ -372,45 +54,45 @@ Product vo=(Product)request.getAttribute("vo");
 <body>
 <%-- toolbar 시작--%>
 <jsp:include page="/layout/toolbar.jsp"/>
-<%-- toolbar 종료--%>
+<%--&lt;%&ndash; toolbar 종료&ndash;%&gt;--%>
 
-<c:forEach items="${deal.files}" var="i">
-    <img src="/resources/${i.fileName}" alt="거래 게시글 사진"><br>
-    <br>
-</c:forEach>
-${deal}<br>
-<div>
+<%--<c:forEach items="${deal.files}" var="i">--%>
+<%--    <img src="/resources/${i.fileName}" alt="거래 게시글 사진"><br>--%>
+<%--    <br>--%>
+<%--</c:forEach>--%>
+<%--${deal}<br>--%>
+<%--<div>--%>
 
-    <input type="button" class="likeToggle" value="${likeCheck == 'y'?'좋아요 해제':'좋아요!'}">
-    <input type="hidden" name="dealBoardNum" value="${deal.dealBoardNum}">
-    <input type="hidden" name="boardCategory" value="${deal.boardCategory}">
-    <br/>
-    <br/>
-</div>
-</table>
-<input type="button" class="updateDeal" value="거래 수정">
-<input type="button" class="deleteDeal" value="거래 삭제">
-<input type="button" class="#" value="채팅하기">
+<%--    <input type="button" class="likeToggle" value="${likeCheck == 'y'?'좋아요 해제':'좋아요!'}">--%>
+<%--    <input type="hidden" name="dealBoardNum" value="${deal.dealBoardNum}">--%>
+<%--    <input type="hidden" name="boardCategory" value="${deal.boardCategory}">--%>
+<%--    <br/>--%>
+<%--    <br/>--%>
+<%--</div>--%>
+<%--</table>--%>
+<%--<input type="button" class="updateDeal" value="거래 수정">--%>
+<%--<input type="button" class="deleteDeal" value="거래 삭제">--%>
+<%--<input type="button" class="#" value="채팅하기">--%>
 
-<div class="reply_subject">리뷰</div>
-<div class="replypt">${deal.reviewPt}</div>
-<div class="replypt">${point}</div>
-
-
-<div class="reply_button_wrap">
-    <button>리뷰 쓰기</button>
-</div>
+<%--<div class="reply_subject">리뷰</div>--%>
+<%--<div class="replypt">${deal.reviewPt}</div>--%>
+<%--<div class="replypt">${point}</div>--%>
 
 
-<input type="button" class="dealLogin" value="로그인">
-<label>
-    아이디 : <input type="text" name="userId" value="">
-    <input type="hidden" name="dealBoardNum" value="${deal.dealBoardNum}">
-</label>
+<%--<div class="reply_button_wrap">--%>
+<%--    <button>리뷰 쓰기</button>--%>
+<%--</div>--%>
 
-${user.userId}
 
-<br>
+<%--<input type="button" class="dealLogin" value="로그인">--%>
+<%--<label>--%>
+<%--    아이디 : <input type="text" name="userId" value="">--%>
+<%--    <input type="hidden" name="dealBoardNum" value="${deal.dealBoardNum}">--%>
+<%--</label>--%>
+
+<%--${user.userId}--%>
+
+<%--<br>--%>
 
 
 
@@ -569,6 +251,265 @@ ${user.userId}
 <%--        </tr>--%>
 <%--    </table>--%>
 <%--</form>--%>
+<div class="wap">
 
+    <div class="row" style="display: flex; align-items: center">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+            <%--            <h1>${club.clubName}</h1>--%>
+            <h1>제목 : ${deal.dealTitle}</h1>
+            <h2>
+                <input type="hidden" value="${user.userId}"></h2>
+        </div>
+
+    </div>
+    <div class="container-fluid py-5" style="text-align: center; width: 100%; height: 500px">
+        <c:forEach items="${deal.files}" var="i">
+        <img src="/resources/${i.fileName}" alt="거래 게시글 사진"><br>
+        <br>
+        </c:forEach>
+        <p>상세 설명 : ${deal.dealText}</p>
+
+
+        <div class="dealinfo" style="display: flex;">
+
+            <div class="dealInfoLeft">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4">${deal.user.userId}</div>
+                        <c:if test="${deal.user.userId == user.userId}">
+                            <div class="col-4">
+                                <button class="btn btn-primary updateDealView font" data-bs-toggle="modal"
+                                        data-bs-target="#updateDeal">
+                                    거래 수정
+                                </button>
+                            </div>
+                        </c:if>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4">
+                            Since : ${deal.dealRegDate}
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="container">
+                    <div class="row">
+                        <%--                   // <div class="col-4">${club.currentCluber}/25--%>
+                        <div class="badge bg-primary text-wrap">
+                            <c:if test="${deal.dealStatus == 0}">
+                                거래전
+                            </c:if>
+                            <c:if test="${deal.dealStatus ==1}">
+                                거래중
+                            </c:if>
+                            <c:if test="${deal.dealStatus ==2}">
+                                거래완료
+                            </c:if>
+                        </div>
+                        <%--                    </div>--%>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="dealInfoRight">
+
+                <div class="container">
+                    <div class="badge bg-primary text-wrap">
+                        ${user.villCode}
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="badge bg-primary text-wrap"
+                         style="width: 250px;height: 65px;display: grid;float: right;grid-template-columns: 1fr 1fr 1fr;">
+                        <c:forEach items="${tagList}" var="tag">
+                            <div>#${tag}</div>
+                        </c:forEach>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div>
+
+            <%--<div class="shadow-lg navbar navbar-expand-lg bg-light"
+                 style="margin-top: 50px; border-radius: 10px;">
+                <div style="background-color: #0000">
+                    <button type="button" class="btn btn-outline-primary btnlf">모임
+                        공지사항
+                    </button>
+                    <button class="btn btn-outline-success btnlf" type="submit">모임
+                        일정
+                    </button>
+                    <button type="button" class="btn btn-outline-danger btnlf">모임
+                        일정 후기글
+                    </button>
+                    <button type="button" class="btn btn-outline-warning btnlf">모임
+                        일정 후기 쇼츠
+                    </button>
+                </div>
+            </div>--%>
+
+            <div class="clubBoarder <%--shadow-lg--%>">
+                <div>내용 출력 예정</div>
+            </div>
+        </div>
+
+        <div style="float: right;">
+            <c:if test="${deal.user.userId==user.userId}">
+                <button class="btn btn-primary deleteDeal" data-bs-toggle="modal" data-bs-target="#deleteDeal">
+                    거래 삭제
+                </button>
+            </c:if>
+            <c:if test="${currentCluber.cluberStatus=='4'||currentCluber.cluberStatus=='5'||currentCluber.cluberStatus=='6'}">
+                <button class="btn btn-primary deleteCluber" data-bs-toggle="modal" data-bs-target="#deleteCluber">
+                    채팅방
+                </button>
+            </c:if>
+        </div>
+
+        <footer style="padding-top: 20px; clear: both;">
+            <c:if test="${club.gatherCheck=='1'}">
+                <c:if test="${empty currentCluber.cluberStatus}">
+                    <button class="btn btn-primary addCluberApplyView" data-bs-toggle="modal"
+                        ${!empty user?'data-bs-target="#cluberApply"':''}>
+                        가입 신청
+                    </button>
+                </c:if>
+            </c:if>
+            <c:if test="${currentCluber.cluberStatus=='2'}">
+                <button class="btn btn-primary updateCluberApplyView" data-bs-toggle="modal"
+                        data-bs-target="#cluberApply">
+                    가입 신청 수정
+                </button>
+            </c:if>
+        </footer>
+
+
+        <%--모임 수정 모달창 시작--%>
+
+        <div class="modal fade" id="updateDeal" tabindex="-1" aria-labelledby="updateDealLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="updateDealLabel">거래 수정</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="updateDealForm" enctype="multipart/form-data">
+                            <input hidden name="dealBoardNum" value="${deal.dealBoardNum}"class="dealBoardNum">
+                            <%--                                <input type="hidden" name="deleteFileName" value="${deal.clubImage}" disabled>--%>
+                            <div class="input-group mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="dealTitle" name="dealTitle" placeholder="거래명"
+                                           value="${deal.dealTitle}" required>
+                                    <label for="dealTitle">거래명</label>
+                                </div>
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="productName" name="productName" placeholder="제품명"
+                                           value="${deal.productName}"required>
+                                    <label for="productName">제품명</label>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="price" name="price" placeholder="가격"
+                                           value="${deal.price}"required>
+                                    <label for="price">가격</label>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="form-floating">
+                                    <select class="form-select" id="boardCategory" name="boardCategory" required>
+                                        <option value="08" selected>판매</option>
+                                        <option value="09">판매요청</option>
+
+                                    </select>
+                                    <label for="boardCategory">판매구분</label>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="form-floating">
+                                    <select class="form-select" id="dealStatus" name="dealStatus" required>
+                                        <option value="01" ${deal.dealStatus == '01'? 'selected':''}>판매전</option>
+                                        <option value="02" ${deal.dealStatus== '02'? 'selected':''}>판매중</option>
+                                        <option value="03" ${deal.dealStatus == '03'? 'selected':''}>판매완료</option>
+
+                                    </select>
+                                    <label for="boardCategory">판매구분</label>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="dealText" name="dealText" placeholder="상품 설명"
+                                           value="${deal.dealText}"required>
+                                    <label for="dealText">상품설명</label>
+                                </div>
+                            </div>
+
+
+
+                            <div class="mb-3">
+                                <div style="width: 466px;height: 233px; text-align: center;">
+
+                                    <c:forEach items="${deal.files}" var="i">
+                                        <img src="/resources/${i.fileName}" alt="수정 전 이미지"><br>
+                                        <input type="button" class="deleteFile" value="삭제">
+                                    </c:forEach>
+                                </div>
+                                <label for="file" class="form-label" style="display: none"></label>
+                                <input class="form-control" type="file" id="file" name="file">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="tagify shadow-lg" id="dealTag"
+                                           style="border-radius: 7px;"
+                                           placeholder="태그 : Enter!">
+                                    <label for="dealTag" style="display: none">태그 : Enter!</label>
+                                    <c:forEach items="${deal.tag}" var="tag">
+                                        <input type="hidden" class="tagList" value="${tag}">
+                                    </c:forEach>
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary updateClub" style="margin-right: 185px">거래 수정
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <%--모임 수정 모달창 끝--%>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+

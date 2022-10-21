@@ -4,11 +4,11 @@
   Created by IntelliJ IDEA.
   User: 903-9
   Date: 2022-10-06
-  Time: ø¿¿¸ 11:32
+  Time: Ïò§Ï†Ñ 11:32
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html; charset=EUC-KR" %>
-<%@ page pageEncoding="EUC-KR"%>
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page pageEncoding="utf-8"%>
 
 
 <!DOCTYPE html>
@@ -16,177 +16,181 @@
 <html lang="ko">
 
 <head>
+
+  <title>MOWAS</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
-  <title>Bootstrap Example</title>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
   <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
-
+  <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css"/>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script src="/resources/deal/js/listDeal.js"></script>
+  <link href="/resources/deal/css/listDeal.css" rel="stylesheet" type="text/css"/>
   <!--  ///////////////////////// CSS ////////////////////////// -->
-  <style>
-    body > div.container{
-      border: 3px solid #D6CDB7;
-      margin-top: 10px;
-    }
-  </style>
+  <%--  <style>--%>
+  <%--    body > div.container{--%>
+  <%--      border: 3px solid #D6CDB7;--%>
+  <%--      margin-top: 10px;--%>
+  <%--    }--%>
+  <%--  </style>--%>
 
-  <!--  ///////////////////////// JavaScript ////////////////////////// -->
-  <script type="text/javascript">
+  <%--  <!--  ///////////////////////// JavaScript ////////////////////////// -->--%>
+  <%--  <script type="text/javascript">--%>
 
-    // ============= "∞°¿‘"  Event ø¨∞· =============
-    $(function() {
-      $(".paging").on("click",function(){
+  <%--    // ============= "Í∞ÄÏûÖ"  Event Ïó∞Í≤∞ =============--%>
+  <%--    $(function() {--%>
+  <%--      $(".paging").on("click",function(){--%>
 
-        $("#currentPage").val($(this).text())
-        $("form").submit()
-      })
-      $("form").on("submit",function(){
-
-
-        $(this).attr("action","/deal/getListDeal?${deal.boardCategory}").attr("method","post")
-      })
+  <%--        $("#currentPage").val($(this).text())--%>
+  <%--        $("form").submit()--%>
+  <%--      })--%>
+  <%--      $("form").on("submit",function(){--%>
 
 
-      // //==> DOM Object GET 3∞°¡ˆ πÊπ˝ ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-      // $( "button.btn.btn-primary" ).on("click" , function() {
-      //   self.location = "/deal/getDeal?dealBoardNum="+$(this).children().val();
-      // });
-      // $(".dealLogin").on("click",function(){
-      //   location.href="/deal/login?userId="+$("input[name='userId']").val()
-      // })
+  <%--        $(this).attr("action","/deal/getListDeal?${deal.boardCategory}").attr("method","post")--%>
+  <%--      })--%>
 
 
-    });
+  <%--      // //==> DOM Object GET 3Í∞ÄÏßÄ Î∞©Î≤ï ==> 1. $(tagName) : 2.(#id) : 3.$(.className)--%>
+  <%--      // $( "button.btn.btn-primary" ).on("click" , function() {--%>
+  <%--      //   self.location = "/deal/getDeal?dealBoardNum="+$(this).children().val();--%>
+  <%--      // });--%>
+  <%--      // $(".dealLogin").on("click",function(){--%>
+  <%--      //   location.href="/deal/login?userId="+$("input[name='userId']").val()--%>
+  <%--      // })--%>
 
 
-    // $(function() {
-    //   //==> DOM Object GET 3∞°¡ˆ πÊπ˝ ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-    //   $( .addDeal ).on("click" , function() {
-    //     self.location = "/deal/dd="+$(this).children().val();
-    //   });
-    // });
-
-    // //============= "√Îº“"  Event √≥∏Æ π◊  ø¨∞· =============
-    // $(function() {
-    //   //==> √ﬂ∞°µ»∫Œ∫– : "addUser"  Event ø¨∞·
-    //   $("a[href='#' ]:contains('ªÛºº ∫∏±‚')").on("click", function() {
-    //     self.location = "/deal/getDeal?dealBoardNum="+$(this).children().val();
-    //   });
-    // });
-    $(function () {
-      $(".deal").on("click", function () {
-
-         location.href = "/deal/getListDeal?boardCategory="+$(".deal").val();
-
-        //$(this).attr("action","/deal/getListDeal/08").attr("method","post")
-      });
-
-      $(".dealRequest").on("click", function () {
-        alert($(".dealRequest").val());
-        location.href = "/deal/getListDeal?boardCategory="+$(".dealRequest").val();
-
-       // $(this).attr("action","/deal/getListDeal/09").attr("method","post")
-      })
-      $(".dealBox").on('click', function (e) {
-        alert("hi")
-        var dealBoardNum= $(this).find(".dealBoardNum").val()
-        alert(dealBoardNum);
-        location.href = "/deal/getDeal/"+dealBoardNum;
-
-      })
-      $(".addDeal").on("click", function () {
-        location.href = "/deal/addDeal"
-      })
-    });
-  </script>
+  <%--    });--%>
 
 
-  <style>
-    .body {
-      text-align: -webkit-center;
-    }
+  <%--    // $(function() {--%>
+  <%--    //   //==> DOM Object GET 3Í∞ÄÏßÄ Î∞©Î≤ï ==> 1. $(tagName) : 2.(#id) : 3.$(.className)--%>
+  <%--    //   $( .addDeal ).on("click" , function() {--%>
+  <%--    //     self.location = "/deal/dd="+$(this).children().val();--%>
+  <%--    //   });--%>
+  <%--    // });--%>
 
-    .wap {
-      width: 1000px;
-    }
+  <%--    // //============= "Ï∑®ÏÜå"  Event Ï≤òÎ¶¨ Î∞è  Ïó∞Í≤∞ =============--%>
+  <%--    // $(function() {--%>
+  <%--    //   //==> Ï∂îÍ∞ÄÎêúÎ∂ÄÎ∂Ñ : "addUser"  Event Ïó∞Í≤∞--%>
+  <%--    //   $("a[href='#' ]:contains('ÏÉÅÏÑ∏ Î≥¥Í∏∞')").on("click", function() {--%>
+  <%--    //     self.location = "/deal/getDeal?dealBoardNum="+$(this).children().val();--%>
+  <%--    //   });--%>
+  <%--    // });--%>
+  <%--    $(function () {--%>
+  <%--      $(".deal").on("click", function () {--%>
 
-    .carditem {
-      height: 210px;
-      display: flex;
-      flex-direction: column;
-    }
+  <%--         location.href = "/deal/getListDeal?boardCategory="+$(".deal").val();--%>
 
-    .card-title {
-      width: 250px;
-      font-size: 1.2em;
-    }
+  <%--        //$(this).attr("action","/deal/getListDeal/08").attr("method","post")--%>
+  <%--      });--%>
 
-    .cardbox {
-      display: flex;
-      flex-direction: row;
-      margin: 6px;
-      float: left;
-    }
+  <%--      $(".dealRequest").on("click", function () {--%>
+  <%--        alert($(".dealRequest").val());--%>
+  <%--        location.href = "/deal/getListDeal?boardCategory="+$(".dealRequest").val();--%>
 
-    button.buttonBox {
-      font-size: 0.7em;
-      /* float: left; */
-      /* size: b4; */
-      height: 25px;
-      width: 5px;
-    }
+  <%--       // $(this).attr("action","/deal/getListDeal/09").attr("method","post")--%>
+  <%--      })--%>
+  <%--      $(".dealBox").on('click', function (e) {--%>
+  <%--        alert("hi")--%>
+  <%--        var dealBoardNum= $(this).find(".dealBoardNum").val()--%>
+  <%--        alert(dealBoardNum);--%>
+  <%--        location.href = "/deal/getDeal/"+dealBoardNum;--%>
 
-    .col.dealBox {
-      width: 320px;
-    }
+  <%--      })--%>
+  <%--      $(".addDeal").on("click", function () {--%>
+  <%--        location.href = "/deal/addDeal"--%>
+  <%--      })--%>
+  <%--    });--%>
+  <%--  </script>--%>
 
-    .add {
-      /*margin-right: 800px;*/
-      margin-bottom: 50px;
-    }
 
-    .card-img-top {
-      text-align: center;
-      width: 100%;
-      height: 200px;
-    }
+  <%--  <style>--%>
+  <%--    .body {--%>
+  <%--      text-align: -webkit-center;--%>
+  <%--    }--%>
 
-    .card-img-top > img {
-      object-fit: contain;
-      width: 100%;
-      height: 100%;
-    }
+  <%--    .wap {--%>
+  <%--      width: 1000px;--%>
+  <%--    }--%>
 
-    svg {
-      font-size: 40px;
-    }
+  <%--    .carditem {--%>
+  <%--      height: 210px;--%>
+  <%--      display: flex;--%>
+  <%--      flex-direction: column;--%>
+  <%--    }--%>
 
-    .dealTag {
-      height: 210px;
-      --bs-btn-color: #000000;
-      --bs-btn-border-color: #000000;
-      --bs-btn-hover-color: #000000;
-      --bs-btn-hover-bg: #fff;
-      --bs-btn-hover-border-color: #000000;
-      --bs-btn-focus-shadow-rgb: 13,110,253;
-      --bs-btn-active-color: #000000;
-      --bs-btn-active-bg: #fff;
-      --bs-btn-active-border-color: #000000;
-      --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-      --bs-btn-disabled-color: #000000;
-      --bs-btn-disabled-bg: transparent;
-      --bs-btn-disabled-border-color: #000000;
-      --bs-gradient: none;
-    }
+  <%--    .card-title {--%>
+  <%--      width: 250px;--%>
+  <%--      font-size: 1.2em;--%>
+  <%--    }--%>
 
-  </style>
+  <%--    .cardbox {--%>
+  <%--      display: flex;--%>
+  <%--      flex-direction: row;--%>
+  <%--      margin: 6px;--%>
+  <%--      float: left;--%>
+  <%--    }--%>
+
+  <%--    button.buttonBox {--%>
+  <%--      font-size: 0.7em;--%>
+  <%--      /* float: left; */--%>
+  <%--      /* size: b4; */--%>
+  <%--      height: 25px;--%>
+  <%--      width: 5px;--%>
+  <%--    }--%>
+
+  <%--    .col.dealBox {--%>
+  <%--      width: 320px;--%>
+  <%--    }--%>
+
+  <%--    .add {--%>
+  <%--      /*margin-right: 800px;*/--%>
+  <%--      margin-bottom: 50px;--%>
+  <%--    }--%>
+
+  <%--    .card-img-top {--%>
+  <%--      text-align: center;--%>
+  <%--      width: 100%;--%>
+  <%--      height: 200px;--%>
+  <%--    }--%>
+
+  <%--    .card-img-top > img {--%>
+  <%--      object-fit: contain;--%>
+  <%--      width: 100%;--%>
+  <%--      height: 100%;--%>
+  <%--    }--%>
+
+  <%--    svg {--%>
+  <%--      font-size: 40px;--%>
+  <%--    }--%>
+
+  <%--    .dealTag {--%>
+  <%--      height: 210px;--%>
+  <%--      --bs-btn-color: #000000;--%>
+  <%--      --bs-btn-border-color: #000000;--%>
+  <%--      --bs-btn-hover-color: #000000;--%>
+  <%--      --bs-btn-hover-bg: #fff;--%>
+  <%--      --bs-btn-hover-border-color: #000000;--%>
+  <%--      --bs-btn-focus-shadow-rgb: 13,110,253;--%>
+  <%--      --bs-btn-active-color: #000000;--%>
+  <%--      --bs-btn-active-bg: #fff;--%>
+  <%--      --bs-btn-active-border-color: #000000;--%>
+  <%--      --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);--%>
+  <%--      --bs-btn-disabled-color: #000000;--%>
+  <%--      --bs-btn-disabled-bg: transparent;--%>
+  <%--      --bs-btn-disabled-border-color: #000000;--%>
+  <%--      --bs-gradient: none;--%>
+  <%--    }--%>
+
+  <%--  </style>--%>
 
 </head>
 
@@ -195,95 +199,193 @@
 
 <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 
-<input type="button" class="Login" value="∑Œ±◊¿Œ">
+<%--Íµ¨ÌòÑ ÌõÑ ÎπºÏïºÌï®--%>
+<input type="button" class="dealLogin" value="Î°úÍ∑∏Ïù∏">
 <label>
-  æ∆¿Ãµ : <input type="text" name="userId" value="user01">
+  ÏïÑÏù¥Îîî : <input type="text" name="userId" value="user01">
 </label>
 ${user.userId}
 <!-- Example Code -->
 <div class="wap">
 
-  <%--ªÛ¥‹ ≈¯πŸ--%>
+  <%--ÏÉÅÎã® Ìà¥Î∞î--%>
   <jsp:include page="/layout/toolbar.jsp"/>
+  <input type="hidden" class="userId" value="${user.userId}">
+  <%--  <div class="add" style="display:flex;justify-content: space-between;align-items: center;">--%>
+  <%--    <button class="btn btn-primary addDeal">--%>
+  <%--      Í±∞Îûò ÎßåÎì§Í∏∞--%>
+  <%--    </button>--%>
+  <%--    <div>--%>
+  <%--      <button class="btn btn-primary deal" value="08">--%>
+  <%--        ÌåêÎß§--%>
+  <%--      </button>--%>
+  <%--      <button class="btn btn-primary dealRequest" value="09">--%>
+  <%--        ÌåêÎß§ÏöîÏ≤≠--%>
+  <%--      </button>--%>
+  <%--      <button class="btn btn-primary searchTag">--%>
+  <%--        ÌÉúÍ∑∏--%>
+  <%--      </button>--%>
+  <%--    </div>--%>
+  <%--  </div>--%>
 
+
+  <%--Î≤ÑÌäº Î™®Ïùå ÏãúÏûë--%>
   <div class="add" style="display:flex;justify-content: space-between;align-items: center;">
-    <button class="btn btn-primary addDeal">
-      ∞≈∑° ∏∏µÈ±‚
+    <button class="btn btn-primary addDeal" data-bs-toggle="modal" data-bs-target="#addDeal">
+      Í±∞Îûò ÎßåÎì§Í∏∞
     </button>
     <div>
+
       <button class="btn btn-primary deal" value="08">
-        ∆«∏≈
+        ÌåêÎß§
       </button>
       <button class="btn btn-primary dealRequest" value="09">
-        ∆«∏≈ø‰√ª
+        ÌåêÎß§ÏöîÏ≤≠
       </button>
       <button class="btn btn-primary searchTag">
-        ≈¬±◊
+        ÌÉúÍ∑∏
       </button>
+
     </div>
   </div>
+  <%--Î≤ÑÌäº Î™®Ïùå ÎÅù--%>
 
 
 
-    <c:forEach var="deal" items="${list}">
+  <c:forEach var="deal" items="${list}">
 
-      <div class="row row-cols-1 row-cols-md-3 g-4 cardbox">
-        <div class="col dealBox">
-          <input type="hidden" name="dealBoardNum" class="dealBoardNum" value="${deal.dealBoardNum}">
-          <div class="card h-100">
-<%--            <c:forEach var="File" items="${Deal.files}">--%>
-<%--              <div class="carousel-inner">--%>
-<%--                <div class="carousel-item active get">--%>
-<%--                  <img class="poto" width="100%" height="100%"  src="/resources/${File.fileName }" alt="any">--%>
-<%--                </div>--%>
-<%--              </div>--%>
-<%--            </c:forEach>--%>
-
-
-  <div class="card-img-top" style="cursor: pointer">
-    <img src="/resources/${deal.files[0].fileName}" alt="∞≈∑°¿ÃπÃ¡ˆ">
-  </div>
+  <div class="row row-cols-1 row-cols-md-3 g-4 cardbox">
+    <div class="col dealBox">
+      <input type="hidden" name="dealBoardNum" class="dealBoardNum" value="${deal.dealBoardNum}">
+      <div class="card h-100">
+          <%--            <c:forEach var="File" items="${Deal.files}">--%>
+          <%--              <div class="carousel-inner">--%>
+          <%--                <div class="carousel-item active get">--%>
+          <%--                  <img class="poto" width="100%" height="100%"  src="/resources/${File.fileName }" alt="any">--%>
+          <%--                </div>--%>
+          <%--              </div>--%>
+          <%--            </c:forEach>--%>
 
 
+        <div class="card-img-top" style="cursor: pointer">
+          <img src="/resources/${deal.files[0].fileName}" alt="Í±∞ÎûòÏù¥ÎØ∏ÏßÄ">
+        </div>
 
-            <div class="card-body carditem">
-              <h3 class="card-title">${deal.dealTitle}</h3>
-              <div class="row g-3">
-                <div class="col-6">
-                  <div class="badge bg-primary text-wrap" style="width: 6rem;">
-                      <c:if test="${deal.dealStatus == 0}">
-                            ∞≈∑°¿¸
-                      </c:if>
-                    <c:if test="${deal.dealStatus ==1}">
-                      ∞≈∑°¡ﬂ
-                    </c:if>
-                    <c:if test="${deal.dealStatus ==2}">
-                      ∞≈∑°øœ∑·
-                    </c:if>
-                  </div>
-                  <div class="badge bg-primary text-wrap" style="width: 6rem;">
-                      ${deal.villCode}
-                  </div>
-                  <div class="badge bg-primary text-wrap" style="width: 6rem;">
-                  ${deal.price}
-                  </div>
-                </div>
 
+
+        <div class="card-body carditem">
+          <h3 class="card-title">${deal.dealTitle}</h3>
+          <div class="row g-3">
+            <div class="col-6">
+              <div class="badge bg-primary text-wrap" style="width: 6rem;">
+                <c:if test="${deal.dealStatus == 0}">
+                  Í±∞ÎûòÏ†Ñ
+                </c:if>
+                <c:if test="${deal.dealStatus ==1}">
+                  Í±∞ÎûòÏ§ë
+                </c:if>
+                <c:if test="${deal.dealStatus ==2}">
+                  Í±∞ÎûòÏôÑÎ£å
+                </c:if>
               </div>
-              <button type="button" class="btn btn-outline-primary dealTag">${deal.tag}</button>
+              <div class="badge bg-primary text-wrap" style="width: 6rem;">
+                  ${deal.villCode}
+              </div>
+              <div class="badge bg-primary text-wrap" style="width: 6rem;">
+                  ${deal.price}
+              </div>
             </div>
 
-              <%--<div class="card-footer">
-                  <small class="text-muted">Last updated 3 mins ago</small>
-              </div>--%>
           </div>
+          <button type="button" class="btn btn-outline-primary dealTag">${deal.tag}</button>
         </div>
-      </div> </c:forEach>
+
+          <%--<div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+          </div>--%>
+      </div>
+    </div>
+  </div> </c:forEach>
 
 
 
+
+
+  <%--Í±∞Îûò ÎßåÎì§Í∏∞ Î™®Îã¨Ï∞Ω ÏãúÏûë--%>
+  <div class="modal fade" id="addDeal" tabindex="-1" aria-labelledby="addDealLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="addDealLabel">Í±∞Îûò ÎßåÎì§Í∏∞</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="addDealForm" enctype="multipart/form-data" method="post">
+            <input type="text" class="asasas" name="user.userId" value="${user.userId}"/>
+            <div class="input-group mb-3">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="dealTitle" name="dealTitle" placeholder="Í±∞ÎûòÎ™Ö"
+                       required>
+                <label for="dealTitle">Í±∞ÎûòÎ™Ö</label>
+              </div>
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="productName" name="productName" placeholder="Ï†úÌíàÎ™Ö"
+                       required>
+                <label for="productName">Ï†úÌíàÎ™Ö</label>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="price" name="price" placeholder="Í∞ÄÍ≤©"
+                       required>
+                <label for="price">Í∞ÄÍ≤©</label>
+              </div>
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="form-floating">
+                <select class="form-select" id="boardCategory" name="boardCategory" required>
+                  <option value="08" selected>ÌåêÎß§</option>
+                  <option value="09">ÌåêÎß§ÏöîÏ≤≠</option>
+
+                </select>
+                <label for="boardCategory">ÌåêÎß§Íµ¨Î∂Ñ</label>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="dealText" name="dealText" placeholder="ÏÉÅÌíà ÏÑ§Î™Ö"
+                       required>
+                <label for="dealText">ÏÉÅÌíàÏÑ§Î™Ö</label>
+              </div>
+            </div>
+
+
+
+            <div class="mb-3">
+              <label for="file" class="form-label" style="display: none"></label>
+              <input class="form-control" type="file" id="file" name="file">
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="form-floating">
+                <input type="text" class="tagify shadow-lg" id="dealTag" style="border-radius: 7px;"
+                       placeholder="ÌÉúÍ∑∏ : Enter!">
+                <label for="dealTag" style="display: none">ÌÉúÍ∑∏ : Enter!</label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary newDeal" style="margin-right: 185px">Í±∞Îûò ÎßåÎì§Í∏∞</button>
+        </div>
+      </div>
+    </div>
   </div>
-
+  <%--Í±∞Îûò ÎßåÎì§Í∏∞ Î™®Îã¨Ï∞Ω ÎÅù--%>
 
 </body>
 
@@ -298,8 +400,8 @@ ${user.userId}
 <%--<div class="form-group">--%>
 <%--  <nav class="shadow-lg navbar navbar-expand-lg bg-light commuBox">--%>
 
-<%--    <button type="button" class="btn btn-outline-primary btnlf deal" value="08">∆«∏≈</button>--%>
-<%--    <button type="button" class="btn btn-outline-secondary btnlf dealRequest" value="09">∆«∏≈ø‰√ª</button>--%>
+<%--    <button type="button" class="btn btn-outline-primary btnlf deal" value="08">ÌåêÎß§</button>--%>
+<%--    <button type="button" class="btn btn-outline-secondary btnlf dealRequest" value="09">ÌåêÎß§ÏöîÏ≤≠</button>--%>
 <%--  </nav>--%>
 
 <%--</div>--%>
@@ -308,9 +410,9 @@ ${user.userId}
 
 <%--    <thead>--%>
 <%--    <tr>--%>
-<%--      <th align="left">π¯»£</th>--%>
-<%--      <th align="left">¡¶∏Ò</th>--%>
-<%--      <th align="left">≥ªøÎ</th>--%>
+<%--      <th align="left">Î≤àÌò∏</th>--%>
+<%--      <th align="left">Ï†úÎ™©</th>--%>
+<%--      <th align="left">ÎÇ¥Ïö©</th>--%>
 <%--    </tr>--%>
 <%--    </thead>--%>
 
@@ -324,10 +426,10 @@ ${user.userId}
 <%--      <td align="left">   ${deal.dealBoardNum}</td>--%>
 <%--      <td align="left">    ${deal.dealTitle}</td>--%>
 <%--      <td align="left">    ${deal.dealText}</td>--%>
-<%--      <td align="left"><a href="/deal/getDeal/${deal.dealBoardNum}">ªÛºº∫∏±‚</a></td>--%>
+<%--      <td align="left"><a href="/deal/getDeal/${deal.dealBoardNum}">ÏÉÅÏÑ∏Î≥¥Í∏∞</a></td>--%>
 
 <%--      </c:forEach>--%>
-<%--      <a href="/deal/addDeal"> <input type="button" class="addDeal" value="∞≈∑° ∏∏µÈ±‚"></a>--%>
+<%--      <a href="/deal/addDeal"> <input type="button" class="addDeal" value="Í±∞Îûò ÎßåÎì§Í∏∞"></a>--%>
 <%--    </tbody>--%>
 
 <%--  </table>--%>
@@ -338,15 +440,15 @@ ${user.userId}
 <%--    <input type="hidden" id="currentPage" name="currentPage" value="1">--%>
 <%--    <input type="text" name="searchKeyword" value="${search.searchKeyword}">--%>
 <%--  </label>--%>
-<%--  <input type="submit" value="∞Àªˆ">--%>
+<%--  <input type="submit" value="Í≤ÄÏÉâ">--%>
 <%--</form>--%>
 
 
 
 
-<%--<input type="button" class="clubLogin" value="∑Œ±◊¿Œ">--%>
+<%--<input type="button" class="clubLogin" value="Î°úÍ∑∏Ïù∏">--%>
 <%--<label>--%>
-<%--  æ∆¿Ãµ : <input type="text" name="userId" value="">--%>
+<%--  ÏïÑÏù¥Îîî : <input type="text" name="userId" value="">--%>
 <%--</label>--%>
 <%--${user.userId}--%>
 

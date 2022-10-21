@@ -34,6 +34,19 @@
             <version>5.2.5.RELEASE</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
 
         <dependency>
@@ -216,18 +229,26 @@
             <version>2.8.7</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-websocket -->
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-websocket</artifactId>
+            <artifactId>spring-core</artifactId>
             <version>5.2.5.RELEASE</version>
         </dependency>
+
 
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.integration/spring-integration-mongodb -->
+        <dependency>
+            <groupId>org.springframework.integration</groupId>
+            <artifactId>spring-integration-mongodb</artifactId>
+            <version>5.2.5.RELEASE</version>
+        </dependency>
+
     </dependencies>
 
     <build>
