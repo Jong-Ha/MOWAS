@@ -81,7 +81,7 @@ var room = mongoose.Schema({
     roomId: 'string',
     chatCategory: 'string',
     roomName: 'string',
-    boardNum: 'string'
+    boardNum: 'number'
 });
 
 //moongoDB에 Schema 생성
@@ -90,10 +90,10 @@ var msg = mongoose.Schema({
     roomId: 'string',
     chatCategory: 'string',
     msg: 'string',
-    flie: 'string',
+    flie : 'string',
     time: 'string',
     rtime: 'number',
-    unreadUser: ['string']
+    unreadUser : ['string']
 })
 
 //정의된 스키마르 객체처럼 사용할수 있도록 model()함수로 컴파일
@@ -109,6 +109,8 @@ chatlist.on('connection', (socket) => {
 
     const userId = socket.handshake.query.userId
     const chatCategory = socket.handshake.query.chatCategory
+    console.log(userId)
+    console.log(chatCategory)
 
     console.log('---' + chatCategory + ' chatList  ---');
 
@@ -170,7 +172,7 @@ onebyone.on('connection', (socket) => {
                     userId: userId2,
                     regDate: moment(new Date())
                 }],
-                roomId: roomId, chatCategory: 'onebyone', roomName: roomId
+                roomId: roomId, chatCategory: 'onebyone', roomName: roomId, boardNum:0
             })
             result.save(function (error, result) {
 

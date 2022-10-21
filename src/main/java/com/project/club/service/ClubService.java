@@ -12,7 +12,7 @@ public interface ClubService {
     public void updateClub(Club club);
     public void deleteClub(Club club);
     public Club getClub(int clubNum);
-    public String getCluberCondition(User user, int clubNum);
+    public Cluber getCluberCondition(User user, int clubNum);
     public List<Club> listClub(String userId, Search search, String searchLocation, List<String> searchInterList, List<String> searchTag);
     public void addCluberApply(Cluber cluber);
     public void updateCluberApply(Cluber cluber);
@@ -20,7 +20,7 @@ public interface ClubService {
     public void deleteCluberApply(int clubUserNum);
     public List<Cluber> listCluberApply(int clubNum);
     public String getCluberApply(int clubUserNum);
-    public void updateCluberApply(int clubNum, int clubUserNum, String result);
+    public void updateCluberApply(int clubNum, int clubUserNum, String userId, String result);
     public void addClubManager(int clubUserNum);
     public void deleteClubManager(int clubUserNum);
     public void updateClubMaster(Cluber cluber);

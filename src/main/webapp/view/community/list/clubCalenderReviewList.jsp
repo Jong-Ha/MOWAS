@@ -222,19 +222,22 @@
 </head>
 <input hidden class="userId" value="${user.userId}">
 
-<body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 
-    <jsp:include page="/layout/toolbar.jsp"/>
+
+<body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
+<jsp:include page="/layout/toolbar.jsp"/>
+
 
         <img src="${pageContext.request.contextPath}/resources/images/mim.jpeg" style="height: 500px;border-radius: 10px;  width: 1600px;">
 
 <div class="wap">
+    <jsp:include page="/layout/commubar.jsp"/>
     <input hidden class="boardCategory" value="01">
 
     <%--상단 툴바--%>
 
     <%--게시판 navigation--%>
-    <jsp:include page="/layout/commubar.jsp"/>
+
 
     <div class="addBox">
         <button class="btn btn-primary add ">

@@ -51,6 +51,8 @@ public interface SiteDao {
 
     public List<ClubReport> listClubReport(Search search) throws Exception;
 
+    List<ClubReport> listClubReportProcess(Search search) throws Exception;
+
     public void processClubReport(ClubReport clubReport) throws Exception;
 
     public void processClubRereport(ClubReport clubReport) throws Exception;

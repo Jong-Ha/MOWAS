@@ -42,6 +42,8 @@ public interface SiteService {
 
     public Map<String, Object> listClubReport(Search search) throws Exception;
 
+    public Map<String, Object> listClubReportProcess(Search search) throws Exception;
+
     public void processClubReport(ClubReport clubReport) throws Exception;
 
     public void processClubRereport(ClubReport clubReport) throws Exception;

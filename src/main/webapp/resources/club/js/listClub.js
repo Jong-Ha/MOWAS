@@ -11,6 +11,9 @@ $(function () {
         // location.href = "/club/addClub"
         // window.open("/club/addClub", "모임 만들기",
         //     "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
+        if($('.userId').val()===''){
+            alert('로그인이 필요합니다')
+        }
     })
     //로그인 나중에 없앨거
     $(".clubLogin").on("click", function () {
@@ -153,4 +156,28 @@ $(function(){
 
         addForm.attr("action","/club/addClub").attr("method","post").submit()
     })
+
 })
+
+$(function (){
+    checkBox()
+    $('[name="searchInterList"]').on('click',function(){
+        checkBox()
+    })
+    $('.totalInterList').on('click',function(){
+        $.each($('[name="searchInterList"]'),function(index,item){
+            $(item).prop('checked',$('.totalInterList').prop('checked'))
+        })
+    })
+})
+
+function checkBox(){
+    var result = true;
+    $.each($('[name="searchInterList"]'),function(index,item){
+        if(!$(item).prop('checked')){
+            result = false
+            return false
+        }
+    })
+    $('.totalInterList').prop('checked',result)
+}

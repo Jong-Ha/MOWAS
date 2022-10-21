@@ -581,12 +581,24 @@
         </where>
     </select>
 
-    <select id="getCluberCondition" parameterType="map" resultType="String">
-        SELECT cluber_status
+    <select id="getCluberCondition" parameterType="map" resultMap="CluberResultMap">
+        SELECT club_user_num,
+               user_id,
+               user_image,
+               club_num,
+               cluber_status,
+               club_reg_date,
+               club_apply_date,
+               cluber_text,
+               club_out_text,
+               club_out_date,
+               blacklist_date,
+               blacklist_text,
+               blacklist_check
         FROM club_user
         WHERE club_num = #{clubNum}
           AND user_id = #{user.userId}
-          AND cluber_status in ('4', '5', '6')
+          AND cluber_status in ('2','4', '5', '6')
     </select>
 
     <!--clubService.getCluber-->

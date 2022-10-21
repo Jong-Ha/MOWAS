@@ -52,14 +52,14 @@
                 console.log(item);
 
                 var chatter;
-
-                if(item.users[0].userId==='${user.userId}'){
-
-                    chatter = item.users[1].userId
-
+                if(item.chatCategory==='clubChat'){
+                    chatter = item.roomName;
                 }else {
-
-                    chatter = item.users[0].userId
+                    if(item.users[0].userId==='${user.userId}'){
+                        chatter = item.users[1].userId
+                    }else {
+                        chatter = item.users[0].userId
+                    }
                 }
 
                 var chatList = ' <div class="card shadow-lg chatBox" style="width: 500px; max-width: 500px; margin-bottom: 20px">' +

@@ -145,10 +145,10 @@ public class MyPageController {
     public String getClub(Model model, @PathVariable int clubNum, HttpSession session) {
         User user = (User) session.getAttribute("user");
         if (user != null) {
-            String cluberStatus = clubService.getCluberCondition(user, clubNum);
-            session.setAttribute(String.valueOf(clubNum), cluberStatus);
+            Cluber currentCluber = clubService.getCluberCondition(user, clubNum);
+            session.setAttribute("currentCluber", currentCluber);
         } else {
-            session.removeAttribute(String.valueOf(clubNum));
+            session.removeAttribute("currentCluber");
         }
         Club club = clubService.getClub(clubNum);
         model.addAttribute("club", club);
@@ -160,6 +160,8 @@ public class MyPageController {
         model.addAttribute("clubMasterBoard", clubService.getClubMasterBoard(boardNum));
         return "/view/club/getClubMasterBoard.jsp";
     }
+
+
 
     @RequestMapping("getClubCalender")
     public String getClubCalender(@RequestParam("clubCalenderNum")int clubCalenderNum
@@ -262,15 +264,55 @@ public class MyPageController {
 
     ///*
     @RequestMapping(value = "getMyBoard", method = RequestMethod.GET)
-    public String getMyBoard(@RequestParam(value ="userId")String userId,Model model)throws Exception{
+    public String getMyBoard(@RequestParam(value ="userId")String userId,Model model,
+                             @PathVariable("clubNum") int clubNum, @ModelAttribute("search") Search search)throws Exception{
         System.out.println("getMyBoard컨트롤러 userId의 값?"+userId);
+        if (search.getCurrentPage() == 0) {
+            search.setCurrentPage(1);
+        }
+        if (search.getPageSize() == 0) {
+            search.setPageSize(pageSize);
+        }
+        if (search.getSearchKeyword() == null) {
+            search.setSearchKeyword("");
+        }
 
         Map<String, Object> map = myPageService.getMyBoard(userId);
+        Map<String, Object> map2 = clubService.listClubMasterBoard(search, clubNum);
+        Page resultPage = new Page(search.getCurrentPage(), (Integer) map.get("totalCount"), pageUnit, pageSize);
+        map.put("resultPage", resultPage);
+
+
+
+
+
+
+
+
         System.out.println("getMyBoard 컨트롤러 map의 값은?"+map);
+        model.addAttribute("map2", map2);
         model.addAttribute("map", map);
         return "forward:/view/myPage/getMyBoard.jsp";
     }
-
+    ///*
+    @RequestMapping(value = "listClubMasterBoard/{clubNum}")
+    public String listClubMasterBoard(Model model, @PathVariable("clubNum") int clubNum, @ModelAttribute("search") Search search) {
+        if (search.getCurrentPage() == 0) {
+            search.setCurrentPage(1);
+        }
+        if (search.getPageSize() == 0) {
+            search.setPageSize(pageSize);
+        }
+        if (search.getSearchKeyword() == null) {
+            search.setSearchKeyword("");
+        }
+        Map<String, Object> map = clubService.listClubMasterBoard(search, clubNum);
+        Page resultPage = new Page(search.getCurrentPage(), (Integer) map.get("totalCount"), pageUnit, pageSize);
+        map.put("resultPage", resultPage);
+        model.addAllAttributes(map);
+        return "/view/myPage/getMyBoard.jsp";
+    }
+    //*/
     @RequestMapping(value = "getMyComment", method = RequestMethod.GET)
     public String getMyComment(@RequestParam(value ="userId")String userId,Model model)throws Exception{
         System.out.println("getMyComment 컨트롤러 userId의 값?"+userId);

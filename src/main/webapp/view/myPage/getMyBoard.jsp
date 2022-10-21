@@ -7,7 +7,15 @@
 </head>
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
-
+    $(function(){
+        $(".paging").on("click",function(){
+            $("#currentPage").val($(this).text())
+            $("form").submit()
+        })
+        $("form").on("submit",function(){
+            $(this).attr("action","/club/listClubMasterBoard/${clubNum}").attr("method","post")
+        })
+    })
 
 </script>
 <body>
@@ -35,6 +43,17 @@
     작성날짜 ${list.regDate}<br/>
     게시글번호${list.boardNum}<br/>
 </c:forEach> <br/>
+
+<c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" var="i">
+    <span class="paging">${i}</span>
+</c:forEach>
+<label>
+    <input type="hidden" id="currentPage" name="currentPage" value="1">
+    <input type="text" name="searchKeyword" value="${search.searchKeyword}">
+</label>
+<input type="submit" value="검색">
+
+
 <hr/>
 <h3>모임 후기글</h3>
 <hr/>

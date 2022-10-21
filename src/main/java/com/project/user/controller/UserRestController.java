@@ -16,12 +16,11 @@ import org.springframework.web.bind.annotation.*;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.*;
+import javax.mail.internet.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -166,47 +165,48 @@ public class UserRestController {
         session.removeAttribute("user");
     }
 
-    @RequestMapping(value = "interListControl", method = RequestMethod.POST)
-    public void interListControl(@RequestBody UserInterList interList) throws Exception {
-        System.out.println("여기는 interListControl 시작이다");
+    @RequestMapping(value = "addinterList", method = RequestMethod.POST)
+    public void addinterList(@RequestBody UserInterList interList) throws Exception {
+        System.out.println("여기는 addinterList 시작이다");
         System.out.println("interList의 값은 ? :" + interList);
 
         userService.addInterList(interList);
-        System.out.println("여기는 interListControl 종료이다");
+        System.out.println("여기는 addinterList 종료이다");
+
     }
 
-    @RequestMapping(value = "deleteInter", method = RequestMethod.POST)
-    public void deleteInter(@RequestBody UserInterList interList) throws Exception {
-        System.out.println("여기는 deleteInter 시작이다");
-        System.out.println("interList의 값은 ? :" + interList);
+        @RequestMapping(value = "deleteInter", method = RequestMethod.POST)
+        public void deleteInter(@RequestBody UserInterList interList) throws Exception {
+            System.out.println("여기는 deleteInter 시작이다");
+            System.out.println("interList의 값은 ? :" + interList);
 
-        userService.deleteInterList(interList);
-        System.out.println("여기는 deleteInter 종료이다");
-    }
-/*
-    @RequestMapping(value = "psd7", method = RequestMethod.POST)
-    public Map<String, Object> psd7(@RequestBody Map<String, Object> map) throws Exception {
-        System.out.println("여기는 psd7컨트롤 시작이다");
-        System.out.println("psd의 값은 ? :" + map.get("psd"));
-        System.out.println("pptDate의 값은 ? :" + map.get("pptDate"));
-        System.out.println("ped의 값은 ? :" + map.get("ped"));
+            userService.deleteInterList(interList);
+            System.out.println("여기는 deleteInter 종료이다");
+        }
+    /*
+        @RequestMapping(value = "psd7", method = RequestMethod.POST)
+        public Map<String, Object> psd7(@RequestBody Map<String, Object> map) throws Exception {
+            System.out.println("여기는 psd7컨트롤 시작이다");
+            System.out.println("psd의 값은 ? :" + map.get("psd"));
+            System.out.println("pptDate의 값은 ? :" + map.get("pptDate"));
+            System.out.println("ped의 값은 ? :" + map.get("ped"));
 
-        String pptDate = map.get("pptDate").toString();
+            String pptDate = map.get("pptDate").toString();
 
-        String psd = map.get("psd").toString().substring(0,11).replace("-","");
-        String ped = map.get("ped").toString().substring(0,11).replace("-","");
+            String psd = map.get("psd").toString().substring(0,11).replace("-","");
+            String ped = map.get("ped").toString().substring(0,11).replace("-","");
 
-        System.out.println("psd의 값은? "+psd);
-        System.out.println("ped의 값은? "+ped);
-        System.out.println("pptDate의 값은? "+pptDate);
+            System.out.println("psd의 값은? "+psd);
+            System.out.println("ped의 값은? "+ped);
+            System.out.println("pptDate의 값은? "+pptDate);
 
-        map.put("psd", psd);
-        map.put("ped", ped);
-        map.put("pptDate", pptDate);
-        System.out.println("여기는 psd7컨트롤 종료이다");
-        return map;
-    }
-*/
+            map.put("psd", psd);
+            map.put("ped", ped);
+            map.put("pptDate", pptDate);
+            System.out.println("여기는 psd7컨트롤 종료이다");
+            return map;
+        }
+    */
     @RequestMapping(value = "checkAddress", method = RequestMethod.POST)
     public boolean checkAddress(@RequestBody Map<String, String> map)throws Exception{
         System.out.println("villCode의 값은 ? :"+map.get("villCode"));
@@ -288,6 +288,57 @@ public class UserRestController {
 
         System.out.println("여기는 mailSender 컨트롤러 종료이다");
     }
+
+    @RequestMapping(value = "mailImage",method = RequestMethod.POST)
+    public void mailImage(HttpServletRequest request, ModelMap mo,@RequestParam(value="email", required = false)String email) throws AddressException, MessagingException {
+
+        System.out.println("여기는 mailImage 컨트롤러 시작이다");
+        System.out.println("email의 값은? : " + email);
+
+        try{
+            final String fromEmail = "gmltjs6550"; //requires valid gmail id
+            final String password = "djaqk6550!"; // correct password for gmail id
+            final String toEmail = email; // can be any email id
+
+            System.out.println("TLSEmail Start");
+            Properties props = new Properties();
+            props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
+            props.put("mail.smtp.port", "587"); //TLS Port
+            props.put("mail.smtp.auth", "true"); //enable authentication
+            props.put("mail.smtp.starttls.enable", "true"); //enable STARTTLS
+
+            //create Authenticator object to pass in Session.getInstance argument
+            Authenticator auth = new Authenticator() {
+                //override the getPasswordAuthentication method
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(fromEmail, password);
+                }
+            };
+            Session session = Session.getInstance(props, auth);
+
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(fromEmail));
+            message.addRecipient(javax.mail.Message.RecipientType.TO, new InternetAddress(toEmail));
+
+            System.out.println("Mail Check 2");
+
+            message.setSubject("Oil Error Report");
+            message.setText("emailMessage");
+
+            System.out.println("Mail Check 3");
+
+            Transport.send(message);
+            System.out.println("Mail Sent");
+        }catch(Exception ex){
+            System.out.println("Mail fail");
+            System.out.println(ex);
+        }
+
+
+
+        System.out.println("여기는 mailSender 컨트롤러 종료이다");
+    }
+
 
 
     @RequestMapping(value = "smsSend", method = RequestMethod.POST)

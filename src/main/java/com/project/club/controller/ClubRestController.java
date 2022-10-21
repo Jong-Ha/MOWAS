@@ -79,8 +79,9 @@ public class ClubRestController {
         System.out.println(map);
         int clubNum = Integer.parseInt((String) map.get("clubNum"));
         int clubUserNum = Integer.parseInt((String) map.get("clubUserNum"));
+        String userId = (String) map.get("userId");
         String result = (String) map.get("result");
-        clubService.updateCluberApply(clubNum, clubUserNum, result);
+        clubService.updateCluberApply(clubNum, clubUserNum, userId, result);
         return 0;
     }
 
