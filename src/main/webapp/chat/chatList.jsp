@@ -32,7 +32,7 @@
             location.href = "/chat/addOneChat/"+$('[name="userId"]').val()
         })
 
-        const socket = io("http://localhost:5000/chatlist", {
+        const socket = io("http://192.168.0.235:5000/chatlist", {
             cors: {origin: '*'},
 
             query: {
