@@ -43,29 +43,43 @@
 </script>
 
 <body>
-회원 상세 조회
-<span id="userId">${map.userDetail.userId}</span>
-<br>
-
-${map.userDetail.userStatus}
-${map.userDetail.userName}
-${map.userDetail.gender}
-${map.userDetail.email}
-${map.userDetail.phone}
-${map.userDetail.villCode}
-${map.userDetail.userImage}
-${map.userDetail.lcd}
-${map.userDetail.psd}
-${map.userDetail.ped}
-${map.userDetail.ppt}
-${map.userDetail.reviewPt}
-${map.userDetail.loginType}
-관심목록
+회원 상세 조회<br/>
+회원아이디 <div id="userId">${map.userDetail.userId}</div><br>
+회원 상태${map.userDetail.userStatus}<br>
+이름${map.userDetail.userName}<br>
+성별${map.userDetail.gender}<br>
+이메일${map.userDetail.email}<br>
+휴대폰번호${map.userDetail.phone}<br>
+동네코드${map.userDetail.villCode}<br>
+마지막 접속 날짜${map.userDetail.lcd}<br>
+패널티 시작 날짜${map.userDetail.psd}<br>
+패널티 종료 날짜${map.userDetail.ped}<br>
+벌점${map.userDetail.ppt}<br>
+회원가입 상태${map.userDetail.loginType}<br>
+관심목록<br>
 <c:set var="i" value="0" />
     <c:forEach var="list" items="${map.listInterList}">
     ${list.interList}<br/>
     </c:forEach>
-<%--${map.listInterList[0].interList}--%>
+<c:if test="${map.userDetail.loginType=='1'}">
+<span class="aaa" >회원 사진
+    <img id="userImage1" style="width : 15%;" src="/resources/${map.userDetail.userImage}">
+    <input type="hidden" class="userPhoto" value="${map.userDetail.userImage}">
+</span>
+</c:if>
+<c:if test="${map.userDetail.loginType=='2'}">
+<span class="aaa" >회원 사진
+    <img id="userImage2" style="width : 15%;" src="${map.userDetail.userImage}">
+    <input type="hidden" class="userPhoto" value="${map.userDetail.userImage}">
+</span>
+</c:if>
+<c:if test="${map.userDetail.loginType=='3'}">
+<span class="aaa" >회원 사진
+    <img id="userImage3" style="width : 15%;" src="${map.userDetail.userImage}">
+    <input type="hidden" class="userPhoto" value="${map.userDetail.userImage}">
+</span>
+</c:if>
+<br>
 <button type="button" id="updatePsd" >수정하기</button>
 <button type="button" id="kickoutUser">강퇴하기</button>
 <button type="button" id="ok">확인</button>

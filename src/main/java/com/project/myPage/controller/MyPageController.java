@@ -16,9 +16,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/myPage/*")
@@ -101,10 +107,179 @@ public class MyPageController {
         return "forward:/view/myPage/updateMyInfor.jsp";
     }
 
-    @RequestMapping(value = "updateMyInfor",method = RequestMethod.GET)
-    public String updateMyInfor(@RequestParam(value = "userId")String userId)throws Exception{
-        System.out.println("updateMyInfor컨트롤러 userId의 값?"+userId);
+    @RequestMapping(value = "updateMyInfor",method = RequestMethod.POST)
+    public String updateMyInfor(@ModelAttribute User user, Model model, HttpSession session,
+                                @RequestParam(value = "file") MultipartFile file)throws Exception{
+        System.out.println("updateMyInfor컨트롤러 user의 값?"+user);
+        System.out.println(user.getLoginType());
 
+        if(user.getLoginType().equals("1")){
+
+            if(Objects.requireNonNull(file.getContentType()).substring(0, file.getContentType().indexOf("/")).equals("image")) {
+
+                System.out.println("file.getContentType() : "+file.getContentType());
+                String fileRealName = file.getOriginalFilename();
+                long size = file.getSize();
+
+                System.out.println("파일명 : " + fileRealName);
+                System.out.println("용량크기(byte) : " + size);
+
+                String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
+                String uploadFolder = "C:\\Project\\MOWAS\\src\\main\\webapp\\resources\\uploadFiles\\userImages";
+
+                UUID uuid = UUID.randomUUID();
+                System.out.println(uuid.toString());
+                String[] uuids = uuid.toString().split("-");
+
+                String uniqueName = uuids[0];
+                System.out.println("생성된 고유 문자열 " + uniqueName);
+                System.out.println("확장자명 " + fileExtension);
+
+                String uploadLocation = uploadFolder + "\\" + uniqueName + fileExtension;
+                System.out.println("uploadLocation의 값 :" + uploadLocation);
+
+                java.io.File saveFile = new File(uploadLocation);
+                try {
+                    file.transferTo(saveFile);
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                String userImage = userImagePath+uniqueName+fileExtension;
+                user.setUserImage(userImage);
+
+                userService.updateUser(user);
+                Map<String, Object> map = myPageService.getMyInfor(user.getUserId());
+                System.out.println("getMyInfor 컨트롤러 map1의 값은?"+map);
+                model.addAttribute("map", map);
+
+                session.setAttribute("user", user);
+            }
+            User userImg = userService.getUser(user.getUserId());
+            user.setUserImage(userImg.getUserImage());
+
+            userService.updateUser(user);
+            Map<String, Object> map = myPageService.getMyInfor(user.getUserId());
+            System.out.println("getMyInfor 컨트롤러 map1===1의 값은?"+map);
+            model.addAttribute("map", map);
+
+            session.setAttribute("user", user);
+
+
+        }else if(user.getLoginType().equals("2")) {
+
+            if(Objects.requireNonNull(file.getContentType()).substring(0, file.getContentType().indexOf("/")).equals("image")) {
+
+                System.out.println("file.getContentType() : " + file.getContentType());
+                String fileRealName = file.getOriginalFilename();
+                long size = file.getSize();
+
+                System.out.println("파일명 : " + fileRealName);
+                System.out.println("용량크기(byte) : " + size);
+
+                String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
+                String uploadFolder = "C:\\Project\\MOWAS\\src\\main\\webapp\\resources\\uploadFiles\\userImages";
+
+                UUID uuid = UUID.randomUUID();
+                System.out.println(uuid.toString());
+                String[] uuids = uuid.toString().split("-");
+
+                String uniqueName = uuids[0];
+                System.out.println("생성된 고유 문자열 " + uniqueName);
+                System.out.println("확장자명 " + fileExtension);
+
+                String uploadLocation = uploadFolder + "\\" + uniqueName + fileExtension;
+                System.out.println("uploadLocation의 값 :" + uploadLocation);
+
+                java.io.File saveFile = new File(uploadLocation);
+                try {
+                    file.transferTo(saveFile);
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                String userImage = userImagePath + uniqueName + fileExtension;
+                user.setUserImage(userImage);
+
+                userService.updateKakaoUser(user);
+                Map<String, Object> map = myPageService.getMyInfor(user.getUserId());
+                System.out.println("getMyInfor 컨트롤러 map2의 값은?" + map);
+                model.addAttribute("map", map);
+
+                session.setAttribute("user", user);
+
+            }
+
+            User userImg = userService.getUser(user.getUserId());
+            user.setUserImage(userImg.getUserImage());
+
+            userService.updateKakaoUser(user);
+            Map<String, Object> map = myPageService.getMyInfor(user.getUserId());
+            System.out.println("getMyInfor 컨트롤러 map2===2의 값은?"+map);
+            model.addAttribute("map", map);
+
+            session.setAttribute("user", user);
+
+        }else{
+
+            if(Objects.requireNonNull(file.getContentType()).substring(0, file.getContentType().indexOf("/")).equals("image")) {
+
+                System.out.println("file.getContentType() : " + file.getContentType());
+                String fileRealName = file.getOriginalFilename();
+                long size = file.getSize();
+
+                System.out.println("파일명 : " + fileRealName);
+                System.out.println("용량크기(byte) : " + size);
+
+                String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
+                String uploadFolder = "C:\\Project\\MOWAS\\src\\main\\webapp\\resources\\uploadFiles\\userImages";
+
+                UUID uuid = UUID.randomUUID();
+                System.out.println(uuid.toString());
+                String[] uuids = uuid.toString().split("-");
+
+                String uniqueName = uuids[0];
+                System.out.println("생성된 고유 문자열 " + uniqueName);
+                System.out.println("확장자명 " + fileExtension);
+
+                String uploadLocation = uploadFolder + "\\" + uniqueName + fileExtension;
+                System.out.println("uploadLocation의 값 :" + uploadLocation);
+
+                java.io.File saveFile = new File(uploadLocation);
+                try {
+                    file.transferTo(saveFile);
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                String userImage = userImagePath + uniqueName + fileExtension;
+                user.setUserImage(userImage);
+
+                userService.updateKakaoUser(user);
+                Map<String, Object> map = myPageService.getMyInfor(user.getUserId());
+                System.out.println("getMyInfor 컨트롤러 map3의 값은?" + map);
+                model.addAttribute("map", map);
+
+                session.setAttribute("user", user);
+
+            }
+
+            User userImg = userService.getUser(user.getUserId());
+            user.setUserImage(userImg.getUserImage());
+
+            userService.updateNaverUser(user);
+            Map<String, Object> map = myPageService.getMyInfor(user.getUserId());
+            System.out.println("getMyInfor 컨트롤러 map3===3의 값은?"+map);
+            model.addAttribute("map", map);
+
+            session.setAttribute("user", user);
+        };
 
         return "forward:/view/myPage/getMyInfor.jsp";
     }
@@ -264,33 +439,23 @@ public class MyPageController {
 
     ///*
     @RequestMapping(value = "getMyBoard", method = RequestMethod.GET)
-    public String getMyBoard(@RequestParam(value ="userId")String userId,Model model,
-                             @PathVariable("clubNum") int clubNum, @ModelAttribute("search") Search search)throws Exception{
+    public String getMyBoard(@RequestParam(value ="userId")String userId,Model model
+                            )throws Exception{
         System.out.println("getMyBoard컨트롤러 userId의 값?"+userId);
-        if (search.getCurrentPage() == 0) {
-            search.setCurrentPage(1);
-        }
-        if (search.getPageSize() == 0) {
-            search.setPageSize(pageSize);
-        }
-        if (search.getSearchKeyword() == null) {
-            search.setSearchKeyword("");
-        }
+
 
         Map<String, Object> map = myPageService.getMyBoard(userId);
-        Map<String, Object> map2 = clubService.listClubMasterBoard(search, clubNum);
-        Page resultPage = new Page(search.getCurrentPage(), (Integer) map.get("totalCount"), pageUnit, pageSize);
-        map.put("resultPage", resultPage);
 
 
 
 
 
+/////보드 게시판 각각 만들기
 
 
 
         System.out.println("getMyBoard 컨트롤러 map의 값은?"+map);
-        model.addAttribute("map2", map2);
+
         model.addAttribute("map", map);
         return "forward:/view/myPage/getMyBoard.jsp";
     }

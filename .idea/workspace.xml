@@ -83,6 +83,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
@@ -116,6 +117,7 @@
       <recent name="C:\Project\MOWAS\src\main\webapp\resources\club\css" />
       <recent name="C:\Project\MOWAS\src\main\resources\config" />
       <recent name="C:\Project\MOWAS\src\main\webapp\chat" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\layout" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Project\MOWAS\src\main\webapp\resources\club" />
@@ -131,6 +133,7 @@
       <recent name="com.project.common.dao" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.project.myPage.service" />
       <recent name="com.project.user.service" />
       <recent name="com.project.user.dao" />
       <recent name="com.project.user.controller" />
@@ -503,6 +506,37 @@
     <MESSAGE value="LJH 2022.10.17&#10;&#10;css, js, jsp 구분" />
     <MESSAGE value="LJH 2022.10.19&#10;&#10;feane : jsp 파일 연결" />
     <option name="LAST_COMMIT_MESSAGE" value="LJH 2022.10.19&#10;&#10;feane : jsp 파일 연결" />
+    <MESSAGE value="BJW 2022.10.09&#10;&#10;댓글 대댓글 등록,수정,삭제하면 uri가 안변하고 화면에 바로 결과 출력 되게 json으로 처리 하였음" />
+    <MESSAGE value="BJW 2022.10.10&#10;&#10;파일 업로드 json으로 처리 하기, 일정 캘린더 api 사용해서 fullcalendar로 display 완성, 캘린더 list로 불러올떄 겹치는 문제 해결해야함&#10;채팅 작업 시작" />
+    <MESSAGE value="JHK 2022.10.13&#10;&#10;회원가입 도로명주소 api 사용, 카카오로그인 구현(정보 받기, 디비저장 아직임)" />
+    <MESSAGE value="JHK 2022.10.17&#10;&#10;마이페이지 서비스 커밋" />
+    <MESSAGE value="JHK 2022.10.19&#10;&#10;메일인증 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="JHK 2022.10.19&#10;&#10;메일인증 수정" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp</url>
+          <line>86</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/project/user/controller/UserController.java</url>
+          <line>138</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDao.java</url>
+          <line>29</line>
+          <properties class="com.project.user.dao.UserDao" method="updateLcd">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

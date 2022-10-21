@@ -490,6 +490,7 @@
           <label for="password" class="form-label">비밀번호</label>
           <div class="input-group has-validation">
             <input type="password" class="form-control" id="password" name="password" maxLength="16" required>
+              <strong class="text-danger" style="color : red;" >영문,숫자 혼합, 8~16글자로 입력해주세요</strong><br/>
           </div>
         </div>
         <span id="passwordChk" style="display: none;">

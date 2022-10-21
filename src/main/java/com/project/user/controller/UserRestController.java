@@ -97,10 +97,16 @@ public class UserRestController {
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public User login(@RequestBody User user, HttpSession session, HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+    public boolean login(@RequestBody User user,
+                      HttpSession session, HttpServletRequest request, HttpServletResponse response,
+                      Model model) throws Exception {
         System.out.println("/user/json/login : POST 실행");
         System.out.println("user의 값은? : " + user);
+
 /*
+
+
+
         Cookie lastDate= null;
         String msg ="";
         boolean found = false;
@@ -138,6 +144,7 @@ public class UserRestController {
 
         System.out.println("msg : "+msg);
 */
+        boolean result = false;
         try {
             User dbVO = userService.loginUser(user);
             System.out.println("dbVO 값은? : " + dbVO);
@@ -148,15 +155,17 @@ public class UserRestController {
                 session.setAttribute("user", dbVO);
                 user = dbVO;
                 model.addAttribute("user", user);
-
+                result = true;
+                System.out.println("session 값 : " + session);
+                return result;
             }
-            System.out.println("session 값 : " + session);
+
         } catch (Exception e) {
             System.out.println("catch문 안의 유저의값 : "+user);
             user = null;
             System.out.println("로그인 실패");
         }
-        return user;
+        return result;
     }
 
     @RequestMapping(value = "logout", method = RequestMethod.GET)
@@ -372,7 +381,7 @@ public class UserRestController {
     @RequestMapping(value="naverSave", method=RequestMethod.POST)
     public @ResponseBody String naverSave(@RequestParam("n_name") String n_name,
         @RequestParam("n_email") String n_email, @RequestParam("n_profilImage") String n_profilImage,
-        @RequestParam("n_gender") String n_gender, HttpSession session ) throws Exception {
+        @RequestParam("n_gender") String n_gender, HttpSession session, Model model ) throws Exception {
         System.out.println("#############################################");
         //System.out.println(n_id);
         System.out.println(n_name);
@@ -396,17 +405,10 @@ public class UserRestController {
             String email = n_email;
         User dbEmail = userService.getUserEmail(email);
            System.out.println("dbemail의 값은 ? :"+dbEmail);
-        System.out.println("dbemail의 email값은 ? :"+dbEmail.getEmail());
+        //System.out.println("dbemail의 email값은 ? :"+dbEmail.getEmail());
         System.out.println("인자값 email의 값은? :"+email);
-           if(email!=dbEmail.getEmail()){
+           if(dbEmail==null){
 
-               System.out.printf("");
-               User naverUser2 = userService.getUser2(email);
-               session.setAttribute("naverUser2", naverUser2);
-
-                }else{
-
-               System.out.printf("같지않을때 실행");
                String no = "";
                Random rand = new Random();
 
@@ -420,7 +422,15 @@ public class UserRestController {
 
                userService.addNaverUser(user);
                User naverUser = userService.getUser(user.getUserId());
-               session.setAttribute("naverUser", naverUser);
+               session.setAttribute("user", naverUser);
+                model.addAttribute(("naverUser"),naverUser );
+
+                }else{
+
+               System.out.printf("");
+               User naverUser2 = userService.getUser2(email);
+               session.setAttribute("user", naverUser2);
+               model.addAttribute(("naverUser2"),naverUser2 );
 
            }
 

@@ -96,36 +96,36 @@ $(function() {
 // })
 
 
-    // $(document).ready(function(){
-    // var dealNum = $(this).parent().children("[name='dealBoardNum']").val();
-    // var boardCategory=$(this).parent().children("[name='boardCategory']").val();
-    //
-    // $.ajax({
-    //     url : "/deal/json/getLikeCheck",
-    //     method : "POST",
-    //     data : JSON.stringify({
-    //         "boardNum" : dealNum,
-    //         "boardCategory" : boardCategory
-    //     }),
-    //     dataType: "json",
-    //     headers: {
-    //         "Accept": "application/json",
-    //         "Content-Type": "application/json; charset=UTF-8"
-    //     },
-    //     success:function (JSONData) {
-    //         if (JSONData.like === 'n') {
-    //             alert("누름")
-    //             $(".likeToggle").val("좋아요 해제") ;
-    //         } else {
-    //             alert("뺌")
-    //             $(".likeToggle").val("좋아요!");
-    //         }
-    //     }
-    // })
-    // })
-    // $(".addClub").on("click",function(){
-    //     location.href="/club/addClub"
-    // })
+// $(document).ready(function(){
+// var dealNum = $(this).parent().children("[name='dealBoardNum']").val();
+// var boardCategory=$(this).parent().children("[name='boardCategory']").val();
+//
+// $.ajax({
+//     url : "/deal/json/getLikeCheck",
+//     method : "POST",
+//     data : JSON.stringify({
+//         "boardNum" : dealNum,
+//         "boardCategory" : boardCategory
+//     }),
+//     dataType: "json",
+//     headers: {
+//         "Accept": "application/json",
+//         "Content-Type": "application/json; charset=UTF-8"
+//     },
+//     success:function (JSONData) {
+//         if (JSONData.like === 'n') {
+//             alert("누름")
+//             $(".likeToggle").val("좋아요 해제") ;
+//         } else {
+//             alert("뺌")
+//             $(".likeToggle").val("좋아요!");
+//         }
+//     }
+// })
+// })
+// $(".addClub").on("click",function(){
+//     location.href="/club/addClub"
+// })
 
 
 //$(".likeToggle").on("click",function(){

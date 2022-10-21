@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 903-15
-  Date: 2022-10-10
-  Time: 오후 5:45
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -49,22 +43,57 @@ $(function (){
     });
 
     $(".aaa").on("click", function (){
-     var userPhoto = $(".userPhoto").val();
+     var userPhoto = $(".userPhoto1").val();
         window.open("/resources/"+userPhoto+"", "userPhoto",
             "height=500, width=500");
     })
+    $(".aaa").on("click", function (){
+        var userPhoto = $(".userPhoto1").val();
+        window.open("/resources/"+userPhoto+"", "userPhoto",
+            "height=500, width=500");
+    })
+    $(".bbb").on("click", function (){
+        var userPhoto = $(".userPhoto2").val();
+        window.open(""+userPhoto+"", "userPhoto",
+            "height=500, width=500");
+    })
+    $(".ccc").on("click", function (){
+        var userPhoto = $(".userPhoto3").val();
+        window.open(""+userPhoto+"", "userPhoto",
+            "height=500, width=500");
+    })
+});
+$(function () {
+    $("#mainPage").on("click", function () {
+        self.location = "/view/user/main.jsp";
+    });
 });
 
 </script>
 <body>
-마이페이지
+<button type="button" class="mainPage" id="mainPage">메인페이지</button><br>
+<h2>마이페이지</h2>
 <div>아이디 ${user.userId}</div>
 <div>이름 ${user.userName}</div>
 <div>아이디 ${user.email}</div>
+<c:if test="${user.loginType=='1'}">
 <span class="aaa" >회원 사진
-    <img id="userImage" style="width : 15%;" src="/resources/${user.userImage}">
-    <input type="hidden" class="userPhoto" value="${user.userImage}">
+    <img id="userImage1" style="width : 15%;" src="/resources/${user.userImage}">
+    <input type="hidden" class="userPhoto1" value="${user.userImage}">
 </span>
+</c:if>
+<c:if test="${user.loginType=='2'}">
+<span class="bbb" >회원 사진
+    <img id="userImage2" style="width : 15%;" src="${user.userImage}">
+    <input type="hidden" class="userPhoto2" value="${user.userImage}">
+</span>
+</c:if>
+<c:if test="${user.loginType=='3'}">
+<span class="ccc" >회원 사진
+    <img id="userImage3" style="width : 15%;" src="${user.userImage}">
+    <input type="hidden" class="userPhoto3" value="${user.userImage}">
+</span>
+</c:if>
 <button type="button" class="listUser" id="listUser">회원목록조회</button>
 <button type="button" class="getMyInfor" id="getMyInfor">내 정보 보기</button>
 <button type="button" class="getMyBoard" id="getMyBoard">작성글</button>

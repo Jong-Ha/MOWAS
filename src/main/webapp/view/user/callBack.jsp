@@ -45,7 +45,7 @@
           success: function(result) {
             if(result=='ok') {
               console.log('성공')
-              location.replace("http://localhost:8080/view/user/main.jsp")
+              location.replace("http://localhost:8080/view/user/updateSNSUserInfor.jsp")
             } else if(result=='no') {
               console.log('실패')
               location.replace("http://localhost:8080/user/json/naverSave")
