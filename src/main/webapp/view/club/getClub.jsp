@@ -194,7 +194,6 @@
 
 
     <%--모임 수정 모달창 시작--%>
-    <c:if test="${club.gatherCheck=='1'}">
         <c:if test="${currentCluber.cluberStatus=='5'||currentCluber.cluberStatus=='6'}">
             <div class="modal fade" id="updateClub" tabindex="-1" aria-labelledby="updateClubLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
@@ -295,11 +294,11 @@
                 </div>
             </div>
         </c:if>
-    </c:if>
     <%--모임 수정 모달창 끝--%>
 
 
     <%--모임 가입 신청 모달창 시작--%>
+    <c:if test="${club.gatherCheck=='1'}">
     <div class="modal fade" id="cluberApply" tabindex="-1" aria-labelledby="CluberApplyLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -356,6 +355,7 @@
             </div>
         </div>
     </div>
+    </c:if>
     <%--모임 가입 신청 모달창 끝--%>
 
 </div>
