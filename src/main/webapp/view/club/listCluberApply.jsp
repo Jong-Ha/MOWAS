@@ -3,7 +3,17 @@
 <html>
 <head>
     <title>Title</title>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="/resources/club/js/listCluber.js"></script>
+    <link href="/resources/club/css/listCluber.css" rel="stylesheet" type="text/css"/>
+
     <script>
         $(function(){
             //승인 거절
@@ -61,6 +71,8 @@
     </script>
 </head>
 <body>
+
+<jsp:include page="backClose.jsp"/>
 
 <c:forEach items="${list}" var="cluber">
     <div class="cluber">

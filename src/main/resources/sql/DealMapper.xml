@@ -143,6 +143,7 @@ where deal_board_num=#{dealBoardNum}
         deal_title=#{dealTitle:VARCHAR},
         deal_status=#{dealStatus:CHAR},
         deal_text=#{dealText:VARCHAR},
+
     product_name=#{productName:VARCHAR},
         price=#{price:NUMERIC},
         tag=#{tag:VARCHAR}
@@ -268,4 +269,11 @@ where deal_board_num=#{dealBoardNum}
 from deal
 where user_id = #{user.userId}
     </select>
+
+<!--    <insert id="addDealCalender" parameterType="clubCalender">
+        INSERT INTO
+         DEAL()
+    </insert>-->
+
+
 </mapper>

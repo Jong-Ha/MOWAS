@@ -18,29 +18,53 @@
     <script src="/resources/club/js/listCluber.js"></script>
     <link href="/resources/club/css/listCluber.css" rel="stylesheet" type="text/css"/>
 </head>
-<body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
+<body class="p-3 m-0 border-0" style="text-align: -webkit-center">
 <input type="hidden" id="clubNum" value="${clubNum}">
 
+<jsp:include page="backClose.jsp"/>
+
 <!-- Example Code -->
-<div class="container">
+<div class="container content-box">
+
 
     <div class="buttonClass">
-        <div>
-            <button type="button" class="btn btn-primary"><img src="/resources/images/cluberApply.png" alt=""></button>
-            <button type="button" class="btn btn-primary"><img src="/resources/images/clubBlacklist.png" alt=""></button>
-            <button type="button" class="btn btn-primary"><img src="/resources/images/groupBlackllist.png" alt=""></button>
-        </div>
-    <button type="button" class="btn btn-primary">탈퇴한 모임원 조회</button>
+        <div class="badge bg-primary text-wrap listCluberApply">가입 신청 조회</div>
+        <div class="badge bg-primary text-wrap addClubBlacklist">블랙리스트 등록</div>
+        <div class="badge bg-primary text-wrap listClubBlacklist">블랙리스트 목록 조회</div>
+        <c:if test="${search.searchCondition=='0'}">
+            <div class="badge bg-primary text-wrap listCluberOut">탈퇴한 모임원 목록 조회</div>
+        </c:if>
+        <c:if test="${search.searchCondition=='1'}">
+            <div class="badge bg-primary text-wrap listCluber">현재 모임원 목록 조회</div>
+        </c:if>
     </div>
 
-    <input type="button" class="listCluberApply" value="가입 신청 조회">
-    <input type="button" class="addClubBlacklist" value="블랙리스트 등록">
-    <input type="button" class="listClubBlacklist" value="블랙리스트 목록 조회">
-    ${search.searchCondition==0?'<input type="button" class="listCluberOut" value="탈퇴한 모임원 목록 조회">':'<input type="button" class="listCluber" value="현재 모임원 목록 조회">'}
-    <c:forEach items="${list}" var="cluber">
-        <a href="/club/getCluber/${cluber.clubUserNum}">${cluber}</a>
-        <br/><br/>
-    </c:forEach>
+    <div class="card-list" style="margin-top: 30px">
+        <c:forEach begin="1" end="10">
+        <c:forEach items="${list}" var="cluber">
+        <div class="card shadow-lg cardBox">
+            <input type="hidden" class="clubUserNum" name="clubUserNum" value="${cluber.clubUserNum}">
+            <div class="photoBox">
+                <img class="bd-placeholder-img img-fluid rounded-start photo"
+                     src="/resources/${cluber.user.userImage}" alt="any">
+            </div>
+            <div>
+                <div class="card-body">
+                    <div>
+                        <h4 class="card-title">${cluber.user.userId}</h4>
+                        <div class="badge bg-primary text-wrap">${cluber.cluberStatus=='4'?'모임원':cluber.cluberStatus=='5'?'매니저':'모임장'}</div>
+                    </div>
+                    <div>
+                        <small class="text-muted">${cluber.clubRegDate}</small>
+                        <div class="badge bg-primary text-wrap">접속중미구현</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </c:forEach>
+        </c:forEach>
+</div>
+
     <c:if test="${search.searchCondition==1}">
         <form>
             <input type="hidden" name="clubNum" value="${clubNum}">

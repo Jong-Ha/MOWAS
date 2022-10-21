@@ -1,4 +1,6 @@
 $(function () {
+    $(".back-btn").html(' ')
+
     const clubNum = $("#clubNum").val()
 
     $(".listCluberApply").on("click", function () {
@@ -18,5 +20,9 @@ $(function () {
     })
     $(".paging").on("click", function(){
         $("form").attr("action","/club/listCluberOut/"+clubNum).attr("method","post").submit()
+    })
+    $(".cardBox").on('click',function(){
+        var clubUserNum = $(this).children(".clubUserNum").val();
+        location.href = "/club/getCluber/"+clubUserNum
     })
 })

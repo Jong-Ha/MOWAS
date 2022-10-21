@@ -9,8 +9,8 @@ $(function () {
         }
     })
     $(".listCluber").on("click", function () {
-        var nWidth = "400";
-        var nHeight = "500";
+        var nWidth = "500";
+        var nHeight = "600";
 
 // 듀얼 모니터 고려한 윈도우 띄우기
         var curX = window.screenLeft;
