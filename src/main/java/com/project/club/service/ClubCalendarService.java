@@ -2,6 +2,7 @@ package com.project.club.service;
 
 import com.project.domain.ClubCalendar;
 import com.project.domain.ClubCalendarReview;
+import com.project.domain.Deal;
 
 import java.util.List;
 import java.util.Map;
@@ -25,5 +26,5 @@ public interface ClubCalendarService {
 
     void addFileUpload(Map<String, String> map);
 
-    void addDealCalender(ClubCalendar calender);
+    void addDealCalender(Deal calender);
 }

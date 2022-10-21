@@ -359,5 +359,7 @@
     <%--모임 가입 신청 모달창 끝--%>
 
 </div>
+
+<jsp:include page="/view/community/calender.jsp"/>
 </body>
 </html>
