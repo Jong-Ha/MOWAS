@@ -884,7 +884,7 @@
         #{clubCalendarNum},
         #{userId},
                '1',
-        (SELECT user_image FROM users WHERE user_id = ${userId}),
+        (SELECT user_image FROM users WHERE user_id = #{userId}),
         SYSDATE)
     </insert>
 

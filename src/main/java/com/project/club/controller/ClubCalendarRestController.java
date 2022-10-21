@@ -81,11 +81,11 @@ public class ClubCalendarRestController<list> {
 
         List<String> list = (List<String>) map.get("cluberList");
 
+        String SClubNum = (String) map.get("clubNum");
 
-        /*clubService.addCalendarCluber(list,map.get("clubNum"));*/
+        int clubNum = Integer.parseInt(SClubNum);
 
-
-
+        clubService.addCalendarCluber(clubNum , list);
 
         return 0;
     }
