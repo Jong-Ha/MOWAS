@@ -1,5 +1,6 @@
 package com.project.community.controller;
 
+import com.project.club.service.ClubCalendarService;
 import com.project.community.service.CommunityService;
 import com.project.domain.*;
 import org.json.simple.JSONArray;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,6 +23,10 @@ public class CommunityRestController {
     @Autowired
     @Qualifier("communityServiceImpl")
     private CommunityService communityService;
+
+    @Autowired
+    @Qualifier("clubCalenderServiceImpl")
+    private ClubCalendarService calendarService;
 
     /* 댓글 대댓글*/
     @RequestMapping(value = "addComment", method = RequestMethod.POST)
@@ -223,5 +229,13 @@ public class CommunityRestController {
         communityService.updateVillBoard(vilBoard);
 
         return 0;
+    }
+
+    @RequestMapping(value = "addDealCalender", method = RequestMethod.POST)
+    public int addDealCalender(@RequestBody ClubCalendar calender ) {
+        System.out.println("일정 정보 : " +calender);
+        calendarService.addDealCalender(calender);
+
+    return 0;
     }
 }

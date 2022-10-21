@@ -149,6 +149,18 @@ public class CommunityController {
         return null;
     }
 
+    @RequestMapping("addDealCalender")
+    public String addDealCalender(@RequestParam("boardNum")int boardNum
+            , Model model){
+        model.addAttribute("boardNum", boardNum);
+
+        System.out.println(boardNum);
+
+        return "/view/community/add/addDealCalender.jsp";
+    }
+
+
+
 
 
 }

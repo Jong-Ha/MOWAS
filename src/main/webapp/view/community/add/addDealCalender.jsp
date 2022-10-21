@@ -50,76 +50,31 @@
 
             $(".submit").on("click", function () {
 
-                var clubNum = $(".clubNum").val();
+                var clubNum = '${boardNum}'
                 var calenderTitle = $(".calenderTitle").val()
-                var calenderText = $(".calenderText").val()
                 var clubDate = $(".clubDate").val()
                 var location = $(".location").val()
-                var noticeCheck = $(".noticeCheck").val()
-                var noticeTime = $(".noticeTime").val()
-                var calendarApplyCheck = $(".calendarApplyCheck").val()
-                var applyAutoCheck = $(".applyAutoCheck").val()
+
+                console.log(clubNum)
+                console.log(calenderTitle)
+                console.log(clubDate)
+                console.log(location)
 
                 $.ajax({
-                    url: "/clubCal/json/addClubCalender",
+                    url: "/commu/json/addDealCalender",
                     method: "post",
                     data: JSON.stringify({
                         "clubNum" : clubNum,
                         "calenderTitle": calenderTitle,
-                        "calenderText": calenderText,
                         "clubDate": clubDate,
                         "location": location,
-                        "noticeCheck": noticeCheck,
-                        "noticeTime": noticeTime,
-                        "calendarApplyCheck": calendarApplyCheck,
-                        "applyAutoCheck": applyAutoCheck
+                        "boardCategory" : "8"
                     }),
+
                     dataType: "json",
                     contentType: "application/json; charset=UTF-8",
                     success: function (JSONData, result) {
-                        alert(result);
-                        console.log(JSONData);
-                        var boardNum = JSONData
 
-                        var file = $("#file").length
-
-                        if (file > 0) {
-
-                            //form 테그를 불러와서 form변수에 등록
-                            var form = document.querySelector("form");
-                            //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
-                            var formData = new FormData(form);
-                            //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
-                            var fileSize = $("#file")[0].files;
-                            console.log(fileSize.length);
-                            //formData에 해당 게시글 번호, 게시글 category append
-                            formData.append("boardNum", boardNum);
-                            formData.append("boardCategoru", boardCategory);
-
-                            //file길이 만큼 for문으로 formData에 append함
-                            for (var i = 0; i < fileSize.length; i++) {
-                                formData.append("form", fileSize[i]);
-                                //파일이 잘 들어 갔는지 확인
-                                console.log(fileSize[i]);
-                            }
-                            //formData에 들어 있는 boardNum과 file의 정보를 비동기식으로 보냄
-                            //파일은 json형식으로 보낼수 없기 떄문에 contentType, processData, dataType을 false로 지정
-                            $.ajax({
-                                url: "/clubCal/json/fileUpload",
-                                type: "post",
-                                processData: false,
-                                contentType: false,
-                                cache: false,
-                                timeout: 600000,
-                                data: formData,
-                                headers: {'cache-control': 'no-cache', 'pragma': 'no-cache'},
-                                enctype: "multipart/form-data",
-                                success: function (result) {
-                                    console.log(result);
-
-                                }
-                            })
-                        }
                         console.log(result);
                         // 성공시 해당 창을 닫고 부모창을 reload
                         Swal.fire({
@@ -162,8 +117,6 @@
         });
 
 
-
-
     </script>
 
 </head>
@@ -172,7 +125,6 @@
 
 <form>
     <!--  화면구성 div Start /////////////////////////////////////-->
-    <input hidden class="clubNum" value="${club.clubNum}">
 
     <div class="wap">
         <div class="container">
@@ -185,17 +137,6 @@
                 <div class="col-xs-4 col-xs-2"><strong>제 목</strong></div>
                 <div class="col-xs-8 col-xs-4">
                     <input type="text" class="form-control calenderTitle" name="calenderTitle" value=""/>
-                </div>
-            </div>
-
-
-            <hr/>
-
-            <div class="row">
-                <div class="col-xs-4 col-xs-2"><strong>일정 내용</strong></div>
-                <div class="col-xs-8 col-xs-4">
-                    <textarea class="form-control calenderText" name="calenderText"
-                              style=" height: 200px;  width: 500px;  margin-bottom: 20px;"></textarea>
                 </div>
             </div>
 
@@ -217,37 +158,13 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
                     <strong>위치
-                        <input type="text" name="location" value="위치 입력">
+                        <input type="text" class="location" name="location" value="위치 입력">
                     </strong>
                 </div>
             </div>
 
             <hr/>
 
-
-            <div class="row">
-                <div class="col-xs-4 col-xs-2 ">
-                    <strong>파일
-                        <input type="file" multiple name="file" value="파일 첨부">
-                    </strong>
-                </div>
-            </div>
-            <hr/>
-
-
-
-
-            <hr/>
-
-            <div class="form-check form-switch">
-                알림 설정 여부
-                <input class="form-check-input check noticeCheck" name="noticeCheck" type="checkbox" role="switch"
-                       id="flexSwitchCheckDefault1">
-                <label class="form-check-label" for="flexSwitchCheckDefault1"></label>
-            </div>
-
-
-            <hr/>
 
             알림 시간 설정
             <hr>
@@ -255,27 +172,8 @@
 
             <hr/>
 
-            <div class="form-check form-switch">
-                추가 참여 여부
-                <input class="form-check-input check calendarApplyCheck" name="calendarApplyCheck" type="checkbox"
-                       role="switch"
-                       id="flexSwitchCheckDefault2">
-                <label class="form-check-label" for="flexSwitchCheckDefault2"></label>
-            </div>
 
 
-            <hr/>
-
-
-            <div class="form-check form-switch">
-                자동 참여 가능
-                <input class="form-check-input check applyAutoCheck" name="applyAutoCheck" type="checkbox" role="switch"
-                       id="flexSwitchCheckDefault3">
-                <label class="form-check-label" for="flexSwitchCheckDefault3"></label>
-            </div>
-
-
-            <hr/>
 
 
             <div class="row">

@@ -14,44 +14,55 @@ import java.util.UUID;
 @RequestMapping("/chat/*")
 public class ChatController {
 
-    @RequestMapping("addOneChat/{userId}")
-    public String addOneChat(@PathVariable String userId, Model model) {
+    @RequestMapping("addOneChat")
+    public String addOneChat(@RequestParam("userId")String userId
+                            ,@RequestParam(value = "boardNum", defaultValue = "0") String  boardNum
+                            ,Model model
+                            ,@RequestParam("chatNameSpace")String chatNameSpace) {
 
         model.addAttribute("roomId", UUID.randomUUID().toString());
+
+        model.addAttribute("userId", userId);
+        model.addAttribute("chatNameSpace", chatNameSpace);
+
+
+        if (! boardNum.equals("0")){
+
+            System.out.println("싱행  : " + boardNum);
+
+            model.addAttribute("boardNum", boardNum);
+
+        }
+        System.out.println( chatNameSpace );
 
         return "/chat/getChat.jsp";
     }
 
     @RequestMapping("chatList")
-    public String chatList(Model model, HttpSession session) {
+    public String chatList(@RequestParam(value = "chatCategory", defaultValue = "onebyone") String chatCategory
+                            ,Model model, HttpSession session) {
 
         model.addAttribute("userId",  session.getAttribute("user"));
+        model.addAttribute("chatCategory", chatCategory);
+
+        System.out.println(chatCategory);
 
         return "/chat/chatList.jsp";
     }
     //채팅 navigation
     @RequestMapping("getChat")
-    public String getChat(@RequestParam("chatCategory") int chatCategory
-                            ,@RequestParam("roomId")String roomId
+    public String getChat( @RequestParam("roomId")String roomId
+                            ,@RequestParam("chatNameSpace")String chatNameSpace
                             , Model model) {
 
 
-
-
-        if (chatCategory == 1) {
-
             model.addAttribute("roomId", roomId);
+            model.addAttribute("chatNameSpace", chatNameSpace);
+
+            System.out.println(chatNameSpace);
 
             return "/chat/getChat.jsp";
 
-        }else if (chatCategory == 2) {
-            return "/chat/clubChat.jsp";
-        }else if (chatCategory == 3) {
-            return "/chat/dealChat.jsp";
-        }else if (chatCategory == 4) {
-            return "/chat/siteChat.jsp";
-        }
-        return null;
     }
 
 

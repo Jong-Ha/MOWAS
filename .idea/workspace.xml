@@ -9,18 +9,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="LJH 2022.10.17&#10;&#10;css, js, jsp 구분">
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="BJW 2022/10/20&#10;&#10;툴바, 커뮤바 , 카드 수정 보안">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/Club.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/Club.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/css/addClub.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/js/addClub.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/js/listClub.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/js/listClub.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/bak/getClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/getClub.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/getClub.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/feane/book.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/feane/book.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/feane/menu.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/feane/menu.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubCalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubCalendarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubCalendarRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubCalendarRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubCalendarDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubCalendarDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubCalendarDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubCalendarDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/common/util/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/common/util/ChatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/community/controller/CommunityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/community/controller/CommunityController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/community/controller/CommunityRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/community/controller/CommunityRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/deal/controller/DealCalendarController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/ClubCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/ClubCalendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/Deal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/Deal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/ClubCalenderMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/ClubCalenderMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/DealMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/DealMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/chat.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/chatList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/chatList.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/dealChat.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/getChat.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/getChat.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/chatIcon.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/chatIcon.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/chatbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/chatbar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/add/addClubCalender.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/add/addClubCalender.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/calender.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/calender.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/get/getClubCalender.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/get/getClubCalender.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/deal/getDeal.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/deal/getDeal.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +57,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/master" />
+    <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
     <option name="PUSH_TAGS">
@@ -86,36 +101,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Project/MOWAS/src/main/webapp/view/club/gg",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "전역 라이브러리",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.12528735",
-    "settings.editor.selected.configurable": "project.propCompiler",
-    "spring.configuration.checksum": "0644e903b0ad21f514b0480754c0a1e2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Project/MOWAS/src/main/webapp/view/community/add&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;전역 라이브러리&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.12528735&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;0644e903b0ad21f514b0480754c0a1e2&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "oracle"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;oracle&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Project\MOWAS\src\main\webapp\view\community\add" />
       <recent name="C:\Project\MOWAS\src\main\webapp\view\club\gg" />
       <recent name="C:\Project\MOWAS\src\main\webapp\view\club" />
       <recent name="C:\Project\MOWAS\src\main\webapp\resources\club\css" />
       <recent name="C:\Project\MOWAS\src\main\webapp\resources\club\js" />
-      <recent name="C:\Project\MOWAS\src\main\webapp\resources\club" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Project\MOWAS\src\main\webapp\resources\club" />
@@ -132,7 +147,7 @@
       <recent name="com.project.notice.service" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat 서버.Tomcat 9.0.58">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.58">
     <configuration name="ClubServiceTest.deleteVote" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MOWAS" />
       <extension name="coverage">
@@ -308,7 +323,7 @@
       <item itemvalue="JUnit.ClubServiceTest.listVote" />
       <item itemvalue="JUnit.ClubServiceTest.listVoter" />
       <item itemvalue="JUnit.ClubServiceTest.updateVoter" />
-      <item itemvalue="Tomcat 서버.Tomcat 9.0.58" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.58" />
     </list>
     <recent_temporary>
       <list>
@@ -354,6 +369,8 @@
       <workItem from="1665533657959" duration="27513000" />
       <workItem from="1665649090993" duration="48206000" />
       <workItem from="1665935988156" duration="3862000" />
+      <workItem from="1666228976253" duration="31233000" />
+      <workItem from="1666310419697" duration="1893000" />
     </task>
     <task id="LOCAL-00001" summary="설정">
       <created>1664436990723</created>
@@ -436,7 +453,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="BJW" />
                       </list>
                     </value>
                   </entry>

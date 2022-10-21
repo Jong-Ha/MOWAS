@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,35 +8,293 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <title>Document</title>
+    <script>
 
+        $(function () {
+
+            $('#hamburger-line-wrapper').click(function () {
+
+                /* 추가된 부분 */
+                $('.line').removeClass('init');
+                $('#line-top').toggleClass('line-top').toggleClass('top-reverse');
+                $('#line-mid').toggleClass('line-mid').toggleClass('mid-reverse');
+                $('#line-bot').toggleClass('line-bot').toggleClass('bot-reverse');
+
+                $(".dropdown-box").slideToggle();
+            })
+
+
+
+
+        })
+
+    </script>
+
+    <style>
+
+        ul, li {
+            list-style: none;
+            padding: 5px;
+            margin-top: 10px;
+
+        }
+
+        .dealList {
+            margin-top: 15px;
+            cursor: pointer;
+            background-repeat: no-repeat;
+            background-size: 0% 100%;
+            transition: background-size 0.2s;
+
+
+        }
+
+        @media (min-width: 1000px) {
+            .dealList {
+                font-size: 1.5em;
+            }
+        }
+
+        .dealList:hover {
+            transition: 0.2s;
+            background-size: 100% 100%;
+            background-image: linear-gradient(transparent 60%, #F8CD07 40%);
+
+        }
+
+        #hamburger-line-wrapper {
+            cursor: pointer;
+            width: 16px;
+            position: relative;
+            float: right;
+            margin-left: 400px;
+
+        }
+
+        /* 추가된 부분 */
+        .init {
+            animation: none !important;
+        }
+
+        .line {
+            background: #ffffff;
+            margin-top: 6px;
+            margin-bottom: 6px;
+            width: 56px;
+            height: 7px;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .line-top {
+            animation: line-top .5s forwards ease-out,
+            line-top-rotate .3s .5s forwards ease-out;
+        }
+
+        /* 추가된 부분 */
+        .top-reverse {
+            animation: line-top-rotate-reverse .3s forwards ease-out,
+            line-top-reverse .5s .3s forwards ease-out;
+        }
+
+        .line-mid {
+            animation: line-mid .5s forwards ease-out;
+        }
+
+        /* 추가된 부분 */
+        .mid-reverse {
+            animation: line-mid-invisible .3s forwards ease-out,
+            line-mid-reverse .5s .3s forwards ease-out;
+        }
+
+        .line-bot {
+            animation: line-bot .5s forwards ease-out,
+            line-bot-rotate .3s .5s forwards ease-out;
+        }
+
+        /* 추가된 부분 */
+        .bot-reverse {
+            animation: line-bot-rotate-reverse .3s forwards ease-out,
+            line-bot-reverse .5s .3s forwards ease-out;
+        }
+
+        @keyframes line-top {
+            0% {
+                transform: translateY(0px)
+            }
+            100% {
+                transform: translateY(13px)
+            }
+        }
+
+        /* 추가된 부분 */
+        @keyframes line-top-reverse {
+            0% {
+                transform: translateY(13px)
+            }
+            100% {
+                transform: translateY(0px)
+            }
+        }
+
+        @keyframes line-top-rotate {
+            0% {
+                transform: translateY(13px) rotateZ(0deg)
+            }
+            100% {
+                transform: translateY(13px) rotateZ(45deg)
+            }
+        }
+
+        /* 추가된 부분 */
+        @keyframes line-top-rotate-reverse {
+            0% {
+                transform: translateY(13px) rotateZ(45deg)
+            }
+            100% {
+                transform: translateY(13px) rotateZ(0deg)
+            }
+        }
+
+        @keyframes line-mid {
+            0% {
+                transform: scale(1)
+            }
+            100% {
+                transform: scale(0)
+            }
+        }
+
+        /* 추가된 부분 */
+        @keyframes line-mid-reverse {
+            0% {
+                transform: scale(0)
+            }
+            100% {
+                transform: scale(1)
+            }
+        }
+
+        @keyframes line-mid-invisible {
+            0% {
+                transform: scale(0)
+            }
+            100% {
+                transform: scale(0)
+            }
+        }
+
+        @keyframes line-bot {
+            0% {
+                transform: translateY(0px)
+            }
+            100% {
+                transform: translateY(-13px)
+            }
+        }
+
+        /* 추가된 부분 */
+        @keyframes line-bot-reverse {
+            0% {
+                transform: translateY(-13px)
+            }
+            100% {
+                transform: translateY(0px)
+            }
+        }
+
+        @keyframes line-bot-rotate {
+            0% {
+                transform: translateY(-13px) rotateZ(0deg)
+            }
+            100% {
+                transform: translateY(-13px) rotateZ(135deg)
+            }
+        }
+
+        /* 추가된 부분 */
+        @keyframes line-bot-rotate-reverse {
+            0% {
+                transform: translateY(-13px) rotateZ(135deg)
+            }
+            100% {
+                transform: translateY(-13px) rotateZ(0deg)
+            }
+        }
+
+    </style>
 </head>
 <body>
-    <div class="wrapper">
-        <div class="user-container">
-            <label for="nickname">대화</label>
-            <input type="text" value="${user.userId}" id="nickname">
-        </div>
-        <div class="display-container">
-            <ul class="chatting-list">
+<div class="wrapper">
+    <div class="user-container">
 
-            </ul>
-        </div>
-        <div class="input-container">
+        <label for="nickname">대화</label>
+
+        <input type="text" value="${user.userId}" id="nickname">
+
+        <c:if test="${chatNameSpace == 'dealChat'}">
+
+            <div class="hamburger">
+                <div id="hamburger-wrapper">
+                    <div id="hamburger-line-wrapper">
+                        <!-- 추가된 부분 -->
+                        <div id="line-top" class=" line init top-reverse"></div>
+                        <div id="line-mid" class=" line init mid-reverse"></div>
+                        <div id="line-bot" class=" line init bot-reverse"></div>
+                    </div>
+                </div>
+            </div>
+
+        </c:if>
+
+    </div>
+
+    <div class="dropdown-box" style="display: none;    position: absolute;
+    background: rgba(249, 249, 249, 0.75);
+    z-index: 2;
+    width: 200px;
+    height: 180px;
+    margin-top: 67px;
+    margin-left: 475px;">
+
+        <ul class="">
+            <li>
+                <a class="dealList dealCalender">직거래 일정 등록 하기</a>
+            </li>
+
+            <li>
+                <a class="dealList">택배거래</a>
+            </li>
+
+            <li>
+                <a class="dealList">음...</a>
+            </li>
+
+        </ul>
+    </div>
+
+
+    <div class="display-container">
+        <ul class="chatting-list">
+
+        </ul>
+    </div>
+    <div class="input-container">
             <span>
                 <input type="text" class="chatting-input">
                 <button class="send-button">전송</button>
             </span>
-            <form>
-                <input id="file" type="file" multiple class="send-file" value="파일 전송"/>
-            </form>
-        </div>
+        <form>
+            <input id="file" type="file" multiple class="send-file" value="파일 전송"/>
+        </form>
     </div>
+</div>
 <!--html이 로드된후 soket과 연결 하기 위해-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.2/socket.io.js"
         integrity="sha512-VJ6+sp2E5rFQk05caiXXzQd1wBABpjEj1r5kMiLmGAAgwPItw1YpqsCCBtq8Yr1x6C49/mTpRdXtq8O2RcZhlQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet" href="/resources/css/chat.css">
 
 <script>
@@ -86,14 +345,17 @@
     const displayContainer = document.querySelector(".display-container");
 
     $(function () {
-
+        console.log('${chatNameSpace}');
+        console.log('${boardNum}');
         //app.js에 있는 io상수를 socket상수에 담는다
-        const socket = io("http://localhost:5000/onebyone", {
+        const socket = io("http://localhost:5000/${chatNameSpace}", {
             cors: {origin: '*'},
-            query : {
-                roomId : '${roomId}',
-                userId1 : '${userId}',
-                userId2 : '${user.userId}'
+            query: {
+
+                roomId: '${roomId}',
+                userId1: '${userId}',
+                userId2: '${user.userId}',
+                boardNum : '${boardNum}'
             }
         });
 
@@ -113,10 +375,8 @@
         });
 
 
-
-
-        chatInput.addEventListener("keyup", (e)=>{
-            if(e.keyCode === 13){
+        chatInput.addEventListener("keyup", (e) => {
+            if (e.keyCode === 13) {
                 sendMessage(socket)
             }
 
@@ -136,10 +396,10 @@
             //item 상수에 LiModel 매개변수 (neme,msg,time)을 받는 함수를 실행 시키고
             // item에 담음
             // console.log(newMsg)
-            // console.log(newMsg.userId[0])
+            // console.log(newMsg.userId)
             // console.log(newMsg.msg)
             // console.log(newMsg.time)
-            const item = new LiModel(newMsg.userId[0], newMsg.msg, newMsg.time);
+            const item = new LiModel(newMsg.userId, newMsg.msg, newMsg.time);
 
             //makeLi를 실행한다.
             item.makeLi();
@@ -148,10 +408,33 @@
         })
 
 
+
+
+        socket.on("postboardNum",(date)=>{
+
+            console.log(date);
+
+            window.open( "/commu/addDealCalender?boardNum="+ date , "거래 일정 등록",
+                "top=100, width=550px, height=500px, marginwidth=0, marginheight=0, marginright:100px; scrollbars=no, scrolling=no, menubar=no, resizable=no")
+
+
+        })
+
+
+        $(".dealCalender").on("click", ()=>{
+
+
+            socket.emit('getboardNum', ()=>{})
+
+            alert("거래 일정 입장")
+
+        })
+
+
     })
 
-    function sendMessage(socket){
-        if(chatInput.value===''){
+    function sendMessage(socket) {
+        if (chatInput.value === '') {
             return
         }
 
@@ -174,7 +457,7 @@
             //li 상수에 li테크를 만드는 method를 담는다
             const li = document.createElement("li");
             //내가 작성한건지 상대방이 작성한건지 비교하는 method
-            li.classList.add(nickname.value === this.name ? "sent" : "received")
+            li.classList.add(nickname.value == this.name ? "sent" : "received")
             //li에 html을 넣는다
             li.innerHTML = '<span class="profile">' +
                 '<span class="user">' + this.name + '</span>' +

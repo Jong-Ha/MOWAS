@@ -165,9 +165,7 @@ where deal_board_num=#{dealBoardNum}
         SELECT deal_board_num,
                user_id,
                deal_title,
-
                deal_reg_date
-
         FROM deal
         WHERE board_category = #{boardCategory}
           AND deal_title LIKE ('%' || #{search.searchKeyword} || '%')
@@ -264,4 +262,11 @@ where deal_board_num=#{dealBoardNum}
 from deal
 where user_id = #{user.userId}
     </select>
+
+<!--    <insert id="addDealCalender" parameterType="clubCalender">
+        INSERT INTO
+         DEAL()
+    </insert>-->
+
+
 </mapper>

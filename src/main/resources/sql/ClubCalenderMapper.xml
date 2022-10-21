@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -16,6 +17,7 @@
         <result property="noticeTime"         column="notice_time"          jdbcType="VARCHAR"/>
         <result property="calendarApplyCheck" column="calendar_apply_check" jdbcType="VARCHAR"/>
         <result property="applyAutoCheck"     column="apply_auto_check"     jdbcType="VARCHAR"/>
+        <result property="boardCategory"      column="board_category"       jdbcType="VARCHAR"/>
     </resultMap>
 
     <resultMap id="calenderReviewSelect" type="calenderReview">
@@ -169,5 +171,7 @@
             AND board_category = #{boardCategory}
         ORDER BY file_num DESC
     </select>
+
+
 
 </mapper>
