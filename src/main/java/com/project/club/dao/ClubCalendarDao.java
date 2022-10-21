@@ -2,6 +2,7 @@ package com.project.club.dao;
 
 import com.project.domain.ClubCalendar;
 import com.project.domain.ClubCalendarReview;
+import com.project.domain.Deal;
 import com.project.domain.File;
 
 import java.util.List;
@@ -28,5 +29,5 @@ public interface ClubCalendarDao {
 
     List<File> getListFile(int clubCalenderReviewNum, int boardCategory);
 
-    void addDealCalender(ClubCalendar calender);
+    void addDealCalender(Deal calender);
 }

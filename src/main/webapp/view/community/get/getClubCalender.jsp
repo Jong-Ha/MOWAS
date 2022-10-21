@@ -160,15 +160,8 @@
 
             });
 
-            $(".calenderCluber").on("click", function () {
-                /*'${clubCalender.clubNum}'*/
-                window.open(
-                    "/clubCal/addCalenderCluber?clubNum=" + 10030 , '_blnk'
-                    , "top=200, width=200px, height=700px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no")
 
-            });
 
-            console.log($("#clubers").val());
 
 
         });
@@ -250,14 +243,7 @@
 
             <hr/>
 
-            <div class="row">
-                <div class="col-xs-4 col-xs-2 ">
-                    <strong>모임 인원 추가 하기
-                        <input type="button" class="calenderCluber" value="모임원 추가">
-                        <input type="text" class="clubers" id="clubers" value="">
-                    </strong>
-                </div>
-            </div>
+
 
             <hr/>
 

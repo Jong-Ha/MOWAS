@@ -1,6 +1,8 @@
 package com.project.club.controller;
 
 import com.project.club.service.ClubCalendarService;
+import com.project.club.service.ClubService;
+import com.project.domain.CalendarCluber;
 import com.project.domain.ClubCalendar;
 import com.project.domain.ClubCalendarReview;
 import com.project.domain.User;
@@ -30,13 +32,16 @@ public class ClubCalendarRestController<list> {
     @Qualifier("clubCalenderServiceImpl")
     private ClubCalendarService calenderService;
 
+    @Autowired
+    @Qualifier("clubServiceImpl")
+    private ClubService clubService;
+
     /*캘린더 등록 ajax 처리*/
     @RequestMapping("addClubCalender")
-    public int addClubCalender(@RequestBody ClubCalendar calender, HttpSession session) {
+    public int addClubCalender(@RequestBody ClubCalendar calender
+                               ,HttpSession session) {
 
         User user = (User) session.getAttribute("user");
-
-        System.out.println(calender);
 
 
         calender.setLocation("창원시 진해구 소사동");
@@ -64,6 +69,23 @@ public class ClubCalendarRestController<list> {
 
 
         calenderService.addCalender(calender);
+
+        return 0;
+    }
+
+    @RequestMapping("addCluber")
+    public int addCluber(@RequestBody Map<String,Object> map){
+
+        System.out.println("클럽 맴버 : " +map.get("cluberList"));
+        System.out.println("클럼넘버 : " + map.get("clubNum"));
+
+        List<String> list = (List<String>) map.get("cluberList");
+
+
+        /*clubService.addCalendarCluber(list,map.get("clubNum"));*/
+
+
+
 
         return 0;
     }

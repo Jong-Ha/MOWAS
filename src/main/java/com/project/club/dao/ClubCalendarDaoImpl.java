@@ -2,6 +2,7 @@ package com.project.club.dao;
 
 import com.project.domain.ClubCalendar;
 import com.project.domain.ClubCalendarReview;
+import com.project.domain.Deal;
 import com.project.domain.File;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,9 +84,9 @@ public class ClubCalendarDaoImpl implements ClubCalendarDao {
     }
 
     @Override
-    public void addDealCalender(ClubCalendar clubCalender) {
+    public void addDealCalender(Deal deal) {
 
-        sqlSession.insert("ClubCalenderMapper.addDealCalender", clubCalender);
+        sqlSession.insert("DealMapper.addDealCalender", deal);
     }
 
 }

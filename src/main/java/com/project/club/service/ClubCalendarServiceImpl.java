@@ -3,7 +3,7 @@ package com.project.club.service;
 import com.project.club.dao.ClubCalendarDao;
 import com.project.domain.ClubCalendar;
 import com.project.domain.ClubCalendarReview;
-import com.project.domain.File;
+import com.project.domain.Deal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -110,8 +110,8 @@ public class ClubCalendarServiceImpl implements ClubCalendarService {
     }
 
     @Override
-    public void addDealCalender(ClubCalendar calender) {
-        clubCalendarDao.addDealCalender(calender);
+    public void addDealCalender(Deal deal) {
+        clubCalendarDao.addDealCalender(deal);
     }
 
 
