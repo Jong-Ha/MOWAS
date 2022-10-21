@@ -31,14 +31,14 @@ Product vo=(Product)request.getAttribute("vo");
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <title>Bootstrap Example</title>
     <!-- 참조 : http://getbootstrap.com/css/   참조 -->
-<%--    <meta name="viewport" content="width=device-width, initial-scale=1.0" />--%>
+    <%--    <meta name="viewport" content="width=device-width, initial-scale=1.0" />--%>
 
-<%--    <!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->--%>
-<%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >--%>
-<%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >--%>
-<%--    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>--%>
-<%--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>--%>
-<%--    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>--%>
+    <%--    <!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->--%>
+    <%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >--%>
+    <%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >--%>
+    <%--    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>--%>
+    <%--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>--%>
+    <%--    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>--%>
     <script>
         // $(function () {
         //     var dealNum = $(this).parent().children("[name='dealBoardNum']").val();
@@ -70,7 +70,7 @@ Product vo=(Product)request.getAttribute("vo");
         //
         // })
 
-        $(function() {
+        $(function () {
             // $(document).ready(function(){
             // var dealNum = $(this).parent().children("[name='dealBoardNum']").val();
             // var boardCategory=$(this).parent().children("[name='boardCategory']").val();
@@ -101,12 +101,12 @@ Product vo=(Product)request.getAttribute("vo");
             // $(".addClub").on("click",function(){
             //     location.href="/club/addClub"
             // })
-            $(".dealLogin").on("click",function(){
-                location.href="/deal/login?userId="+$("input[name='userId']").val()+"&dealBoardNum=${deal.dealBoardNum}";
+            $(".dealLogin").on("click", function () {
+                location.href = "/deal/login?userId=" + $("input[name='userId']").val() + "&dealBoardNum=${deal.dealBoardNum}";
             })
             $(".likeToggle").on("click", function () {
                 var dealNum = $(this).parent().children("[name='dealBoardNum']").val();
-                var boardCategory=$(this).parent().children("[name='boardCategory']").val();
+                var boardCategory = $(this).parent().children("[name='boardCategory']").val();
                 $.ajax({
                     url: "/deal/json/dealLike",
                     method: "POST",
@@ -120,22 +120,79 @@ Product vo=(Product)request.getAttribute("vo");
                     },
                     dataType: "JSON",
                     success: function (JSONData, result) {
-                         alert(result)
+                        alert(result)
                         alert(JSONData);
                         if (JSONData.like === 'n') {
-                             alert("누름")
-                            $(".likeToggle").val("좋아요 해제") ;
-                        }else if(JSONData.like=='null'){
+                            alert("누름")
+                            $(".likeToggle").val("좋아요 해제");
+                        } else if (JSONData.like == 'null') {
                             $(".likeToggle").val
-                        } else{
-                             alert("뺌")
+                        } else {
+                            alert("뺌")
                             $(".likeToggle").val("좋아요!");
                         }
                     }
                 })
             })
+
+            $(".dealCaht").on("click", function () {
+                var dealUserId = $(".dealUserId").val();
+                var userId = $(".userId").val()
+
+                var chatNameSpace = "dealChat"
+
+                if (userId === '' || userId === null) {
+                    alert("로그인후 이용 가능 합니다");
+                } else if (userId !== '') {
+
+                    if (userId === dealUserId) {
+                        alert("동명이인???");
+                    } else {
+
+                        const swalWithBootstrapButtons = Swal.mixin({
+                            customClass: {
+                                confirmButton: 'btn btn-success',
+                                cancelButton: 'btn btn-danger'
+                            },
+                            buttonsStyling: false
+                        })
+
+                        swalWithBootstrapButtons.fire({
+                            title: '해당 유저와 채팅을 하기겠습니까?',
+                            text: "",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: '초대',
+                            cancelButtonText: '취소',
+                            reverseButtons: true
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                swalWithBootstrapButtons.fire(
+                                    dealUserId + ' 님이 초대 되었습니다',
+                                    'success',
+                                )
+                                setTimeout(() => (
+                                    window.open("/chat/addOneChat?chatNameSpace=" + chatNameSpace + "&userId=" +dealUserId + "&boardNum=" + '${dealBoardNum}' , "채팅방",
+                                        "left=500, top=100, width=500px, height=500px, marginwidth=0, marginheight=0,")
+
+                                ), 2500)
+                            } else if (
+                                /* Read more about handling dismissals below */
+                                result.dismiss === Swal.DismissReason.cancel
+                            ) {
+                                swalWithBootstrapButtons.fire(
+                                    '초대 취소',
+                                    'error'
+                                )
+                            }
+                        })
+                    }
+                }
+
+            })
+
         });
-            //$(".likeToggle").on("click",function(){
+        //$(".likeToggle").on("click",function(){
 
         //
         //         var likeCount =$(this).parents(".cardbox").find(".likeText").html();
@@ -187,20 +244,20 @@ Product vo=(Product)request.getAttribute("vo");
         //         })
         //     })
         // })
-        $(function(){
-            $(".updateDeal").on("click",function(){
-                location.href="/deal/updateDeal/${deal.dealBoardNum}"
+        $(function () {
+            $(".updateDeal").on("click", function () {
+                location.href = "/deal/updateDeal/${deal.dealBoardNum}"
             })
-            $(".deleteDeal").on("click",function(){
+            $(".deleteDeal").on("click", function () {
                 var check = confirm("진짜 삭제?");
-                if(check==true){
-                    location.href="/deal/deleteDeal/${deal.dealBoardNum}"
+                if (check == true) {
+                    location.href = "/deal/deleteDeal/${deal.dealBoardNum}"
                 }
             })
         });
-        $(function (){
+        $(function () {
             /* 리뷰쓰기 */
-            $(".reply_button_wrap").on("click", function(e){
+            $(".reply_button_wrap").on("click", function (e) {
 
                 e.preventDefault();
 
@@ -213,10 +270,9 @@ Product vo=(Product)request.getAttribute("vo");
                 console.log(popUrl);
                 let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes";
 
-                window.open(popUrl,"리뷰 쓰기",popOption);
+                window.open(popUrl, "리뷰 쓰기", popOption);
             });
         })
-
 
 
     </script>
@@ -235,15 +291,16 @@ Product vo=(Product)request.getAttribute("vo");
     <!--  ///////////////////////// CSS ////////////////////////// -->
     <style>
         body {
-            padding-top : 50px;
+            padding-top: 50px;
         }
 
 
         /* 리뷰쓰기 버튼 */
-        .reply_button_wrap{
-            padding : 10px;
+        .reply_button_wrap {
+            padding: 10px;
         }
-        .reply_button_wrap button{
+
+        .reply_button_wrap button {
             background-color: #365fdd;
             color: white;
             font-weight: bold;
@@ -251,64 +308,73 @@ Product vo=(Product)request.getAttribute("vo");
             padding: 5px 12px;
             cursor: pointer;
         }
-        .reply_button_wrap button:hover{
+
+        .reply_button_wrap button:hover {
             background-color: #1347e7;
         }
 
         /* 리뷰 영역 */
-        .content_bottom{
+        .content_bottom {
             width: 80%;
-            margin : auto;
+            margin: auto;
         }
-        .reply_content_ul{
+
+        .reply_content_ul {
             list-style: none;
         }
-        .comment_wrap{
+
+        .comment_wrap {
             position: relative;
             border-bottom: 1px dotted #d4d4d4;
             padding: 14px 0 10px 0;
             font-size: 12px;
         }
+
         /* 리뷰 머리 부분 */
-        .reply_top{
+        .reply_top {
             padding-bottom: 10px;
         }
-        .id_span{
+
+        .id_span {
             padding: 0 15px 0 3px;
             font-weight: bold;
         }
-        .date_span{
+
+        .date_span {
             padding: 0 15px 0;
         }
+
         /* 리뷰 컨텐트 부분 */
-        .reply_bottom{
+        .reply_bottom {
             padding-bottom: 10px;
         }
 
 
         /* 리뷰 선 */
-        .reply_line{
-            width : 80%;
-            margin : auto;
-            border-top:1px solid #c6c6cf;
+        .reply_line {
+            width: 80%;
+            margin: auto;
+            border-top: 1px solid #c6c6cf;
         }
 
         /* 리뷰 제목 */
-        .reply_subject h2{
+        .reply_subject h2 {
             padding: 15px 0 5px 5px;
         }
 
         /* pageMaker */
-        .repy_pageInfo_div{
+        .repy_pageInfo_div {
             text-align: center;
             margin-top: 30px;
             margin-bottom: 40px;
         }
-        .pageMaker{
+
+        .pageMaker {
             list-style: none;
             display: inline-block;
         }
-        .pageMaker_btn{
+
+        .pageMaker_btn {
             float: left;
             width: 25px;
             height: 25px;
@@ -317,27 +383,30 @@ Product vo=(Product)request.getAttribute("vo");
             font-size: 10px;
             cursor: pointer;
         }
-        .active{
-            border : 2px solid black;
-            font-weight:400;
+
+        .active {
+            border: 2px solid black;
+            font-weight: 400;
         }
+
         .next, .prev {
             border: 1px solid #ccc;
             padding: 0 10px;
         }
 
         /* 리뷰 없는 경우 div */
-        .reply_not_div{
+        .reply_not_div {
             text-align: center;
         }
-        .reply_not_div span{
+
+        .reply_not_div span {
             display: block;
             margin-top: 30px;
             margin-bottom: 20px;
         }
 
         /* 리뷰 수정 삭제 버튼 */
-        .update_reply_btn{
+        .update_reply_btn {
             font-weight: bold;
             background-color: #b7b399;
             display: inline-block;
@@ -350,7 +419,8 @@ Product vo=(Product)request.getAttribute("vo");
             color: white;
             cursor: pointer;
         }
-        .delete_reply_btn{
+
+        .delete_reply_btn {
             font-weight: bold;
             background-color: #e7578f;
             display: inline-block;
@@ -368,7 +438,6 @@ Product vo=(Product)request.getAttribute("vo");
 </head>
 
 
-
 <body>
 <%-- toolbar 시작--%>
 <jsp:include page="/layout/toolbar.jsp"/>
@@ -384,13 +453,15 @@ ${deal}<br>
     <input type="button" class="likeToggle" value="${likeCheck == 'y'?'좋아요 해제':'좋아요!'}">
     <input type="hidden" name="dealBoardNum" value="${deal.dealBoardNum}">
     <input type="hidden" name="boardCategory" value="${deal.boardCategory}">
+    <input type="hidden" class="dealUserId" value="${deal.user.userId}">
+    <input type="hidden" class="userId" value="${user.userId}">
     <br/>
     <br/>
 </div>
 </table>
 <input type="button" class="updateDeal" value="거래 수정">
 <input type="button" class="deleteDeal" value="거래 삭제">
-<input type="button" class="#" value="채팅하기">
+<input type="button" class="dealCaht" value="채팅하기">
 
 <div class="reply_subject">리뷰</div>
 <div class="replypt">${deal.reviewPt}</div>
@@ -411,12 +482,6 @@ ${deal}<br>
 ${user.userId}
 
 <br>
-
-
-
-
-
-
 
 
 <%--<body bgcolor="#ffffff" text="#000000">--%>
@@ -460,8 +525,6 @@ ${user.userId}
 <%--                </table>--%>
 <%--            </td>--%>
 <%--        </tr>--%>
-
-
 
 
 <%--        <tr>--%>

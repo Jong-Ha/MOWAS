@@ -2,6 +2,7 @@ package com.project.club.controller;
 
 import com.project.club.service.ClubCalendarService;
 import com.project.club.service.ClubService;
+import com.project.common.Search;
 import com.project.community.service.CommunityService;
 import com.project.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -233,9 +234,18 @@ public class ClubCalendarController {
 
     }
 
-    @RequestMapping("addCalenderReview")
-    public String addCalenderReview(@ModelAttribute("clubCalendar") ClubCalendar clubCalender){
-        return null;
+    @RequestMapping("addCalenderCluber")
+    public String addCalenderCluber(@RequestParam("clubNum")int clubNum
+                                    , @ModelAttribute("search")Search search
+                                    ,Model model){
+
+        search.setSearchCondition("0");
+
+        Map<String, Object> map = clubService.listCluber(search,clubNum);
+
+        model.addAttribute("list", map.get("list"));
+
+        return "/view/community/add/addCalenderCluber.jsp";
     }
 
 

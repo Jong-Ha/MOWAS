@@ -109,5 +109,10 @@ public class ClubCalendarServiceImpl implements ClubCalendarService {
         clubCalendarDao.addFileUpload(map);
     }
 
+    @Override
+    public void addDealCalender(ClubCalendar calender) {
+        clubCalendarDao.addDealCalender(calender);
+    }
+
 
 }

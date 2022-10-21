@@ -142,23 +142,33 @@
 
             $(".addReview").on("click", function () {
                 window.open(
-                    "/clubCal/addClubCalenderReview?clubCalenderNum="+calenderNum+"&boardCategory=01", "모임 일정 후기글 작성",
+                    "/clubCal/addClubCalenderReview?clubCalenderNum=" + calenderNum + "&boardCategory=01", "모임 일정 후기글 작성",
                     "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
 
-                    window.close();
+                window.close();
 
             });
 
             $(".addShort").on("click", function () {
 
-               window.open(
-                    "/clubCal/addClubCalenderReview?clubCalenderNum="+calenderNum+"&boardCategory=02", "모임 일정 후기글 쇼츠 작성",
+                window.open(
+                    "/clubCal/addClubCalenderReview?clubCalenderNum=" + calenderNum + "&boardCategory=02", "모임 일정 후기글 쇼츠 작성",
                     "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no"
-               );
+                );
 
                 window.close();
 
             });
+
+            $(".calenderCluber").on("click", function () {
+                /*'${clubCalender.clubNum}'*/
+                window.open(
+                    "/clubCal/addCalenderCluber?clubNum=" + 10030 , '_blnk'
+                    , "top=200, width=200px, height=700px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no")
+
+            });
+
+            console.log($("#clubers").val());
 
 
         });
@@ -234,6 +244,17 @@
                 <div class="col-xs-4 col-xs-2 ">
                     <strong>파일
                         <input type="file" name="file" value="파일 첨부">
+                    </strong>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="row">
+                <div class="col-xs-4 col-xs-2 ">
+                    <strong>모임 인원 추가 하기
+                        <input type="button" class="calenderCluber" value="모임원 추가">
+                        <input type="text" class="clubers" id="clubers" value="">
                     </strong>
                 </div>
             </div>

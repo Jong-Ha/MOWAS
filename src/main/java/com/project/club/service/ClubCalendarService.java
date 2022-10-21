@@ -24,4 +24,6 @@ public interface ClubCalendarService {
     List<Map<String, Object>> getListCalender(ClubCalendar calender);
 
     void addFileUpload(Map<String, String> map);
+
+    void addDealCalender(ClubCalendar calender);
 }

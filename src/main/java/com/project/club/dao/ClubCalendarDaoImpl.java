@@ -82,4 +82,10 @@ public class ClubCalendarDaoImpl implements ClubCalendarDao {
         return sqlSession.selectList("ClubCalenderMapper.getListFile", map);
     }
 
+    @Override
+    public void addDealCalender(ClubCalendar clubCalender) {
+
+        sqlSession.insert("ClubCalenderMapper.addDealCalender", clubCalender);
+    }
+
 }

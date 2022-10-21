@@ -27,4 +27,6 @@ public interface ClubCalendarDao {
     void addFileUpload(Map<String, String> map);
 
     List<File> getListFile(int clubCalenderReviewNum, int boardCategory);
+
+    void addDealCalender(ClubCalendar calender);
 }
