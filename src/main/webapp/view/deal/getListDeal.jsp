@@ -200,7 +200,7 @@
 <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 
 <%--구현 후 빼야함--%>
-<input type="button" class="clubLogin" value="로그인">
+<input type="button" class="dealLogin" value="로그인">
 <label>
   아이디 : <input type="text" name="userId" value="user01">
 </label>
@@ -210,7 +210,7 @@ ${user.userId}
 
   <%--상단 툴바--%>
   <jsp:include page="/layout/toolbar.jsp"/>
-
+    <input type="hidden" class="userId" value="${user.userId}">
 <%--  <div class="add" style="display:flex;justify-content: space-between;align-items: center;">--%>
 <%--    <button class="btn btn-primary addDeal">--%>
 <%--      거래 만들기--%>
@@ -227,6 +227,8 @@ ${user.userId}
 <%--      </button>--%>
 <%--    </div>--%>
 <%--  </div>--%>
+
+
     <%--버튼 모음 시작--%>
     <div class="add" style="display:flex;justify-content: space-between;align-items: center;">
       <button class="btn btn-primary addDeal" data-bs-toggle="modal" data-bs-target="#addDeal">

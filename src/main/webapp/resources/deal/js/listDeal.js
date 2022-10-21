@@ -36,7 +36,7 @@ $(function () {
     //     //     "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
     // })
     //로그인 나중에 없앨거
-    $(".clubLogin").on("click", function () {
+    $(".dealLogin").on("click", function () {
         location.href = "/deal/login?userId=" + $("input[name='userId']").val()
     })
         //위치 검색

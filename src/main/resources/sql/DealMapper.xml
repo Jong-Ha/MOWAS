@@ -127,9 +127,10 @@ values (seq_deal.NEXTVAL,
             board_category,
             review,
             review_pt,
-            deal_id
-        vill_code,
-            deal_status
+            deal_id,
+            vill_code,
+            deal_status,
+            deal_reg_date
 from deal
 where deal_board_num=#{dealBoardNum}
     </select>
@@ -142,7 +143,6 @@ where deal_board_num=#{dealBoardNum}
         deal_title=#{dealTitle:VARCHAR},
         deal_status=#{dealStatus:CHAR},
         deal_text=#{dealText:VARCHAR},
-
     product_name=#{productName:VARCHAR},
         price=#{price:NUMERIC},
         tag=#{tag:VARCHAR}
