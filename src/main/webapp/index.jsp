@@ -28,7 +28,7 @@
         $(function (){
             $(".site").on("click", function (){
                 $(self.location).attr("href", "site/listMasterBoard");
-            })
+             })
         })
 
     </script>
