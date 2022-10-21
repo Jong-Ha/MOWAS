@@ -1,3 +1,4 @@
+
 package com.project.deal.service;
 
 import com.project.common.Search;
@@ -13,16 +14,16 @@ public interface DealService {
     public void updateDeal(Deal deal,List<String> deleteFileNames)throws Exception;
     public List<String> deleteDeal(int dealBoardNum) throws Exception;
     public Deal getDeal(int dealBoardNum)throws Exception;
-    public Map<String, Object> getListDeal(Search search, String boardCategory) throws Exception ;
+    public Map<String, Object> getListDeal(Search search, String boardCategory,List<String> searchTag) throws Exception ;
     public Deal getUserId(int dealBoardNum) throws Exception;
     public void updateReview(Deal deal)throws Exception;
 
     public int getReviewPt(Deal deal) throws Exception;
 
 //    public int addReview(Deal deal) throws Exception;
- //   public List<String> deleteReview(int dealBoardNum) throws Exception;
- //   public Map<String, Object> getListReview(Search search, String boardCategory) throws Exception ;
-   // public int addDealBoard(Deal deal);
+    //   public List<String> deleteReview(int dealBoardNum) throws Exception;
+    //   public Map<String, Object> getListReview(Search search, String boardCategory) throws Exception ;
+    // public int addDealBoard(Deal deal);
 //   public int addClubMasterBoard(ClubMasterBoard clubMasterBoard);
 //    public void updateClubMasterBoard(ClubMasterBoard clubMasterBoard, List<String> deleteFileNames);
 //    public List<String> deleteClubMasterBoard(int clubMasterBoardNum);

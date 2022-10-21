@@ -17,12 +17,8 @@
 <body>
 <div class="wap">
     <jsp:include page="/layout/chatbar.jsp"/>
-    <label>
-        <input type="text" name="userId">
-    </label>
-    <input type="button" class="addOneChat" value="채팅만들기">
-    <div class="chatList">
 
+    <div class="chatList">
 
     </div>
 </div>
@@ -36,12 +32,14 @@
             location.href = "/chat/addOneChat/"+$('[name="userId"]').val()
         })
 
-        const socket = io("http://192.168.0.234:5000/chatlist", {
+        const socket = io("http://localhost:5000/chatlist", {
             cors: {origin: '*'},
+
             query: {
                 userId: '${user.userId}',
-                chatCategory: 'onebyone'
+                chatCategory: '${chatCategory}'
             }
+
         })
         socket.on("list", (room) => {
 
@@ -54,18 +52,21 @@
                 console.log(item);
 
                 var chatter;
-                if(item.users[0].userId==='${user.userId}'){
-
-                    chatter = item.users[1].userId
+                if(item.chatCategory==='clubChat'){
+                    chatter = item.roomName;
                 }else {
-                    chatter = item.users[0].userId
+                    if(item.users[0].userId==='${user.userId}'){
+                        chatter = item.users[1].userId
+                    }else {
+                        chatter = item.users[0].userId
+                    }
                 }
 
-                var chatList = ' <div class="card shadow-lg chatBox" style="max-width: 500px; margin-bottom: 20px">' +
+                var chatList = ' <div class="card shadow-lg chatBox" style="width: 500px; max-width: 500px; margin-bottom: 20px">' +
                                 '<input hidden class="roomId" value="'+item.roomId+'">'+
                                 '<div class="row g-0">' +
                                 '<div class="col-md-4 potoBox">' +
-                                '<img class="bd-placeholder-img img-fluid rounded-start poto" src="https://placeimg.com/50/50/any" alt="any">' +
+                                '<img class="bd-placeholder-img img-fluid rounded-start poto" src="https://placeimg.com/50/50/any" alt="any" style="width: 320px;">' +
                                 '</div>' +
                                 '<div class="col-md-8 chatText">' +
                                 '<div class="card-body " >' +
@@ -108,21 +109,9 @@
             $(".chatBox").on("click", function () {
                var roomId =  $(this).find(".roomId").val()
 
-                alert(roomId);
 
-                location.href = "/chat/getChat?chatCategory="+1+"&roomId="+roomId
+                location.href = "/chat/getChat?roomId="+roomId+"&chatNameSpace="+'${chatCategory}';
             })
-            $(".clubChathatText").on("click", function () {
-                location.href = "/chat/getChat?chatCategory=" + 2
-            })
-            $(".dealChatText").on("click", function () {
-                location.href = "/chat/getChat?chatCategory=" + 3
-            })
-            $(".siteChatText").on("click", function () {
-                location.href = "/chat/getChat?chatCategory=" + 4
-            })
-
-
 
         })
     })

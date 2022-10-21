@@ -3,7 +3,17 @@
 <html>
 <head>
     <title>Title</title>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="/resources/club/js/listCluber.js"></script>
+    <link href="/resources/club/css/listCluber.css" rel="stylesheet" type="text/css"/>
+
     <script>
         $(function(){
             //승인 거절
@@ -13,6 +23,7 @@
                 // alert($(this).parents(".cluber").children("[name='clubUserNum']").val())
                 var clubUserNum = $(this).parents(".cluber").children("[name='clubUserNum']").val();
                 var clubNum = $(this).parents(".cluber").children("[name='clubNum']").val();
+                var userId = $(this).parents(".cluber").children("[name='userId']").val();
                 var div = $(this).parent();
                 $.ajax({
                     url : "/club/json/processCluberApply",
@@ -20,7 +31,8 @@
                     data : JSON.stringify({
                         "result" : result,
                         "clubUserNum" : clubUserNum,
-                        "clubNum" : clubNum
+                        "clubNum" : clubNum,
+                        "userId" : userId
                     }),
                     dataType : "JSON",
                     headers:{
@@ -60,17 +72,20 @@
 </head>
 <body>
 
+<jsp:include page="backClose.jsp"/>
+
 <c:forEach items="${list}" var="cluber">
     <div class="cluber">
         <span class="cluberData">${cluber}</span>
         <input type="hidden" name="clubUserNum" value="${cluber.clubUserNum}">
         <input type="hidden" name="clubNum" value="${cluber.clubNum}">
-            <div class="cluberText">
-            </div>
-            <div>
-                <input type="button" class="accept" value="승인">
-                <input type="button" class="reject" value="거절">
-            </div>
+        <input type="hidden" name="userId" value="${cluber.user.userId}">
+        <div class="cluberText">
+        </div>
+        <div>
+            <input type="button" class="accept" value="승인">
+            <input type="button" class="reject" value="거절">
+        </div>
         <br/><br/>
     </div>
 </c:forEach>

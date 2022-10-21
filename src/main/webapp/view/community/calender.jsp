@@ -107,7 +107,7 @@
 
     $(function () {
 
-        $(".addDay").on("click", function () {
+        $(".addCalender").on("click", function () {
 
             window.open(
                 "/view/community/add/addClubCalender.jsp", "리뷰페이지",

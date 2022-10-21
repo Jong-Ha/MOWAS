@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,4 +22,6 @@ public class ClubCalendar {
     private String noticeTime ;
     private String calendarApplyCheck ;
     private String applyAutoCheck ;
+    private String boardCategory;
+    private List<CalendarCluber> calendarCluberList;
 }

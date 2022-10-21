@@ -13,6 +13,7 @@
                 // alert($(this).parents(".cluber").children("[name='clubUserNum']").val())
                 var clubUserNum = $(this).parents(".cluber").children("[name='clubUserNum']").val();
                 var clubNum = $(this).parents(".cluber").children("[name='clubNum']").val();
+                var userId = $(this).parents(".cluber").children("[name='userId']").val();
                 var div = $(this).parent();
                 $.ajax({
                     url : "/club/json/processCluberApply",
@@ -20,7 +21,8 @@
                     data : JSON.stringify({
                         "result" : result,
                         "clubUserNum" : clubUserNum,
-                        "clubNum" : clubNum
+                        "clubNum" : clubNum,
+                        "userId" : userId
                     }),
                     dataType : "JSON",
                     headers:{
@@ -65,12 +67,13 @@
         <span class="cluberData">${cluber}</span>
         <input type="hidden" name="clubUserNum" value="${cluber.clubUserNum}">
         <input type="hidden" name="clubNum" value="${cluber.clubNum}">
-            <div class="cluberText">
-            </div>
-            <div>
-                <input type="button" class="accept" value="승인">
-                <input type="button" class="reject" value="거절">
-            </div>
+        <input type="hidden" name="userId" value="${cluber.user.userId}">
+        <div class="cluberText">
+        </div>
+        <div>
+            <input type="button" class="accept" value="승인">
+            <input type="button" class="reject" value="거절">
+        </div>
         <br/><br/>
     </div>
 </c:forEach>

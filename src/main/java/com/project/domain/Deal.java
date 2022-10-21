@@ -28,6 +28,7 @@ public class Deal {
     private int chatNum;
     private String review;
     private int reviewPt;
+    private String dealCalenderTitle;
     private Date dealEndDate;
     private Date dealDate;
     private String dealLocation;

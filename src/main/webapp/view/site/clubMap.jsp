@@ -40,6 +40,7 @@
         success: function (vilCode) {
           //$(".searchLocation").html(vilCode);
           alert(vilCode);
+          $(".villCode").val(vilCode)
         }
       })
     }
@@ -47,8 +48,8 @@
     $(function() {
       //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
       $( "button:contains('확인')" ).on("click" , function() {
-          $(opener.document).find(".searchLocation").html($('[name="asdf"]').val())
-          $(opener.document).find('[name="searchLocation"]').val($('[name="asdf"]').val())
+          $(opener.document).find(".searchLocation").html($(".villCode").val())
+          $(opener.document).find('[name="searchLocation"]').val($(".villCode").val())
           window.close()
       });
     });
@@ -99,6 +100,7 @@
 </script>
 
 <div class="col-md-4 text-center col-md-offset-1">
+  <input type="text" class="villCode" name="villCode" value="역삼동">
     <button type="button" class="btn btn-primary">확인</button>
 </div>
 

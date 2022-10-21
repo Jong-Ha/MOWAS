@@ -1,3 +1,6 @@
+
+
+
 package com.project.deal.service;
 
 import com.project.common.Search;
@@ -37,7 +40,7 @@ public class DealServiceImpl implements DealService {
         System.out.println("addDeal serviceImpl"+deal);
         System.out.println("addDeal serviceImpl");
         deal.setVillCode(deal.getUser().getVillCode());
-       // System.out.println("뭔데 ㅜㅜ"+dealDao.getDealNum(deal.getUser().getUserId()));
+        // System.out.println("뭔데 ㅜㅜ"+dealDao.getDealNum(deal.getUser().getUserId()));
         int dealBoardNum = dealDao.getDealNum(deal.getUser().getUserId());
         String boardCategory=deal.getBoardCategory();
         List<File> files = deal.getFiles();
@@ -92,7 +95,7 @@ public class DealServiceImpl implements DealService {
     }
 
     @Override
-    public Map<String, Object> getListDeal(Search search, String boardCategory) throws Exception {
+    public Map<String, Object> getListDeal(Search search, String boardCategory,List<String> searchTag) throws Exception {
         Map<String, Object> map = new HashMap<>();
 
         map.put("search",search);
@@ -108,8 +111,8 @@ public class DealServiceImpl implements DealService {
 
 
 //        Map<String, Object> map2=new HashMap<>();
-  //      map2.put("search", search);
-    //    map2.put("boardCategory",boardCategory);
+        //      map2.put("search", search);
+        //    map2.put("boardCategory",boardCategory);
 //        List<Deal> list=dealDao.getListDeal(map2);
 //        int totalCount = dealDao.getTotalCount(search);
 //        System.out.println("여기까지는 옴 ?");
@@ -168,3 +171,4 @@ public class DealServiceImpl implements DealService {
 
 
 }
+

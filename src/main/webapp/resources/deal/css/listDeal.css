@@ -32,7 +32,7 @@ button.buttonBox {
     width: 5px;
 }
 
-.col.clubBox {
+.col.dealBox {
     width: 320px;
 }
 
@@ -57,7 +57,7 @@ svg {
     font-size: 40px;
 }
 
-.clubTag {
+.dealTag {
     height: 210px;
     --bs-btn-color: #000000;
     --bs-btn-border-color: #000000;
@@ -73,11 +73,6 @@ svg {
     --bs-btn-disabled-bg: transparent;
     --bs-btn-disabled-border-color: #000000;
     --bs-gradient: none;
-}
-.interList {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
 }
 
 .modal-footer>* {
@@ -105,4 +100,16 @@ svg {
 .tagify--outside.tagify--focus .tagify__input{
     transition:0s;
     border-color: var(--tags-focus-border-color);
+}
+
+.tagify.form-control {
+    height: calc(12rem);
+}
+
+.tagify__input{
+    text-align: left;
+}
+
+tags.tagify{
+    border-radius: 7px;
 }
