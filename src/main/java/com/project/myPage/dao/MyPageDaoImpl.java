@@ -86,4 +86,8 @@ public class MyPageDaoImpl implements MyPageDao{
         return sqlSession.selectList("MyPageMapper.getMyPpt", userId);
     }
 
+
+
+
+
 }

@@ -16,6 +16,8 @@ public interface UserService {
     //관심목록 추가
     public void addInterList(UserInterList interList)throws Exception;
 
+    public void updateSNSUserInfor(User user)throws Exception;
+
     public void deleteInterList(UserInterList interList)throws Exception;
 
     //회원상세보기, 내정보 보기
@@ -32,6 +34,10 @@ public interface UserService {
 
     //회원정보 수정
     public void updateUser(User user)throws Exception;
+
+    public void updateKakaoUser(User user)throws Exception;
+
+    public void updateNaverUser(User user)throws Exception;
 
     public void updatePsd(User user)throws Exception;
 
@@ -51,7 +57,7 @@ public interface UserService {
 
     public String getAccessToken(String code)throws Exception;
 
-    public HashMap<String, Object> getUserInfo(String access_Token)throws Exception;
+    public User getUserInfo(String access_Token)throws Exception;
 
     public void addNaverUser(User user)throws Exception;
 /*

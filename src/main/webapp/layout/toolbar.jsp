@@ -10,10 +10,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
+  <script type="text/javascript" src="/resources/OpenSource/js/jquery.cookie.js"></script>
+<script type="text/javascript">
 
   $(function () {
     $("#login1").on("click", function () {
-      self.location = "/view/user/login.jsp";
+        self.location = "/view/user/login.jsp";
     });
   });
   $(function () {
@@ -98,11 +100,8 @@
           <div class="d-grid gap-2">
             <%
               User users =(User)session.getAttribute("user");
-              User naverUser =(User)session.getAttribute("naverUser");
-              User naverUser2 =(User)session.getAttribute("naverUser2");
 
-
-              if(users==null && naverUser==null && naverUser2==null){%>
+              if(users==null){%>
             <button type="button" class="btn btn-outline-primary btnlf loginbox" id="login1" style="font-size: 0.5em;">로그인</button>
             <%}else{%>
             <button type="button" class="btn btn-outline-primary btnlf loginbox" id="logout">로그아웃</button>
@@ -114,6 +113,10 @@
         </div>
       </div>
       <div><input type="hidden" id="modelUser" name="userId" value="${user.userId}"></div>
+      <div style="display: none">
+        <input type="checkbox" id="keepId" name="keepId" value="$.cookie('keepId')">
+        <input type="checkbox" id="keepLogin" name="keepLogin" value="${user.userId}">
+      </div>
     </div>
         <button type="button" class="btn btn-primary position-relative alrim" style="font-size: 0.5em;">
           Inbox

@@ -57,12 +57,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "addUser",method = RequestMethod.POST)
-    public String addUser(@ModelAttribute User user,@ModelAttribute UserInterList interList,
+    public String addUser(@ModelAttribute User user,
                           @RequestParam(value = "file") MultipartFile file,HttpSession session,
                           Model model) throws Exception{
         System.out.println("/user/addUser : POST 실행");
         System.out.println("user 값은 ? :"+user);
-        System.out.println("interList의 값은 ? :"+interList);
+
 
         if(Objects.requireNonNull(file.getContentType()).substring(0, file.getContentType().indexOf("/")).equals("image")) {
 
@@ -84,7 +84,7 @@ public class UserController {
             System.out.println("생성된 고유 문자열 " + uniqueName);
             System.out.println("확장자명 " + fileExtension);
 
-            String uploadLocation = uploadFolder + "\\" + uniqueName + fileRealName;
+            String uploadLocation = uploadFolder + "\\" + uniqueName + fileExtension;
             System.out.println("uploadLocation의 값 :" + uploadLocation);
 
             File saveFile = new File(uploadLocation);
@@ -96,7 +96,7 @@ public class UserController {
                 e.printStackTrace();
             }
 
-            String userImage = userImagePath+uniqueName+fileRealName;
+            String userImage = userImagePath+uniqueName+fileExtension;
             user.setUserImage(userImage);
             userService.addUser(user);
 
@@ -113,9 +113,23 @@ public class UserController {
         }
 
         System.out.println("/user/addUser : POST 종료");
-        return "forward:/view/user/interList.jsp";
+        return "forward:/view/user/addInterList.jsp";
     }
 
+    @RequestMapping(value = "updateSNSUserInfor",method = RequestMethod.POST)
+    public String updateSNSUserInfor(@ModelAttribute User user,
+                          HttpSession session) throws Exception{
+        System.out.println("/user/updateSNSUserInfor : POST 실행");
+        System.out.println("user 값은 ? :"+user);
+
+            userService.updateSNSUserInfor(user);
+
+            session.setAttribute("user", user);
+
+
+        System.out.println("/user/updateSNSUserInfor : POST 종료");
+        return "forward:/view/user/main.jsp";
+    }
 
     @RequestMapping(value = "getUser", method = RequestMethod.GET)
     public String getUser(@RequestParam("userId")String userId, Model model)throws Exception{
@@ -325,17 +339,23 @@ public class UserController {
 
 
     @RequestMapping(value="kakaoLogin", method=RequestMethod.GET)
-    public String kakaoLogin(@RequestParam(value = "code", required = false) String code) throws Exception {
+    public String kakaoLogin(@RequestParam(value = "code", required = false) String code,
+                             HttpSession session, Model model) throws Exception {
         System.out.println("#########" + code);
         String access_Token = userService.getAccessToken(code);
 
-        HashMap<String, Object> userInfo = userService.getUserInfo(access_Token);
+        User userInfo = userService.getUserInfo(access_Token);
         System.out.println("###access_Token#### : " + access_Token);
-        System.out.println("###email#### : " + userInfo.get("email"));
-        System.out.println("###userImage#### : " + userInfo.get("userImage"));
-        System.out.println("###gender#### : " + userInfo.get("gender"));
+        System.out.println("###email#### : " + userInfo.getEmail());
+        System.out.println("###userImage#### : " + userInfo.getUserImage());
+        System.out.println("###gender#### : " + userInfo.getGender());
+        System.out.println("###userId#### : " + userInfo.getUserId());
 
-        return "forward:/view/user/main.jsp";
+        User kakaoUser =  userService.getUser(userInfo.getUserId());
+        session.setAttribute("user", kakaoUser);
+        model.addAttribute("kakaoUser", kakaoUser);
+
+        return "forward:/view/user/updateSNSUserInfor.jsp";
     }
 
     @RequestMapping(value="callBack", method=RequestMethod.GET)

@@ -9,17 +9,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="JHK 2022.10.18&#10;&#10;회원가입 파일업로드, 유효성검사 보완, 마이페이지 작성">
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="JHK 2022.10.17&#10;&#10;마이페이지 서비스 커밋">
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/myPage/controller/MyPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/myPage/controller/MyPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/myPage/dao/MyPageDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/myPage/dao/MyPageDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/service/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyInfor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyInfor.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyPage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyPage.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/updateMyInfor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/updateMyInfor.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/callBack.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/callBack.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/callback2.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/getUserDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/getUserDetail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/go.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/interList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/addInterList.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/kakaoDeveloper.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/kakaoLogin3.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/kakaoLoginJS.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/kakaoLoginRest.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/kakaoLoginjs2.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/login.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/main.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/naverLoginTest.jsp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -374,6 +396,7 @@
       <workItem from="1665530452563" duration="66244000" />
       <workItem from="1665719038843" duration="110715000" />
       <workItem from="1666174088425" duration="4691000" />
+      <workItem from="1666270233958" duration="21469000" />
     </task>
     <task id="LOCAL-00001" summary="설정">
       <created>1664436990723</created>
@@ -507,7 +530,8 @@
     <MESSAGE value="BJW 2022.10.10&#10;&#10;파일 업로드 json으로 처리 하기, 일정 캘린더 api 사용해서 fullcalendar로 display 완성, 캘린더 list로 불러올떄 겹치는 문제 해결해야함&#10;채팅 작업 시작" />
     <MESSAGE value="JHK 2022.10.13&#10;&#10;회원가입 도로명주소 api 사용, 카카오로그인 구현(정보 받기, 디비저장 아직임)" />
     <MESSAGE value="JHK 2022.10.17&#10;&#10;마이페이지 서비스 커밋" />
-    <option name="LAST_COMMIT_MESSAGE" value="JHK 2022.10.17&#10;&#10;마이페이지 서비스 커밋" />
+    <MESSAGE value="JHK 2022.10.19&#10;&#10;메일인증 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="JHK 2022.10.19&#10;&#10;메일인증 수정" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -516,6 +540,20 @@
           <url>file://$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp</url>
           <line>86</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/project/user/controller/UserController.java</url>
+          <line>138</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDao.java</url>
+          <line>29</line>
+          <properties class="com.project.user.dao.UserDao" method="updateLcd">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

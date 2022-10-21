@@ -68,25 +68,29 @@
                 dataType : "JSON",
                 data : JSON.stringify({
                     userId : id,
-                    password : pw
+                    password : pw,
                 }),
                 headers : {
                     "Accept" : "application/json",
                     "Content-Type" : "application/json"
                 },
-                success : function (JSONData){
+                success : function (result){
                     //alert('JSONData ==>'+JSONData);
+                    if(result){
                     if(keepId){
                         $.cookie('keepId',id,{ expires : 365,path : '/'});
                     }else {
-                        $.removeCookie('keepId',{paht : '/'})
+                        $.removeCookie('keepId',{path : '/'})
                     }
                     if(keepLogin){
-                        $.cookie('keepLogin',pw,{expires: 365, paht: '/'});
+                        $.cookie('keepLogin',pw,{expires: 365, path: '/'});
                     }else {
                         $.removeCookie('keepLogin',{path : '/'})
                     }
                     $(self.location).attr("href", "/view/user/main.jsp")
+                }else{
+                    alert('아이디, 비밀번호를 확인하세요')
+                    }
                 },
                 error : function (){
                     alert("로그인 실패");
@@ -443,16 +447,17 @@
 </main>
 <script>
 
-    $(document).load(function (){
+    $(document).ready(function (){
         var id = $("input:text").val();
         var pw = $("input:password").val();
         var keepId = $("#keepId").prop('checked');
         var keepLogin = $("#keepLogin").prop('checked');
         console.log('자동로그인keepId'+keepId);
         console.log('자동로그인keeplogin'+keepLogin);
-        if (keepId && keepLogin ){
+        if (keepId && keepLogin ) {
             fncLogin();
         }
+
     })
 </script>
 </body>
