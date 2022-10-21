@@ -300,4 +300,9 @@ public class ClubDaoImpl implements ClubDao {
     public void addVoter(Voter voter) {
         sqlSession.insert("ClubMapper.addVoter",voter);
     }
+
+    @Override
+    public void addCalendarCluber(Map<String, Object> map) {
+        sqlSession.insert("ClubMapper.addCalendarCluber",map);
+    }
 }
