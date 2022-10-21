@@ -129,6 +129,7 @@
 
     .wap {
         width: 1000px;
+        height: 1500px;
     }
 
     .carditem {
@@ -338,13 +339,9 @@
     </c:forEach>
 
 
-
-
-
-
-
 </div>
 
+<jsp:include page="/layout/footer.jsp"/>
 </body>
 </html>
 
