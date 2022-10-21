@@ -348,7 +348,7 @@
         console.log('${chatNameSpace}');
         console.log('${boardNum}');
         //app.js에 있는 io상수를 socket상수에 담는다
-        const socket = io("http://localhost:5000/${chatNameSpace}", {
+        const socket = io("http://192.168.0.235:5000/${chatNameSpace}", {
             cors: {origin: '*'},
             query: {
 
