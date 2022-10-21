@@ -28,7 +28,7 @@
       });
 
       $( "button:contains('확인')" ).on("click" , function() {
-          $("form").attr("method","post").attr("action","/site/updateClubReport").submit();
+          $("form").attr("method","post").attr("action","/site/listClubReportProcess").submit();
 
       });
 
@@ -42,16 +42,16 @@
 <body>
 <form class="form-horizontal" name="detailForm">
 
-    <%--관리자 아이디 : ${masterBoard.adminId} </br>--%>
-    <input type="hidden" name="clubReportNo" value="${clubReport.reportNo}">
-        모임명: ${club.clubName}<br>
+    <input type="hidden" name="clubReportNo" value="${clubReport.clubReportNo}">
+        모임명: ${clubReport.club.clubName}<br>
         모임 번호 : "${clubReport.clubNum} <button type="button" class="btn btn-primary">알림</button></br>
-        모임장 아이디: ${club.clubMasterId}<br>
+        <input type="hidden" name="clubNum" value="${clubReport.clubNum}">
+        모임장 아이디: ${clubReport.club.clubMasterId}<br>
         신고 날짜 : ${clubReport.reportDate}<br>
         신고 상세 내용 : ${clubReport.reportText}<br>
         이의 상세 내용 : ${clubReport.rereportText}<br>
-        이의 처리 <input type="number" name="rereportResult" value="${clubReport.rereportResult}"><br>
-        관리자아이디 : ${clubReport.AdminId}<br>
+        이의 처리 <input type="text" name="rereportResult" value="${clubReport.rereportResult}"><br>
+        관리자아이디 : ${clubReport.adminId}<br>
 
     <div class="col-md-4 text-center col-md-offset-1">
         <button type="button" class="btn btn-primary">확인</button>

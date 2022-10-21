@@ -54,6 +54,8 @@
         <result property="rereportApplyDate" 	column="rereport_apply_date"       jdbcType="DATE"/>
         <result property="rereportText" 	column="rereport_text"       jdbcType="VARCHAR"/>
         <result property="rereportResult" 	column="rereport_result"       jdbcType="VARCHAR"/>
+        <result property="club.clubMasterId" column="club_master_id" jdbcType="VARCHAR"/>
+        <result property="club.clubName" column="club_name" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!-- Master Board Query 공지사항 추가-->
@@ -374,9 +376,7 @@
     <update	id="processClubRereport"	parameterType="clubReport" >
         UPDATE club_report
         <set>
-            rereport_apply_check 	= <if test='rereportText!=null'>'Y'</if> ,
             rereport_apply_date = SYSDATE,
-            rereport_text = #{rereportText},
             rereport_result = #{rereportResult}
         </set>
         WHERE club_report_num = #{clubReportNo}
@@ -419,29 +419,35 @@
         SELECT *
         FROM (	SELECT inner_table.* , ROWNUM AS row_seq
         FROM(
-        SELECT  club_report_num,
-        club_num,
-        report_id,
-        admin_id,
-        cr_basis,
-        report_date,
-        report_text,
-        process_date,
-        report_result,
-        rereport_apply_check,
-        rereport_apply_date,
-        rereport_text,
-        rereport_result
-        FROM club_report
+        SELECT  cr.club_report_num,
+                cr.club_num,
+                cr.report_id,
+                cr.admin_id,
+                cr.cr_basis,
+                cr.report_date,
+                cr.report_text,
+                cr.process_date,
+                cr.report_result,
+                cr.rereport_apply_check,
+                cr.rereport_apply_date,
+                cr.rereport_text,
+                cr.rereport_result,
+                c.club_master_id,
+                c.club_name
+        FROM club_report cr, club c
         <if test="searchCondition != null">
             <where>
+                cr.club_num = c.club_num
                 <if test="searchCondition == 0 and searchKeyword !='' ">
-                    club_report_num = to_char(#{searchKeyword})
+                    AND cr.club_report_num = to_char(#{searchKeyword})
                 </if>
                 <if test="searchCondition == 1 and searchKeyword !='' ">
-                    report_id = #{searchKeyword}
+                    AND cr.report_id = #{searchKeyword}
                 </if>
             </where>
+        </if>
+        <if test="searchCondition == null">
+        WHERE cr.club_num = c.club_num
         </if>
         ORDER BY club_report_num ) inner_table
         WHERE ROWNUM &lt;= #{endRowNum} )

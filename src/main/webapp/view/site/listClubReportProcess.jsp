@@ -181,8 +181,8 @@
                     <td>${cr.clubNum}
                         <input id="clubNo" type="hidden" data-param1="${cr.clubNum}"/>
                     </td>
-                    <td>${club.clubName}</td>
-                    <td>${club.clubMasterId}</td>
+                    <td>${cr.club.clubName}</td>
+                    <td>${cr.club.clubMasterId}</td>
                     <td>${cr.rereportApplyCheck}</td>
                     <td>${cr.reportDate}</td>
                     <td>${cr.reportResult}</td>

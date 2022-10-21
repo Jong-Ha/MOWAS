@@ -46,6 +46,7 @@
     <input type="hidden" name="clubReportNo" value="${clubReport.clubReportNo}">
         <%--모임명: ${club.clubName}<br>--%>
         모임 번호 : "${clubReport.clubNum} <button type="button" class="btn btn-primary">알림</button></br>
+        <input type="hidden" name="clubNum" value="${clubReport.clubNum}">
         모임장 아이디: ${clubReport.reportDate}<br>
         신고 날짜 : ${clubReport.reportDate}<br>
         신고 상세 내용 : ${clubReport.reportText}<br>
