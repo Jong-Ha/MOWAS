@@ -13,6 +13,7 @@
     var calendar = null;
 
     $(document).ready(function () {
+
         var Calendar = FullCalendar.Calendar;
         var Draggable = FullCalendar.Draggable;
 
@@ -108,9 +109,10 @@
     $(function () {
 
         $(".addCalender").on("click", function () {
-
             window.open(
-                "/view/community/add/addClubCalender.jsp", "府轰其捞瘤",
+
+               /* "/view/community/add/addClubCalender.jsp"*/
+                "/clubCal/addCalender?clubNum=${club.clubNum}", "府轰其捞瘤",
                 "top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
 
         });
@@ -125,9 +127,8 @@
         cursor: pointer;
     }
 </style>
-</head>
 <body>
-
+<input hidden class="boardNum" value="${club.clubNum}">
 <div class='demo-topbar'>
     <div id='external-events' style="float: left; width: 20%; margin-top: 75px; padding: 5px; margin-bottom: 50px;"> </div>
     <div id='calendar-container' style="float: left; width: 50%; font-size: 0.7em; ">
@@ -140,5 +141,3 @@
 </body>
 </html>
 
-</body>
-</html>

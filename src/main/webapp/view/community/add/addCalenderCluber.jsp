@@ -116,12 +116,15 @@
             var str = '';
 
             $(".add").on("click", function () {
-                alert("해당 회원을 추가 하세겠습니까??")
 
-                var cluber = $(this).parents(".wap").find(".cluberName").text()
+                var cluber = $(this).parents(".wap").find(".cluberName").html()
+                var checkBox = $(this).parents(".wap").find(".add")
 
-                $(opener.document).find("form").append($("<input type='hidden' class='clubers' value='"+cluber+"'/>"));
+                if(checkBox.is(":checked")){
 
+                    $(opener.document).find("form").append($("<input type='hidden' class='clubers' value='"+cluber+"'/>"));
+
+                }
 
             })
         });
@@ -151,7 +154,7 @@
                         <div class="row g-0">
                             <div class="col-md-4 potoBox">
                                 <img class="bd-placeholder-img img-fluid rounded-start poto"
-                                     src="https://placeimg.com/50/50/any" alt="any" style="width: 320px;">
+                                     src="https://placeimg.com/50/50/any" alt="any" >
                             </div>
                             <div class="col-md-8 chatText">
                                 <div class="card-body ">

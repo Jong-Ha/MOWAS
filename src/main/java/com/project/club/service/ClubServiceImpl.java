@@ -357,4 +357,14 @@ public class ClubServiceImpl implements ClubService {
             clubDao.addVoter(voter);
         }
     }
+
+    @Override
+    public void addCalendarCluber(int clubCalendarNum, List<String> userIdList) {
+        for(String userId : userIdList){
+            Map<String, Object> map = new HashMap<>();
+            map.put("clubCalendarNum",clubCalendarNum);
+            map.put("userId",userId);
+            clubDao.addCalendarCluber(map);
+        }
+    }
 }

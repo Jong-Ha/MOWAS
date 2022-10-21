@@ -232,9 +232,11 @@ public class CommunityRestController {
     }
 
     @RequestMapping(value = "addDealCalender", method = RequestMethod.POST)
-    public int addDealCalender(@RequestBody ClubCalendar calender ) {
-        System.out.println("일정 정보 : " +calender);
-        calendarService.addDealCalender(calender);
+    public int addDealCalender(@RequestBody Deal deal ) {
+        System.out.println("일정 정보 : " +deal);
+
+
+        calendarService.addDealCalender(deal);
 
     return 0;
     }

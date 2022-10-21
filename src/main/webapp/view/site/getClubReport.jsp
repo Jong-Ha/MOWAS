@@ -22,6 +22,10 @@
         self.location = "/site/updateClubReport/${clubReport.clubReportNo}"
       });
 
+      $( "button:contains('이의처리')" ).on("click" , function() {
+        self.location = "/site/updateClubRereport/${clubReport.clubReportNo}"
+      });
+
       $( "button:contains('확인')" ).on("click" , function() {
         self.location = "/site/listClubReport"
       });

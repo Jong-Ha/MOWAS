@@ -288,6 +288,13 @@ public class SiteController {
         return "forward:/view/site/listClubReport.jsp";
     }
 
+    @RequestMapping(value = "addClubReport", method = RequestMethod.POST)
+    public String addClubReport(@ModelAttribute("clubReport") ClubReport clubReport) throws Exception {
+        System.out.println("/site/addClubReport : POST");
+
+        siteService.addClubReport(clubReport);
+        return "redirect:/site/listClubReport";
+    }
     @RequestMapping(value = "getClubReport/{clubReportNo}/{clubNum}", method = RequestMethod.GET)
     public String getClubReport(@PathVariable int clubReportNo, @PathVariable int clubNum, Model model) throws Exception {
         System.out.println("/site/getClubReport : GET");
@@ -317,7 +324,19 @@ public class SiteController {
 
         siteService.processClubReport(clubReport);
 
-        return "redirect:/site/listClubReportProcess";
+        return "redirect:/site/listClubReportProcess?clubNum="+clubReport.getClubNum();
+    }
+
+    @RequestMapping(value="updateClubRereport/{clubReportNo}", method=RequestMethod.GET)
+    public String updateClubRereport(@PathVariable int clubReportNo , Model model) throws Exception {
+        System.out.println("/site/updateClubRereport : GET");
+
+        ClubReport clubReport = siteService.getClubReport(clubReportNo);
+
+        //siteService.processClubRereport(clubReport);
+
+        model.addAttribute("clubReport", clubReport);
+        return "forward:/view/site/updateClubRereport.jsp";
     }
 
     @RequestMapping(value="updateClubRereport", method=RequestMethod.POST)
@@ -329,7 +348,7 @@ public class SiteController {
         return "redirect:/site/listClubReportProcess";
     }
 
-    @RequestMapping(value="deleteClubBoard/{reportNo}", method=RequestMethod.GET)
+    @RequestMapping(value="deleteClubBoard/{clubReportNo}", method=RequestMethod.GET)
     public String deleteClubReport(@PathVariable int clubReportNo , Model model) throws Exception {
         System.out.println("/site/deleteClubReport : GET");
 
@@ -342,8 +361,8 @@ public class SiteController {
     }
 
     @RequestMapping(value = "listClubReportProcess")
-    public String listClubReportProcess(@ModelAttribute("search") Search search, @RequestParam int clubNum, Model model) throws Exception {
-        System.out.println("/site/listClubReport : GET / POST");
+    public String listClubReportProcess(@ModelAttribute("search") Search search, Model model) throws Exception {
+        System.out.println("/site/listClubReportProcess : GET / POST");
 
         if(search.getCurrentPage() == 0 ){
             search.setCurrentPage(1);
@@ -351,7 +370,6 @@ public class SiteController {
         search.setPageSize(pageSize);
 
         Map<String , Object> map = siteService.listClubReportProcess(search);
-        Club club = clubService.getClub(clubNum);
 
         Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
         System.out.println("resultPage : " + resultPage);
@@ -360,7 +378,6 @@ public class SiteController {
         model.addAttribute("list", map.get("list"));
         model.addAttribute("resultPage", resultPage);
         model.addAttribute("search", search);
-        model.addAttribute("club", club);
 
         return "forward:/view/site/listClubReportProcess.jsp";
     }
