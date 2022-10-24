@@ -608,7 +608,7 @@
 
       <div  id="map" style="width:500px;height:400px;"></div>
 
-        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=064b845197ba0a5631091cfb59197ad2&libraries=services"></script>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fdddcf3f747ce062a0dc0af6d4a8b009&libraries=services"></script>
         <script>
           var mapContainer = document.getElementById('map'), // 지도를 표시할 div
                   mapOption = {

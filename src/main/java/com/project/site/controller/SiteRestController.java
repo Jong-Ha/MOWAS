@@ -1,6 +1,7 @@
 package com.project.site.controller;
 
 import com.project.domain.CommunityReport;
+import com.project.domain.MasterBoard;
 import com.project.domain.User;
 import com.project.site.service.SiteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +45,13 @@ public class SiteRestController {
 
         String result = "신고되었습니다.";
         return result;
+    }
+
+    @RequestMapping( value="getMasterBoard/{masterBoardNo}", method=RequestMethod.GET )
+    public MasterBoard getMasterBoard(@PathVariable int masterBoardNo ) throws Exception {
+
+        System.out.println("/site/json/getMasterBoard : GET");
+        MasterBoard masterBoard = siteService.getMasterBoard(masterBoardNo);
+        return masterBoard;
     }
 }
