@@ -142,7 +142,7 @@
 <button type="button" class="btn btn-secondary btn-sm addinterList">관심목록 추가/삭제</button><br/>
 <c:set var="i" value="0" />
 <c:forEach var="list" items="${map.interList}">
-    ${list.interList}<br/>
+    ${list}<br/>
 </c:forEach> <br/>
 
     <div class="col-12">

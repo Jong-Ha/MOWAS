@@ -95,7 +95,7 @@ public class MyPageServiceImpl implements MyPageService {
                     break;
             }
             System.out.println("str의 값..?" + str);
-            tm += str;
+            tm += str+", ";
             System.out.println("tm의값.....! " + tm);
             tmlist = new ArrayList<>();
             tmlist.add(tm);

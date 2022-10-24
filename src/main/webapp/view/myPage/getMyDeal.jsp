@@ -11,8 +11,7 @@
 
 </script>
 <body>
-완료한 거래 조회, 거래 후기 조회
-<hr/>
+<jsp:include page="/view/myPage/myPageTitle.jsp"/>
 <h3>완료한 거래 조회, 거래 후기 조회</h3>
 <hr/>
 <c:set var="i" value="0" />
