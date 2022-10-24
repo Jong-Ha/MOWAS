@@ -190,6 +190,14 @@
             </set>
             WHERE recomment_num = #{boardNum}
         </if>
+        <if test="boardCategory == 08 or boardCategory ==09">
+            deal
+            <set>
+                like_count = #{likeCount} -1
+            </set>
+            WHERE deal_board_num = #{boardNum}
+        </if>
+
     </update>
     <select id="getLikeCount" parameterType="map" resultType="int">
         SELECT like_count
@@ -209,6 +217,7 @@
             FROM recomment
             WHERE recomment_num = #{boardNum}
         </if>
+
 
     </select>
 

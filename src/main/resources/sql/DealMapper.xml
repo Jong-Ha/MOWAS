@@ -133,7 +133,8 @@ values (seq_deal.NEXTVAL,
             deal_id,
             vill_code,
             deal_status,
-            deal_reg_date
+            deal_reg_date,
+            view_count
 from deal
 where deal_board_num=#{dealBoardNum}
     </select>
@@ -283,6 +284,21 @@ where deal_board_num=#{dealBoardNum}
         </set>
         WHERE deal_board_num = #{dealBoardNum}
     </update>
+    <!--조회수-->
+    <update id="updateViewCount" parameterType="map">
+        update DEAL
+        <set>
+            view_count=#{viewCount}+1
+        </set>
+        <where>deal_board_num=#{dealBoardNum:NUMERIC}</where>
+    </update>
 
+    <select id="getViewCount" parameterType="map" resultType="int">
+        SELECT view_count
+            FROM deal
+            WHERE deal_board_num = #{dealBoardNum}
+
+
+    </select>
 
 </mapper>

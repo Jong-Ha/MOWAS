@@ -31,8 +31,8 @@
   <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css"/>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-  <script src="/resources/deal/js/listDeal.js"></script>
-  <link href="/resources/deal/css/listDeal.css" rel="stylesheet" type="text/css"/>
+<%--  <script src="/resources/deal/js/listDeal.js"></script>--%>
+<%--  <link href="/resources/deal/css/listDeal.css" rel="stylesheet" type="text/css"/>--%>
   <!--  ///////////////////////// CSS ////////////////////////// -->
   <%--  <style>--%>
   <%--    body > div.container{--%>
@@ -191,7 +191,264 @@
   <%--    }--%>
 
   <%--  </style>--%>
+<script>
+  $(function () {
+    // 작성 페이지로 navigation
+    $(".dealBox").on('click', function (e) {
 
+        location.href = "/deal/getDeal/" + $(this).find('[name="dealBoardNum"]').val()
+    })
+//판매 리스트 보기
+    $(".deal").on("click", function () {
+
+      location.href = "/deal/getListDeal?boardCategory="+$(".deal").val();
+      //$(this).attr("action","/deal/getListDeal/08").attr("method","post")--%>
+    });
+
+    //판매요청 리스트
+    $(".dealRequest").on("click", function () {
+      alert($(".dealRequest").val());
+      location.href = "/deal/getListDeal?boardCategory="+$(".dealRequest").val();
+
+      // $(this).attr("action","/deal/getListDeal/09").attr("method","post")--%>
+    })
+
+
+    //태그
+    var input = document.querySelector("[name='searchTagInput']")
+
+    // init Tagify script on the above inputs
+    var tagify = new Tagify(input, {
+      dropdown: {
+        position: "input",
+        enabled: 0 // always opens dropdown when input gets focus
+      }
+    })
+
+    let items = []
+
+    $.each($(".searchTag"), function(index, item){
+      // alert($(item).val())
+      items.push($(item).val())
+    })
+    tagify.addTags(items)
+
+    $('.modal.fade .modal-footer button').on("click", function () {
+      // alert($(".tagify__tag").attr('value'))
+      $(".tagForm").html('')
+      $.each($(".tagify__tag"), function (index, item) {
+        $(".tagForm").append('<input type="hidden" name="searchTag" class="searchTag" value="' + $(item).attr('value') + '">')
+      })
+    })
+
+
+    //리스트 조회
+    $(".searchListDeal").on("click", function () {
+      $("#listForm").attr("action", "/deal/getListDeal").attr("method", "pt").submit()
+    })
+  })
+
+  $(function() {
+    var dealTag = document.querySelector("#dealTag")
+    var tagify = new Tagify(dealTag, {
+      dropdown: {
+        position: "input",
+        enabled: 0 // always opens dropdown when input gets focus
+      }
+    })
+$(".addDeal").on('click',function (){
+      var userId = $(".userId").val();
+      if (userId === '' || userId === null) {
+        alert("로그인후 사용해 주세요")
+      }
+    })
+    $("#addDeal").find(".newDeal").on('click', function () {
+
+      if ($("#dealTitle").val() === '') {
+        alert("제목은 필수입니다")
+        return;
+      }
+      if ($("#dealProduct").val() === '') {
+        alert("제품명은 필수입니다")
+        return;
+      }
+      if ($("#price").val() === '') {
+        alert("가격은 필수입니다")
+        return;
+      }
+
+
+      // if($("#clubTag").val()===''){
+      //     return;
+      // }
+      // alert(JSON.parse($("#clubTag").val()))
+      let addForm = $("#addDealForm");
+      $.each(JSON.parse($("#dealTag").val()), function (index, item) {
+        addForm.append('<input type="hidden" name="dealTags" value="' + item.value + '">')
+      })
+
+      addForm.attr("action", "/deal/addDeal").attr("method", "post").submit()
+    })
+
+  })
+
+
+
+  // $(".likeButton").on("click", function () {
+  // var userId = $(".userId").val();
+  //
+  // console.log("유저의 아이디는 : " + userId);
+  //
+  // if ( userId === '' || userId === null) {
+  // alert("로그인후 사용해 주세요")
+  //
+  // } else if (userId !== '') {
+  //
+  // var likeCount = $(this).parents(".cardbox").find(".likeText").html();
+  // var boardNum = $(this).parents(".cardbox").find(".CalenderReviewNum").val();
+  // var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val();
+  // var likeText = $(this).parents(".cardbox").find(".likeText")
+  //
+  // $.ajax({
+  // url: "/commu/json/addLike",
+  // type: "POST",
+  // data: JSON.stringify({
+  // "likeCount": likeCount,
+  // "boardNum": boardNum,
+  // "boardCategory": boardCategory
+  // }),
+  // dataType: "JSON",
+  // contentType: 'application/json; charset=UTF-8',
+  // success: function (JSONData, result) {
+  // likeText.html(JSONData)
+  // }
+  // })
+  // }
+  // })
+  // })
+
+
+
+  </script>
+
+
+  <style>
+    .body {
+      text-align: -webkit-center;
+    }
+
+    .wap {
+      width: 1000px;
+    }
+
+    .carditem {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-title {
+      width: 250px;
+      font-size: 1em;
+    }
+
+    .cardbox {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 30px;
+      float: left;
+    }
+
+    button.buttonBox {
+      font-size: 0.7em;
+      /* float: left; */
+      /* size: b4; */
+      height: 25px;
+      width: 5px;
+    }
+
+    .col.dealBox {
+      width: 320px;
+      margin-right: 30px;
+    }
+
+    .like {
+      font-size: 0.1rem;
+      width: 45px;
+      outline: 0;
+      border: none;
+      background-color: #fff;
+    }
+
+    .addBox {
+      margin-bottom: 50px;
+    }
+
+    .add {
+      margin-right: -700px;
+    }
+
+    .update,
+    .delete {
+      font-size: 0.5em;
+    }
+
+    .get {
+      width: 100px;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .cardbox {
+      transition: all 0.1s linear;
+    }
+
+    .cardbox:hover  {
+      transform: scale(1.12);
+    }
+
+    .potoBox {
+      cursor: pointer;
+      padding: 1px;
+      width: 294px;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 0 0 5px 5px;
+      border-bottom: 2px solid #0a090945
+    }
+
+    .text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .allFlex{
+      display: flex;
+    }
+    .cartFont{
+      font-size: 0.8em;
+    }
+    .wrapper {
+      height: 13ch;
+      display: grid;
+      place-items: center;
+    }
+    .typing {
+      width: 9ch;
+      animation: typing 0.9s steps(22), blink .5s step-end infinite alternate;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid;
+      font-size: 2em;
+      height: 2ch;
+    }
+
+    @keyframes typing {
+      from {
+        width: 0
+      }
+    }
+  </style>
 </head>
 
 
@@ -209,8 +466,27 @@ ${user.userId}
 <div class="wap">
 
   <%--상단 툴바--%>
-  <jsp:include page="/layout/toolbar.jsp"/>
-  <input type="hidden" class="userId" value="${user.userId}">
+    <input hidden class="userId" value="${user.userId}">
+
+
+
+    <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
+    <jsp:include page="/layout/toolbar.jsp"/>
+    <img src="/resources/uploadFiles/dealBoardFiles/중고거래.png" style="height: 500px;border-radius: 10px;  width: 1600px;">
+    <div class="wrapper">
+      <div class="typing">
+        <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
+                    background-image: linear-gradient(transparent 60%, #F8CD07 40%);">
+          물건 찾기</h4>
+      </div>
+    </div>
+<%--
+사진 들어가야지 ??
+
+--%>
+
+
+
   <%--  <div class="add" style="display:flex;justify-content: space-between;align-items: center;">--%>
   <%--    <button class="btn btn-primary addDeal">--%>
   <%--      거래 만들기--%>
@@ -230,9 +506,9 @@ ${user.userId}
 
 
   <%--버튼 모음 시작--%>
-  <div class="add" style="display:flex;justify-content: space-between;align-items: center;">
+  <div class="addBox" style="display:flex;justify-content: space-between;align-items: center;">
     <button class="btn btn-primary addDeal" data-bs-toggle="modal" data-bs-target="#addDeal">
-      거래 만들기
+      거래 작성
     </button>
     <div>
 
@@ -242,81 +518,137 @@ ${user.userId}
       <button class="btn btn-primary dealRequest" value="09">
         판매요청
       </button>
-      <button class="btn btn-primary searchTag">
+      <button class="center btn btn-primary searchTag">
         태그
       </button>
-
+      <button class="btn btn-primary search">
+        검색
+      </button>
     </div>
   </div>
   <%--버튼 모음 끝--%>
+<div class="wap">
 
-
-
-  <c:forEach var="deal" items="${list}">
-
+<c:set var="i" value="0"/>
+<c:forEach var="deal" items="${list}">
+  <c:set var="i" value="${i+1}"/>
   <div class="row row-cols-1 row-cols-md-3 g-4 cardbox">
-    <div class="col dealBox">
-      <input type="hidden" name="dealBoardNum" class="dealBoardNum" value="${deal.dealBoardNum}">
-      <div class="card h-100">
-          <%--            <c:forEach var="File" items="${Deal.files}">--%>
-          <%--              <div class="carousel-inner">--%>
-          <%--                <div class="carousel-item active get">--%>
-          <%--                  <img class="poto" width="100%" height="100%"  src="/resources/${File.fileName }" alt="any">--%>
-          <%--                </div>--%>
-          <%--              </div>--%>
-          <%--            </c:forEach>--%>
+  <div class="col dealBox">
+  <input type="hidden" name="dealBoardNum" class="dealBoardNum" value="${deal.dealBoardNum}">
+  <div class="card h-100 shadow-lg">
+    <div class="card-footer" style=" border-bottom: 1px solid; display: flex; font-weight: bold">
+  ${deal.dealTitle}
+  </div>
+<%--  <div id="carouselExampleSlidesOnly" class="carousel potoBox" data-bs-ride="carousel">--%>
+    <div class="potoBox" >
+<%--    <div class="carousel-inner">--%>
+<%--      <div class="carousel-item active get">--%>
+        <img class="poto" width="100%" height="100%" src="/resources/${deal.files[0].fileName}"
+             alt="any">
+<%--      </div>--%>
+<%--    </div>--%>
+  </div>
+  <div class="cardM " style="display: flex; padding: 10px 0 0 10px; height: 120px;; ">
+  <div class="card-text text allFlex" style="width: 50%; ">
+  ${deal.productName}
+  </div>
+
+  <div class="dealinfo cartFont" style="flex: 1; width: 50%;">
+  <p class="allFlex "><c:if test="${deal.dealStatus == 0}">
+  거래전
+</c:if>
+  <c:if test="${deal.dealStatus ==1}">
+    거래중
+  </c:if>
+  <c:if test="${deal.dealStatus ==2}">
+    거래완료
+  </c:if></p>
+  <p class="allFlex">가격 : ${deal.price} 원 </p>
+  <p class="allFlex">${deal.villCode}</p>
+  </div>
+  </div>
+  <div class="tags" style="height: 30px;">
+
+              ${deal.tag}
+
+  </div>
+
+  </div>
+  </div>
+  </div>
+</c:forEach>
+</div>
 
 
-        <div class="card-img-top" style="cursor: pointer">
-          <img src="/resources/${deal.files[0].fileName}" alt="거래이미지">
-        </div>
 
 
 
-        <div class="card-body carditem">
-          <h3 class="card-title">${deal.dealTitle}</h3>
-          <div class="row g-3">
-            <div class="col-6">
-              <div class="badge bg-primary text-wrap" style="width: 6rem;">
-                <c:if test="${deal.dealStatus == 0}">
-                  거래전
-                </c:if>
-                <c:if test="${deal.dealStatus ==1}">
-                  거래중
-                </c:if>
-                <c:if test="${deal.dealStatus ==2}">
-                  거래완료
-                </c:if>
-              </div>
-              <div class="badge bg-primary text-wrap" style="width: 6rem;">
-                  ${deal.villCode}
-              </div>
-              <div class="badge bg-primary text-wrap" style="width: 6rem;">
-                  ${deal.price}
-              </div>
-            </div>
+<%--  <c:forEach var="deal" items="${list}">--%>
 
-          </div>
-          <button type="button" class="btn btn-outline-primary dealTag">${deal.tag}</button>
-        </div>
+<%--  <div class="row row-cols-1 row-cols-md-3 g-4 cardbox">--%>
+<%--    <div class="col dealBox">--%>
+<%--      <input type="hidden" name="dealBoardNum" class="dealBoardNum" value="${deal.dealBoardNum}">--%>
+<%--      <div class="card h-100">--%>
+<%--          &lt;%&ndash;            <c:forEach var="File" items="${Deal.files}">&ndash;%&gt;--%>
+<%--          &lt;%&ndash;              <div class="carousel-inner">&ndash;%&gt;--%>
+<%--          &lt;%&ndash;                <div class="carousel-item active get">&ndash;%&gt;--%>
+<%--          &lt;%&ndash;                  <img class="poto" width="100%" height="100%"  src="/resources/${File.fileName }" alt="any">&ndash;%&gt;--%>
+<%--          &lt;%&ndash;                </div>&ndash;%&gt;--%>
+<%--          &lt;%&ndash;              </div>&ndash;%&gt;--%>
+<%--          &lt;%&ndash;            </c:forEach>&ndash;%&gt;--%>
 
-          <%--<div class="card-footer">
-              <small class="text-muted">Last updated 3 mins ago</small>
-          </div>--%>
-      </div>
-    </div>
-  </div> </c:forEach>
+
+<%--        <div class="card-img-top" style="cursor: pointer">--%>
+<%--          <img src="/resources/${deal.files[0].fileName}" alt="거래이미지">--%>
+<%--        </div>--%>
+
+
+
+<%--        <div class="card-body carditem">--%>
+<%--          <h3 class="card-title">${deal.dealTitle}</h3>--%>
+<%--          <div class="row g-3">--%>
+<%--            <div class="col-6">--%>
+<%--              <div class="badge bg-primary text-wrap" style="width: 6rem;">--%>
+<%--                <c:if test="${deal.dealStatus == 0}">--%>
+<%--                  거래전--%>
+<%--                </c:if>--%>
+<%--                <c:if test="${deal.dealStatus ==1}">--%>
+<%--                  거래중--%>
+<%--                </c:if>--%>
+<%--                <c:if test="${deal.dealStatus ==2}">--%>
+<%--                  거래완료--%>
+<%--                </c:if>--%>
+<%--              </div>--%>
+<%--              <div class="badge bg-primary text-wrap" style="width: 6rem;">--%>
+<%--                  ${deal.villCode}--%>
+<%--              </div>--%>
+<%--              <div class="badge bg-primary text-wrap" style="width: 6rem;">--%>
+<%--                  ${deal.price}--%>
+<%--              </div>--%>
+<%--            </div>--%>
+
+<%--          </div>--%>
+<%--          <button type="button" class="btn btn-outline-primary dealTag">${deal.tag}</button>--%>
+<%--        </div>--%>
+
+<%--          &lt;%&ndash;<div class="card-footer">--%>
+<%--              <small class="text-muted">Last updated 3 mins ago</small>--%>
+<%--          </div>&ndash;%&gt;--%>
+<%--      </div>--%>
+<%--    </div>--%>
+<%--  </div> </c:forEach>--%>
 
 
 
 
 
   <%--거래 만들기 모달창 시작--%>
+<c:if test="${!empty user}">
   <div class="modal fade" id="addDeal" tabindex="-1" aria-labelledby="addDealLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="addDealLabel">거래 만들기</h1>
+          <h1 class="modal-title fs-5" id="addDealLabel">거래 게시글 작성</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -380,11 +712,12 @@ ${user.userId}
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary newDeal" style="margin-right: 185px">거래 만들기</button>
+          <button type="button" class="btn btn-primary newDeal" style="margin-right: 185px">거래 게시글 작성</button>
         </div>
       </div>
     </div>
   </div>
+</c:if>
   <%--거래 만들기 모달창 끝--%>
 
 </body>
