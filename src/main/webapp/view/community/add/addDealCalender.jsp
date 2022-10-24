@@ -50,25 +50,25 @@
 
             $(".submit").on("click", function () {
 
-                var clubNum = '${boardNum}'
-                var calenderTitle = $(".calenderTitle").val()
-                var clubDate = $(".clubDate").val()
-                var location = $(".location").val()
+                var dealBoardNum = '${boardNum}'
+                var dealCalenderTitle = $(".dealCalenderTitle").val()
+                var dealDate = $(".dealDate").val()
+                var dealLocation = $(".dealLocation").val()
 
-                console.log(clubNum)
-                console.log(calenderTitle)
-                console.log(clubDate)
-                console.log(location)
+                console.log(dealBoardNum)
+                console.log(dealCalenderTitle)
+                console.log(dealDate)
+                console.log(dealLocation)
 
                 $.ajax({
                     url: "/commu/json/addDealCalender",
                     method: "post",
                     data: JSON.stringify({
-                        "clubNum" : clubNum,
-                        "calenderTitle": calenderTitle,
-                        "clubDate": clubDate,
-                        "location": location,
-                        "boardCategory" : "8"
+                        "dealBoardNum" : dealBoardNum,
+                        "dealCalenderTitle": dealCalenderTitle,
+                        "dealDate": dealDate,
+                        "dealLocation": dealLocation,
+                        "dealId" : '${user.userId}'
                     }),
 
                     dataType: "json",
@@ -86,7 +86,8 @@
                         });
 
                         setTimeout(function () {
-                            opener.location.reload();
+                            window.open("/view/community/list/dealCalender.jsp", "거래 일정",
+                            "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no")
                             window.close();
                         }, 2000);
                         //error 발생시 그냥 창을 닫음
@@ -130,13 +131,13 @@
         <div class="container">
 
             <div class="page-header">
-                <h3 class=" text-info">모임 일정 작성</h3>
+                <h3 class=" text-info">거래 일정 작성</h3>
             </div>
 
             <div class="row">
                 <div class="col-xs-4 col-xs-2"><strong>제 목</strong></div>
                 <div class="col-xs-8 col-xs-4">
-                    <input type="text" class="form-control calenderTitle" name="calenderTitle" value=""/>
+                    <input type="text" class="form-control dealCalenderTitle" name="calenderTitle" value=""/>
                 </div>
             </div>
 
@@ -146,7 +147,7 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
                     <strong>일정 날짜
-                        <input class="form-control clubDate" name="clubDate" type="date">
+                        <input class="form-control dealDate" name="clubDate" type="date">
                     </strong>
                 </div>
             </div>
@@ -158,7 +159,7 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
                     <strong>위치
-                        <input type="text" class="location" name="location" value="위치 입력">
+                        <input type="text" class="dealLocation" name="location" value="위치 입력">
                     </strong>
                 </div>
             </div>

@@ -5,10 +5,12 @@
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/chat/getChat.jsp" value="file://$PROJECT_DIR$/src/main/webapp/chat" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/chat/src/index.html" value="file://$PROJECT_DIR$/src/main/webapp/chat/src" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" value="file://$PROJECT_DIR$/src/main/webapp/layout" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/club/addClub.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/club" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/club/addClubMasterBoard.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/club" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/club/getClub.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/club" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/club" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/community/add/addClubCalender.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/community/add" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/community/add/addClubCalenderReview.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/community/add" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/community/add/addClubCalenderReviewShort.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/community/add" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/community/addCalender.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/community" />
@@ -25,12 +27,15 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/myPage/updateMyInfor.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/myPage" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/site/clubMap.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/site" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/site/getMasterBoard.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/site" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/site/listClubReport.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/site" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/site/listCommunityReport.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/site" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/site/listMasterBoard.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/site" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/user" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/user/getUserDetail.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/user" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/user/listUser.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/user" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/user/login.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/user" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/user/main.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/user" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/user/userCalender.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/user" />
       </map>
     </option>
   </component>

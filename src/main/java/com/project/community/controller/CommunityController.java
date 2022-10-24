@@ -2,8 +2,8 @@ package com.project.community.controller;
 
 import com.project.club.service.ClubCalendarService;
 import com.project.community.service.CommunityService;
-import com.project.domain.User;
-import com.project.domain.VilBoard;
+import com.project.deal.service.DealService;
+import com.project.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -30,6 +32,8 @@ public class CommunityController {
     @Autowired
     @Qualifier("clubCalenderServiceImpl")
     private ClubCalendarService calenderService;
+
+
 
 
     @RequestMapping("main")
@@ -129,7 +133,28 @@ public class CommunityController {
                               @RequestParam("boardCategory") int boardCategory
             , Model model, HttpSession session, HttpServletResponse response) throws UnsupportedEncodingException {
 
+        //ClubCalendarReview calenderReview = calenderService.getCalenderReview(boardNum);
+
+
+        Map<String, Object> map = commuService.listComment(boardNum, boardCategory);
+
+        List<Comment> list = (List<Comment>) map.get("list");
+
+        for (int i = 0; i < list.size(); i++) {
+
+            System.out.println("list의 정보 :" +list.get(i).getCommentNum() );
+            commuService.deleteAllRecomment(list.get(i).getCommentNum());
+
+        }
+
+        commuService.deleteAllComment(boardNum,boardCategory);
+
+        calenderService.deleteFile(boardNum);
+
+        commuService.deleteAllLike(boardNum,boardCategory);
+
         commuService.deleteBoard(boardNum,boardCategory);
+
 
         /*session.getAttribute("villCode");*/
 
@@ -151,16 +176,14 @@ public class CommunityController {
 
     @RequestMapping("addDealCalender")
     public String addDealCalender(@RequestParam("boardNum")int boardNum
-            , Model model){
+                                ,Model model) throws Exception {
+
         model.addAttribute("boardNum", boardNum);
 
         System.out.println(boardNum);
 
         return "/view/community/add/addDealCalender.jsp";
     }
-
-
-
 
 
 }

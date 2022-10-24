@@ -41,7 +41,8 @@
             });
 
             $(".calender").on("click", function () {
-                location.href = "/view/community/calender.jsp";
+                window.open("/view/community/list/dealCalender.jsp", "거래 일정",
+                    "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no")
             })
 
         });

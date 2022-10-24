@@ -3,7 +3,7 @@ package com.project.club.service;
 import com.project.club.dao.ClubCalendarDao;
 import com.project.domain.ClubCalendar;
 import com.project.domain.ClubCalendarReview;
-import com.project.domain.File;
+import com.project.domain.Deal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,13 @@ public class ClubCalendarServiceImpl implements ClubCalendarService {
 
     @Override
     public ClubCalendar getCalender(int clubCalenderNum) {
-        return clubCalendarDao.getCalender(clubCalenderNum);
+
+        ClubCalendar clubCalender = clubCalendarDao.getCalender(clubCalenderNum);
+
+
+        clubCalender.setFile(clubCalendarDao.getListFile(clubCalender.getClubCalenderNum(),5));
+
+        return clubCalender;
     }
 
     @Override
@@ -97,11 +103,29 @@ public class ClubCalendarServiceImpl implements ClubCalendarService {
             map.put("start", list.get(i).getClubDate());
             map.put("title", list.get(i).getCalenderTitle());
             map.put("allDay", "ture");
+            map.put("groupId", "1");
 
             list2.add(map);
         }
         System.out.println("map 덮어 쓰기 " + map);
         return list2;
+    }
+
+
+    @Override
+    public void deleteFile(int boardNum) {
+        clubCalendarDao.deleteFile(boardNum);
+    }
+
+    @Override
+    public void updateClubCalender(ClubCalendar clubCalendar) {
+        clubCalendarDao.updateClubCalender(clubCalendar);
+    }
+
+    @Override
+    public void deleteClubCalender(int boardNum) {
+        clubCalendarDao.deleteClubCalender(boardNum);
+        clubCalendarDao.deleteFile(boardNum);
     }
 
     @Override
@@ -110,9 +134,32 @@ public class ClubCalendarServiceImpl implements ClubCalendarService {
     }
 
     @Override
-    public void addDealCalender(ClubCalendar calender) {
-        clubCalendarDao.addDealCalender(calender);
+    public void addDealCalender(Deal deal) {
+        clubCalendarDao.addDealCalender(deal);
     }
+
+    @Override
+    public List<Map<String, Object>> getListCluberCalender(int CalenderNum) {
+        List<ClubCalendar> list = clubCalendarDao.getListCluberCalender(CalenderNum);
+
+
+        List<Map<String, Object>> list2 = new ArrayList<>();
+        Map<String,Object> map = null;
+        for (int i = 0; i < list.size(); i++) {
+            map = new HashMap<>();
+
+            map.put("id", list.get(i).getClubCalenderNum());
+            map.put("start", list.get(i).getClubDate());
+            map.put("title", list.get(i).getCalenderTitle());
+            map.put("allDay", "ture");
+            map.put("groupId", "1");
+
+            list2.add(map);
+        }
+
+        return list2;
+    }
+
 
 
 }

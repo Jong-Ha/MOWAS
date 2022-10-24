@@ -190,7 +190,16 @@
             </set>
             WHERE recomment_num = #{boardNum}
         </if>
+        <if test="boardCategory == 08 or boardCategory ==09">
+            deal
+            <set>
+                like_count = #{likeCount} -1
+            </set>
+            WHERE deal_board_num = #{boardNum}
+        </if>
+
     </update>
+
     <select id="getLikeCount" parameterType="map" resultType="int">
         SELECT like_count
         <if test="boardCategory == 1 or boardCategory == 2">
@@ -211,6 +220,12 @@
         </if>
 
     </select>
+
+    <delete id="deleteAllLike" parameterType="map">
+        DELETE likes
+        WHERE board_num = #{boardNum}
+        AND board_category = #{boardCategory}
+    </delete>
 
     <!--조회수-->
     <update id="updateViewCount" parameterType="map">

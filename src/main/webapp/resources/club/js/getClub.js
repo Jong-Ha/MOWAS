@@ -84,15 +84,6 @@ $(function () {
         location.href = "/club/listClubMasterBoard/" + $(".boardNum").val()
     })
 
-    $(".addCalender").on("click", () => {
-        alert($('.boardNum').val());
-
-        window.open(
-            "/clubCal/addCalender?clubNum=" + $(".boardNum").val(), "리뷰페이지",
-            "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
-
-    });
-
     // 일정 참여 신청 관련
     $(".addClubCalendarApply").on("click", function () {
         $.ajax({

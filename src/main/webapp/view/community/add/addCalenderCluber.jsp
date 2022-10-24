@@ -43,66 +43,6 @@
 
         //============= 회원정보수정 Event  처리 =============
         $(function () {
-            /*
-                        $(".submit").on("click", function () {
-
-                            var clubNum =
-            ${boardNum}
-                var calenderTitle = $(".calenderTitle").val()
-                var clubDate = $(".clubDate").val()
-                var location = $(".location").val()
-
-                console.log(clubNum)
-                console.log(calenderTitle)
-                console.log(clubDate)
-                console.log(location)
-
-                $.ajax({
-                    url: "/commu/json/addDealCalender",
-                    method: "post",
-                    data: JSON.stringify({
-                        "clubNum" : clubNum,
-                        "calenderTitle": calenderTitle,
-                        "clubDate": clubDate,
-                        "location": location,
-                        "boardCategory" : "8"
-                    }),
-
-                    dataType: "json",
-                    contentType: "application/json; charset=UTF-8",
-                    success: function (JSONData, result) {
-
-                        console.log(result);
-                        // 성공시 해당 창을 닫고 부모창을 reload
-                        Swal.fire({
-                            position: top-end,
-                            icon: success,
-                            title: Your work has been saved,
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-
-                        setTimeout(function () {
-                            opener.location.reload();
-                            window.close();
-                        }, 2000);
-                        //error 발생시 그냥 창을 닫음
-                    }, error: function () {
-                        Swal.fire({
-                            position: top-end,
-                            icon: success,
-                            title: Your work has been saved,
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                        setTimeout(function () {
-                            window.close();
-                        }, 2000);
-
-                    }
-                });
-
-            });*/
 
 
             $(".close").on("click", function () {
@@ -116,12 +56,15 @@
             var str = '';
 
             $(".add").on("click", function () {
-                alert("해당 회원을 추가 하세겠습니까??")
 
-                var cluber = $(this).parents(".wap").find(".cluberName").text()
+                var cluber = $(this).parents(".wap").find(".cluberName").html()
+                var checkBox = $(this).parents(".wap").find(".add")
 
-                $(opener.document).find("form").append($("<input type='hidden' class='clubers' value='"+cluber+"'/>"));
+                if(checkBox.is(":checked")){
 
+                    $(opener.document).find("form").append($("<input type='hidden' class='clubers' value='"+cluber+"'/>"));
+
+                }
 
             })
         });
@@ -151,7 +94,7 @@
                         <div class="row g-0">
                             <div class="col-md-4 potoBox">
                                 <img class="bd-placeholder-img img-fluid rounded-start poto"
-                                     src="https://placeimg.com/50/50/any" alt="any" style="width: 320px;">
+                                     src="https://placeimg.com/50/50/any" alt="any" >
                             </div>
                             <div class="col-md-8 chatText">
                                 <div class="card-body ">

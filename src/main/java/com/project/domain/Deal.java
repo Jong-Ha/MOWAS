@@ -34,6 +34,7 @@ public class Deal {
     private String dealLocation;
     List<File> files;
     private String likeCheck;
+    private int likeCount;
     private String dealImage;
 
 

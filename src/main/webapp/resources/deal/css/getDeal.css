@@ -215,3 +215,26 @@ tags.tagify {
 .text-wrap {
     cursor: default;
 }
+
+
+.wap {
+    margin-top: 70px;
+    font-size: 1em;
+    width: 1030px;
+    padding: 5px 5px;
+    height: 580px;
+    border-radius: 10px;
+}
+
+
+.usedbox {
+    margin-top: 20px;
+    padding: 5px;
+    height: 500px;
+}
+
+.thumbnailBox {
+    padding: 5px;
+    width: 50%;
+    float: left;
+}

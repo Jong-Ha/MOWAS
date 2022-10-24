@@ -5,6 +5,11 @@
 .wap {
     width: 1000px;
 }
+.wrapper {
+    height: 13ch;
+    display: grid;
+    place-items: center;
+}
 
 .carditem {
     height: 210px;
