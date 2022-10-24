@@ -70,6 +70,28 @@ public class ClubCalendarDaoImpl implements ClubCalendarDao {
         sqlSession.insert("ClubCalenderMapper.addFileUpload", map);
     }
 
+
+    @Override
+    public void deleteFile(int boardNum) {
+        sqlSession.delete("ClubCalenderMapper.deleteFile", boardNum);
+    }
+
+    @Override
+    public void updateClubCalender(ClubCalendar clubCalendar) {
+        sqlSession.update("ClubCalenderMapper.updateClubCalender", clubCalendar);
+    }
+
+    @Override
+    public void deleteClubCalender(int boardNum) {
+        sqlSession.delete("ClubCalenderMapper.deleteClubCalender", boardNum);
+    }
+
+
+    @Override
+    public List<ClubCalendar> getListCluberCalender(int clubCalenderNum) {
+        return sqlSession.selectList("ClubCalenderMapper.getListCluberCalender", clubCalenderNum);
+    }
+
     @Override
     public List<File> getListFile(int boardNum, int boardCategory) {
 
@@ -88,5 +110,7 @@ public class ClubCalendarDaoImpl implements ClubCalendarDao {
 
         sqlSession.insert("DealMapper.addDealCalender", deal);
     }
+
+
 
 }

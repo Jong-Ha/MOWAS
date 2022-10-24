@@ -647,14 +647,16 @@
         $(function () {
             var userId = $(".userId").val()
 
+            var boardNum = $(".boardNum").val();
+            var boardCategory = $(".boardCategory").val()
+
             $.getListComment();
 
             /*조회수*/
             $(function () {
 
                 $(".delete").on("click", function () {
-                    var boardNum = $(".boardNum").val();
-                    var boardCategory = $(".boardCategory").val()
+
 
                     const swalWithBootstrapButtons = Swal.mixin({
                         customClass: {
@@ -693,8 +695,7 @@
 
 
                 $(".update").on("click", function () {
-                    var boardNum = $(".boardNum").val()
-                    var boardCatagory = $(".boardCategory").val()
+
                     window.open(
                         "/clubCal/updateClubCalenderReview?clubCalenderReviewNum=" + boardNum + "&boardCategory=" + boardCatagory, "모임 일정 후기글 수정",
                         "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no"
@@ -707,8 +708,7 @@
             $(document).ready(function () {
 
                 var viewCount = $(".viewText").html();
-                var boardNum = $(".boardNum").val();
-                var boardCategory = $(".boardCategory").val()
+
 
                 $.ajax({
                     url: "/commu/json/viewCount",
@@ -732,6 +732,7 @@
                     if (userId === '' || userId === null) {
 
                         alert("로그인후 이용 가능합니다")
+
                     } else if (userId !== '') {
 
                         var likeCount = $(".likeText").html();
@@ -761,15 +762,14 @@
                 })
 
             })
-        })
 
 
-        $(function () {
+
+
 
             $(".addcomment").on("click", function () {
+
                 var commentText = $(".addCommentText").val();
-                var boardNum = $(".boardNum").val();
-                var boardCategory = $(".boardCategory").val();
 
                 boardCategory.trim();
 

@@ -1,9 +1,6 @@
 package com.project.community.dao;
 
-import com.project.domain.ClubCalendar;
-import com.project.domain.Comment;
-import com.project.domain.Recomment;
-import com.project.domain.VilBoard;
+import com.project.domain.*;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -138,6 +135,26 @@ public class CommunityDaoImpl implements CommunityDao {
     @Override
     public void deleteBoard(Map<String, Object> map) {
         sqlSession.delete("CommunityMapper.deleteBoard", map);
+    }
+
+    @Override
+    public List<Deal> getListDealCalender(String userId) {
+        return sqlSession.selectList("DealMapper.getListDealCalender", userId);
+    }
+
+    @Override
+    public void deleteAllRecomment(int commentNum) {
+        sqlSession.delete("CommunityMapper.deleteAllRecomment", commentNum);
+    }
+
+    @Override
+    public void deleteAllComment(Map<String, Object> map) {
+        sqlSession.delete("CommunityMapper.deleteAllComment", map);
+    }
+
+    @Override
+    public void deleteAllLike(Map<String, Object> map) {
+        sqlSession.delete("CommunityMapper.deleteAllLike", map);
     }
 
 

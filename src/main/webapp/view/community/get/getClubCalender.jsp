@@ -64,6 +64,20 @@
 
             if (date3 < date2) {
 
+                var button = '<button class="btn btn-primary update">' +
+                    '수정' +
+                    '</button>' +
+                    '<button class="btn btn-primary delete">' +
+                    '삭제' +
+                    '</button>'
+
+
+                $(".addBox").append(button);
+            }
+
+
+            if (date3 > date2) {
+
                 var button = '<button class="btn btn-primary addReview">' +
                     '모임 일정 후기글 작성' +
                     '</button>' +
@@ -75,64 +89,26 @@
                 $(".addBox").append(button);
             }
 
-            $(".submit").on("click", function () {
+            $(".update").on("click", function () {
+                location.href = "/clubCal/updateClubCalender?clubCalenderNum=" + calenderNum
+            })
 
-                var calenderTitle = $(".calenderTitle").val()
-                var calenderText = $(".calenderText").val()
-                var clubDate = $(".clubDate").val()
-                var location = $(".location").val()
-                var file = $(".file").val()
-                var noticeCheck = $(".noticeCheck").val()
-                var noticeTime = $(".noticeTime").val()
-                var calendarApplyCheck = $(".calendarApplyCheck").val()
-                var applyAutoCheck = $(".applyAutoCheck").val()
+            $(".delete").on("click", function () {
+
 
                 $.ajax({
-                    url: "/clubCal/json/addClubCalender",
-                    method: "post",
-                    data: JSON.stringify({
-                        "calenderTitle": calenderTitle,
-                        "calenderText": calenderText,
-                        "clubDate": clubDate,
-                        "location": location,
-                        "file": file,
-                        "noticeCheck": noticeCheck,
-                        "noticeTime": noticeTime,
-                        "calendarApplyCheck": calendarApplyCheck,
-                        "applyAutoCheck": applyAutoCheck
-                    }),
+                    url: "/clubCal/json/deleteclubCalendar",
+                    type: "POST",
+                    data: JSON.stringify({"calenderNum": calenderNum}),
                     dataType: "json",
-                    contentType: "application/json; charset=UTF-8",
-                    success: function () {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Your work has been saved',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-
-                        setTimeout(function () {
-                            opener.location.reload();
-                            window.close();
-                        });
-                    },
-                    error: function () {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: '작성이 실패 되었습니다',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-
-                        setTimeout(function () {
-                            window.close();
-                        })
+                    contentType: 'application/json; charset=UTF-8',
+                    success: function (JSONData, result) {
+                        console.log(result);
                     }
-                });
 
-            });
+                })
+            })
+
 
             $(".close").on("click", function () {
                 window.close();
@@ -159,6 +135,13 @@
                 window.close();
 
             });
+
+            $(".cluber").on("click", ()=>{
+                window.open(
+                    "/club/listCalendarCluber/"+calenderNum, "일정 참여자 보기",
+                    "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no"
+                );
+            })
 
 
 
@@ -214,6 +197,17 @@
                     <strong>일정 날짜
                         <input class="form-control clubDate" value="${clubCalender.clubDate}" name="clubDate"
                                type="date">
+                    </strong>
+                </div>
+            </div>
+
+
+            <hr/>
+
+            <div class="row">
+                <div class="col-xs-4 col-xs-2 ">
+                    <strong>모임 일정 참여자
+                        <input class="cluber"  name="clubDate" type="button" value="참여자 보기">
                     </strong>
                 </div>
             </div>
@@ -290,7 +284,6 @@
 
             <div class="row">
                 <div class="col-xs-12 text-center ">
-                    <button type="button" class="btn btn-primary btn-lg submit">확인</button>
                     <button type="button" class="btn btn-secondary btn-lg close">닫기</button>
                 </div>
             </div>

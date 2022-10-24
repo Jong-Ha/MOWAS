@@ -22,6 +22,7 @@ public class ClubCalendar {
     private String noticeTime ;
     private String calendarApplyCheck ;
     private String applyAutoCheck ;
-    private String boardCategory;
+    private int boardCategory;
     private List<CalendarCluber> calendarCluberList;
+    private List<File> file;
 }

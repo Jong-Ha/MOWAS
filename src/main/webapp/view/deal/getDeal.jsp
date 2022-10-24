@@ -47,8 +47,80 @@ Product vo=(Product)request.getAttribute("vo");
     <%--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>--%>
     <%--    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>--%>
 
-</head>
+    <script>
 
+        $(function () {
+
+
+            $(".dealChat").on("click", function () {
+
+                var dealUserId = $(".dealUserId").val();
+                var userId = $(".userId").val()
+                var dealBoardNum = $(".dealBoardNum").val()
+                var chatNameSpace = "dealChat"
+
+                alert(dealBoardNum)
+
+                if (userId === '' || userId === null) {
+
+                    alert("로그인후 이용 가능 합니다");
+
+                } else if (userId !== '') {
+                    if (userId === dealUserId) {
+                        alert("동명이인???");
+                    } else {
+                        const swalWithBootstrapButtons = Swal.mixin({
+                            customClass: {
+                                confirmButton: 'btn btn-success',
+                                cancelButton: 'btn btn-danger'
+                            },
+                            buttonsStyling: false
+                        })
+                        swalWithBootstrapButtons.fire({
+                            title: '해당 유저와 채팅을 하기겠습니까?',
+                            text: "",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: '초대',
+                            cancelButtonText: '취소',
+                            reverseButtons: true
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                swalWithBootstrapButtons.fire(
+                                    dealUserId + ' 님이 초대 되었습니다',
+                                    'success',
+                                )
+                                setTimeout(() => (
+                                    window.open("/chat/addOneChat?chatNameSpace=" + chatNameSpace + "&userId=" + dealUserId + "&boardNum=" + dealBoardNum, "채팅방",
+                                        "left=500, top=100, width=500px, height=500px, marginwidth=0, marginheight=0,")
+                                ), 2500)
+                            } else if (
+                                /* Read more about handling dismissals below */
+                                result.dismiss === Swal.DismissReason.cancel
+                            ) {
+                                swalWithBootstrapButtons.fire(
+                                    '초대 취소',
+                                    'error'
+                                )
+                            }
+                        })
+                    }
+                }
+            })
+
+            $(".dealCalender").on("click", () => {
+
+                var dealBoardNum = $(".dealBoardNum").val()
+
+                window.open("/commu/addDealCalender?boardNum=" + dealBoardNum, "거래 일정 등록",
+                    "top=100, width=550px, height=500px, marginwidth=0, marginheight=0, marginright:100px; scrollbars=no, scrolling=no, menubar=no, resizable=no")
+
+            });
+        })
+    </script>
+
+
+</head>
 
 
 <body>
@@ -95,12 +167,6 @@ Product vo=(Product)request.getAttribute("vo");
 <%--<br>--%>
 
 
-
-
-
-
-
-
 <%--<body bgcolor="#ffffff" text="#000000">--%>
 <%--<jsp:include page="/layout/toolbar.jsp" />--%>
 <%--<form name="detailForm" method="post">--%>
@@ -142,8 +208,6 @@ Product vo=(Product)request.getAttribute("vo");
 <%--                </table>--%>
 <%--            </td>--%>
 <%--        </tr>--%>
-
-
 
 
 <%--        <tr>--%>
@@ -259,15 +323,15 @@ Product vo=(Product)request.getAttribute("vo");
         <div class="col-8">
             <%--            <h1>${club.clubName}</h1>--%>
             <h1>제목 : ${deal.dealTitle}</h1>
-            <h2>
-                <input type="hidden" value="${user.userId}"></h2>
+            <input type="hidden" class="userId" value="${user.userId}">
+            <input hidden class="dealUserId" value="${deal.user.userId}">
         </div>
 
     </div>
     <div class="container-fluid py-5" style="text-align: center; width: 100%; height: 500px">
         <c:forEach items="${deal.files}" var="i">
-        <img src="/resources/${i.fileName}" alt="거래 게시글 사진"><br>
-        <br>
+            <img src="/resources/${i.fileName}" alt="거래 게시글 사진"><br>
+            <br>
         </c:forEach>
         <p>상세 설명 : ${deal.dealText}</p>
 
@@ -394,110 +458,114 @@ Product vo=(Product)request.getAttribute("vo");
                 </button>
             </c:if>
         </footer>
+    </div>
+</div>
 
+<%--모임 수정 모달창 시작--%>
 
-        <%--모임 수정 모달창 시작--%>
-
-        <div class="modal fade" id="updateDeal" tabindex="-1" aria-labelledby="updateDealLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="updateDealLabel">거래 수정</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="modal fade" id="updateDeal" tabindex="-1" aria-labelledby="updateDealLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="updateDealLabel">거래 수정</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="updateDealForm" enctype="multipart/form-data">
+                    <input hidden name="dealBoardNum" value="${deal.dealBoardNum}" class="dealBoardNum">
+                    <%--                                <input type="hidden" name="deleteFileName" value="${deal.clubImage}" disabled>--%>
+                    <div class="input-group mb-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="dealTitle" name="dealTitle" placeholder="거래명"
+                                   value="${deal.dealTitle}" required>
+                            <label for="dealTitle">거래명</label>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <form id="updateDealForm" enctype="multipart/form-data">
-                            <input hidden name="dealBoardNum" value="${deal.dealBoardNum}"class="dealBoardNum">
-                            <%--                                <input type="hidden" name="deleteFileName" value="${deal.clubImage}" disabled>--%>
-                            <div class="input-group mb-3">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="dealTitle" name="dealTitle" placeholder="거래명"
-                                           value="${deal.dealTitle}" required>
-                                    <label for="dealTitle">거래명</label>
-                                </div>
-                            </div>
 
-                            <div class="input-group mb-3">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="productName" name="productName" placeholder="제품명"
-                                           value="${deal.productName}"required>
-                                    <label for="productName">제품명</label>
-                                </div>
-                            </div>
-                            <div class="input-group mb-3">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="price" name="price" placeholder="가격"
-                                           value="${deal.price}"required>
-                                    <label for="price">가격</label>
-                                </div>
-                            </div>
-                            <div class="input-group mb-3">
-                                <div class="form-floating">
-                                    <select class="form-select" id="boardCategory" name="boardCategory" required>
-                                        <option value="08" selected>판매</option>
-                                        <option value="09">판매요청</option>
-
-                                    </select>
-                                    <label for="boardCategory">판매구분</label>
-                                </div>
-                            </div>
-                            <div class="input-group mb-3">
-                                <div class="form-floating">
-                                    <select class="form-select" id="dealStatus" name="dealStatus" required>
-                                        <option value="01" ${deal.dealStatus == '01'? 'selected':''}>판매전</option>
-                                        <option value="02" ${deal.dealStatus== '02'? 'selected':''}>판매중</option>
-                                        <option value="03" ${deal.dealStatus == '03'? 'selected':''}>판매완료</option>
-
-                                    </select>
-                                    <label for="boardCategory">판매구분</label>
-                                </div>
-                            </div>
-                            <div class="input-group mb-3">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="dealText" name="dealText" placeholder="상품 설명"
-                                           value="${deal.dealText}"required>
-                                    <label for="dealText">상품설명</label>
-                                </div>
-                            </div>
-
-
-
-                            <div class="mb-3">
-                                <div style="width: 466px;height: 233px; text-align: center;">
-
-                                    <c:forEach items="${deal.files}" var="i">
-                                        <img src="/resources/${i.fileName}" alt="수정 전 이미지"><br>
-                                        <input type="button" class="deleteFile" value="삭제">
-                                    </c:forEach>
-                                </div>
-                                <label for="file" class="form-label" style="display: none"></label>
-                                <input class="form-control" type="file" id="file" name="file">
-                            </div>
-
-                            <div class="input-group mb-3">
-                                <div class="form-floating">
-                                    <input type="text" class="tagify shadow-lg" id="dealTag"
-                                           style="border-radius: 7px;"
-                                           placeholder="태그 : Enter!">
-                                    <label for="dealTag" style="display: none">태그 : Enter!</label>
-                                    <c:forEach items="${deal.tag}" var="tag">
-                                        <input type="hidden" class="tagList" value="${tag}">
-                                    </c:forEach>
-                                </div>
-                            </div>
-
-
-                        </form>
+                    <div class="input-group mb-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="productName" name="productName"
+                                   placeholder="제품명"
+                                   value="${deal.productName}" required>
+                            <label for="productName">제품명</label>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary updateClub" style="margin-right: 185px">거래 수정
-                        </button>
+                    <div class="input-group mb-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="price" name="price" placeholder="가격"
+                                   value="${deal.price}" required>
+                            <label for="price">가격</label>
+                        </div>
                     </div>
-                </div>
+                    <div class="input-group mb-3">
+                        <div class="form-floating">
+                            <select class="form-select" id="boardCategory" name="boardCategory" required>
+                                <option value="08" selected>판매</option>
+                                <option value="09">판매요청</option>
+
+                            </select>
+                            <label for="boardCategory">판매구분</label>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="form-floating">
+                            <select class="form-select" id="dealStatus" name="dealStatus" required>
+                                <option value="01" ${deal.dealStatus == '01'? 'selected':''}>판매전</option>
+                                <option value="02" ${deal.dealStatus== '02'? 'selected':''}>판매중</option>
+                                <option value="03" ${deal.dealStatus == '03'? 'selected':''}>판매완료</option>
+
+                            </select>
+                            <label for="boardCategory">판매구분</label>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="dealText" name="dealText" placeholder="상품 설명"
+                                   value="${deal.dealText}" required>
+                            <label for="dealText">상품설명</label>
+                        </div>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <div style="width: 466px;height: 233px; text-align: center;">
+
+                            <c:forEach items="${deal.files}" var="i">
+                                <img src="/resources/${i.fileName}" alt="수정 전 이미지"><br>
+                                <input type="button" class="deleteFile" value="삭제">
+                            </c:forEach>
+                        </div>
+                        <label for="file" class="form-label" style="display: none"></label>
+                        <input class="form-control" type="file" id="file" name="file">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="form-floating">
+                            <input type="text" class="tagify shadow-lg" id="dealTag"
+                                   style="border-radius: 7px;"
+                                   placeholder="태그 : Enter!">
+                            <label for="dealTag" style="display: none">태그 : Enter!</label>
+                            <c:forEach items="${deal.tag}" var="tag">
+                                <input type="hidden" class="tagList" value="${tag}">
+                            </c:forEach>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary updateClub" style="margin-right: 185px">거래 수정
+                </button>
             </div>
         </div>
+    </div>
+</div>
 
-        <%--모임 수정 모달창 끝--%>
+<input type="button" class="dealChat" value="채팅하기">
+<a class="dealList dealCalender">직거래 일정 등록 하기</a>
+
+<%--모임 수정 모달창 끝--%>
 </body>
 </html>
 
