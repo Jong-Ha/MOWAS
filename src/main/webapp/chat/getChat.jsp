@@ -26,8 +26,6 @@
             })
 
 
-
-
         })
 
     </script>
@@ -349,15 +347,17 @@
         console.log('${boardNum}');
         //app.js에 있는 io상수를 socket상수에 담는다
         const socket = io("http://localhost:5000/${chatNameSpace}", {
+            /*const socket = io("http://192.168.0.235:5000/${chatNameSpace}", {*/
             cors: {origin: '*'},
             query: {
 
                 roomId: '${roomId}',
                 userId1: '${userId}',
                 userId2: '${user.userId}',
-                boardNum : '${boardNum}'
+                boardNum: '${boardNum}'
             }
-        });
+        })
+
 
         socket.on("json", (msg) => {
 
@@ -408,23 +408,22 @@
         })
 
 
-
-
-        socket.on("postboardNum",(date)=>{
+        socket.on("postboardNum", (date) => {
 
             console.log(date);
 
-            window.open( "/commu/addDealCalender?boardNum="+ date , "거래 일정 등록",
+            window.open("/commu/addDealCalender?boardNum=" + date, "거래 일정 등록",
                 "top=100, width=550px, height=500px, marginwidth=0, marginheight=0, marginright:100px; scrollbars=no, scrolling=no, menubar=no, resizable=no")
 
 
         })
 
 
-        $(".dealCalender").on("click", ()=>{
+        $(".dealCalender").on("click", () => {
 
 
-            socket.emit('getboardNum', ()=>{})
+            socket.emit('getboardNum', () => {
+            })
 
             alert("거래 일정 입장")
 

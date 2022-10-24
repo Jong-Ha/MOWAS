@@ -14,6 +14,7 @@ import com.google.gson.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 @Service ("userServiceImpl")
 public class UserServiceImpl implements UserService{
@@ -39,6 +40,10 @@ public class UserServiceImpl implements UserService{
         System.out.println("여기는 addInterList 서비스임플 종료이다");
     }
 
+    public void updateSNSUserInfor(User user)throws Exception{
+        userDao.updateSNSUserInfor(user);
+    }
+
     public void deleteInterList(UserInterList interList)throws Exception{
           userDao.deleteInterList(interList);
     }
@@ -54,6 +59,14 @@ public class UserServiceImpl implements UserService{
     public User getUser2(String email)throws Exception{
           User dbUser2 = userDao.getUser2(email);
           return dbUser2;
+    }
+
+    public User getMyId(User user)throws Exception{
+          return userDao.getMyId(user);
+    }
+
+    public User getMyPassword(User user) throws Exception{
+          return userDao.getMyPassword(user);
     }
 
     public User loginUser(User user)throws Exception{
@@ -80,6 +93,12 @@ public class UserServiceImpl implements UserService{
           userDao.updateUserStatus(userId);
     }
 
+    public void updateKakaoUser(User user)throws Exception{
+        userDao.updateKakaoUser(user);
+    }
+    public void updateNaverUser(User user)throws Exception{
+        userDao.updateNaverUser(user);
+    }
     public boolean checkDupId(String userId)throws Exception{
         boolean result=true;
         User user = userDao.getUser(userId);
@@ -141,7 +160,7 @@ public class UserServiceImpl implements UserService{
             sb.append("grant_type=authorization_code");
 
             sb.append("&client_id=6230abede953ee2dbfed27975e15f04a"); //본인이 발급받은 key
-            sb.append("&redirect_uri=http://localhost:8080/user/kakaoLogin"); // 본인이 설정한 주소
+            sb.append("&redirect_uri=http://192.168.0.235:8080/user/kakaoLogin"); // 본인이 설정한 주소
 
             sb.append("&code=" + authorize_code);
             bw.write(sb.toString());
@@ -179,10 +198,10 @@ public class UserServiceImpl implements UserService{
         return access_Token;
     }
 
-    public HashMap<String, Object> getUserInfo(String access_Token) {
+    public User getUserInfo(String access_Token)throws Exception {
 
         // 요청하는 클라이언트마다 가진 정보가 다를 수 있기에 HashMap타입으로 선언
-        HashMap<String, Object> userInfo = new HashMap<String, Object>();
+        User userInfo = new User();
         String reqURL = "https://kapi.kakao.com/v2/user/me";//현재 로그인한 사용자의 정보를 가져오는것
         try {
             URL url = new URL(reqURL);
@@ -217,16 +236,44 @@ public class UserServiceImpl implements UserService{
             String gender1 = gender.getAsJsonObject().get("gender").getAsString();
 
 
-            userInfo.put("email", email);
-            userInfo.put("userImage", userImage);
-            userInfo.put("gender", gender1);
+            userInfo.setEmail(email);
+            userInfo.setUserImage(userImage);
+            userInfo.setGender(gender1);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        User result = userDao.getUserEmailKakao(userInfo);
 
-        return userInfo;
+        System.out.println("User의 값 : "+result);
+        if(result==null) {
+            // result가 null이면 정보가 저장이 안되있는거므로 정보를 저장.
+            String no = "";
+            Random rand = new Random();
+
+            for (int i = 0; i < 4; i++) {
+                String ran = Integer.toString(rand.nextInt(10));
+                no += ran;
+            }
+            userInfo.setUserId("kakaoId"+no);
+            userInfo.setLoginType("2");
+
+            System.out.println("add카카오유저 하기 전 유저 값 "+userInfo);
+            userDao.addKakaoUser(userInfo);
+            /////////////문제없음//////////////////////////////////////////
+
+            User userResult = userDao.getUserEmailKakao(userInfo);
+            System.out.println("userResult의 값 :"+userResult);
+
+            // 위 코드가 정보를 저장하기 위해 Repository로 보내는 코드임.
+            return userResult;
+            // 위 코드는 정보 저장 후 컨트롤러에 정보를 보내는 코드임.
+            //  result를 리턴으로 보내면 null이 리턴되므로 위 코드를 사용.
+        } else {
+            return result;
+            // 정보가 이미 있기 때문에 result를 리턴함.
+        }
     }
 
     public void addNaverUser(User user)throws Exception{

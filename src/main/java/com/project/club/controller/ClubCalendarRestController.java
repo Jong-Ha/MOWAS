@@ -6,6 +6,9 @@ import com.project.domain.CalendarCluber;
 import com.project.domain.ClubCalendar;
 import com.project.domain.ClubCalendarReview;
 import com.project.domain.User;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.ui.Model;
@@ -70,22 +73,20 @@ public class ClubCalendarRestController<list> {
 
         calenderService.addCalender(calender);
 
-        return 0;
+        return calender.getClubCalenderNum();
     }
 
     @RequestMapping("addCluber")
     public int addCluber(@RequestBody Map<String,Object> map){
 
         System.out.println("클럽 맴버 : " +map.get("cluberList"));
-        System.out.println("클럼넘버 : " + map.get("clubNum"));
+        System.out.println("클럽 맴버 : " +map.get("clubCalenderNum"));
+
 
         List<String> list = (List<String>) map.get("cluberList");
 
 
-        /*clubService.addCalendarCluber(list,map.get("clubNum"));*/
-
-
-
+        clubService.addCalendarCluber((Integer) map.get("clubCalenderNum"), list);
 
         return 0;
     }
@@ -127,6 +128,7 @@ public class ClubCalendarRestController<list> {
 
 
 
+
     //일정 가져오기
     @RequestMapping("getListCalender")
     public List<Map<String, Object>> getListCalender(@RequestBody ClubCalendar calender) {
@@ -139,6 +141,37 @@ public class ClubCalendarRestController<list> {
 
         return list;
     }
+
+    @RequestMapping("updateClubCalender")
+    public int updateClubCalender(@RequestBody ClubCalendar clubCalendar){
+
+
+        if (clubCalendar.getApplyAutoCheck() == "on") {
+            clubCalendar.setApplyAutoCheck("1");
+        } else {
+            clubCalendar.setApplyAutoCheck("2");
+        }
+        /*추가 참여*/
+        if (clubCalendar.getCalendarApplyCheck() == "on") {
+            clubCalendar.setCalendarApplyCheck("1");
+        } else {
+            clubCalendar.setCalendarApplyCheck("2");
+        }
+
+        /*알림 설정*/
+        if (clubCalendar.getNoticeCheck() == "on") {
+            clubCalendar.setNoticeCheck("1");
+        } else {
+            clubCalendar.setNoticeCheck("2");
+        }
+
+        System.out.println("addClubCalender 진입 " + clubCalendar);
+
+        calenderService.updateClubCalender(clubCalendar);
+
+        return 0;
+    }
+
 
     @RequestMapping("fileUpload")
     public int fileUpload(@RequestParam("form") List<MultipartFile> file
@@ -162,7 +195,9 @@ public class ClubCalendarRestController<list> {
             } else if (boardCategory.equals("03")) {
 
                 fileName = "/uploadFiles/villBoardFiles/" + UUID.randomUUID() + file.get(i).getOriginalFilename();
-            }
+
+            }else if(boardCategory.equals("05"))
+                fileName = "/uploadFiles/clubCalendar/" + UUID.randomUUID() + file.get(i).getOriginalFilename();
 
             System.out.println("파일 이름 : " + fileName);
             Map<String, String> map = new HashMap<>();
@@ -184,6 +219,58 @@ public class ClubCalendarRestController<list> {
         return 0;
     }
 
+    @RequestMapping("fileUpdate")
+    public int fileUpdate(@RequestParam("form") List<MultipartFile> file
+                        ,@RequestParam("boardNum") int boardNum
+                        ,@RequestParam("boardCategoru") String boardCategory){
+
+        calenderService.deleteFile(boardNum);
+
+        List<Map<String, String>> fileList = new ArrayList<>();
+
+        String fileName = null;
+
+        for (int i = 0; i < file.size(); i++) {
+
+            if(boardCategory.equals("1") || boardCategory.equals("2") ) {
+
+
+                fileName = "/uploadFiles/clubCalendarReviewFiles/" + UUID.randomUUID() + file.get(i).getOriginalFilename();
+
+            } else if (boardCategory.equals("3")) {
+
+                fileName = "/uploadFiles/villBoardFiles/" + UUID.randomUUID() + file.get(i).getOriginalFilename();
+
+            } else if(boardCategory.equals("05"))
+
+                fileName = "/uploadFiles/clubCalendar/" + UUID.randomUUID() + file.get(i).getOriginalFilename();
+
+
+        System.out.println(fileName);
+            Map<String, String> map = new HashMap<>();
+
+            map.put("fileName", fileName);
+            map.put("boardNum", String.valueOf(boardNum));
+            map.put("boardCategory", boardCategory);
+
+            fileList.add(map);
+
+            calenderService.addFileUpload(map);
+
+            System.out.println("파일 업로드의 정보 : " + map);
+            try {
+                file.get(i).transferTo(new File( fileList.get(i).get("fileName")));
+
+                System.out.println("수정 성공");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return 0;
+
+    }
+
     @RequestMapping("listCalenderReview")
     public String listCalenderReview(@RequestParam("boardCategory")int boardCategory
             ,Model model,HttpServletRequest request){
@@ -200,6 +287,44 @@ public class ClubCalendarRestController<list> {
 
         return null;
 
+    }
+
+    @RequestMapping("getListCluber")
+    public Map<String,Object> getListCluber(@RequestBody String user) throws ParseException {
+
+        JSONParser parser = new JSONParser();
+
+        JSONObject json = (JSONObject) parser.parse(user);
+
+        String userId = (String) json.get("userId");
+
+        System.out.println(userId);
+
+        Map<String,Object> map = clubService.getListCluber(userId);
+
+        System.out.println(map);
+
+        return map;
+    }
+
+    @RequestMapping("getListCluberCalender")
+    public List<Map<String,Object>> getListCluberCalender(@RequestBody String clubCalenderNum) throws ParseException {
+
+        JSONParser parser = new JSONParser();
+
+        JSONObject  json = (JSONObject) parser.parse(clubCalenderNum);
+
+        String ScalenderNum = String.valueOf(json.get("clubCalendarNum"));
+
+        int calenderNum = Integer.parseInt(ScalenderNum);
+
+        System.out.println(calenderNum);
+
+        List<Map<String, Object>>  list = calenderService.getListCluberCalender(calenderNum);
+
+        System.out.println("============" + list + "============");
+
+        return list;
     }
 
 

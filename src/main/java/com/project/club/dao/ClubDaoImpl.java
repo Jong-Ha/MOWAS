@@ -305,4 +305,9 @@ public class ClubDaoImpl implements ClubDao {
     public void addCalendarCluber(Map<String, Object> map) {
         sqlSession.insert("ClubMapper.addCalendarCluber",map);
     }
+
+    @Override
+    public List<CalendarCluber> getListCluber(String userId) {
+        return sqlSession.selectList("ClubMapper.getListClubCluber", userId);
+    }
 }

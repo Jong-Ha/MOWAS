@@ -281,6 +281,8 @@ where deal_board_num=#{dealBoardNum}
             deal_calender_title = #{dealCalenderTitle}
             ,deal_date = #{dealDate}
             ,deal_location =#{dealLocation}
+            ,deal_id = #{dealId}
+            ,deal_mode_check=#{dealModeCheck}
         </set>
         WHERE deal_board_num = #{dealBoardNum}
     </update>
@@ -300,5 +302,11 @@ where deal_board_num=#{dealBoardNum}
 
 
     </select>
+    <select id="getListDealCalender" parameterType="String" resultMap="dealSelectMap">
+        SELECT * FROM DEAL
+        where deal_id = '${user}' or user_id = '${user}'
+        and DEAL_MODE_CHECK = '1'
+    </select>
+
 
 </mapper>

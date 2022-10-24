@@ -181,11 +181,17 @@
 <!-- Example Code -->
     <jsp:include page="/layout/toolbar.jsp"/>
 
+    <img src="${pageContext.request.contextPath}/resources/images/mim.jpeg" style="height: 500px;border-radius: 10px;  width: 1600px;">
+
+
 <div class="wap">
 
 
 
+
     <jsp:include page="/layout/commubar.jsp"/>
+
+
 
 
     <div class="addBox">
@@ -252,6 +258,12 @@
 </div>
 
 <jsp:include page="/layout/chatIcon.jsp"/>
+
+<div style="margin-bottom: 400px;">
+
+</div>
+
+<jsp:include page="/layout/footer.jsp"/>
 
 <script>
 

@@ -68,25 +68,29 @@
                 dataType : "JSON",
                 data : JSON.stringify({
                     userId : id,
-                    password : pw
+                    password : pw,
                 }),
                 headers : {
                     "Accept" : "application/json",
                     "Content-Type" : "application/json"
                 },
-                success : function (JSONData){
+                success : function (result){
                     //alert('JSONData ==>'+JSONData);
+                    if(result){
                     if(keepId){
                         $.cookie('keepId',id,{ expires : 365,path : '/'});
                     }else {
-                        $.removeCookie('keepId',{paht : '/'})
+                        $.removeCookie('keepId',{path : '/'})
                     }
                     if(keepLogin){
-                        $.cookie('keepLogin',pw,{expires: 365, paht: '/'});
+                        $.cookie('keepLogin',pw,{expires: 365, path: '/'});
                     }else {
                         $.removeCookie('keepLogin',{path : '/'})
                     }
                     $(self.location).attr("href", "/view/user/main.jsp")
+                }else{
+                    alert('아이디, 비밀번호를 확인하세요')
+                    }
                 },
                 error : function (){
                     alert("로그인 실패");
@@ -126,7 +130,16 @@
             location.href = "/view/user/addUser.jsp"
         });
     });
-
+    $(function () {
+        $("#findId").on("click", function () {
+            location.href = "/view/user/getMyId.jsp"
+        });
+    });
+    $(function () {
+        $("#findPassword").on("click", function () {
+            location.href = "/view/user/getMyPassword.jsp"
+        });
+    });
     $(function (){
         $("#naverIdLogin").on("click", function (){
 
@@ -381,6 +394,13 @@
                     </div>
 
                     <div class="checkbox mb-3">
+                        <label for="findId"> <input type="checkbox" id="findId" name="findId" value="findId">아이디 찾기</label></div>
+                    <div class="checkbox mb-3">
+                        <label for="findPassword"> <input type="checkbox" id="findPassword" name="findPassword" value=findPassword">비밀번호 찾기
+                        </label>
+                    </div>
+
+                    <div class="checkbox mb-3">
                         <label for="keepId"> <input type="checkbox" id="keepId" name="keepId" value="keepId"> 아이디 저장</label></div>
                     <div class="checkbox mb-3">
                         <label for="keepLogin"> <input type="checkbox" id="keepLogin" name="keepLogin" disabled="disabled" value=keepLogin"> 자동 로그인
@@ -390,7 +410,7 @@
                     <button class="btn btn-outline-info btnlf loginStart" type="button">login</button>
 
                     <!-- 카카오 로그인 -->
-                    <a class="p-2" href="https://kauth.kakao.com/oauth/authorize?client_id=6230abede953ee2dbfed27975e15f04a&redirect_uri=http://localhost:8080/user/kakaoLogin&response_type=code">
+                    <a class="p-2" href="https://kauth.kakao.com/oauth/authorize?client_id=6230abede953ee2dbfed27975e15f04a&redirect_uri=http://192.168.0.235:8080/user/kakaoLogin&response_type=code">
                         <!-- REST_API키 및 REDIRECT_URi는 본인걸로 수정하세요 -->
                         <!-- 저는 redirect_uri을 http://localhost:8080/member/kakaoLogin로 했습니다. -->
                         <!-- 본인걸로 수정 시 띄어쓰기 절대 하지 마세요. 오류납니다. -->
@@ -443,16 +463,17 @@
 </main>
 <script>
 
-    $(document).load(function (){
+    $(document).ready(function (){
         var id = $("input:text").val();
         var pw = $("input:password").val();
         var keepId = $("#keepId").prop('checked');
         var keepLogin = $("#keepLogin").prop('checked');
         console.log('자동로그인keepId'+keepId);
         console.log('자동로그인keeplogin'+keepLogin);
-        if (keepId && keepLogin ){
+        if (keepId && keepLogin ) {
             fncLogin();
         }
+
     })
 </script>
 </body>

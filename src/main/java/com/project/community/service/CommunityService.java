@@ -5,6 +5,7 @@ import com.project.domain.Comment;
 import com.project.domain.Recomment;
 import com.project.domain.VilBoard;
 
+import java.util.List;
 import java.util.Map;
 
 public interface CommunityService {
@@ -50,6 +51,11 @@ public interface CommunityService {
 
     void deleteBoard(int boardNum, int BoardCategory);
 
+    List<Map<String, Object>> getListDealCalender(String userId);
 
+    void deleteAllRecomment(int commentNum);
 
+    void deleteAllComment(int boardNum, int boardCategory);
+
+    void deleteAllLike(int boardNum, int boardCategory);
 }

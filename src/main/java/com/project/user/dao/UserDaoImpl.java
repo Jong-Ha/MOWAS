@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Repository("userDaoImpl")
@@ -35,6 +36,10 @@ public class UserDaoImpl implements UserDao{
         System.out.println("여기는 addInterList 디에이오임플 종료이다");
     }
 
+    public void updateSNSUserInfor(User user)throws Exception{
+        sqlSession.update("UserMapper.updateSNSUserInfor", user);
+    }
+
     public void deleteInterList(UserInterList interList)throws Exception{
         sqlSession.delete("UserMapper.deleteInterList", interList);
     }
@@ -51,12 +56,50 @@ public class UserDaoImpl implements UserDao{
     public User getUser2(String email)throws Exception{
         return sqlSession.selectOne("UserMapper.getUser2", email);
     }
+
+    public User getMyId(User user)throws Exception{
+       if(user.getEmail()!="" || user.getPhone().equals("") ) {
+            return sqlSession.selectOne("UserMapper.getMyIdEmail", user);
+        } else if(user.getPhone()!=null || user.getEmail()==null) {
+            return sqlSession.selectOne("UserMapper.getMyIdPhone", user);
+        }else {
+            return null;
+        }
+    }
+
+    public User getMyPassword(User user)throws Exception{
+        if(user.getEmail()!="" || user.getPhone().equals("") ) {
+            return sqlSession.selectOne("UserMapper.getMyPasswordEmail", user);
+        } else if(user.getPhone()!=null || user.getEmail()==null ) {
+            return sqlSession.selectOne("UserMapper.getMyPasswordPhone", user);
+        }else {
+            return null;
+        }
+    }
+
+    public void addKakaoUser(User userInfo) {
+        sqlSession.insert("UserMapper.addKakaoUser",userInfo);
+    }
+
+    // 정보 확인
+    public User getUserEmailKakao(User userInfo) {
+
+        System.out.println("RN:"+userInfo.getUserId());
+        System.out.println("RN:"+userInfo.getEmail());
+        System.out.println("RE:"+userInfo.getUserImage());
+        System.out.println("RE:"+userInfo.getGender());
+        System.out.println("RE:"+userInfo.getLoginType());
+        return sqlSession.selectOne("UserMapper.getUserEmailKakao", userInfo);
+    }
+
     public void updateLcd(String msg)throws Exception{
         sqlSession.selectOne("UserMapper.updateLcd", msg);
     }
 
     public void updateUser(User user)throws Exception{
         sqlSession.update("UserMapper.updateUser", user);
+        sqlSession.update("UserMapper.updateClubUser", user);
+        sqlSession.update("UserMapper.updateClubCalendarApply", user);
     }
 
     public void updatePsd(User user)throws Exception{
@@ -67,6 +110,13 @@ public class UserDaoImpl implements UserDao{
 
     public void updatePed(User user)throws Exception{
         sqlSession.update("UserMapper.updatePed", user);
+    }
+    public void updateKakaoUser(User user)throws Exception{
+        sqlSession.selectOne("UserMapper.updateKakaoUser", user);
+    }
+
+    public void updateNaverUser(User user)throws Exception{
+        sqlSession.selectOne("UserMapper.updateNaverUser", user);
     }
 
     public void updateUserStatus(String userId)throws Exception{

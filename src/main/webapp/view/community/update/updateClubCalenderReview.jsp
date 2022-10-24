@@ -72,12 +72,13 @@
 
                         console.log(JSONData);
 
-
-                        var boardNum = JSONData
+                        var boardNum = $(".clubCalenderReviewNum").val();
 
                         var file = $("#file").length;
 
                         if (file > 0) {
+
+                            alert("파일 업로드 시작 : " + boardNum);
 
                             //form 테그를 불러와서 form변수에 등록
                             var form = document.querySelector("form");
@@ -85,10 +86,14 @@
                             var formData = new FormData(form);
                             //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
                             var fileSize = $("#file")[0].files;
-                            console.log(fileSize.length);
+
                             //formData에 해당 게시글 번호, 게시글 category append
                             formData.append("boardNum", boardNum);
                             formData.append("boardCategoru", boardCategory);
+
+
+
+                            console.log(formData);
 
                             //file길이 만큼 for문으로 formData에 append함
                             for (var i = 0; i < fileSize.length; i++) {
@@ -99,7 +104,7 @@
                             //formData에 들어 있는 boardNum과 file의 정보를 비동기식으로 보냄
                             //파일은 json형식으로 보낼수 없기 떄문에 contentType, processData, dataType을 false로 지정
                             $.ajax({
-                                url: "/clubCal/json/fileUpload",
+                                url: "/clubCal/json/fileUpdate",
                                 type: "post",
                                 processData: false,
                                 contentType: false,
@@ -203,7 +208,7 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
                     <strong>파일
-                        <input type="file" value="파일 첨부">
+                        <input type="file" id="file" class="file" multiple  value="파일 첨부">
                     </strong>
                 </div>
             </div>

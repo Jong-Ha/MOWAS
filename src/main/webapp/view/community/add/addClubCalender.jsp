@@ -61,6 +61,7 @@
                 var noticeTime = $(".noticeTime").val()
                 var calendarApplyCheck = $(".calendarApplyCheck").val()
                 var applyAutoCheck = $(".applyAutoCheck").val()
+                var boardCategory = '05';
 
                 var clubers = $(".clubers")
 
@@ -90,12 +91,12 @@
                     dataType: "json",
                     contentType: "application/json; charset=UTF-8",
                     success: function (JSONData, result) {
-
+                        // 등록에 성공하면 해당 boardNum을 return 해서 출력 하고 변수에 등록
                         console.log(JSONData);
 
                         var boardNum = JSONData
 
-                        var file = $("#file").length
+                        var file = ("#file").length
 
                         if (file > 0) {
 
@@ -116,6 +117,8 @@
                                 //파일이 잘 들어 갔는지 확인
                                 console.log(fileSize[i]);
                             }
+
+                            console.log(formData);
                             //formData에 들어 있는 boardNum과 file의 정보를 비동기식으로 보냄
                             //파일은 json형식으로 보낼수 없기 떄문에 contentType, processData, dataType을 false로 지정
                             $.ajax({
@@ -140,12 +143,12 @@
                             method: "post",
                             data: JSON.stringify({
                                 "cluberList" : cluber,
-                                "clubNum" : clubNum
+                                "clubCalenderNum" : boardNum
                             }),
                             dataType: "json",
                             contentType: "application/json; charset=UTF-8",
                             success: function (JSONData, result) {
-                                console.log(JSONData)
+
                             }
 
                         })
@@ -162,7 +165,7 @@
 
                         setTimeout(function () {
                             opener.location.reload();
-                           /* window.close();*/
+                            window.close();
                         }, 2000);
                         //error 발생시 그냥 창을 닫음
                     }, error: function () {
@@ -174,7 +177,7 @@
                             timer: 1500
                         });
                         setTimeout(function () {
-                           /* window.close();*/
+                            window.close();
                         }, 2000);
 
                     }
@@ -264,7 +267,7 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
                     <strong>파일
-                        <input type="file" multiple name="file" value="파일 첨부">
+                        <input type="file" multiple id="file" name="file" value="파일 첨부">
                     </strong>
                 </div>
             </div>
