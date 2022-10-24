@@ -36,14 +36,14 @@
     </resultMap>
 
     <resultMap type="com.project.domain.File" id="FileResultMap">
-        <result property="fileNum" column="file_num" jdbcType="INTEGER"/>
-        <result property="boardNum" column="board_num" jdbcType="VARCHAR"/>
-        <result property="boardCategory" column="board_category" jdbcType="VARCHAR"/>
-        <result property="fileName" column="file_name" jdbcType="INTEGER"/>
+        <result property="fileNum"          column="file_num"       jdbcType="INTEGER"/>
+        <result property="boardNum"         column="board_num"      jdbcType="VARCHAR"/>
+        <result property="boardCategory"    column="board_category" jdbcType="VARCHAR"/>
+        <result property="fileName"         column="file_name"      jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--모임 일정 -->
-    <insert id="addClubCalender" parameterType="clubCalender">
+    <insert id="addClubCalender" parameterType="clubCalender" useGeneratedKeys="true">
         INSERT INTO
             club_calendar(club_calendar_num, club_num,reg_date,calendar_title,calendar_text,club_date,location,notice_check,notice_time,calendar_apply_check,apply_auto_check)
             values(  SEQ_CLUB_CALENDAR.nextval
@@ -57,7 +57,11 @@
                 ,#{noticeTime}
                 ,#{calendarApplyCheck}
                 ,#{applyAutoCheck})
+        <selectKey resultType="int" keyProperty="clubCalenderNum" order="AFTER">
+           SELECT SEQ_CLUB_CALENDAR.CURRVAL from  DUAL
+        </selectKey>
     </insert>
+
 
     <update id="updateClubCalender" parameterType="clubCalender">
         UPDATE
@@ -75,9 +79,9 @@
             WHERE club_calender_num = #{clubCalenderNum}
     </update>
 
-    <delete id="deleteClubCalender" parameterType="clubCalender">
+    <delete id="deleteClubCalender" parameterType="int">
         DELETE club_calendar
-        WHERE club_calendar_num = #{clubCalenderNum}
+        WHERE club_calendar_num = #{boardNum}
     </delete>
 
     <select id="getClubCalender"    parameterType="int"  resultMap="clubCalenderSelect">
@@ -164,6 +168,11 @@
         VALUES (seq_files.NEXTVAL, #{boardNum}, #{boardCategory}, #{fileName})
     </insert>
 
+    <delete id="deleteFile" parameterType="int">
+        delete files
+        WHERE board_num = '${boardNum}'
+    </delete>
+
     <select id="getListFile" parameterType="map" resultMap="FileResultMap">
         SELECT *
         FROM files
@@ -172,6 +181,12 @@
         ORDER BY file_num DESC
     </select>
 
+
+    <select id="getListCluberCalender" parameterType="int" resultMap="clubCalenderSelect">
+    SELECT *
+    FROM club_calendar
+    WHERE club_calendar_num = #{clubCalenderNum}
+    </select>
 
 
 </mapper>

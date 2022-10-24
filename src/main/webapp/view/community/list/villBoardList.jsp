@@ -128,6 +128,7 @@
 
     .wap {
         width: 1000px;
+        height: 1200px;
     }
 
     .carditem {
@@ -210,14 +211,19 @@
 <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 
 <input hidden class="userId" value="${user.userId}">
+
+
+<jsp:include page="/layout/toolbar.jsp"/>
+
+<img src="${pageContext.request.contextPath}/resources/images/mim.jpeg"
+     style="height: 500px;border-radius: 10px;  width: 1600px;">
+
 <!-- Example Code -->
 <div class="wap">
-    <input hidden class="boardCategory" value="03">
-
-    <jsp:include page="/layout/toolbar.jsp"/>
-
 
     <jsp:include page="/layout/commubar.jsp"/>
+
+    <input hidden class="boardCategory" value="03">
 
 
     <div class="addBox">
@@ -305,8 +311,10 @@
         </div>
 
     </c:forEach>
-
 </div>
+
+
+<jsp:include page="/layout/footer.jsp"/>
 
 </body>
 </html>

@@ -273,7 +273,12 @@ $(function () {
                 "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
 
         });
+
+
     })
+
+
+
 })
 
 

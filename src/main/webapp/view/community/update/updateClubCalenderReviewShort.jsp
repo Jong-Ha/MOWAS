@@ -69,7 +69,8 @@
                     success: function (JSONData, result) {
 
                         console.log(JSONData);
-                        var boardNum = JSONData
+
+                        var boardNum = clubCalenderReviewNum
 
                         var file = $("#file").length;
 
@@ -95,7 +96,7 @@
                             //formData에 들어 있는 boardNum과 file의 정보를 비동기식으로 보냄
                             //파일은 json형식으로 보낼수 없기 떄문에 contentType, processData, dataType을 false로 지정
                             $.ajax({
-                                url: "/clubCal/json/fileUpload",
+                                url: "/clubCal/json/fileUpdate",
                                 type: "post",
                                 processData: false,
                                 contentType: false,
@@ -179,7 +180,7 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
                     <strong>파일
-                        <input type="file" name="file" value="영상 첨부">
+                        <input type="file" name="file" id="file" value="영상 첨부">
                     </strong>
                 </div>
             </div>

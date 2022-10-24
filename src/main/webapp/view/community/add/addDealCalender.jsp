@@ -68,6 +68,7 @@
                         "dealCalenderTitle": dealCalenderTitle,
                         "dealDate": dealDate,
                         "dealLocation": dealLocation,
+                        "dealId" : '${user.userId}'
                     }),
 
                     dataType: "json",
@@ -85,7 +86,8 @@
                         });
 
                         setTimeout(function () {
-                            opener.location.reload();
+                            window.open("/view/community/list/dealCalender.jsp", "거래 일정",
+                            "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no")
                             window.close();
                         }, 2000);
                         //error 발생시 그냥 창을 닫음

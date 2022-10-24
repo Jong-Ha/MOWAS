@@ -49,6 +49,8 @@
 
 
         $(function () {
+            var calenderNum = $(".calenderNum").val();
+
             const date = new Date();
 
             const year = date.getFullYear();
@@ -96,25 +98,51 @@
             $(".delete").on("click", function () {
 
 
-                $.ajax({
-                    url: "/clubCal/json/deleteclubCalendar",
-                    type: "POST",
-                    data: JSON.stringify({"calenderNum": calenderNum}),
-                    dataType: "json",
-                    contentType: 'application/json; charset=UTF-8',
-                    success: function (JSONData, result) {
-                        console.log(result);
-                    }
+                $(".delete").on("click", function () {
 
-                })
-            })
+                    const swalWithBootstrapButtons = Swal.mixin({
+                        customClass: {
+                            confirmButton: 'btn btn-success',
+                            cancelButton: 'btn btn-danger'
+                        },
+                        buttonsStyling: false
+                    })
+
+                    swalWithBootstrapButtons.fire({
+                        title: '정말 삭제 하시겠습니까?',
+                        text: "삭제하면 해당 게시글을 볼수 없습니다",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: '삭제',
+                        cancelButtonText: '취소',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            swalWithBootstrapButtons.fire(
+                                '삭제 성공!',
+                                'success',
+                                setTimeout(() => {
+                                    location.href = "/clubCal/deleteClubCalender?boardNum=" + calenderNum
+                                }, 1500)
+                            )
+                        } else if (
+                            /* Read more about handling dismissals below */
+                            result.dismiss === Swal.DismissReason.cancel
+                        ) {
+                            swalWithBootstrapButtons.fire(
+                                '삭제 취소',
+                                'error'
+                            )
+                        }
+                    })
+                });
 
 
             $(".close").on("click", function () {
                 window.close();
             });
 
-            var calenderNum = $(".calenderNum").val();
+
 
             $(".addReview").on("click", function () {
                 window.open(
@@ -284,6 +312,7 @@
 
             <div class="row">
                 <div class="col-xs-12 text-center ">
+                    <button type="button" class="btn btn-primary btn-lg submit">수정</button>
                     <button type="button" class="btn btn-secondary btn-lg close">닫기</button>
                 </div>
             </div>

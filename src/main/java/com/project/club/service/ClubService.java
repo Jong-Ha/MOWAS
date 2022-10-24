@@ -51,4 +51,6 @@ public interface ClubService {
     public void updateVoter(List<String> voterItems, String userId, int voteNum);
     public void deleteVote(int voteNum);
     public void addCalendarCluber(int clubCalendarNum, List<String> userIdList);
+    Map<String, Object> getListCluber(String userId);
+
 }

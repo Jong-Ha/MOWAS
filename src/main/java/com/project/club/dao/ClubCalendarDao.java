@@ -30,4 +30,12 @@ public interface ClubCalendarDao {
     List<File> getListFile(int clubCalenderReviewNum, int boardCategory);
 
     void addDealCalender(Deal calender);
+
+    List<ClubCalendar> getListCluberCalender(int calenderNum);
+
+    void deleteFile(int boardNum);
+
+    void updateClubCalender(ClubCalendar clubCalendar);
+
+    void deleteClubCalender(int boardNum);
 }

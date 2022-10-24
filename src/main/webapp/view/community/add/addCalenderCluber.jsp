@@ -43,66 +43,6 @@
 
         //============= 회원정보수정 Event  처리 =============
         $(function () {
-            /*
-                        $(".submit").on("click", function () {
-
-                            var clubNum =
-            ${boardNum}
-                var calenderTitle = $(".calenderTitle").val()
-                var clubDate = $(".clubDate").val()
-                var location = $(".location").val()
-
-                console.log(clubNum)
-                console.log(calenderTitle)
-                console.log(clubDate)
-                console.log(location)
-
-                $.ajax({
-                    url: "/commu/json/addDealCalender",
-                    method: "post",
-                    data: JSON.stringify({
-                        "clubNum" : clubNum,
-                        "calenderTitle": calenderTitle,
-                        "clubDate": clubDate,
-                        "location": location,
-                        "boardCategory" : "8"
-                    }),
-
-                    dataType: "json",
-                    contentType: "application/json; charset=UTF-8",
-                    success: function (JSONData, result) {
-
-                        console.log(result);
-                        // 성공시 해당 창을 닫고 부모창을 reload
-                        Swal.fire({
-                            position: top-end,
-                            icon: success,
-                            title: Your work has been saved,
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-
-                        setTimeout(function () {
-                            opener.location.reload();
-                            window.close();
-                        }, 2000);
-                        //error 발생시 그냥 창을 닫음
-                    }, error: function () {
-                        Swal.fire({
-                            position: top-end,
-                            icon: success,
-                            title: Your work has been saved,
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                        setTimeout(function () {
-                            window.close();
-                        }, 2000);
-
-                    }
-                });
-
-            });*/
 
 
             $(".close").on("click", function () {

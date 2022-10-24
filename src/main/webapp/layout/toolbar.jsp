@@ -6,128 +6,190 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.project.domain.User" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script type="text/javascript">
-  <script type="text/javascript" src="/resources/OpenSource/js/jquery.cookie.js"></script>
+
+<script type="text/javascript" src="/resources/OpenSource/js/jquery.cookie.js"></script>
+
 <script type="text/javascript">
 
-  $(function () {
-    $("#login1").on("click", function () {
-        self.location = "/view/user/login.jsp";
+
+
+    $(function () {
+
+        console.log('${user.userId}')
+        $("#login1").on("click", function () {
+            self.location = "/view/user/login.jsp";
+        });
     });
-  });
-  $(function () {
-    $("#logout").on("click", function () {
-      self.location = "/user/logout";
+    $(function () {
+        $("#logout").on("click", function () {
+            self.location = "/user/logout";
+        });
     });
-  });
-  $(function () {
-    $("#myPage").on("click", function () {
-      var userId = $("#modelUser").val();
-      self.location = "/myPage/getMyPage?userId="+userId;
+    $(function () {
+        $("#myPage").on("click", function () {
+            var userId = $("#modelUser").val();
+            self.location = "/myPage/getMyPage?userId=" + userId;
+        });
     });
-  });
 </script>
 <html>
+
 <head>
     <title>Title</title>
 
-  <style>
-    .topbar{
-      margin-bottom: 70px;
-    }
-    .navbar{
-      justify-content: center;
-    }
-    .btnlf{
-      margin-left: 20px;
+    <style>
+        .color {
+            color: #ffff;
+        }
 
-    }
-    .textint{
-      font-size: 0.2em;
-      margin-top: -20px;
-    }
-    .login{
-      float: left;
-      margin-right: 20px;
-    }
-    .alrim{
-      font-size: 0.1rem;
-      width: 45px;
-    }
-    .loginbox{
-      width: 80px;
-      font-size: 0.1rem;
-    }
+        .topbar {
+            margin-bottom: 20px;
+        }
 
-  </style>
+        .navbar {
+            justify-content: center;
+        }
+
+        .btnlf {
+            margin-left: 20px;
+        }
+
+        .textint {
+            font-size: 0.2em;
+            margin-top: -20px;
+        }
+
+        .login {
+            float: left;
+            margin-right: 20px;
+            width: 120px;
+        }
+
+        .alrim {
+            font-size: 0.1rem;
+            width: 45px;
+        }
+
+        .loginbox {
+            color: #FFFFFF;
+            width: 100px;
+        }
+
+        .navCenter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 1200px;
+            margin: auto;
+            color: #fff;
+        }
+
+        .logitem {
+            margin-top: -20px;
+            display: flex;
+        }
+
+        .underline {
+            line-height: 1.2;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+            font-size: 1.5em;
+            font-weight: 700;
+            background-image: linear-gradient(transparent calc(100% - 3px), #000 3px);
+            background-repeat: no-repeat;
+            background-size: 0% 100%;
+            transition: background-size 0.2s;
+            color: #000;
+            cursor: pointer;
+            margin-right: 25px;
+        }
+
+        @media (min-width: 1000px) {
+            .underline {
+                font-size: 1.5em;
+            }
+        }
+
+        .underline.yellow {
+            background-image: linear-gradient(transparent 60%, #F8CD07 40%);
+        }
+
+        .underline:hover {
+            background-size: 100% 100%;
+        }
+    </style>
+
+
 </head>
 <body>
+
 <div class="topbar">
-  <nav class="shadow-lg navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar scroll</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarScroll">
-        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Link
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">Link</a>
-          </li>
-        </ul>
-        <img src="${pageContext.request.contextPath}/resources/images/pngwing.png" style="width: 30px; margin-right: 10px;">
-        <div class="login">
-          <div class="d-grid gap-2">
-            <%
-              User users =(User)session.getAttribute("user");
+    <nav class="shadow-lg navbar navbar-expand-lg " style=" background: #000000c7;;  border-radius: 5px;">
+        <div class="navCenter">
+            <div class="container-fluid">
 
-              if(users==null){%>
-            <button type="button" class="btn btn-outline-primary btnlf loginbox" id="login1" style="font-size: 0.5em;">로그인</button>
-            <%}else{%>
-            <button type="button" class="btn btn-outline-primary btnlf loginbox" id="logout">로그아웃</button>
-            <button class="btn btn-outline-success btnlf loginbox" style="font-size: 0.5em;" id="myPage" type="button">마이페이지</button>
-            <%}%>
+                <a class="navbar-brand " href="#" style="color : #ffffff; font-size: 2em">MOWAS</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                        aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                        <li class="nav-item">
+                            <a class="nav-link active  underline yellow" aria-current="page" href="#"
+                               style="color : #ffffff; font-size: 1.5em;">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  underline yellow" href="#" style="color : #ffffff; ">Link</a>
+                        </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link  underline yellow" style="color : #ffffff; font-size: 1.5em;">Link</a>
+                        </li>
+                    </ul>
+                    <div class="logitem">
+                        <img src="${pageContext.request.contextPath}/resources/images/proplePoto.png"
+                             style="width: 60px;margin-right: 10px; border-radius: 40px; height: 50px;">
 
-          </div>
+                        <div class="login ">
+                            <div class="d-grid gap-2">
+
+                                <c:if test="${user.userId eq null}">
+
+                                    <div class="loginbox login underline yellow" id="login1"
+                                         style="font-size: 1.2em; color: #FFFFFF; ">로그인
+                                    </div>
+
+                                </c:if>
+
+                                <c:if test="${user.userId ne null}">
+
+                                <div class="loginbox login underline yellow" style="font-size: 1.2em; color: #FFFFFF;"
+                                     id="logout">로그아웃
+                                </div>
+
+                                <div class=" loginbox login underline yellow" style="font-size: 1.2em; color: #FFFFFF;"
+                                     id="myPage" type="button">마이페이지
+                                </div>
+                            </div>
+
+                            </c:if>
+
+                        </div>
+                    </div>
+                </div>
+
+           <%--     <button type="button" class="btn btn-primary position-relative alrim" style="font-size: 0.5em;">
+                    Inbox
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"> </span>
+
+                </button>--%>
+
+            </div>
         </div>
-      </div>
-      <div><input type="hidden" id="modelUser" name="userId" value="${user.userId}"></div>
-      <div style="display: none">
-        <input type="checkbox" id="keepId" name="keepId" value="$.cookie('keepId')">
-        <input type="checkbox" id="keepLogin" name="keepLogin" value="${user.userId}">
-      </div>
-    </div>
-        <button type="button" class="btn btn-primary position-relative alrim" style="font-size: 0.5em;">
-          Inbox
-          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-          99+</span>
-
-        </button>
-  </nav>
-  </div>
-    </div>
+    </nav>
 </div>
-
 </body>
 </html>

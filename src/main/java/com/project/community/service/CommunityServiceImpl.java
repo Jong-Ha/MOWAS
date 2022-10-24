@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -210,6 +211,58 @@ public class CommunityServiceImpl implements CommunityService {
         map.put("boardNum", boardNum);
         map.put("boardCategory", boardCategory);
         commuDao.deleteBoard(map);
+    }
+
+    @Override
+    public List<Map<String, Object>> getListDealCalender(String userId) {
+
+        List<Deal> list = commuDao.getListDealCalender(userId);
+
+        Map<String, Object> map = null;
+
+        List<Map<String,Object>> list2 = new ArrayList<>();
+
+        for (int i = 0; i < list.size(); i++) {
+            map = new HashMap<>();
+
+            map.put("id" , list.get(i).getDealBoardNum());
+            map.put("start", list.get(i).getDealDate());
+            map.put("title", list.get(i).getDealCalenderTitle());
+            map.put("allDay", "ture");
+            map.put("color", "purple");
+            map.put("groupId", "2");
+
+            list2.add(map);
+
+        }
+
+        return list2;
+    }
+
+    @Override
+    public void deleteAllRecomment(int commentNum) {
+        commuDao.deleteAllRecomment(commentNum);
+    }
+
+    @Override
+    public void deleteAllComment(int boardNum, int boardCategory) {
+        Map<String,Object>map = new HashMap<>();
+
+        map.put("boardNum", boardNum);
+        map.put("boardCategory", boardCategory);
+
+        commuDao.deleteAllComment(map);
+    }
+
+    @Override
+    public void deleteAllLike(int boardNum, int boardCategory) {
+        Map<String,Object> map = new HashMap<>();
+
+        map.put("boardNum",boardNum);
+        map.put("boardCategory", boardCategory);
+
+        commuDao.deleteAllLike(map);
+
     }
 
 

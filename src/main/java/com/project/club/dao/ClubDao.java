@@ -65,4 +65,5 @@ public interface ClubDao {
     public void addVoter(Voter voter);
     public void addCalendarCluber(Map<String, Object> map);
 
+    List<CalendarCluber> getListCluber(String userId);
 }
