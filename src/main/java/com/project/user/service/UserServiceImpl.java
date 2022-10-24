@@ -61,6 +61,14 @@ public class UserServiceImpl implements UserService{
           return dbUser2;
     }
 
+    public User getMyId(User user)throws Exception{
+          return userDao.getMyId(user);
+    }
+
+    public User getMyPassword(User user) throws Exception{
+          return userDao.getMyPassword(user);
+    }
+
     public User loginUser(User user)throws Exception{
           User dbUser = userDao.getUser(user.getUserId());
           return dbUser;
@@ -152,7 +160,7 @@ public class UserServiceImpl implements UserService{
             sb.append("grant_type=authorization_code");
 
             sb.append("&client_id=6230abede953ee2dbfed27975e15f04a"); //본인이 발급받은 key
-            sb.append("&redirect_uri=http://localhost:8080/user/kakaoLogin"); // 본인이 설정한 주소
+            sb.append("&redirect_uri=http://192.168.0.235:8080/user/kakaoLogin"); // 본인이 설정한 주소
 
             sb.append("&code=" + authorize_code);
             bw.write(sb.toString());

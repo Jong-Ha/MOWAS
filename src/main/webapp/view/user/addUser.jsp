@@ -32,15 +32,17 @@
                     email: $(".userEmail").val()
                 },
                 dataType: "json",
-                success: function ({JSONData, status}) {
-                    console.log(status);
+                success: function (emailNo) {
+
+                    console.log("emailNo"+emailNo)
+                    var num = emailNo;
                     $(".emailYC").css("display", '');
                 }
             });
         });
 
 
-
+/*
             $(".emailImage").on("click", function () {
 
                 $.ajax({
@@ -59,7 +61,7 @@
                     }
                 });
             });
-
+*/
       $(".smsKey").on("click",function (){
         $.ajax({
           url : "/user/json/smsSend",
@@ -76,9 +78,9 @@
 
       $(".CheckEmailKey2").on("click",function (){
         var CheckEmailKey = $(".CheckEmailKey").val();
-         alert(CheckEmailKey);
-         var emailNo = ${no.emailNo}
-             alert("랜덤 이메일 인증번호 :"+emailNo);
+         //alert(CheckEmailKey);
+         var emailNo = num;
+            // alert("랜덤 이메일 인증번호 :"+emailNo);
         if(CheckEmailKey!=1234){
           $('.emailInfor').css('display','');
         }else{
@@ -535,6 +537,7 @@
 
         <h6>이메일 또는 휴대폰번호 인증하기(택1)</h6>
 
+
         <div class="col-12">
           <label for="CheckEamil" class="form-label"><input type="radio" class="form-check-input" id="CheckEamil" name="email&phone" required>
             이메일</label>
@@ -550,6 +553,8 @@
           <span class="emailInforYes" style="display: none;">
                 인증되었습니다
               </span>
+
+            <input type="hidden" id="randomEmail" name="randomEmail" >
           <div>
           <label for="CheckPhone" class="form-label"><input type="radio" class="form-check-input" id="CheckPhone" name="email&phone" required>
             휴대폰번호</label>

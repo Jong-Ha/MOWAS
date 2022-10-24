@@ -130,7 +130,16 @@
             location.href = "/view/user/addUser.jsp"
         });
     });
-
+    $(function () {
+        $("#findId").on("click", function () {
+            location.href = "/view/user/getMyId.jsp"
+        });
+    });
+    $(function () {
+        $("#findPassword").on("click", function () {
+            location.href = "/view/user/getMyPassword.jsp"
+        });
+    });
     $(function (){
         $("#naverIdLogin").on("click", function (){
 
@@ -385,6 +394,13 @@
                     </div>
 
                     <div class="checkbox mb-3">
+                        <label for="findId"> <input type="checkbox" id="findId" name="findId" value="findId">아이디 찾기</label></div>
+                    <div class="checkbox mb-3">
+                        <label for="findPassword"> <input type="checkbox" id="findPassword" name="findPassword" value=findPassword">비밀번호 찾기
+                        </label>
+                    </div>
+
+                    <div class="checkbox mb-3">
                         <label for="keepId"> <input type="checkbox" id="keepId" name="keepId" value="keepId"> 아이디 저장</label></div>
                     <div class="checkbox mb-3">
                         <label for="keepLogin"> <input type="checkbox" id="keepLogin" name="keepLogin" disabled="disabled" value=keepLogin"> 자동 로그인
@@ -394,7 +410,7 @@
                     <button class="btn btn-outline-info btnlf loginStart" type="button">login</button>
 
                     <!-- 카카오 로그인 -->
-                    <a class="p-2" href="https://kauth.kakao.com/oauth/authorize?client_id=6230abede953ee2dbfed27975e15f04a&redirect_uri=http://localhost:8080/user/kakaoLogin&response_type=code">
+                    <a class="p-2" href="https://kauth.kakao.com/oauth/authorize?client_id=6230abede953ee2dbfed27975e15f04a&redirect_uri=http://192.168.0.235:8080/user/kakaoLogin&response_type=code">
                         <!-- REST_API키 및 REDIRECT_URi는 본인걸로 수정하세요 -->
                         <!-- 저는 redirect_uri을 http://localhost:8080/member/kakaoLogin로 했습니다. -->
                         <!-- 본인걸로 수정 시 띄어쓰기 절대 하지 마세요. 오류납니다. -->

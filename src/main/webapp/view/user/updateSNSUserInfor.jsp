@@ -32,12 +32,12 @@
 
         var name=$("input[name='userName']").val();
         var rrd=$("input[name='rrd']").val();
-
+        var loginType = $("#loginType").val();
         var interList=$("input[name='interList']").val();
 
 
 
-        if(name == null || name.length <1){
+        if(loginType==3 && name == null || name.length <1){
           alert("이름은  반드시 입력하셔야 합니다.");
           return false;//해당 메서드(펑션)을 종료한다
         }
@@ -808,12 +808,13 @@
     <form class="needs-validation" novalidate enctype="multipart/form-data">
       <div class="row g-3">
 
-
+          <c:if test="${kakaoUser.loginType=='2'}">
         <div class="col-12">
           <label for="userName" class="form-label">이름</label>
             <input type="text" class="form-control" id="userName" name="userName"  required>
           </div>
         </div>
+        </c:if>
 
         <div class="col-12 ">
           <label for="rrd" class="form-label">주민등록번호</label>
@@ -979,12 +980,7 @@
       <input type="hidden" id="loginType" name="loginType" value="${naverUser.loginType}">${naverUser.loginType}
         </c:if>
 
-        <div class="col-12">
 
-            <button class="w-100 btn btn-primary btn-lg " id="updateSNSUserInfor" type="submit"> 확인 </button>
-        </div>
-
-    </form>
 
 
             <span id="checkItem">
@@ -1068,7 +1064,12 @@
           </span>
             </span>
 
+        <div class="col-12">
 
+            <button class="w-100 btn btn-primary btn-lg " id="updateSNSUserInfor" type="submit"> 확인 </button>
+        </div>
+
+    </form>
 
       <hr>
 

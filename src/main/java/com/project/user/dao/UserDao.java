@@ -23,6 +23,10 @@ public interface UserDao {
 
     public User getUser2(String email)throws Exception;
 
+    public User getMyId(User user)throws Exception;
+
+    public User getMyPassword(User user) throws Exception;
+
     public void addKakaoUser(User userInfo)throws Exception;
 
     public User getUserEmailKakao(User userInfo)throws Exception;

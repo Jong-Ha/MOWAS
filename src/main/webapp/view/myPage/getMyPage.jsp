@@ -169,9 +169,9 @@
         <div class="userCalender shadow-lg" style=" height: 600px; overflow: scroll; padding: 10px;">
             <jsp:include page="/view/user/userCalender.jsp"/>
 
+<input type="hidden" id="userId" name="userId" value="${user.userId}">
         </div>
-    </div>
-
+</div>
 
 
 

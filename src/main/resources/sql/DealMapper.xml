@@ -90,7 +90,7 @@
     </select>
 
 
-    <!--게시물 작성-->
+<!--게시물 작성-->
     <insert id="addDeal" parameterType="deal">
         INSERT INTO deal(deal_board_num,
                          board_category,
@@ -104,41 +104,56 @@
                          tag,
                          view_count,
                          vill_code)
-        values (seq_deal.NEXTVAL,
-                #{boardCategory},
-                #{dealStatus},
-                #{user.userId:VARCHAR},
-                #{dealTitle:VARCHAR},
-                #{dealText:VARCHAR},
-                SYSDATE,
-                #{productName:VARCHAR},
-                #{price:NUMERIC},
-                #{tag:VARCHAR},
-                0,
-                #{villCode:VARCHAR})
+values (seq_deal.NEXTVAL,
+        #{boardCategory},
+        #{dealStatus},
+        #{user.userId:VARCHAR},
+        #{dealTitle:VARCHAR},
+        #{dealText:VARCHAR},
+        SYSDATE,
+        #{productName:VARCHAR},
+        #{price:NUMERIC},
+        #{tag:VARCHAR},
+       0,
+        #{villCode:VARCHAR})
     </insert>
-    <!--    &lt;!&ndash;게시물 상세조회&ndash;&gt;-->
+<!--    &lt;!&ndash;게시물 상세조회&ndash;&gt;-->
     <select id="getDeal" parameterType="int" resultMap="dealSelectMap">
-        SELECT *
-        from deal
-        where deal_board_num = #{dealBoardNum}
+        SELECT
+            deal_board_num,
+            user_id,
+            deal_title,
+            deal_text,
+            price,
+            product_name,
+            tag,
+            board_category,
+            review,
+            review_pt,
+            deal_id,
+            vill_code,
+            deal_status,
+            deal_reg_date,
+            view_count
+from deal
+where deal_board_num=#{dealBoardNum}
     </select>
     <!--신뢰온도,
            파일-->
-    <!--    &lt;!&ndash;게시물 수정&ndash;&gt;-->
+<!--    &lt;!&ndash;게시물 수정&ndash;&gt;-->
     <update id="updateDeal" parameterType="deal">
-        UPDATE DEAL
-        <set>
-            deal_title=#{dealTitle:VARCHAR},
-            deal_status=#{dealStatus:CHAR},
-            deal_text=#{dealText:VARCHAR},
+    UPDATE DEAL
+<set>
+        deal_title=#{dealTitle:VARCHAR},
+        deal_status=#{dealStatus:CHAR},
+        deal_text=#{dealText:VARCHAR},
 
-            product_name=#{productName:VARCHAR},
-            price=#{price:NUMERIC},
-            tag=#{tag:VARCHAR}
-        </set>
+    product_name=#{productName:VARCHAR},
+        price=#{price:NUMERIC},
+        tag=#{tag:VARCHAR}
+</set>
 
-        <where>deal_board_num=#{dealBoardNum}</where>
+        <where> deal_board_num=#{dealBoardNum}</where>
     </update>
 
     <!--게시물 삭제-->
@@ -148,6 +163,8 @@
             deal_board_num=#{dealBoardNum}
         </where>
     </delete>
+
+
 
 
     <sql id="listDealBoardSql">
@@ -161,21 +178,9 @@
                tag
 
         FROM deal
-        WHERE board_category =
-        #{boardCategory}
-        AND
-        deal_title
-        LIKE
-        (
-        '%'
-        ||
-        #{search.searchKeyword}
-        ||
-        '%'
-        )
-        ORDER
-        BY
-        deal_reg_date DESC
+        WHERE board_category = #{boardCategory}
+          AND deal_title LIKE ('%' || #{search.searchKeyword} || '%')
+        ORDER BY deal_reg_date DESC
     </sql>
 
 
@@ -195,31 +200,31 @@
             </if>
         </where>
     </select>
-    <!--    <select id="getListDeal" parameterType="map" resultMap="dealSelectMap">-->
-    <!--       	SELECT inner_table.* , ROWNUM AS row_seq-->
-    <!--        FROM		(	SELECT deal_board_num, deal_title, deal_text, user_id, deal_reg_date ,tag-->
-    <!--        FROM deal-->
-    <!--<if test="boardCategory !=0 ">-->
-    <!--    <where> board_category=#{boardCategory}</where>-->
-    <!--</if>-->
-    <!--        <if test="searchCondition != null">-->
-    <!--            <where>-->
+<!--    <select id="getListDeal" parameterType="map" resultMap="dealSelectMap">-->
+<!--       	SELECT inner_table.* , ROWNUM AS row_seq-->
+<!--        FROM		(	SELECT deal_board_num, deal_title, deal_text, user_id, deal_reg_date ,tag-->
+<!--        FROM deal-->
+<!--<if test="boardCategory !=0 ">-->
+<!--    <where> board_category=#{boardCategory}</where>-->
+<!--</if>-->
+<!--        <if test="searchCondition != null">-->
+<!--            <where>-->
 
-    <!--                <if test="(searchCondition == 0 and searchKeyword !='' )">-->
-    <!--                    deal_title = #{searchKeyword}-->
-    <!--                </if>-->
-    <!--                <if test="(searchCondition == 1 and searchKeyword !='') ">-->
-    <!--                    tag = #{searchKeyword}-->
-    <!--                </if>-->
+<!--                <if test="(searchCondition == 0 and searchKeyword !='' )">-->
+<!--                    deal_title = #{searchKeyword}-->
+<!--                </if>-->
+<!--                <if test="(searchCondition == 1 and searchKeyword !='') ">-->
+<!--                    tag = #{searchKeyword}-->
+<!--                </if>-->
 
 
-    <!--            </where>-->
-    <!--        </if>-->
+<!--            </where>-->
+<!--        </if>-->
 
-    <!--        ORDER BY deal_board_num ) inner_table-->
-    <!--        WHERE ROWNUM >= 0-->
+<!--        ORDER BY deal_board_num ) inner_table-->
+<!--        WHERE ROWNUM >= 0-->
 
-    <!--    </select>-->
+<!--    </select>-->
 
     <select id="getTotalCount" parameterType="map" resultType="int">
         SELECT COUNT(*) FROM (
@@ -227,25 +232,25 @@
         )
     </select>
 
-    <!--    WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum}-->
+<!--    WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum}-->
 
 
-    <!--  <select  id="getTotalCount"  parameterType="search"	 resultType="int">
-          SELECT COUNT(*)
-          FROM(	SELECT deal_board_num,deal_title,deal_text
-          FROM deal
-          <if test="searchCondition != null">
-              <where>
-                  <if test="searchCondition == 0 and searchKeyword !='' ">
-                      deal_board_num= to_char(#{searchKeyword})
-                  </if>
-                  <if test="searchCondition == 1 and searchKeyword !='' ">
-                      tag = ${searchKeyword}
-                  </if>
-              </where>
-          </if> ) countTable
-      </select>
-  -->
+  <!--  <select  id="getTotalCount"  parameterType="search"	 resultType="int">
+        SELECT COUNT(*)
+        FROM(	SELECT deal_board_num,deal_title,deal_text
+        FROM deal
+        <if test="searchCondition != null">
+            <where>
+                <if test="searchCondition == 0 and searchKeyword !='' ">
+                    deal_board_num= to_char(#{searchKeyword})
+                </if>
+                <if test="searchCondition == 1 and searchKeyword !='' ">
+                    tag = ${searchKeyword}
+                </if>
+            </where>
+        </if> ) countTable
+    </select>
+-->
     <select id="getUserId" resultType="com.project.domain.Deal">
 
         select user_id, review, review_pt
@@ -281,13 +286,26 @@
         </set>
         WHERE deal_board_num = #{dealBoardNum}
     </update>
+    <!--조회수-->
+    <update id="updateViewCount" parameterType="map">
+        update DEAL
+        <set>
+            view_count=#{viewCount}+1
+        </set>
+        <where>deal_board_num=#{dealBoardNum:NUMERIC}</where>
+    </update>
 
+    <select id="getViewCount" parameterType="map" resultType="int">
+        SELECT view_count
+            FROM deal
+            WHERE deal_board_num = #{dealBoardNum}
+
+
+    </select>
     <select id="getListDealCalender" parameterType="String" resultMap="dealSelectMap">
-        SELECT *
-        FROM DEAL
-        where deal_id = '${user}'
-           or user_id = '${user}'
-            and DEAL_MODE_CHECK = '1'
+        SELECT * FROM DEAL
+        where deal_id = '${user}' or user_id = '${user}'
+        and DEAL_MODE_CHECK = '1'
     </select>
 
 
