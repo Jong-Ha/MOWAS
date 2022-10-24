@@ -357,4 +357,25 @@ public class ClubServiceImpl implements ClubService {
             clubDao.addVoter(voter);
         }
     }
+
+    @Override
+    public void addCalendarCluber(int clubCalendarNum, List<String> userIdList) {
+        for(String userId : userIdList){
+            Map<String, Object> map = new HashMap<>();
+            map.put("clubCalendarNum",clubCalendarNum);
+            map.put("userId",userId);
+            clubDao.addCalendarCluber(map);
+        }
+    }
+
+    @Override
+    public Map<String, Object> getListCluber(String userId) {
+       Map<String, Object> map = new HashMap<>();
+
+       List<CalendarCluber> list = clubDao.getListCluber(userId);
+
+       map.put("list", list);
+
+        return map;
+    }
 }

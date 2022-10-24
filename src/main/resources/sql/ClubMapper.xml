@@ -870,6 +870,24 @@
         WHERE club_master_board_num = #{clubMasterBoardNum}
     </select>
 
+    <!--clubService.addCalendarCluber-->
+    <!--모임 일정 참여자 등록-->
+    <insert id="addCalendarCluber" parameterType="map">
+        INSERT
+        INTO club_calendar_apply(club_calendar_apply_num,
+        club_calendar_num,
+        user_id,
+        apply_status,
+        user_image,
+        apply_date)
+        VALUES(seq_club_calendar_apply.NEXTVAL,
+        #{clubCalendarNum},
+        #{userId},
+               '1',
+        (SELECT user_image FROM users WHERE user_id = #{userId}),
+        SYSDATE)
+    </insert>
+
     <!--clubService.addClubCalendarApply-->
     <!--모임 일정 참여 신청-->
     <insert id="addClubCalendarApply" parameterType="map">
@@ -914,6 +932,7 @@
         </where>
         ORDER BY club_calendar_apply_num DESC
     </select>
+
 
     <!--clubService.updateClubCalendarApply-->
     <!--모임 일정 참여 신청 처리-->
@@ -1125,5 +1144,11 @@
         insert into voter(voter_num, vote_num, vote_item, user_id)
         VALUES (SEQ_VOTER.nextval, #{voteNum}, #{voteItem}, #{userId})
     </insert>
+
+
+    <select id="getListClubCluber" parameterType="String" resultMap="CalendarCluberResultMap">
+        SELECT * FROM CLUB_CALENDAR_APPLY
+        WHERE user_id = '${userId}'
+    </select>
 
 </mapper>

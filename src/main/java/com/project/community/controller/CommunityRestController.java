@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -232,10 +233,35 @@ public class CommunityRestController {
     }
 
     @RequestMapping(value = "addDealCalender", method = RequestMethod.POST)
-    public int addDealCalender(@RequestBody ClubCalendar calender ) {
-        System.out.println("일정 정보 : " +calender);
-        calendarService.addDealCalender(calender);
+    public int addDealCalender(@RequestBody Deal deal ) {
+
+        System.out.println("일정 정보 : " +deal);
+
+        deal.setDealModeCheck(1);
+
+
+        calendarService.addDealCalender(deal);
 
     return 0;
+    }
+
+    @RequestMapping(value = "getListDealCalender", method = RequestMethod.POST)
+    public List<Map<String, Object>> getListDealCalender(@RequestBody String userId) throws ParseException {
+
+
+        JSONParser parser = new JSONParser();
+
+        JSONObject jsonObj = (JSONObject) parser.parse(userId);
+
+        String user = (String) jsonObj.get("userId");
+
+        System.out.println("getlistDealcalender진입 : " + user);
+
+        List<Map<String, Object>> list = communityService.getListDealCalender(user);
+
+        System.out.println(list);
+
+        return list;
+
     }
 }

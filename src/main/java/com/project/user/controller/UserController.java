@@ -57,12 +57,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "addUser",method = RequestMethod.POST)
-    public String addUser(@ModelAttribute User user,@ModelAttribute UserInterList interList,
+    public String addUser(@ModelAttribute User user,
                           @RequestParam(value = "file") MultipartFile file,HttpSession session,
                           Model model) throws Exception{
         System.out.println("/user/addUser : POST 실행");
         System.out.println("user 값은 ? :"+user);
-        System.out.println("interList의 값은 ? :"+interList);
+
 
         if(Objects.requireNonNull(file.getContentType()).substring(0, file.getContentType().indexOf("/")).equals("image")) {
 
@@ -84,7 +84,7 @@ public class UserController {
             System.out.println("생성된 고유 문자열 " + uniqueName);
             System.out.println("확장자명 " + fileExtension);
 
-            String uploadLocation = uploadFolder + "\\" + uniqueName + fileRealName;
+            String uploadLocation = uploadFolder + "\\" + uniqueName + fileExtension;
             System.out.println("uploadLocation의 값 :" + uploadLocation);
 
             File saveFile = new File(uploadLocation);
@@ -96,7 +96,7 @@ public class UserController {
                 e.printStackTrace();
             }
 
-            String userImage = userImagePath+uniqueName+fileRealName;
+            String userImage = userImagePath+uniqueName+fileExtension;
             user.setUserImage(userImage);
             userService.addUser(user);
 
@@ -113,9 +113,23 @@ public class UserController {
         }
 
         System.out.println("/user/addUser : POST 종료");
-        return "forward:/view/user/interList.jsp";
+        return "forward:/view/user/addInterList.jsp";
     }
 
+    @RequestMapping(value = "updateSNSUserInfor",method = RequestMethod.POST)
+    public String updateSNSUserInfor(@ModelAttribute User user,
+                          HttpSession session) throws Exception{
+        System.out.println("/user/updateSNSUserInfor : POST 실행");
+        System.out.println("user 값은 ? :"+user);
+
+            userService.updateSNSUserInfor(user);
+
+            session.setAttribute("user", user);
+
+
+        System.out.println("/user/updateSNSUserInfor : POST 종료");
+        return "forward:/view/user/main.jsp";
+    }
 
     @RequestMapping(value = "getUser", method = RequestMethod.GET)
     public String getUser(@RequestParam("userId")String userId, Model model)throws Exception{
@@ -123,6 +137,29 @@ public class UserController {
         User user = userService.getUser(userId);
         model.addAttribute("user", user);
         return "forward:/view/user/getUserDetail.jsp";
+    }
+
+    @RequestMapping(value = "getMyId", method = RequestMethod.POST)
+    public String getMyId(@ModelAttribute User user,  Model model)throws Exception{
+        System.out.println("/user/getMyId : GET 실행");
+        System.out.println("getMyId의 user값 :"+user);
+
+            User findUser = userService.getMyId(user);
+
+        model.addAttribute("user", findUser);
+        return "forward:/view/user/getMyIdEnd.jsp";
+    }
+
+
+    @RequestMapping(value = "getMyPassword", method = RequestMethod.POST)
+    public String getMyPassword(@ModelAttribute User user, Model model)throws Exception{
+        System.out.println("/user/getMyPassword : POST 실행");
+        System.out.println("getMyPwd의 user값 :"+user);
+
+        User findPwd = userService.getMyPassword(user);
+
+        model.addAttribute("user", findPwd);
+        return "forward:/view/user/getMyPasswordEnd.jsp";
     }
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
@@ -262,80 +299,24 @@ public class UserController {
         return "forward:/view/user/userPhoto.jsp";
     }
 
-    @RequestMapping(value = "mailSender",method = RequestMethod.POST)
-    public void mailSender(HttpServletRequest request, Model model,@RequestParam(value="email", required = false)String email) throws AddressException, MessagingException {
-
-        System.out.println("여기는 mailSender 컨트롤러 시작이다");
-        System.out.println("email의 값은? : "+email);
-
-        // 네이버일 경우 smtp.naver.com 을 입력합니다.
-        // Google일 경우 smtp.gmail.com 을 입력합니다.
-        String host = "smtp.gmail.com";
-
-        final String username = "gmltjs6550";       //네이버 아이디를 입력해주세요. @nave.com은 입력하지 마시구요.
-        final String password = "fbbetmkwbszeacug";  //네이버 이메일 비밀번호를 입력해주세요.
-        int port=465; //포트번호
-
-//        Random rand = new Random();
-//        String emailNo="";
-//        for(int i=0;i<4;i++){
-//            String ran = Integer.toString(rand.nextInt(10));
-//            emailNo += ran;
-//        }
-//        System.out.println("emailNo의 값은 ::::: "+emailNo);
-
-        // 메일 내용
-        String recipient = email;    //받는 사람의 메일주소를 입력해주세요.
-        String subject = "MOWAS 이메일 인증코드입니다"; 	  //메일 제목 입력해주세요.
-        String body = "MOWAS님으로 부터 메일을 받았습니다. " +
-                "인증번호는 [1234]입니다"; //메일 내용 입력해주세요.
-
-        Properties props = System.getProperties(); // 정보를 담기 위한 객체 생성
-
-        // SMTP 서버 정보 설정(구글 smtp서버 설정하기)
-        props.put("mail.smtp.host", host);
-        props.put("mail.smtp.port", port);
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.ssl.enable", "true");
-        props.put("mail.smtp.ssl.trust", host);
-
-        //Session 생성
-        Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
-            String un=username;
-            String pw=password;
-            //인증서버를 만드는 코드이다
-            protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
-                return new javax.mail.PasswordAuthentication(un, pw);
-            }
-        });
-        session.setDebug(true); //for debug
-
-        Message mimeMessage = new MimeMessage(session); //MimeMessage 생성
-        mimeMessage.setFrom(new InternetAddress("gmltjs6550@gmail.com")); //발신자 셋팅 , 보내는 사람의 이메일주소를 한번 더 입력합니다. 이때는 이메일 풀 주소를 다 작성해주세요.
-        mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient)); //수신자셋팅 //.TO 외에 .CC(참조) .BCC(숨은참조) 도 있음
-
-
-        mimeMessage.setSubject(subject);  //제목셋팅
-        mimeMessage.setText(body);        //내용셋팅
-        Transport.send(mimeMessage); //javax.mail.Transport.send() 이용
-
-       //model.addAttribute("no",emailNo);
-        System.out.println("여기는 mailSender 컨트롤러 종료이다");
-    }
-
-
     @RequestMapping(value="kakaoLogin", method=RequestMethod.GET)
-    public String kakaoLogin(@RequestParam(value = "code", required = false) String code) throws Exception {
+    public String kakaoLogin(@RequestParam(value = "code", required = false) String code,
+                             HttpSession session, Model model) throws Exception {
         System.out.println("#########" + code);
         String access_Token = userService.getAccessToken(code);
 
-        HashMap<String, Object> userInfo = userService.getUserInfo(access_Token);
+        User userInfo = userService.getUserInfo(access_Token);
         System.out.println("###access_Token#### : " + access_Token);
-        System.out.println("###email#### : " + userInfo.get("email"));
-        System.out.println("###userImage#### : " + userInfo.get("userImage"));
-        System.out.println("###gender#### : " + userInfo.get("gender"));
+        System.out.println("###email#### : " + userInfo.getEmail());
+        System.out.println("###userImage#### : " + userInfo.getUserImage());
+        System.out.println("###gender#### : " + userInfo.getGender());
+        System.out.println("###userId#### : " + userInfo.getUserId());
 
-        return "forward:/view/user/main.jsp";
+        User kakaoUser =  userService.getUser(userInfo.getUserId());
+        session.setAttribute("user", kakaoUser);
+        model.addAttribute("kakaoUser", kakaoUser);
+
+        return "forward:/view/user/updateSNSUserInfor.jsp";
     }
 
     @RequestMapping(value="callBack", method=RequestMethod.GET)

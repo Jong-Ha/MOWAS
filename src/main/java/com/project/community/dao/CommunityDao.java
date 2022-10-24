@@ -1,9 +1,6 @@
 package com.project.community.dao;
 
-import com.project.domain.ClubCalendar;
-import com.project.domain.Comment;
-import com.project.domain.Recomment;
-import com.project.domain.VilBoard;
+import com.project.domain.*;
 
 import java.util.List;
 import java.util.Map;
@@ -54,4 +51,12 @@ public interface CommunityDao {
     void updateVillBoard(VilBoard vilBoard);
 
     void deleteBoard(Map<String, Object> map);
+
+    List<Deal> getListDealCalender(String userId);
+
+    void deleteAllRecomment(int commentNum);
+
+    void deleteAllComment(Map<String, Object> map);
+
+    void deleteAllLike(Map<String, Object> map);
 }

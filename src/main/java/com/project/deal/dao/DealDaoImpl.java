@@ -87,4 +87,15 @@ sqlSession.delete("DealMapper.deleteDeal", dealBoardNum);
         System.out.println("dealDao get reViewPt"+deal);
         return sqlSession.selectOne("DealMapper.getReviewPt",deal);
     }
+    @Override
+    public int getViewCount(Map<String, Object> map) {
+        return sqlSession.selectOne("DealMapper.getViewCount", map);
+    }
+    @Override
+    public void updateViewCount(Map<String,Object> map) {
+        System.out.println(map);
+        sqlSession.update("DealMapper.updateViewCount", map);
+    }
+
+
 }

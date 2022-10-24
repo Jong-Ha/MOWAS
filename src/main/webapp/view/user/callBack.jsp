@@ -14,7 +14,7 @@
 <script>
   var naverLogin = new naver.LoginWithNaverId({
     clientId: "LVp6wWTSWO4roaPEeGxT", // 본인걸로 수정, 띄어쓰기 금지.
-    callbackUrl: "http://localhost:8080/user/callBack", // 아무거나 설정
+    callbackUrl: "http://192.168.0.235:8080/user/callBack", // 아무거나 설정
     isPopup: false,
     callbackHandle: true
   });
@@ -45,10 +45,10 @@
           success: function(result) {
             if(result=='ok') {
               console.log('성공')
-              location.replace("http://localhost:8080/view/user/main.jsp")
+              location.replace("http://192.168.0.235:8080/view/user/updateSNSUserInfor.jsp")
             } else if(result=='no') {
               console.log('실패')
-              location.replace("http://localhost:8080/user/json/naverSave")
+              location.replace("http://192.168.0.235:8080/user/json/naverSave")
             }
           },
           error: function(result) {

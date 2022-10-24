@@ -45,8 +45,10 @@
     <!--  ///////////////////////// JavaScript ////////////////////////// -->
     <script type="text/javascript">
 
+
         //============= 회원정보수정 Event  처리 =============
         $(function () {
+
 
             $(".submit").on("click", function () {
 
@@ -59,6 +61,17 @@
                 var noticeTime = $(".noticeTime").val()
                 var calendarApplyCheck = $(".calendarApplyCheck").val()
                 var applyAutoCheck = $(".applyAutoCheck").val()
+                var boardCategory = '05';
+
+                var clubers = $(".clubers")
+
+                var cluber = new Array();
+
+                    $.each(clubers , function (index, item) {
+                        cluber.push($(item).val());
+                    })
+
+                console.log(cluber)
 
                 $.ajax({
                     url: "/clubCal/json/addClubCalender",
@@ -73,15 +86,17 @@
                         "noticeTime": noticeTime,
                         "calendarApplyCheck": calendarApplyCheck,
                         "applyAutoCheck": applyAutoCheck
+
                     }),
                     dataType: "json",
                     contentType: "application/json; charset=UTF-8",
                     success: function (JSONData, result) {
-                        alert(result);
+                        // 등록에 성공하면 해당 boardNum을 return 해서 출력 하고 변수에 등록
                         console.log(JSONData);
+
                         var boardNum = JSONData
 
-                        var file = $("#file").length
+                        var file = ("#file").length
 
                         if (file > 0) {
 
@@ -102,6 +117,8 @@
                                 //파일이 잘 들어 갔는지 확인
                                 console.log(fileSize[i]);
                             }
+
+                            console.log(formData);
                             //formData에 들어 있는 boardNum과 file의 정보를 비동기식으로 보냄
                             //파일은 json형식으로 보낼수 없기 떄문에 contentType, processData, dataType을 false로 지정
                             $.ajax({
@@ -120,6 +137,22 @@
                                 }
                             })
                         }
+
+                        $.ajax({
+                            url : "/clubCal/json/addCluber",
+                            method: "post",
+                            data: JSON.stringify({
+                                "cluberList" : cluber,
+                                "clubCalenderNum" : boardNum
+                            }),
+                            dataType: "json",
+                            contentType: "application/json; charset=UTF-8",
+                            success: function (JSONData, result) {
+
+                            }
+
+                        })
+
                         console.log(result);
                         // 성공시 해당 창을 닫고 부모창을 reload
                         Swal.fire({
@@ -152,6 +185,13 @@
 
             });
 
+            $(".calenderCluber").on("click", function () {
+                window.open(
+                    "/clubCal/addCalenderCluber?clubNum=${club.clubNum}" , '_blnk'
+                    , "top=200, width=200px, height=700px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no")
+
+            });
+
 
             $(".close").on("click", function () {
                 window.close();
@@ -159,8 +199,7 @@
 
             const date = new Date();
            if($(".clubDate").val() > date.toString());
-        });
-
+        })
 
 
 
@@ -228,11 +267,20 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-2 ">
                     <strong>파일
-                        <input type="file" multiple name="file" value="파일 첨부">
+                        <input type="file" multiple id="file" name="file" value="파일 첨부">
                     </strong>
                 </div>
             </div>
+
             <hr/>
+
+            <div class="row">
+                <div class="col-xs-4 col-xs-2 ">
+                    <strong>모임 인원 추가 하기
+                        <input type="button" class="calenderCluber" value="모임원 추가">
+                    </strong>
+                </div>
+            </div>
 
 
 

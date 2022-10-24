@@ -28,11 +28,10 @@ public class ChatController {
 
         if (! boardNum.equals("0")){
 
-            System.out.println("싱행  : " + boardNum);
-
             model.addAttribute("boardNum", boardNum);
 
         }
+
         System.out.println( chatNameSpace );
 
         return "/chat/getChat.jsp";

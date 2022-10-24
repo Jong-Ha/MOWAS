@@ -88,9 +88,6 @@
 
                         if (file > 0) {
 
-
-
-
                             //form 테그를 불러와서 form변수에 등록
                             var form = document.querySelector("form");
                             //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다

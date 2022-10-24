@@ -81,7 +81,7 @@
 
                         console.log(JSONData);
 
-                        var boardNum = JSONData
+                        var boardNum = villBoardNum
 
                         if (file > 0) {
 
@@ -105,7 +105,7 @@
                             //formData에 들어 있는 boardNum과 file의 정보를 비동기식으로 보냄
                             //파일은 json형식으로 보낼수 없기 떄문에 contentType, processData, dataType을 false로 지정
                             $.ajax({
-                                url: "/clubCal/json/fileUpload",
+                                url: "/clubCal/json/fileUpdate",
                                 type: "post",
                                 processData: false,
                                 contentType: false,
