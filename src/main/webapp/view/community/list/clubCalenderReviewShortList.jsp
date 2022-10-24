@@ -19,7 +19,8 @@
 
 <script type="text/javascript">
     $(function () {
-
+        var boardCategory = $(".boardCategory").val()
+        var userId = $(".userId").val()
 
         $(".add").on("click", function () {
             window.open("/view/community/add/addClubCalenderReviewShort.jsp", "모임 일정 후기글 작성",
@@ -27,19 +28,40 @@
         });
 
         $(".update").on("click", function () {
+
             var boardNum = $(this).parents(".cardbox").find(".boardNum").val();
-            var boardCategory = $(".boardCategory").val();
+
             console.log(boardNum);
 
-            window.open(
-                "/clubCal/updateClubCalenderReview?clubCalenderReviewNum=" + boardNum + "&boardCategory=" + boardCategory, "모임 일정 후기글 수정",
-                "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no"
-            )
+
+            $.ajax({
+                url: "/clubCal/json/getClubCalenderReview",
+                method : "post",
+                dataType: "json",
+                contentType: 'application/json; charset=UTF-8',
+                data: JSON.stringify({
+                    "clubCalenderReviewNum" : boardNum
+                }),
+                success : function (JSONData, result) {
+
+                    var clubCalender = JSONData.clubCalender;
+
+                    $(".reviewTitle").val(clubCalender.reviewTitle);
+                    $(".reviewRange").val(clubCalender.reviewRange);
+                    $(".clubDate").val(clubCalender.clubDate);
+                    $(".clubCalenderReviewNum").val(clubCalender.clubCalenderReviewNum);
+                    $(".file").val(clubCalender.file.fileName)
+
+
+                }
+
+            })
+
         });
 
         $(".delete").on("click", function () {
             var boardNum = $(this).parents(".cardbox").find(".boardNum").val();
-            var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val()
+
 
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
@@ -77,15 +99,13 @@
                 }
             })
         });
-    });
 
-    $(function () {
 
 
         /*좋아요*/
         $(".likeButton").on("click", function () {
 
-            var userId = $(".userId").val()
+
 
             if (userId === '' || userId === null) {
                 alert("로그인후 사용해 주세요")
@@ -116,6 +136,104 @@
 
             }
         });
+
+
+        $(".submit").on("click", function () {
+
+            var clubCalenderReviewNum = $(".clubCalenderReviewNum").val();
+            var boardCategory = $(".boardCategory").val();
+            var reviewTitle = $(".reviewTitle").val();
+            var reviewRange = $(".reviewRange").val();
+
+
+            $.ajax({
+                url: "/clubCal/json/updateClubCalenderReview",
+                method: "post",
+                data: JSON.stringify({
+                    "clubCalenderReviewNum": clubCalenderReviewNum,
+                    "boardCategory": boardCategory,
+                    "reviewTitle": reviewTitle,
+                    "reviewRange": reviewRange,
+                }),
+                dataType: "json",
+                contentType: 'application/json; charset=UTF-8',
+                success: function (JSONData, result) {
+
+                    console.log(JSONData);
+
+                    var boardNum = clubCalenderReviewNum
+
+                    var file = $("#file").length;
+
+                    if (file > 0) {
+
+                        //form 테그를 불러와서 form변수에 등록
+                        var form = document.querySelector("form");
+                        //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
+                        var formData = new FormData(form);
+                        //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
+                        var fileSize = $("#file")[0].files;
+                        console.log(fileSize.length);
+                        //formData에 해당 게시글 번호, 게시글 category append
+                        formData.append("boardNum", boardNum);
+                        formData.append("boardCategoru", boardCategory);
+
+                        //file길이 만큼 for문으로 formData에 append함
+                        for (var i = 0; i < fileSize.length; i++) {
+                            formData.append("form", fileSize[i]);
+                            //파일이 잘 들어 갔는지 확인
+                            console.log(fileSize[i]);
+                        }
+                        //formData에 들어 있는 boardNum과 file의 정보를 비동기식으로 보냄
+                        //파일은 json형식으로 보낼수 없기 떄문에 contentType, processData, dataType을 false로 지정
+                        $.ajax({
+                            url: "/clubCal/json/fileUpdate",
+                            type: "post",
+                            processData: false,
+                            contentType: false,
+                            cache: false,
+                            timeout: 600000,
+                            data: formData,
+                            headers: {'cache-control': 'no-cache', 'pragma': 'no-cache'},
+                            enctype: "multipart/form-data",
+                            success: function (result) {
+
+                                console.log(result);
+
+                            }
+                        })
+                    }
+                    // 성공시 해당 창을 닫고 부모창을 reload
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Your work has been saved',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    setTimeout(function () {
+                        window.location.reload()
+                    }, 2000);
+                    //error 발생시 그냥 창을 닫음
+                }, error: function () {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Your work has been saved',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    setTimeout(function () {
+                        window.location.reload()
+                    }, 2000);
+
+                }
+            });
+
+        });
+
+
     });
 
 
@@ -243,7 +361,7 @@
                             </button>
 
                             <c:if test="${user.userId eq ClubCalendarReview.userId}">
-                                <button type="button" class="btn btn-outline-primary itembutton update">수정</button>
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-primary itembutton update">수정</button>
                                 <button type="button" class="btn btn-outline-secondary itembutton delete">삭제</button>
                             </c:if>
                         </h5>
@@ -256,6 +374,69 @@
         </div>
     </c:forEach>
 </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+
+    <input name="clubCalenderReviewNum" class="clubCalenderReviewNum" hidden  value="">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"> 모임 일정 후기글 수정 </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control reviewTitle" id="recipient-name" value="" placeholder="asdasd">
+                        <label for="recipient-name" >제 목</label>
+                    </div>
+
+
+                    <div class="form-floating mb-3">
+
+                        <select class="form-select reviewRange" name="reviewRange" id="floatingSelect">
+                            <option selected>공개 여부를 선택 하세요</option>
+                            <option value="1">전체 공개</option>
+                            <option value="2">모임 공개</option>
+                        </select>
+
+                        <label for="floatingSelect">공개 여부</label>
+
+
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="file" id="file" class="form-control file" multiple  value="파일 첨부">
+                    </div>
+
+                    <div class="form-floating mb-3">
+
+                        <input type="date" class="form-control clubDate" id="date-text" value="" placeholder="asdasd"/>
+                        <label for="date-text">모임 일정 날짜</label>
+
+                    </div>
+
+                    <div class="input-group mb-3">
+
+                        <input type="button"  class="form-control"   value="위치 선택">
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                <button type="button" class="btn btn-primary submit">수정</button>
+
+            </div>
+        </div>
+    </div>
+
+
 
 <jsp:include page="/layout/chatIcon.jsp"/>
 

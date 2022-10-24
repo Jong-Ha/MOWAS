@@ -9,6 +9,10 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <title>Document</title>
     <script>
 
@@ -289,6 +293,56 @@
         </form>
     </div>
 </div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true"
+     style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input type="hidden" class="dealNum" value="">
+                <h1 class="modal-title fs-5" id="exampleModalLabel4"> 모임 일정 후기글 쇼츠 작성 </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form id="fileForm4">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control dealCalenderTitle" id="recipient-name" value=""
+                               placeholder="asdasd">
+                        <label for="recipient-name">제 목</label>
+                    </div>
+
+
+                    <div class="form-floating mb-3">
+
+                        <input type="date" class="form-control dealDate" id="date-text" value="" placeholder="asdasd"/>
+                        <label for="date-text">모임 일정 날짜</label>
+
+                    </div>
+
+                    <div class="input-group mb-3">
+
+                        <input type="text" class="form-control dealLocation" value="위치 선택">
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="modal-footer" style=" justify-content:center;">
+
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                <button type="button" class="btn btn-primary dealSubmit">등록</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <!--html이 로드된후 soket과 연결 하기 위해-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.2/socket.io.js"
         integrity="sha512-VJ6+sp2E5rFQk05caiXXzQd1wBABpjEj1r5kMiLmGAAgwPItw1YpqsCCBtq8Yr1x6C49/mTpRdXtq8O2RcZhlQ=="
@@ -343,6 +397,7 @@
     const displayContainer = document.querySelector(".display-container");
 
     $(function () {
+
         console.log('${chatNameSpace}');
         console.log('${boardNum}');
         //app.js에 있는 io상수를 socket상수에 담는다
@@ -412,25 +467,87 @@
 
             console.log(date);
 
-            window.open("/commu/addDealCalender?boardNum=" + date, "거래 일정 등록",
-                "top=100, width=550px, height=500px, marginwidth=0, marginheight=0, marginright:100px; scrollbars=no, scrolling=no, menubar=no, resizable=no")
-
+            $(".dealNum").val(date);
 
         })
 
 
         $(".dealCalender").on("click", () => {
 
-
             socket.emit('getboardNum', () => {
+
             })
 
-            alert("거래 일정 입장")
+            const modal = new bootstrap.Modal('#exampleModal', {})
+            modal.show();
 
         })
 
 
+        $(".dealSubmit").on("click", function () {
+
+            var dealBoardNum = $(".dealNum").val()
+            var dealCalenderTitle = $(".dealCalenderTitle").val()
+            var dealDate = $(".dealDate").val()
+            var dealLocation = $(".dealLocation").val()
+
+            console.log(dealBoardNum)
+            console.log(dealCalenderTitle)
+            console.log(dealDate)
+            console.log(dealLocation)
+
+            $.ajax({
+                url: "/commu/json/addDealCalender",
+                method: "post",
+                data: JSON.stringify({
+                    "dealBoardNum": dealBoardNum,
+                    "dealCalenderTitle": dealCalenderTitle,
+                    "dealDate": dealDate,
+                    "dealLocation": dealLocation,
+                    "dealId": '${user.userId}'
+
+                }),
+
+                dataType: "json",
+                contentType: "application/json; charset=UTF-8",
+                success: function (JSONData, result) {
+
+                    console.log(result);
+                    // 성공시 해당 창을 닫고 부모창을 reload
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Your work has been saved',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    setTimeout(function () {
+                        window.open("/view/community/list/dealCalender.jsp", "거래 일정",
+                            "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no")
+                        window.location.reload()
+                    }, 2000);
+                    //error 발생시 그냥 창을 닫음
+                }, error: function () {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Your work has been saved',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    setTimeout(function () {
+                        window.location.reload()
+                    }, 2000);
+
+                }
+            });
+
+        });
+
+
     })
+
 
     function sendMessage(socket) {
         if (chatInput.value === '') {
