@@ -14,8 +14,8 @@ public class ClubBlacklist {
     }
 
     private User user;
-    private String BlacklistCheck;
+    private String blacklistCheck;
     private int clubNum;
-    private String BlacklistText;
-    private Date BlacklistDate;
+    private String blacklistText;
+    private Date blacklistDate;
 }

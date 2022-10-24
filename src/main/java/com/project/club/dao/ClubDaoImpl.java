@@ -247,6 +247,11 @@ public class ClubDaoImpl implements ClubDao {
     }
 
     @Override
+    public Cluber getBlackCluber(Map<String, Object> map) {
+        return sqlSession.selectOne("ClubMapper.getBlackCluber", map);
+    }
+
+    @Override
     public Cluber getCluber(int clubUserNum) {
         return sqlSession.selectOne("ClubMapper.getCluber", clubUserNum);
     }

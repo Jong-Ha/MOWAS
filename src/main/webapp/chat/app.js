@@ -45,7 +45,7 @@ const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://192.168.0.13:27017/');
 
-var db = mongoose.connection;
+const db = mongoose.connection;
 
 db.on('error', function () {
     console.log('연동 실패');
@@ -76,7 +76,7 @@ const port = process.env.port || 5000
     console.log("연결 완료")*/
 
 //moongoDB에 Schema 생성
-var room = mongoose.Schema({
+const room = mongoose.Schema({
     users: [{userId: 'string', regDate: 'number'}],
     roomId: 'string',
     chatCategory: 'string',
@@ -85,7 +85,7 @@ var room = mongoose.Schema({
 });
 
 //moongoDB에 Schema 생성
-var msg = mongoose.Schema({
+const msg = mongoose.Schema({
     userId: ['string'],
     roomId: 'string',
     chatCategory: 'string',
@@ -116,15 +116,44 @@ chatlist.on('connection', (socket) => {
 
     Room.find({'users.userId': userId, chatCategory: chatCategory}, function (error, room) {
 
+        // if (error) {
+        //     // console.log(error);
+        // } else {
+        //     chatlist.to(socket.id).emit("list", room);
+        //     // var rs = []
+        //     for (let i = 0; i < room.length; i++) {
+        //         // console.log(room[i].roomId);
+        //         Msg.find({'roomId': room[i].roomId}, function (error, msg) {
+        //             // console.log("마지막 매시지 : " + msg);
+        //             /*     var r1 = JSON.stringify(room[i]);
+        //                  var r2 = JSON.parse(r1);
+        //
+        //                  r2.msg = msg[0];
+        //                  rs.push(r2);*/
+        //             // console.log("list로 보낼 data : " + rs);
+        //             // console.log("list로 보낼 data : " + rs);
+        //             // chatlist.emit("list", rs);
+        //
+        //             chatlist.emit("msg", msg);
+        //
+        //         }).sort({_id: -1}).limit(1)
+        //
+        //
+        //     }
+        //
+        // }
+
         if (error) {
             // console.log(error);
         } else {
             chatlist.to(socket.id).emit("list", room);
             // var rs = []
-            for (let i = 0; i < room.length; i++) {
+
+            room.forEach(function(el, i){
                 // console.log(room[i].roomId);
-                Msg.find({'roomId': room[i].roomId}, function (error, msg) {
-                    // console.log("마지막 매시지 : " + msg);
+                Msg.find({'roomId': el.roomId}, function (error, msg) {
+                    console.log("=====================================================");
+                    console.log(msg);
                     /*     var r1 = JSON.stringify(room[i]);
                          var r2 = JSON.parse(r1);
 
@@ -139,7 +168,7 @@ chatlist.on('connection', (socket) => {
                 }).sort({_id: -1}).limit(1)
 
 
-            }
+            })
 
         }
 
@@ -218,6 +247,7 @@ onebyone.on('connection', (socket) => {
 
             // 서버가 현재 접속해 있는 모든 클라이언트에게 data를 전달 한다
             onebyone.to(roomId).emit("chatting", newMsg);
+            chatlist.emit("msg", [newMsg]);
 
             //데이터를 저장
             newMsg.save((error, data, res) => {
@@ -333,7 +363,8 @@ dealChat.on('connection', (socket) => {
                 rtime: moment(new Date())
             });
 
-            dealChat.to(roomId).emit("chatting", newMsg);
+            dealChat.to(roomId).emit("chatting", [newMsg]);
+            chatlist.emit("msg", newMsg);
 
             //데이터를 저장
             newMsg.save((error, data, res) => {

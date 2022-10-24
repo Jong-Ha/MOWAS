@@ -22,10 +22,11 @@
     <link href="/resources/club/css/getClub.css" rel="stylesheet" type="text/css"/>
 </head>
 <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
-<input hidden class="boardNum" value="${club.clubNum}">
-<input hidden class="cluberStatus" value="${currentCluber.cluberStatus}">
-<input hidden class="userId" value="${user.userId}">
-<input hidden class="userImage" value="${user.userImage}">
+<input type="hidden" class="boardNum" value="${club.clubNum}">
+<input type="hidden" class="cluberStatus" value="${currentCluber.cluberStatus}">
+<input type="hidden" class="userId" value="${user.userId}">
+<input type="hidden" class="userImage" value="${user.userImage}">
+<input type="hidden" class="clubUserNum" value="${currentCluber.clubUserNum}">
 
 <%--상단 툴바--%>
 <jsp:include page="/layout/toolbar.jsp"/>
@@ -51,7 +52,7 @@
     <p>${club.clubText}</p>
 
 
-    <div class="clubinfo" style="display: flex;">
+    <div class="clubInfo" style="display: flex;">
 
         <div class="clubInfoLeft">
 
@@ -87,7 +88,8 @@
                     </div>
                     <div class="col-4">
                         <c:if test="${currentCluber.cluberStatus=='4'||currentCluber.cluberStatus=='5'||currentCluber.cluberStatus=='6'}">
-                            <button type="button" class="btn btn-primary font listCluber">모임원 목록</button>
+                            <button type="button" class="btn btn-primary font listCluber" data-bs-toggle="modal" data-bs-target="#listCluber">모임원 목록</button>
+                            <input type="hidden" class="btn btn-primary font listClubergg" data-bs-toggle="modal" data-bs-target="#listCluber"/>
                         </c:if>
                     </div>
                 </div>
@@ -169,7 +171,7 @@
             </button>
         </c:if>
         <c:if test="${currentCluber.cluberStatus=='4'||currentCluber.cluberStatus=='5'||currentCluber.cluberStatus=='6'}">
-            <button class="btn btn-primary deleteCluber" data-bs-toggle="modal" data-bs-target="#deleteCluber">
+            <button class="btn btn-primary deleteCluberView" data-bs-toggle="modal" data-bs-target="#deleteCluber">
                 모임 탈퇴
             </button>
         </c:if>
@@ -204,7 +206,7 @@
                         </div>
                         <div class="modal-body">
                             <form id="updateClubForm" enctype="multipart/form-data">
-                                <input hidden name="clubNum" value="${club.clubNum}">
+                                <input type="hidden" name="clubNum" value="${club.clubNum}">
                                 <input type="hidden" name="deleteFileName" value="${club.clubImage}" disabled>
                                 <div class="input-group mb-3">
                                     <div class="form-floating">
@@ -265,8 +267,7 @@
 
                                 <div class="input-group mb-3">
                                     <div class="form-floating">
-                                        <input type="text" class="tagify shadow-lg" id="clubTag"
-                                               style="border-radius: 7px;"
+                                        <input type="text" class="tagify shadow-lg" id="clubTag" style="border-radius: 7px;"
                                                placeholder="태그 : Enter!">
                                         <label for="clubTag" style="display: none">태그 : Enter!</label>
                                         <c:forEach items="${tagList}" var="tag">
@@ -286,8 +287,8 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary updateClub" style="margin-right: 185px">모임 수정
+                        <div class="modal-footer" style="display: block">
+                            <button type="button" class="btn btn-primary updateClub">모임 수정
                             </button>
                         </div>
                     </div>
@@ -357,6 +358,72 @@
     </div>
     </c:if>
     <%--모임 가입 신청 모달창 끝--%>
+
+    <%--모임 탈퇴 모달창 시작--%>
+    <c:if test="${currentCluber.cluberStatus!='6'}">
+        <div class="modal fade" id="deleteCluber" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                </div>
+            </div>
+        </div>
+    </c:if>
+    <%--모임 탈퇴 신청 모달창 끝--%>
+
+    <%--모임원 목록 조회 모달창 시작--%>
+    <div class="modal fade listCluberModal" id="listCluber" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+    <%--모임원 목록 조회 모달창 끝--%>
+
+    <%--모임원 목록 조회 모달창 시작--%>
+    <div class="modal fade listCluberModal" id="listCluberOut" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+    <%--모임원 목록 조회 모달창 끝--%>
+
+    <%--getCluber 모달창 시작--%>
+        <div class="modal fade" id="getCluber" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                </div>
+            </div>
+        </div>
+    <%--getCluber 신청 모달창 끝--%>
+
+    <%--listCluberApply 모달창 시작--%>
+    <div class="modal fade" id="listCluberApply" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+    <%--listCluberApply 신청 모달창 끝--%>
+
+    <%--listClubBlacklist 모달창 시작--%>
+    <div class="modal fade" id="listClubBlacklist" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+    <%--listClubBlacklist 신청 모달창 끝--%>
+
+    <%--addClubBlacklist 모달창 시작--%>
+    <div class="modal fade" id="addClubBlacklist" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+    <%--addClubBlacklist 신청 모달창 끝--%>
+
 
 </div>
 </body>
