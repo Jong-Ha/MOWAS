@@ -35,12 +35,10 @@ $(function (){
     $("#getMyPpt").on("click",function (){
         self.location="/myPage/getMyPpt?userId="+userId;
     });
-    $("#getMyNotice").on("click",function (){
-        self.location="/myPage/getMyNotice?userId="+userId;
-    });
-    $("#getMyCalendar").on("click",function (){
-        self.location="/myPage/getMyCalendar?userId="+userId;
-    });
+    // $("#getMyNotice").on("click",function (){
+    //     self.location="/myPage/getMyNotice?userId="+userId;
+    // });
+
 
     $(".aaa").on("click", function (){
      var userPhoto = $(".userPhoto1").val();
@@ -94,7 +92,9 @@ $(function () {
     <input type="hidden" class="userPhoto3" value="${user.userImage}">
 </span>
 </c:if>
+<c:if test="${user.userId=='admin'}">
 <button type="button" class="listUser" id="listUser">회원목록조회</button>
+</c:if>
 <button type="button" class="getMyInfor" id="getMyInfor">내 정보 보기</button>
 <button type="button" class="getMyBoard" id="getMyBoard">작성글</button>
 <button type="button" class="getMyComment" id="getMyComment">작성 댓글, 대댓글</button>
@@ -103,8 +103,8 @@ $(function () {
 <button type="button" class="getMyDeal" id="getMyDeal">거래</button>
 <button type="button" class="getMyReport" id="getMyReport">신고</button>
 <button type="button" class="getMyPpt" id="getMyPpt">벌점</button>
-<button type="button" class="getMyNotice" id="getMyNotice">알림</button>
-<button type="button" class="getMyCalendar" id="getMyCalendar">일정</button>
+<!--<button type="button" class="getMyNotice" id="getMyNotice">알림</button>-->
+
 
 <input type="hidden" id="userId" name="userId" value="${user.userId}">
 

@@ -57,6 +57,26 @@ public class UserDaoImpl implements UserDao{
         return sqlSession.selectOne("UserMapper.getUser2", email);
     }
 
+    public User getMyId(User user)throws Exception{
+       if(user.getEmail()!="" || user.getPhone().equals("") ) {
+            return sqlSession.selectOne("UserMapper.getMyIdEmail", user);
+        } else if(user.getPhone()!=null || user.getEmail()==null) {
+            return sqlSession.selectOne("UserMapper.getMyIdPhone", user);
+        }else {
+            return null;
+        }
+    }
+
+    public User getMyPassword(User user)throws Exception{
+        if(user.getEmail()!="" || user.getPhone().equals("") ) {
+            return sqlSession.selectOne("UserMapper.getMyPasswordEmail", user);
+        } else if(user.getPhone()!=null || user.getEmail()==null ) {
+            return sqlSession.selectOne("UserMapper.getMyPasswordPhone", user);
+        }else {
+            return null;
+        }
+    }
+
     public void addKakaoUser(User userInfo) {
         sqlSession.insert("UserMapper.addKakaoUser",userInfo);
     }
@@ -78,6 +98,8 @@ public class UserDaoImpl implements UserDao{
 
     public void updateUser(User user)throws Exception{
         sqlSession.update("UserMapper.updateUser", user);
+        sqlSession.update("UserMapper.updateClubUser", user);
+        sqlSession.update("UserMapper.updateClubCalendarApply", user);
     }
 
     public void updatePsd(User user)throws Exception{

@@ -79,6 +79,37 @@
         WHERE email=#{email} and LOGIN_TYPE='3'
     </select>
 
+    <select id="getMyIdEmail"    parameterType="user" resultMap="userSelectMap">
+        SELECT user_id
+        FROM users
+        WHERE user_name=#{userName} and email=#{email} and LOGIN_TYPE=#{loginType}
+    </select>
+
+    <select id="getMyIdPhone"    parameterType="user" resultMap="userSelectMap">
+        SELECT user_id
+        FROM users
+        WHERE  user_name=#{userName} and phone=#{phone} and LOGIN_TYPE=#{loginType}
+    </select>
+
+    <select id="getMyPasswordEmail"    parameterType="user" resultMap="userSelectMap">
+        SELECT password
+        FROM users
+        WHERE user_id=#{userId} and email=#{email}
+    </select>
+
+    <select id="getMyPasswordPhone"    parameterType="user" resultMap="userSelectMap">
+        SELECT password
+        FROM users
+        WHERE user_id=#{userId} and phone=#{phone}
+    </select>
+
+    <select id="getMyPassword"    parameterType="user" resultMap="userSelectMap">
+        SELECT user_id, master_check, user_status, password, user_name, gender, email,
+               phone, vill_code, user_image, lcd, login_check, psd, ped, ppt, review_pt, login_type
+        FROM users
+        WHERE email=#{email} and LOGIN_TYPE='3'
+    </select>
+
     <select id="getUserEmail"    parameterType="String" resultMap="userSelectMap">
         SELECT email
         FROM users
@@ -118,6 +149,22 @@
             email = #{email:VARCHAR},
             phone = #{phone:VARCHAR},
             vill_code = #{villCode:VARCHAR},
+            user_image = #{userImage:VARCHAR}
+        </set>
+        WHERE user_id=#{userId:VARCHAR}
+    </update>
+
+    <update id="updateClubUser" parameterType="user">
+        UPDATE club_user
+        <set>
+            user_image = #{userImage:VARCHAR}
+        </set>
+        WHERE user_id=#{userId:VARCHAR}
+    </update>
+
+    <update id="updateClubCalendarApply" parameterType="user">
+        UPDATE club_calendar_apply
+        <set>
             user_image = #{userImage:VARCHAR}
         </set>
         WHERE user_id=#{userId:VARCHAR}

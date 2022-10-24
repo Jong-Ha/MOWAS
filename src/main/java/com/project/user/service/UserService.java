@@ -27,6 +27,10 @@ public interface UserService {
 
     public User getUser2(String email)throws Exception;
 
+    public User getMyId(User user)throws Exception;
+
+    public User getMyPassword(User user) throws Exception;
+
     //로그인
     public User loginUser(User user)throws Exception;
 

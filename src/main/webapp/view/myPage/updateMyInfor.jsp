@@ -17,11 +17,12 @@
     });
     $(function () {
         $(".emailKey").on("click", function () {
+
             $.ajax({
                 url: "/user/json/mailSender",
                 method: "POST",
                 data: {
-                    email: $(".userEmail").val()
+                    email: $("#email").val()
                 },
                 dataType: "json",
                 success: function ({JSONData, status}) {
@@ -35,7 +36,7 @@
                 url : "/user/json/smsSend",
                 method: "POST",
                 data : {
-                    phone : $(".userPhone").val()
+                    phone : $("#phone").val()
                 },
                 dataType: "json",
                 success : function (){
@@ -109,6 +110,13 @@
 <c:if test="${map.user.loginType=='1'}">
     <input type="text" class="form-control CheckEmailKey" placeholder="인증번호 입력" ><br/>
     <button type="button" class="btn btn-secondary btn-sm CheckEmailKey2">인증 확인</button><br/>
+    <span class="emailInfor" style="display: none;">
+                <strong class="text-danger" >인증번호가 틀렸습니다</strong>
+              </span>
+    <span class="emailYC" style="display: none">인증번호가 발송되었습니다</span>
+    <span class="emailInforYes" style="display: none;">
+                인증되었습니다
+              </span>
 </c:if>
 
 <c:if test="${map.user.loginType=='1'}">
@@ -118,6 +126,13 @@
 <c:if test="${map.user.loginType=='1'}">
     <input type="text" class="form-control" id="CheckSms" placeholder="인증번호 입력" ><br/>
     <button type="button" class="btn btn-secondary btn-sm CheckSmsKey">인증 확인</button><br/>
+    <span class="smsNo" style="display: none;">
+              <strong class="text-danger" >인증번호가 틀렸습니다</strong>
+              </span>
+    <span class="smsYC" style="display: none">인증번호가 발송되었습니다</span>
+    <span class="smsYes" style="display: none;">
+                인증되었습니다
+              </span>
 </c:if>
 
 동네코드 <input type="text" id="villCode" name="villCode" value="${map.user.villCode}"><br/>

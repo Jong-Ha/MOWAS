@@ -62,7 +62,8 @@
 동네코드 <input type="text" id="villCode" name="villCode" value="${map.user.villCode}" disabled="disabled"><br/>
 관심목록
 <c:set var="i" value="0" />
-<c:forEach var="list" items="${map.interList}">
+<c:forEach var="list" items="${map.tmlist}">
+
     ${list.interList}
 </c:forEach> <br/>
 마지막 접속 날짜 <input type="text" id="lcd" name="lcd" value="${map.user.lcd}"  disabled="disabled"><br/>

@@ -2,11 +2,11 @@ package com.project.myPage.service;
 
 import com.project.domain.*;
 import com.project.myPage.dao.MyPageDao;
-import com.project.user.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,14 +28,83 @@ public class MyPageServiceImpl implements MyPageService {
         return myPageDao.getMyPage(userId);
     }
 
-    public Map<String, Object> getMyInfor(String userId)throws Exception{
-
+    public Map<String, Object> getMyInfor(String userId)throws Exception {
+//////////////관심목록 한글로 변환 해야 함//////////////////
         Map<String, Object> map = new HashMap<String, Object>();
         User user = myPageDao.getMyInfor(userId);
-        List<UserInterList> interList =myPageDao.getMyInforInterList(userId);
+        List<UserInterList> inList = myPageDao.getMyInforInterList(userId);
+        String tm = "";
+        ArrayList tmlist = null;
+        for (int i = 0; i < inList.size(); i++) {
+            String abc = inList.get(i).getInterList().trim();
+            System.out.println("abc의 값...." + abc);
+            String interList = "";
+            String str = "";
+            switch (Integer.parseInt(abc)) {
+                case 1:
+                    interList = "독서";
+                    str += interList;
+                    break;
+                case 2:
+                    interList = "자동차";
+                    str += interList;
+                    break;
+                case 3:
+                    interList = "반려동물";
+                    str += interList;
+                    break;
+                case 4:
+                    interList = "공예";
+                    str += interList;
+                    break;
+                case 5:
+                    interList = "스포츠";
+                    str += interList;
+                    break;
+                case 6:
+                    interList = "댄스";
+                    str += interList;
+                    break;
+                case 7:
+                    interList = "여행";
+                    str += interList;
+                    break;
+                case 8:
+                    interList = "사진";
+                    str += interList;
+                    break;
+                case 9:
+                    interList = "육아";
+                    str += interList;
+                    break;
+                case 10:
+                    interList = "공연";
+                    str += interList;
+                    break;
+                case 11:
+                    interList = "음악";
+                    str += interList;
+                    break;
+                case 12:
+                    interList = "게임";
+                    str += interList;
+                    break;
+                case 13:
+                    interList = "그외";
+                    str += interList;
+                    break;
+            }
+            System.out.println("str의 값..?" + str);
+            tm += str;
+            System.out.println("tm의값.....! " + tm);
+            tmlist = new ArrayList<>();
+            tmlist.add(tm);
+
+            map.put("interList", tmlist);
+        }
 
         map.put("user", user);
-        map.put("interList", interList);
+
         return map;
     }
 
