@@ -17,7 +17,8 @@
   <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-<style>
+
+  <style>
   body{
   background:#f3f3f3;
   margin-top:20px;
@@ -30,18 +31,68 @@
   box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
   }
 
-  .avatar-xs {
-  height: 2.3rem;
-  width: 2.3rem;
+  .wrapper {
+    height: 13ch;
+    display: grid;
+    place-items: center;
   }
-</style>
+
+  .typing {
+    width: 14ch;
+    animation: typing 0.9s steps(22), blink .5s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid;
+    font-size: 2em;
+    height: 2ch;
+  }
+  .mbBox {
+    margin-bottom: 50px;
+    justify-content: center;
+  }
+  .underline {
+    line-height: 1.2;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1.5em;
+    font-weight: 700;
+    background-image: linear-gradient(transparent calc(100% - 3px), #000 3px);
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    transition: background-size 0.2s;
+    color: #000;
+    cursor: pointer;
+    margin-right: 25px;
+  }
+  @media (min-width: 1000px) {
+    .underline {
+      font-size: 1.5em;
+    }
+  }
+  .underline.yellow {
+    background-image: linear-gradient(transparent 60%, #F8CD07 40%);
+  }
+
+  @keyframes typing {
+    from {
+      width: 0
+    }
+  }
+
+  @keyframes blink {
+    80% {
+      border-color: transparent
+    }
+  }
+
+
+  </style>
   <script type="text/javascript">
 
-    function fncGetMasterBoardList(currentPage) {
+    function fncGetList(currentPage) {
       /* 	document.getElementById("currentPage").value = currentPage;
              document.detailForm.submit();	 */
       $("#currentPage").val(currentPage)
-      $("form").attr("method" , "POST").attr("action" , "/site/listMasterBoard").submit();
+      $("form[id='masterBoard']").attr("method" , "POST").attr("action" , "/site/listMasterBoard").submit();
     }
 
 
@@ -52,14 +103,39 @@
       //==> 1 과 3 방법 조합 : $("tagName.className:filter함수") 사용함.
 
       //$( "td.ct_btn01:contains('검색')" ).on("click" , function() {
-      $( "button.btn.btn-default" ).on("click" , function() {
-        fncGetMasterBoardList(1);
+      $( "button.btn.btn-danger" ).on("click" , function() {
+        fncGetList(1);
       });
 
       //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
       $( ".newMb" ).on("click" , function() {
         $("form").attr("method" , "POST").attr("action" , "/site/addMasterBoard").submit();
         //$(self.location).attr("href", "/site/addMasterBoard");
+      });
+
+      $( "td.masterBdNo" ).on("click" , function() {
+
+        var masterBdNo = $(this).data('masterbdno')
+        //$(self.location).attr("href" , "/site/getMasterBoard/"+masterBdNo);
+        //$(self.location).attr("href", "/site/addMasterBoard");
+
+        $.ajax({
+            url : "/site/json/getMasterBoard/"+masterBdNo,
+            method : "GET",
+            dataType : "json",
+
+            success : function(JSONData, status) {
+              var displayValue = "<h6>"
+                                +"<br>"
+                                +""+JSONData.mbText+"<br>"
+                                //+"이미지 : "+JSONData.file+"<br>"
+                                //+"<img src='/uploadFiles/"+JSONData.file+"'align='absmiddle' class='img-thumbnail'/>"
+                                +"<br>"
+                                +"</h6>";
+              $("h6").remove();
+              $("#" + masterBdNo + "").html(displayValue);
+            }
+        });
       });
 
       $( ".commReport" ).on("click" , function() {
@@ -88,11 +164,35 @@
 </head>
 <body>
 <jsp:include page="/layout/toolbar.jsp"/>
-<div class="container">
-  <div class="page-header text-info">
-    <h3>공지사항</h3>
+
+  <div class="page-header text-center">
+    <div class="wrapper">
+  <div class="typing">
+    <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
+                    background-image: linear-gradient(transparent 60%, #F8CD07 40%);">
+      공    지    사    항</h4>
+  </div>
+  </div>
   </div>
 
+  <nav class="navbar navbar-expand-lg mbBox">
+
+    <div>
+      <div class="underline yellow userMb">회원</div>
+    </div>
+
+    <div>
+      <div class="underline yellow clubMb">모임</div>
+    </div>
+
+    <div>
+      <div class="underline yellow reportMb">신고</div>
+    </div>
+
+  </nav>
+  <hr>
+
+<div class="container">
   <div class="row">
     <div class="col-xl-3 col-md-6">
       <div class="card bg-pattern">
@@ -127,20 +227,31 @@
         </div>
       </div>
     </div>
-    <div class="col-xl-3 col-md-6">
+
+    <div class="col-xl-3 col-md-6 text-right">
       <div class="card">
         <div class="card-body">
-          <form>
-            <div class="form-group mb-0">
+          <form id="masterBoard">
+            <div class="form-group">
               <label>Search</label>
+
               <div class="input-group mb-0">
-                <input type="text" class="form-control" placeholder="Search..." aria-describedby="project-search-addon"
+                <input type="text" class="form-control" id="searchKeyword" name="searchKeyword" placeholder="Search..." aria-describedby="project-search-addon"
                        value="${! empty search.searchKeyword ? search.searchKeyword : '' }"/>
                 <div class="input-group-append">
-                  <button class="btn btn-danger" type="button" id="project-search-addon"><i class="fa fa-search search-icon font-12"></i></button>
+                  <button class="btn btn-danger" type="button" id="project-search-addon"><i class="fa fa-search search-icon fa-2x font-12"></i></button>
                 </div>
               </div>
+
+              <div class="input-group">
+                <select class="form-control" name="searchCondition" >
+                  <option value="0"${!empty search.searchCondition&&search.searchCondition==0 ? "selected":"" }>제목</option>
+                  <option value="1"${!empty search.searchCondition&&search.searchCondition==1 ? "selected":"" }>내용</option>
+                </select>
+              </div>
+
             </div>
+            <input type="hidden" id="currentPage" name="currentPage" value=""/>
           </form>
         </div>
       </div>
@@ -153,15 +264,15 @@
       <div class="card">
         <div class="card-body">
           <div class="table-responsive project-list">
-            <table class="table project-table table-centered table-nowrap">
+            <table class="table project-table table-centered table-nowrap table-hover table-striped">
               <thead>
               <tr>
-                <th scope="col">번호</th>
-                <th scope="col">제목</th>
-                <th scope="col">작성자</th>
-                <th scope="col">날짜</th>
-                <th scope="col">상세보기</th>
-                <th scope="col">Action</th>
+                <th scope="col width=5%">번호</th>
+                <th scope="col width=60%">제목</th>
+                <th scope="col width=10%">작성자</th>
+                <th scope="col width=10%">날짜</th>
+                <th scope="col width=10%">상세보기</th>
+                <th scope="col width=5%">Action</th>
               </tr>
               </thead>
               <tbody>
@@ -171,11 +282,9 @@
               <tr>
                   <td>${ i }</td>
                   <td>${mb.mbTitle}
-                  <input id="mbNo" type="hidden" value="${mb.masterBoardNo }"/>
-                  <%--<c:set var = "now" value="<%=new java.util.Date()%>"/>
-                  <c:if test="${mb.mbRegDate}">
-                      <span class="new">new</span>
-                  </c:if>--%>
+                    <span id = "${mb.masterBoardNo}"></span>
+                    <input class="masterBdNo" name="masterBdNo" type="hidden" value="${mb.masterBoardNo}">
+                    <input id="mbNo" type="hidden" value="${mb.masterBoardNo }"/>
                   </td>
 
                 <td>
@@ -183,22 +292,23 @@
                 </td>
                  <td>
                   <p class="mb-0">${mb.mbRegDate}</p>
-                </td>
 
-                <td>
-                  <a href="/site/getMasterBoard/${mb.masterBoardNo}" class="text-success mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="NewMb">
-                    <i class="bi bi-file-earmark-text h5 m-0"></i></a>
                 </td>
-
+                <td data-masterbdno="${mb.masterBoardNo}" class="masterBdNo">
+                  <span class="text-success mr-4 getMb" data-toggle="tooltip" data-placement="top" title="" data-original-title="NewMb">
+                  <i class="bi bi-file-earmark-text h5 m-0"></i></span>
+                </td>
                 <td>
                     <a href="#" class="text-success mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"> <i class="fa fa-pencil h5 m-0"></i></a>
                     <a href="#" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close"> <i class="fa fa-remove h5 m-0"></i></a>
                 </td>
               </tr>
               </c:forEach>
+
               </tbody>
             </table>
           </div>
+
           <!-- end project-list -->
           <div class="col-md-12 text-left ">
             <button type="button" class="addMb btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addMasterBoard">글쓰기</button>
@@ -206,22 +316,49 @@
             <a class="btn btn-default btn" href = "#" role="button">취 소 </a>
             <button type="button" class="commReport" >커뮤니티신고</button>
             <button type="button" class="clubReport" >모임신고</button>
-            <button type="button" class="clubMap" >클럽맵 Test</button>
           </div>
 
           <div class="pt-3">
             <ul class="pagination justify-content-end mb-0">
+              <!--  <<== 좌측 nav -->
+            <c:if test="${ resultPage.currentPage <= resultPage.pageUnit }">
               <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item active"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
+            </c:if>
+            <c:if test="${ resultPage.currentPage > resultPage.pageUnit }">
               <li class="page-item">
-                <a class="page-link" href="#">Next</a>
+            </c:if>
+                <a class="page-link" href="javascript:fncGetList('${ resultPage.currentPage-1}')" aria-disabled="true" aria-label="Previous">
+                  <span aria-hidden="true">Previous</span></a>
               </li>
+
+          <!--  중앙  -->
+          <c:forEach var="i"  begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" step="1">
+            <c:if test="${ resultPage.currentPage == i }">
+              <li class="page-item active">
+                <a class="page-link" href="javascript:fncGetList('${ i }');">${ i }<span class="sr-only">(current)</span></a>
+              </li>
+            </c:if>
+
+            <c:if test="${resultPage.currentPage != i}">
+              <li class="page-item">
+                <a class="page-link" href="javascript:fncGetList('${ i }');">${ i }</a>
+              </li>
+            </c:if>
+          </c:forEach>
+
+              <c:if test="${ resultPage.endUnitPage >= resultPage.maxPage }">
+                <li class= "page-item disabled">
+              </c:if>
+              <c:if test="${ resultPage.endUnitPage < resultPage.maxPage }">
+                <li class= "page-item">
+              </c:if>
+                <a class="page-link" href="javascript:fncGetList('${resultPage.endUnitPage+1}')" aria-disabled="true" aria-label="Next">
+                  <span aria-hidden="true">Next</span></a>
+              </li>
+
             </ul>
           </div>
+
         </div>
       </div>
     </div>

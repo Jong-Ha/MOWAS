@@ -1,17 +1,27 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=utf-8"
-         pageEncoding="utf-8" %>
-<div class="modal-header">
-    <a class="navbar-brand back-btn" data-bs-target="#listCluber" data-bs-toggle="modal">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
-            <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
-        </svg>
-    </a>
-    <h5 class="modal-title">모임 가입 신청 조회</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-</div>
-<div class="modal-body">
+<html>
+<head>
+    <title>MOWAS</title>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="/resources/club/js/listClubBlacklist.js"></script>
+    <link href="/resources/club/css/listClubBlacklist.css" rel="stylesheet" type="text/css"/>
+
+    <script>
+
+    </script>
+</head>
+<body>
+<jsp:include page="backClose.jsp"/>
+
+<div class="container content-box">
     <form>
         <input type="hidden" id="clubNum" name="clubNum" value="${clubNum}">
         <div style="padding-bottom: 20px; margin-left: 300px;">
@@ -51,11 +61,11 @@
                                 <span class="badge bg-primary text-wrap">${clubBlacklist.blacklistCheck=='1'?'등록':'취소'}</span>
                             </div>
                             <div>
-                                <div class="blacklistText d-inline-block text-truncate" style="max-width: 270px;">
-                                    <small>
-                                            ${clubBlacklist.blacklistText}
-                                    </small>
-                                </div>
+                                        <div class="blacklistText d-inline-block text-truncate" style="max-width: 270px;">
+                                            <small>
+                                                    ${clubBlacklist.blacklistText}
+                                            </small>
+                                        </div>
                                 <span class="badge bg-primary text-wrap getClubBlacklist">자세히</span>
                             </div>
                         </div>
@@ -75,3 +85,5 @@
         </c:if>
     </form>
 </div>
+</body>
+</html>

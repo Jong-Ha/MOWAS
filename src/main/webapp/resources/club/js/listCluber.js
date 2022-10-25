@@ -1,5 +1,5 @@
 $(function () {
-    $(".back-btn").html(' ')
+    $(".back-btn").html('')
 
     const clubNum = $("#clubNum").val()
 

@@ -33,9 +33,7 @@ public class CommunityController {
     @Qualifier("clubCalenderServiceImpl")
     private ClubCalendarService calenderService;
 
-    @Autowired
-    @Qualifier("dealServiceImpl")
-    private DealService dealService;
+
 
 
     @RequestMapping("main")
@@ -186,29 +184,6 @@ public class CommunityController {
 
         return "/view/community/add/addDealCalender.jsp";
     }
-
-    @RequestMapping("getDealCalender")
-    public String getDealCalender(@RequestParam("dealNum") int DealNum
-            ,HttpSession session, Model model) throws Exception {
-
-        Deal deal = dealService.getDeal(DealNum);
-
-        User user = (User)session.getAttribute("user");
-
-
-        System.out.println(deal.getBoardCategory());
-
-        String likeCheck = commuService.getLikeCheck(user.getUserId(), deal.getDealBoardNum(), Integer.parseInt(deal.getBoardCategory()));
-
-        model.addAttribute("deal", deal);
-
-        model.addAttribute("likeCheck", likeCheck);
-
-        return "/view/deal/getDeal.jsp";
-    }
-
-
-
 
 
 }

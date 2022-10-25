@@ -205,6 +205,7 @@
             club_name = #{clubName},
             club_text = #{clubText},
             vill_code = #{villCode},
+            inter_list = #{interList},
             <if test="clubImage!=null">
                 club_image = #{clubImage},
             </if>
@@ -556,7 +557,9 @@
         </if>
         <if test="search.searchCondition == 1">
             '7', '8'</if>)
-        ORDER BY club_user_num DESC
+        ORDER BY
+        <if test="search.searchCondition == 0">cluber_status DESC,</if>
+        club_user_num DESC
     </sql>
 
     <select id="getTotalCluber" parameterType="map" resultType="int">
@@ -598,7 +601,28 @@
         FROM club_user
         WHERE club_num = #{clubNum}
           AND user_id = #{user.userId}
-          AND cluber_status in ('2','4', '5', '6')
+          AND cluber_status in ('2', '4', '5', '6')
+    </select>
+
+    <select id="getBlackCluber" parameterType="map" resultMap="CluberResultMap">
+        SELECT club_user_num,
+               user_id,
+               user_image,
+               club_num,
+               cluber_status,
+               club_reg_date,
+               club_apply_date,
+               cluber_text,
+               club_out_text,
+               club_out_date,
+               blacklist_date,
+               blacklist_text,
+               blacklist_check
+        FROM club_user
+        WHERE club_num = #{clubNum}
+          AND user_id = #{user.userId}
+          AND cluber_status = '9'
+          AND blacklist_check = '1'
     </select>
 
     <!--clubService.getCluber-->
@@ -686,7 +710,8 @@
         user_id,
         user_image,
         blacklist_date,
-        blacklist_check
+        blacklist_check,
+        blacklist_text
         FROM club_user
         WHERE club_num = #{clubNum}
         AND cluber_status = '9'
@@ -875,17 +900,17 @@
     <insert id="addCalendarCluber" parameterType="map">
         INSERT
         INTO club_calendar_apply(club_calendar_apply_num,
-        club_calendar_num,
-        user_id,
-        apply_status,
-        user_image,
-        apply_date)
-        VALUES(seq_club_calendar_apply.NEXTVAL,
-        #{clubCalendarNum},
-        #{userId},
-               '1',
-        (SELECT user_image FROM users WHERE user_id = #{userId}),
-        SYSDATE)
+                                 club_calendar_num,
+                                 user_id,
+                                 apply_status,
+                                 user_image,
+                                 apply_date)
+        VALUES (seq_club_calendar_apply.NEXTVAL,
+                #{clubCalendarNum},
+                #{userId},
+                '1',
+                (SELECT user_image FROM users WHERE user_id = #{userId}),
+                SYSDATE)
     </insert>
 
     <!--clubService.addClubCalendarApply-->

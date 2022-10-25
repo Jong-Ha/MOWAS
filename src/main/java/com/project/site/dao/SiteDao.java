@@ -47,6 +47,8 @@ public interface SiteDao {
     //Club Report CRUD
     public void addClubReport(ClubReport clubReport) throws Exception;
 
+    public void addClubReportFiles(File file) throws Exception;
+
     public  ClubReport getClubReport(int clubReportNo) throws Exception;
 
     public List<ClubReport> listClubReport(Search search) throws Exception;

@@ -538,9 +538,9 @@
                         $(".chatComment").on("click", function () {
                             var commentUser = $(this).parents(".commentList").find(".commentUser").val();
 
-                            if(userId === ''){
+                            if (userId === '') {
                                 alert("로그인후 이용 가능 합니다")
-                            }else {
+                            } else {
 
                                 if (userId === commentUser) {
                                     alert("그거 맞냐고~")
@@ -653,118 +653,234 @@
             $.getListComment();
 
             /*조회수*/
-            $(function () {
 
-                $(".delete").on("click", function () {
-
-
-                    const swalWithBootstrapButtons = Swal.mixin({
-                        customClass: {
-                            confirmButton: 'btn btn-success',
-                            cancelButton: 'btn btn-danger'
-                        },
-                        buttonsStyling: false
-                    })
-
-                    swalWithBootstrapButtons.fire({
-                        title: '정말 삭제 하시겠습니까?',
-                        text: "삭제하면 해당 게시글을 볼수 없습니다",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonText: '삭제',
-                        cancelButtonText: '취소',
-                        reverseButtons: true
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            location.href = "/commu/deleteBoard?boardNum=" + boardNum + "&boardCategory=" + boardCategory
-                            swalWithBootstrapButtons.fire(
-                                '삭제 성공!',
-                                'success'
-                            )
-                        } else if (
-                            /* Read more about handling dismissals below */
-                            result.dismiss === Swal.DismissReason.cancel
-                        ) {
-                            swalWithBootstrapButtons.fire(
-                                '삭제 취소',
-                                'error'
-                            )
-                        }
-                    })
-                });
+            $(".delete").on("click", function () {
 
 
-                $(".update").on("click", function () {
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-danger'
+                    },
+                    buttonsStyling: false
+                })
 
-                    window.open(
-                        "/clubCal/updateClubCalenderReview?clubCalenderReviewNum=" + boardNum + "&boardCategory=" + boardCatagory, "모임 일정 후기글 수정",
-                        "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no"
-                    )
-
-                });
+                swalWithBootstrapButtons.fire({
+                    title: '정말 삭제 하시겠습니까?',
+                    text: "삭제하면 해당 게시글을 볼수 없습니다",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: '삭제',
+                    cancelButtonText: '취소',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location.href = "/commu/deleteBoard?boardNum=" + boardNum + "&boardCategory=" + boardCategory
+                        swalWithBootstrapButtons.fire(
+                            '삭제 성공!',
+                            'success'
+                        )
+                    } else if (
+                        /* Read more about handling dismissals below */
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        swalWithBootstrapButtons.fire(
+                            '삭제 취소',
+                            'error'
+                        )
+                    }
+                })
             });
 
+            $(".update").on("click", function () {
 
-            $(document).ready(function () {
 
-                var viewCount = $(".viewText").html();
+                console.log(boardNum);
 
 
                 $.ajax({
-                    url: "/commu/json/viewCount",
-                    type: "POST",
+                    url: "/clubCal/json/getClubCalender",
+                    method: "post",
+                    dataType: "json",
+                    contentType: 'application/json; charset=UTF-8',
                     data: JSON.stringify({
-                        "viewCount": viewCount,
-                        "boardNum": boardNum,
-                        "boardCategory": boardCategory
+                        "clubCalenderReviewNum": boardNum
                     }),
-                    dataType: "JSON",
+                    success: function (JSONData, result) {
+
+                        var clubCalender = JSONData.clubCalender;
+                        $(".reviewTitle").val(clubCalender.reviewTitle);
+                        $(".reviewText").val(clubCalender.reviewText);
+                        $(".reviewRange").val(clubCalender.reviewRange);
+                        $(".clubDate").val(clubCalender.clubDate);
+                        $(".clubCalenderReviewNum").val(clubCalender.clubCalenderReviewNum);
+                        $(".file").val(clubCalender.file.fileName)
+
+
+                    }
+
+                })
+
+            });
+
+            $(".submit").on("click", function () {
+                var reviewTitle = $(".reviewTitle").val();
+                var reviewText = $(".reviewText").val();
+                var reviewRange = $(".reviewRange").val();
+                var location = $(".location").val()
+
+
+                $.ajax({
+                    url: "/clubCal/json/updateClubCalenderReview",
+                    method: "post",
+                    data: JSON.stringify({
+                        "clubCalenderReviewNum": boardNum,
+                        "boardCategory": boardCategory,
+                        "reviewTitle": reviewTitle,
+                        "reviewText": reviewText,
+                        "reviewRange": reviewRange,
+                        "location": location
+                    }),
+                    dataType: "json",
                     contentType: 'application/json; charset=UTF-8',
                     success: function (JSONData, result) {
 
-                        $(".viewText").html(JSONData);
-                    }
-                })
+                        console.log(JSONData);
 
-                /*좋아요 버튼*/
-                $(".likeButton").on("click", function () {
+                        var boardNum = $(".clubCalenderReviewNum").val();
 
-                    if (userId === '' || userId === null) {
+                        var file = $("#file").length;
 
-                        alert("로그인후 이용 가능합니다")
+                        if (file > 0) {
 
-                    } else if (userId !== '') {
+                            alert("파일 업로드 시작 : " + boardNum);
 
-                        var likeCount = $(".likeText").html();
-                        var boardNum = $(".boardNum").val();
-                        var boardCategory = $(".boardCategory").val()
+                            //form 테그를 불러와서 form변수에 등록
+                            var form = document.querySelector("form");
+                            //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
+                            var formData = new FormData(form);
+                            //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
+                            var fileSize = $("#file")[0].files;
 
-                        console.log(boardNum);
-
-                        $.ajax({
-                            url: "/commu/json/addLike",
-                            type: "POST",
-                            data: JSON.stringify({
-                                "likeCount": likeCount,
-                                "boardNum": boardNum,
-                                "boardCategory": boardCategory
-                            }),
-                            dataType: "JSON",
-                            contentType: 'application/json; charset=UTF-8',
-                            success: function (JSONData, result) {
+                            //formData에 해당 게시글 번호, 게시글 category append
+                            formData.append("boardNum", boardNum);
+                            formData.append("boardCategoru", boardCategory);
 
 
-                                $(".likeText").html(JSONData);
+                            console.log(formData);
+
+                            //file길이 만큼 for문으로 formData에 append함
+                            for (var i = 0; i < fileSize.length; i++) {
+                                formData.append("form", fileSize[i]);
+                                //파일이 잘 들어 갔는지 확인
+                                console.log(fileSize[i]);
                             }
-                        })
+                            //formData에 들어 있는 boardNum과 file의 정보를 비동기식으로 보냄
+                            //파일은 json형식으로 보낼수 없기 떄문에 contentType, processData, dataType을 false로 지정
+                            $.ajax({
+                                url: "/clubCal/json/fileUpdate",
+                                type: "post",
+                                processData: false,
+                                contentType: false,
+                                cache: false,
+                                timeout: 600000,
+                                data: formData,
+                                headers: {'cache-control': 'no-cache', 'pragma': 'no-cache'},
+                                enctype: "multipart/form-data",
+                                success: function (result) {
+
+                                    console.log(result);
+
+                                }
+
+                            })
+                        }
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Your work has been saved',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        setTimeout(function () {
+                            window.location.reload()
+                        }, 2000);
+                        //error 발생시 그냥 창을 닫음
+                    }, error: function () {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Your work has been saved',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        setTimeout(function () {
+                            window.location.reload()
+                        }, 2000);
 
                     }
-                })
+                });
 
+            });
+        });
+
+
+        $(document).ready(function () {
+
+            var viewCount = $(".viewText").html();
+
+
+            $.ajax({
+                url: "/commu/json/viewCount",
+                type: "POST",
+                data: JSON.stringify({
+                    "viewCount": viewCount,
+                    "boardNum": boardNum,
+                    "boardCategory": boardCategory
+                }),
+                dataType: "JSON",
+                contentType: 'application/json; charset=UTF-8',
+                success: function (JSONData, result) {
+
+                    $(".viewText").html(JSONData);
+                }
             })
 
+            /*좋아요 버튼*/
+            $(".likeButton").on("click", function () {
+
+                if (userId === '' || userId === null) {
+
+                    alert("로그인후 이용 가능합니다")
+
+                } else if (userId !== '') {
+
+                    var likeCount = $(".likeText").html();
+                    var boardNum = $(".boardNum").val();
+                    var boardCategory = $(".boardCategory").val()
+
+                    console.log(boardNum);
+
+                    $.ajax({
+                        url: "/commu/json/addLike",
+                        type: "POST",
+                        data: JSON.stringify({
+                            "likeCount": likeCount,
+                            "boardNum": boardNum,
+                            "boardCategory": boardCategory
+                        }),
+                        dataType: "JSON",
+                        contentType: 'application/json; charset=UTF-8',
+                        success: function (JSONData, result) {
 
 
+                            $(".likeText").html(JSONData);
+                        }
+                    })
+
+                }
+            })
 
 
             $(".addcomment").on("click", function () {
@@ -909,10 +1025,81 @@
                         </button>
 
                         <c:if test="${user.userId == calenderReview.userId}">
-                            <button type="button" class="btn btn-outline-primary itembutton update">수정</button>
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    class="btn btn-outline-primary itembutton update">수정
+                            </button>
                             <button type="button" class="btn btn-outline-secondary itembutton delete">삭제</button>
                         </c:if>
 
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <input name="clubCalenderReviewNum" class="clubCalenderReviewNum" hidden value="">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel"> 모임 일정 후기글 수정 </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control reviewTitle" id="recipient-name" value=""
+                                           placeholder="asdasd">
+                                    <label for="recipient-name">제 목</label>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control reviewText" id="message-text" value=""
+                                           placeholder="asdasd"/>
+                                    <label for="message-text">내용</label>
+                                </div>
+
+                                <div class="form-floating mb-3">
+
+                                    <select class="form-select reviewRange" name="reviewRange" id="floatingSelect">
+                                        <option selected>공개 여부를 선택 하세요</option>
+                                        <option value="1">전체 공개</option>
+                                        <option value="2">모임 공개</option>
+                                    </select>
+
+                                    <label for="floatingSelect">공개 여부</label>
+
+
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <input type="file" id="file" class="form-control file" multiple value="파일 첨부">
+                                </div>
+
+                                <div class="form-floating mb-3">
+
+                                    <input type="date" class="form-control clubDate" id="date-text" value=""
+                                           placeholder="asdasd"/>
+                                    <label for="date-text">모임 일정 날짜</label>
+
+                                </div>
+
+                                <div class="input-group mb-3">
+
+                                    <input type="button" class="form-control" value="위치 선택">
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                            <button type="button" class="btn btn-primary submit">수정</button>
+
+                        </div>
                     </div>
                 </div>
             </div>

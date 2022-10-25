@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -24,4 +25,5 @@ public class ClubReport {
     private Date rereportApplyDate;
     private String rereportText;
     private String rereportResult;
+    List<File> files;
 }
