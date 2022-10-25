@@ -68,7 +68,7 @@
             </c:if>
             <c:if test="${currentCluber.cluberStatus=='5'||currentCluber.cluberStatus=='6'}">
                 <c:if test="${cluber.cluberStatus=='4'}">
-                    <input type="button" class="btn btn-primary deleteCluber" value="모임 강퇴">
+                    <input type="button" class="btn btn-primary deleteCluber" value="모임 강퇴" data-bs-toggle="modal" data-bs-target="#deleteCluber">
                 </c:if>
             </c:if>
         </div>

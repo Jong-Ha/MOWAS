@@ -31,7 +31,7 @@
 <%--상단 툴바--%>
 <jsp:include page="/layout/toolbar.jsp"/>
 <!-- Example Code -->
-<div class="wap">
+<div class="container">
 
     <div class="row" style="display: flex; align-items: center">
         <div class="col-2">
@@ -360,14 +360,12 @@
     <%--모임 가입 신청 모달창 끝--%>
 
     <%--모임 탈퇴 모달창 시작--%>
-    <c:if test="${currentCluber.cluberStatus!='6'}">
         <div class="modal fade" id="deleteCluber" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                 </div>
             </div>
         </div>
-    </c:if>
     <%--모임 탈퇴 신청 모달창 끝--%>
 
     <%--모임원 목록 조회 모달창 시작--%>

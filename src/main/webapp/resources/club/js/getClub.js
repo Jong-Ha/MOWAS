@@ -19,9 +19,9 @@ $(function () {
     })
 
 
-    $(".deleteCluber").on("click", function () {
-        $("#deleteCluberForm").attr("action", "/club/deleteCluber").attr("method", "post").submit();
-    })
+    // $(".deleteCluber").on("click", function () {
+    //     $("#deleteCluberForm").attr("action", "/club/deleteCluber").attr("method", "post").submit();
+    // })
     $(".addCluberApplyView").on("click", function () {
         if ($(".userId").val() === '') {
             alert("로그인이 필요합니다")
@@ -142,160 +142,215 @@ $(function () {
         })
     })
 
-    function setListCluber(){
-        //모임원 상세 조회
-        $(".listCluberModal .cardBox").off('click').on('click',function(){
-            var clubUserNum = $(this).children(".clubUserNum").val();
-            // getCluberModal.show()
-            // location.href = "/club/getCluber/"+clubUserNum
-            $.ajax({
-                url : "/club/getCluber/"+clubUserNum,
-                success : function(re){
-                    $('#getCluber .modal-content').html(re)
-                }
-            })
-        })
 
-        //모임 가입 신청 조회
-        $(".listCluberModal .listCluberApply").off('click').on("click", function () {
-            // location.href = "/club/listCluberApply/"+clubNum
-            $.ajax({
-                url : "/club/listCluberApply/"+clubNum,
-                success : function(re){
-                    $('#listCluberApply .modal-content').html(re)
-
-                    $("#listCluberApply input[type='button']").on("click",function(){
-                        // alert($(this).attr("class"))
-                        var result = $(this).attr("name");
-                        // alert($(this).parents(".cluber").children("[name='clubUserNum']").val())
-                        var clubUserNum = $(this).parents(".cardBox").children("[name='clubUserNum']").val();
-                        var clubNum = $(this).parents(".cardBox").children("[name='clubNum']").val();
-                        var userId = $(this).parents(".cardBox").children("[name='userId']").val();
-                        var div = $(this).parents(".cardBox");
-                        $.ajax({
-                            url : "/club/json/processCluberApply",
-                            method : "POST",
-                            data : JSON.stringify({
-                                "result" : result,
-                                "clubUserNum" : clubUserNum,
-                                "clubNum" : clubNum,
-                                "userId" : userId
-                            }),
-                            dataType : "JSON",
-                            headers:{
-                                "Accept":"application/json",
-                                "Content-Type":"application/json; charset=UTF-8"
-                            },
-                            success: function () {
-                                // alert("ajax")
-                                if(result==='accept'){
-                                    alert('승인되었습니다!')
-                                }else {
-                                    alert('거절되었습니다!')
-                                }
-
-                                div.remove()
-
-                                if($("#listCluberApply .cardBox").length===0){
-                                    $('#listCluberApply .cluberList').html('<div class="card shadow-lg cardBox" style="grid-template-columns: 1fr;">가입 신청자가 없습니다!</div>')
-                                }
-                            },
-                            error: function(){
-                                alert('다시 시도해 주세요')
-                            }
-                        })
-                    })
-                }
-            })
-        })
-
-        //블랙리스트 등록
-        $(".listCluberModal .addClubBlacklist").off('click').on("click", function () {
-            // location.href = "/club/addClubBlacklist/"+clubNum
-            $.ajax({
-                url : "/club/addClubBlacklist/"+clubNum,
-                success : function(re){
-                    $('#addClubBlacklist .modal-content').html(re)
-                    $("#addClubBlacklist .addClubBlacklist").on("click",function(){
-                        // $("#addClubBlacklistForm").attr("action","/club/addClubBlacklist").attr("method","post").submit();
-                        const data = $('#addClubBlacklistForm').serialize()
-                        $.ajax({
-                            url : "/club/addClubBlacklist",
-                            'data' : data,
-                            method : 'post',
-                            success : function(re){
-                                $('#listClubBlacklist .modal-content').html(re)
-                            }
-                        })
-                    })
-                }
-            })
-        })
-
-        //블랙리스트 조회
-        $(".listCluberModal .listClubBlacklist").off('click').on("click", function () {
-            // location.href = "/club/listClubBlacklist/"+clubNum
-            $.ajax({
-                url : "/club/listClubBlacklist/"+clubNum,
-                success : function(re){
-                    $('#listClubBlacklist .modal-content').html(re)
-                }
-            })
-        })
-
-        //페이징
-        $(".listCluberModal .paging").off('click').on("click", function(){
-            // $("form").attr("action","/club/listCluberOut/"+clubNum).attr("method","post").submit()
-
-            const data = $('#listCluberOutForm').serialize()
-
-            $.ajax({
-                url : "/club/listCluberOut/"+clubNum,
-                method : 'post',
-                'data' : data,
-                success : function(re){
-                    $('#listCluberOut .modal-content').html(re)
-                    setListCluber()
-                }
-            })
-        })
-
-        //탈퇴 모임원 조회
-        $(".listCluberModal .listCluberOut").off('click').on("click", function () {
-            // location.href = "/club/listCluberOut/"+clubNum
-            $.ajax({
-                url : "/club/listCluberOut/"+clubNum,
-                success : function(re){
-                    $('#listCluberOut .modal-content').html(re)
-                    setListCluber()
-                }
-            })
-        })
-
-        //현재 모임원 목록 조회
-        $(".listCluberModal .listCluber").off('click').on("click", function () {
-            // location.href = "/club/listCluber/"+clubNum
-            $.ajax({
-                url : "/club/listCluber/"+clubNum,
-                success : function(re){
-                    $('#listCluber .modal-content').html(re)
-                    setListCluber()
-                }
-            })
-        })
-    }
 
 //모임 탈퇴
-    $('#deleteCluber').on('show.bs.modal', function(){
+    $('.deleteCluberView').on('click', function(){
         $.ajax({
             url : '/club/deleteCluber/F',
             data : {
-                clubNum : $('.boardNum').val(),
                 clubUserNum : $('.clubUserNum').val()
             },
+            success : function(re){
+                $('#deleteCluber .modal-content').html(re)
+                $('#deleteCluber .deleteCluber').on('click',function(){
+                    $("#deleteCluberForm").attr("action", "/club/deleteCluber").attr("method", "post").submit();
+                })
+            }
+        })
+    })
+})
+
+function setListCluber(){
+    //모임원 상세 조회
+    $(".listCluberModal .cardBox").off('click').on('click',function(){
+        var clubUserNum = $(this).children(".clubUserNum").val();
+        // getCluberModal.show()
+        // location.href = "/club/getCluber/"+clubUserNum
+        $.ajax({
+            url : "/club/getCluber/"+clubUserNum,
+            success : function(re){
+                $('#getCluber .modal-content').html(re)
+
+                setGetCluber()
+            }
+        })
+    })
+
+    //모임 가입 신청 조회
+    $(".listCluberModal .listCluberApply").off('click').on("click", function () {
+        // location.href = "/club/listCluberApply/"+clubNum
+        $.ajax({
+            url : "/club/listCluberApply/"+clubNum,
+            success : function(re){
+                $('#listCluberApply .modal-content').html(re)
+
+                $("#listCluberApply input[type='button']").on("click",function(){
+                    // alert($(this).attr("class"))
+                    var result = $(this).attr("name");
+                    // alert($(this).parents(".cluber").children("[name='clubUserNum']").val())
+                    var clubUserNum = $(this).parents(".cardBox").children("[name='clubUserNum']").val();
+                    var clubNum = $(this).parents(".cardBox").children("[name='clubNum']").val();
+                    var userId = $(this).parents(".cardBox").children("[name='userId']").val();
+                    var div = $(this).parents(".cardBox");
+                    $.ajax({
+                        url : "/club/json/processCluberApply",
+                        method : "POST",
+                        data : JSON.stringify({
+                            "result" : result,
+                            "clubUserNum" : clubUserNum,
+                            "clubNum" : clubNum,
+                            "userId" : userId
+                        }),
+                        dataType : "JSON",
+                        headers:{
+                            "Accept":"application/json",
+                            "Content-Type":"application/json; charset=UTF-8"
+                        },
+                        success: function () {
+                            // alert("ajax")
+                            if(result==='accept'){
+                                alert('승인되었습니다!')
+                            }else {
+                                alert('거절되었습니다!')
+                            }
+
+                            div.remove()
+
+                            if($("#listCluberApply .cardBox").length===0){
+                                $('#listCluberApply .cluberList').html('<div class="card shadow-lg cardBox" style="grid-template-columns: 1fr;">가입 신청자가 없습니다!</div>')
+                            }
+                        },
+                        error: function(){
+                            alert('다시 시도해 주세요')
+                        }
+                    })
+                })
+            }
+        })
+    })
+
+    //블랙리스트 등록
+    $(".listCluberModal .addClubBlacklist").off('click').on("click", function () {
+        // location.href = "/club/addClubBlacklist/"+clubNum
+        $.ajax({
+            url : "/club/addClubBlacklist/"+clubNum,
+            success : function(re){
+                $('#addClubBlacklist .modal-content').html(re)
+                $("#addClubBlacklist .addClubBlacklist").on("click",function(){
+                    // $("#addClubBlacklistForm").attr("action","/club/addClubBlacklist").attr("method","post").submit();
+                    const data = $('#addClubBlacklistForm').serialize()
+                    $.ajax({
+                        url : "/club/addClubBlacklist",
+                        'data' : data,
+                        method : 'post',
+                        success : function(re){
+                            $('#listClubBlacklist .modal-content').html(re)
+                        }
+                    })
+                })
+            }
+        })
+    })
+
+    //블랙리스트 조회
+    $(".listCluberModal .listClubBlacklist").off('click').on("click", function () {
+        // location.href = "/club/listClubBlacklist/"+clubNum
+        $.ajax({
+            url : "/club/listClubBlacklist/"+clubNum,
+            success : function(re){
+                $('#listClubBlacklist .modal-content').html(re)
+            }
+        })
+    })
+
+    //페이징
+    $(".listCluberModal .paging").off('click').on("click", function(){
+        // $("form").attr("action","/club/listCluberOut/"+clubNum).attr("method","post").submit()
+
+        const data = $('#listCluberOutForm').serialize()
+
+        $.ajax({
+            url : "/club/listCluberOut/"+clubNum,
+            method : 'post',
+            'data' : data,
+            success : function(re){
+                $('#listCluberOut .modal-content').html(re)
+                setListCluber()
+            }
+        })
+    })
+
+    //탈퇴 모임원 조회
+    $(".listCluberModal .listCluberOut").off('click').on("click", function () {
+        // location.href = "/club/listCluberOut/"+clubNum
+        $.ajax({
+            url : "/club/listCluberOut/"+clubNum,
+            success : function(re){
+                $('#listCluberOut .modal-content').html(re)
+                setListCluber()
+            }
+        })
+    })
+
+    //현재 모임원 목록 조회
+    $(".listCluberModal .listCluber").off('click').on("click", function () {
+        // location.href = "/club/listCluber/"+clubNum
+        $.ajax({
+            url : "/club/listCluber/"+clubNum,
+            success : function(re){
+                $('#listCluber .modal-content').html(re)
+                setListCluber()
+            }
+        })
+    })
+}
+
+function setGetCluber(){
+
+    const clubUserNum = $("#clubUserNum").val()
+
+    $("#getCluber .updateCluber").off('click').on("click",function(){
+        location.href="/club/updateCluber/"+clubUserNum
+    })
+    $("#getCluber .updateClubMaster").off('click').on("click",function(){
+        // location.href="/club/updateClubMaster/"+clubUserNum
+        $.ajax({
+            url : "/club/updateClubMaster/"+clubUserNum,
+            success : function(re){
+                $('#getCluber .modal-content').html(re)
+                setGetCluber()
+            }
+        })
+    })
+    $("#getCluber .addClubManager").off('click').on("click",function(){
+        // location.href="/club/addClubManager/"+clubUserNum
+        $.ajax({
+            url : "/club/addClubManager/"+clubUserNum,
+            success : function(re){
+                $('#getCluber .modal-content').html(re)
+                setGetCluber()
+            }
+        })
+    })
+    $("#getCluber .deleteClubManager").off('click').on("click",function(){
+        // location.href="/club/deleteClubManager/"+clubUserNum
+        $.ajax({
+            url : "/club/deleteClubManager/"+clubUserNum,
+            success : function(re){
+                $('#getCluber .modal-content').html(re)
+                setGetCluber()
+            }
+        })
+    })
+    $("#getCluber .deleteCluber").off('click').on("click",function(){
+        // location.href="/club/deleteCluber/T?clubUserNum="+clubUserNum
+        $.ajax({
+            url : "/club/deleteCluber/T?clubUserNum="+clubUserNum,
             success : function(re){
                 $('#deleteCluber .modal-content').html(re)
             }
         })
     })
-})
+}
+

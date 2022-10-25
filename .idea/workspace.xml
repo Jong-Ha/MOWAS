@@ -10,50 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="LJH 2022.10.24&#10;&#10;메시지 받으면 채팅창 제일 위로 올라감&#10;cluber 관련 jsp 완료&#10;팝업창들 모달로 수정&#10; - 네비게이션 성공&#10; - js 기능 미구현&#10;ajax로 모달 가져오기">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/css/addClubBlacklist.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/css/deleteCluber.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/css/getCluber.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/css/listClubBlacklist.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/css/listCluberApply.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/js/addClubBlacklist.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/js/deleteCluber.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/js/getCluber.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/js/listClubBlacklist.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/js/listCluberApply.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubImages/017c5092-cbec-4526-bc66-b97e214a1374카카오.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubImages/23b333e5-1c51-4843-8633-73c73864c1de애플.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubImages/c322511c-b3db-48eb-a872-26fac2fb744c비트캠프.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/modal수정전/addClubBlacklist.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/modal수정전/deleteCluber.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/modal수정전/getCluber.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/modal수정전/listClubBlacklist.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/modal수정전/listCluber.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/modal수정전/listCluberApply.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/view/club/test.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/ClubBlacklist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/ClubBlacklist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/chatList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/chatList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/css/getClub.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/css/getClub.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/css/listCluber.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/css/listCluber.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/js/getClub.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/js/getClub.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/js/listCluber.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/js/listCluber.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/addClubBlacklist.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/addClubBlacklist.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/backClose.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/backClose.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/deleteCluber.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/deleteCluber.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/getClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/getClub.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/getCluber.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/getCluber.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClubBlacklist.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClubBlacklist.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listCluber.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listCluber.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listCluberApply.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listCluberApply.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,31 +81,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
-    "last_opened_file_path": "C:/Project/MOWAS/src/main/webapp/view/club/modal수정전",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "라이브러리",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.12528735",
-    "settings.editor.selected.configurable": "project.propCompiler",
-    "spring.configuration.checksum": "0644e903b0ad21f514b0480754c0a1e2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit4&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4&quot;: &quot;&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Project/MOWAS/src/main/webapp/view/club/modal수정전&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;라이브러리&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.12528735&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;0644e903b0ad21f514b0480754c0a1e2&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "oracle"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;oracle&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -488,7 +449,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="LJH" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>

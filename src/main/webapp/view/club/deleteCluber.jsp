@@ -5,7 +5,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="deleteCluberForm">
                         <input type="hidden" name="kickoutCheck" value="${kickoutCheck}">
                         <input type="hidden" name="clubUserNum" value="${cluber.clubUserNum}">
                         <input type="hidden" id="clubNum" name="clubNum" value="${cluber.clubNum}">
