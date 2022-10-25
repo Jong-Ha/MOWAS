@@ -42,7 +42,7 @@
 
 </script>
 <body>
-내 정보 보기
+<h2>내 정보 보기</h2>
 <br>
 회원아이디 <input type="text" id="userId" name="userId" value="${map.user.userId}" disabled="disabled"><br/>
 <c:if test="${map.user.loginType=='1'}">
@@ -62,9 +62,9 @@
 동네코드 <input type="text" id="villCode" name="villCode" value="${map.user.villCode}" disabled="disabled"><br/>
 관심목록
 <c:set var="i" value="0" />
-<c:forEach var="list" items="${map.tmlist}">
+<c:forEach var="list" items="${map.interList}">
 
-    ${list.interList}
+    ${list}
 </c:forEach> <br/>
 마지막 접속 날짜 <input type="text" id="lcd" name="lcd" value="${map.user.lcd}"  disabled="disabled"><br/>
 벌점 <input type="text" id="ppt" name="ppt" value="${map.user.ppt}"  disabled="disabled"><br/>
