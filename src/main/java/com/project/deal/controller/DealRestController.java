@@ -191,7 +191,7 @@ public class DealRestController {
 
 //        JSONParser parser = new JSONParser();
 
-        System.out.println("viewCount : " + deal.getDealBoardNum());
+        System.out.println("viewCount : " + deal.getViewCount());
 
 //        JSONObject jsonObj = (JSONObject)parser.parse(deal);
 //
@@ -206,6 +206,7 @@ public class DealRestController {
         dealService.updateViewCount(deal.getDealBoardNum(),deal.getViewCount(),deal.getBoardCategory());
         System.out.println("이뒤엔 안오는거임 ?");
         System.out.println(deal.getViewCount());
+        System.out.println(deal.getLikeCount());
         return dealService.getViewCount(deal.getDealBoardNum(),deal.getBoardCategory());
     }
 

@@ -117,6 +117,13 @@ Product vo=(Product)request.getAttribute("vo");
 
             });
         })
+        $(function (){
+            $('.slide').slick({
+                lazyLoad: 'ondemand',
+                slidesToShow: 3,
+                slidesToScroll: 1
+            });
+        })
     </script>
 
 
@@ -330,7 +337,9 @@ Product vo=(Product)request.getAttribute("vo");
     <input hidden  class="userId" value="${user.userId}"></h2>
     <input hidden name="dealBoardNum" value="${deal.dealBoardNum}"class="dealBoardNum">
     <input hidden name="boardCategory" value="${deal.boardCategory}"class="boardCategory">
+    <input hidden class="dealUserId" value="${deal.user.userId}">
     <div class="wap shadow-lg">
+
         <div class="usedbox">
     <div class="thumbnailBox">
         <div class="shadow-lg midle"
@@ -427,7 +436,7 @@ Product vo=(Product)request.getAttribute("vo");
                         수정</button>
                     <button type="button" class="btn btn-outline-secondary itembutton delete">삭제</button>
                 </c:if>
-
+            </div>
             </div>
         </div>
 
@@ -435,11 +444,28 @@ Product vo=(Product)request.getAttribute("vo");
         <div class="container">
             <div class="row textboxrow">
                 <div class="col-2">제목</div>
-                <div class="col-10">${deal.dealTitle}</div>
+                <div class="col-4">${deal.dealTitle}</div>
+                <div class="col-2">상품명</div>
+                <div class="col-4">${deal.productName}</div>
+            </div>
+            <div class="row textboxrow">
+<c:if test="${reviewPt ==0}">
+    <div class="col-3">신뢰온도</div>
+    <div class="col-4">첫거래입니다</div>
+</c:if>
+                <c:if test="${reviewPt !=0}">
+
+
+                <div class="col-3">신뢰온도</div>
+                <div class="col-4">${reviewPt}</div>
+                </c:if>
+              <div class="col-5">  <img id="userImage1" style="width : 15%;" src="/resources/${deal.user.userImage}"></div>
             </div>
             <div class="row textboxrow">
                 <div class="col-2">작성자</div>
-                <div class="col-10">${deal.user.userId}</div>
+                <div class="col-4">${deal.user.userId}</div>
+                <div class="col-2">동네</div>
+                <div class="col-4">${deal.villCode}</div>
             </div>
             <div class="row textboxrow">
                 <div class="col-2">내용</div>
@@ -452,8 +478,8 @@ Product vo=(Product)request.getAttribute("vo");
             </div>
         </div>
         </div>
-    </div>
-</div>
+
+        </div>
 
         <jsp:include page="/layout/chatIcon.jsp"/>
 
@@ -644,7 +670,7 @@ Product vo=(Product)request.getAttribute("vo");
 
 
                     <div class="mb-3">
-                        <div style="width: 466px;height: 233px; text-align: center;">
+                        <div class="slide" style="width: 466px;height: 233px; text-align: center;">
 
                             <c:forEach items="${deal.files}" var="i">
                                 <img src="/resources/${i.fileName}" alt="수정 전 이미지"><br>
@@ -652,7 +678,7 @@ Product vo=(Product)request.getAttribute("vo");
                             </c:forEach>
                         </div>
                         <label for="file" class="form-label" style="display: none"></label>
-                        <input class="form-control" type="file" id="file" name="file">
+                        <input class="form-control" type="file" id="file" name="file" multiple="multiple">
                     </div>
 
                     <div class="input-group mb-3">

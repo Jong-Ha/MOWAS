@@ -157,6 +157,13 @@
             </set>
             where recomment_num = #{boardNum}
         </if>
+        <if test="boardCategory == '08' or boardCategory == '09'">
+            deal
+            <set>
+                like_count = #{likeCount} +1
+            </set>
+            WHERE deal_board_num = #{boardNum}
+        </if>
 
     </update>
 
@@ -190,7 +197,7 @@
             </set>
             WHERE recomment_num = #{boardNum}
         </if>
-        <if test="boardCategory == 08 or boardCategory ==09">
+        <if test="boardCategory == '08' or boardCategory =='09'">
             deal
             <set>
                 like_count = #{likeCount} -1
@@ -217,6 +224,10 @@
         <if test="boardCategory == 11">
             FROM recomment
             WHERE recomment_num = #{boardNum}
+        </if>
+        <if test="boardCategory == '08' or boardCategory == '09'">
+            FROM deal
+            WHERE deal_board_num=#{boardNum}
         </if>
 
     </select>
@@ -293,6 +304,12 @@
         WHERE board_num = #{boardNum}
           AND board_category = #{boardCategory}
     </select>
+
+    <delete id="deleteAllComment" parameterType="map">
+        DELETE comments
+        WHERE BOARD_NUM = #{boardNum}
+        AND board_category = #{boardCategory}
+    </delete>
 
     <!--대댓글-->
     <insert id="addRecomment" parameterType="recomment">

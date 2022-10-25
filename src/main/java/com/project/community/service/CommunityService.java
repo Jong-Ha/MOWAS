@@ -53,7 +53,6 @@ public interface CommunityService {
 
     List<Map<String, Object>> getListDealCalender(String userId);
 
-    void deleteAllRecomment(int commentNum);
 
     void deleteAllComment(int boardNum, int boardCategory);
 

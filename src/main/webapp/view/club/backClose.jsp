@@ -11,6 +11,9 @@
     <title>MOWAS</title>
     <script>
         $(function(){
+            $(".back-btn").on('click',function(){
+                location.href = "/club/listCluber/"+${empty clubNum?'$("#clubNum").val()':clubNum}
+            })
             $(".close-btn").on('click',function(){
                 window.close()
             })

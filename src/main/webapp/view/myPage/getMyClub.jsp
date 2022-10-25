@@ -11,8 +11,7 @@
 
 </script>
 <body>
-모임<br/>
-<hr/>
+<jsp:include page="/view/myPage/myPageTitle.jsp"/>
 <h3>내가 가입한 모임</h3>
 <hr/>
 <c:set var="i" value="0" />

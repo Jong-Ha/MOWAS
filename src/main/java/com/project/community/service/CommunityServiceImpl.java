@@ -239,10 +239,6 @@ public class CommunityServiceImpl implements CommunityService {
         return list2;
     }
 
-    @Override
-    public void deleteAllRecomment(int commentNum) {
-        commuDao.deleteAllRecomment(commentNum);
-    }
 
     @Override
     public void deleteAllComment(int boardNum, int boardCategory) {

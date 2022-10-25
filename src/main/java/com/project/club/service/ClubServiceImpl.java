@@ -51,6 +51,10 @@ public class ClubServiceImpl implements ClubService {
         Map<String, Object> map = new HashMap<>();
         map.put("user", user);
         map.put("clubNum", clubNum);
+        Cluber cluber = clubDao.getBlackCluber(map);
+        if(cluber!=null){
+            return cluber;
+        }
         return clubDao.getCluberCondition(map);
     }
 
@@ -263,6 +267,11 @@ public class ClubServiceImpl implements ClubService {
         map.put("clubCalendarNum", clubCalendarNum);
         map.put("applyStatus", applyStatus);
         return clubDao.listClubCalendarApply(map);
+    }
+
+    @Override
+    public void deleteClubCalendar(int clubCalendarNum) {
+        clubDao.deleteClubCalendar(clubCalendarNum);
     }
 
     @Override

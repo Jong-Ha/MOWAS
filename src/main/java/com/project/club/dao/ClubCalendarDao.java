@@ -38,4 +38,6 @@ public interface ClubCalendarDao {
     void updateClubCalender(ClubCalendar clubCalendar);
 
     void deleteClubCalender(int boardNum);
+
+    void dealUpdateCalender(Deal deal);
 }

@@ -338,13 +338,15 @@ $(".addDeal").on('click',function (){
     }
 
     .wap {
-      width: 1000px;
+      margin-top: 70px;
+      font-size: 1em;
+      width: 1030px;
+      padding: 5px 5px;
+      height: 580px;
+      border-radius: 10px;
     }
 
-    .carditem {
-      display: flex;
-      flex-direction: column;
-    }
+
 
     .card-title {
       width: 250px;
@@ -398,8 +400,22 @@ $(".addDeal").on('click',function (){
       overflow: hidden;
     }
 
+
+    .carditem {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-title {
+      width: 250px;
+      font-size: 1em;
+    }
+
     .cardbox {
-      transition: all 0.1s linear;
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 30px;
+      float: left;
     }
 
     .cardbox:hover  {
@@ -463,6 +479,8 @@ $(".addDeal").on('click',function (){
 </label>
 ${user.userId}
 <!-- Example Code -->
+<jsp:include page="/layout/toolbar.jsp"/>
+<img src="/resources/uploadFiles/dealBoardFiles/중고거래.png" style="height: 500px;border-radius: 10px;  width: 1600px;">
 <div class="wap">
 
   <%--상단 툴바--%>
@@ -471,13 +489,17 @@ ${user.userId}
 
 
     <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
-    <jsp:include page="/layout/toolbar.jsp"/>
-    <img src="/resources/uploadFiles/dealBoardFiles/중고거래.png" style="height: 500px;border-radius: 10px;  width: 1600px;">
+
+
+
+
+
+
     <div class="wrapper">
       <div class="typing">
         <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
                     background-image: linear-gradient(transparent 60%, #F8CD07 40%);">
-          물건 찾기</h4>
+          거래 물품</h4>
       </div>
     </div>
 <%--
@@ -565,11 +587,12 @@ ${user.userId}
   </c:if></p>
   <p class="allFlex">가격 : ${deal.price} 원 </p>
   <p class="allFlex">${deal.villCode}</p>
+    <p class="allFlex">${deal.dealRegDate}</p>
   </div>
   </div>
   <div class="tags" style="height: 30px;">
 
-              ${deal.tag}
+<%--              ${deal.tag}--%>
 
   </div>
 
@@ -699,7 +722,7 @@ ${user.userId}
 
             <div class="mb-3">
               <label for="file" class="form-label" style="display: none"></label>
-              <input class="form-control" type="file" id="file" name="file">
+              <input class="form-control" type="file" id="file" name="file"multiple="multiple">
             </div>
 
             <div class="input-group mb-3">

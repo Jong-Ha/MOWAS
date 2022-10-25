@@ -24,6 +24,7 @@
         <result property="reviewPt" column="review_pt" jdbcType="INTEGER"/>
         <result property="dealEndDate" column="deal_end_date" jdbcType="DATE"/>
         <result property="dealDate" column="deal_date" jdbcType="DATE"/>
+        <result property="likeCount" column="like_count" jdbcType="INTEGER"/>
         <result property="dealLocation" column="deal_location" jdbcType="VARCHAR"/>
         <result property="dealCalenderTitle" column="deal_calender_title" jdbcType="VARCHAR"/>
         <collection property="files" column="deal_board_num" ofType="com.project.domain.File"
@@ -119,24 +120,9 @@ values (seq_deal.NEXTVAL,
     </insert>
 <!--    &lt;!&ndash;게시물 상세조회&ndash;&gt;-->
     <select id="getDeal" parameterType="int" resultMap="dealSelectMap">
-        SELECT
-            deal_board_num,
-            user_id,
-            deal_title,
-            deal_text,
-            price,
-            product_name,
-            tag,
-            board_category,
-            review,
-            review_pt,
-            deal_id,
-            vill_code,
-            deal_status,
-            deal_reg_date,
-            view_count
-from deal
-where deal_board_num=#{dealBoardNum}
+        SELECT*
+        from deal
+        where deal_board_num=#{dealBoardNum}
     </select>
     <!--신뢰온도,
            파일-->
@@ -307,6 +293,16 @@ where deal_board_num=#{dealBoardNum}
         where deal_id = '${user}' or user_id = '${user}'
         and DEAL_MODE_CHECK = '1'
     </select>
+
+    <update id="dealUpdateCalender" parameterType="deal">
+        UPDATE deal
+            <set>
+                deal_date = #{dealDate},
+                deal_location = #{dealLocation},
+                deal_calender_title=#{dealCalenderTitle}
+            </set>
+        WHERE deal_board_num = #{dealBoardNum}
+    </update>
 
 
 </mapper>

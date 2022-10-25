@@ -64,7 +64,8 @@
                 }
 
                 var chatList = ' <div class="card shadow-lg chatBox" style="width: 500px; max-width: 500px; margin-bottom: 20px">' +
-                                '<input hidden class="roomId" value="'+item.roomId+'">'+
+                    '<input hidden class="roomId" value="'+item.roomId+'">'+
+                    '<input hidden class="rTime" value="0">'+
                                 '<div class="row g-0">' +
                                 '<div class="col-md-4 potoBox">' +
                                 '<img class="bd-placeholder-img img-fluid rounded-start poto" src="https://placeimg.com/50/50/any" alt="any" style="width: 320px;">' +
@@ -75,7 +76,7 @@
                                 '<hr>' +
                                 '<p class="card-text lastchatText"></p>' +
                                 '<hr>' +
-                                '<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>' +
+                                '<p class="card-text"><small class="text-muted chatTime">Last updated 3 mins ago</small></p>' +
                                 '</div>' +
                                 '</div>' +
                                 '</div>' +
@@ -85,15 +86,32 @@
             })
 
             socket.on("msg", (msg) => {
+                // console.log(msg)
+                // msg.forEach(function (a,b) {
+                //     console.log(b)
+                //     console.log(a)
+                // })
+                var card = $(".roomId[value='"+msg[0].roomId+"']").parent()
+                card.find(".lastchatText").html(msg[0].msg)
+                card.find(".chatTime").html(msg[0].time)
+                var chatBox = $(".chatBox")
+                // console.log(chatBox.length)
+                $.each(chatBox, function(index, item){
+                    if($(item).find(".rTime").val() < msg[0].rtime){
 
-                $(".lastchatText *").remove();
+                        $(item).before(card)
 
-               $.each(msg ,function( index, item){
+                        return false;
+                    }
+                })
 
-                    var lastText = item.msg;
 
-                    $(".lastchatText").html(lastText);
-                });
+                chatBox.off('click').on("click", function () {
+                    var roomId =  $(this).find(".roomId").val()
+
+
+                    location.href = "/chat/getChat?roomId="+roomId+"&chatNameSpace="+'${chatCategory}';
+                })
 
             });
 
@@ -107,12 +125,6 @@
             stylesheet.appendTo("head");
 
 
-            $(".chatBox").on("click", function () {
-               var roomId =  $(this).find(".roomId").val()
-
-
-                location.href = "/chat/getChat?roomId="+roomId+"&chatNameSpace="+'${chatCategory}';
-            })
 
         })
     })

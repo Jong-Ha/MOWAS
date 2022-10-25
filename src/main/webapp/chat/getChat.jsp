@@ -257,21 +257,25 @@
     background: rgba(249, 249, 249, 0.75);
     z-index: 2;
     width: 200px;
-    height: 180px;
+    height: 190px;
     margin-top: 67px;
     margin-left: 475px;">
 
         <ul class="">
             <li>
-                <a class="dealList dealCalender">직거래 일정 등록 하기</a>
+                <a class="dealList dealCalender">일정 등록 하기</a>
             </li>
 
             <li>
-                <a class="dealList">택배거래</a>
+                <a class="dealList dealUpdateCalender">일정 수정 하기</a>
             </li>
 
             <li>
-                <a class="dealList">음...</a>
+                <a class="dealList dealCalenderlist">내 거래 일정 보기</a>
+            </li>
+
+            <li>
+                <a class="dealList addReview">거래 확정</a>
             </li>
 
         </ul>
@@ -295,13 +299,14 @@
 </div>
 
 
+<%--거래 일정 작성--%>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true"
      style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <input type="hidden" class="dealNum" value="">
-                <h1 class="modal-title fs-5" id="exampleModalLabel4"> 모임 일정 후기글 쇼츠 작성 </h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel4"> 거래 일정 작성 </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -336,6 +341,52 @@
 
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
                 <button type="button" class="btn btn-primary dealSubmit">등록</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%--거래 일정 수정--%>
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel5" aria-hidden="true"
+     style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input type="hidden" class="dealNum" value="">
+                <h1 class="modal-title fs-5" id="exampleModalLabel5"> 거래 일정 수정</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control dealCalenderTitle2" id="recipient-name2" value=""
+                           placeholder="asdasd">
+                    <label for="recipient-name">제 목</label>
+                </div>
+
+
+                <div class="form-floating mb-3">
+
+                    <input type="date" class="form-control dealDate2" id="date-text2" value="" placeholder="asdasd"/>
+                    <label for="date-text">모임 일정 날짜</label>
+
+                </div>
+
+                <div class="input-group mb-3">
+
+                    <input type="text" class="form-control dealLocation2" value="위치 선택">
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer" style=" justify-content:center;">
+
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                <button type="button" class="btn btn-primary dealUpdateSubmit">수정 하기</button>
 
             </div>
         </div>
@@ -412,6 +463,19 @@
                 boardNum: '${boardNum}'
             }
         })
+        // 거래 계시판 번호 얻기
+        socket.emit('getboardNum', () => { })
+
+        socket.on("postboardNum", (date) => {
+
+            console.log(date);
+
+            $(".dealNum").val(date);
+        })
+
+
+
+
 
 
         socket.on("json", (msg) => {
@@ -445,44 +509,61 @@
         //server에서 data를 받음
         socket.on("chatting", (newMsg) => {
 
-            //서버에게 받은 data를 각각 상수에 담음
-            // const {name, msg, time} = newMsg;
-
-            //item 상수에 LiModel 매개변수 (neme,msg,time)을 받는 함수를 실행 시키고
-            // item에 담음
-            // console.log(newMsg)
-            // console.log(newMsg.userId)
-            // console.log(newMsg.msg)
-            // console.log(newMsg.time)
             const item = new LiModel(newMsg.userId, newMsg.msg, newMsg.time);
 
-            //makeLi를 실행한다.
             item.makeLi();
 
-            //채팅시 화면이 최하단으로 가기위해 scrollTo method를 사용
         })
 
 
-        socket.on("postboardNum", (date) => {
-
-            console.log(date);
-
-            $(".dealNum").val(date);
-
-        })
 
 
+        // 거래 모달창 오픈
         $(".dealCalender").on("click", () => {
-
-            socket.emit('getboardNum', () => {
-
-            })
 
             const modal = new bootstrap.Modal('#exampleModal', {})
             modal.show();
 
         })
 
+        $(".dealUpdateCalender").on("click", () => {
+
+            var dealBoardNum = $(".dealNum").val();
+
+            alert(dealBoardNum);
+
+            $.ajax({
+                url: "/clubCal/json/getDealCalender",
+                method: "POST",
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({
+                    "dealBoardNum": dealBoardNum
+                }),
+                success: function (JSONData, result) {
+
+                    var deal = JSONData.deal
+
+                    console.log("deal : "+ deal);
+
+                    var date = new Date(deal.dealDate);
+
+                    const year = date.getFullYear();
+                    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+                    const day = ('0' + date.getDate()).slice(-2);
+                    const dateStr = year + '-' + month + '-' + day;
+
+
+                    $(".dealCalenderTitle2").val(deal.dealCalenderTitle);
+                    $(".dealDate2").val(dateStr);
+                    $(".dealLocation2").val(deal.dealLocation);
+
+                    const modal = new bootstrap.Modal('#exampleModal2', {})
+                    modal.show();
+
+                }
+            })
+        })
 
         $(".dealSubmit").on("click", function () {
 
@@ -497,7 +578,7 @@
             console.log(dealLocation)
 
             $.ajax({
-                url: "/commu/json/addDealCalender",
+                url: "/clubCal/json/updateDealCalender",
                 method: "post",
                 data: JSON.stringify({
                     "dealBoardNum": dealBoardNum,
@@ -544,6 +625,72 @@
             });
 
         });
+
+
+        $(".dealUpdateSubmit").on("click", function () {
+
+            var dealBoardNum = $(".dealNum").val()
+            var dealCalenderTitle = $(".dealCalenderTitle2").val()
+            var dealDate = $(".dealDate2").val()
+            var dealLocation = $(".dealLocation2").val()
+
+            console.log(dealBoardNum)
+            console.log(dealCalenderTitle)
+            console.log(dealDate)
+            console.log(dealLocation)
+
+            $.ajax({
+                url: "/clubCal/json/updateDealCalender",
+                method: "post",
+                data: JSON.stringify({
+                    "dealBoardNum": dealBoardNum,
+                    "dealCalenderTitle": dealCalenderTitle,
+                    "dealDate": dealDate,
+                    "dealLocation": dealLocation,
+
+                }),
+
+                dataType: "json",
+                contentType: "application/json; charset=UTF-8",
+                success: function (JSONData, result) {
+
+                    console.log(result);
+                    // 성공시 해당 창을 닫고 부모창을 reload
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Your work has been saved',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    setTimeout(function () {
+                        window.open("/view/community/list/dealCalender.jsp", "거래 일정",
+                            "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no")
+                        window.location.reload()
+                    }, 2000);
+                    //error 발생시 그냥 창을 닫음
+                }, error: function () {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Your work has been saved',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    setTimeout(function () {
+                        window.location.reload()
+                    }, 2000);
+
+                }
+            });
+
+        });
+
+        $(".dealCalenderlist").on("click", function () {
+            window.open("/view/community/list/dealCalender.jsp", "거래 일정",
+                "left=300, top=200, width=750px, height=500px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no")
+        })
 
 
     })
