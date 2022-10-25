@@ -20,6 +20,10 @@ public interface DealService {
 
     public int getReviewPt(Deal deal) throws Exception;
 
+    int getViewCount(int dealBoardNum, String boardCategory);
+    void updateViewCount(int dealBoardNum,int viewCount, String boardCategory);
+
+
 //    public int addReview(Deal deal) throws Exception;
     //   public List<String> deleteReview(int dealBoardNum) throws Exception;
     //   public Map<String, Object> getListReview(Search search, String boardCategory) throws Exception ;

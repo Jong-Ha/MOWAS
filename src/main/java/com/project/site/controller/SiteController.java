@@ -41,6 +41,8 @@ public class SiteController {
     @Value("#{commonProperties['masterBoardPath']}")
     String masterBoardPath;
 
+    @Value("#{commonProperties['clubReportPath']}")
+    String clubReportPath;
 
     @RequestMapping(value="addMasterBoard", method=RequestMethod.GET)
     public String addMasterBoard( ) throws Exception {
@@ -101,7 +103,7 @@ public class SiteController {
         if(search.getCurrentPage() == 0 ){
             search.setCurrentPage(1);
         }
-        search.setPageSize(pageSize);
+       search.setPageSize(pageSize);
 
         Map<String , Object> map = siteService.listMasterBoard(search);
 
@@ -265,7 +267,9 @@ public class SiteController {
 
         return "forward:/view/site/listCommunityReportProcess.jsp";
     }
+    //Community Report Controller End
 
+    //Club Report Controller Start
     @RequestMapping(value = "listClubReport")
     public String listClubReport(@ModelAttribute("search") Search search, Model model) throws Exception {
         System.out.println("/site/listClubReport : GET / POST");
@@ -289,8 +293,29 @@ public class SiteController {
     }
 
     @RequestMapping(value = "addClubReport", method = RequestMethod.POST)
-    public String addClubReport(@ModelAttribute("clubReport") ClubReport clubReport) throws Exception {
+    public String addClubReport(@ModelAttribute("clubReport") ClubReport clubReport, HttpSession session,
+                                MultipartHttpServletRequest uploadFile) throws Exception {
         System.out.println("/site/addClubReport : POST");
+        List<MultipartFile> fileList = uploadFile.getFiles("file");
+        System.out.println(fileList);
+
+        if(fileList.size() >0 && !fileList.get(0).getOriginalFilename().equals("")) {
+            List<File> files = new ArrayList<>();
+
+            for(MultipartFile mfile : fileList) {
+                if (Objects.requireNonNull(mfile.getContentType()).substring(0, mfile.getContentType().indexOf("/")).equals("image")) {
+                    String fileName = clubReportPath + UUID.randomUUID() + mfile.getOriginalFilename();
+                    java.io.File upFile = new java.io.File(fileName);
+
+                    mfile.transferTo(upFile);
+
+                    File file = new File();
+                    file.setFileName(fileName);
+                    files.add(file);
+                }
+            }
+            clubReport.setFiles(files);
+        }
 
         siteService.addClubReport(clubReport);
         return "redirect:/site/listClubReport";
@@ -381,4 +406,6 @@ public class SiteController {
 
         return "forward:/view/site/listClubReportProcess.jsp";
     }
+
+    //Club Report End
 }

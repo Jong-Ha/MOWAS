@@ -525,7 +525,7 @@ public class ClubController {
     }
 
     @RequestMapping("updateClubBlacklist/{process}")
-    public String updateClubBlacklist(@PathVariable String process, @RequestParam("clubUserNum") List<Integer> clubUserNumList, @RequestParam("clubNum") int clubNum) {
+    public String updateClubBlacklist(@PathVariable String process, @RequestParam(value = "clubUserNum", required = false) List<Integer> clubUserNumList, @RequestParam("clubNum") int clubNum) {
         clubService.updateClubBlacklist(process, clubUserNumList);
         return "redirect:/club/listClubBlacklist/" + clubNum;
     }

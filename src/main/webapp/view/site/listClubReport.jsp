@@ -13,9 +13,12 @@
 <head>
     <title>List MasterBoard</title>
     <!-- Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
     <!--  ///////////////////////// CSS ////////////////////////// -->
     <style>
@@ -99,8 +102,7 @@
 
             //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
             $( ".addCr" ).on("click" , function() {
-
-                $(self.location).attr("href", "/site/addClubReport?reportedId=user01&boardCategory=01&boardNo=10020");
+               $("form").attr("method" , "POST").attr("action" , "/site/addClubReport").submit();
             });
 
             //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
@@ -146,10 +148,10 @@
                            value="${! empty search.searchKeyword ? search.searchKeyword : '' }"  >
                 </div>
 
-                <button type="button" class="btn btn-default">검색</button>
-
+                <button type="submit" class="btn btn-secondary">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                 <!-- PageNavigation 선택 페이지 값을 보내는 부분 -->
-                <input type="hidden" id="currentPage" name="currentPage" value=""/>
+                    <input type="hidden" id="currentPage" name="currentPage" value=""/>
 
             </form>
         </div>
@@ -199,9 +201,62 @@
     </div>
 
     <div class="col-md-12 text-center ">
-        <button type="button" class="addCr" >추 가</button>
+        <button type="button" class="newCr btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addClubReport">
+        신고 </button>
         <a class="btn btn-default btn" href = "#" role="button">취 소 </a>
     </div>
 
-    </body>
+<%-- 모달창 시작--%>
+<div class="modal model-center fade" id="addClubReport" tabindex="-1" aria-labelledby="addCrLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header" >
+                <h3 class="modal-title text-danger fs-5" id="addCrLabel">모임 신고</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form id="addCrForm" enctype="multipart/form-data">
+
+                    <input type="hidden" name="clubNum" value="10000">
+                    <input type="hidden" name="reportId" value="user01">
+
+                      <div class="input-group mb-3 mt-3">
+                        <div class="form-floating">
+                            <select class="form-select" id="crBasis" name="crBasis" required>
+                                <option value="0" selected>선택하세요</option>
+                                <option value="1">목적과 다른 모임</option>
+                                <option value="2">상업적 모임</option>
+                                <option value="3">정치적 성향의 모임</option>
+                                <option value="4">도박 모임</option>
+                                <option value="5">다단계 판매</option>
+                            </select>
+                            <label for="crBasis">카테고리</label>
+                        </div>
+                    </div>
+
+                    <div class="input-group mb-3 mt-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id=reportText name="reportText" placeholder="상세신고내용"
+                                   required>
+                            <label for="reportText">상세신고내용</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 mt-3">
+                        <label for="file" class="form-label" style="display: none"></label>
+                        <input class="form-control" type="file" id="file" name="file">
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger addCr" data-bs-dismiss="modal" style="margin-right: 185px">신 고</button>
+            </div>
+        </div>
+    </div>
+</div>
+<%-- 모달창 끝--%>
+</body>
 </html>

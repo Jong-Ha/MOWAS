@@ -25,26 +25,29 @@ public class DealServiceImpl implements DealService {
     @Autowired
     @Qualifier("dealDaoImpl")
     private DealDao dealDao;
+
     public void setDealDaoDao(DealDao dealDao) {
 
         this.dealDao = dealDao;
     }
+
     public DealServiceImpl() {
 
         System.out.println(this.getClass());
     }
+
     @Override
-    public int addDeal(Deal deal) throws Exception{
+    public int addDeal(Deal deal) throws Exception {
         dealDao.addDeal(deal);
         System.out.println("addDeal serviceImpl");
-        System.out.println("addDeal serviceImpl"+deal);
+        System.out.println("addDeal serviceImpl" + deal);
         System.out.println("addDeal serviceImpl");
         deal.setVillCode(deal.getUser().getVillCode());
         // System.out.println("뭔데 ㅜㅜ"+dealDao.getDealNum(deal.getUser().getUserId()));
         int dealBoardNum = dealDao.getDealNum(deal.getUser().getUserId());
-        String boardCategory=deal.getBoardCategory();
+        String boardCategory = deal.getBoardCategory();
         List<File> files = deal.getFiles();
-        for(File file : files){
+        for (File file : files) {
             file.setFileName(file.getFileName());
             file.setBoardNum(dealBoardNum);
             file.setBoardCategory(boardCategory);
@@ -56,21 +59,21 @@ public class DealServiceImpl implements DealService {
     }
 
     @Override
-    public void updateDeal(Deal deal,List<String> deleteFileNames) throws Exception{
+    public void updateDeal(Deal deal, List<String> deleteFileNames) throws Exception {
         dealDao.updateDeal(deal);
 
         //삭제된 파일 날리기
         Map<String, Object> map = new HashMap<>();
         map.put("boardNum", deal.getDealBoardNum());
-        map.put("deleteFileNames",deleteFileNames);
+        map.put("deleteFileNames", deleteFileNames);
         map.put("boardCategory", deal.getBoardCategory());
-        if(deleteFileNames!=null){
+        if (deleteFileNames != null) {
             dealDao.deleteDealBoardFile(map);
         }
 
         //새로운 파일 등록
         List<File> files = deal.getFiles();
-        for(File file : files){
+        for (File file : files) {
             file.setBoardNum(deal.getDealBoardNum());
             file.setBoardCategory(deal.getBoardCategory());
             dealDao.addDealBoardFile(file);
@@ -79,14 +82,14 @@ public class DealServiceImpl implements DealService {
     }
 
     @Override
-    public List<String> deleteDeal(int dealBoardNum) throws Exception{
+    public List<String> deleteDeal(int dealBoardNum) throws Exception {
         dealDao.deleteDeal(dealBoardNum);
         System.out.println("deleteDeal serviceImpl");
         //파일 날리기
         Map<String, Object> map = new HashMap<>();
         List<String> deleteFileNames = new ArrayList<>();
         map.put("boardNum", dealBoardNum);
-        map.put("deleteFileNames",deleteFileNames);
+        map.put("deleteFileNames", deleteFileNames);
         //deleteFileNames가 널이면 실행 안됨
         //deleteFileNames.size가 0이면 모든 파일 삭제
         List<String> deleteFiles = dealDao.listDealBoardFile(dealBoardNum);
@@ -95,19 +98,17 @@ public class DealServiceImpl implements DealService {
     }
 
     @Override
-    public Map<String, Object> getListDeal(Search search, String boardCategory,List<String> searchTag) throws Exception {
+    public Map<String, Object> getListDeal(Search search, String boardCategory, List<String> searchTag) throws Exception {
         Map<String, Object> map = new HashMap<>();
 
-        map.put("search",search);
-        map.put("boardCategory",boardCategory);
+        map.put("search", search);
+        map.put("boardCategory", boardCategory);
         int totalCount = dealDao.getTotalCount(map);
         List<Deal> list = dealDao.getListDeal(map);
-        map.put("totalCount",totalCount);
-        map.put("list",list);
-        System.out.println(list+"되는건가요 list");
+        map.put("totalCount", totalCount);
+        map.put("list", list);
+        System.out.println(list + "되는건가요 list");
         return map;
-
-
 
 
 //        Map<String, Object> map2=new HashMap<>();
@@ -125,14 +126,14 @@ public class DealServiceImpl implements DealService {
 
     @Override
     public Deal getUserId(int dealBoardNum) throws Exception {
-        System.out.println("serviceImpl"+dealBoardNum);
+        System.out.println("serviceImpl" + dealBoardNum);
 
         return dealDao.getDeal(dealBoardNum);
     }
 
     @Override
     public void updateReview(Deal deal) throws Exception {
-        System.out.println("왜 안가 ? "+deal);
+        System.out.println("왜 안가 ? " + deal);
         dealDao.updateReview(deal);
     }
 
@@ -145,19 +146,20 @@ public class DealServiceImpl implements DealService {
 //    }
 
     @Override
-    public Deal getDeal(int dealBoardNum) throws Exception{
+    public Deal getDeal(int dealBoardNum) throws Exception {
         System.out.println("getDeal serviceImpl");
 
         return dealDao.getDeal(dealBoardNum);
 
     }
-    public int getReviewPt(Deal deal) throws Exception{
+
+    public int getReviewPt(Deal deal) throws Exception {
         System.out.println("service Impl reviewPt");
         System.out.println(deal.getReviewPt());
         return dealDao.getReviewPt(deal);
     }
 
-//    @Override
+    //    @Override
 //    public Map<String, Object> getListDeal(Search search) throws Exception{
 //        List<Deal> list=DealDao.getListDeal(search);
 //        int totalCount = DealDao.getTotalCount(search);
@@ -168,7 +170,22 @@ public class DealServiceImpl implements DealService {
 //
 //        return map;
 //    }
+    @Override
+    public int getViewCount(int dealBoardNum, String boardCategory) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("dealBoardNum", dealBoardNum);
+        map.put("boardCategory", boardCategory);
+        return dealDao.getViewCount(map);
 
+    }
+    @Override
+    public void updateViewCount(int dealBoardNum,int viewCount,String boardCategory) {
+        Map<String,Object>map = new HashMap<String,Object>();
+        map.put("dealBoardNum", dealBoardNum);
+        map.put("viewCount", viewCount);
+        map.put("boardCategory", boardCategory);
+        System.out.println(map);
+        dealDao.updateViewCount(map);
+    }
 
 }
-

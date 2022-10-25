@@ -105,6 +105,13 @@ public class SiteDaoImpl implements SiteDao{
     public void addClubReport(ClubReport clubReport) throws Exception {
         sqlSession.insert("SiteMapper.addClubReport", clubReport);
     }
+
+    @Override
+    public void addClubReportFiles(File file) {
+
+        sqlSession.insert("SiteMapper.addClubReportFiles", file);
+    }
+
     @Override
     public  ClubReport getClubReport(int clubReportNo) throws Exception {
         return sqlSession.selectOne("SiteMapper.getClubReport", clubReportNo);

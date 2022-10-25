@@ -2,10 +2,9 @@ package com.project.club.controller;
 
 import com.project.club.service.ClubCalendarService;
 import com.project.club.service.ClubService;
-import com.project.domain.CalendarCluber;
-import com.project.domain.ClubCalendar;
-import com.project.domain.ClubCalendarReview;
-import com.project.domain.User;
+import com.project.community.service.CommunityService;
+import com.project.deal.service.DealService;
+import com.project.domain.*;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -38,6 +37,15 @@ public class ClubCalendarRestController<list> {
     @Autowired
     @Qualifier("clubServiceImpl")
     private ClubService clubService;
+
+    @Autowired
+    @Qualifier("communityServiceImpl")
+    private CommunityService communityService;
+
+    @Autowired
+    @Qualifier("dealServiceImpl")
+    private DealService dealService;
+
 
     /*캘린더 등록 ajax 처리*/
     @RequestMapping("addClubCalender")
@@ -117,6 +125,37 @@ public class ClubCalendarRestController<list> {
         return calenderReview.getClubCalenderReviewNum();
     }
 
+    @RequestMapping("getClubCalender")
+    public Map<String,Object> clubCalendar(@RequestBody ClubCalendar clubCalendar){
+        Map<String,Object> map = new HashMap<>();
+
+        clubCalendar = calenderService.getCalender(clubCalendar.getClubCalenderNum());
+
+        String[] date = clubCalendar.getClubDate().split(" ");
+
+        clubCalendar.setClubDate(date[0]);
+
+
+
+        map.put("clubCalendar", clubCalendar);
+
+        return map;
+    }
+
+    @RequestMapping("getClubCalenderReview")
+    public Map<String, Object> getClubCalender(@RequestBody ClubCalendarReview clubCalendar){
+
+        System.out.println(clubCalendar);
+
+        clubCalendar = calenderService.getCalenderReview(clubCalendar.getClubCalenderReviewNum());
+
+        Map<String,Object> map = new HashMap<>();
+
+        map.put("clubCalender", clubCalendar);
+
+        return map;
+    }
+
     @RequestMapping("updateClubCalenderReview")
     public int updateClubCalenderReview(@RequestBody ClubCalendarReview calendarReview) {
         System.out.println("업데이할 내용 :  " + calendarReview);
@@ -170,6 +209,33 @@ public class ClubCalendarRestController<list> {
         calenderService.updateClubCalender(clubCalendar);
 
         return 0;
+    }
+
+    @RequestMapping("getDealCalender")
+    public Map<String,Object> getDealCalender(@RequestBody Deal deal
+            ,HttpSession session) throws Exception {
+
+
+        System.out.println(deal)    ;
+
+        Map<String,Object> map = new HashMap<>();
+
+        deal = dealService.getDeal(deal.getDealBoardNum());
+
+        User user = (User)session.getAttribute("user");
+
+
+        System.out.println(deal.getBoardCategory());
+
+        String likeCheck = communityService.getLikeCheck(user.getUserId(), deal.getDealBoardNum(), Integer.parseInt(deal.getBoardCategory()));
+
+        System.out.println(deal);
+
+        map.put("deal", deal);
+        map.put("likeCheck",likeCheck);
+
+        return map;
+
     }
 
 

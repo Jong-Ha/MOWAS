@@ -56,6 +56,8 @@
         <result property="rereportResult" 	column="rereport_result"       jdbcType="VARCHAR"/>
         <result property="club.clubMasterId" column="club_master_id" jdbcType="VARCHAR"/>
         <result property="club.clubName" column="club_name" jdbcType="VARCHAR"/>
+        <collection property="files" column="club_report_num" ofType="com.project.domain.File"
+                    select="getClubReportFiles"/>
     </resultMap>
 
     <!-- Master Board Query 공지사항 추가-->
@@ -126,10 +128,10 @@
                                     <if test="searchCondition != null">
                                         <where>
                                         <if test="searchCondition == 0 and searchKeyword !='' ">
-                                            master_board_num = to_char(#{searchKeyword})
+                                            mb_title LIKE '%${searchKeyword}%'
                                         </if>
                                         <if test="searchCondition == 1 and searchKeyword !='' ">
-                                            mb_title = #{searchKeyword}
+                                            mb_text LIKE  '%${searchKeyword}%'
                                         </if>
                                         </where>
                                     </if>
@@ -145,10 +147,10 @@
                     <if test="searchCondition != null">
                         <where>
                             <if test="searchCondition == 0 and searchKeyword !='' ">
-                                master_board_num = to_char(#{searchKeyword})
+                                mb_title LIKE '%${searchKeyword}%'
                             </if>
                             <if test="searchCondition == 1 and searchKeyword !='' ">
-                                mb_title = #{searchKeyword}
+                                mb_text LIKE '%${searchKeyword}%'
                             </if>
                         </where>
                     </if> ) countTable
@@ -214,10 +216,10 @@
                         <if test="searchCondition != null">
                             <where>
                             <if test="searchCondition == 0 and searchKeyword !='' ">
-                                report_num = to_char(#{searchKeyword})
+                                reported_id = #{searchKeyword}
                             </if>
                             <if test="searchCondition == 1 and searchKeyword !='' ">
-                                reported_id = #{searchKeyword}
+                                board_category = #{searchKeyword}
                             </if>
                             </where>
                         </if>
@@ -235,10 +237,10 @@
                             <if test="searchCondition != null">
                                 <where>
                                 <if test="searchCondition == 0 and searchKeyword !='' ">
-                                    report_num = to_char(#{searchKeyword})
+                                    reported_id LIKE '%${searchKeyword}%'
                                 </if>
                                 <if test="searchCondition == 1 and searchKeyword !='' ">
-                                    reported_id = #{searchKeyword}
+                                    board_category = #{searchKeyword}
                                 </if>
                                  </where>
                             </if>
@@ -279,10 +281,10 @@
                     <if test="searchCondition != null">
                         <where>
                             <if test="searchCondition == 0 and searchKeyword !='' ">
-                                report_num = to_char(#{searchKeyword})
+                                reported_id = #{searchKeyword}
                             </if>
                             <if test="searchCondition == 1 and searchKeyword !='' ">
-                               reported_id = #{searchKeyword}
+                                board_category = #{searchKeyword}
                             </if>
                         </where>
                         </if>
@@ -324,20 +326,22 @@
 
     <!-- 모임 신고 Query -->
     <insert id="addClubReport" parameterType="clubReport">
+        <selectKey keyProperty="clubReportNo" resultType="int" order="BEFORE">
+            SELECT seq_club_report.NEXTVAL FROM dual
+        </selectKey>
+
         INSERT INTO club_report(
             club_report_num,
             club_num,
             report_id,
-            admin_id,
             cr_basis,
             report_date,
             report_text,
             rereport_apply_check,
             rereport_result )
-        VALUES (    seq_club_report.NEXTVAL,
+        VALUES (    #{clubReportNo},
                     #{clubNum},
                     #{reportId},
-                    #{adminId},
                     #{crBasis},
                     SYSDATE,
                     #{reportText},
@@ -469,8 +473,27 @@
     <select id="getMasterBoardFiles" resultMap="FileResultMap">
         SELECT *
         FROM files
-        WHERE board_num = #{clubMasterBoardNum}
+        WHERE board_num = #{masterBoardNo}
           AND board_category = '01'
+        ORDER BY file_num DESC
+    </select>
+
+    <!--파일 등록-->
+    <insert id="addClubReportFiles" parameterType="com.project.domain.File">
+        INSERT
+        INTO files(file_num,
+                   board_num,
+                   board_category,
+                   file_name)
+        VALUES (seq_files.NEXTVAL, #{boardNum}, '06', #{fileName})
+    </insert>
+
+    <!--파일 가져오가-->
+    <select id="getClubReportFiles" resultMap="FileResultMap">
+        SELECT *
+        FROM files
+        WHERE board_num = #{clubReportNo}
+          AND board_category = '06'
         ORDER BY file_num DESC
     </select>
 

@@ -137,6 +137,16 @@ public class SiteServiceImpl implements SiteService {
     @Override
     public void addClubReport(ClubReport clubReport) throws Exception {
         siteDao.addClubReport(clubReport);
+
+        List<File> files = clubReport.getFiles();
+
+        if(files != null) {
+            for (File file : files) {
+                file.setBoardNum(clubReport.getClubReportNo());
+                siteDao.addClubReportFiles(file);
+            }
+        }
+
     }
 
     @Override

@@ -157,6 +157,13 @@
             </set>
             where recomment_num = #{boardNum}
         </if>
+        <if test="boardCategory == '08' or boardCategory == '09'">
+            deal
+            <set>
+                like_count = #{likeCount} +1
+            </set>
+            WHERE deal_board_num = #{boardNum}
+        </if>
 
     </update>
 
@@ -190,6 +197,14 @@
             </set>
             WHERE recomment_num = #{boardNum}
         </if>
+        <if test="boardCategory == '08' or boardCategory =='09'">
+            deal
+            <set>
+                like_count = #{likeCount} -1
+            </set>
+            WHERE deal_board_num = #{boardNum}
+        </if>
+
     </update>
 
     <select id="getLikeCount" parameterType="map" resultType="int">
@@ -210,6 +225,11 @@
             FROM recomment
             WHERE recomment_num = #{boardNum}
         </if>
+        <if test="boardCategory == '08' or boardCategory == '09'">
+            FROM deal
+            WHERE deal_board_num=#{boardNum}
+        </if>
+
     </select>
 
     <delete id="deleteAllLike" parameterType="map">
@@ -279,12 +299,6 @@
         WHERE comment_num = #{commentNum}
     </update>
 
-    <delete id="deleteAllComment" parameterType="map">
-        delete comments
-        WHERE board_num = #{boardNum}
-        AND board_category = #{boardCategory}
-    </delete>
-
     <select id="listComment"  parameterType="map" resultMap="comemntSelect">
         SELECT * FROM comments
         WHERE board_num = #{boardNum}
@@ -317,11 +331,6 @@
         WHERE recomment_num = #{recommentNun}
     </delete>
 
-    <delete id="deleteAllRecomment" parameterType="int">
-        DELETE recomment
-        WHERE comment_num = #{commentNum}
-    </delete>
-
     <select id="listRecomment" parameterType="map" resultMap="recommentSelect">
         select * from RECOMMENT
         where COMMENT_NUM = #{commentNum}
@@ -329,7 +338,7 @@
 
     <!--게시글 지우기-->
     <delete id="deleteBoard" parameterType="map">
-        DELETE 
+        DELETE
         <if test="boardCategory == 1 || boardCategory == 2">
             club_calendar_review
             WHERE club_calendar_review_num = #{boardNum}
