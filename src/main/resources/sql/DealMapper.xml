@@ -24,6 +24,7 @@
         <result property="reviewPt" column="review_pt" jdbcType="INTEGER"/>
         <result property="dealEndDate" column="deal_end_date" jdbcType="DATE"/>
         <result property="dealDate" column="deal_date" jdbcType="DATE"/>
+        <result property="likeCount" column="like_count" jdbcType="INTEGER"/>
         <result property="dealLocation" column="deal_location" jdbcType="VARCHAR"/>
         <result property="dealCalenderTitle" column="deal_calender_title" jdbcType="VARCHAR"/>
         <collection property="files" column="deal_board_num" ofType="com.project.domain.File"
@@ -134,7 +135,8 @@ values (seq_deal.NEXTVAL,
             vill_code,
             deal_status,
             deal_reg_date,
-            view_count
+            view_count,
+            like_count
 from deal
 where deal_board_num=#{dealBoardNum}
     </select>
@@ -270,7 +272,7 @@ where deal_board_num=#{dealBoardNum}
         <where>deal_board_num=#{dealBoardNum}</where>
     </update>
     <select id="getReviewPt" parameterType="deal" resultType="int">
-        select AVG(review_pt)
+        select NVL(AVG(review_pt),0)
         from deal
         where user_id = #{user.userId}
     </select>

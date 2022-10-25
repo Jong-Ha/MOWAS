@@ -174,9 +174,12 @@ public DealController(){
         //String boardCategory = String.valueOf(deal.getBoardCategory());
         System.out.println(deal.getBoardCategory());
 //String likeCheck =commuService.getLikeCheck((String)session.getAttribute("userId"),dealBoardNum, (Integer.parseInt(deal.getBoardCategory())));
-       String likeCheck =commuService.getLikeCheck("user01",dealBoardNum, (Integer.parseInt(deal.getBoardCategory())));
+       String likeCheck =commuService.getLikeCheck(deal.getUser().getUserId(),dealBoardNum, (Integer.parseInt(deal.getBoardCategory())));
+        int reviewPt=dealService.getReviewPt(deal);
 
+        System.out.println("리뷰포인트를 얻기위한 노력"+deal);
         System.out.println("likecheck"+likeCheck);
+        model.addAttribute("reviewPt",reviewPt);
         model.addAttribute("deal", deal);
         model.addAttribute("likeCheck",likeCheck);
         return "/view/deal/getDeal.jsp";

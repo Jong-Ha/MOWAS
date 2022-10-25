@@ -238,3 +238,32 @@ tags.tagify {
     width: 50%;
     float: left;
 }
+.textbox {
+    padding: 5px;
+    height: 500px;
+    width: 50%;
+    float: right;
+    background: #fff;
+    border-radius: 10px;
+    font-size: 0.7em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.textboxrow {
+    margin-top: 20px;
+    font-size: 1.6em;
+    font-weight: bolder
+}
+.likebox {
+    height: 75px;
+    background: #ffff;
+    margin-top: -30px;
+    border-radius: 5px;
+}
+
+.userImage1 {
+    margin-top: -20px;
+    display: flex;
+}
