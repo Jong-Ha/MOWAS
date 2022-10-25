@@ -33,7 +33,7 @@ public class MyPageServiceImpl implements MyPageService {
         Map<String, Object> map = new HashMap<String, Object>();
         User user = myPageDao.getMyInfor(userId);
         List<UserInterList> inList = myPageDao.getMyInforInterList(userId);
-        String tm = "";
+        /*String tm = "";
         ArrayList tmlist = null;
         for (int i = 0; i < inList.size(); i++) {
             String abc = inList.get(i).getInterList().trim();
@@ -102,7 +102,8 @@ public class MyPageServiceImpl implements MyPageService {
 
             map.put("interList", tmlist);
         }
-
+*/
+        map.put("interList", inList);
         map.put("user", user);
 
         return map;

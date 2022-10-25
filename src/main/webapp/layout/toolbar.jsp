@@ -21,10 +21,10 @@
             console.log('${user.userId}')
             console.log($.cookie("keepLogin"))
             if( $.cookie('keepLogin')!=undefined){
-                alert('dddd')
+
                 self.location = "/user/login";
             }else {
-                alert('bbb')
+
                 self.location = "/view/user/login.jsp";
             }
         });
