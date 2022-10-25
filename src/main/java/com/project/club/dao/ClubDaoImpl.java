@@ -226,6 +226,11 @@ public class ClubDaoImpl implements ClubDao {
     }
 
     @Override
+    public void deleteClubCalendar(int clubCalendarNum) {
+        sqlSession.delete("ClubMapper.deleteClubCalendar", clubCalendarNum);
+    }
+
+    @Override
     public void updateClubCalendarApply(Map<String, Object> map) {
         sqlSession.update("ClubMapper.updateClubCalendarApply", map);
 

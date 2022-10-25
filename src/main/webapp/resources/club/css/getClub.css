@@ -2,6 +2,8 @@
     margin-top: 50px;
     border-radius: 10px;
     height: 125px;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .modal-header .btn-close{
@@ -320,4 +322,8 @@ tags.tagify {
 
 #getCluber .cartFont {
     font-size: 0.8em;
+}
+
+#listCluberOut .modal-footer {
+    justify-content: center;
 }

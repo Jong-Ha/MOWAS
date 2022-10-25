@@ -84,22 +84,25 @@
                             $(".noticeTime2").val(clubCalendar.noticeTime);
 
 
+                            alert(clubCalendar.noticeCheck)
                             if (clubCalendar.noticeCheck === '2') {
-                                $(".noticeCheck2").val("on");
+                                $(".noticeCheck2").prop('checked',true);
                             } else {
-                                $(".noticeCheck2").val("off");
+                                $(".noticeCheck2").prop('checked',false);
                             }
 
+                            alert(clubCalendar.calendarApplyCheck)
                             if (clubCalendar.calendarApplyCheck === '2') {
-                                $(".calendarApplyCheck2").val("on");
+                                $(".calendarApplyCheck2").prop('checked',true);
                             } else {
-                                $(".calendarApplyCheck2").val("off");
+                                $(".calendarApplyCheck2").prop('checked',false);
                             }
 
+                            alert(clubCalendar.applyAutoCheck)
                             if (clubCalendar.applyAutoCheck === '2') {
-                                $(".applyAutoCheck2").val("on");
+                                $(".applyAutoCheck2").prop('checked',true);
                             } else {
-                                $(".applyAutoCheck2").val("off");
+                                $(".applyAutoCheck2").prop('checked',false);
                             }
 
 

@@ -11,10 +11,14 @@
   <component name="ChangeListManager">
     <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="LJH 2022.10.24&#10;&#10;메시지 받으면 채팅창 제일 위로 올라감&#10;cluber 관련 jsp 완료&#10;팝업창들 모달로 수정&#10; - 네비게이션 성공&#10; - js 기능 미구현&#10;ajax로 모달 가져오기">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/css/getClub.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/css/getClub.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/js/getClub.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/js/getClub.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/deleteCluber.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/deleteCluber.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/getClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/getClub.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/getCluber.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/getCluber.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClubBlacklist.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClubBlacklist.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listCluber.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listCluber.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/calender.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/calender.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -410,7 +414,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666322614652</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="LJH 2022.10.25&#10;&#10;모임 리스트 로그인 관련 수정을 위한 커밋">
+      <created>1666660232495</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1666660232495</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -449,7 +460,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="origin/master" />
                       </list>
                     </value>
                   </entry>
@@ -511,7 +522,8 @@
     <MESSAGE value="LJH 2022.10.19&#10;&#10;feane : jsp 파일 연결" />
     <MESSAGE value="LJH 2022.10.21&#10;&#10;addCalendarCluber 관련 Service, Dao, Mapper 생성&#10;1:1 같은 유저들이면 방 새로 안만들어짐&#10;거래채팅 같은 글, 같은 유저들이면 방 새로 안만들어짐&#10;방 조회 시 위 조건 or 방 번호로 조회" />
     <MESSAGE value="LJH 2022.10.24&#10;&#10;메시지 받으면 채팅창 제일 위로 올라감&#10;cluber 관련 jsp 완료&#10;팝업창들 모달로 수정&#10; - 네비게이션 성공&#10; - js 기능 미구현&#10;ajax로 모달 가져오기" />
-    <option name="LAST_COMMIT_MESSAGE" value="LJH 2022.10.24&#10;&#10;메시지 받으면 채팅창 제일 위로 올라감&#10;cluber 관련 jsp 완료&#10;팝업창들 모달로 수정&#10; - 네비게이션 성공&#10; - js 기능 미구현&#10;ajax로 모달 가져오기" />
+    <MESSAGE value="LJH 2022.10.25&#10;&#10;모임 리스트 로그인 관련 수정을 위한 커밋" />
+    <option name="LAST_COMMIT_MESSAGE" value="LJH 2022.10.25&#10;&#10;모임 리스트 로그인 관련 수정을 위한 커밋" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
