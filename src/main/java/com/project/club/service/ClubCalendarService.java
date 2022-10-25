@@ -35,4 +35,6 @@ public interface ClubCalendarService {
     void updateClubCalender(ClubCalendar clubCalendar);
 
     void deleteClubCalender(int boardNum);
+
+    void dealUpdateCalender(Deal deal);
 }

@@ -330,6 +330,7 @@ Product vo=(Product)request.getAttribute("vo");
     <input hidden  class="userId" value="${user.userId}"></h2>
     <input hidden name="dealBoardNum" value="${deal.dealBoardNum}"class="dealBoardNum">
     <input hidden name="boardCategory" value="${deal.boardCategory}"class="boardCategory">
+    <input hidden class="dealUserId" value="${deal.user.userId}">
     <div class="wap shadow-lg">
         <div class="usedbox">
     <div class="thumbnailBox">

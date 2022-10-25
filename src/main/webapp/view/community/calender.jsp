@@ -60,7 +60,7 @@
 
                 $(function () {
 
-
+                    //상세 조회 modal 오픈
                     $.ajax({
                         url: "/clubCal/json/getClubCalender",
                         method: "POST",
@@ -84,22 +84,22 @@
                             $(".noticeTime2").val(clubCalendar.noticeTime);
 
 
-                            if (clubCalendar.noticeCheck === '2') {
-                                $(".noticeCheck2").val("on");
+                            if (clubCalendar.noticeCheck === '1') {
+                                $(".noticeCheck2").prop("checked", true);
                             } else {
-                                $(".noticeCheck2").val("off");
+                                $(".noticeCheck2").prop("checked", false);
                             }
 
-                            if (clubCalendar.calendarApplyCheck === '2') {
-                                $(".calendarApplyCheck2").val("on");
+                            if (clubCalendar.calendarApplyCheck === '1') {
+                                $(".calendarApplyCheck2").prop("checked", true);
                             } else {
-                                $(".calendarApplyCheck2").val("off");
+                                $(".calendarApplyCheck2").prop("checked", false);
                             }
 
-                            if (clubCalendar.applyAutoCheck === '2') {
-                                $(".applyAutoCheck2").val("on");
+                            if (clubCalendar.applyAutoCheck === '1') {
+                                $(".applyAutoCheck2").prop("checked", true);
                             } else {
-                                $(".applyAutoCheck2").val("off");
+                                $(".applyAutoCheck2").prop("checked", false);
                             }
 
 
@@ -138,7 +138,7 @@
 
                             var button
 
-                            if (date3 < date2) {
+                            if (date3 > date2) {
 
                                 button = '<button class="btn btn-primary update" data-bs-toggle="modal" data-bs-target="#exampleModal3">' +
                                     '수정' +
@@ -152,7 +152,7 @@
                                 $(".addBox").append(button);
                             }
 
-                            if (date3 > date2) {
+                            if (date3 < date2) {
 
                                 button = '<button class="btn btn-primary addReview" data-bs-toggle="modal" data-bs-target="#exampleModal4">' +
                                         '모임 일정 후기글 작성' +
@@ -167,9 +167,12 @@
                             }
 
 
+                            var clubCalenderNum = $(".clubCalnderNum").val()
+
+                            //수정 modal 오픈
                             $(".update").on("click", function () {
 
-                                var clubCalenderNum = $(".clubCalnderNum").val()
+
 
                                 $.ajax({
                                     url: "/clubCal/json/getClubCalender",
@@ -194,27 +197,59 @@
                                         $(".noticeTime3").val(clubCalendar.noticeTime);
 
 
-                                        if (clubCalendar.noticeCheck === '2') {
-                                            $(".noticeCheck3").val("on");
+                                        if (clubCalendar.noticeCheck === '1') {
+                                            $(".noticeCheck3").prop("checked", true);
                                         } else {
-                                            $(".noticeCheck3").val("off");
+                                            $(".noticeCheck3").prop("checked", false);
                                         }
 
-                                        if (clubCalendar.calendarApplyCheck === '2') {
-                                            $(".calendarApplyCheck3").val("on");
+                                        if (clubCalendar.calendarApplyCheck === '1') {
+                                            $(".calendarApplyCheck3").prop("checked", true);
                                         } else {
-                                            $(".calendarApplyCheck3").val("off");
+                                            $(".calendarApplyCheck3").prop("checked", false);
                                         }
 
-                                        if (clubCalendar.applyAutoCheck === '2') {
-                                            $(".applyAutoCheck3").val("on");
+                                        if (clubCalendar.applyAutoCheck === '1') {
+                                            $(".applyAutoCheck3").prop("checked", true);
                                         } else {
-                                            $(".applyAutoCheck3").val("off");
+                                            $(".applyAutoCheck3").prop("checked", false);
                                         }
+
+
                                     }
                                 });
 
 
+                            })
+
+
+                            $(".delete").on("click", function () {
+
+
+                                $.ajax({
+                                    url: "/clubCal/json/deleteClubCalender",
+                                    type: "POST",
+                                    data: JSON.stringify({"clubCalenderNum": clubCalenderNum}),
+                                    dataType: "json",
+                                    contentType: 'application/json; charset=UTF-8',
+                                    success: function (JSONData, result) {
+                                        console.log(result);
+
+                                        // 성공시 해당 창을 닫고 부모창을 reload
+                                        Swal.fire({
+                                            position: 'top-end',
+                                            icon: 'success',
+                                            title: 'Your work has been saved',
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        });
+
+                                        setTimeout(function () {
+                                            window.location.reload()
+                                        }, 2000);
+                                    }
+
+                                })
                             })
                         }
 
@@ -272,6 +307,7 @@
 
         var clubNum = '${club.clubNum}'
 
+        /*등록 submit*/
 
         $(".submit").on("click", function () {
 
@@ -279,11 +315,17 @@
             var calenderText = $(".calenderText").val()
             var clubDate = $(".clubDate").val()
             var location = $(".location").val()
-            var noticeCheck = $(".noticeCheck").val()
+            var noticeCheck = $(".noticeCheck").prop("checked")
             var noticeTime = $(".noticeTime").val()
-            var calendarApplyCheck = $(".calendarApplyCheck").val()
-            var applyAutoCheck = $(".applyAutoCheck").val()
+            var calendarApplyCheck = $(".calendarApplyCheck").prop("checked")
+            var applyAutoCheck = $(".applyAutoCheck").prop("checked")
             var boardCategory = '05';
+
+
+            alert(noticeCheck);
+            alert(calendarApplyCheck);
+            alert(applyAutoCheck);
+
 
             var clubers = $(".clubers")
 
@@ -411,22 +453,28 @@
 
         });
 
-        $(".updateSubmit").on("click", function () {
 
+        //수정 submit
+
+        $(".updateSubmit").on("click", function () {
 
             var clubCalenderNum = $(".clubCalenderNum3").val()
             var calenderTitle = $(".calenderTitle3").val()
             var calenderText = $(".calenderText3").val()
             var clubDate = $(".clubDate3").val()
             var location = $(".location3").val()
-            var noticeCheck = $(".noticeCheck3").val()
-            var noticeTime = $(".noticeTime3").val()
-            var calendarApplyCheck = $(".calendarApplyCheck3").val()
-            var applyAutoCheck = $(".applyAutoCheck3").val()
+            var noticeCheck = $(".noticeCheck3").prop("checked")
+            var noticeTime = $(".noticeTime3").val();
+            var calendarApplyCheck = $(".calendarApplyCheck3").prop("checked")
+            var applyAutoCheck = $(".applyAutoCheck3").prop("checked")
             var boardCategory = '05';
 
 
-            alert(clubCalenderNum);
+            alert(noticeCheck);
+            alert(calendarApplyCheck);
+            alert(applyAutoCheck);
+            alert(noticeTime);
+
             var clubers = $(".clubers3")
 
             var cluber = new Array();
@@ -1055,6 +1103,7 @@
     </div>
 </div>
 
+
 <%--수정--%>
 <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel"
      aria-hidden="true" style="display: none;">
@@ -1071,21 +1120,18 @@
                 <form id="fileForm2">
 
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control calenderTitle3" id="recipient-name3" value=""
-                               placeholder="asdasd">
+                        <input type="text" class="form-control calenderTitle3" id="recipient-name3" value="" placeholder="asdasd">
                         <label for="recipient-name3">제 목</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control calenderText3" id="message-text3" value=""
-                               placeholder="asdasd"/>
+                        <input type="text" class="form-control calenderText3" id="message-text3" value="" placeholder="asdasd"/>
                         <label for="message-text3">일정 내용</label>
                     </div>
 
                     <div class="form-floating mb-3">
 
-                        <input type="date" class="form-control clubDate3" id="date-text3" value=""
-                               placeholder="asdasd"/>
+                        <input type="date" class="form-control clubDate3" id="date-text3" value="" placeholder="asdasd"/>
                         <label for="date-text3">모임 일정 날짜</label>
 
                     </div>
@@ -1109,8 +1155,7 @@
 
                     <div class=" mb-3 form-check form-switch">
                         알림 설정 여부
-                        <input class="form-check-input check noticeCheck3" name="noticeCheck" type="checkbox"
-                               role="switch">
+                        <input class="form-check-input check noticeCheck3" name="noticeCheck" type="checkbox" role="switch">
                     </div>
 
                     <hr>
@@ -1126,8 +1171,7 @@
 
                     <div class=" mb-3 form-check form-switch">
                         추가 참여 여부
-                        <input class="form-check-input check calendarApplyCheck3" name="calendarApplyCheck"
-                               type="checkbox" role="switch">
+                        <input class="form-check-input check calendarApplyCheck3" name="calendarApplyCheck" type="checkbox" role="switch">
 
                     </div>
 
@@ -1135,8 +1179,7 @@
 
                     <div class=" mb-3 form-check form-switch">
                         자동 참여 가능
-                        <input class="form-check-input check applyAutoCheck3" name="applyAutoCheck" type="checkbox"
-                               role="switch">
+                        <input class="form-check-input check applyAutoCheck3" name="applyAutoCheck" type="checkbox" role="switch">
 
                     </div>
 
@@ -1151,17 +1194,18 @@
 
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
                 <button type="button" class="btn btn-primary updateSubmit">수정</button>
+
             </div>
         </div>
     </div>
 </div>
 
-
+<%--모임 일정 후기글 등록--%>
 <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel3"> 모임 일정 후기글 수정 </h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel3"> 모임 일정 후기글 </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -1222,6 +1266,8 @@
     </div>
 </div>
 
+
+<%--모임 일정 후기 쇼츠--%>
 <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -1276,6 +1322,60 @@
 
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
                 <button type="button" class="btn btn-primary calenderReviewShortSubmit">등록</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<%--거래 일정 상세 조회--%>
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true"
+     style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input type="hidden" class="dealNum" value="">
+                <h1 class="modal-title fs-5" id="exampleModalLabel2"> 거래 일정</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control dealCalenderTitle2" value=""
+                           placeholder="asdasd">
+                    <label for="recipient-name">제 목</label>
+                </div>
+
+
+                <div class="form-floating mb-3">
+
+                    <input type="date" class="form-control dealDate2"  value="" placeholder="asdasd"/>
+                    <label for="date-text">모임 일정 날짜</label>
+
+                </div>
+
+                <div class="input-group mb-3">
+
+                    <input type="text" class="form-control dealLocation2" value="위치 선택">
+
+                </div>
+
+
+            </div>
+
+            <div class="modal-footer" style=" justify-content:center;">
+
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                <button type="button" class="btn btn-info updateSubmit">수정</button>
+                <button type="button" class="btn btn-secondary getDealPage">게시글 상세 조회</button>
 
             </div>
         </div>
