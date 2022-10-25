@@ -129,6 +129,11 @@ public class ClubCalendarServiceImpl implements ClubCalendarService {
     }
 
     @Override
+    public void dealUpdateCalender(Deal deal) {
+        clubCalendarDao.dealUpdateCalender(deal);
+    }
+
+    @Override
     public void addFileUpload(Map<String, String> map) {
         clubCalendarDao.addFileUpload(map);
     }

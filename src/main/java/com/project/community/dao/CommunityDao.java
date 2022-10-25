@@ -54,7 +54,6 @@ public interface CommunityDao {
 
     List<Deal> getListDealCalender(String userId);
 
-    void deleteAllRecomment(int commentNum);
 
     void deleteAllComment(Map<String, Object> map);
 

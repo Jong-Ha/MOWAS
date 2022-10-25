@@ -32,16 +32,16 @@ public class CommunityRestController {
     /* 댓글 대댓글*/
     @RequestMapping(value = "addComment", method = RequestMethod.POST)
     public int addComment(@RequestBody Comment comment
-                        ,HttpSession session) throws ParseException {
+            , HttpSession session) throws ParseException {
         System.out.println(comment);
 
-        User user = (User)session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
 
         comment.setUserId(user.getUserId());
         comment.setCommentCheck("n");
 
 
-       communityService.addComment(comment);
+        communityService.addComment(comment);
 
         return 0;
     }
@@ -62,7 +62,7 @@ public class CommunityRestController {
     }
 
     @RequestMapping(value = "deleteComment", method = RequestMethod.POST)
-    public int deleteComment(@RequestBody Comment comment){
+    public int deleteComment(@RequestBody Comment comment) {
 
         comment.setCommentCheck("y");
 
@@ -71,13 +71,16 @@ public class CommunityRestController {
         communityService.deleteComment(comment);
 
         return 0;
+
+
     }
+
     @RequestMapping("addRecomment")
     public int addReComment(@RequestBody Recomment recomment
-                            ,HttpSession session){
+            , HttpSession session) {
 
 
-        User user = (User)session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
 
         System.out.println("대댓글의 내영 : " + recomment);
 
@@ -90,7 +93,7 @@ public class CommunityRestController {
     }
 
     @RequestMapping("updateRecomment")
-    public int updateRecomment(@RequestBody Recomment recomment){
+    public int updateRecomment(@RequestBody Recomment recomment) {
         System.out.println("대댓글 수정 : " + recomment);
 
         communityService.updateRecomment(recomment);
@@ -99,9 +102,9 @@ public class CommunityRestController {
     }
 
     @RequestMapping("deleteRecomment")
-    public int deleteRecomment(@RequestBody Recomment recomment){
+    public int deleteRecomment(@RequestBody Recomment recomment) {
 
-        System.out.println("대댓글 삭제 : "+ recomment);
+        System.out.println("대댓글 삭제 : " + recomment);
 
         communityService.deleteRecomment(recomment.getRecommentNum());
 
@@ -109,11 +112,11 @@ public class CommunityRestController {
     }
 
     @RequestMapping("getListComment")
-    public Map<String, Object> getListComment(@RequestBody Map<String, Object> map){
+    public Map<String, Object> getListComment(@RequestBody Map<String, Object> map) {
 
         Map<String, Object> map2 =
                 communityService.listComment(Integer.parseInt((String) map.get("boardNum")),
-                                            Integer.parseInt((String) map.get("boardCategory")));
+                        Integer.parseInt((String) map.get("boardCategory")));
 
         System.out.println(map2);
 
@@ -127,7 +130,7 @@ public class CommunityRestController {
 
         System.out.println("viewCount : " + Board);
 
-        JSONObject jsonObj = (JSONObject)parser.parse(Board);
+        JSONObject jsonObj = (JSONObject) parser.parse(Board);
 
         String SboardNum = (String) jsonObj.get("boardNum");
         String SboardCategory = (String) jsonObj.get("boardCategory");
@@ -137,20 +140,20 @@ public class CommunityRestController {
         int boardCategory = Integer.parseInt(SboardCategory);
         int viewCount = Integer.parseInt(SviewCount);
 
-        communityService.updateViewCount(boardNum,viewCount,boardCategory);
+        communityService.updateViewCount(boardNum, viewCount, boardCategory);
 
-        return communityService.getViewCount(boardNum,boardCategory);
+        return communityService.getViewCount(boardNum, boardCategory);
     }
 
     @RequestMapping(value = "addLike")
     public int addLike(@RequestBody String Board
-                        ,HttpSession session) throws ParseException {
+            , HttpSession session) throws ParseException {
 
         JSONParser parser = new JSONParser();
 
         System.out.println("likeRestController진입 : " + Board);
 
-        JSONObject jsonObj = (JSONObject)parser.parse(Board);
+        JSONObject jsonObj = (JSONObject) parser.parse(Board);
 
         String SboardNum = (String) jsonObj.get("boardNum");
         String SboardCategory = (String) jsonObj.get("boardCategory");
@@ -164,54 +167,54 @@ public class CommunityRestController {
         System.out.println(likeCount);
 
         /*String userId = session.getAttribute("userId");*/
-        User user = (User)session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
 
         String userId = user.getUserId();
 
         /*좋아요 유무 체크*/
-        String likeCheck = communityService.getLikeCheck(userId,boardNum,boardCategory);
+        String likeCheck = communityService.getLikeCheck(userId, boardNum, boardCategory);
 
         /*좋아요 체크가 null이면 좋아요 add*/
-        if( likeCheck == null) {
+        if (likeCheck == null) {
             /*게시글에 좋아요 count +1*/
-            communityService.updateLikeCount(boardNum,boardCategory,likeCount);
+            communityService.updateLikeCount(boardNum, boardCategory, likeCount);
 
             /*좋아요 add*/
-            communityService.addLike(userId,boardNum,boardCategory);
+            communityService.addLike(userId, boardNum, boardCategory);
 
             /*좋아요 count 화면으로 return*/
             return communityService.getLikeCount(boardNum, boardCategory);
 
-         /*좋아요 체크가 y면 좋아요 count -1*/
+            /*좋아요 체크가 y면 좋아요 count -1*/
         } else if (likeCheck.equals("y")) {
 
             /*좋아요 count -1*/
-            communityService.deleteLikeCount(boardNum,boardCategory,likeCount);
+            communityService.deleteLikeCount(boardNum, boardCategory, likeCount);
 
             /*좋아요 체크를 'n' 로 변경*/
-            communityService.updateLike(userId,boardNum,boardCategory,"n");
+            communityService.updateLike(userId, boardNum, boardCategory, "n");
 
             /*좋아요 count 화면으로 return*/
-            return communityService.getLikeCount(boardNum,boardCategory);
-           /*좋아요 체크가 n이면 실행*/
-        }else if (likeCheck.equals("n")){
+            return communityService.getLikeCount(boardNum, boardCategory);
+            /*좋아요 체크가 n이면 실행*/
+        } else if (likeCheck.equals("n")) {
             /*게시글에 좋아요 count +1*/
-            communityService.updateLikeCount(boardNum,boardCategory,likeCount);
+            communityService.updateLikeCount(boardNum, boardCategory, likeCount);
 
             /*좋아요 체크를 'y' 로 변경*/
-            communityService.updateLike(userId,boardNum,boardCategory,"y");
+            communityService.updateLike(userId, boardNum, boardCategory, "y");
             /*좋아요 count 화면으로 return*/
-            return communityService.getLikeCount(boardNum,boardCategory);
+            return communityService.getLikeCount(boardNum, boardCategory);
         }
 
         return 0;
     }
 
-    @RequestMapping(value = "addVillBoard" , method =  RequestMethod.POST)
-    public int addVillBarod(@RequestBody VilBoard villBoard, HttpSession session){
+    @RequestMapping(value = "addVillBoard", method = RequestMethod.POST)
+    public int addVillBarod(@RequestBody VilBoard villBoard, HttpSession session) {
         System.out.println(villBoard);
 
-        User user = (User)session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
 
         villBoard.setUserId(user.getUserId());
         villBoard.setVillCode("창원");
@@ -221,10 +224,10 @@ public class CommunityRestController {
         return villBoard.getVillBoardNum();
     }
 
-    @RequestMapping(value = "updateVillBoard" , method = RequestMethod.POST)
-    public int updateVillBoard(@RequestBody VilBoard vilBoard){
+    @RequestMapping(value = "updateVillBoard", method = RequestMethod.POST)
+    public int updateVillBoard(@RequestBody VilBoard vilBoard) {
 
-        System.out.println("우리동네 게시판 수정 : "+ vilBoard);
+        System.out.println("우리동네 게시판 수정 : " + vilBoard);
 
 
         communityService.updateVillBoard(vilBoard);
@@ -232,36 +235,5 @@ public class CommunityRestController {
         return 0;
     }
 
-    @RequestMapping(value = "addDealCalender", method = RequestMethod.POST)
-    public int addDealCalender(@RequestBody Deal deal ) {
 
-        System.out.println("일정 정보 : " +deal);
-
-        deal.setDealModeCheck(1);
-
-
-        calendarService.addDealCalender(deal);
-
-    return 0;
-    }
-
-    @RequestMapping(value = "getListDealCalender", method = RequestMethod.POST)
-    public List<Map<String, Object>> getListDealCalender(@RequestBody String userId) throws ParseException {
-
-
-        JSONParser parser = new JSONParser();
-
-        JSONObject jsonObj = (JSONObject) parser.parse(userId);
-
-        String user = (String) jsonObj.get("userId");
-
-        System.out.println("getlistDealcalender진입 : " + user);
-
-        List<Map<String, Object>> list = communityService.getListDealCalender(user);
-
-        System.out.println(list);
-
-        return list;
-
-    }
 }

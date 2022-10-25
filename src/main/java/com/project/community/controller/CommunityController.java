@@ -142,8 +142,8 @@ public class CommunityController {
 
         for (int i = 0; i < list.size(); i++) {
 
-            System.out.println("list의 정보 :" +list.get(i).getCommentNum() );
-            commuService.deleteAllRecomment(list.get(i).getCommentNum());
+            System.out.println("list의 정보 :" +list.get(i).getCommentNum());
+            commuService.deleteRecomment(list.get(i).getCommentNum());
 
         }
 
