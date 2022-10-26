@@ -19,9 +19,10 @@
     <script type="text/javascript">
         /*댓글 list 전역 함수로 등록*/
         $(function () {
+
             var boardNum = $(".boardNum").val();
             var boardCategory = $(".boardCategory").val();
-            var userId = $(".userId").val()
+            var userId = '${user.userId}'
 
             $.getListComment = function () {
                 $.ajax({
@@ -645,7 +646,7 @@
 
 
         $(function () {
-            var userId = $(".userId").val()
+            var userId = '${user.userId}'
 
             var boardNum = $(".boardNum").val();
             var boardCategory = $(".boardCategory").val()
@@ -978,7 +979,7 @@
 
 
 <div class="container" style="text-align: -webkit-center;">
-    <input hidden class="userId" value="${user.userId}">
+    <input type="hidden" class="userId" value="${user.userId}">
     <input hidden class="boardNum" value="${calenderReview.clubCalenderReviewNum}">
     <input hidden class="boardCategory" value="${calenderReview.boardCategory}">
     <input hidden class="boardUserId" value="${calenderReview.userId}">

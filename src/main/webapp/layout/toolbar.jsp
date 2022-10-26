@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 
 <script type="text/javascript" src="/resources/OpenSource/js/jquery.cookie.js"></script>
 
@@ -27,8 +27,8 @@
     });
 
     function fncLogin() {
-        var id = $("input:text").val();
-        var pw = $("input:password").val();
+        var id = $("#loginModal input:text").val();
+        var pw = $("#loginModal input:password").val();
         var keepId = $("#keepId").prop('checked');
         var keepLogin = $("#keepLogin").prop('checked');
         console.log("keepId =>" + keepId);
@@ -99,12 +99,19 @@
             $('#keepLogin').prop('disabled', !$(this).prop('checked'));
         });
 
-        $(".loginStart").bind('click', function () {
+        $(".loginStart").on('click', function () {
             fncLogin();
+
+            setTimeout(function(){
+                location.reload();
+            },1000);
         });
         $('input[name="password"]').on('keydown', function (key) {
             if (key.keyCode == 13) {
                 fncLogin();
+                setTimeout(function(){
+                    location.reload();
+                },1000);
             }
         })
     });
@@ -132,6 +139,7 @@
 
     $(function () {
         $(".naverIdLogin").on("click", function () {
+            alert('asdfdf');
 
             var naverLogin = new naver.LoginWithNaverId(
                 {
@@ -376,15 +384,14 @@
                 <div class="collapse navbar-collapse" id="navbarScroll">
                     <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                         <li class="nav-item">
-                            <a class="nav-link active  underline yellow" aria-current="page" href="#"
-                               style="color : #ffffff; font-size: 1.5em;">Home</a>
+                            <a class="nav-link active  underline yellow" aria-current="page" onclick="location.href='/club/listClub'"  style="color : #ffffff; font-size: 1.3em;">모임 게시판</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link  underline yellow" href="#" style="color : #ffffff; ">Link</a>
+                            <a class="nav-link  underline yellow" href="#" style="color : #ffffff;font-size: 1.3em;" onclick="location.href='/commu/main'">커뮤니티 게시판</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link  underline yellow" style="color : #ffffff; font-size: 1.5em;">Link</a>
+                            <a class="nav-link  underline yellow" style="color : #ffffff; font-size: 1.3em;" onclick="location.href='/deal/getListDeal?boardCategory=08'">중고 거래 게시판</a>
                         </li>
                     </ul>
                     <div class="logitem">
@@ -468,8 +475,7 @@
                         </div>-->
                         <div class="input-group mb-3 mt-3">
                             <div class="form-floating">
-                                <input type="password" class="form-control" id="password" placeholder="Password"
-                                       name="password">
+                                <input type="password" class="form-control"  id="password" placeholder="Password" name="password">
                                 <label for="password">Password</label>
                             </div>
                         </div>
