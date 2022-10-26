@@ -249,6 +249,9 @@
   })
 
   $(function() {
+    var dealBoardNum = $(this).find(".dealBoardNum").val()
+
+
     var dealTag = document.querySelector("#dealTag")
     var tagify = new Tagify(dealTag, {
       dropdown: {
@@ -416,6 +419,7 @@ $(".addDeal").on('click',function (){
       flex-direction: row;
       margin-bottom: 30px;
       float: left;
+      transition: all 0.2s linear;
     }
 
     .cardbox:hover  {
@@ -473,11 +477,11 @@ $(".addDeal").on('click',function (){
 <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 
 <%--구현 후 빼야함--%>
-<input type="button" class="dealLogin" value="로그인">
-<label>
-  아이디 : <input type="text" name="userId" value="user01">
-</label>
-${user.userId}
+<%--<input type="button" class="dealLogin" value="로그인">--%>
+<%--<label>--%>
+<%--  아이디 : <input type="text" name="userId" value="user01">--%>
+<%--</label>--%>
+<%--${user.userId}--%>
 <!-- Example Code -->
 <jsp:include page="/layout/toolbar.jsp"/>
 <img src="/resources/uploadFiles/dealBoardFiles/중고거래.png" style="height: 500px;border-radius: 10px;  width: 1600px;">
@@ -543,9 +547,28 @@ ${user.userId}
       <button class="center btn btn-primary searchTag">
         태그
       </button>
-      <button class="btn btn-primary search">
-        검색
-      </button>
+      <form class="form-inline" name="detailForm">
+
+        <div class="form-group">
+          <select class="form-control" name="searchCondition" >
+            <option value="0"  ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" : "" }>번호</option>
+            <option value="1"  ${ ! empty search.searchCondition && search.searchCondition==1 ? "selected" : "" }>제목</option>
+            <option value="2"  ${ ! empty search.searchCondition && search.searchCondition==2 ? "selected" : "" }>내용</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="sr-only" for="searchKeyword">검색어</label>
+          <input type="text" class="form-control" id="searchKeyword" name="searchKeyword"  placeholder="검색어"
+                 value="${! empty search.searchKeyword ? search.searchKeyword : '' }"  >
+        </div>
+
+        <button type="submit" class="btn btn-secondary">
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+        <!-- PageNavigation 선택 페이지 값을 보내는 부분 -->
+        <input type="hidden" id="currentPage" name="currentPage" value=""/>
+
+      </form>
     </div>
   </div>
   <%--버튼 모음 끝--%>

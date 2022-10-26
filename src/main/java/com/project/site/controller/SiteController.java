@@ -2,6 +2,7 @@ package com.project.site.controller;
 import com.project.club.service.ClubService;
 import com.project.common.Page;
 import com.project.common.Search;
+import com.project.community.service.CommunityService;
 import com.project.domain.*;
 import com.project.site.service.SiteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,10 @@ public class SiteController {
     @Autowired
     @Qualifier("clubServiceImpl")
     private ClubService clubService;
+
+    @Autowired
+    @Qualifier("communityServiceImpl")
+    private CommunityService commuService;
 
     public SiteController() {
         System.out.println(this.getClass());
@@ -155,6 +160,15 @@ public class SiteController {
     public String getCommunityReport(@PathVariable int reportNo, Model model) throws Exception {
         System.out.println("/site/getCommunityReport : GET");
         CommunityReport communityReport = siteService.getCommunityReport(reportNo);
+/*
+        VilBoard villBoard = new VilBoard();
+        if(communityReport.getBoardCategory().equals("01")) {
+            villBoard = commuService.getVillBoard(communityReport.getBoardNo());
+        }
+        if(villBoard != null) {
+            model.addAttribute("villBoard", villBoard);
+        }
+*/
         model.addAttribute("communityReport", communityReport);
         return "forward:/view/site/getCommunityReport.jsp";
     }
@@ -209,7 +223,7 @@ public class SiteController {
         System.out.println("/site/addCommunityReport : POST");
 
         siteService.addCommunityReport(communityReport);
-        return "redirect:/site/listCommunityReport.jsp";
+        return "redirect:/site/listCommunityReport";
     }
 
     @RequestMapping(value="updateCommunityReport/{reportNo}", method=RequestMethod.GET)
@@ -233,7 +247,7 @@ public class SiteController {
         return "redirect:/site/listCommunityReportProcess";
     }
 
-    @RequestMapping(value="deleteCommunityBoard/{reportNo}", method=RequestMethod.GET)
+    @RequestMapping(value="deleteCommunityReport/{reportNo}", method=RequestMethod.GET)
     public String deleteCommunityReport(@PathVariable int reportNo , Model model) throws Exception {
         System.out.println("/site/deleteCommunityReport : GET");
 
@@ -296,6 +310,7 @@ public class SiteController {
     public String addClubReport(@ModelAttribute("clubReport") ClubReport clubReport, HttpSession session,
                                 MultipartHttpServletRequest uploadFile) throws Exception {
         System.out.println("/site/addClubReport : POST");
+
         List<MultipartFile> fileList = uploadFile.getFiles("file");
         System.out.println(fileList);
 

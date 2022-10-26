@@ -11,10 +11,7 @@ import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -24,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RestController
@@ -50,27 +48,29 @@ public class ClubCalendarRestController<list> {
     /*캘린더 등록 ajax 처리*/
     @RequestMapping("addClubCalender")
     public int addClubCalender(@RequestBody ClubCalendar calender
-                               ,HttpSession session) {
+            , HttpSession session) {
 
         User user = (User) session.getAttribute("user");
 
 
         calender.setLocation("창원시 진해구 소사동");
+
+        System.out.println("=================" + calender.getApplyAutoCheck() + "==================");
         /*자동 참여*/
-        if (calender.getApplyAutoCheck() == "on") {
+        if (calender.getApplyAutoCheck().equals("true")) {
             calender.setApplyAutoCheck("1");
         } else {
             calender.setApplyAutoCheck("2");
         }
         /*추가 참여*/
-        if (calender.getCalendarApplyCheck() == "on") {
+        if (calender.getCalendarApplyCheck().equals("true")) {
             calender.setCalendarApplyCheck("1");
         } else {
             calender.setCalendarApplyCheck("2");
         }
 
         /*알림 설정*/
-        if (calender.getNoticeCheck() == "on") {
+        if (calender.getNoticeCheck().equals("true")) {
             calender.setNoticeCheck("1");
         } else {
             calender.setNoticeCheck("2");
@@ -85,10 +85,10 @@ public class ClubCalendarRestController<list> {
     }
 
     @RequestMapping("addCluber")
-    public int addCluber(@RequestBody Map<String,Object> map){
+    public int addCluber(@RequestBody Map<String, Object> map) {
 
-        System.out.println("클럽 맴버 : " +map.get("cluberList"));
-        System.out.println("클럽 맴버 : " +map.get("clubCalenderNum"));
+        System.out.println("클럽 맴버 : " + map.get("cluberList"));
+        System.out.println("클럽 맴버 : " + map.get("clubCalenderNum"));
 
 
         List<String> list = (List<String>) map.get("cluberList");
@@ -113,11 +113,11 @@ public class ClubCalendarRestController<list> {
         /*category로 유효성 check*/
         if (calenderReview.getBoardCategory() == 1) {
 
-             calenderService.addCalenderReview(calenderReview);
+            calenderService.addCalenderReview(calenderReview);
 
         } else if (calenderReview.getBoardCategory() == 2) {
 
-             calenderService.addCalenderReview(calenderReview);
+            calenderService.addCalenderReview(calenderReview);
         }
 
         System.out.println("boardNum의 정보 : :" + calenderReview.getClubCalenderReviewNum());
@@ -126,8 +126,8 @@ public class ClubCalendarRestController<list> {
     }
 
     @RequestMapping("getClubCalender")
-    public Map<String,Object> clubCalendar(@RequestBody ClubCalendar clubCalendar){
-        Map<String,Object> map = new HashMap<>();
+    public Map<String, Object> clubCalendar(@RequestBody ClubCalendar clubCalendar) {
+        Map<String, Object> map = new HashMap<>();
 
         clubCalendar = calenderService.getCalender(clubCalendar.getClubCalenderNum());
 
@@ -136,36 +136,10 @@ public class ClubCalendarRestController<list> {
         clubCalendar.setClubDate(date[0]);
 
 
-
         map.put("clubCalendar", clubCalendar);
 
         return map;
     }
-
-    @RequestMapping("getClubCalenderReview")
-    public Map<String, Object> getClubCalender(@RequestBody ClubCalendarReview clubCalendar){
-
-        System.out.println(clubCalendar);
-
-        clubCalendar = calenderService.getCalenderReview(clubCalendar.getClubCalenderReviewNum());
-
-        Map<String,Object> map = new HashMap<>();
-
-        map.put("clubCalender", clubCalendar);
-
-        return map;
-    }
-
-    @RequestMapping("updateClubCalenderReview")
-    public int updateClubCalenderReview(@RequestBody ClubCalendarReview calendarReview) {
-        System.out.println("업데이할 내용 :  " + calendarReview);
-
-        calenderService.updateCalenderReview(calendarReview);
-
-        return 0;
-    }
-
-
 
 
     //일정 가져오기
@@ -174,7 +148,7 @@ public class ClubCalendarRestController<list> {
 
         System.out.println("calender의 정보 : " + calender);
 
-        List<Map<String, Object>>  list = calenderService.getListCalender(calender);
+        List<Map<String, Object>> list = calenderService.getListCalender(calender);
 
         System.out.println("이거지~ : " + list);
 
@@ -182,23 +156,23 @@ public class ClubCalendarRestController<list> {
     }
 
     @RequestMapping("updateClubCalender")
-    public int updateClubCalender(@RequestBody ClubCalendar clubCalendar){
+    public int updateClubCalender(@RequestBody ClubCalendar clubCalendar) {
 
 
-        if (clubCalendar.getApplyAutoCheck() == "on") {
+        if (clubCalendar.getApplyAutoCheck().equals("true")) {
             clubCalendar.setApplyAutoCheck("1");
         } else {
             clubCalendar.setApplyAutoCheck("2");
         }
         /*추가 참여*/
-        if (clubCalendar.getCalendarApplyCheck() == "on") {
+        if (clubCalendar.getCalendarApplyCheck().equals("true")) {
             clubCalendar.setCalendarApplyCheck("1");
         } else {
             clubCalendar.setCalendarApplyCheck("2");
         }
 
         /*알림 설정*/
-        if (clubCalendar.getNoticeCheck() == "on") {
+        if (clubCalendar.getNoticeCheck().equals("true")) {
             clubCalendar.setNoticeCheck("1");
         } else {
             clubCalendar.setNoticeCheck("2");
@@ -211,39 +185,104 @@ public class ClubCalendarRestController<list> {
         return 0;
     }
 
+    @RequestMapping("deleteClubCalender")
+    public int deleteClubCalender(@RequestBody ClubCalendar clubCalendar) {
+
+        calenderService.deleteClubCalender(clubCalendar.getClubCalenderNum());
+
+        return 0;
+    }
+
     @RequestMapping("getDealCalender")
-    public Map<String,Object> getDealCalender(@RequestBody Deal deal
-            ,HttpSession session) throws Exception {
+    public Map<String, Object> getDealCalender(@RequestBody Deal deal ,HttpSession session) throws Exception {
 
+        System.out.println(deal.getDealBoardNum());
 
-        System.out.println(deal)    ;
-
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
 
         deal = dealService.getDeal(deal.getDealBoardNum());
 
-        User user = (User)session.getAttribute("user");
-
-
-        System.out.println(deal.getBoardCategory());
-
-        String likeCheck = communityService.getLikeCheck(user.getUserId(), deal.getDealBoardNum(), Integer.parseInt(deal.getBoardCategory()));
-
-        System.out.println(deal);
+        System.out.println("==============="+ deal);
 
         map.put("deal", deal);
-        map.put("likeCheck",likeCheck);
 
         return map;
 
     }
 
+    @RequestMapping(value = "addDealCalender", method = RequestMethod.POST)
+    public int addDealCalender(@RequestBody Deal deal) {
+
+        System.out.println("일정 정보 : " + deal);
+
+        deal.setDealModeCheck(1);
+
+        calenderService.addDealCalender(deal);
+
+        return 0;
+    }
+
+    @RequestMapping("updateDealCalender")
+    public String dealUpdateCalender(@RequestBody Deal deal) {
+
+        System.out.println("일정 정보 : " + deal);
+
+        calenderService.dealUpdateCalender(deal);
+
+        return null;
+    }
+
+    @RequestMapping(value = "getListDealCalender", method = RequestMethod.POST)
+    public List<Map<String, Object>> getListDealCalender(@RequestBody String userId) throws ParseException {
+
+
+        JSONParser parser = new JSONParser();
+
+        JSONObject jsonObj = (JSONObject) parser.parse(userId);
+
+        String user = (String) jsonObj.get("userId");
+
+        System.out.println("getlistDealcalender진입 : " + user);
+
+        List<Map<String, Object>> list = communityService.getListDealCalender(user);
+
+        System.out.println(list);
+
+        return list;
+
+    }
+
+
+    @RequestMapping("getClubCalenderReview")
+    public Map<String, Object> getClubCalender(@RequestBody ClubCalendarReview clubCalendar) {
+
+        System.out.println(clubCalendar);
+
+        clubCalendar = calenderService.getCalenderReview(clubCalendar.getClubCalenderReviewNum());
+
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("clubCalender", clubCalendar);
+
+        return map;
+    }
+
+
+    @RequestMapping("updateClubCalenderReview")
+    public int updateClubCalenderReview(@RequestBody ClubCalendarReview calendarReview) {
+        System.out.println("업데이할 내용 :  " + calendarReview);
+
+        calenderService.updateCalenderReview(calendarReview);
+
+        return 0;
+    }
+
 
     @RequestMapping("fileUpload")
     public int fileUpload(@RequestParam("form") List<MultipartFile> file
-                          ,@RequestParam("boardNum") String boardNum
-                          ,@RequestParam("boardCategoru") String boardCategory
-                          ,HttpServletRequest request, HttpServletResponse response) {
+            , @RequestParam("boardNum") String boardNum
+            , @RequestParam("boardCategoru") String boardCategory
+            , HttpServletRequest request, HttpServletResponse response) {
 
         System.out.println("json으로 보낸 : " + file);
         System.out.println("boardNum : " + boardNum);
@@ -254,7 +293,7 @@ public class ClubCalendarRestController<list> {
         String fileName = null;
         for (int i = 0; i < file.size(); i++) {
 
-            if(boardCategory.equals("01") || boardCategory.equals("02") ) {
+            if (boardCategory.equals("01") || boardCategory.equals("02")) {
 
                 fileName = "/uploadFiles/clubCalendarReviewFiles/" + UUID.randomUUID() + file.get(i).getOriginalFilename();
 
@@ -262,7 +301,7 @@ public class ClubCalendarRestController<list> {
 
                 fileName = "/uploadFiles/villBoardFiles/" + UUID.randomUUID() + file.get(i).getOriginalFilename();
 
-            }else if(boardCategory.equals("05"))
+            } else if (boardCategory.equals("05"))
                 fileName = "/uploadFiles/clubCalendar/" + UUID.randomUUID() + file.get(i).getOriginalFilename();
 
             System.out.println("파일 이름 : " + fileName);
@@ -275,7 +314,7 @@ public class ClubCalendarRestController<list> {
 
             System.out.println("파일 업로드의 정보 : " + map);
             try {
-                file.get(i).transferTo(new File( fileList.get(i).get("fileName")));
+                file.get(i).transferTo(new File(fileList.get(i).get("fileName")));
                 System.out.println("업로드 성공");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -287,8 +326,8 @@ public class ClubCalendarRestController<list> {
 
     @RequestMapping("fileUpdate")
     public int fileUpdate(@RequestParam("form") List<MultipartFile> file
-                        ,@RequestParam("boardNum") int boardNum
-                        ,@RequestParam("boardCategoru") String boardCategory){
+            , @RequestParam("boardNum") int boardNum
+            , @RequestParam("boardCategoru") String boardCategory) {
 
         calenderService.deleteFile(boardNum);
 
@@ -298,7 +337,7 @@ public class ClubCalendarRestController<list> {
 
         for (int i = 0; i < file.size(); i++) {
 
-            if(boardCategory.equals("1") || boardCategory.equals("2") ) {
+            if (boardCategory.equals("1") || boardCategory.equals("2")) {
 
 
                 fileName = "/uploadFiles/clubCalendarReviewFiles/" + UUID.randomUUID() + file.get(i).getOriginalFilename();
@@ -307,12 +346,12 @@ public class ClubCalendarRestController<list> {
 
                 fileName = "/uploadFiles/villBoardFiles/" + UUID.randomUUID() + file.get(i).getOriginalFilename();
 
-            } else if(boardCategory.equals("05"))
+            } else if (boardCategory.equals("05"))
 
                 fileName = "/uploadFiles/clubCalendar/" + UUID.randomUUID() + file.get(i).getOriginalFilename();
 
 
-        System.out.println(fileName);
+            System.out.println(fileName);
             Map<String, String> map = new HashMap<>();
 
             map.put("fileName", fileName);
@@ -325,7 +364,7 @@ public class ClubCalendarRestController<list> {
 
             System.out.println("파일 업로드의 정보 : " + map);
             try {
-                file.get(i).transferTo(new File( fileList.get(i).get("fileName")));
+                file.get(i).transferTo(new File(fileList.get(i).get("fileName")));
 
                 System.out.println("수정 성공");
             } catch (Exception e) {
@@ -338,14 +377,14 @@ public class ClubCalendarRestController<list> {
     }
 
     @RequestMapping("listCalenderReview")
-    public String listCalenderReview(@RequestParam("boardCategory")int boardCategory
-            ,Model model,HttpServletRequest request){
+    public String listCalenderReview(@RequestParam("boardCategory") int boardCategory
+            , Model model, HttpServletRequest request) {
         System.out.println(boardCategory);
         Map<String, Object> map = calenderService.listCalenderReview(boardCategory);
 
         model.addAttribute("list", map.get("list"));
 
-        if (boardCategory == 1){
+        if (boardCategory == 1) {
             return "forward:/view/community/list/clubCalenderReviewList.jsp";
         } else if (boardCategory == 2) {
             return "forward:/view/community/list/clubCalenderReviewShortList.jsp";
@@ -355,8 +394,9 @@ public class ClubCalendarRestController<list> {
 
     }
 
+
     @RequestMapping("getListCluber")
-    public Map<String,Object> getListCluber(@RequestBody String user) throws ParseException {
+    public Map<String, Object> getListCluber(@RequestBody String user) throws ParseException {
 
         JSONParser parser = new JSONParser();
 
@@ -366,7 +406,7 @@ public class ClubCalendarRestController<list> {
 
         System.out.println(userId);
 
-        Map<String,Object> map = clubService.getListCluber(userId);
+        Map<String, Object> map = clubService.getListCluber(userId);
 
         System.out.println(map);
 
@@ -374,11 +414,11 @@ public class ClubCalendarRestController<list> {
     }
 
     @RequestMapping("getListCluberCalender")
-    public List<Map<String,Object>> getListCluberCalender(@RequestBody String clubCalenderNum) throws ParseException {
+    public List<Map<String, Object>> getListCluberCalender(@RequestBody String clubCalenderNum) throws ParseException {
 
         JSONParser parser = new JSONParser();
 
-        JSONObject  json = (JSONObject) parser.parse(clubCalenderNum);
+        JSONObject json = (JSONObject) parser.parse(clubCalenderNum);
 
         String ScalenderNum = String.valueOf(json.get("clubCalendarNum"));
 
@@ -386,7 +426,7 @@ public class ClubCalendarRestController<list> {
 
         System.out.println(calenderNum);
 
-        List<Map<String, Object>>  list = calenderService.getListCluberCalender(calenderNum);
+        List<Map<String, Object>> list = calenderService.getListCluberCalender(calenderNum);
 
         System.out.println("============" + list + "============");
 

@@ -40,6 +40,8 @@
             self.location = "/myPage/getMyPage?userId=" + userId;
         });
     });
+
+
 </script>
 <html>
 

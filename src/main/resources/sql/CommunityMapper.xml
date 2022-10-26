@@ -305,6 +305,12 @@
           AND board_category = #{boardCategory}
     </select>
 
+    <delete id="deleteAllComment" parameterType="map">
+        DELETE comments
+        WHERE BOARD_NUM = #{boardNum}
+        AND board_category = #{boardCategory}
+    </delete>
+
     <!--대댓글-->
     <insert id="addRecomment" parameterType="recomment">
         INSERT INTO
