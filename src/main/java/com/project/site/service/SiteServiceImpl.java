@@ -158,12 +158,10 @@ public class SiteServiceImpl implements SiteService {
     public Map<String, Object> listClubReport(Search search) throws Exception {
         List<ClubReport> list = siteDao.listClubReport(search);
 
+
         Map<String,Object> totalCountmap = new HashMap<String, Object>();
         totalCountmap.put("where", "clubReportList");
         int totalCount = siteDao.getTotalCount(totalCountmap);
-
-        System.out.println("++++totalCount:: " +totalCount+ "++++++");
-
 
         Map<String,Object> map = new HashMap<String, Object>();
 

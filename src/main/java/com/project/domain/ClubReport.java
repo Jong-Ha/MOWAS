@@ -16,7 +16,7 @@ public class ClubReport {
     private Club club;
     private String reportId;
     private String adminId;
-    private char crBasis;
+    private String crBasis;
     private Date reportDate;
     private String reportText;
     private Date processDate;
