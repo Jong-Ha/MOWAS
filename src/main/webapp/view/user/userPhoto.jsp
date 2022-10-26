@@ -11,7 +11,7 @@
   <jsp:forward page="/index.jsp"></jsp:forward>
     <title>Title</title>
 </head>
-<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <body>
 ${userPhotoLink.userPhotoLink}
 

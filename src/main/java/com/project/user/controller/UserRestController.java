@@ -202,18 +202,19 @@ public class UserRestController {
         }
 
      @RequestMapping(value = "updateSNSUserInfor",method = RequestMethod.POST)
-     public String updateSNSUserInfor(@RequestBody User user,
+     public boolean updateSNSUserInfor(@RequestBody User user,
                                      HttpSession session) throws Exception{
         System.out.println("/user/json/updateSNSUserInfor : POST 실행");
         System.out.println("user 값은 ? :"+user);
 
         userService.updateSNSUserInfor(user);
+        User user1 = userService.getUser(user.getUserId());
 
-        session.setAttribute("user", user);
+        session.setAttribute("user", user1);
 
-
+        boolean result = true;
         System.out.println("/user/json/updateSNSUserInfor : POST 종료");
-        return "과연";
+        return result;
     }
 
     /*

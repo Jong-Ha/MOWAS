@@ -14,7 +14,7 @@
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
     <title>Bootstrap Example</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="/resources/OpenSource/js/jquery.cookie.js"></script>
     <style>
     	.body{
