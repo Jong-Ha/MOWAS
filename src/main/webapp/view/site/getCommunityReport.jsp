@@ -21,6 +21,7 @@
   body{
     margin-top:20px;
     background: #f6f9fc;
+    margin-bottom: 40px;
   }
   .account-block {
     padding: 0;
@@ -148,19 +149,19 @@
                 </div>
 
                 <h7 class="h5 mb-0">신고 번호</h7>
-                <p class="text-muted mt-2 mb-5"><i class="bi bi-info-square-fill"></i>  ${communityReport.reportNo}</p>
+                <p class="text-danger mt-2 mb-3"><i class="bi bi-info-square-fill"></i>  ${communityReport.reportNo}</p>
 
                 <h7 class="h5 mb-0">신고한 회원 ID</h7>
-                <p class="text-muted mt-2 mb-5"><i class="bi bi-info-square-fill"></i>  ${communityReport.reportId}</p>
+                <p class="text-danger mt-2 mb-3"><i class="bi bi-info-square-fill"></i>  ${communityReport.reportId}</p>
 
-                <h7 class="h5 mb-0">신고 받은 회원 ID          <button type="button" class="btn" style="background-color: #F8CD07;">처리</button></h7>
-                <p class="text-muted mt-2 mb-5"><i class="bi bi-info-square-fill"></i>  ${communityReport.reportedId}</p>
+                <h7 class="h5 mb-0">신고 받은 회원 ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn" style="background-color: #F8CD07;">처리</button></h7>
+                <p class="text-danger mt-2 mb-3"><i class="bi bi-info-square-fill"></i>  ${communityReport.reportedId}</p>
 
                 <h7 class="h5 mb-0">신고 날짜</h7>
-                <p class="text-muted mt-2 mb-5"><i class="bi bi-info-square-fill"></i>  ${communityReport.reportDate}</p>
+                <p class="text-danger mt-2 mb-3"><i class="bi bi-info-square-fill"></i>  ${communityReport.reportDate}</p>
 
                 <h7 class="h5 mb-0">신고 상세 내용</h7>
-                <p class="text-muted mt-2 mb-5"><i class="bi bi-info-square-fill"></i>  ${communityReport.reportText}</p>
+                <p class="text-danger mt-2 mb-3"><i class="bi bi-info-square-fill"></i>  ${communityReport.reportText}</p>
 
                 <button type="button" class="btn" style="background-color: #F8CD07;">확인</button>
                 <button type="button" class="btn btn-secondary">삭제</button>

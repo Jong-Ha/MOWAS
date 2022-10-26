@@ -144,7 +144,7 @@ public class SiteServiceTest {
         commReport.setBoardCategory("03");
         commReport.setReportId("user04");
         commReport.setReportedId("user05");
-        commReport.setReportBasis('6');
+        commReport.setReportBasis("6");
         commReport.setReportText("게시글에 정치적 발언이 포함되었어요");
 
         siteService.addCommunityReport(commReport);

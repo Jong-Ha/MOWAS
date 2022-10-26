@@ -32,6 +32,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/site/listClubReportProcess.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/site" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/site/listCommunityReport.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/site" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/site/listMasterBoard.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/site" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/site/updateClubReport.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/site" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/user" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/user/getUserDetail.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/user" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/user/listUser.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/user" />

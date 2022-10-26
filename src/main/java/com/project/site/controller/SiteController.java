@@ -346,22 +346,23 @@ public class SiteController {
         return "forward:/view/site/getClubReport.jsp";
     }
 
-    @RequestMapping(value="updateClubReport/{clubReportNo}", method=RequestMethod.GET)
-    public String updateClubReport(@PathVariable int clubReportNo , Model model) throws Exception {
+    @RequestMapping(value="updateClubReport/{clubReportNo}/{clubNum}", method=RequestMethod.GET)
+    public String updateClubReport(@PathVariable int clubReportNo, @PathVariable int clubNum, Model model) throws Exception {
         System.out.println("/site/updateClubReport : GET");
+        Club club = clubService.getClub(clubNum);
+        System.out.println(club);
+       ClubReport clubReport = siteService.getClubReport(clubReportNo);
 
-        ClubReport clubReport = siteService.getClubReport(clubReportNo);
-
-        siteService.processClubReport(clubReport);
+       //siteService.processClubReport(clubReport);
 
         model.addAttribute("clubReport", clubReport);
+        model.addAttribute("club", club);
         return "forward:/view/site/updateClubReport.jsp";
     }
 
     @RequestMapping(value="updateClubReport", method=RequestMethod.POST)
     public String updateClubReport(@ModelAttribute("clubReport") ClubReport clubReport) throws Exception {
         System.out.println("/site/updateClubReport : POST");
-
         siteService.processClubReport(clubReport);
 
         return "redirect:/site/listClubReportProcess?clubNum="+clubReport.getClubNum();
@@ -388,7 +389,7 @@ public class SiteController {
         return "redirect:/site/listClubReportProcess";
     }
 
-    @RequestMapping(value="deleteClubBoard/{clubReportNo}", method=RequestMethod.GET)
+    @RequestMapping(value="deleteClubReport/{clubReportNo}", method=RequestMethod.GET)
     public String deleteClubReport(@PathVariable int clubReportNo , Model model) throws Exception {
         System.out.println("/site/deleteClubReport : GET");
 
