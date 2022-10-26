@@ -19,7 +19,7 @@
             justify-content: center;
         }
         .aaa{
-            transition: 0.2s;
+            transition: 0.3s;
         }
 
         #userImage1{
@@ -69,12 +69,20 @@
                 font-size: 1.5em;
             }
         }
+        @keyframes typing {
+            from {
+                width: 0
+            }
+        }
 
         .underline.yellow {
             background-image: linear-gradient(transparent 60%, #F8CD07 40%);
         }
         .underline:hover {
             background-size: 100% 100%;
+        }
+        .abc{
+            width: 50px;
         }
     </style>
     <title>Title</title>
@@ -147,12 +155,7 @@
             self.location = "/view/user/main.jsp";
         });
 
-        $(".publicText").on("click",()=>{
-
-            $(".myPageTogle1").slideToggle();
-        })
-
-        $(".calender").on("click",()=>{
+        $(".myBoard").on("click",()=>{
 
             $(".myPageTogle2").slideToggle();
         })
@@ -161,81 +164,11 @@
 
 </script>
 <body>
+<%--상단 툴바--%>
+<jsp:include page="/layout/toolbar.jsp"/>
 
-<header class="tool-bar con-min-width">
-    <div class="con">
-        <nav class="top-bar__menu-box-1">
-
-        </nav>
-    </div>
-</header>
-<button type="button" class="mainPage" id="mainPage">메인페이지</button>
-<br>
-
-
-<div class="wrapper">
-    <div class="typing">
-        <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
-                    background-image: linear-gradient(transparent 60%, #F8CD07 40%);">
-            마이페이지</h4>
-    </div>
-
-    <nav class="navbar navbar-expand-lg myPageBox">
-
-
-
-    <div>
-        <div class="underline yellow calender">작성 게시글</div>
-        <div class="shadow-lg myPageTogle2" style="display: none; border: 1px solid; width: 100px; height: 200px; background: #1817174d; position: absolute">
-            <ul>
-                <li>내가 작성한 글</li>
-                <li>내가 작성한 댓글</li>
-                <li>좋아요한 게시글</li>
-                <li>좋아요한 댓글</li>
-
-            </ul>
-        </div>
-    </div>
-
-    <div>
-        <div class="underline yellow clubCalenderReview">모임</div>
-        <div class="shadow-lg myPageTogle2" style="display: none; border: 1px solid; width: 100px; height: 200px; background: #1817174d; position: absolute">
-            <ul>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-
-            </ul>
-        </div>
-    </div>
-
-    <div>
-        <div class="underline yellow  clubCalenderReviewShort">거래</div>
-        <div class="shadow-lg myPageTogle2" style="display: none; border: 1px solid; width: 100px; height: 200px; background: #1817174d; position: absolute">
-            <ul>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-
-            </ul>
-        </div>
-    </div>
-
-    <div>
-        <div class="underline yellow villBoard">벌점/신고 </div>
-        <div class="shadow-lg myPageTogle2" style="display: none; border: 1px solid; width: 100px; height: 200px; background: #1817174d; position: absolute">
-            <ul>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-
-            </ul>
-        </div>
-    </div>
-
-
-
-</nav>
+<%--상단 탑바--%>
+<jsp:include page="/view/myPage/myPageTitle.jsp"/>
 <hr>
 </div>
 <div class="myPageButton" style="display: flex; align-items: center; justify-content: center; margin-top: 50px;">
@@ -260,34 +193,31 @@
 
     <div class="myPage-top" style=" display: flex; padding: 10px">
 
-        <div class="userInfo shadow-lg" style=" width: 30%; height: 300px;  padding: 10px;  margin-right: 30px;">
+        <div class="userInfo shadow-lg" style=" text-align:center; width: 20%; height: 400px;  padding: 10px;  margin-right: 30px;margin-left: 30px;">
 
             <c:if test="${user.loginType=='1'}">
                 <span class="aaa">
-                <img id="userImage1" style="width : 50%;" src="/resources/${user.userImage}">
+                <img id="userImage1" style="width : 60%;" src="/resources/${user.userImage}">
                 <input type="hidden" class="userPhoto1" value="${user.userImage}">
                 </span>
             </c:if>
             <c:if test="${user.loginType=='2'}">
                 <span class="bbb">회원 사진
-                <img id="userImage2" style="width : 50%;" src="${user.userImage}">
+                <img id="userImage2" style="width : 60%;" src="${user.userImage}">
                 <input type="hidden" class="userPhoto2" value="${user.userImage}">
                 </span>
             </c:if>
             <c:if test="${user.loginType=='3'}">
                 <span class="ccc">회원 사진
-                  <img id="userImage3" style="width : 50%;" src="${user.userImage}">
+                  <img id="userImage3" style="width : 60%;" src="${user.userImage}">
                    <input type="hidden" class="userPhoto3" value="${user.userImage}">
                 </span>
             </c:if>
 
-            <div style="display: flex">
+            <div >
 
                 <div>
                     아이디
-                </div>
-
-                <div>
                     ${user.userId}
                 </div>
             </div>
@@ -299,7 +229,7 @@
                 </div>
             </div>
             <div>
-                아이디 ${user.email}
+                이메일 ${user.email}
             </div>
 
             <br>

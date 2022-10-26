@@ -74,6 +74,10 @@
     .underline:hover {
         background-size: 100% 100%;
     }
+    .abc{
+        width: 50px;
+    }
+
 </style>
 
 <head>
@@ -81,6 +85,23 @@
     <title>Title</title>
 </head>
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#mainPage").on("click", function () {
+            self.location = "/view/user/main.jsp";
+        });
+
+        $(".myBoard").on("click",()=>{
+
+            $(".myPageTogle2").slideToggle();
+        })
+
+    });
+
+</script>
 <body>
 
 <header class="tool-bar con-min-width">
@@ -102,13 +123,9 @@
     </div>
 
     <nav class="navbar navbar-expand-lg myPageBox">
-
-
-
-
         <div>
-            <div class="underline yellow calender">작성 게시글</div>
-            <div class="shadow-lg myPageTogle2" style="display: none; border: 1px solid; width: 100px; height: 200px; background: #1817174d; position: absolute">
+            <div class="underline yellow myBoard">작성 게시글</div>
+            <div class="shadow-lg myPageTogle2" style="display: none;  width: 100px; height: 200px;  position: absolute;">
                 <ul>
                     <li>내가 작성한 글</li>
                     <li>내가 작성한 댓글</li>
@@ -118,6 +135,11 @@
                 </ul>
             </div>
         </div>
+
+
+            <div class="abc"></div>
+
+
 
         <div>
             <div class="underline yellow clubCalenderReview">모임</div>
@@ -131,6 +153,13 @@
             </div>
         </div>
 
+
+        <div class="abc"></div>
+
+
+
+
+
         <div>
             <div class="underline yellow  clubCalenderReviewShort">거래</div>
             <div class="shadow-lg myPageTogle2" style="display: none; border: 1px solid; width: 100px; height: 200px; background: #1817174d; position: absolute">
@@ -142,6 +171,13 @@
                 </ul>
             </div>
         </div>
+
+
+
+
+        <div class="abc"></div>
+
+
 
         <div>
             <div class="underline yellow villBoard">벌점/신고 </div>

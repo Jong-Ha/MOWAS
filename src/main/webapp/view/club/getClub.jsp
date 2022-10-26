@@ -427,6 +427,5 @@
 
 </div>
 
-<jsp:include page="/view/community/calender.jsp"/>
 </body>
 </html>

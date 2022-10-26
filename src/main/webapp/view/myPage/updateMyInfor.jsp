@@ -89,7 +89,15 @@
 </script>
 </head>
 <body>
+<%--상단 툴바--%>
+<jsp:include page="/layout/toolbar.jsp"/>
+
+<%--상단 탑바--%>
+<jsp:include page="/view/myPage/myPageTitle.jsp"/>
 <form enctype="multipart/form-data">
+    <div>
+        <jsp:include page="/view/myPage/myPageTitle.jsp"/>
+    </div>
 내 정보 수정하기<br/>
 
 

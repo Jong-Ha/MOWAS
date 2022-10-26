@@ -116,7 +116,7 @@ public class UserController {
         return "forward:/view/user/addInterList.jsp";
     }
 
-    @RequestMapping(value = "updateSNSUserInfor",method = RequestMethod.POST)
+ /*   @RequestMapping(value = "updateSNSUserInfor",method = RequestMethod.POST)
     public String updateSNSUserInfor(@ModelAttribute User user,
                           HttpSession session) throws Exception{
         System.out.println("/user/updateSNSUserInfor : POST 실행");
@@ -130,7 +130,7 @@ public class UserController {
         System.out.println("/user/updateSNSUserInfor : POST 종료");
         return "forward:/view/user/main.jsp";
     }
-
+*/
     @RequestMapping(value = "getUser", method = RequestMethod.GET)
     public String getUser(@RequestParam("userId")String userId, Model model)throws Exception{
         System.out.println("/user/getUser : GET 실행");
@@ -161,9 +161,38 @@ public class UserController {
         model.addAttribute("user", findPwd);
         return "forward:/view/user/getMyPasswordEnd.jsp";
     }
+    @RequestMapping(value="loginNow", method=RequestMethod.GET)
+    public String loginNow(HttpServletRequest request,
+                           @CookieValue(value = "keepId",required = false)String userId,
+                           @CookieValue(value = "keepLogin",required = false)String password,
+                           HttpSession session, Model model) {
+        String referer = request.getHeader("referer");
+        System.out.println("referer  의 값?!?!?!"+referer);
+        //referer.substring(referer.lastIndexOf("/view"),referer.length());
+        int a = referer.lastIndexOf(":")+5;
+        System.out.println("인트a의 값? : "+a);
+        String loginNow= referer.substring(a, referer.length());
+        System.out.println("loginNow의 값...."+loginNow);
+        System.out.println("referer  의 값....."+referer);
 
-    @RequestMapping(value = "login", method = RequestMethod.GET)
-    public String login(@CookieValue(value = "keepId",required = false)String userId,@CookieValue(value = "keepLogin",required = false)String password, HttpSession session){
+        User user = new User();
+        user.setUserId(userId);
+        user.setPassword(password);
+        try{
+            User dbVO=userService.loginUser(user);
+            session.setAttribute("user",dbVO);
+        }catch (Exception e){
+            System.out.println("로그인 실패");
+        }
+        return "forward:"+loginNow;
+    }
+
+
+
+        @RequestMapping(value = "login", method = RequestMethod.GET)
+        public String login(@CookieValue(value = "keepId",required = false)String userId,
+                            @CookieValue(value = "keepLogin",required = false)String password,
+                            HttpSession session){
         User user = new User();
         user.setUserId(userId);
         user.setPassword(password);
@@ -303,20 +332,22 @@ public class UserController {
     public String kakaoLogin(@RequestParam(value = "code", required = false) String code,
                              HttpSession session, Model model) throws Exception {
         System.out.println("#########" + code);
-        String access_Token = userService.getAccessToken(code);
 
-        User userInfo = userService.getUserInfo(access_Token);
-        System.out.println("###access_Token#### : " + access_Token);
-        System.out.println("###email#### : " + userInfo.getEmail());
-        System.out.println("###userImage#### : " + userInfo.getUserImage());
-        System.out.println("###gender#### : " + userInfo.getGender());
-        System.out.println("###userId#### : " + userInfo.getUserId());
+            String access_Token = userService.getAccessToken(code);
 
-        User kakaoUser =  userService.getUser(userInfo.getUserId());
-        session.setAttribute("user", kakaoUser);
-        model.addAttribute("kakaoUser", kakaoUser);
+            User userInfo = userService.getUserInfo(access_Token);
+            System.out.println("###access_Token#### : " + access_Token);
+            System.out.println("###email#### : " + userInfo.getEmail());
+            System.out.println("###userImage#### : " + userInfo.getUserImage());
+            System.out.println("###gender#### : " + userInfo.getGender());
+            System.out.println("###userId#### : " + userInfo.getUserId());
 
-        return "forward:/view/user/updateSNSUserInfor.jsp";
+            User kakaoUser = userService.getUser(userInfo.getUserId());
+            session.setAttribute("user", kakaoUser);
+            model.addAttribute("kakaoUser", kakaoUser);
+
+            return "forward:/view/user/updateSNSUserInfor.jsp";
+
     }
 
     @RequestMapping(value="callBack", method=RequestMethod.GET)
