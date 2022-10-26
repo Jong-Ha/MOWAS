@@ -62,7 +62,7 @@
 
                 if(checkBox.is(":checked")){
 
-                    $(opener.document).find("form").append($("<input type='hidden' class='clubers' value='"+cluber+"'/>"));
+                    $(opener.document).find("#fileForm").append($("<input type='hidden' class='clubers' value='"+cluber+"'/>"));
 
                 }
 

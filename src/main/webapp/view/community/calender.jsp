@@ -73,6 +73,7 @@
                         }),
                         success: function (JSONData, result) {
 
+
                             console.log(JSONData.clubCalendar)
 
                             var clubCalendar = JSONData.clubCalendar;
@@ -82,30 +83,43 @@
                             $(".calenderText2").val(clubCalendar.calenderText);
                             $(".clubDate2").val(clubCalendar.clubDate);
                             $(".noticeTime2").val(clubCalendar.noticeTime);
+                            $.ajax({
+                                url : '/club/json/getCalendarCluberCondition',
+                                data : JSON.stringify({
+                                    clubCalendarNum : clubCalendar.clubCalenderNum,
+                                    userId : '${user.userId}'
+                                }),
+                                method : 'post',
+                                contentType: 'application/json; charset=utf-8',
+                                success : function(re){
+                                    const applyCondition = re.condition
+                                    if(applyCondition==='0'){
+$('#exampleModal2 .deleteClubCalendarApply').css('display','')
+                                    }else if(applyCondition==='1'){
 
+                                    }else {
+                                        $('#exampleModal2 .addClubCalendarApply').css('display','')
+                                    }
+                                }
+                            })
 
-                            alert(clubCalendar.noticeCheck)
                             if (clubCalendar.noticeCheck === '2') {
                                 $(".noticeCheck2").prop('checked',true);
                             } else {
                                 $(".noticeCheck2").prop('checked',false);
                             }
 
-                            alert(clubCalendar.calendarApplyCheck)
                             if (clubCalendar.calendarApplyCheck === '2') {
                                 $(".calendarApplyCheck2").prop('checked',true);
                             } else {
                                 $(".calendarApplyCheck2").prop('checked',false);
                             }
 
-                            alert(clubCalendar.applyAutoCheck)
                             if (clubCalendar.applyAutoCheck === '2') {
                                 $(".applyAutoCheck2").prop('checked',true);
                             } else {
                                 $(".applyAutoCheck2").prop('checked',false);
                             }
-
-
 
                             var str = ''
                             $.each(clubCalendar.file, function (index, item) {
@@ -273,7 +287,7 @@
 
     $(function () {
 
-        var clubNum = '${club.clubNum}'
+        var clubNum = '${param.clubNum}'
 
 
         $(".submit").on("click", function () {
@@ -790,7 +804,7 @@
 
         $(".calenderCluber").on("click", function () {
             window.open(
-                "/clubCal/addCalenderCluber?clubNum=${club.clubNum}", '_blnk'
+                "/clubCal/addCalenderCluber?clubNum=${param.clubNum}", '_blnk'
                 , "top=200, width=200px, height=700px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no")
 
         });
@@ -816,7 +830,7 @@
 </style>
 <html>
 <body>
-<input hidden class="boardNum" value="${club.clubNum}">
+<input hidden class="boardNum" value="${param.clubNum}">
 <div class='demo-topbar'>
     <div id='external-events'
          style="float: left; width: 20%; margin-top: 75px; padding: 5px; margin-bottom: 50px;"></div>
@@ -1003,10 +1017,23 @@
                     </div>
 
                 </div>
-
-                <div class="input-group mb-3">
-                    <input type="button" class="form-control calenderCluber2" multiple value="모임 인원 추가 하기">
-
+<div>
+                    <div class="input-group mb-3">
+                        <button class="btn btn-primary listCalendarCluberView" data-bs-toggle="modal"
+                                data-bs-target="#listCalendarCluber">
+                            참여자
+                        </button>
+                    </div>
+                    <div class="input-group mb-3">
+                        <button class="btn btn-primary addClubCalendarApply" style="display: none">
+                            모임 일정 참여
+                        </button>
+                    </div>
+                    <div class="input-group mb-3">
+                        <button class="btn btn-primary deleteClubCalendarApply" style="display: none">
+                            모임 일정 참여 취소
+                        </button>
+                    </div>
                 </div>
 
 

@@ -40,8 +40,8 @@
             <div class="col-8">
                 <h1>${club.clubName}</h1>
             </div>
-            <div class="col-2">
-                <button class="btn btn-primary addClubReport" data-bs-toggle="modal" data-bs-target="#addClubReport">
+            <div class="col-2" style="text-align: left;">
+                <button class="btn btn-primary addClubReportView" data-bs-toggle="modal" data-bs-target="#addClubReport">
                     모임 신고
                 </button>
             </div>
@@ -90,7 +90,6 @@
                         <div class="col-4">
                             <c:if test="${currentCluber.cluberStatus=='4'||currentCluber.cluberStatus=='5'||currentCluber.cluberStatus=='6'}">
                                 <button type="button" class="btn btn-primary font listCluber" data-bs-toggle="modal" data-bs-target="#listCluber">모임원 목록</button>
-                                <input type="hidden" class="btn btn-primary font listClubergg" data-bs-toggle="modal" data-bs-target="#listCluber"/>
                             </c:if>
                         </div>
                     </div>
@@ -126,46 +125,29 @@
             <nav class="navbar navbar-expand-lg clubTab">
 
                 <div>
-                    <div class="underline yellow publicText">모임 공지사항</div>
+                    <div class="underline yellow listClubMasterBoardView">모임 공지사항</div>
                 </div>
 
                 <div>
-                    <div class="underline yellow calender">모임 일정</div>
+                    <div class="underline yellow calendarView">모임 일정</div>
                 </div>
 
                 <div>
-                    <div class="underline yellow clubCalenderReview">모임 일정 후기</div>
+                    <div class="underline yellow listClubCalendarReviewView">모임 일정 후기</div>
                 </div>
 
                 <div>
-                    <div class="underline yellow  clubCalenderReviewShort">모임 일정 쇼츠</div>
+                    <div class="underline yellow listClubCalendarShortView">모임 일정 쇼츠</div>
                 </div>
 
             </nav>
-            <%--<div class="shadow-lg navbar navbar-expand-lg bg-light"
-                 style="margin-top: 50px; border-radius: 10px;">
-                <div style="background-color: #0000">
-                    <button type="button" class="btn btn-outline-primary btnlf">모임
-                        공지사항
-                    </button>
-                    <button class="btn btn-outline-success btnlf" type="submit">모임
-                        일정
-                    </button>
-                    <button type="button" class="btn btn-outline-danger btnlf">모임
-                        일정 후기글
-                    </button>
-                    <button type="button" class="btn btn-outline-warning btnlf">모임
-                        일정 후기 쇼츠
-                    </button>
-                </div>
-            </div>--%>
 
-            <div class="clubBoarder <%--shadow-lg--%>">
-                <div>내용 출력 예정</div>
+            <div class="clubBoarder container">
+                <div style="text-align: center">내용 출력 예정</div>
             </div>
         </div>
 
-        <div style="float: right; margin-right: 150px;">
+        <div style="text-align: right; margin-right: 150px;">
             <c:if test="${currentCluber.cluberStatus=='6'}">
                 <button class="btn btn-primary deleteClub" data-bs-toggle="modal" data-bs-target="#deleteClub">
                     모임 삭제
@@ -194,6 +176,7 @@
                 </button>
             </c:if>
         </footer>
+
     </div>
 
 
@@ -395,16 +378,16 @@
                 </div>
             </div>
         </div>
-    <%--getCluber 신청 모달창 끝--%>
+    <%--getCluber 모달창 끝--%>
 
     <%--listCluberApply 모달창 시작--%>
     <div class="modal fade" id="listCluberApply" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
             </div>
         </div>
     </div>
-    <%--listCluberApply 신청 모달창 끝--%>
+    <%--listCluberApply 모달창 끝--%>
 
     <%--listClubBlacklist 모달창 시작--%>
     <div class="modal fade" id="listClubBlacklist" tabindex="-1" aria-hidden="true">
@@ -413,7 +396,7 @@
             </div>
         </div>
     </div>
-    <%--listClubBlacklist 신청 모달창 끝--%>
+    <%--listClubBlacklist 모달창 끝--%>
 
     <%--addClubBlacklist 모달창 시작--%>
     <div class="modal fade" id="addClubBlacklist" tabindex="-1" aria-hidden="true">
@@ -422,11 +405,45 @@
             </div>
         </div>
     </div>
-    <%--addClubBlacklist 신청 모달창 끝--%>
+    <%--addClubBlacklist 모달창 끝--%>
+
+    <%--updateCluber 모달창 시작--%>
+    <div class="modal fade" id="updateCluber" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+    <%--updateCluber 모달창 끝--%>
+
+    <%--listCalendarCluber 모달창 시작--%>
+    <div class="modal fade" id="listCalendarCluber" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+    <%--listCalendarCluber 모달창 끝--%>
+
+    <%--listClubCalendarApply 모달창 시작--%>
+    <div class="modal fade" id="listClubCalendarApply" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+    <%--listClubCalendarApply 모달창 끝--%>
+
+    <%--addClubReport 모달창 시작--%>
+    <div class="modal fade" id="addClubReport" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+    <%--addClubReport 모달창 끝--%>
 
 
 </div>
-
-<jsp:include page="/view/community/calender.jsp"/>
 </body>
 </html>
