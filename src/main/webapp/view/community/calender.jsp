@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
          pageEncoding="EUC-KR" %>
 
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <link rel="stylesheet" href="/resources/OpenSource/fullcalendar-5.11.3/lib/main.css">
 <script type="text/javascript"
         src="/resources/OpenSource/fullcalendar-5.11.3/lib/main.js"></script>
@@ -12,7 +11,7 @@
 
     var calendar = null;
 
-    $(document).ready(function () {
+    function calenderInfo() {
 
         var Calendar = FullCalendar.Calendar;
         var Draggable = FullCalendar.Draggable;
@@ -73,6 +72,7 @@
                         }),
                         success: function (JSONData, result) {
 
+
                             console.log(JSONData.clubCalendar)
 
                             var clubCalendar = JSONData.clubCalendar;
@@ -83,6 +83,29 @@
                             $(".clubDate2").val(clubCalendar.clubDate);
                             $(".noticeTime2").val(clubCalendar.noticeTime);
 
+                            $.ajax({
+                                url : '/club/json/getCalendarCluberCondition',
+                                data : JSON.stringify({
+                                    clubCalendarNum : clubCalendar.clubCalenderNum,
+                                    userId : '${user.userId}'
+                                }),
+                                method : 'post',
+                                contentType: 'application/json; charset=utf-8',
+                                success : function(re){
+
+                                    const applyCondition = re.condition
+
+                                    if(applyCondition==='0'){
+
+                                        $('#exampleModal2 .deleteClubCalendarApply').css('display','')
+
+                                    }else if(applyCondition==='1'){
+
+                                    }else {
+                                        $('#exampleModal2 .addClubCalendarApply').css('display','')
+                                    }
+                                }
+                            })
 
                             if (clubCalendar.noticeCheck === '1') {
                                 $(".noticeCheck2").prop("checked", true);
@@ -102,9 +125,8 @@
                                 $(".applyAutoCheck2").prop("checked", false);
                             }
 
-
-
                             var str = ''
+
                             $.each(clubCalendar.file, function (index, item) {
                                 console.log(item.fileName)
 
@@ -138,7 +160,7 @@
 
                             var button
 
-                            if (date3 < date2) {
+                            if (date3 > date2) {
 
                                 button = '<button class="btn btn-primary update" data-bs-toggle="modal" data-bs-target="#exampleModal3">' +
                                     '수정' +
@@ -152,7 +174,7 @@
                                 $(".addBox").append(button);
                             }
 
-                            if (date3 > date2) {
+                            if (date3 < date2) {
 
                                 button = '<button class="btn btn-primary addReview" data-bs-toggle="modal" data-bs-target="#exampleModal4">' +
                                         '모임 일정 후기글 작성' +
@@ -245,7 +267,11 @@
                                         });
 
                                         setTimeout(function () {
-                                            window.location.reload()
+
+                                            $('#exampleModal2').modal("hide");
+
+                                            calenderInfo()
+
                                         }, 2000);
                                     }
 
@@ -266,9 +292,10 @@
 
         calendar.render();
 
-    });
+    }
 
     function lodinCalender() {
+
         var boardNum = $(".boardNum").val()
 
         var result_val = null;
@@ -303,9 +330,14 @@
 
     }
 
+
+
+
     $(function () {
 
-        var clubNum = '${club.clubNum}'
+        calenderInfo()
+
+        var clubNum = '${param.clubNum}'
 
         /*등록 submit*/
 
@@ -321,10 +353,6 @@
             var applyAutoCheck = $(".applyAutoCheck").prop("checked")
             var boardCategory = '05';
 
-
-            alert(noticeCheck);
-            alert(calendarApplyCheck);
-            alert(applyAutoCheck);
 
 
             var clubers = $(".clubers")
@@ -433,7 +461,12 @@
                     });
 
                     setTimeout(function () {
-                        window.location.reload()
+
+                        $('#exampleModal').modal("hide");
+
+                        calenderInfo()
+
+
                     }, 2000);
                     //error 발생시 그냥 창을 닫음
                 }, error: function () {
@@ -445,7 +478,11 @@
                         timer: 1500
                     });
                     setTimeout(function () {
-                        window.location.reload()
+
+                        $('#exampleModal').modal("hide");
+
+                        calenderInfo()
+
                     }, 2000);
 
                 }
@@ -471,10 +508,6 @@
             var boardCategory = '05';
 
 
-            alert(noticeCheck);
-            alert(calendarApplyCheck);
-            alert(applyAutoCheck);
-            alert(noticeTime);
 
             var clubers = $(".clubers3")
 
@@ -509,7 +542,7 @@
 
                     var boardNum = JSONData
 
-                    var file = ("#file3").length
+                    var file = ("#file2").length
 
                     alert(file);
 
@@ -554,6 +587,7 @@
 
                             }
                         })
+
                     }
 
                     $.ajax({
@@ -582,7 +616,11 @@
                     });
 
                     setTimeout(function () {
-                        window.location.reload()
+
+                        $('#exampleModal3').modal("hide");
+
+                        calenderInfo()
+
                     }, 2000);
                     //error 발생시 그냥 창을 닫음
                 }, error: function () {
@@ -594,7 +632,11 @@
                         timer: 1500
                     });
                     setTimeout(function () {
-                        window.location.reload()
+
+                        $('#exampleModal3').modal("hide");
+
+                        calenderInfo()
+
                     }, 2000);
 
                 }
@@ -641,7 +683,7 @@
 
                     var boardNum = JSONData
 
-                    var file = ("#file").length
+                    var file = ("#file3").length
 
                     if (file > 0) {
 
@@ -650,7 +692,7 @@
                         //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
                         var formData = new FormData(form);
                         //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
-                        var fileSize = $("#fileForm2 #file")[0].files;
+                        var fileSize = $("#fileForm3 #file3")[0].files;
                         console.log(fileSize.length);
                         //formData에 해당 게시글 번호, 게시글 category append
                         formData.append("boardNum", boardNum);
@@ -693,7 +735,11 @@
                     });
 
                     setTimeout(function () {
-                        window.location.reload()
+
+                        $('#exampleModal4').modal("hide");
+
+                        calenderInfo()
+
                     }, 2000);
                     //error 발생시 그냥 창을 닫음
                 }, error: function () {
@@ -705,7 +751,11 @@
                         timer: 1500
                     });
                     setTimeout(function () {
-                        window.location.reload()
+
+                        $('#exampleModal4').modal("hide");
+
+                        calenderInfo()
+
                     }, 2000);
 
                 }
@@ -718,7 +768,6 @@
 
 
   /*      $(".file4").on("change", function () {
-
             if($(this)[0].files.length > 1){
                 alert("파일의 갯수가 초과 했습니다");
                 $(this).val('');
@@ -729,8 +778,8 @@
         $(".calenderReviewShortSubmit").on("click", function () {
             var clubCalenderNum = $(".clubCalnderNum").val()
             var boardCategory = '02'
-            var reviewTitle = $(".reviewTitle5").val();
-            var reviewRange = $(".reviewRange5").val();
+            var reviewTitle = $(".reviewTitle2").val();
+            var reviewRange = $(".reviewRange2").val();
 
 
             $.ajax({
@@ -802,7 +851,11 @@
                         });
 
                         setTimeout(function () {
-                            window.location.reload()
+
+                            $('#exampleModal5').modal("hide");
+
+                            calenderInfo()
+
                         }, 2000);
 
 
@@ -817,7 +870,11 @@
                         timer: 1500
                     });
                     setTimeout(function () {
-                        window.location.reload()
+
+                        $('#exampleModal5').modal("hide");
+
+                        calenderInfo()
+
                     }, 2000);
 
                 }
@@ -836,7 +893,7 @@
 
         $(".calenderCluber").on("click", function () {
             window.open(
-                "/clubCal/addCalenderCluber?clubNum=${club.clubNum}", '_blnk'
+                "/clubCal/addCalenderCluber?clubNum=${param.clubNum}", '_blnk'
                 , "top=200, width=200px, height=700px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no")
 
         });
@@ -862,7 +919,7 @@
 </style>
 <html>
 <body>
-<input hidden class="boardNum" value="${club.clubNum}">
+<input hidden class="boardNum" value="${param.clubNum}">
 <div class='demo-topbar'>
     <div id='external-events'
          style="float: left; width: 20%; margin-top: 75px; padding: 5px; margin-bottom: 50px;"></div>
@@ -986,7 +1043,7 @@
             <input name="clubCalenderReviewNum" class="clubCalenderReviewNum" hidden value="">
             <div class="modal-header">
                 <input hidden class="clubCalnderNum" value="">
-                <h1 class="modal-title fs-5" id="exampleModalLabel2"> 모임 일정</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabe3"> 모임 일정</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
                 <div class="borderBox">
@@ -1049,10 +1106,23 @@
                     </div>
 
                 </div>
-
-                <div class="input-group mb-3">
-                    <input type="button" class="form-control calenderCluber2" multiple value="모임 인원 추가 하기">
-
+<div>
+                    <div class="input-group mb-3">
+                        <button class="btn btn-primary listCalendarCluberView" data-bs-toggle="modal"
+                                data-bs-target="#listCalendarCluber">
+                            참여자
+                        </button>
+                    </div>
+                    <div class="input-group mb-3">
+                        <button class="btn btn-primary addClubCalendarApply" style="display: none">
+                            모임 일정 참여
+                        </button>
+                    </div>
+                    <div class="input-group mb-3">
+                        <button class="btn btn-primary deleteClubCalendarApply" style="display: none">
+                            모임 일정 참여 취소
+                        </button>
+                    </div>
                 </div>
 
 
@@ -1200,6 +1270,10 @@
     </div>
 </div>
 
+
+
+
+
 <%--모임 일정 후기글 등록--%>
 <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
@@ -1213,18 +1287,18 @@
                 <form id="fileForm3">
 
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control reviewTitle" id="recipient-name4" value="" placeholder="asdasd">
+                        <input type="text" class="form-control reviewTitle1" id="recipient-name4" value="" placeholder="asdasd">
                         <label for="recipient-name" >제 목</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control reviewText" id="message-text4" value="" placeholder="asdasd"/>
+                        <input type="text" class="form-control reviewText1" id="message-text4" value="" placeholder="asdasd"/>
                         <label for="message-text">내용</label>
                     </div>
 
                     <div class="form-floating mb-3">
 
-                        <select class="form-select reviewRange" name="reviewRange" id="floatingSelect1">
+                        <select class="form-select reviewRange1" name="reviewRange" id="floatingSelect1">
                             <option selected>공개 여부를 선택 하세요</option>
                             <option value="1">전체 공개</option>
                             <option value="2">모임 공개</option>
@@ -1241,14 +1315,14 @@
 
                     <div class="form-floating mb-3">
 
-                        <input type="date" class="form-control clubDate" id="date-text4" value="" placeholder="asdasd"/>
+                        <input type="date" class="form-control clubDate1" id="date-text4" value="" placeholder="asdasd"/>
                         <label for="date-text">모임 일정 날짜</label>
 
                     </div>
 
                     <div class="input-group mb-3">
 
-                        <input type="button"  class="form-control"   value="위치 선택">
+                        <input type="text"  class="form-control location1"   value="위치 선택">
 
                     </div>
 
@@ -1280,13 +1354,13 @@
                 <form id="fileForm4">
 
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control reviewTitle5" id="recipient-name5" value="" placeholder="asdasd">
+                        <input type="text" class="form-control reviewTitle2" id="recipient-name5" value="" placeholder="asdasd">
                         <label for="recipient-name" >제 목</label>
                     </div>
 
                     <div class="form-floating mb-3">
 
-                        <select class="form-select reviewRange5" name="reviewRange" id="floatingSelect">
+                        <select class="form-select reviewRange2" name="reviewRange" id="floatingSelect">
                             <option selected>공개 여부를 선택 하세요</option>
                             <option value="1">전체 공개</option>
                             <option value="2">모임 공개</option>
@@ -1303,14 +1377,14 @@
 
                     <div class="form-floating mb-3">
 
-                        <input type="date" class="form-control clubDate5" id="date-text5" value="" placeholder="asdasd"/>
+                        <input type="date" class="form-control clubDate2" id="date-text5" value="" placeholder="asdasd"/>
                         <label for="date-text">모임 일정 날짜</label>
 
                     </div>
 
                     <div class="input-group mb-3">
 
-                        <input type="button"  class="form-control location5"   value="위치 선택">
+                        <input type="text"  class="form-control location2"   value="위치 선택">
 
                     </div>
 
@@ -1334,53 +1408,6 @@
 
 
 
-
-<%--거래 일정 상세 조회--%>
-<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true"
-     style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <input type="hidden" class="dealNum" value="">
-                <h1 class="modal-title fs-5" id="exampleModalLabel2"> 거래 일정</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control dealCalenderTitle2" value=""
-                           placeholder="asdasd">
-                    <label for="recipient-name">제 목</label>
-                </div>
-
-
-                <div class="form-floating mb-3">
-
-                    <input type="date" class="form-control dealDate2"  value="" placeholder="asdasd"/>
-                    <label for="date-text">모임 일정 날짜</label>
-
-                </div>
-
-                <div class="input-group mb-3">
-
-                    <input type="text" class="form-control dealLocation2" value="위치 선택">
-
-                </div>
-
-
-            </div>
-
-            <div class="modal-footer" style=" justify-content:center;">
-
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                <button type="button" class="btn btn-info updateSubmit">수정</button>
-                <button type="button" class="btn btn-secondary getDealPage">게시글 상세 조회</button>
-
-            </div>
-        </div>
-    </div>
-</div>
 
 </body>
 </html>

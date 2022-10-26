@@ -54,7 +54,7 @@
 
         <div class="itemBox">
             <c:if test="${user.userId==cluber.user.userId}"><input type="button" class="btn btn-primary updateCluber"
-                                                                   value="자기소개 수정"></c:if>
+                                                                   value="자기소개 수정" data-bs-toggle="modal" data-bs-target="#updateCluber"></c:if>
             <c:if test="${currentCluber.cluberStatus=='6'}">
                 <c:if test="${cluber.cluberStatus=='4'||cluber.cluberStatus=='5'}">
                     <input type="button" class="btn btn-primary updateClubMaster" value="모임장 위임">

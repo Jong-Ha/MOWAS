@@ -49,6 +49,7 @@ public interface ClubDao {
     public void deleteClubCalendarApply(Map<String, Object> map);
     public List<CalendarCluber>listClubCalendarApply(Map<String, Object> map);
     public void deleteClubCalendar(int clubCalendarNum);
+    public String getCalendarCluberCondition(Map<String, Object> map);
     public void updateClubCalendarApply(Map<String, Object> map);
     public List<Cluber> listCluber(Map<String, Object> map);
     public Cluber getCluberCondition(Map<String, Object> map);

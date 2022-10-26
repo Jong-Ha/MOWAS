@@ -108,17 +108,7 @@ public class CommunityController {
         return null;
     }
 
-    @RequestMapping(value = "updateVillBoard", method = RequestMethod.GET)
-    public String updateVillBoard(@RequestParam("boardNum") int boardNum
-            , @ModelAttribute("vilBarod") VilBoard vilBoard
-            , Model model) {
 
-        vilBoard = commuService.getVillBoard(boardNum);
-
-        model.addAttribute("villBoard", vilBoard);
-
-        return "/view/community/update/updateVillBoard.jsp";
-    }
 
     @RequestMapping(value = "updateVillBoard", method = RequestMethod.POST)
     public String updateVillBoard(@ModelAttribute("villBoard") VilBoard vilBoard) {

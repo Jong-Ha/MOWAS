@@ -9,24 +9,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="KSM 2022.10.25&#10;&#10;community Report process list jsp&#10;club report process list&#10;community report get jsp update">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="LJH 2022.10.17&#10;&#10;css, js, jsp 구분">
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/common/KakaoMapApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/common/KakaoMapApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/CommunityReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/CommunityReport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/controller/SiteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/controller/SiteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/controller/SiteRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/controller/SiteRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/SiteMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/SiteMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/clubMap.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/clubMap.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/getClubReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/getClubReport.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/getCommunityReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/getCommunityReport.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/listMasterBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/listMasterBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/updateClubReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/updateClubReport.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/updateClubRereport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/updateClubRereport.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/updateCommunityReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/updateCommunityReport.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/site/service/SiteServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/site/service/SiteServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyCalender.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyCalender.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyClub.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyComment.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyComment.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyDeal.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyDeal.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyInfor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyInfor.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyLike.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyLike.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyNotice.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyNotice.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyPage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyPage.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyPpt.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyPpt.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyReport.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/myPageTitle.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/myPageTitle.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/updateMyInfor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/updateMyInfor.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/addInterList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/addInterList.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/callBack.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/callBack.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/getMyId.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/getMyId.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/getMyIdEnd.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/getMyIdEnd.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/getMyPassword.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/getMyPassword.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/getMyPasswordEnd.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/getMyPasswordEnd.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/getUserDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/getUserDetail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/listUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/listUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/main.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/myLocation.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/myLocation.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/updatePsd.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/updatePsd.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/updateSNSUserInfor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/updateSNSUserInfor.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/userCalender.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/userCalender.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/userPhoto.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/userPhoto.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +68,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/master" />
+    <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
     <option name="PUSH_TAGS">
@@ -95,12 +114,13 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit4&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4&quot;: &quot;&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Project/MOWAS/src/main/webapp/view/club/modal수정전&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Project/MOWAS/src/main/webapp/view/myPage&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -123,18 +143,21 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Project\MOWAS\src\main\webapp\view\club\modal수정전" />
-      <recent name="C:\Project\MOWAS\src\main\webapp\view\club" />
-      <recent name="C:\Project\MOWAS\src\main\webapp\resources\club\css" />
-      <recent name="C:\Project\MOWAS\src\main\webapp\resources\club\js" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\view\myPage" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\view\user" />
       <recent name="C:\Project\MOWAS\src\main\webapp\resources\images" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\resources\club\js" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\resources\club\css" />
+      <recent name="C:\Project\MOWAS\src\main\resources\config" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\chat" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\layout" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Project\MOWAS\src\main\webapp\resources\images" />
       <recent name="C:\Project\MOWAS\src\main\webapp\resources\club" />
       <recent name="C:\Users\903-15\IdeaProjects\MOWAS\src\main\webapp\view\user" />
       <recent name="C:\Devspace\MOWAS\src\main\webapp\resources\OpenSource" />
       <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community\list" />
-      <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community\add" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -143,6 +166,7 @@
       <recent name="com.project.common.dao" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.project.myPage.service" />
       <recent name="com.project.user.service" />
       <recent name="com.project.user.dao" />
       <recent name="com.project.user.controller" />
@@ -150,7 +174,7 @@
       <recent name="com.project.notice.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MongoDbDaoImplTest.addCluber">
+  <component name="RunManager" selected="Tomcat 서버.Tomcat 9.0.58">
     <configuration name="ClubServiceTest.updateVoter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MOWAS" />
       <extension name="coverage">
@@ -231,8 +255,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tomcat 9.0.58" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.58" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="1.8" nameIsGenerated="true">
-      <option name="COMMON_VM_ARGUMENTS" value="-DFile.encoding=UTF-8;-Dconsole.encoding=UTF-8" />
+    <configuration name="Tomcat 9.0.58" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.58" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="$PROJECT_DIR$/../../Program Files/Java/jdk1.8.0_181" nameIsGenerated="true">
+      <option name="COMMON_VM_ARGUMENTS" value="-Dfile.encoding=UTF-8" />
       <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
       <deployment>
@@ -243,7 +267,8 @@
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="6810ff30-a4ac-43f4-8479-4c28491a2878" />
+        <option name="BASE_DIRECTORY_NAME" value="e0944415-630b-49a5-af46-6b2de8f9187b" />
+        <option name="DEPLOY_TOMCAT_APPS" value="true" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -251,7 +276,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="53158" />
+        <option name="DEBUG_PORT" value="65206" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -326,7 +351,7 @@
       <item itemvalue="JUnit.MongoDbDaoImplTest.deleteClub" />
       <item itemvalue="JUnit.MongoDbDaoImplTest.deleteCluber" />
       <item itemvalue="JUnit.ClubServiceTest.updateVoter" />
-      <item itemvalue="Tomcat Server.Tomcat 9.0.58" />
+      <item itemvalue="Tomcat 서버.Tomcat 9.0.58" />
     </list>
     <recent_temporary>
       <list>
@@ -372,7 +397,9 @@
       <workItem from="1665533657959" duration="27513000" />
       <workItem from="1665649090993" duration="48206000" />
       <workItem from="1665935988156" duration="3862000" />
-      <workItem from="1666742215884" duration="28362000" />
+      <workItem from="1666338226193" duration="5083000" />
+      <workItem from="1666343876167" duration="55962000" />
+      <workItem from="1666589308433" duration="18822000" />
     </task>
     <task id="LOCAL-00001" summary="설정">
       <created>1664436990723</created>
@@ -416,19 +443,19 @@
       <option name="project" value="LOCAL" />
       <updated>1666146528047</updated>
     </task>
-    <task id="LOCAL-00007" summary="LJH 2022.10.21&#10;&#10;addCalendarCluber 관련 Service, Dao, Mapper 생성&#10;1:1 같은 유저들이면 방 새로 안만들어짐&#10;거래채팅 같은 글, 같은 유저들이면 방 새로 안만들어짐&#10;방 조회 시 위 조건 or 방 번호로 조회">
-      <created>1666322614652</created>
+    <task id="LOCAL-00007" summary="JHK 2022.10.24&#10;&#10;마이페이지 JSP 수정">
+      <created>1666620792031</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1666322614652</updated>
+      <updated>1666620792032</updated>
     </task>
-    <task id="LOCAL-00008" summary="LJH 2022.10.25&#10;&#10;모임 리스트 로그인 관련 수정을 위한 커밋">
-      <created>1666660232495</created>
+    <task id="LOCAL-00008" summary="JHK 2022.10.26&#10;&#10;카카오로그인 팝업창 변경, 로그인페이지 모달창 변경">
+      <created>1666747096028</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1666660232495</updated>
+      <updated>1666747096028</updated>
     </task>
     <option name="localTasksCounter" value="9" />
     <servers />
@@ -469,7 +496,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="KSM" />
+                        <option value="origin/master" />
                       </list>
                     </value>
                   </entry>
@@ -529,10 +556,34 @@
     <MESSAGE value="LJH 2022.10.17&#10;&#10;listClub.jsp 만듬&#10;채팅기능 개선&#10;jsp 백업본 생성" />
     <MESSAGE value="LJH 2022.10.17&#10;&#10;css, js, jsp 구분" />
     <MESSAGE value="LJH 2022.10.19&#10;&#10;feane : jsp 파일 연결" />
-    <MESSAGE value="LJH 2022.10.21&#10;&#10;addCalendarCluber 관련 Service, Dao, Mapper 생성&#10;1:1 같은 유저들이면 방 새로 안만들어짐&#10;거래채팅 같은 글, 같은 유저들이면 방 새로 안만들어짐&#10;방 조회 시 위 조건 or 방 번호로 조회" />
-    <MESSAGE value="LJH 2022.10.24&#10;&#10;메시지 받으면 채팅창 제일 위로 올라감&#10;cluber 관련 jsp 완료&#10;팝업창들 모달로 수정&#10; - 네비게이션 성공&#10; - js 기능 미구현&#10;ajax로 모달 가져오기" />
-    <MESSAGE value="LJH 2022.10.25&#10;&#10;모임 리스트 로그인 관련 수정을 위한 커밋" />
-    <option name="LAST_COMMIT_MESSAGE" value="LJH 2022.10.25&#10;&#10;모임 리스트 로그인 관련 수정을 위한 커밋" />
+    <MESSAGE value="BJW 2022.10.09&#10;&#10;댓글 대댓글 등록,수정,삭제하면 uri가 안변하고 화면에 바로 결과 출력 되게 json으로 처리 하였음" />
+    <MESSAGE value="BJW 2022.10.10&#10;&#10;파일 업로드 json으로 처리 하기, 일정 캘린더 api 사용해서 fullcalendar로 display 완성, 캘린더 list로 불러올떄 겹치는 문제 해결해야함&#10;채팅 작업 시작" />
+    <MESSAGE value="JHK 2022.10.13&#10;&#10;회원가입 도로명주소 api 사용, 카카오로그인 구현(정보 받기, 디비저장 아직임)" />
+    <MESSAGE value="JHK 2022.10.17&#10;&#10;마이페이지 서비스 커밋" />
+    <MESSAGE value="JHK 2022.10.19&#10;&#10;메일인증 수정" />
+    <MESSAGE value="JHK 2022.10.24&#10;&#10;마이페이지 JSP 수정" />
+    <MESSAGE value="JHK 2022.10.26&#10;&#10;카카오로그인 팝업창 변경, 로그인페이지 모달창 변경" />
+    <option name="LAST_COMMIT_MESSAGE" value="JHK 2022.10.26&#10;&#10;카카오로그인 팝업창 변경, 로그인페이지 모달창 변경" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/project/user/controller/UserController.java</url>
+          <line>138</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDao.java</url>
+          <line>33</line>
+          <properties class="com.project.user.dao.UserDao" method="updateLcd">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
