@@ -778,8 +778,8 @@
         $(".calenderReviewShortSubmit").on("click", function () {
             var clubCalenderNum = $(".clubCalnderNum").val()
             var boardCategory = '02'
-            var reviewTitle = $(".reviewTitle5").val();
-            var reviewRange = $(".reviewRange5").val();
+            var reviewTitle = $(".reviewTitle2").val();
+            var reviewRange = $(".reviewRange2").val();
 
 
             $.ajax({

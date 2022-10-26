@@ -8,8 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-
 <script type="text/javascript" src="/resources/OpenSource/js/jquery.cookie.js"></script>
 
 <script type="text/javascript">
@@ -19,16 +17,15 @@
 
         $("#login1").on("click", function () {
             console.log('${user.userId}')
-            console.log($.cookie("keepLogin"))
-            if ($.cookie('keepLogin') != undefined) {
-                self.location = "/user/loginNow";
+            console.log($.cookie("#keepLogin"))
+            if ($.cookie('#keepLogin') != undefined) {                self.location = "/user/loginNow";
             }
         });
     });
 
     function fncLogin() {
-        var id = $("input:text").val();
-        var pw = $("input:password").val();
+        var id = $("#loginModal input:text").val();
+        var pw = $("#loginModal input:password").val();
         var keepId = $("#keepId").prop('checked');
         var keepLogin = $("#keepLogin").prop('checked');
         console.log("keepId =>" + keepId);
@@ -82,32 +79,16 @@
     };
 
     $(function () {
-        $('input[name="userId"]').focus();
-        console.log('keepId의 값은? : ' + $.cookie('keepId'))
-        if ($.cookie('keepId') != undefined) {
-            $('#keepId').prop('checked', true);
-            $('#keepLogin').prop('disabled', !$('#keepId').prop('checked'));
-            $('input[name="userId"]').val($.cookie('keepId'));
-            $('input[name="password"]').focus();
-        }
-        console.log('keepLogin의 값은? : ' + $.cookie('keepLogin'))
-        if ($.cookie('keepLogin') != undefined) {
-            $('#keepLogin').prop('checked', true);
-            $('input[name="password"]').val($.cookie('keepLogin'));
-        }
-        $('#keepId').on('click', function () {
-            $('#keepLogin').prop('disabled', !$(this).prop('checked'));
+
+        $(".loginStart").on('click', function () {
+            fncLogin();
+
+            setTimeout(function(){
+                location.reload();
+            },1000);
         });
 
-        $(".loginStart").bind('click', function () {
-            fncLogin();
-        });
-        $('input[name="password"]').on('keydown', function (key) {
-            if (key.keyCode == 13) {
-                fncLogin();
-            }
-        })
-    });
+
     $(function () {
         $(".addUserStart").on("click", function () {
             location.href = "/view/user/addUser.jsp"
@@ -132,6 +113,7 @@
 
     $(function () {
         $(".naverIdLogin").on("click", function () {
+            alert('asdfdf');
 
             var naverLogin = new naver.LoginWithNaverId(
                 {
@@ -147,6 +129,36 @@
             );
             naverLogin.init();
         });
+
+        $('input[name="userId"]').focus();
+        console.log('keepId의 값은? : ' + $.cookie('keepId'))
+        if ($.cookie('keepId') != undefined) {
+            $('#keepId').prop('checked', true);
+            $('#keepLogin').prop('disabled', !$('#keepId').prop('checked'));
+            $('input[name="userId"]').val($.cookie('keepId'));
+            $('input[name="password"]').focus();
+        }
+        console.log('keepLogin의 값은? : ' + $.cookie('keepLogin'))
+        if ($.cookie('keepLogin') != undefined) {
+            $('#keepLogin').prop('checked', true);
+            $('input[name="password"]').val($.cookie('keepLogin'));
+        }
+        $('#keepId').on('click', function () {
+            $('#keepLogin').prop('disabled', !$(this).prop('checked'));
+        });
+
+
+
+        $('input[name="password"]').on('keydown', function (key) {
+            if (key.keyCode == 13) {
+                fncLogin();
+
+                setTimeout(function(){
+                    location.reload();
+                },1000);
+            }
+        })
+    });
     });
 
 
@@ -376,15 +388,14 @@
                 <div class="collapse navbar-collapse" id="navbarScroll">
                     <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                         <li class="nav-item">
-                            <a class="nav-link active  underline yellow" aria-current="page" href="#"
-                               style="color : #ffffff; font-size: 1.5em;">Home</a>
+                            <a class="nav-link active  underline yellow" aria-current="page" onclick="location.href='/club/listClub'"  style="color : #ffffff; font-size: 1.3em;">모임 게시판</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link  underline yellow" href="#" style="color : #ffffff; ">Link</a>
+                            <a class="nav-link  underline yellow" href="#" style="color : #ffffff;font-size: 1.3em;" onclick="location.href='/commu/main'">커뮤니티 게시판</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link  underline yellow" style="color : #ffffff; font-size: 1.5em;">Link</a>
+                            <a class="nav-link  underline yellow" style="color : #ffffff; font-size: 1.3em;" onclick="location.href='/deal/getListDeal?boardCategory=08'">중고 거래 게시판</a>
                         </li>
                     </ul>
                     <div class="logitem">
@@ -468,8 +479,7 @@
                         </div>-->
                         <div class="input-group mb-3 mt-3">
                             <div class="form-floating">
-                                <input type="password" class="form-control" id="password" placeholder="Password"
-                                       name="password">
+                                <input type="password" class="form-control"  id="password" placeholder="Password" name="password">
                                 <label for="password">Password</label>
                             </div>
                         </div>
@@ -503,12 +513,10 @@
 
                     </div>
 
-                    <div>
 
                         <button class="btn btn-outline-primary btnlf addUserStart" type="button"> 회원 가입</button>
                         <button class="btn btn-outline-info btnlf loginStart" style="margin-right: 39px;" type="button">login</button>
 
-                    </div>
 
                     <div class="snsLogin" style="    display: flex;justify-content: center;align-items: center;flex-direction: column;">
 
