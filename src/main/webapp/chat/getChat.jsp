@@ -722,16 +722,21 @@
             //내가 작성한건지 상대방이 작성한건지 비교하는 method
             li.classList.add(nickname.value == this.name ? "sent" : "received")
             //li에 html을 넣는다
-            li.innerHTML = '<span class="profile">' +
+            li.innerHTML =
+                '<span class="profile">' +
                 '<span class="user">' + this.name + '</span>' +
                 '<img class="userimg" src="https://placeimg.com/50/50/any" alt="any">' +
                 '</span>' +
                 '<span class="message">' + this.msg + '</span>' +
                 '<span class="time">' + this.time + '</span>';
 
-            //catList에 li의 html을 append한다
-            chatList.appendChild(li);
-            displayContainer.scrollTo(0, displayContainer.scrollHeight);
+/*$(li).css('display','none')*/
+
+                //catList에 li의 html을 append한다
+                chatList.appendChild(li);
+                //$('.chatting-list li:last-child').slideDown();
+                displayContainer.scrollTo(0, displayContainer.scrollHeight);
+
 
             $(chatInput).val('')
         }

@@ -138,7 +138,7 @@
 
                             var button
 
-                            if (date3 < date2) {
+                            if (date3 > date2) {
 
                                 button = '<button class="btn btn-primary update" data-bs-toggle="modal" data-bs-target="#exampleModal3">' +
                                     '수정' +
@@ -152,7 +152,7 @@
                                 $(".addBox").append(button);
                             }
 
-                            if (date3 > date2) {
+                            if (date3 < date2) {
 
                                 button = '<button class="btn btn-primary addReview" data-bs-toggle="modal" data-bs-target="#exampleModal4">' +
                                         '모임 일정 후기글 작성' +
@@ -509,7 +509,7 @@
 
                     var boardNum = JSONData
 
-                    var file = ("#file3").length
+                    var file = ("#file2").length
 
                     alert(file);
 
@@ -641,7 +641,7 @@
 
                     var boardNum = JSONData
 
-                    var file = ("#file").length
+                    var file = ("#file3").length
 
                     if (file > 0) {
 
@@ -650,7 +650,7 @@
                         //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
                         var formData = new FormData(form);
                         //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
-                        var fileSize = $("#fileForm2 #file")[0].files;
+                        var fileSize = $("#fileForm3 #file3")[0].files;
                         console.log(fileSize.length);
                         //formData에 해당 게시글 번호, 게시글 category append
                         formData.append("boardNum", boardNum);
@@ -986,7 +986,7 @@
             <input name="clubCalenderReviewNum" class="clubCalenderReviewNum" hidden value="">
             <div class="modal-header">
                 <input hidden class="clubCalnderNum" value="">
-                <h1 class="modal-title fs-5" id="exampleModalLabel2"> 모임 일정</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabe3"> 모임 일정</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
                 <div class="borderBox">
@@ -1200,6 +1200,10 @@
     </div>
 </div>
 
+
+
+
+
 <%--모임 일정 후기글 등록--%>
 <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
@@ -1213,18 +1217,18 @@
                 <form id="fileForm3">
 
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control reviewTitle" id="recipient-name4" value="" placeholder="asdasd">
+                        <input type="text" class="form-control reviewTitle1" id="recipient-name4" value="" placeholder="asdasd">
                         <label for="recipient-name" >제 목</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control reviewText" id="message-text4" value="" placeholder="asdasd"/>
+                        <input type="text" class="form-control reviewText1" id="message-text4" value="" placeholder="asdasd"/>
                         <label for="message-text">내용</label>
                     </div>
 
                     <div class="form-floating mb-3">
 
-                        <select class="form-select reviewRange" name="reviewRange" id="floatingSelect1">
+                        <select class="form-select reviewRange1" name="reviewRange" id="floatingSelect1">
                             <option selected>공개 여부를 선택 하세요</option>
                             <option value="1">전체 공개</option>
                             <option value="2">모임 공개</option>
@@ -1241,14 +1245,14 @@
 
                     <div class="form-floating mb-3">
 
-                        <input type="date" class="form-control clubDate" id="date-text4" value="" placeholder="asdasd"/>
+                        <input type="date" class="form-control clubDate1" id="date-text4" value="" placeholder="asdasd"/>
                         <label for="date-text">모임 일정 날짜</label>
 
                     </div>
 
                     <div class="input-group mb-3">
 
-                        <input type="button"  class="form-control"   value="위치 선택">
+                        <input type="text"  class="form-control location1"   value="위치 선택">
 
                     </div>
 
@@ -1280,13 +1284,13 @@
                 <form id="fileForm4">
 
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control reviewTitle5" id="recipient-name5" value="" placeholder="asdasd">
+                        <input type="text" class="form-control reviewTitle2" id="recipient-name5" value="" placeholder="asdasd">
                         <label for="recipient-name" >제 목</label>
                     </div>
 
                     <div class="form-floating mb-3">
 
-                        <select class="form-select reviewRange5" name="reviewRange" id="floatingSelect">
+                        <select class="form-select reviewRange2" name="reviewRange" id="floatingSelect">
                             <option selected>공개 여부를 선택 하세요</option>
                             <option value="1">전체 공개</option>
                             <option value="2">모임 공개</option>
@@ -1303,14 +1307,14 @@
 
                     <div class="form-floating mb-3">
 
-                        <input type="date" class="form-control clubDate5" id="date-text5" value="" placeholder="asdasd"/>
+                        <input type="date" class="form-control clubDate2" id="date-text5" value="" placeholder="asdasd"/>
                         <label for="date-text">모임 일정 날짜</label>
 
                     </div>
 
                     <div class="input-group mb-3">
 
-                        <input type="button"  class="form-control location5"   value="위치 선택">
+                        <input type="text"  class="form-control location2"   value="위치 선택">
 
                     </div>
 

@@ -5,6 +5,10 @@
 <html>
 <head>
     <meta charset="utf-8">
+
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
@@ -645,16 +649,6 @@
                 })
             });
 
-            $(".update").on("click", function () {
-                var boardNum = $(".boardNum").val();
-                var boardCategory = $(".boardCategory").val()
-
-
-                window.open(
-                    "/commu/updateVillBoard?boardNum=" + boardNum + "&boardCategory=" + boardCategory, "우리 동네 게시글 수정",
-                    "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no"
-                )
-            });
 
 
             /*댓글*/
@@ -689,6 +683,158 @@
 
                 })
             })
+
+            $(".update").on("click", function () {
+                var boardNum = $(".boardNum").val();
+
+                $(".updateVillBoardNum").val(boardNum)
+                /* window.open(
+                     "/commu/updateVillBoard?boardNum=" + boardNum, "우리 동네 게시글 수정",
+                     "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no"
+                 )*/
+
+
+                $.ajax({
+                    url: "/commu/json/getVillBoard",
+                    method: "post",
+                    dataType: "json",
+                    contentType: 'application/json; charset=UTF-8',
+                    data: JSON.stringify({
+                        "villBoardNum": boardNum
+                    }),
+                    success: function (JSONData, result) {
+                        console.log(JSONData);
+
+                        var villBoard = JSONData.villBoard
+
+
+                        $('.villTitle2').val(villBoard.villTitle);
+                        $(".villText2").val(villBoard.villText);
+                        $(".villTag2").val(villBoard.villTag);
+
+                    }
+
+                });
+            });
+
+
+            //모달창
+
+            $(".villBoardUpdateSubmit").on("click", function () {
+
+
+                var updateVillBoardNum = $(".updateVillBoardNum").val();
+                var boardCategory = "03";
+
+                var villTitle = $(".villTitle2").val()
+                var villText = $(".villText2").val()
+
+                var villTag = $("#villTag2").val();
+
+                var villTag2 = JSON.parse(villTag);
+
+
+                var str = ''
+                $.each(villTag2, function (index, item) {
+                    console.log(item);
+
+                    str += "#"
+                    str += item.value;
+                    str += " "
+                })
+
+                alert("dddd" + updateVillBoardNum);
+
+                $.ajax({
+                    url: "/commu/json/updateVillBoard",
+                    method: "post",
+                    data: JSON.stringify({
+                        "villBoardNum": updateVillBoardNum,
+                        "boardCategory": boardCategory,
+                        "villTitle": villTitle,
+                        "villText": villText,
+                        "villTag": str
+                    }),
+                    dataType: "json",
+                    contentType: "application/json; charset=UTF-8",
+
+                    success: function (JSONData, result) {
+
+                        var file = $("#file2").length
+
+                        if (file > 0) {
+
+                            //form 테그를 불러와서 form변수에 등록
+                            var form = document.querySelector("form");
+                            //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
+                            var formData = new FormData(form);
+                            //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
+                            var fileSize = $("#fileForm2 #file2")[0].files;
+                            console.log(fileSize.length);
+                            //formData에 해당 게시글 번호, 게시글 category append
+                            formData.append("boardNum", updateVillBoardNum);
+                            formData.append("boardCategoru", boardCategory);
+
+                            //file길이 만큼 for문으로 formData에 append함
+                            for (var i = 0; i < fileSize.length; i++) {
+                                formData.append("form", fileSize[i]);
+                                //파일이 잘 들어 갔는지 확인
+                                console.log(fileSize[i]);
+                            }
+                            //formData에 들어 있는 boardNum과 file의 정보를 비동기식으로 보냄
+                            //파일은 json형식으로 보낼수 없기 떄문에 contentType, processData, dataType을 false로 지정
+                            $.ajax({
+                                url: "/clubCal/json/fileUpdate",
+                                type: "post",
+                                processData: false,
+                                contentType: false,
+                                cache: false,
+                                timeout: 600000,
+                                data: formData,
+                                headers: {'cache-control': 'no-cache', 'pragma': 'no-cache'},
+                                enctype: "multipart/form-data",
+                                success: function (result) {
+
+                                    console.log(result);
+
+                                }
+
+                            })
+                        }
+
+
+                        // 성공시 해당 창을 닫고 부모창을 reload
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Your work has been saved',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 2000);
+                        //error 발생시 그냥 창을 닫음
+                    }, error: function () {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Your work has been saved',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 2000);
+
+                    }
+                });
+
+            })
+
+            var input2 = document.querySelector("#villTag2")
+            var tagify2 = new Tagify(input2, {});
 
 
         })
@@ -807,7 +953,7 @@
                             </svg>
                         </button>
                         <c:if test="${user.userId eq villBoard.userId}">
-                            <button type="button" class="btn btn-outline-primary itembutton update">수정</button>
+                            <button type="button" class="btn btn-outline-primary itembutton update" data-bs-toggle="modal" data-bs-target="#exampleModal2">수정</button>
                             <button type="button" class="btn btn-outline-secondary itembutton delete">삭제</button>
                         </c:if>
 
@@ -874,6 +1020,64 @@
 
 
         <jsp:include page="/layout/chatIcon.jsp"/>
+    </div>
+</div>
+
+
+
+
+<%--우리동네 게시글 수정--%>
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true"
+     style="display: none;">
+
+    <input name="updateVillBoardNum" class="updateVillBoardNum" hidden value="">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel2"> 우리 동네 게시글 작성 </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form id="fileForm2">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control villTitle2" id="recipient-name2" value=""
+                               placeholder="asdasd">
+                        <label for="recipient-name2">제 목</label>
+                    </div>
+
+
+                    <div class="form-floating mb-3">
+
+                        <input type="text" class="form-control villText2" id="recipient-text2" value=""
+                               placeholder="asdasd">
+                        <label for="recipient-text2">내용</label>
+
+
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="file" id="file2" class="form-control file" multiple value="파일 첨부">
+                    </div>
+
+                    <div class="mb-3" style="text-align: left;">
+                        <input type="text" class="form-control villTag" name="villTag" id="villTag2"
+                               placeholder="테그 입력칸입니다">
+                    </div>
+
+
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                <button type="button" class="btn btn-primary villBoardUpdateSubmit">수정</button>
+
+            </div>
+        </div>
     </div>
 </div>
 

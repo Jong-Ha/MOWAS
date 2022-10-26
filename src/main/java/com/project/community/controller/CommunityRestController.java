@@ -9,6 +9,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -222,6 +223,18 @@ public class CommunityRestController {
         communityService.addVillBoard(villBoard);
 
         return villBoard.getVillBoardNum();
+    }
+
+    @RequestMapping("getVillBoard")
+    public Map<String,Object> getVillBoard(@RequestBody VilBoard villBoard) {
+
+        Map<String,Object> map = new HashMap<>();
+
+        villBoard = communityService.getVillBoard(villBoard.getVillBoardNum());
+
+        map.put("villBoard", villBoard);
+
+        return map;
     }
 
     @RequestMapping(value = "updateVillBoard", method = RequestMethod.POST)
