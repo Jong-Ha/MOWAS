@@ -273,7 +273,7 @@ public class SiteServiceTest {
 
         clubReport.setClubNum(10002);
         clubReport.setReportId("user02");
-        clubReport.setCrBasis('1');
+        clubReport.setCrBasis("1");
         clubReport.setReportText("다단계 모임");
         clubReport.setAdminId("admin01");
 

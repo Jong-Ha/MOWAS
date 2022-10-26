@@ -120,25 +120,9 @@ values (seq_deal.NEXTVAL,
     </insert>
 <!--    &lt;!&ndash;게시물 상세조회&ndash;&gt;-->
     <select id="getDeal" parameterType="int" resultMap="dealSelectMap">
-        SELECT
-            deal_board_num,
-            user_id,
-            deal_title,
-            deal_text,
-            price,
-            product_name,
-            tag,
-            board_category,
-            review,
-            review_pt,
-            deal_id,
-            vill_code,
-            deal_status,
-            deal_reg_date,
-            view_count,
-            like_count
-from deal
-where deal_board_num=#{dealBoardNum}
+        SELECT*
+        from deal
+        where deal_board_num=#{dealBoardNum}
     </select>
     <!--신뢰온도,
            파일-->
@@ -272,7 +256,7 @@ where deal_board_num=#{dealBoardNum}
         <where>deal_board_num=#{dealBoardNum}</where>
     </update>
     <select id="getReviewPt" parameterType="deal" resultType="int">
-        select NVL(AVG(review_pt),0)
+        select AVG(review_pt)
         from deal
         where user_id = #{user.userId}
     </select>
@@ -309,6 +293,16 @@ where deal_board_num=#{dealBoardNum}
         where deal_id = '${user}' or user_id = '${user}'
         and DEAL_MODE_CHECK = '1'
     </select>
+
+    <update id="dealUpdateCalender" parameterType="deal">
+        UPDATE deal
+            <set>
+                deal_date = #{dealDate},
+                deal_location = #{dealLocation},
+                deal_calender_title=#{dealCalenderTitle}
+            </set>
+        WHERE deal_board_num = #{dealBoardNum}
+    </update>
 
 
 </mapper>

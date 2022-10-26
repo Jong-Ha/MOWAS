@@ -19,6 +19,9 @@
 
 </script>
 <body>
+<div>
+<jsp:include page="/view/myPage/myPageTitle.jsp"/>
+</div>
 내가 쓴 글<br/>
 <hr/>
 <h3>우리동네 게시글</h3>

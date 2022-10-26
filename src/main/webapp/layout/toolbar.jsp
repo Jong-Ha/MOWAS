@@ -15,12 +15,18 @@
 <script type="text/javascript">
 
 
-
     $(function () {
 
-        console.log('${user.userId}')
         $("#login1").on("click", function () {
-            self.location = "/view/user/login.jsp";
+            console.log('${user.userId}')
+            console.log($.cookie("keepLogin"))
+            if( $.cookie('keepLogin')!=undefined){
+
+                self.location = "/user/login";
+            }else {
+
+                self.location = "/view/user/login.jsp";
+            }
         });
     });
     $(function () {

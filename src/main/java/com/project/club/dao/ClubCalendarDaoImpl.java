@@ -86,7 +86,6 @@ public class ClubCalendarDaoImpl implements ClubCalendarDao {
         sqlSession.delete("ClubCalenderMapper.deleteClubCalender", boardNum);
     }
 
-
     @Override
     public List<ClubCalendar> getListCluberCalender(int clubCalenderNum) {
         return sqlSession.selectList("ClubCalenderMapper.getListCluberCalender", clubCalenderNum);
@@ -109,6 +108,11 @@ public class ClubCalendarDaoImpl implements ClubCalendarDao {
     public void addDealCalender(Deal deal) {
 
         sqlSession.insert("DealMapper.addDealCalender", deal);
+    }
+
+    @Override
+    public void dealUpdateCalender(Deal deal) {
+        sqlSession.update("DealMapper.dealUpdateCalender", deal);
     }
 
 

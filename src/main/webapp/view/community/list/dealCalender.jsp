@@ -78,10 +78,18 @@
 
                             var deal = JSONData.deal
 
-                            console.log("deal : "+ deal.dealCalenderTitle);
+                            console.log("deal : "+ deal.dealDate);
+
+                            var date = new Date(deal.dealDate);
+
+                            const year = date.getFullYear();
+                            const month = ('0' + (date.getMonth() + 1)).slice(-2);
+                            const day = ('0' + date.getDate()).slice(-2);
+                            const dateStr = year + '-' + month + '-' + day;
+
 
                             $(".dealCalenderTitle2").val(deal.dealCalenderTitle);
-                            $(".dealDate2").val(deal.dealDate);
+                            $(".dealDate2").val(dateStr);
                             $(".dealLocation2").val(deal.dealLocation);
 
                             const modal = new bootstrap.Modal('#exampleModal2', {})
@@ -111,7 +119,7 @@
 
 
         $.ajax({
-            url: "/commu/json/getListDealCalender",
+            url: "/clubCal/json/getListDealCalender",
             method: "POST",
             contentType: 'application/json; charset=utf-8',
             dataType: "json",
@@ -141,6 +149,26 @@
 
     }
 
+    $(function () {
+
+        var dealBoardNum = $(".dealNum").val();
+
+        $(".getDealPage").on("click", ()=>{
+
+            window.open(
+                "/commu/getDealCalender?dealNum=" + dealBoardNum, "거래 상세 조회",
+                "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no")
+
+
+        })
+
+
+        $(".updateSubmit").on("click", function () {
+
+
+        })
+    })
+
 
 </script>
 
@@ -161,15 +189,14 @@
 
 
 
-
-
+<%--거래 일정 작섬--%>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true"
      style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <input type="hidden" class="dealNum" value="">
-                <h1 class="modal-title fs-5" id="exampleModalLabel4"> 모임 일정 후기글 쇼츠 작성 </h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel4"> 거래 일정 작성</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -204,7 +231,7 @@
 
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
                 <button type="button" class="btn btn-primary dealSubmit">등록</button>
-                <button type="button" class="btn btn-info getDeal"> 게시글 상세 조회</button>
+
 
             </div>
         </div>
@@ -212,14 +239,14 @@
 </div>
 
 
-
+<%--거래 일정 상세 조회--%>
 <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true"
      style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <input type="hidden" class="dealNum" value="">
-                <h1 class="modal-title fs-5" id="exampleModalLabel2"> 모임 일정 후기글 쇼츠 작성 </h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel2"> 거래 일정</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -251,6 +278,8 @@
             <div class="modal-footer" style=" justify-content:center;">
 
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                <button type="button" class="btn btn-info updateSubmit">수정</button>
+                <button type="button" class="btn btn-secondary getDealPage">게시글 상세 조회</button>
 
             </div>
         </div>

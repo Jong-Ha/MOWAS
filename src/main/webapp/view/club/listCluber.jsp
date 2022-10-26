@@ -51,7 +51,13 @@
                                 </div>
                             </div>
                             <div>
-                                <small class="text-muted">${cluber.clubRegDate}</small>
+                                <small class="text-muted">
+                                        ${cluber.cluberStatus=='4'?cluber.clubRegDate:''}
+                                        ${cluber.cluberStatus=='5'?cluber.clubRegDate:''}
+                                        ${cluber.cluberStatus=='6'?cluber.clubRegDate:''}
+                                        ${cluber.cluberStatus=='7'?cluber.clubOutDate:''}
+                                        ${cluber.cluberStatus=='8'?cluber.clubOutDate:''}
+                                </small>
                                 <div class="badge bg-primary text-wrap">접속중미구현</div>
                             </div>
                         </div>
