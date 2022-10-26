@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>List MasterBoard</title>
+    <title>List Community Report</title>
     <!-- Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -181,7 +181,6 @@
 </head>
 
 <body>
-
 
     <jsp:include page="/layout/toolbar.jsp"/>
 

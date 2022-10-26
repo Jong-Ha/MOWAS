@@ -337,6 +337,7 @@
             cr_basis,
             report_date,
             report_text,
+            report_result,
             rereport_apply_check,
             rereport_result )
         VALUES (    #{clubReportNo},
@@ -345,6 +346,7 @@
                     #{crBasis},
                     SYSDATE,
                     #{reportText},
+                    '대기',
                     'N',
                     '대기'
                )
