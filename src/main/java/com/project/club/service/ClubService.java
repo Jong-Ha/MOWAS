@@ -38,6 +38,8 @@ public interface ClubService {
     public void addClubCalendarApply(CalendarCluber calendarCluber, String applyAutoCheck);
     public void deleteClubCalendarApply(int clubCalendarNum, String userId);
     public List<CalendarCluber>listClubCalendarApply(int clubCalendarNum, String applyStatus);
+    public void deleteClubCalendar(int clubCalendarNum);
+    public String getCalendarCluberCondition(int clubCalendarNum, String userId);
     public void updateClubCalendarApply(int clubCalendarApplyNum, String process);
     public Map<String, Object> listCluber(Search search, int clubNum);
     public Cluber getCluber(int clubUserNum);

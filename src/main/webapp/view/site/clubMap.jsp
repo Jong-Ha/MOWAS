@@ -1,33 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 903-8
-  Date: 2022-10-13
-  Time: 오후 7:32
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"
          pageEncoding="UTF-8"%>
-<html>
-<head>
-    <title> club Map</title>
-  <meta charset="EUC-KR">
-
-  <!-- 참조 : http://getbootstrap.com/css/   참조 -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
-
-  <!-- Bootstrap Dropdown Hover CSS -->
-  <link href="/css/animate.min.css" rel="stylesheet">
-  <link href="/css/bootstrap-dropdownhover.min.css" rel="stylesheet">
-
-  <!-- Bootstrap Dropdown Hover JS -->
-  <script src="/javascript/bootstrap-dropdownhover.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script type="text/javascript">
 
     function getClubVilCode(longitude, latitude) {
@@ -54,12 +27,29 @@
       });
     });
   </script>
-</head>
 
-<body>
-<div id="map" style="width:100%;height:350px;"></div>
-<p><em>지도를 클릭해주세요!</em></p>
-<div id="clickLatlng"></div>
+
+<div class="modal-header">
+  <h1 class="modal-title fs-5">모임 만들기</h1>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+
+  <div id="map" style="width:100%;height:350px;"></div>
+  <p><em>지도를 클릭해주세요!</em></p>
+  <div id="clickLatlng"></div>
+
+  <div class="col-md-4 text-center col-md-offset-1">
+    <input type="text" class="villCode" name="villCode" value="역삼동">
+    <button type="button" class="btn btn-primary">확인</button>
+  </div>
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary">모임 만들기</button>
+</div>
+
+
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fdddcf3f747ce062a0dc0af6d4a8b009&libraries=services"></script>
 <script>
@@ -98,11 +88,3 @@
 
   });
 </script>
-
-<div class="col-md-4 text-center col-md-offset-1">
-  <input type="text" class="villCode" name="villCode" value="역삼동">
-    <button type="button" class="btn btn-primary">확인</button>
-</div>
-
-</body>
-</html>

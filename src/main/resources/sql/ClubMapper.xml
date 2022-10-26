@@ -558,8 +558,9 @@
         <if test="search.searchCondition == 1">
             '7', '8'</if>)
         ORDER BY
-        <if test="search.searchCondition == 0">cluber_status DESC,</if>
-        club_user_num DESC
+        <if test="search.searchCondition == 0">cluber_status DESC, club_reg_date ASC</if>
+        <if test="search.searchCondition == 1">club_out_date DESC</if>
+
     </sql>
 
     <select id="getTotalCluber" parameterType="map" resultType="int">
@@ -913,6 +914,23 @@
                 SYSDATE)
     </insert>
 
+    <!--clubService.deleteCalendarCluber-->
+    <!--모임 일정 참여자 삭제-->
+    <delete id="deleteCalendarCluber" parameterType="int">
+        DELETE club_calendar_apply
+        WHERE club_calendar_num = #{clubCalendarNum}
+    </delete>
+
+    <!--clubService.getCalendarCluberCondition-->
+    <!--모임 일정 참여자 삭제-->
+    <select id="getCalendarCluberCondition" parameterType="map" resultType="string">
+        SELECT apply_status
+        FROM club_calendar_apply
+        WHERE club_calendar_num = #{clubCalendarNum}
+          AND user_id = #{userId}
+          AND apply_status IN ('0', '1')
+    </select>
+
     <!--clubService.addClubCalendarApply-->
     <!--모임 일정 참여 신청-->
     <insert id="addClubCalendarApply" parameterType="map">
@@ -1172,7 +1190,8 @@
 
 
     <select id="getListClubCluber" parameterType="String" resultMap="CalendarCluberResultMap">
-        SELECT * FROM CLUB_CALENDAR_APPLY
+        SELECT *
+        FROM CLUB_CALENDAR_APPLY
         WHERE user_id = '${userId}'
     </select>
 

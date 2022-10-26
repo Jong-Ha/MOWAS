@@ -8,11 +8,11 @@
             <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
         </svg>
     </a>
-    <h5 class="modal-title">모임 가입 신청 조회</h5>
+    <h5 class="modal-title">블랙리스트 목록 조회</h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 <div class="modal-body">
-    <form>
+    <form id="listClubBlacklistForm">
         <input type="hidden" id="clubNum" name="clubNum" value="${clubNum}">
         <div style="padding-bottom: 20px; margin-left: 300px;">
             <label>
@@ -29,39 +29,41 @@
             <div class="card shadow-lg cardBox" style="grid-template-columns: 1fr;">블랙리스트 대상자가 없습니다!</div>
         </c:if>
         <c:if test="${!empty list}">
-            <c:forEach items="${list}" var="clubBlacklist">
-                <div class="card shadow-lg cardBox each">
-                    <input type="checkbox" class="clubUserNum" name="clubUserNum" value="${clubBlacklist.clubUserNum}"
-                           style="display: none">
-                    <input type="hidden" name="clubNum" value="${clubBlacklist.clubNum}">
-                    <input type="hidden" name="userId" value="${clubBlacklist.user.userId}">
-                    <div class="photoBox">
-                        <img class="bd-placeholder-img img-fluid rounded-start photo"
-                             src="/resources/${clubBlacklist.user.userImage}" alt="any">
-                    </div>
-                    <div>
-                        <div class="card-body">
-                            <div>
-                                <h3 class="card-title">
-                                        ${clubBlacklist.user.userId}
-                                    <small class="text-muted" style="font-size: 16px;">
-                                            ${clubBlacklist.blacklistDate}
-                                    </small>
-                                </h3>
-                                <span class="badge bg-primary text-wrap">${clubBlacklist.blacklistCheck=='1'?'등록':'취소'}</span>
-                            </div>
-                            <div>
-                                <div class="blacklistText d-inline-block text-truncate" style="max-width: 270px;">
-                                    <small>
-                                            ${clubBlacklist.blacklistText}
-                                    </small>
+            <div class="card-list" style="overflow-y: scroll;height: 600px;">
+                <c:forEach items="${list}" var="clubBlacklist">
+                    <div class="card shadow-lg cardBox each">
+                        <input type="checkbox" class="clubUserNum" name="clubUserNum" value="${clubBlacklist.clubUserNum}"
+                               style="display: none">
+                        <input type="hidden" name="clubNum" value="${clubBlacklist.clubNum}">
+                        <input type="hidden" name="userId" value="${clubBlacklist.user.userId}">
+                        <div class="photoBox">
+                            <img class="bd-placeholder-img img-fluid rounded-start photo"
+                                 src="/resources/${clubBlacklist.user.userImage}" alt="any">
+                        </div>
+                        <div>
+                            <div class="card-body">
+                                <div>
+                                    <h3 class="card-title">
+                                            ${clubBlacklist.user.userId}
+                                        <small class="text-muted" style="font-size: 16px;">
+                                                ${clubBlacklist.blacklistDate}
+                                        </small>
+                                    </h3>
+                                    <span class="badge bg-primary text-wrap">${clubBlacklist.blacklistCheck=='1'?'등록':'취소'}</span>
                                 </div>
-                                <span class="badge bg-primary text-wrap getClubBlacklist">자세히</span>
+                                <div>
+                                    <div class="blacklistText d-inline-block text-truncate" style="max-width: 250px;">
+                                        <small>
+                                                ${clubBlacklist.blacklistText}
+                                        </small>
+                                    </div>
+                                    <span class="badge bg-primary text-wrap getClubBlacklist">자세히</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </c:forEach>
+                </c:forEach>
+            </div>
             <div style="margin-left: 335px;">
                 <input type="button" class="updateClubBlacklist btn btn-primary" value="등록">
                 <input type="button" class="updateClubBlacklist btn btn-primary" value="취소">

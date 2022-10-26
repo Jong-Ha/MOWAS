@@ -108,17 +108,7 @@ public class CommunityController {
         return null;
     }
 
-    @RequestMapping(value = "updateVillBoard", method = RequestMethod.GET)
-    public String updateVillBoard(@RequestParam("boardNum") int boardNum
-            , @ModelAttribute("vilBarod") VilBoard vilBoard
-            , Model model) {
 
-        vilBoard = commuService.getVillBoard(boardNum);
-
-        model.addAttribute("villBoard", vilBoard);
-
-        return "/view/community/update/updateVillBoard.jsp";
-    }
 
     @RequestMapping(value = "updateVillBoard", method = RequestMethod.POST)
     public String updateVillBoard(@ModelAttribute("villBoard") VilBoard vilBoard) {
@@ -142,8 +132,8 @@ public class CommunityController {
 
         for (int i = 0; i < list.size(); i++) {
 
-            System.out.println("list의 정보 :" +list.get(i).getCommentNum() );
-            commuService.deleteAllRecomment(list.get(i).getCommentNum());
+            System.out.println("list의 정보 :" +list.get(i).getCommentNum());
+            commuService.deleteRecomment(list.get(i).getCommentNum());
 
         }
 

@@ -75,20 +75,20 @@ public class ClubCalendarController {
         calender.setClubNum(club.getClubNum());
 
         /*자동 참여*/
-        if (calender.getApplyAutoCheck() == "on") {
+        if (calender.getApplyAutoCheck().equals("ture") ) {
             calender.setApplyAutoCheck("1");
         } else {
             calender.setApplyAutoCheck("2");
         }
         /*추가 참여*/
-        if (calender.getCalendarApplyCheck() == "on") {
+        if (calender.getCalendarApplyCheck().equals("ture") ) {
             calender.setCalendarApplyCheck("1");
         } else {
             calender.setCalendarApplyCheck("2");
         }
 
         /*알림 설정*/
-        if (calender.getNoticeCheck() == "on") {
+        if (calender.getNoticeCheck().equals("ture")) {
             calender.setNoticeCheck("1");
         } else {
             calender.setNoticeCheck("2");

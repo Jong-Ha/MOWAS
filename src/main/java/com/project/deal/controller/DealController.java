@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.File;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.*;
 
@@ -168,8 +170,9 @@ public DealController(){
             return "forward:/deal/getListDeal";
         }
     @RequestMapping(value = "getDeal/{dealBoardNum}")
-    public String getDeal(Model model, @PathVariable int dealBoardNum,HttpSession session) throws Exception {
+    public String getDeal(Model model, @PathVariable int dealBoardNum, HttpSession session, HttpServletResponse response) throws Exception {
         Deal deal = dealService.getDeal(dealBoardNum);
+
 //Object User=session.getAttribute("userId");
         //String boardCategory = String.valueOf(deal.getBoardCategory());
         System.out.println(deal.getBoardCategory());

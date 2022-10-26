@@ -270,6 +270,19 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
+    public void deleteClubCalendar(int clubCalendarNum) {
+        clubDao.deleteClubCalendar(clubCalendarNum);
+    }
+
+    @Override
+    public String getCalendarCluberCondition(int clubCalendarNum, String userId) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("clubCalendarNum", clubCalendarNum);
+        map.put("userId", userId);
+        return clubDao.getCalendarCluberCondition(map);
+    }
+
+    @Override
     public void updateClubCalendarApply(int clubCalendarApplyNum, String process) {
         Map<String, Object> map = new HashMap<>();
         map.put("clubCalendarApplyNum", clubCalendarApplyNum);
