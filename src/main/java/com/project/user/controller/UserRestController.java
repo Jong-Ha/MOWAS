@@ -213,7 +213,7 @@ public class UserRestController {
 
 
         System.out.println("/user/json/updateSNSUserInfor : POST 종료");
-        return "";
+        return "과연";
     }
 
     /*
