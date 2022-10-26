@@ -564,7 +564,6 @@ $(function () {
 
 //모임원 목록 조회
     $('#listCluber').on('show.bs.modal', function () {
-        alert("asdf")
         $.ajax({
             url: "/club/listCluber/" + clubNum,
             success: function (re) {
@@ -623,11 +622,15 @@ $(function () {
 //////////////////////////////// 모임 툴바 ////////////////////////////////
     //모임 공지사항
     $('.listClubMasterBoardView').on('click',function(){
+        $('.clubTab *').removeClass('selectedTab')
+        $(this).addClass('selectedTab')
         $('.clubBoarder').load('/view/community/calender.jsp', {clubNum: $('.boardNum').val()})
     })
 
     //모임 일정
     $('.calendarView').on('click',function(){
+        $('.clubTab *').removeClass('selectedTab')
+        $(this).addClass('selectedTab')
         $('.clubBoarder').load('/view/community/calender.jsp', {clubNum: $('.boardNum').val()},function(){
             setGetClubCalendar()
         })
@@ -635,11 +638,15 @@ $(function () {
 
     //모임 일정 후기
     $('.listClubCalendarReviewView').on('click',function(){
+        $('.clubTab *').removeClass('selectedTab')
+        $(this).addClass('selectedTab')
         $('.clubBoarder').load('/view/community/calender.jsp', {clubNum: $('.boardNum').val()})
     })
 
     //모임 일정 쇼츠
     $('.listClubCalendarShortView').on('click',function(){
+        $('.clubTab *').removeClass('selectedTab')
+        $(this).addClass('selectedTab')
         $('.clubBoarder').load('/view/community/calender.jsp', {clubNum: $('.boardNum').val()})
     })
 

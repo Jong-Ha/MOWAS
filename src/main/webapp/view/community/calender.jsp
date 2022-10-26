@@ -1,10 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-         pageEncoding="EUC-KR" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
 
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <link rel="stylesheet" href="/resources/OpenSource/fullcalendar-5.11.3/lib/main.css">
-<script type="text/javascript"
-        src="/resources/OpenSource/fullcalendar-5.11.3/lib/main.js"></script>
 <script type="text/javascript"
         src="/resources/OpenSource/fullcalendar-5.11.3/lib/main.min.js"></script>
 
@@ -15,9 +12,7 @@
     $(document).ready(function () {
 
         var Calendar = FullCalendar.Calendar;
-        var Draggable = FullCalendar.Draggable;
 
-        var containerEl = document.getElementById('external-events');
         var calendarEl = document.getElementById('calendar');
         var checkbox = document.getElementById('drop-remove');
 
@@ -27,15 +22,6 @@
 
         var all_events = null;
         all_events = lodinCalender();
-        new Draggable(containerEl, {
-            itemSelector: '.fc-event',
-            eventData: function (eventEl) {
-                return {
-                    title: eventEl.innerText
-                };
-            }
-
-        });
 
         // initialize the calendar
         // -----------------------------------------------------------------
@@ -45,8 +31,8 @@
                 center: 'title',
                 right: 'dayGridMonth,timeGridWeek,timeGridDay'
             },
-            editable: true,  // ¼öÁ¤°¡´É ¿©ºÎ
-            droppable: true, // µå·¹±× µå¶ø ¿©ºÎ
+            editable: true,  // ìˆ˜ì •ê°€ëŠ¥ ì—¬ë¶€
+            droppable: true, // ë“œë ˆê·¸ ë“œë ì—¬ë¶€
             events: all_events,
             drop: function (info) {
                 // is the "remove after drop" checkbox checked?
@@ -60,7 +46,7 @@
 
                 $(function () {
 
-                    //»ó¼¼ Á¶È¸ modal ¿ÀÇÂ
+                    //ìƒì„¸ ì¡°íšŒ modal ì˜¤í”ˆ
                     $.ajax({
                         url: "/clubCal/json/getClubCalender",
                         method: "POST",
@@ -94,7 +80,7 @@
                                 success : function(re){
                                     const applyCondition = re.condition
                                     if(applyCondition==='0'){
-$('#exampleModal2 .deleteClubCalendarApply').css('display','')
+                                        $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                                     }else if(applyCondition==='1'){
 
                                     }else {
@@ -158,10 +144,10 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                             if (date3 > date2) {
 
                                 button = '<button class="btn btn-primary update" data-bs-toggle="modal" data-bs-target="#exampleModal3">' +
-                                    '¼öÁ¤' +
+                                    'ìˆ˜ì •' +
                                     '</button>' +
                                     '<button class="btn btn-primary delete">' +
-                                    '»èÁ¦' +
+                                    'ì‚­ì œ' +
                                     '</button>'
 
                                 $(".addBox").html('');
@@ -172,11 +158,11 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                             if (date3 < date2) {
 
                                 button = '<button class="btn btn-primary addReview" data-bs-toggle="modal" data-bs-target="#exampleModal4">' +
-                                        '¸ğÀÓ ÀÏÁ¤ ÈÄ±â±Û ÀÛ¼º' +
-                                        '</button>' +
-                                        '<button class="btn btn-primary addShort"  data-bs-toggle="modal" data-bs-target="#exampleModal5">' +
-                                        '¸ğÀÓ ÀÏÁ¤ ¼îÃ÷' +
-                                        '</button>'
+                                    'ëª¨ì„ ì¼ì • í›„ê¸°ê¸€ ì‘ì„±' +
+                                    '</button>' +
+                                    '<button class="btn btn-primary addShort"  data-bs-toggle="modal" data-bs-target="#exampleModal5">' +
+                                    'ëª¨ì„ ì¼ì • ì‡¼ì¸ ' +
+                                    '</button>'
 
                                 $(".addBox").html('');
 
@@ -186,7 +172,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
                             var clubCalenderNum = $(".clubCalnderNum").val()
 
-                            //¼öÁ¤ modal ¿ÀÇÂ
+                            //ìˆ˜ì • modal ì˜¤í”ˆ
                             $(".update").on("click", function () {
 
 
@@ -252,7 +238,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                                     success: function (JSONData, result) {
                                         console.log(result);
 
-                                        // ¼º°ø½Ã ÇØ´ç Ã¢À» ´İ°í ºÎ¸ğÃ¢À» reload
+                                        // ì„±ê³µì‹œ í•´ë‹¹ ì°½ì„ ë‹«ê³  ë¶€ëª¨ì°½ì„ reload
                                         Swal.fire({
                                             position: 'top-end',
                                             icon: 'success',
@@ -324,7 +310,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
         var clubNum = '${param.clubNum}'
 
-        /*µî·Ï submit*/
+        /*ë“±ë¡ submit*/
 
         $(".submit").on("click", function () {
 
@@ -372,7 +358,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                 dataType: "json",
                 contentType: "application/json; charset=UTF-8",
                 success: function (JSONData, result) {
-                    // µî·Ï¿¡ ¼º°øÇÏ¸é ÇØ´ç boardNumÀ» return ÇØ¼­ Ãâ·Â ÇÏ°í º¯¼ö¿¡ µî·Ï
+                    // ë“±ë¡ì— ì„±ê³µí•˜ë©´ í•´ë‹¹ boardNumì„ return í•´ì„œ ì¶œë ¥ í•˜ê³  ë³€ìˆ˜ì— ë“±ë¡
                     console.log(JSONData);
 
                     var boardNum = JSONData
@@ -383,30 +369,30 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
                     if (file > 0) {
 
-                        //form Å×±×¸¦ ºÒ·¯¿Í¼­ formº¯¼ö¿¡ µî·Ï
+                        //form í…Œê·¸ë¥¼ ë¶ˆëŸ¬ì™€ì„œ formë³€ìˆ˜ì— ë“±ë¡
                         var form = document.querySelector("#fileForm");
-                        //formData º¯¼ö¿¡ html¿¡¼­ form°ú °°Àº ¿ªÈ°À» ÇÏ´Â javaScriptÀÇ FormData¿¡ formÀ» ³Ö´Â´Ù
+                        //formData ë³€ìˆ˜ì— htmlì—ì„œ formê³¼ ê°™ì€ ì—­í™œì„ í•˜ëŠ” javaScriptì˜ FormDataì— formì„ ë„£ëŠ”ë‹¤
                         var formData = new FormData(form);
-                        //ÆÄÀÏ »çÀÌÁî¸¸Å­ formDataÀ» µ¹¸®±â À§ÇØ fileSize¸¦ ¾Ë¾Æ³»´Â º¯¼ö
+                        //íŒŒì¼ ì‚¬ì´ì¦ˆë§Œí¼ formDataì„ ëŒë¦¬ê¸° ìœ„í•´ fileSizeë¥¼ ì•Œì•„ë‚´ëŠ” ë³€ìˆ˜
                         var fileSize = $("#fileForm #file")[0].files;
 
                         //console.log($("#file")[0].files.length);
                         console.log(fileSize.length);
 
-                        //formData¿¡ ÇØ´ç °Ô½Ã±Û ¹øÈ£, °Ô½Ã±Û category append
+                        //formDataì— í•´ë‹¹ ê²Œì‹œê¸€ ë²ˆí˜¸, ê²Œì‹œê¸€ category append
                         formData.append("boardNum", boardNum);
                         formData.append("boardCategoru", boardCategory);
 
-                        //file±æÀÌ ¸¸Å­ for¹®À¸·Î formData¿¡ appendÇÔ
+                        //fileê¸¸ì´ ë§Œí¼ forë¬¸ìœ¼ë¡œ formDataì— appendí•¨
                         for (var i = 0; i < fileSize.length; i++) {
                             formData.append("form", fileSize[i]);
-                            //ÆÄÀÏÀÌ Àß µé¾î °¬´ÂÁö È®ÀÎ
+                            //íŒŒì¼ì´ ì˜ ë“¤ì–´ ê°”ëŠ”ì§€ í™•ì¸
                             console.log(fileSize[i]);
                         }
 
                         console.log(formData);
-                        //formData¿¡ µé¾î ÀÖ´Â boardNum°ú fileÀÇ Á¤º¸¸¦ ºñµ¿±â½ÄÀ¸·Î º¸³¿
-                        //ÆÄÀÏÀº jsonÇü½ÄÀ¸·Î º¸³¾¼ö ¾ø±â ?¹®¿¡ contentType, processData, dataTypeÀ» false·Î ÁöÁ¤
+                        //formDataì— ë“¤ì–´ ìˆëŠ” boardNumê³¼ fileì˜ ì •ë³´ë¥¼ ë¹„ë™ê¸°ì‹ìœ¼ë¡œ ë³´ëƒ„
+                        //íŒŒì¼ì€ jsoní˜•ì‹ìœ¼ë¡œ ë³´ë‚¼ìˆ˜ ì—†ê¸° ?ë¬¸ì— contentType, processData, dataTypeì„ falseë¡œ ì§€ì •
                         $.ajax({
                             url: "/clubCal/json/fileUpload",
                             type: "post",
@@ -440,7 +426,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                     })
 
                     console.log(result);
-                    // ¼º°ø½Ã ÇØ´ç Ã¢À» ´İ°í ºÎ¸ğÃ¢À» reload
+                    // ì„±ê³µì‹œ í•´ë‹¹ ì°½ì„ ë‹«ê³  ë¶€ëª¨ì°½ì„ reload
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
@@ -452,7 +438,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                     setTimeout(function () {
                         window.location.reload()
                     }, 2000);
-                    //error ¹ß»ı½Ã ±×³É Ã¢À» ´İÀ½
+                    //error ë°œìƒì‹œ ê·¸ëƒ¥ ì°½ì„ ë‹«ìŒ
                 }, error: function () {
                     Swal.fire({
                         position: 'top-end',
@@ -471,7 +457,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
         });
 
 
-        //¼öÁ¤ submit
+        //ìˆ˜ì • submit
 
         $(".updateSubmit").on("click", function () {
 
@@ -521,7 +507,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                 dataType: "json",
                 contentType: "application/json; charset=UTF-8",
                 success: function (JSONData, result) {
-                    // µî·Ï¿¡ ¼º°øÇÏ¸é ÇØ´ç boardNumÀ» return ÇØ¼­ Ãâ·Â ÇÏ°í º¯¼ö¿¡ µî·Ï
+                    // ë“±ë¡ì— ì„±ê³µí•˜ë©´ í•´ë‹¹ boardNumì„ return í•´ì„œ ì¶œë ¥ í•˜ê³  ë³€ìˆ˜ì— ë“±ë¡
                     console.log(JSONData);
 
                     var boardNum = JSONData
@@ -532,30 +518,30 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
                     if (file > 0) {
 
-                        //form Å×±×¸¦ ºÒ·¯¿Í¼­ formº¯¼ö¿¡ µî·Ï
+                        //form í…Œê·¸ë¥¼ ë¶ˆëŸ¬ì™€ì„œ formë³€ìˆ˜ì— ë“±ë¡
                         var form = document.querySelector("#fileForm2");
-                        //formData º¯¼ö¿¡ html¿¡¼­ form°ú °°Àº ¿ªÈ°À» ÇÏ´Â javaScriptÀÇ FormData¿¡ formÀ» ³Ö´Â´Ù
+                        //formData ë³€ìˆ˜ì— htmlì—ì„œ formê³¼ ê°™ì€ ì—­í™œì„ í•˜ëŠ” javaScriptì˜ FormDataì— formì„ ë„£ëŠ”ë‹¤
                         var formData = new FormData(form);
-                        //ÆÄÀÏ »çÀÌÁî¸¸Å­ formDataÀ» µ¹¸®±â À§ÇØ fileSize¸¦ ¾Ë¾Æ³»´Â º¯¼ö
+                        //íŒŒì¼ ì‚¬ì´ì¦ˆë§Œí¼ formDataì„ ëŒë¦¬ê¸° ìœ„í•´ fileSizeë¥¼ ì•Œì•„ë‚´ëŠ” ë³€ìˆ˜
                         var fileSize = $("#fileForm2 #file2")[0].files;
 
                         //console.log($("#file")[0].files.length);
                         console.log(fileSize.length);
 
-                        //formData¿¡ ÇØ´ç °Ô½Ã±Û ¹øÈ£, °Ô½Ã±Û category append
+                        //formDataì— í•´ë‹¹ ê²Œì‹œê¸€ ë²ˆí˜¸, ê²Œì‹œê¸€ category append
                         formData.append("boardNum", boardNum);
                         formData.append("boardCategoru", boardCategory);
 
-                        //file±æÀÌ ¸¸Å­ for¹®À¸·Î formData¿¡ appendÇÔ
+                        //fileê¸¸ì´ ë§Œí¼ forë¬¸ìœ¼ë¡œ formDataì— appendí•¨
                         for (var i = 0; i < fileSize.length; i++) {
                             formData.append("form", fileSize[i]);
-                            //ÆÄÀÏÀÌ Àß µé¾î °¬´ÂÁö È®ÀÎ
+                            //íŒŒì¼ì´ ì˜ ë“¤ì–´ ê°”ëŠ”ì§€ í™•ì¸
                             console.log(fileSize[i]);
                         }
 
                         console.log(formData);
-                        //formData¿¡ µé¾î ÀÖ´Â boardNum°ú fileÀÇ Á¤º¸¸¦ ºñµ¿±â½ÄÀ¸·Î º¸³¿
-                        //ÆÄÀÏÀº jsonÇü½ÄÀ¸·Î º¸³¾¼ö ¾ø±â ?¹®¿¡ contentType, processData, dataTypeÀ» false·Î ÁöÁ¤
+                        //formDataì— ë“¤ì–´ ìˆëŠ” boardNumê³¼ fileì˜ ì •ë³´ë¥¼ ë¹„ë™ê¸°ì‹ìœ¼ë¡œ ë³´ëƒ„
+                        //íŒŒì¼ì€ jsoní˜•ì‹ìœ¼ë¡œ ë³´ë‚¼ìˆ˜ ì—†ê¸° ?ë¬¸ì— contentType, processData, dataTypeì„ falseë¡œ ì§€ì •
                         $.ajax({
                             url: "/clubCal/json/fileUpload",
                             type: "post",
@@ -589,7 +575,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                     })
 
                     console.log(result);
-                    // ¼º°ø½Ã ÇØ´ç Ã¢À» ´İ°í ºÎ¸ğÃ¢À» reload
+                    // ì„±ê³µì‹œ í•´ë‹¹ ì°½ì„ ë‹«ê³  ë¶€ëª¨ì°½ì„ reload
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
@@ -601,7 +587,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                     setTimeout(function () {
                         window.location.reload()
                     }, 2000);
-                    //error ¹ß»ı½Ã ±×³É Ã¢À» ´İÀ½
+                    //error ë°œìƒì‹œ ê·¸ëƒ¥ ì°½ì„ ë‹«ìŒ
                 }, error: function () {
                     Swal.fire({
                         position: 'top-end',
@@ -622,23 +608,23 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
         $(".file3").on("change", function () {
             if ($(this)[0].files.length > 10){
-                alert("ÆÄÀÏÀÇ °¹¼ö°¡ ÃÊ°ú Çß½À´Ï´Ù");
+                alert("íŒŒì¼ì˜ ê°¯ìˆ˜ê°€ ì´ˆê³¼ í–ˆìŠµë‹ˆë‹¤");
                 $(this).val('');
             }
         })
 
-        // µî·Ï ¹öÆ° Å¬¸¯½Ã ÇØ´ç ÀÌº¥Æ® ½ÇÇÛ
+        // ë“±ë¡ ë²„íŠ¼ í´ë¦­ì‹œ í•´ë‹¹ ì´ë²¤íŠ¸ ì‹¤í•¼
         $(".calenderReviewSubmit").on("click", function () {
 
 
-            //µî·ÏÇÒ ³»¿ëÀ» °¡Á®¿Í¼­ º¯¼ö µî·Ï
+            //ë“±ë¡í•  ë‚´ìš©ì„ ê°€ì ¸ì™€ì„œ ë³€ìˆ˜ ë“±ë¡
             var clubCalender = $(".clubCalnderNum").val()
             var reviewTitle = $(".reviewTitle1").val();
             var reviewText = $(".reviewText1").val();
             var reviewRange = $(".reviewRange1").val();
             var boardCategory = '01'
 
-            //ajax·Î ºñµ¿±â½ÄÀ¸·Î RestController·Î º¸³¿
+            //ajaxë¡œ ë¹„ë™ê¸°ì‹ìœ¼ë¡œ RestControllerë¡œ ë³´ëƒ„
             $.ajax({
                 url: "/clubCal/json/addClubCalenderReview",
                 method: "post",
@@ -653,7 +639,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                 dataType: "json",
                 contentType: "application/json; charset=UTF-8",
                 success: function (JSONData, result) {
-                    // µî·Ï¿¡ ¼º°øÇÏ¸é ÇØ´ç boardNumÀ» return ÇØ¼­ Ãâ·Â ÇÏ°í º¯¼ö¿¡ µî·Ï
+                    // ë“±ë¡ì— ì„±ê³µí•˜ë©´ í•´ë‹¹ boardNumì„ return í•´ì„œ ì¶œë ¥ í•˜ê³  ë³€ìˆ˜ì— ë“±ë¡
                     console.log(JSONData);
 
                     var boardNum = JSONData
@@ -662,25 +648,25 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
                     if (file > 0) {
 
-                        //form Å×±×¸¦ ºÒ·¯¿Í¼­ formº¯¼ö¿¡ µî·Ï
+                        //form í…Œê·¸ë¥¼ ë¶ˆëŸ¬ì™€ì„œ formë³€ìˆ˜ì— ë“±ë¡
                         var form = document.querySelector("form");
-                        //formData º¯¼ö¿¡ html¿¡¼­ form°ú °°Àº ¿ªÈ°À» ÇÏ´Â javaScriptÀÇ FormData¿¡ formÀ» ³Ö´Â´Ù
+                        //formData ë³€ìˆ˜ì— htmlì—ì„œ formê³¼ ê°™ì€ ì—­í™œì„ í•˜ëŠ” javaScriptì˜ FormDataì— formì„ ë„£ëŠ”ë‹¤
                         var formData = new FormData(form);
-                        //ÆÄÀÏ »çÀÌÁî¸¸Å­ formDataÀ» µ¹¸®±â À§ÇØ fileSize¸¦ ¾Ë¾Æ³»´Â º¯¼ö
+                        //íŒŒì¼ ì‚¬ì´ì¦ˆë§Œí¼ formDataì„ ëŒë¦¬ê¸° ìœ„í•´ fileSizeë¥¼ ì•Œì•„ë‚´ëŠ” ë³€ìˆ˜
                         var fileSize = $("#fileForm3 #file3")[0].files;
                         console.log(fileSize.length);
-                        //formData¿¡ ÇØ´ç °Ô½Ã±Û ¹øÈ£, °Ô½Ã±Û category append
+                        //formDataì— í•´ë‹¹ ê²Œì‹œê¸€ ë²ˆí˜¸, ê²Œì‹œê¸€ category append
                         formData.append("boardNum", boardNum);
                         formData.append("boardCategoru", boardCategory);
 
-                        //file±æÀÌ ¸¸Å­ for¹®À¸·Î formData¿¡ appendÇÔ
+                        //fileê¸¸ì´ ë§Œí¼ forë¬¸ìœ¼ë¡œ formDataì— appendí•¨
                         for (var i = 0; i < fileSize.length; i++) {
                             formData.append("form", fileSize[i]);
-                            //ÆÄÀÏÀÌ Àß µé¾î °¬´ÂÁö È®ÀÎ
+                            //íŒŒì¼ì´ ì˜ ë“¤ì–´ ê°”ëŠ”ì§€ í™•ì¸
                             console.log(fileSize[i]);
                         }
-                        //formData¿¡ µé¾î ÀÖ´Â boardNum°ú fileÀÇ Á¤º¸¸¦ ºñµ¿±â½ÄÀ¸·Î º¸³¿
-                        //ÆÄÀÏÀº jsonÇü½ÄÀ¸·Î º¸³¾¼ö ¾ø±â ?¹®¿¡ contentType, processData, dataTypeÀ» false·Î ÁöÁ¤
+                        //formDataì— ë“¤ì–´ ìˆëŠ” boardNumê³¼ fileì˜ ì •ë³´ë¥¼ ë¹„ë™ê¸°ì‹ìœ¼ë¡œ ë³´ëƒ„
+                        //íŒŒì¼ì€ jsoní˜•ì‹ìœ¼ë¡œ ë³´ë‚¼ìˆ˜ ì—†ê¸° ?ë¬¸ì— contentType, processData, dataTypeì„ falseë¡œ ì§€ì •
                         $.ajax({
                             url: "/clubCal/json/fileUpload",
                             type: "post",
@@ -700,7 +686,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                         })
 
                     }
-                    // ¼º°ø½Ã ÇØ´ç Ã¢À» ´İ°í ºÎ¸ğÃ¢À» reload
+                    // ì„±ê³µì‹œ í•´ë‹¹ ì°½ì„ ë‹«ê³  ë¶€ëª¨ì°½ì„ reload
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
@@ -712,7 +698,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                     setTimeout(function () {
                         window.location.reload()
                     }, 2000);
-                    //error ¹ß»ı½Ã ±×³É Ã¢À» ´İÀ½
+                    //error ë°œìƒì‹œ ê·¸ëƒ¥ ì°½ì„ ë‹«ìŒ
                 }, error: function () {
                     Swal.fire({
                         position: 'top-end',
@@ -734,14 +720,14 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
 
 
-  /*      $(".file4").on("change", function () {
+        /*      $(".file4").on("change", function () {
 
-            if($(this)[0].files.length > 1){
-                alert("ÆÄÀÏÀÇ °¹¼ö°¡ ÃÊ°ú Çß½À´Ï´Ù");
-                $(this).val('');
-            }
+                  if($(this)[0].files.length > 1){
+                      alert("íŒŒì¼ì˜ ê°¯ìˆ˜ê°€ ì´ˆê³¼ í–ˆìŠµë‹ˆë‹¤");
+                      $(this).val('');
+                  }
 
-        })*/
+              })*/
 
         $(".calenderReviewShortSubmit").on("click", function () {
             var clubCalenderNum = $(".clubCalnderNum").val()
@@ -763,7 +749,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                 dataType: "json",
                 contentType: "application/json; charset=UTF-8",
                 success: function (JSONData, result) {
-                    // µî·Ï¿¡ ¼º°øÇÏ¸é ÇØ´ç boardNumÀ» return ÇØ¼­ Ãâ·Â ÇÏ°í º¯¼ö¿¡ µî·Ï
+                    // ë“±ë¡ì— ì„±ê³µí•˜ë©´ í•´ë‹¹ boardNumì„ return í•´ì„œ ì¶œë ¥ í•˜ê³  ë³€ìˆ˜ì— ë“±ë¡
                     console.log(JSONData);
 
                     var boardNum = JSONData
@@ -772,25 +758,25 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
                     if (file > 0) {
 
-                        //form Å×±×¸¦ ºÒ·¯¿Í¼­ formº¯¼ö¿¡ µî·Ï
+                        //form í…Œê·¸ë¥¼ ë¶ˆëŸ¬ì™€ì„œ formë³€ìˆ˜ì— ë“±ë¡
                         var form = document.querySelector("form");
-                        //formData º¯¼ö¿¡ html¿¡¼­ form°ú °°Àº ¿ªÈ°À» ÇÏ´Â javaScriptÀÇ FormData¿¡ formÀ» ³Ö´Â´Ù
+                        //formData ë³€ìˆ˜ì— htmlì—ì„œ formê³¼ ê°™ì€ ì—­í™œì„ í•˜ëŠ” javaScriptì˜ FormDataì— formì„ ë„£ëŠ”ë‹¤
                         var formData = new FormData(form);
-                        //ÆÄÀÏ »çÀÌÁî¸¸Å­ formDataÀ» µ¹¸®±â À§ÇØ fileSize¸¦ ¾Ë¾Æ³»´Â º¯¼ö
+                        //íŒŒì¼ ì‚¬ì´ì¦ˆë§Œí¼ formDataì„ ëŒë¦¬ê¸° ìœ„í•´ fileSizeë¥¼ ì•Œì•„ë‚´ëŠ” ë³€ìˆ˜
                         var fileSize = $("#fileForm4 #file4")[0].files;
                         console.log(fileSize.length);
-                        //formData¿¡ ÇØ´ç °Ô½Ã±Û ¹øÈ£, °Ô½Ã±Û category append
+                        //formDataì— í•´ë‹¹ ê²Œì‹œê¸€ ë²ˆí˜¸, ê²Œì‹œê¸€ category append
                         formData.append("boardNum", boardNum);
                         formData.append("boardCategoru", boardCategory);
 
-                        //file±æÀÌ ¸¸Å­ for¹®À¸·Î formData¿¡ appendÇÔ
+                        //fileê¸¸ì´ ë§Œí¼ forë¬¸ìœ¼ë¡œ formDataì— appendí•¨
                         for (var i = 0; i < fileSize.length; i++) {
                             formData.append("form", fileSize[i]);
-                            //ÆÄÀÏÀÌ Àß µé¾î °¬´ÂÁö È®ÀÎ
+                            //íŒŒì¼ì´ ì˜ ë“¤ì–´ ê°”ëŠ”ì§€ í™•ì¸
                             console.log(fileSize[i]);
                         }
-                        //formData¿¡ µé¾î ÀÖ´Â boardNum°ú fileÀÇ Á¤º¸¸¦ ºñµ¿±â½ÄÀ¸·Î º¸³¿
-                        //ÆÄÀÏÀº jsonÇü½ÄÀ¸·Î º¸³¾¼ö ¾ø±â ?¹®¿¡ contentType, processData, dataTypeÀ» false·Î ÁöÁ¤
+                        //formDataì— ë“¤ì–´ ìˆëŠ” boardNumê³¼ fileì˜ ì •ë³´ë¥¼ ë¹„ë™ê¸°ì‹ìœ¼ë¡œ ë³´ëƒ„
+                        //íŒŒì¼ì€ jsoní˜•ì‹ìœ¼ë¡œ ë³´ë‚¼ìˆ˜ ì—†ê¸° ?ë¬¸ì— contentType, processData, dataTypeì„ falseë¡œ ì§€ì •
                         $.ajax({
                             url: "/clubCal/json/fileUpload",
                             type: "post",
@@ -809,7 +795,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
                         })
 
-                        // ¼º°ø½Ã ÇØ´ç Ã¢À» ´İ°í ºÎ¸ğÃ¢À» reload
+                        // ì„±ê³µì‹œ í•´ë‹¹ ì°½ì„ ë‹«ê³  ë¶€ëª¨ì°½ì„ reload
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
@@ -824,7 +810,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
 
                     }
-                    //error ¹ß»ı½Ã ±×³É Ã¢À» ´İÀ½
+                    //error ë°œìƒì‹œ ê·¸ëƒ¥ ì°½ì„ ë‹«ìŒ
                 }, error: function () {
                     Swal.fire({
                         position: 'top-end',
@@ -880,27 +866,25 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 <html>
 <body>
 <input hidden class="boardNum" value="${param.clubNum}">
-<div class='demo-topbar'>
-    <div id='external-events'
-         style="float: left; width: 20%; margin-top: 75px; padding: 5px; margin-bottom: 50px;"></div>
+<div class='demo-topbar' style="display: flex;align-items: center;justify-content: center;">
     <div id='calendar-container' style="float: left; width: 50%; font-size: 0.7em; ">
-        <div style="height: 30px; text-align: center; font-size: 30px; font-weight: bold; color: rgba(69, 69, 199, 0.721); margin-bottom: 20px;">
-            ¸ğÀÓ ÀÏÁ¤
+        <div style="display:none; height: 30px; text-align: center; font-size: 30px; font-weight: bold; color: rgba(69, 69, 199, 0.721); margin-bottom: 20px;">
+            ëª¨ì„ ì¼ì •
         </div>
-        <div id='calendar'></div>
-        <input type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="addCalender" value="¸ğÀÓ ÀÏÁ¤ ÀÛ¼º">
+        <div id='calendar' style="padding-top: 30px;"></div>
+        <input type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="addCalender" value="ëª¨ì„ ì¼ì • ì‘ì„±">
     </div>
 </div>
 
 
-<%--µî·Ï--%>
+<%--ë“±ë¡--%>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
      aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <input name="clubCalenderReviewNum" class="clubCalenderReviewNum" hidden value="">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel"> ¸ğÀÓ ÀÏÁ¤ ÀÛ¼º </h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel"> ëª¨ì„ ì¼ì • ì‘ì„± </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -910,41 +894,41 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control calenderTitle" id="recipient-name" value=""
                                placeholder="asdasd">
-                        <label for="recipient-name">Á¦ ¸ñ</label>
+                        <label for="recipient-name">ì œ ëª©</label>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control calenderText" id="message-text" value=""
                                placeholder="asdasd"/>
-                        <label for="message-text">ÀÏÁ¤ ³»¿ë</label>
+                        <label for="message-text">ì¼ì • ë‚´ìš©</label>
                     </div>
 
                     <div class="form-floating mb-3">
 
                         <input type="date" class="form-control clubDate" id="date-text" value=""
                                placeholder="asdasd"/>
-                        <label for="date-text">¸ğÀÓ ÀÏÁ¤ ³¯Â¥</label>
+                        <label for="date-text">ëª¨ì„ ì¼ì • ë‚ ì§œ</label>
 
                     </div>
 
                     <div class="input-group mb-3">
 
-                        <input type="button" class="form-control" value="À§Ä¡ ¼±ÅÃ">
+                        <input type="button" class="form-control" value="ìœ„ì¹˜ ì„ íƒ">
 
                     </div>
 
                     <div class="input-group mb-3">
-                        <input type="file" id="file" class="form-control file" multiple value="ÆÄÀÏ Ã·ºÎ">
+                        <input type="file" id="file" class="form-control file" multiple value="íŒŒì¼ ì²¨ë¶€">
                     </div>
 
                     <div class="input-group mb-3">
-                        <input type="button" class="form-control calenderCluber" multiple value="¸ğÀÓ ÀÎ¿ø Ãß°¡ ÇÏ±â">
+                        <input type="button" class="form-control calenderCluber" multiple value="ëª¨ì„ ì¸ì› ì¶”ê°€ í•˜ê¸°">
 
                     </div>
 
 
                     <div class=" mb-3 form-check form-switch">
-                        ¾Ë¸² ¼³Á¤ ¿©ºÎ
+                        ì•Œë¦¼ ì„¤ì • ì—¬ë¶€
                         <input class="form-check-input check noticeCheck" name="noticeCheck" type="checkbox"
                                role="switch" id="flexSwitchCheckDefault1">
                     </div>
@@ -953,7 +937,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
 
                     <div class="input-group mb-3">
-                        ¾Ë¸² ½Ã°£ ¼³Á¤
+                        ì•Œë¦¼ ì‹œê°„ ì„¤ì •
                         <input type="time" class="noticeTime" name="noticeTime">
                     </div>
 
@@ -961,7 +945,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
 
                     <div class=" mb-3 form-check form-switch">
-                        Ãß°¡ Âü¿© ¿©ºÎ
+                        ì¶”ê°€ ì°¸ì—¬ ì—¬ë¶€
                         <input class="form-check-input check calendarApplyCheck" name="calendarApplyCheck"
                                type="checkbox" role="switch" id="flexSwitchCheckDefault2">
 
@@ -970,7 +954,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                     <hr>
 
                     <div class=" mb-3 form-check form-switch">
-                        ÀÚµ¿ Âü¿© °¡´É
+                        ìë™ ì°¸ì—¬ ê°€ëŠ¥
                         <input class="form-check-input check applyAutoCheck" name="applyAutoCheck" type="checkbox"
                                role="switch"
                                id="flexSwitchCheckDefault3">
@@ -986,8 +970,8 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
             <div class="mb-3">
 
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">´İ±â</button>
-                <button type="button" class="btn btn-primary submit">µî·Ï</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ë‹«ê¸°</button>
+                <button type="button" class="btn btn-primary submit">ë“±ë¡</button>
 
             </div>
         </div>
@@ -995,7 +979,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 </div>
 
 
-<%--»ó¼¼ Á¶È¸--%>
+<%--ìƒì„¸ ì¡°íšŒ--%>
 <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
      aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
@@ -1003,7 +987,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
             <input name="clubCalenderReviewNum" class="clubCalenderReviewNum" hidden value="">
             <div class="modal-header">
                 <input hidden class="clubCalnderNum" value="">
-                <h1 class="modal-title fs-5" id="exampleModalLabe3"> ¸ğÀÓ ÀÏÁ¤</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabe3"> ëª¨ì„ ì¼ì •</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
                 <div class="borderBox">
@@ -1018,26 +1002,26 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control calenderTitle2" id="recipient-name2" value=""
                            placeholder="asdasd">
-                    <label for="recipient-name">Á¦ ¸ñ</label>
+                    <label for="recipient-name">ì œ ëª©</label>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control calenderText2" id="message-text2" value=""
                            placeholder="asdasd"/>
-                    <label for="message-text">ÀÏÁ¤ ³»¿ë</label>
+                    <label for="message-text">ì¼ì • ë‚´ìš©</label>
                 </div>
 
                 <div class="form-floating mb-3">
 
                     <input type="date" class="form-control clubDate2" id="date-text2" value=""
                            placeholder="asdasd"/>
-                    <label for="date-text">¸ğÀÓ ÀÏÁ¤ ³¯Â¥</label>
+                    <label for="date-text">ëª¨ì„ ì¼ì • ë‚ ì§œ</label>
 
                 </div>
 
                 <div class="input-group mb-3">
 
-                    <input type="button" class="form-control" value="À§Ä¡ ¼±ÅÃ">
+                    <input type="button" class="form-control" value="ìœ„ì¹˜ ì„ íƒ">
 
                 </div>
 
@@ -1066,28 +1050,28 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                     </div>
 
                 </div>
-<div>
+                <div>
                     <div class="input-group mb-3">
                         <button class="btn btn-primary listCalendarCluberView" data-bs-toggle="modal"
                                 data-bs-target="#listCalendarCluber">
-                            Âü¿©ÀÚ
+                            ì°¸ì—¬ì
                         </button>
                     </div>
                     <div class="input-group mb-3">
                         <button class="btn btn-primary addClubCalendarApply" style="display: none">
-                            ¸ğÀÓ ÀÏÁ¤ Âü¿©
+                            ëª¨ì„ ì¼ì • ì°¸ì—¬
                         </button>
                     </div>
                     <div class="input-group mb-3">
                         <button class="btn btn-primary deleteClubCalendarApply" style="display: none">
-                            ¸ğÀÓ ÀÏÁ¤ Âü¿© Ãë¼Ò
+                            ëª¨ì„ ì¼ì • ì°¸ì—¬ ì·¨ì†Œ
                         </button>
                     </div>
                 </div>
 
 
                 <div class=" mb-3 form-check form-switch">
-                    ¾Ë¸² ¼³Á¤ ¿©ºÎ
+                    ì•Œë¦¼ ì„¤ì • ì—¬ë¶€
                     <input class="form-check-input check noticeCheck2" name="noticeCheck" type="checkbox" role="switch"
                            id="flexSwitchCheckDefault4">
                 </div>
@@ -1096,7 +1080,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
 
                 <div class="input-group mb-3">
-                    ¾Ë¸² ½Ã°£ ¼³Á¤
+                    ì•Œë¦¼ ì‹œê°„ ì„¤ì •
                     <input type="time" class="noticeTime2" name="noticeTime">
                 </div>
 
@@ -1104,7 +1088,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
 
                 <div class=" mb-3 form-check form-switch">
-                    Ãß°¡ Âü¿© ¿©ºÎ
+                    ì¶”ê°€ ì°¸ì—¬ ì—¬ë¶€
                     <input class="form-check-input check calendarApplyCheck2" name="calendarApplyCheck" type="checkbox"
                            role="switch" id="flexSwitchCheckDefault5">
 
@@ -1113,7 +1097,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                 <hr>
 
                 <div class=" mb-3 form-check form-switch">
-                    ÀÚµ¿ Âü¿© °¡´É
+                    ìë™ ì°¸ì—¬ ê°€ëŠ¥
                     <input class="form-check-input check applyAutoCheck2" name="applyAutoCheck" type="checkbox"
                            role="switch"
                            id="flexSwitchCheckDefault6">
@@ -1127,21 +1111,21 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
             <div class="mb-3">
 
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">´İ±â</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ë‹«ê¸°</button>
 
             </div>
         </div>
     </div>
 </div>
 
-<%--¼öÁ¤--%>
+<%--ìˆ˜ì •--%>
 <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel"
      aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <input hidden class="clubCalenderNum3"  value="">
             <div class="modal-header">
-                <h1 class="modal-title fs-5"> ¸ğÀÓ ÀÏÁ¤</h1>
+                <h1 class="modal-title fs-5"> ëª¨ì„ ì¼ì •</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -1151,40 +1135,40 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control calenderTitle3" id="recipient-name3" value="" placeholder="asdasd">
-                        <label for="recipient-name3">Á¦ ¸ñ</label>
+                        <label for="recipient-name3">ì œ ëª©</label>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control calenderText3" id="message-text3" value="" placeholder="asdasd"/>
-                        <label for="message-text3">ÀÏÁ¤ ³»¿ë</label>
+                        <label for="message-text3">ì¼ì • ë‚´ìš©</label>
                     </div>
 
                     <div class="form-floating mb-3">
 
                         <input type="date" class="form-control clubDate3" id="date-text3" value="" placeholder="asdasd"/>
-                        <label for="date-text3">¸ğÀÓ ÀÏÁ¤ ³¯Â¥</label>
+                        <label for="date-text3">ëª¨ì„ ì¼ì • ë‚ ì§œ</label>
 
                     </div>
 
                     <div class="input-group mb-3">
 
-                        <input type="text" class="form-control location3" value="À§Ä¡ ¼±ÅÃ">
+                        <input type="text" class="form-control location3" value="ìœ„ì¹˜ ì„ íƒ">
 
                     </div>
 
                     <div class="input-group mb-3">
-                        <input type="file" id="file2" class="form-control file" multiple value="ÆÄÀÏ Ã·ºÎ">
+                        <input type="file" id="file2" class="form-control file" multiple value="íŒŒì¼ ì²¨ë¶€">
 
                     </div>
 
                     <div class="input-group mb-3">
-                        <input type="button" class="form-control calenderCluber3" multiple value="¸ğÀÓ ÀÎ¿ø Ãß°¡ ÇÏ±â">
+                        <input type="button" class="form-control calenderCluber3" multiple value="ëª¨ì„ ì¸ì› ì¶”ê°€ í•˜ê¸°">
 
                     </div>
 
 
                     <div class=" mb-3 form-check form-switch">
-                        ¾Ë¸² ¼³Á¤ ¿©ºÎ
+                        ì•Œë¦¼ ì„¤ì • ì—¬ë¶€
                         <input class="form-check-input check noticeCheck3" name="noticeCheck" type="checkbox" role="switch">
                     </div>
 
@@ -1192,7 +1176,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
 
                     <div class="input-group mb-3">
-                        ¾Ë¸² ½Ã°£ ¼³Á¤
+                        ì•Œë¦¼ ì‹œê°„ ì„¤ì •
                         <input type="time" class="noticeTime3" name="noticeTime">
                     </div>
 
@@ -1200,7 +1184,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
 
                     <div class=" mb-3 form-check form-switch">
-                        Ãß°¡ Âü¿© ¿©ºÎ
+                        ì¶”ê°€ ì°¸ì—¬ ì—¬ë¶€
                         <input class="form-check-input check calendarApplyCheck3" name="calendarApplyCheck" type="checkbox" role="switch">
 
                     </div>
@@ -1208,7 +1192,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                     <hr>
 
                     <div class=" mb-3 form-check form-switch">
-                        ÀÚµ¿ Âü¿© °¡´É
+                        ìë™ ì°¸ì—¬ ê°€ëŠ¥
                         <input class="form-check-input check applyAutoCheck3" name="applyAutoCheck" type="checkbox" role="switch">
 
                     </div>
@@ -1222,8 +1206,8 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
             <div class="mb-3">
 
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">´İ±â</button>
-                <button type="button" class="btn btn-primary updateSubmit">¼öÁ¤</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ë‹«ê¸°</button>
+                <button type="button" class="btn btn-primary updateSubmit">ìˆ˜ì •</button>
 
             </div>
         </div>
@@ -1234,12 +1218,12 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
 
 
-<%--¸ğÀÓ ÀÏÁ¤ ÈÄ±â±Û µî·Ï--%>
+<%--ëª¨ì„ ì¼ì • í›„ê¸°ê¸€ ë“±ë¡--%>
 <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel3"> ¸ğÀÓ ÀÏÁ¤ ÈÄ±â±Û </h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel3"> ëª¨ì„ ì¼ì • í›„ê¸°ê¸€ </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -1248,41 +1232,41 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control reviewTitle1" id="recipient-name4" value="" placeholder="asdasd">
-                        <label for="recipient-name" >Á¦ ¸ñ</label>
+                        <label for="recipient-name" >ì œ ëª©</label>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control reviewText1" id="message-text4" value="" placeholder="asdasd"/>
-                        <label for="message-text">³»¿ë</label>
+                        <label for="message-text">ë‚´ìš©</label>
                     </div>
 
                     <div class="form-floating mb-3">
 
                         <select class="form-select reviewRange1" name="reviewRange" id="floatingSelect1">
-                            <option selected>°ø°³ ¿©ºÎ¸¦ ¼±ÅÃ ÇÏ¼¼¿ä</option>
-                            <option value="1">ÀüÃ¼ °ø°³</option>
-                            <option value="2">¸ğÀÓ °ø°³</option>
+                            <option selected>ê³µê°œ ì—¬ë¶€ë¥¼ ì„ íƒ í•˜ì„¸ìš”</option>
+                            <option value="1">ì „ì²´ ê³µê°œ</option>
+                            <option value="2">ëª¨ì„ ê³µê°œ</option>
                         </select>
 
-                        <label for="floatingSelect">°ø°³ ¿©ºÎ</label>
+                        <label for="floatingSelect">ê³µê°œ ì—¬ë¶€</label>
 
 
                     </div>
 
                     <div class="input-group mb-3">
-                        <input type="file" id="file3" class="form-control file3" multiple  value="ÆÄÀÏ Ã·ºÎ">
+                        <input type="file" id="file3" class="form-control file3" multiple  value="íŒŒì¼ ì²¨ë¶€">
                     </div>
 
                     <div class="form-floating mb-3">
 
                         <input type="date" class="form-control clubDate1" id="date-text4" value="" placeholder="asdasd"/>
-                        <label for="date-text">¸ğÀÓ ÀÏÁ¤ ³¯Â¥</label>
+                        <label for="date-text">ëª¨ì„ ì¼ì • ë‚ ì§œ</label>
 
                     </div>
 
                     <div class="input-group mb-3">
 
-                        <input type="text"  class="form-control location1"   value="À§Ä¡ ¼±ÅÃ">
+                        <input type="text"  class="form-control location1"   value="ìœ„ì¹˜ ì„ íƒ">
 
                     </div>
 
@@ -1292,8 +1276,8 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
             <div class="mb-3">
 
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">´İ±â</button>
-                <button type="button" class="btn btn-primary calenderReviewSubmit">µî·Ï</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ë‹«ê¸°</button>
+                <button type="button" class="btn btn-primary calenderReviewSubmit">ë“±ë¡</button>
 
             </div>
         </div>
@@ -1301,12 +1285,12 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 </div>
 
 
-<%--¸ğÀÓ ÀÏÁ¤ ÈÄ±â ¼îÃ÷--%>
+<%--ëª¨ì„ ì¼ì • í›„ê¸° ì‡¼ì¸ --%>
 <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel4"> ¸ğÀÓ ÀÏÁ¤ ÈÄ±â±Û ¼îÃ÷ ÀÛ¼º </h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel4"> ëª¨ì„ ì¼ì • í›„ê¸°ê¸€ ì‡¼ì¸  ì‘ì„± </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -1315,36 +1299,36 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control reviewTitle2" id="recipient-name5" value="" placeholder="asdasd">
-                        <label for="recipient-name" >Á¦ ¸ñ</label>
+                        <label for="recipient-name" >ì œ ëª©</label>
                     </div>
 
                     <div class="form-floating mb-3">
 
                         <select class="form-select reviewRange2" name="reviewRange" id="floatingSelect">
-                            <option selected>°ø°³ ¿©ºÎ¸¦ ¼±ÅÃ ÇÏ¼¼¿ä</option>
-                            <option value="1">ÀüÃ¼ °ø°³</option>
-                            <option value="2">¸ğÀÓ °ø°³</option>
+                            <option selected>ê³µê°œ ì—¬ë¶€ë¥¼ ì„ íƒ í•˜ì„¸ìš”</option>
+                            <option value="1">ì „ì²´ ê³µê°œ</option>
+                            <option value="2">ëª¨ì„ ê³µê°œ</option>
                         </select>
 
-                        <label for="floatingSelect">°ø°³ ¿©ºÎ</label>
+                        <label for="floatingSelect">ê³µê°œ ì—¬ë¶€</label>
 
 
                     </div>
 
                     <div class="input-group mb-3">
-                        <input type="file" id="file4" class="form-control file4" multiple  value="ÆÄÀÏ Ã·ºÎ">
+                        <input type="file" id="file4" class="form-control file4" multiple  value="íŒŒì¼ ì²¨ë¶€">
                     </div>
 
                     <div class="form-floating mb-3">
 
                         <input type="date" class="form-control clubDate2" id="date-text5" value="" placeholder="asdasd"/>
-                        <label for="date-text">¸ğÀÓ ÀÏÁ¤ ³¯Â¥</label>
+                        <label for="date-text">ëª¨ì„ ì¼ì • ë‚ ì§œ</label>
 
                     </div>
 
                     <div class="input-group mb-3">
 
-                        <input type="text"  class="form-control location2"   value="À§Ä¡ ¼±ÅÃ">
+                        <input type="text"  class="form-control location2"   value="ìœ„ì¹˜ ì„ íƒ">
 
                     </div>
 
@@ -1354,8 +1338,8 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
             <div class="mb-3">
 
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">´İ±â</button>
-                <button type="button" class="btn btn-primary calenderReviewShortSubmit">µî·Ï</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ë‹«ê¸°</button>
+                <button type="button" class="btn btn-primary calenderReviewShortSubmit">ë“±ë¡</button>
 
             </div>
         </div>
@@ -1369,14 +1353,14 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
 
 
-<%--°Å·¡ ÀÏÁ¤ »ó¼¼ Á¶È¸--%>
+<%--ê±°ë˜ ì¼ì • ìƒì„¸ ì¡°íšŒ--%>
 <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true"
      style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <input type="hidden" class="dealNum" value="">
-                <h1 class="modal-title fs-5" id="exampleModalLabel2"> °Å·¡ ÀÏÁ¤</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel2"> ê±°ë˜ ì¼ì •</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -1385,20 +1369,20 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control dealCalenderTitle2" value=""
                            placeholder="asdasd">
-                    <label for="recipient-name">Á¦ ¸ñ</label>
+                    <label for="recipient-name">ì œ ëª©</label>
                 </div>
 
 
                 <div class="form-floating mb-3">
 
                     <input type="date" class="form-control dealDate2"  value="" placeholder="asdasd"/>
-                    <label for="date-text">¸ğÀÓ ÀÏÁ¤ ³¯Â¥</label>
+                    <label for="date-text">ëª¨ì„ ì¼ì • ë‚ ì§œ</label>
 
                 </div>
 
                 <div class="input-group mb-3">
 
-                    <input type="text" class="form-control dealLocation2" value="À§Ä¡ ¼±ÅÃ">
+                    <input type="text" class="form-control dealLocation2" value="ìœ„ì¹˜ ì„ íƒ">
 
                 </div>
 
@@ -1407,9 +1391,9 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
             <div class="modal-footer" style=" justify-content:center;">
 
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">´İ±â</button>
-                <button type="button" class="btn btn-info updateSubmit">¼öÁ¤</button>
-                <button type="button" class="btn btn-secondary getDealPage">°Ô½Ã±Û »ó¼¼ Á¶È¸</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ë‹«ê¸°</button>
+                <button type="button" class="btn btn-info updateSubmit">ìˆ˜ì •</button>
+                <button type="button" class="btn btn-secondary getDealPage">ê²Œì‹œê¸€ ìƒì„¸ ì¡°íšŒ</button>
 
             </div>
         </div>
