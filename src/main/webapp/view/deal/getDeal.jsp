@@ -49,83 +49,319 @@ Product vo=(Product)request.getAttribute("vo");
 
     <script>
 
-        $(function () {
+
+        $(document).ready(function() {
+
+        })
+            $(function () {
 
 
-            $(".dealChat").on("click", function () {
+                $(".dealChat").on("click", function () {
 
-                var dealUserId = $(".dealUserId").val();
-                var userId = $(".userId").val()
-                var dealBoardNum = $(".dealBoardNum").val()
-                var chatNameSpace = "dealChat"
+                    var dealUserId = $(".active").val();
+                    var userId = $(".userId").val()
+                    var dealBoardNum = $(".dealBoardNum").val()
+                    var chatNameSpace = "dealChat"
 
-                alert(dealBoardNum)
+                    alert(dealBoardNum)
 
-                if (userId === '' || userId === null) {
+                    if (userId === '' || userId === null) {
 
-                    alert("로그인후 이용 가능 합니다");
+                        alert("로그인후 이용 가능 합니다");
 
-                } else if (userId !== '') {
-                    if (userId === dealUserId) {
-                        alert("동명이인???");
-                    } else {
-                        const swalWithBootstrapButtons = Swal.mixin({
-                            customClass: {
-                                confirmButton: 'btn btn-success',
-                                cancelButton: 'btn btn-danger'
-                            },
-                            buttonsStyling: false
-                        })
-                        swalWithBootstrapButtons.fire({
-                            title: '해당 유저와 채팅을 하기겠습니까?',
-                            text: "",
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonText: '초대',
-                            cancelButtonText: '취소',
-                            reverseButtons: true
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                swalWithBootstrapButtons.fire(
-                                    dealUserId + ' 님이 초대 되었습니다',
-                                    'success',
-                                )
-                                setTimeout(() => (
-                                    window.open("/chat/addOneChat?chatNameSpace=" + chatNameSpace + "&userId=" + dealUserId + "&boardNum=" + dealBoardNum, "채팅방",
-                                        "left=500, top=100, width=500px, height=500px, marginwidth=0, marginheight=0,")
-                                ), 2500)
-                            } else if (
-                                /* Read more about handling dismissals below */
-                                result.dismiss === Swal.DismissReason.cancel
-                            ) {
-                                swalWithBootstrapButtons.fire(
-                                    '초대 취소',
-                                    'error'
-                                )
-                            }
-                        })
+                    } else if (userId !== '') {
+                        if (userId === dealUserId) {
+                            alert("동명이인???");
+                        } else {
+                            const swalWithBootstrapButtons = Swal.mixin({
+                                customClass: {
+                                    confirmButton: 'btn btn-success',
+                                    cancelButton: 'btn btn-danger'
+                                },
+                                buttonsStyling: false
+                            })
+                            swalWithBootstrapButtons.fire({
+                                title: '해당 유저와 채팅을 하기겠습니까?',
+                                text: "",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonText: '초대',
+                                cancelButtonText: '취소',
+                                reverseButtons: true
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    swalWithBootstrapButtons.fire(
+                                        dealUserId + ' 님이 초대 되었습니다',
+                                        'success',
+                                    )
+                                    setTimeout(() => (
+                                        window.open("/chat/addOneChat?chatNameSpace=" + chatNameSpace + "&userId=" + dealUserId + "&boardNum=" + dealBoardNum, "채팅방",
+                                            "left=500, top=100, width=500px, height=500px, marginwidth=0, marginheight=0,")
+                                    ), 2500)
+                                } else if (
+                                    /* Read more about handling dismissals below */
+                                    result.dismiss === Swal.DismissReason.cancel
+                                ) {
+                                    swalWithBootstrapButtons.fire(
+                                        '초대 취소',
+                                        'error'
+                                    )
+                                }
+                            })
+                        }
                     }
-                }
+                })
+
+                $(".dealCalender").on("click", () => {
+
+                    var dealBoardNum = $(".dealBoardNum").val()
+
+                    window.open("/commu/addDealCalender?boardNum=" + dealBoardNum, "거래 일정 등록",
+                        "top=100, width=550px, height=500px, marginwidth=0, marginheight=0, marginright:100px; scrollbars=no, scrolling=no, menubar=no, resizable=no")
+
+                });
+            })
+            $(function () {
+                $('.slide').slick({
+                    lazyLoad: 'ondemand',
+                    slidesToShow: 3,
+                    slidesToScroll: 1
+                });
+            })
+            $(function () {
+                $(".close").on("click", function () {
+                    window.close();
+                });
+            })
+            $(function () {
+                $(".submit").on("click", function () {
+                    var rating = $(".rating").val()
+                    var content = $(".content").val();
+                    var dealBoardNum = $(".dealBoardNum").val();
+
+                    $.ajax({
+                        url: "/deal/json/addReview",
+                        method: "post",
+                        data: JSON.stringify({
+                            "reviewPt": rating,
+                            "review": content,
+                            "dealBoardNum": dealBoardNum
+                        }),
+                        dataType: "json",
+                        headers: {
+                            "Accept": "application/json",
+                            "Content-Type": "application/json; charset=UTF-8"
+                        },
+                        success: function (JSONData, result) {
+                            console.log(JSONData);
+                            alert(result);
+                            alert(JSONData);
+                            alert(rating)
+                            alert(content)
+
+                            // 성공시 해당 창을 닫고 부모창을 reload
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Your work has been saved',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+
+                            setTimeout(function () {
+                                opener.location.reload();
+                                window.close();
+                            }, 2000);
+                            //error 발생시 그냥 창을 닫음
+                        }, error: function () {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Your work has been saved',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            setTimeout(function () {
+                                window.close();
+                            }, 2000);
+                        }
+                    })
+                })
             })
 
-            $(".dealCalender").on("click", () => {
 
-                var dealBoardNum = $(".dealBoardNum").val()
+        //최근 본 상품
 
-                window.open("/commu/addDealCalender?boardNum=" + dealBoardNum, "거래 일정 등록",
-                    "top=100, width=550px, height=500px, marginwidth=0, marginheight=0, marginright:100px; scrollbars=no, scrolling=no, menubar=no, resizable=no")
-
-            });
-        })
-        $(function (){
-            $('.slide').slick({
-                lazyLoad: 'ondemand',
-                slidesToShow: 3,
-                slidesToScroll: 1
-            });
-        })
     </script>
+    <style type="text/css">
+        /*body {*/
+        /*  padding-top: 50px;*/
+        /*}*/
 
+        /*.wap {*/
+        /*  width: 700px;*/
+        /*  font-size: 0.9em;*/
+        /*}*/
+        /*.check{*/
+        /*  height: 20px;*/
+        /*  width: 35px;*/
+        /*}*/
+
+        /* 창 여분 없애기 */
+        body{
+            margin : 0;
+        }
+        /* 전체 배경화면 색상 */
+        .wrapper_div{
+            background-color: #f5f5f5;
+            height: 100%;
+        }
+        /* 팝업창 제목 */
+        .subject_div{
+            width: 100%;
+            background-color: #7b8ed1;
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        /* 컨텐츠, 버튼 영역 padding */
+        .input_wrap{
+            padding: 30px;
+        }
+        .btn_wrap{
+            padding: 5px 30px 30px 30px;
+            text-align: center;
+        }
+
+        /* 버튼 영역 */
+        .cancel_btn{
+            margin-right:5px;
+            display: inline-block;
+            width: 130px;
+            background-color: #5e6b9f;
+            padding-top: 10px;
+            height: 27px;
+            color: #fff;
+            font-size: 14px;
+            line-height: 18px;
+        }
+        .enroll_btn{
+            display: inline-block;
+            width: 130px;
+            background-color: #7b8ed1;
+            padding-top: 10px;
+            height: 27px;
+            color: #fff;
+            font-size: 14px;
+            line-height: 18px;
+        }
+
+        /* 책제목 영역 */
+        .bookName_div h2{
+            margin : 0;
+        }
+        /* 평점 영역 */
+        .rating_div{
+            padding-top: 10px;
+        }
+        .rating_div h4{
+            margin : 0;
+        }
+        select{
+            margin: 15px;
+            width: 100px;
+            height: 40px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        /* 리뷰 작성 영역 */
+        .content_div{
+            padding-top: 10px;
+        }
+        .content_div h4{
+            margin : 0;
+        }
+        textarea{
+            width: 100%;
+            height: 100px;
+            border: 1px solid #dadada;
+            padding: 12px 8px 12px 8px;
+            font-size: 15px;
+            color: #a9a9a9;
+            resize: none;
+            margin-top: 10px;
+        }
+    /*최근본 상품 */
+        #rightSide{position: absolute;top: 547px;left: 50%;margin: 0 0 0 510px;	}
+        #rightSide #right_zzim {
+
+            position: fixed;
+            top: 185px;
+            left: 50%;
+            margin-left: 550px;
+            border: 1px solid #B0B5BD;
+            width: 114px;
+            height: 543px;
+        }
+
+        #rightSide #right_zzim div {text-align:center;}
+        #rightSide #right_zzim div.recTit{line-height:1.5em;padding:5px;color:white;background-color:#505A69;}
+        #right_zzim #recentCnt {color:yellow;}
+        #rightSide #right_zzim ul {min-height:495px;}
+        #rightSide #right_zzim li{text-align:center;padding:5px;position:relative;}
+        #rightSide #right_zzim ul li img {border:1px solid #ccc}
+        #right_zzim .detail {
+            display: none;position:
+                absolute;top: 3px;right: 20px;xheight: 40px;
+            xpadding: 15px 11px 0;
+            xbackground: #404a59;color: #fff;
+            xtext-align: left;white-space: nowrap;}
+        #right_zzim li:hover .detail {
+            display:block}
+        /*#right_zzim li .btn_delete {*/
+        /*    position: absolute;top: 3px;*/
+        /*    right: -1px;width: 11px;height: 11px;*/
+        /*    background: url(/img/sp.png) no-repeat -193px -111px;text-indent: -9000px;*/
+        /*}*/
+        /*#right_zzim #currentPage {*/
+        /*    olor:#505A69;font-weight:bold*/
+        /*}*/
+        /*#right_zzim #totalPageCount {*/
+        /*    color:#CBC8D2;font-weight:bold}*/
+        /*.noData {*/
+        /*    color:#ccc;text-align:center;margin-top:223px;*/
+        /*}*/
+
+        /*#paging {*/
+        /*    display:;position:relative;line-height:1em;*/
+        /*}*/
+        /*#paging .btn_prev {*/
+        /*    position: absolute;top: 526px;left: 4px;width: 13px;height: 11px;background: url(/images/ico_arrow.png)*/
+        /*no-repeat ;text-indent: -9000px;border:1px solid #CCC;display:inline-block;*/
+        /*}*/
+        /*#paging .btn_next {*/
+        /*    position: absolute;top: 526px;right: 4px;width: 13px;height: 11px;background: url(/images/ico_arrow.png) -11px 0px;text-indent: -9000px;border:1px solid #CCC;display:inline-block;*/
+        /*}*/
+/*버튼*/
+        .btn-primary {
+            --bs-btn-color: #000;
+            --bs-btn-bg: #f8cd07b3;
+            --bs-btn-border-color: #f8cd07b3;
+            --bs-btn-hover-color: #000;
+            --bs-btn-hover-bg: #f8cd07;
+            --bs-btn-hover-border-color: #f8cd07;
+            --bs-btn-focus-shadow-rgb: 130,138,145;
+            --bs-btn-active-color: #000;
+            --bs-btn-active-bg: #f8cd07;
+            --bs-btn-active-border-color: #f8cd07;
+            --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+            --bs-btn-disabled-color: #fff;
+            --bs-btn-disabled-bg: #6c757d;
+            --bs-btn-disabled-border-color: #6c757d;
+        }
+    </style>
 
 </head>
 
@@ -133,6 +369,7 @@ Product vo=(Product)request.getAttribute("vo");
 
 <body>
 <%-- toolbar 시작--%>
+
 <jsp:include page="/layout/toolbar.jsp"/>
 <%--&lt;%&ndash; toolbar 종료&ndash;%&gt;--%>
 
@@ -350,7 +587,7 @@ Product vo=(Product)request.getAttribute("vo");
     <c:set var="i" value="${i+1}"/>
     <div class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="10000">
-    <img src="/resources/${File.fileName}" width="490px" height="400px">
+        <div type=hidden class="file" value="${File.fileName}"><img src="/resources/${File.fileName}" width="490px" height="400px"></div>
     </div>
             </div>
 </c:forEach>
@@ -431,10 +668,11 @@ Product vo=(Product)request.getAttribute("vo");
                 </button>
 
                 <c:if test="${user.userId == deal.user.userId}">
-                    <button type="button" class="btn btn-outline-primary itembutton update"  data-bs-toggle="modal" data-bs-target="#updateDeal">
+                    <button type="button" class="btn btn-primary itembutton update"  data-bs-toggle="modal" data-bs-target="#updateDeal">
                         수정</button>
                     <button type="button" class="btn btn-outline-secondary itembutton delete">삭제</button>
                 </c:if>
+
             </div>
             </div>
         </div>
@@ -445,7 +683,7 @@ Product vo=(Product)request.getAttribute("vo");
                 <div class="col-2">제목</div>
                 <div class="col-4">${deal.dealTitle}</div>
                 <div class="col-2">상품명</div>
-                <div class="col-4">${deal.productName}</div>
+                <div class="col-4 prod">${deal.productName}</div>
             </div>
             <div class="row textboxrow">
 <c:if test="${reviewPt ==0}">
@@ -702,11 +940,85 @@ Product vo=(Product)request.getAttribute("vo");
                 </div>
             </div>
         </div>
-
+<%--모임 수정 모달창 끝--%>
 <input type="button" class="dealChat" value="채팅하기">
 <a class="dealList dealCalender">직거래 일정 등록 하기</a>
 
+
+  <button type="button" class="addReview"  data-bs-toggle="modal" data-bs-target="#addReview">리뷰작성</button>
+<%-- 리뷰 모달창 만들기 헤헷--%>
+
+<div class="modal fade" id="addReview" tabindex="-1" aria-labelledby="addReviewLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addReviewlLabel">리뷰 작성</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addReviewForm" enctype="multipart/form-data">
+                    <input hidden name="dealBoardNum" value="${deal.dealBoardNum}" class="dealBoardNum">
+                    <%--                                <input type="hidden" name="deleteFileName" value="${deal.clubImage}" disabled>--%>
+                    <div class="input-group mb-3">
+                        <div class="form-floating">
+                            ${deal.dealTitle}
+                        </div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="form-floating">
+                            <div class="rating_div">
+                                <h4>평점</h4>
+
+                                <select name="rating" class="rating">
+                                    <c:forEach var="i" begin="0" end="100">
+                                        <option value="${i}">${i}</option>
+                                    </c:forEach>
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="form-floating">
+                            <div class="content_div">
+                                <h4>리뷰</h4>
+                                <textarea name="content" class="content" value=""></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+
+                        </div>
+            <div class="row">
+                <div class="col-xs-12 text-center ">
+                    <button type="button" class="btn btn-primary btn-lg submit">확인</button>
+                    <button type="button" class="btn btn-secondary btn-lg close">닫기</button>
+                </div>
+            </div>
+                    </div>
+        <input type="hidden"  value="${deal}">
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>
 <%--모임 수정 모달창 끝--%>
+
+<div id="rightSide">
+    <div id="right_zzim">
+
+        <div class="recTit">최근본상품 <span id=recentCnt></span></div>
+        <ul></ul> <!-- 본 상품이 뿌려질 부분-->
+        <div id="paging"><a class="btn_prev" style="cursor:pointer" >이전</a><span id="currentPage"></span>
+            <span id="totalPageCount"></span>
+            <a class="btn_next" style="cursor:pointer" >다음</a>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
 
