@@ -436,5 +436,98 @@ $(function () {
         </div>
     </nav>
 </div>
+
+<%--로그인 모달창 시작--%>
+
+<div class="modal model-center fade" id="loginModal" tabindex="-1" aria-labelledby="addLoginLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addLoginLabel" >로그인</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+
+                    <div class="input-group mb-3 mt-3">
+                        <div class="form-floating shadow-lg loginbox">
+                            <img class="mb-4" width="72" height="57">
+                            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+                        </div>
+                    </div>
+
+
+                    <div class="input-group mb-3 mt-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control userId" id="userId" placeholder="Id" name="userId">
+                            <label for="userId" >ID</label>
+                        </div>
+                    </div>
+
+
+
+                    <!--<div class="form-floating">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <label for="floatingInput">Email address</label>
+                    </div>-->
+                    <div class="input-group mb-3 mt-3">
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="password" placeholder="Password" name="password" >
+                            <label for="password">Password</label>
+                        </div>
+                    </div>
+
+                    <div >
+                        <label for="findId"> <input type="radio" id="findId" name="findId" value="findId">아이디 찾기
+                        </label>
+
+                        <label for="findPassword"> <input  type="radio"  id="findPassword" name="findPassword" value=findPassword">비밀번호 찾기
+                        </label>
+                    </div>
+                    <div class="checkbox mb-3">
+                        <label for="keepId"> <input type="checkbox" id="keepId" name="keepId" value="keepId"> 아이디 저장</label>
+                        <label for="keepLogin"> <input type="checkbox" id="keepLogin" name="keepLogin" disabled="disabled" value=keepLogin"> 자동 로그인
+                        </label>
+                    </div>
+                    <button class="btn btn-outline-primary btnlf addUserStart" type="button"> 회원 가입</button>
+                    <button class="btn btn-outline-info btnlf loginStart" type="button">login</button>
+
+                    <!-- 카카오 로그인 -->
+                    <a class="p-2" href="https://kauth.kakao.com/oauth/authorize?client_id=6230abede953ee2dbfed27975e15f04a&redirect_uri=http://192.168.0.235:8080/user/kakaoLogin&response_type=code">  </a>
+                    <!-- REST_API키 및 REDIRECT_URi는 본인걸로 수정하세요 -->
+                    <!-- 저는 redirect_uri을 http://localhost:8080/member/kakaoLogin로 했습니다. -->
+                    <!-- 본인걸로 수정 시 띄어쓰기 절대 하지 마세요. 오류납니다. -->
+
+                    <img class="kakaoImage" src="/resources/images/kakao_login_medium_wide.png" style="height:50px">
+                    <!-- 이미지는 카카오 개발자센터에서 제공하는 login 이미지를 사용했습니다. -->
+
+
+
+                    <div id="naverIdLogin" >
+                        <img src="/resources/images/naverLogin.png" style="height:50px; width: 70%;">
+                    </div>
+
+                    <div id="naver_id_login"></div>
+                    <!-- //네이버 로그인 버튼 노출 영역 -->
+                    <script type="text/javascript">
+                        var naver_id_login =  new window.naver_id_login("LVp6wWTSWO4roaPEeGxT", "http://localhost:8080/user/callBack");
+                        var state = naver_id_login.getUniqState();
+                        naver_id_login.setButton("white", 2,40);
+                        naver_id_login.setDomain("http://localhost:8080/");
+                        naver_id_login.setState(state);
+                        naver_id_login.setPopup(false);
+                        naver_id_login.init_naver_id_login();
+                    </script>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</div>
+</div>
+
+<%--로그인 모달창 끝--%>
 </body>
 </html>
