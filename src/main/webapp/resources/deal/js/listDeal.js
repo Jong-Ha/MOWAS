@@ -27,6 +27,7 @@ $(function () {
         alert("hi")
         var dealBoardNum = $(this).find(".dealBoardNum").val()
         alert(dealBoardNum);
+
         location.href = "/deal/getDeal/" + dealBoardNum;
     });
     //모임 만들기
@@ -35,10 +36,7 @@ $(function () {
     //     // window.open("/club/addClub", "모임 만들기",
     //     //     "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
     // })
-    //로그인 나중에 없앨거
-    $(".dealLogin").on("click", function () {
-        location.href = "/deal/login?userId=" + $("input[name='userId']").val()
-    })
+
     //위치 검색
     // $(".searchLocation").on("click", function () {
     //     popWin = window.open("/view/site/clubMap.jsp", "popWin", "left=300,top=200,width=800,height=500,marginwidth=0,marginheight=0,scrollbars=no,scrolling=no,menubar=no,resizable=no");

@@ -97,7 +97,7 @@ public class UserRestController {
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public boolean login(@RequestBody User user,
+    public  Map<String, Object> login(@RequestBody User user,
                       HttpSession session, HttpServletRequest request, HttpServletResponse response,
                       Model model) throws Exception {
         System.out.println("/user/json/login : POST 실행");
@@ -141,6 +141,13 @@ public class UserRestController {
 
         System.out.println("msg : "+msg);
 */
+        String uri = request.getHeader("Referer");
+        if (uri != null && !uri.contains("/user/json/login")) {
+            request.getSession().setAttribute("prevPage", uri);
+        }
+        System.out.println("uri의 값?????????????"+uri);
+        Map<String, Object> map = new HashMap<String, Object>();
+
         boolean result = false;
         try {
             User dbVO = userService.loginUser(user);
@@ -154,7 +161,9 @@ public class UserRestController {
                 model.addAttribute("user", user);
                 result = true;
                 System.out.println("session 값 : " + session);
-                return result;
+                map.put("result", result);
+                map.put("uri", uri);
+                return map;
             }
 
         } catch (Exception e) {
@@ -162,7 +171,9 @@ public class UserRestController {
             user = null;
             System.out.println("로그인 실패");
         }
-        return result;
+        map.put("result", result);
+        map.put("uri", uri);
+        return map;
     }
 
     @RequestMapping(value = "logout", method = RequestMethod.GET)
@@ -189,6 +200,22 @@ public class UserRestController {
             userService.deleteInterList(interList);
             System.out.println("여기는 deleteInter 종료이다");
         }
+
+     @RequestMapping(value = "updateSNSUserInfor",method = RequestMethod.POST)
+     public String updateSNSUserInfor(@RequestBody User user,
+                                     HttpSession session) throws Exception{
+        System.out.println("/user/json/updateSNSUserInfor : POST 실행");
+        System.out.println("user 값은 ? :"+user);
+
+        userService.updateSNSUserInfor(user);
+
+        session.setAttribute("user", user);
+
+
+        System.out.println("/user/json/updateSNSUserInfor : POST 종료");
+        return "";
+    }
+
     /*
         @RequestMapping(value = "psd7", method = RequestMethod.POST)
         public Map<String, Object> psd7(@RequestBody Map<String, Object> map) throws Exception {

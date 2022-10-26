@@ -160,6 +160,15 @@ public class ClubRestController {
         return clubService.listVoter(voter);
     }
 
+    @RequestMapping(value = "getCalendarCluberCondition",method = RequestMethod.POST)
+    public Map<String, Object> getCalendarCluberCondition(@RequestBody Map<String, Object> map){
+        System.out.println(map);
+        int clubCalendarNum = (int) map.get("clubCalendarNum");
+        String userId = (String) map.get("userId");
+        map.put("condition",clubService.getCalendarCluberCondition(clubCalendarNum,userId));
+        return map;
+    }
+
 //    @RequestMapping(value = "updateVoter", method = RequestMethod.POST)
 //    public boolean updateVoter(@RequestBody Map<String, Object> map) {
 //        List<String> voterItems = (List<String>) map.get("voterItems");

@@ -154,7 +154,8 @@ ${user.userId}
             모임 만들기
         </button>
         <div>
-            <button class="btn btn-primary searchLocation">
+            <button class="btn btn-primary searchLocation" data-bs-toggle="modal"
+                    data-bs-target="#searchLocation">
                 ${searchLocation}
             </button>
             <button class="btn btn-primary searchInterList" data-bs-toggle="modal"
@@ -308,12 +309,22 @@ ${user.userId}
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary newClub" style="margin-right: 185px">모임 만들기</button>
+                        <button type="button" class="btn btn-primary newClub">모임 만들기</button>
                     </div>
                 </div>
             </div>
         </div>
     </c:if>
+    <%--모임 만들기 모달창 끝--%>
+
+    <%--모임 만들기 모달창 시작--%>
+        <div class="modal fade" id="searchLocation" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+<%--                    <jsp:include page="/view/site/clubMap.jsp"/>--%>
+                </div>
+            </div>
+        </div>
     <%--모임 만들기 모달창 끝--%>
 
 </div>

@@ -27,29 +27,50 @@
 
     $(function () {
 
-      $("form").on("submit",function (){
-
+      $("#updateSNSUserInfor").on("click",function (){
+      alert('aaaa');
 
         var name=$("input[name='userName']").val();
         var rrd=$("input[name='rrd']").val();
+        var villCode=$("input[name='villCode']").val();
         var loginType = $("#loginType").val();
         var interList=$("input[name='interList']").val();
 
-
+        alert('loginType'+loginType);
 
         if(loginType==3 && name == null || name.length <1){
           alert("이름은  반드시 입력하셔야 합니다.");
           return false;//해당 메서드(펑션)을 종료한다
         }
 
-
         if(rrd == null || rrd.length <1){
           alert("주민등록번호는  반드시 입력하셔야 합니다.");
           return false;
         }
 
+        $.ajax({
+          url: "/user/json/updateSNSUserInfor",
+          method: "POST",
+          data:JSON.stringify({
+            userName : name,
+            rrd : rrd,
+            villCode : villCode,
+            loginType : loginType
+          }),
+          dataType: "json",
+          contentType : "application/json;charset:UTF-8",
+          success : function (){
+            alert('ajax 성공');
+              window.opener.parent.location.reload();
+              window.close();
+          },
+          error : function (){
+            console.log('ajax 실패');
+          }
+        })
 
-        $("form").attr("method","POST").attr("action","/user/updateSNSUserInfor").submit();
+       // $("form").attr("method","POST").attr("action","/user/updateSNSUserInfor").submit();
+       // window.close();
 
       });
 
@@ -1066,7 +1087,7 @@
 
         <div class="col-12">
 
-            <button class="w-100 btn btn-primary btn-lg " id="updateSNSUserInfor" type="submit"> 확인 </button>
+            <input class="w-100 btn btn-primary btn-lg " id="updateSNSUserInfor" type="button" value="확인">
         </div>
 
     </form>

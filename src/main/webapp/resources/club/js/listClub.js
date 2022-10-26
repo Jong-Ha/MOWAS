@@ -22,6 +22,11 @@ $(function () {
     //위치 검색
     $(".searchLocation").on("click", function () {
         popWin = window.open("/view/site/clubMap.jsp", "popWin", "left=300,top=200,width=800,height=500,marginwidth=0,marginheight=0,scrollbars=no,scrolling=no,menubar=no,resizable=no");
+        $('#searchLocation').load('/view/site/clubMap.jsp')
+    })
+    $("#searchLocation").on("shown.bs.modal", function () {
+        // popWin = window.open("/view/site/clubMap.jsp", "popWin", "left=300,top=200,width=800,height=500,marginwidth=0,marginheight=0,scrollbars=no,scrolling=no,menubar=no,resizable=no");
+        // $('#searchLocation').load('/view/site/clubMap.jsp')
     })
     // //관심목록 다이얼로그 변환
     // const interDialog = $(".searchInterListDialog");

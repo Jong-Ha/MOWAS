@@ -81,8 +81,8 @@ svg {
     justify-content: space-evenly;
 }
 
-.modal-footer>* {
-    margin-right: 200px;
+.modal-footer {
+    display: block;
 }
 
 .tagify{

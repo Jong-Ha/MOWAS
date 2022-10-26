@@ -6,6 +6,9 @@
     <title>Title</title>
 </head>
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
     $(function(){
         $(".paging").on("click",function(){
@@ -19,9 +22,13 @@
 
 </script>
 <body>
-<div>
+
+<%--상단 툴바--%>
+<jsp:include page="/layout/toolbar.jsp"/>
+
+<%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
-</div>
+
 내가 쓴 글<br/>
 <hr/>
 <h3>우리동네 게시글</h3>
