@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
          pageEncoding="EUC-KR" %>
 
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <link rel="stylesheet" href="/resources/OpenSource/fullcalendar-5.11.3/lib/main.css">
 <script type="text/javascript"
         src="/resources/OpenSource/fullcalendar-5.11.3/lib/main.js"></script>
@@ -12,7 +11,7 @@
 
     var calendar = null;
 
-    $(document).ready(function () {
+    function calenderInfo() {
 
         var Calendar = FullCalendar.Calendar;
         var Draggable = FullCalendar.Draggable;
@@ -83,6 +82,7 @@
                             $(".calenderText2").val(clubCalendar.calenderText);
                             $(".clubDate2").val(clubCalendar.clubDate);
                             $(".noticeTime2").val(clubCalendar.noticeTime);
+
                             $.ajax({
                                 url : '/club/json/getCalendarCluberCondition',
                                 data : JSON.stringify({
@@ -92,9 +92,13 @@
                                 method : 'post',
                                 contentType: 'application/json; charset=utf-8',
                                 success : function(re){
+
                                     const applyCondition = re.condition
+
                                     if(applyCondition==='0'){
-$('#exampleModal2 .deleteClubCalendarApply').css('display','')
+
+                                        $('#exampleModal2 .deleteClubCalendarApply').css('display','')
+
                                     }else if(applyCondition==='1'){
 
                                     }else {
@@ -122,6 +126,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                             }
 
                             var str = ''
+
                             $.each(clubCalendar.file, function (index, item) {
                                 console.log(item.fileName)
 
@@ -262,7 +267,11 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                                         });
 
                                         setTimeout(function () {
-                                            window.location.reload()
+
+                                            $('#exampleModal2').modal("hide");
+
+                                            calenderInfo()
+
                                         }, 2000);
                                     }
 
@@ -283,9 +292,10 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
         calendar.render();
 
-    });
+    }
 
     function lodinCalender() {
+
         var boardNum = $(".boardNum").val()
 
         var result_val = null;
@@ -320,7 +330,12 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
     }
 
+
+
+
     $(function () {
+
+        calenderInfo()
 
         var clubNum = '${param.clubNum}'
 
@@ -338,10 +353,6 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
             var applyAutoCheck = $(".applyAutoCheck").prop("checked")
             var boardCategory = '05';
 
-
-            alert(noticeCheck);
-            alert(calendarApplyCheck);
-            alert(applyAutoCheck);
 
 
             var clubers = $(".clubers")
@@ -450,7 +461,12 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                     });
 
                     setTimeout(function () {
-                        window.location.reload()
+
+                        $('#exampleModal').modal("hide");
+
+                        calenderInfo()
+
+
                     }, 2000);
                     //error 발생시 그냥 창을 닫음
                 }, error: function () {
@@ -462,7 +478,11 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                         timer: 1500
                     });
                     setTimeout(function () {
-                        window.location.reload()
+
+                        $('#exampleModal').modal("hide");
+
+                        calenderInfo()
+
                     }, 2000);
 
                 }
@@ -488,10 +508,6 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
             var boardCategory = '05';
 
 
-            alert(noticeCheck);
-            alert(calendarApplyCheck);
-            alert(applyAutoCheck);
-            alert(noticeTime);
 
             var clubers = $(".clubers3")
 
@@ -571,6 +587,7 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
                             }
                         })
+
                     }
 
                     $.ajax({
@@ -599,7 +616,11 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                     });
 
                     setTimeout(function () {
-                        window.location.reload()
+
+                        $('#exampleModal3').modal("hide");
+
+                        calenderInfo()
+
                     }, 2000);
                     //error 발생시 그냥 창을 닫음
                 }, error: function () {
@@ -611,7 +632,11 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                         timer: 1500
                     });
                     setTimeout(function () {
-                        window.location.reload()
+
+                        $('#exampleModal3').modal("hide");
+
+                        calenderInfo()
+
                     }, 2000);
 
                 }
@@ -710,7 +735,11 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                     });
 
                     setTimeout(function () {
-                        window.location.reload()
+
+                        $('#exampleModal4').modal("hide");
+
+                        calenderInfo()
+
                     }, 2000);
                     //error 발생시 그냥 창을 닫음
                 }, error: function () {
@@ -722,7 +751,11 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                         timer: 1500
                     });
                     setTimeout(function () {
-                        window.location.reload()
+
+                        $('#exampleModal4').modal("hide");
+
+                        calenderInfo()
+
                     }, 2000);
 
                 }
@@ -735,7 +768,6 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
 
   /*      $(".file4").on("change", function () {
-
             if($(this)[0].files.length > 1){
                 alert("파일의 갯수가 초과 했습니다");
                 $(this).val('');
@@ -819,7 +851,11 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                         });
 
                         setTimeout(function () {
-                            window.location.reload()
+
+                            $('#exampleModal5').modal("hide");
+
+                            calenderInfo()
+
                         }, 2000);
 
 
@@ -834,7 +870,11 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
                         timer: 1500
                     });
                     setTimeout(function () {
-                        window.location.reload()
+
+                        $('#exampleModal5').modal("hide");
+
+                        calenderInfo()
+
                     }, 2000);
 
                 }
@@ -1368,53 +1408,6 @@ $('#exampleModal2 .deleteClubCalendarApply').css('display','')
 
 
 
-
-<%--거래 일정 상세 조회--%>
-<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true"
-     style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <input type="hidden" class="dealNum" value="">
-                <h1 class="modal-title fs-5" id="exampleModalLabel2"> 거래 일정</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control dealCalenderTitle2" value=""
-                           placeholder="asdasd">
-                    <label for="recipient-name">제 목</label>
-                </div>
-
-
-                <div class="form-floating mb-3">
-
-                    <input type="date" class="form-control dealDate2"  value="" placeholder="asdasd"/>
-                    <label for="date-text">모임 일정 날짜</label>
-
-                </div>
-
-                <div class="input-group mb-3">
-
-                    <input type="text" class="form-control dealLocation2" value="위치 선택">
-
-                </div>
-
-
-            </div>
-
-            <div class="modal-footer" style=" justify-content:center;">
-
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                <button type="button" class="btn btn-info updateSubmit">수정</button>
-                <button type="button" class="btn btn-secondary getDealPage">게시글 상세 조회</button>
-
-            </div>
-        </div>
-    </div>
-</div>
 
 </body>
 </html>

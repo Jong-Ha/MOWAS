@@ -20,109 +20,109 @@
         $("#login1").on("click", function () {
             console.log('${user.userId}')
             console.log($.cookie("keepLogin"))
-           if( $.cookie('keepLogin')!=undefined){
-               self.location = "/user/loginNow";
-           }
+            if ($.cookie('keepLogin') != undefined) {
+                self.location = "/user/loginNow";
+            }
         });
     });
 
-function fncLogin() {
-    var id = $("input:text").val();
-    var pw = $("input:password").val();
-    var keepId = $("#keepId").prop('checked');
-    var keepLogin = $("#keepLogin").prop('checked');
-    console.log("keepId =>"+keepId);
-    console.log("keepLogin =>"+keepLogin);
+    function fncLogin() {
+        var id = $("input:text").val();
+        var pw = $("input:password").val();
+        var keepId = $("#keepId").prop('checked');
+        var keepLogin = $("#keepLogin").prop('checked');
+        console.log("keepId =>" + keepId);
+        console.log("keepLogin =>" + keepLogin);
 
-    if (id == null || id.length < 1) {
-        alert('ID를 입력하지 않으셨습니다');
-        $("input:text").focus();
-        return;
-    }
-    if (pw == null || pw.length < 1) {
-        alert('패스워드를 입력하지 않으셨습니다');
-        $("input:password").focus();
-        return;
-    }
+        if (id == null || id.length < 1) {
+            alert('ID를 입력하지 않으셨습니다');
+            $("input:text").focus();
+            return;
+        }
+        if (pw == null || pw.length < 1) {
+            alert('패스워드를 입력하지 않으셨습니다');
+            $("input:password").focus();
+            return;
+        }
 
-    //$("form").attr("method", "POST").attr("action", "/user/login").submit();
-    $.ajax("/user/json/login",{
-        method : "POST",
-        dataType : "JSON",
-        data : JSON.stringify({
-            userId : id,
-            password : pw,
-        }),
-        headers : {
-            "Accept" : "application/json",
-            "Content-Type" : "application/json"
-        },
-        success : function (map){
-            //alert('JSONData ==>'+JSONData);
-            if(map.result){
-                if(keepId){
-                    $.cookie('keepId',id,{ expires : 365,path : '/'});
-                }else {
-                    $.removeCookie('keepId',{path : '/'})
+        //$("form").attr("method", "POST").attr("action", "/user/login").submit();
+        $.ajax("/user/json/login", {
+            method: "POST",
+            dataType: "JSON",
+            data: JSON.stringify({
+                userId: id,
+                password: pw,
+            }),
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            success: function (map) {
+                //alert('JSONData ==>'+JSONData);
+                if (map.result) {
+                    if (keepId) {
+                        $.cookie('keepId', id, {expires: 365, path: '/'});
+                    } else {
+                        $.removeCookie('keepId', {path: '/'})
+                    }
+                    if (keepLogin) {
+                        $.cookie('keepLogin', pw, {expires: 365, path: '/'});
+                    } else {
+                        $.removeCookie('keepLogin', {path: '/'})
+                    }
+                    $(self.location).attr("href", map.uri)
+                } else {
+                    alert('아이디, 비밀번호를 확인하세요')
                 }
-                if(keepLogin){
-                    $.cookie('keepLogin',pw,{expires: 365, path: '/'});
-                }else {
-                    $.removeCookie('keepLogin',{path : '/'})
-                }
-                $(self.location).attr("href", map.uri)
-            }else{
-                alert('아이디, 비밀번호를 확인하세요')
+            },
+            error: function () {
+                alert("로그인 실패");
             }
-        },
-        error : function (){
-            alert("로그인 실패");
+        });
+    };
+
+    $(function () {
+        $('input[name="userId"]').focus();
+        console.log('keepId의 값은? : ' + $.cookie('keepId'))
+        if ($.cookie('keepId') != undefined) {
+            $('#keepId').prop('checked', true);
+            $('#keepLogin').prop('disabled', !$('#keepId').prop('checked'));
+            $('input[name="userId"]').val($.cookie('keepId'));
+            $('input[name="password"]').focus();
         }
-    });
-};
+        console.log('keepLogin의 값은? : ' + $.cookie('keepLogin'))
+        if ($.cookie('keepLogin') != undefined) {
+            $('#keepLogin').prop('checked', true);
+            $('input[name="password"]').val($.cookie('keepLogin'));
+        }
+        $('#keepId').on('click', function () {
+            $('#keepLogin').prop('disabled', !$(this).prop('checked'));
+        });
 
-$(function (){
-    $('input[name="userId"]').focus();
-    console.log('keepId의 값은? : '+$.cookie('keepId'))
-    if($.cookie('keepId')!=undefined){
-        $('#keepId').prop('checked',true);
-        $('#keepLogin').prop('disabled',!$('#keepId').prop('checked'));
-        $('input[name="userId"]').val($.cookie('keepId'));
-        $('input[name="password"]').focus();
-    }
-    console.log('keepLogin의 값은? : '+$.cookie('keepLogin'))
-    if($.cookie('keepLogin')!=undefined){
-        $('#keepLogin').prop('checked',true);
-        $('input[name="password"]').val($.cookie('keepLogin'));
-    }
-    $('#keepId').on('click',function (){
-        $('#keepLogin').prop('disabled', !$(this).prop('checked'));
-    });
-
-    $(".loginStart").bind('click',function (){
-        fncLogin();
-    });
-    $('input[name="password"]').on('keydown', function (key){
-        if(key.keyCode == 13){
+        $(".loginStart").bind('click', function () {
             fncLogin();
-        }
-    })
-});
-$(function () {
-    $(".addUserStart").on("click", function () {
-        location.href = "/view/user/addUser.jsp"
+        });
+        $('input[name="password"]').on('keydown', function (key) {
+            if (key.keyCode == 13) {
+                fncLogin();
+            }
+        })
     });
-});
-$(function () {
-    $("#findId").on("click", function () {
-        location.href = "/view/user/getMyId.jsp"
+    $(function () {
+        $(".addUserStart").on("click", function () {
+            location.href = "/view/user/addUser.jsp"
+        });
     });
-});
-$(function () {
-    $("#findPassword").on("click", function () {
-        location.href = "/view/user/getMyPassword.jsp"
+    $(function () {
+        $("#findId").on("click", function () {
+            location.href = "/view/user/getMyId.jsp"
+        });
     });
-});
+    $(function () {
+        $("#findPassword").on("click", function () {
+            location.href = "/view/user/getMyPassword.jsp"
+        });
+    });
 
     $(function () {
         $(".kakaoImage").on("click", function () {
@@ -130,33 +130,27 @@ $(function () {
         });
     });
 
-$(function (){
-    $("#naverIdLogin").on("click", function (){
+    $(function () {
+        $(".naverIdLogin").on("click", function () {
 
-        var naverLogin = new naver.LoginWithNaverId(
-            {
-                clientId: "LVp6wWTSWO4roaPEeGxT",
-                // 본인의 Client ID로 수정, 띄어쓰기는 사용하지 마세요.
-                callbackUrl: "http://localhost:8080/user/callBack",
-                // 본인의 callBack url로 수정하세요.
-                isPopup: false,// 팝업창으로 로그인을 진행할 것인지?
-                loginButton: {color: "green", type: 3, height: 70}
-                // 버튼 타입 ( 색상, 타입, 크기 변경 가능 )
-                // 네이버 로그인버튼 디자인 설정. 한번 바꿔보세요:D
-            }
-        );
-        naverLogin.init();
+            var naverLogin = new naver.LoginWithNaverId(
+                {
+                    clientId: "LVp6wWTSWO4roaPEeGxT",
+                    // 본인의 Client ID로 수정, 띄어쓰기는 사용하지 마세요.
+                    callbackUrl: "http://localhost:8080/user/callBack",
+                    // 본인의 callBack url로 수정하세요.
+                    isPopup: false,// 팝업창으로 로그인을 진행할 것인지?
+                    loginButton: {color: "green", type: 3, height: 70}
+                    // 버튼 타입 ( 색상, 타입, 크기 변경 가능 )
+                    // 네이버 로그인버튼 디자인 설정. 한번 바꿔보세요:D
+                }
+            );
+            naverLogin.init();
+        });
     });
-});
 
 
-
-
-
-
-
-
-$(function () {
+    $(function () {
         $("#logout").on("click", function () {
             self.location = "/user/logout";
         });
@@ -167,7 +161,6 @@ $(function () {
             self.location = "/myPage/getMyPage?userId=" + userId;
         });
     });
-
 
 
 </script>
@@ -262,6 +255,7 @@ $(function () {
         .underline:hover {
             background-size: 100% 100%;
         }
+
         .color {
             color: #ffff;
         }
@@ -348,7 +342,7 @@ $(function () {
             --bs-btn-hover-color: #000;
             --bs-btn-hover-bg: #f8cd07;
             --bs-btn-hover-border-color: #f8cd07;
-            --bs-btn-focus-shadow-rgb: 130,138,145;
+            --bs-btn-focus-shadow-rgb: 130, 138, 145;
             --bs-btn-active-color: #000;
             --bs-btn-active-bg: #f8cd07;
             --bs-btn-active-border-color: #f8cd07;
@@ -403,34 +397,35 @@ $(function () {
                                 <c:if test="${user.userId eq null}">
 
                                     <div class="loginbox login underline yellow" id="login1"
-                                         style="font-size: 1.2em; color: #FFFFFF; " data-bs-toggle="modal" data-bs-target="#loginModal">로그인
+                                         style="font-size: 1.2em; color: #FFFFFF; " data-bs-toggle="modal"
+                                         data-bs-target="#loginModal">로그인
                                     </div>
 
 
-                                    </c:if>
+                                </c:if>
 
-                                    <c:if test="${user.userId ne null}">
+                                <c:if test="${user.userId ne null}">
 
-                                    <div class="loginbox login underline yellow" style="font-size: 1.2em; color: #FFFFFF;"
-                                         id="logout">로그아웃
-                                    </div>
-
-                                    <div class=" loginbox login underline yellow" style="font-size: 1.2em; color: #FFFFFF;"
-                                         id="myPage" type="button">마이페이지
-                                    </div>
+                                <div class="loginbox login underline yellow" style="font-size: 1.2em; color: #FFFFFF;"
+                                     id="logout">로그아웃
                                 </div>
+
+                                <div class=" loginbox login underline yellow" style="font-size: 1.2em; color: #FFFFFF;"
+                                     id="myPage" type="button">마이페이지
+                                </div>
+                            </div>
 
                             </c:if>
 
-                         </div>
-                     </div>
-                 </div>
+                        </div>
+                    </div>
+                </div>
 
-            <%--     <button type="button" class="btn btn-primary position-relative alrim" style="font-size: 0.5em;">
-                     Inbox
-                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"> </span>
+                <%--     <button type="button" class="btn btn-primary position-relative alrim" style="font-size: 0.5em;">
+                         Inbox
+                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"> </span>
 
-                 </button>--%>
+                     </button>--%>
 
             </div>
         </div>
@@ -443,76 +438,98 @@ $(function () {
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="addLoginLabel" >로그인</h1>
+                <h1 class="modal-title fs-5" id="addLoginLabel">로그인</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form>
 
-                    <div class="input-group mb-3 mt-3">
-                        <div class="form-floating shadow-lg loginbox">
-                            <img class="mb-4" width="72" height="57">
-                            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+                    <div class="loginbody" style="display: flex; align-items: center;  justify-items: center;  flex-direction: column;">
+
+                        <div class="input-group mb-3 mt-3" style="display: flex;align-items: center; justify-content: center;">
+                            <div class="logo">
+                                <img class="mb-4" src="/resources/images/MOWAS.png" width="160" height="120" style="border-radius: 20px">
+                            </div>
+                        </div>
+
+
+                        <div class="input-group mb-3 mt-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control userId" id="userId" placeholder="Id"
+                                       name="userId">
+                                <label for="userId">ID</label>
+                            </div>
+                        </div>
+
+
+                        <!--<div class="form-floating">
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                            <label for="floatingInput">Email address</label>
+                        </div>-->
+                        <div class="input-group mb-3 mt-3">
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="password" placeholder="Password"
+                                       name="password">
+                                <label for="password">Password</label>
+                            </div>
                         </div>
                     </div>
 
+                    <div>
+                        <label for="findId">
+                            <div  id="findId" style="font-weight: bold; font-size: 1.2rem; cursor: pointer">아이디 찾기</div>
+                        </label>
 
-                    <div class="input-group mb-3 mt-3">
-                        <div class="form-floating">
-                            <input type="text" class="form-control userId" id="userId" placeholder="Id" name="userId">
-                            <label for="userId" >ID</label>
+                        <label for="findPassword">
+                            <div  id="findPassword"  style=" margin-left: 13px; font-weight: bold; font-size: 1.2rem; cursor: pointer">비밀번호 찾기</div>
+                        </label>
+                    </div>
+
+                    <div class="md-3" style=" margin-top: 10px;justify-content: center;display: flex;margin-bottom: 20px;">
+
+                        <div class="form-check">
+                            <input class="form-check-input checkbox" type="checkbox" value="keepId" name="keepId" id="keepId">
+                            <label class="form-check-label" for="keepId">
+                                아이디 저장
+                            </label>
                         </div>
-                    </div>
 
-
-
-                    <!--<div class="form-floating">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                        <label for="floatingInput">Email address</label>
-                    </div>-->
-                    <div class="input-group mb-3 mt-3">
-                        <div class="form-floating">
-                            <input type="password" class="form-control" id="password" placeholder="Password" name="password" >
-                            <label for="password">Password</label>
+                        <div class="form-check" style="margin-left: 20px;">
+                            <input class="form-check-input checkbox" type="checkbox" disabled="disabled" value="keepLogin" name="keepLogin" id="keepLogin">
+                            <label class="form-check-label" for="keepLogin">
+                                로그인 저장
+                            </label>
                         </div>
+
                     </div>
 
-                    <div >
-                        <label for="findId"> <input type="radio" id="findId" name="findId" value="findId">아이디 찾기
-                        </label>
+                    <div>
 
-                        <label for="findPassword"> <input  type="radio"  id="findPassword" name="findPassword" value=findPassword">비밀번호 찾기
-                        </label>
-                    </div>
-                    <div class="checkbox mb-3">
-                        <label for="keepId"> <input type="checkbox" id="keepId" name="keepId" value="keepId"> 아이디 저장</label>
-                        <label for="keepLogin"> <input type="checkbox" id="keepLogin" name="keepLogin" disabled="disabled" value=keepLogin"> 자동 로그인
-                        </label>
-                    </div>
-                    <button class="btn btn-outline-primary btnlf addUserStart" type="button"> 회원 가입</button>
-                    <button class="btn btn-outline-info btnlf loginStart" type="button">login</button>
+                        <button class="btn btn-outline-primary btnlf addUserStart" type="button"> 회원 가입</button>
+                        <button class="btn btn-outline-info btnlf loginStart" style="margin-right: 39px;" type="button">login</button>
 
-                    <!-- 카카오 로그인 -->
-                    <a class="p-2" href="https://kauth.kakao.com/oauth/authorize?client_id=6230abede953ee2dbfed27975e15f04a&redirect_uri=http://192.168.0.235:8080/user/kakaoLogin&response_type=code">  </a>
-                    <!-- REST_API키 및 REDIRECT_URi는 본인걸로 수정하세요 -->
-                    <!-- 저는 redirect_uri을 http://localhost:8080/member/kakaoLogin로 했습니다. -->
-                    <!-- 본인걸로 수정 시 띄어쓰기 절대 하지 마세요. 오류납니다. -->
-
-                    <img class="kakaoImage" src="/resources/images/kakao_login_medium_wide.png" style="height:50px">
-                    <!-- 이미지는 카카오 개발자센터에서 제공하는 login 이미지를 사용했습니다. -->
-
-
-
-                    <div id="naverIdLogin" >
-                        <img src="/resources/images/naverLogin.png" style="height:50px; width: 70%;">
                     </div>
 
-                    <div id="naver_id_login"></div>
+                    <div class="snsLogin" style="    display: flex;justify-content: center;align-items: center;flex-direction: column;">
+
+                        <!-- 카카오 로그인 -->
+                        <a class="p-2"
+                           href="https://kauth.kakao.com/oauth/authorize?client_id=6230abede953ee2dbfed27975e15f04a&redirect_uri=http://192.168.0.235:8080/user/kakaoLogin&response_type=code"> </a>
+                        <!-- REST_API키 및 REDIRECT_URi는 본인걸로 수정하세요 -->
+                        <!-- 저는 redirect_uri을 http://localhost:8080/member/kakaoLogin로 했습니다. -->
+                        <!-- 본인걸로 수정 시 띄어쓰기 절대 하지 마세요. 오류납니다. -->
+                        <img class="kakaoImage" src="/resources/images/kakao_login_medium_wide.png" style="height:50px; cursor:pointer">
+                        <!-- 이미지는 카카오 개발자센터에서 제공하는 login 이미지를 사용했습니다. -->
+
+                        <img class="naverIdLogin" src="/resources/images/naverLogin.png" style="height: 50px;width: 71.2%; margin-top: 10px;cursor:pointer">
+
+                        <div id="naver_id_login"></div>
+                    </div>
                     <!-- //네이버 로그인 버튼 노출 영역 -->
                     <script type="text/javascript">
-                        var naver_id_login =  new window.naver_id_login("LVp6wWTSWO4roaPEeGxT", "http://localhost:8080/user/callBack");
+                        var naver_id_login = new window.naver_id_login("LVp6wWTSWO4roaPEeGxT", "http://localhost:8080/user/callBack");
                         var state = naver_id_login.getUniqState();
-                        naver_id_login.setButton("white", 2,40);
+                        naver_id_login.setButton("white", 2, 40);
                         naver_id_login.setDomain("http://localhost:8080/");
                         naver_id_login.setState(state);
                         naver_id_login.setPopup(false);
