@@ -255,8 +255,7 @@ public class UserRestController {
        // String lon = "127.0290206";
 
         String location = "";
-        //////아래잇는거 10.26선미님꺼 커밋하고 주석풀기
-       // location = coordToAddress(lon, lat, 1);
+        location = coordToAddress(lon, lat,1);
         System.out.println("location 의 값은??? : "+location);
 
         boolean check = villcode.contains(location);
