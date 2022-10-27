@@ -15,19 +15,19 @@
 </head>
 <script type="text/javascript">
     console.log(document.cookie);
-    $("li").each(function (){
-        $(this).bind("click",function (){
-            $
-        })
-    })
+    // $("li").each(function (){
+    //     $(this).bind("click",function (){
+    //         document,location
+    //                 })
+    // })
 </script>
 <style>
     #rightSide{position: absolute;top: 547px;left: 50%;margin: 0 0 0 510px;	}
     #rightSide #right_zzim {
 
         position: fixed;
-        top: 185px;
-        left: 50%;
+        top: 400px;
+        left: 63%;
         margin-left: 550px;
         border: 1px solid #B0B5BD;
         width: 114px;
@@ -35,7 +35,7 @@
     }
 
     #rightSide #right_zzim div {text-align:center;}
-    #rightSide #right_zzim div.recTit{line-height:1.5em;padding:5px;color:white;background-color:#505A69;}
+    #rightSide #right_zzim div.recTit{line-height:1.5em;padding:5px;color:black;background-color:#f8cd07b3;}
     #right_zzim #recentCnt {color:yellow;}
     #rightSide #right_zzim ul {min-height:495px;}
     #rightSide #right_zzim li{text-align:center;padding:5px;position:relative;}
@@ -81,6 +81,9 @@
         <div class="recTit">최근본상품 <span id=recentCnt></span></div>
         <ul>
             <c:forEach items="${listcook}" var="a">
+                <c:if test="${listcook==null}">
+                    최근본 상품이 없습니다.
+                </c:if>
         <li>${a}</li>
 
             </c:forEach>

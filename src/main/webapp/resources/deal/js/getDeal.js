@@ -183,12 +183,12 @@ $(function() {
         // $(".updateClub").on("click",function(){
         //     location.href="/club/updateClub/"+$(".boardNum").val()
         // })
-        $(".delete").on("click", function () {
-            var check = confirm("진짜 삭제?");
-            if (check === true) {
-                location.href = "/deal/deleteDeal/" + $(".dealBoardNum").val()
-            }
-        })
+        // $(".delete").on("click", function () {
+        //     var check = confirm("진짜 삭제?");
+        //     if (check === true) {
+        //         location.href = "/deal/deleteDeal/" + $(".dealBoardNum").val()
+        //     }
+        // })
 //         $(".listCluber").on("click", function () {
 //             var nWidth = "400";
 //             var nHeight = "500";

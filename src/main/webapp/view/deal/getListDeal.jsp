@@ -562,10 +562,10 @@ $(".addDeal").on('click',function (){
     </button>
     <div>
 <select class="btn btn-primary dealCategory" name="dealCategory">
-  <option selected>판매구분</option>
-  <option value="99" >전체</option>
-  <option value="08">판매</option>
-  <option value="09">판매요청</option>
+<%--  <option selected>판매구분</option>--%>
+  <option value="99" ${boardCategory == "99"? 'selected':''}>전체</option>
+  <option value="08" ${boardCategory == "08"? 'selected':''}>판매</option>
+  <option value="09" ${boardCategory == "09"? 'selected':''}>판매요청</option>
 </select>
 
       <button class="center btn btn-primary searchTag">

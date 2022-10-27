@@ -33,7 +33,7 @@ Product vo=(Product)request.getAttribute("vo");
     <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css"/>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="/resources/deal/js/getDeal.js"></script>
-    <link href="/resources/deal/css/getDeal.css" rel="stylesheet" type="text/css"/>
+<%--    <link href="/resources/deal/css/getDeal.css" rel="stylesheet" type="text/css"/>--%>
 
     <title>Bootstrap Example</title>
 
@@ -210,23 +210,77 @@ Product vo=(Product)request.getAttribute("vo");
             })
         })
 
-
+//업데이트
+//         $(function () {
+//             // $(".updateClub").on("click",function(){
+//             //     location.href="/club/updateClub/"+$(".boardNum").val()
+//             // })
+//             $(".delete").on("click", function () {
+//                 var check = confirm("진짜 삭제?");
+//                 if (check === true) {
+//                     location.href = "/deal/deleteDeal/" + $(".dealBoardNum").val()
+//                 }
+//             })
+//         //업데이트
+//         var dealTag = document.querySelector("#dealTag")
+//         var tagify = new Tagify(dealTag, {
+//             dropdown: {
+//                 position: "input",
+//                 enabled: 0 // always opens dropdown when input gets focus
+//             }
+//         })
+//         $("#updateDeal").find(".newDeal").on("click", function () {
+//             if ($("#dealTitle").val() === '') {
+//                 alert("제목은 필수입니다")
+//                 return;
+//             }
+//             if ($("#dealProduct").val() === '') {
+//                 alert("제품명은 필수입니다")
+//                 return;
+//             }
+//             if ($("#price").val() === '') {
+//                 alert("가격은 필수입니다")
+//                 return;
+//             }
+//             let updateForm = $("#updateDealForm");
+//             $.each(JSON.parse($("#dealTag").val()), function (index, item) {
+//                 updateForm.append('<input type="hidden" name="dealTags" value="' + item.value + '">')
+//             })
+//             updateForm.attr("method", "post").attr("action", "/deal/updateDeal").submit();
+//         })
+//         })
         //최근 본 상품
-
+        $(function (){
+            $(".list").on("click", function(){
+                history.go(-1);
+            })
+        })
     </script>
     <style type="text/css">
         /*body {*/
         /*  padding-top: 50px;*/
         /*}*/
 
-        /*.wap {*/
-        /*  width: 700px;*/
-        /*  font-size: 0.9em;*/
-        /*}*/
-        /*.check{*/
-        /*  height: 20px;*/
-        /*  width: 35px;*/
-        /*}*/
+        .wap {
+          width: 1400px;
+          font-size: 1.2em;
+            height: 1000px;
+        }
+        .check{
+          height: 20px;
+          width: 35px;
+        }
+
+        .userImage1 {
+            margin-top: -20px;
+            display: flex;
+        }
+        .likebox {
+            height: 75px;
+            background: #ffff;
+            margin-top: -30px;
+            border-radius: 5px;
+        }
 
         /* 창 여분 없애기 */
         body {
@@ -341,7 +395,11 @@ Product vo=(Product)request.getAttribute("vo");
             --bs-btn-disabled-bg: #6c757d;
             --bs-btn-disabled-border-color: #6c757d;
         }
-
+        #article-profile #article-profile-right {
+            position: absolute;
+            right: 0;
+            padding-right: 15%;
+        }
     </style>
 
 </head>
@@ -580,6 +638,29 @@ Product vo=(Product)request.getAttribute("vo");
                         </button>
                     </div>
                 </div>
+                <section id="article-profile">
+                        <div class="space-between">
+                            <div style="display: flex;">
+                                <div id="article-profile-image">
+                                    <img src="/resources/${deal.user.userImage}">
+                                </div>
+                                <div id="article-profile-left">
+                                    <div id="nickname">${deal.user.userId}</div>
+                                    <div id="region-name">${deal.villCode}</div>
+                                </div>
+                                <div id="article-profile-right">
+                                    <dl id="temperature-wrap">
+                                        <dt>신뢰온도</dt>
+                                        <dd class="text-color-05 ">
+                                            ${reviewPt}
+                                            <span>°C</span>
+                                        </dd>
+                                    </dl>
+
+                                </div>
+                            </div>
+                            </a>  </div>  </section>
+                            </div>
 
                 <div class="likebox shadow-lg">
                     <div class="itembox" style="padding: 20px;">
@@ -643,7 +724,7 @@ Product vo=(Product)request.getAttribute("vo");
                         </button>
 
                         <c:if test="${user.userId == deal.user.userId}">
-                            <button type="button" class="btn btn-primary itembutton update" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-primary itembutton updateDeal" data-bs-toggle="modal"
                                     data-bs-target="#updateDeal">
                                 수정
                             </button>
@@ -657,34 +738,46 @@ Product vo=(Product)request.getAttribute("vo");
             <div class="textbox shadow-lg">
                 <div class="container">
                     <div class="row textboxrow">
-                        <div class="col-2">제목</div>
-                        <div class="col-4">${deal.dealTitle}</div>
-                        <div class="col-2">상품명</div>
-                        <div class="col-4 prod">${deal.productName}</div>
+                        <div class="col-3">제목</div>
+                        <div class="col-6"></div>
+                        <div class="col-3">${deal.dealTitle}</div>
+
                     </div>
+
                     <div class="row textboxrow">
-                        <c:if test="${reviewPt ==0}">
-                            <div class="col-3">신뢰온도</div>
-                            <div class="col-4">첫거래입니다</div>
-                        </c:if>
-                        <c:if test="${reviewPt !=0}">
+                        <div class="col-3">상품명</div>
+                        <div class="col-6"></div>
+                        <div class="col-3">${deal.productName}</div>
+                    </div>
+<%--                    <div class="row textboxrow">--%>
+<%--                        <c:if test="${reviewPt ==0}">--%>
+<%--                            <div class="col-3">신뢰온도</div>--%>
+<%--                            <div class="col-4">첫거래입니다</div>--%>
+<%--                        </c:if>--%>
+<%--                        <c:if test="${reviewPt !=0}">--%>
 
 
-                            <div class="col-3">신뢰온도</div>
-                            <div class="col-4">${reviewPt}</div>
-                        </c:if>
-                        <div class="col-5"><img id="userImage1" style="width : 15%;"
-                                                src="/resources/${deal.user.userImage}"></div>
-                    </div>
+<%--                            <div class="col-3">신뢰온도</div>--%>
+<%--                            <div class="col-4">${reviewPt}</div>--%>
+<%--                        </c:if>--%>
+<%--                        <div class="col-5"><img id="userImage1" style="width : 15%;"--%>
+<%--                                                src="/resources/${deal.user.userImage}"></div>--%>
+<%--                    </div>--%>
+<%--                    <div class="row textboxrow">--%>
+<%--                        <div class="col-2">작성자</div>--%>
+<%--                        <div class="col-4">${deal.user.userId}</div>--%>
+<%--                        <div class="col-2">동네</div>--%>
+<%--                        <div class="col-4">${deal.villCode}</div>--%>
+<%--                    </div>--%>
                     <div class="row textboxrow">
-                        <div class="col-2">작성자</div>
-                        <div class="col-4">${deal.user.userId}</div>
-                        <div class="col-2">동네</div>
-                        <div class="col-4">${deal.villCode}</div>
-                    </div>
+                                                <div class="col-3">가격</div>
+                        <div class="col-6"></div>
+                                                <div class="col-3">${deal.price}원</div>
+
+                                            </div>
                     <div class="row textboxrow">
-                        <div class="col-2">내용</div>
-                        <div class="col-10">
+                        <div class="col-3">내용</div>
+                        <div class="col-9">
                             <label for="exampleFormControlTextarea1" class="form-label"></label>
                             <textarea class="form-control" id="exampleFormControlTextarea1"
                                       rows="3" style="height: 255px;"
@@ -696,7 +789,7 @@ Product vo=(Product)request.getAttribute("vo");
 
         </div>
 
-        <jsp:include page="/layout/chatIcon.jsp"/>
+<%--        <jsp:include page="/layout/chatIcon.jsp"/>--%>
 
 
     </div>
@@ -843,8 +936,8 @@ Product vo=(Product)request.getAttribute("vo");
                     <div class="input-group mb-3 form-floating">
                         <select class="form-select" id="boardCategory"  required>
                                 <option selected>판매 구분을 선택 하세요</option>
-                                <option value="1">판매</option>
-                                <option value="2">판매요청</option>
+                                <option value="1" ${deal.boardCategory == "08"? 'selected':''}>판매</option>
+                                <option value="2" ${deal.boardCategory == "09"? 'selected':''}>판매요청</option>
                             </select>
 
                             <label for="boardCategory">판매 구분</label>
@@ -933,13 +1026,15 @@ Product vo=(Product)request.getAttribute("vo");
                     </div>
 
 
-                </form>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary btn-lg newDeal" style="margin-right: 185px">거래 수정
                 </button>
 
             </div>
+
+            </form>
         </div>
     </div>
 </div>
@@ -949,6 +1044,7 @@ Product vo=(Product)request.getAttribute("vo");
 
 
 <button type="button" class="addReview" data-bs-toggle="modal" data-bs-target="#addReview">리뷰작성</button>
+<button class="btn btn-primary btn-lg list" style="margin-right: 185px">목록</button>
 <%-- 리뷰 모달창 만들기 헤헷--%>
 
 <div class="modal fade" id="addReview" tabindex="-1" aria-labelledby="addReviewLabel" aria-hidden="true">
@@ -1009,6 +1105,7 @@ Product vo=(Product)request.getAttribute("vo");
 </div>
 </div>
 <%--모임 수정 모달창 끝--%>
+
 
 
 </body>
