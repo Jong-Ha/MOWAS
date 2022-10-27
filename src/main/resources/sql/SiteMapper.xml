@@ -189,6 +189,7 @@
             reported_id,
             report_date,
             board_category,
+            board_num,
             report_basis,
             report_text
         FROM community_report
@@ -362,6 +363,8 @@
             cr.report_text,
             cr.process_date,
             cr.report_result,
+            cr.rereport_apply_check,
+            cr.rereport_text,
             cr.admin_id,
             c.club_master_id,
             c.club_name
@@ -460,6 +463,13 @@
         WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum}
     </select>
 
+
+    <delete id="deleteClubReport" parameterType="int">
+        DELETE club_report
+        <where>
+            club_report_num = #{clubReportNo}
+        </where>
+    </delete>
 
     <!--파일 등록-->
     <insert id="addMasterBoardFiles" parameterType="com.project.domain.File">

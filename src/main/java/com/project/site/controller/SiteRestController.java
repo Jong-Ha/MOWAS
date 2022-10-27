@@ -29,8 +29,15 @@ public class SiteRestController {
     public String clubMap(@RequestParam String longitude, @RequestParam String latitude)  throws Exception {
 
         String vilCode = "";
-        vilCode = coordToAddress(longitude, latitude);
-        System.out.println("++++++++my location : ++++++++++" +vilCode);
+        vilCode = coordToAddress(longitude, latitude, 1);
+        return vilCode;
+    }
+
+    @RequestMapping( value="communityMap" , method= RequestMethod.POST, produces = "application/text; charset=UTF-8")
+    public String communityMap(@RequestParam String longitude, @RequestParam String latitude)  throws Exception {
+
+        String vilCode = "";
+        vilCode = coordToAddress(longitude, latitude, 2);
         return vilCode;
     }
 
