@@ -231,6 +231,26 @@
 
         });
 
+        $(".report").on("click", function () {
+
+
+            var boardNum = $(this).parents(".cardbox").find(".boardNum").val();
+            var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val()
+            var reportedId = $(this).parents(".cardbox").find(".SUserId").val();
+
+            $("#commuReport .modal-content").load("/view/site/addCommunityReport.jsp" ,
+                {boardNum : boardNum, boardCategory : boardCategory, reportedId : reportedId},
+            function (re) {
+
+                // console.log(re);
+                $("#commuReport .modal-content").html(re);
+
+                $("#commuReport").modal("show");
+            })
+
+
+        })
+
 
     });
 
@@ -350,6 +370,7 @@
         <div class="row row-cols-1 row-cols-md-3 g-4 cardbox">
             <input hidden class="boardNum" value="${ClubCalendarReview.clubCalenderReviewNum}">
             <input hidden class="boardCategory" value="${ClubCalendarReview.boardCategory}">
+            <input hidden class="SUserId" value="${ClubCalendarReview.userId}">
 
             <div class="col">
                 <div class="card h-100" style="">
@@ -393,7 +414,7 @@
                                               style="z-index: 1; font-size: 0.5em;">${ClubCalendarReview.viewCount}</span>
                                     </button>
 
-                                    <button type="button" class="btn btn-danger buttonBox">
+                                    <button type="button" class="btn btn-danger buttonBox report">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                              fill="currentColor"
                                              class="bi bi-hand-thumbs-down-fill" viewBox="0 0 16 16">
@@ -481,15 +502,33 @@
             </div>
         </div>
     </div>
+</div>
 
 
-    <jsp:include page="/layout/chatIcon.jsp"/>
+<div class="modal fade" id="commuReport" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<jsp:include page="/layout/chatIcon.jsp"/>
 
     <div style="margin-bottom: 400px;">
 
     </div>
 
     <jsp:include page="/layout/footer.jsp"/>
+
+
 
     <script>
 

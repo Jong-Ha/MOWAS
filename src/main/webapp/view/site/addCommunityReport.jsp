@@ -5,16 +5,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html>
-<head>
-    <title>Add Community Report</title>
-  <!-- include libraries(jQuery, bootstrap) -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-          crossorigin="anonymous"></script>
+
+
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
   <!--  ///////////////////////// CSS ////////////////////////// -->
@@ -22,30 +14,29 @@
     body {
       padding-top: 50px;
     }
-    .wap {
-      width: 700px;
-      font-size: 0.9em;
-    }
-    .check {
-      height: 20px;
-      width: 35px;
-    }
+
   </style>
 
     <script type="text/javascript">
       $(function() {
         //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-        $( ".submit" ).on("click" , function() {
+
+
+        $( ".addCR" ).on("click" , function() {
+
             //Controller
             //$("form").attr("method" , "POST").attr("action" , "/site/addCommunityReport").submit();
-
             //RestController - ajax 사용
+
+            var userId = '${user.userId}';
+
             var boardCategory = $(".boardCategory").val();
             var boardNo = $(".boardNo").val();
             var reportedId = $(".reportedId").val();
-            var reportId = $(".reportId").val();
+            var reportId = userId
             var reportBasis = $(".reportBasis").val();
             var reportText = $(".reportText").val();
+
 
             $.ajax({
                 url: "/site/json/addCommunityReport",
@@ -61,29 +52,27 @@
                 dataType: "text",
                 contentType: "application/json; charset=UTF-8",
                 success: function(result) {
+
                     alert(result);
+
+                    $("#commuReport").modal("hide");
                 }
             });
         });
       });
 
-      $(function() {
+/*      $(function() {
         //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
         $("a[href='#' ]").on("click" , function() {
           $("form")[0].reset();
         });
-      });
+      });*/
 
     </script>
 
 
-</head>
-<body>
-<%-- 모달창 시작-->
-<div class="modal model-center fade" id="addCommuReport" tabindex="-1" aria-labelledby="addCommuLabel" aria-hidden="true">
 
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
+
             <div class="modal-header" >
                 <h3 class="modal-title text-danger fs-5" id="addCommuLabel">커뮤니티 신고</h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -92,14 +81,13 @@
 
                 <form id="addCommuForm" enctype="multipart/form-data">
 
-                <input type="hidden" class= "boardNo" name="boardNo" value="${communityReport.boardNo}">
-                <input type="hidden" class= "boardCategory" name="boardCategory" value="${communityReport.boardCategory}">
-                <input type="hidden" class= "reportId" name="reportId" value="${communityReport.reportId}">
-                <input type="hidden" class= "reportedId" name="reportedId" value="${communityReport.reportedId}">
+                <input type="hidden" class= "boardNo" name="boardNo" value="${param.boardNum}">
+                <input type="hidden" class= "boardCategory" name="boardCategory" value="${param.boardCategory}">
+                <input type="hidden" class= "reportedId" name="reportedId" value="${param.reportedId}">
 
                 <div class="input-group mb-3 mt-3">
-                    <div class="form-floating">
-                    <select class="form-select" id="reportBasis" name="reportBasis" required>
+                    <div class="form-floating" >
+                    <select class="form-select reportBasis" id="reportBasis" name="reportBasis" required>
                         <option value="0" selected>선택하세요</option>
                         <option value="1">욕설</option>
                         <option value="2">음담패설</option>
@@ -114,7 +102,7 @@
 
                  <div class="input-group mb-3 mt-3">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id=reportText name="reportText" placeholder="상세신고내용"
+                            <input type="text" class="form-control reportText" id=reportText name="reportText" placeholder="상세신고내용"
                                    required>
                             <label for="reportText">상세신고내용</label>
                         </div>
@@ -128,14 +116,11 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger addCR" data-bs-dismiss="modal" style="margin-right: 185px">신 고</button>
+                <button type="button" class="btn btn-danger addCR"  style="margin-right: 185px">신 고</button>
             </div>
-        </div>
-    </div>
-</div>
-<%-- 모달창 끝--%>
 
-  <form>
+
+ <%-- <form>
     <div class="wap">
       <div class="container">
     <!--<form class="form-horizontal" name="detailForm">-->
@@ -215,6 +200,4 @@
     </div>
 
     </form>
-
-</body>
-</html>
+--%>

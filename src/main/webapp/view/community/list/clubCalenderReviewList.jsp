@@ -241,7 +241,23 @@
 
         });
 
+        $(".report").on("click", function () {
 
+            var boardNum = $(this).parents(".cardbox").find(".CalenderReviewNum").val();
+            var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val()
+            var reportedId = $(this).parents(".cardbox").find(".SUserId").val();
+
+
+            $("#commuReport .modal-content").load("/view/site/addCommunityReport.jsp",
+                {boardNum: boardNum, boardCategory: boardCategory, reportedId: reportedId},
+                function (re) {
+
+                    // console.log(re);
+                    $("#commuReport .modal-content").html(re);
+
+                    $("#commuReport").modal("show");
+                })
+        })
     })
 
 
@@ -325,13 +341,13 @@
         overflow: hidden;
     }
 
-    .updatebox{
+    .updatebox {
         display: flex;
         font-size: 2.5em;
         font-weight: bold;
         margin-top: 5px;
         margin-left: 3px;
-        cursor : pointer;
+        cursor: pointer;
     }
 
     .cardbox {
@@ -399,6 +415,7 @@
             <div class="col reviewBox">
                 <input hidden class="CalenderReviewNum" value="${ClubCalendarReview.clubCalenderReviewNum}">
                 <input hidden class="boardCategory" value="${ClubCalendarReview.boardCategory}">
+                <input hidden class="SUserId" value="${ClubCalendarReview.userId}">
 
                 <div class="card h-100 shadow-lg" style="width: 311px">
 
@@ -420,7 +437,7 @@
 
 
                     <div class="card-footer">
-                        <div class="card-body carditem" >
+                        <div class="card-body carditem">
 
                             <div class="itemBox">
 
@@ -447,7 +464,7 @@
                                               style="z-index: 1; font-size: 0.5em;">${ClubCalendarReview.viewCount}</span>
                                     </div>
 
-                                    <div class="btn btn-danger  buttonBox">
+                                    <div class="btn btn-danger buttonBox report">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                                              fill="currentColor"
                                              class="bi bi-hand-thumbs-down-fill" viewBox="0 0 16 16"
@@ -465,7 +482,8 @@
             </div>
             <div class="updatebox">
                 <c:if test="${user.userId eq ClubCalendarReview.userId}">
-                    <div data-bs-toggle="modal" data-bs-target="#exampleModal" class=" update" style=" margin-right: 13px;">
+                    <div data-bs-toggle="modal" data-bs-target="#exampleModal" class=" update"
+                         style=" margin-right: 13px;">
                         수정
                     </div>
                     <div class="delete">
@@ -548,6 +566,15 @@
         </div>
     </div>
 </div>
+    <div class="modal fade" id="commuReport" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+
+            </div>
+        </div>
+    </div>
+
 
 <jsp:include page="/layout/footer.jsp"/>
 </body>

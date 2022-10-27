@@ -64,11 +64,25 @@
 
                             var clubCalendar = JSONData.clubCalendar;
 
+                            // 상세 조회
                             $(".clubCalnderNum").val(clubCalendar.clubCalenderNum);
                             $(".calenderTitle2").val(clubCalendar.calenderTitle);
                             $(".calenderText2").val(clubCalendar.calenderText);
                             $(".clubDate2").val(clubCalendar.clubDate);
+                            $(".location2").val(clubCalendar.location)
                             $(".noticeTime2").val(clubCalendar.noticeTime);
+
+
+
+                            //모임 일정 후기 등록 할떄 정보 display
+
+                            $(".clubDate4").val(clubCalendar.clubDate);
+                            $(".location4").val(clubCalendar.location)
+
+
+
+                            $(".clubDate5").val(clubCalendar.clubDate);
+                            $(".location5").val(clubCalendar.location)
 
                             $.ajax({
                                 url : '/club/json/getCalendarCluberCondition',
@@ -280,7 +294,7 @@
         calendar.render();
 
 
-    });
+    }
 
     function upSize(){
         calendar.updateSize()
@@ -487,7 +501,6 @@
 
         $(".updateSubmit").on("click", function () {
 
-
             var clubCalenderNum = $(".clubCalenderNum3").val()
             var calenderTitle = $(".calenderTitle3").val()
             var calenderText = $(".calenderText3").val()
@@ -499,6 +512,8 @@
             var applyAutoCheck = $(".applyAutoCheck3").prop("checked")
             var boardCategory = '05';
 
+
+            alert(location);
 
 
             var clubers = $(".clubers3")
@@ -892,7 +907,20 @@
         });
 
 
+        //일정 등록
+        $("#location1").on("shown.bs.modal", function () {
+            relayout1();
+        })
 
+        //상세보기 지도 보기
+        $("#location2").on("shown.bs.modal", ()=> {
+            relayout3();
+        })
+
+        //일정 수정
+        $("#location3").on("shown.bs.modal", function () {
+            relayout2();
+        })
 
     })
 
@@ -960,7 +988,12 @@
 
                     <div class="input-group mb-3">
 
-                        <input type="button" class="form-control" value="위치 선택">
+                        <input type="button" class="form-control" data-bs-toggle="modal" data-bs-target="#location1"  value="위치 선택">
+
+                        <div class="input-group input-group-sm mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">위치 정보</span>
+                            <input type="text" class="form-control location" aria-label="위치 정보" aria-describedby="inputGroup-sizing-sm">
+                        </div>
 
                     </div>
 
@@ -1068,7 +1101,7 @@
 
                 <div class="input-group mb-3">
 
-                    <input type="button" class="form-control" value="위치 선택">
+                    <input type="button" class="form-control location2"  data-bs-toggle="modal" data-bs-target="#location2" value="위치 보기">
 
                 </div>
 
@@ -1199,7 +1232,12 @@
 
                     <div class="input-group mb-3">
 
-                        <input type="text" class="form-control location3" value="위치 선택">
+                        <input type="button" class="form-control" data-bs-toggle="modal" data-bs-target="#location3" value="위치 선택">
+
+                        <div class="input-group input-group-sm mb-3">
+                            <span class="input-group-text" >위치 정보</span>
+                            <input type="text" class="form-control location3" aria-label="위치 정보" aria-describedby="inputGroup-sizing-sm">
+                        </div>
 
                     </div>
 
@@ -1306,14 +1344,14 @@
 
                     <div class="form-floating mb-3">
 
-                        <input type="date" class="form-control clubDate1" id="date-text4" value="" placeholder="asdasd"/>
+                        <input type="date" class="form-control clubDate4" id="date-text4" value="" placeholder="asdasd"/>
                         <label for="date-text">모임 일정 날짜</label>
 
                     </div>
 
                     <div class="input-group mb-3">
 
-                        <input type="text"  class="form-control location1"   value="위치 선택">
+                        <input type="button" class="form-control location4"  data-bs-toggle="modal" data-bs-target="#location2" value="위치 보기">
 
                     </div>
 
@@ -1368,14 +1406,14 @@
 
                     <div class="form-floating mb-3">
 
-                        <input type="date" class="form-control clubDate2" id="date-text5" value="" placeholder="asdasd"/>
+                        <input type="date" class="form-control clubDate5" id="date-text5" value="" placeholder="asdasd"/>
                         <label for="date-text">모임 일정 날짜</label>
 
                     </div>
 
                     <div class="input-group mb-3">
 
-                        <input type="text"  class="form-control location2"   value="위치 선택">
+                        <input type="button" class="form-control location5"  data-bs-toggle="modal" data-bs-target="#location2" value="위치 보기">
 
                     </div>
 
@@ -1389,6 +1427,44 @@
                 <button type="button" class="btn btn-primary calenderReviewShortSubmit">등록</button>
 
             </div>
+        </div>
+    </div>
+
+</div>
+
+
+<%--등록 지도--%>
+<div class="modal fade" id="location1" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <jsp:include page="/view/site/addCalenderMap.jsp"/>
+
+        </div>
+    </div>
+</div>
+
+
+
+<%--상세조회 지도--%>
+<div class="modal fade" id="location2" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <jsp:include page="/view/site/getCalenderMap.jsp"/>
+
+        </div>
+    </div>
+</div>
+
+
+<%--수정 지도--%>
+<div class="modal fade" id="location3" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <jsp:include page="/view/site/updateCalenderMap.jsp"/>
+
         </div>
     </div>
 </div>

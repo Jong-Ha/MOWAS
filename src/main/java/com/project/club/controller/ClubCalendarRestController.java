@@ -52,8 +52,7 @@ public class ClubCalendarRestController<list> {
 
         User user = (User) session.getAttribute("user");
 
-
-        calender.setLocation("창원시 진해구 소사동");
+        calender.setBoardCategory(5);
 
         System.out.println("=================" + calender.getApplyAutoCheck() + "==================");
         /*자동 참여*/
@@ -178,7 +177,7 @@ public class ClubCalendarRestController<list> {
             clubCalendar.setNoticeCheck("2");
         }
 
-        System.out.println("addClubCalender 진입 " + clubCalendar);
+        System.out.println("updateClubCalender 진입 " + clubCalendar);
 
         calenderService.updateClubCalender(clubCalendar);
 
