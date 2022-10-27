@@ -279,8 +279,7 @@
 
         calendar.render();
 
-
-    });
+    }
 
     function upSize(){
         calendar.updateSize()

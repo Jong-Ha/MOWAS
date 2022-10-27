@@ -5,7 +5,6 @@
             $("#addClubMasterBoard .addClubMasterBoard").on("click",function(){
                 const data = new FormData($('#addClubMasterBoardForm')[0])
 
-
                 $.ajax({
                     url: "/club/addClubMasterBoard",
                     method: 'post',

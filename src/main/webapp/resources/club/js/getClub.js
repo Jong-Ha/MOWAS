@@ -474,16 +474,18 @@ function setGetClubCalendar() {
 
 }
 
+//레이아웃 사이즈 조절
+function clubLayout(){
+    $('[alt="모임 대표 이미지"]').parent().height($('[alt="모임 대표 이미지"]').parent().width() / 3 * 2)
+    $('.clubBoarder').height($('.clubBoarder').width() * 0.7)
+}
+
+
 /////////////////////////////// 로드시 실행 ///////////////////////////////
 $(function () {
 
-    //레이아웃 사이즈 조절
-    const imgBox = $('[alt="모임 대표 이미지"]').parent()
-    imgBox.height(imgBox.width() / 3 * 2)
-    $(window).on('resize', function () {
-        imgBox.height(imgBox.width() / 3 * 2)
-        $('.clubBoarder').height($('.clubBoarder').width() * 3 / 4)
-    })
+    clubLayout()
+    $(window).on('resize', clubLayout)
 
     const clubNum = $('.boardNum').val()
     // $(".updateClub").on("click",function(){
@@ -654,6 +656,7 @@ $(function () {
         }
         loadCheck = true
         clubBoard.css('display', 'none')
+        clubBoard.html('')
         clubBoardRest.css('display', '')
         $('.clubTab *').removeClass('selectedTab')
         tab.addClass('selectedTab')
@@ -670,14 +673,7 @@ $(function () {
         if (beforeToolbar($(this))) {
             return false
         }
-        clubBoard.load('/view/community/calender.jsp', {
-            clubNum: $('.boardNum').val(),
-            cluberStatus: $('.cluberStatus').val()
-        }, function () {
-            setGetClubCalendar()
-            setTimeout(upSize, 100)
-            setTimeout(upSize, 500)
-        })
+        clubBoard.load('/club/listClubMasterBoard/'+clubNum)
         afterToolbar()
     })
 
@@ -717,15 +713,4 @@ $(function () {
 
     $('.calendarView').click()
 
-    $('.addClubMasterBoardView').on('click', function () {
-        $.ajax({
-            url: '/club/addClubMasterBoard/' + clubNum,
-            success: function (re) {
-                $('#addClubMasterBoard .modal-content').html(re)
-            }
-        })
-    })
-
-    $('#getClubMasterBoard').off('click').on('click',function(){
-    })
 })//$(function(){}) 종료 지점

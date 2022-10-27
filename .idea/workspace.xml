@@ -10,26 +10,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="LJH 2022.10.17&#10;&#10;css, js, jsp 구분">
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/common/KakaoMapApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/common/KakaoMapApi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/footer.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/css/getClub.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/css/getClub.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/css/listClub.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/css/listClub.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/js/getClub.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/js/getClub.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/js/listClub.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/js/listClub.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubImages/017c5092-cbec-4526-bc66-b97e214a1374카카오.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/4aad17a6-7758-442f-a7bb-82e60c6667b9세로로김.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/535de9d3-b1f0-4f01-bee3-857cb683c698다운로드.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/5dd5da7a-d71d-465d-bbb3-24ac050b035fbit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/8f1b65f6-56d8-44f0-a4b7-0cb480d7496e라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/ccc7bb44-788f-49cf-987c-8aed5c8dd194애플.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/f2824456-c8d7-430e-9dae-c5f38f9eeb9c다운로드.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/f7c51912-f9ac-4019-a477-9e8af082c40a비트캠프.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/addClubMasterBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/addClubMasterBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/bak/getClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/getClub.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/getClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/getClub.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/getClubMasterBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/getClubMasterBoard.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClubCalendarApply.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClubCalendarApply.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/test.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClubMasterBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClubMasterBoard.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/updateClubMasterBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/updateClubMasterBoard.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/calender.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/calender.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/clubMap.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/clubMap.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,9 +114,9 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "라이브러리",
+    "project.structure.last.edited": "아티팩트",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.12528735",
+    "project.structure.side.proportion": "0.32133675",
     "settings.editor.selected.configurable": "project.propCompiler",
     "spring.configuration.checksum": "0644e903b0ad21f514b0480754c0a1e2"
   },
@@ -159,6 +162,13 @@
       <recent name="com.project.notice.dao" />
       <recent name="com.project.notice.service" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="TestNG" />
+      </set>
+    </option>
   </component>
   <component name="RunManager" selected="Tomcat 서버.Tomcat 9.0.58">
     <configuration name="ClubServiceTest.updateVoter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -482,7 +492,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="LJH" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>
@@ -562,7 +572,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDao.java</url>
           <line>33</line>
-          <properties class="com.project.user.dao.UserDao" method="updateLcd">
+          <properties class="com.project.user.dao.UserDao">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
