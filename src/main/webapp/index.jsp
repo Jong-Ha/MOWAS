@@ -21,7 +21,7 @@
 
             $("li > a:contains('모임 관리')").on("click",
                 function (){
-                    location.href="/club/listClub"
+                    location.href='/club/listClub'
                 });
         });
 

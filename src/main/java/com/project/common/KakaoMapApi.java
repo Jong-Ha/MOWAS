@@ -52,7 +52,7 @@ public class KakaoMapApi {
         StringBuffer response = new StringBuffer();
 
         //Kakao REST API Key값 입력
-        String auth = "KakaoAK " + "6230abede953ee2dbfed27975e15f04a";
+        String auth = "KakaoAK " + "b6ebc978fd15666147bd090e0e7ae4c5";
 
         //URL 占쏙옙占쏙옙
         URL url = new URL(apiUrl);
@@ -89,7 +89,7 @@ public class KakaoMapApi {
         return response.toString();
     }
 
-    private static String getRegionAddress(String jsonString) {
+    private static String getRegionAddress(String jsonString, int fromIndex) {
         String value = "";
         System.out.println(jsonString);
         JSONObject jObj = (JSONObject) JSONValue.parse(jsonString);
@@ -101,48 +101,56 @@ public class KakaoMapApi {
             JSONObject subJobj = (JSONObject) jArray.get(0);
             JSONObject roadAddress =  (JSONObject) subJobj.get("road_address");
 
-
             if(roadAddress == null){
                 JSONObject subsubJobj = (JSONObject) subJobj.get("address");
-                //value = (String) subsubJobj.get("address_name");
-                value = (String) subsubJobj.get("region_3depth_name");
-                System.out.println("vilcode 111:" +value);
+
+                if(fromIndex == 1) {
+                    value = (String) subsubJobj.get("region_3depth_name");
+                    //System.out.println("vilcode 111:" + value);
+                } else if(fromIndex == 2) {
+                    value = (String) subsubJobj.get("address_name");
+                }
 
             }else{
+                if(fromIndex == 1) {
+                    value = (String) roadAddress.get("region_3depth_name");
+                    //System.out.println("vilcode 222:" + value);
+                } else if(fromIndex == 2) {
+                    value = (String) roadAddress.get("address_name");
+                }
 
-                //value = (String) roadAddress.get("address_name");
-                value = (String) roadAddress.get("region_3depth_name");
-                System.out.println("vilcode 222:" +value);
             }
 
-             if (value.equals("") || value == null) {
+            if (value.equals("") || value == null) {
                     //subJobj = (JSONObject) jArray.get(1);
-                     subJobj = (JSONObject) subJobj.get("address");
-                    //value =(String) subJobj.get("address_name");
+                subJobj = (JSONObject) subJobj.get("address");
+                if(fromIndex == 1) {
                     value = (String) subJobj.get("region_3depth_name");
+                }else if(fromIndex == 2) {
+                    value =(String) subJobj.get("address_name");
                 }
             }
+        }
         return value;
     }
 
     //좌표를 주소로 변환 Method
-    public static String coordToAddress(String longitude, String latitude) {
+    public static String coordToAddress(String longitude, String latitude, int fromIndex) {
         String url = "https://dapi.kakao.com/v2/local/geo/coord2address.json?x="+longitude+"&y="+latitude;
         String addr = "";
         try{
-            System.out.println("+++++++++++++++ Kakao API Start +++++++++++++++++");
-            addr = getRegionAddress(getJSONData(url));
+            //System.out.println("+++++++++++++++ Kakao API Start +++++++++++++++++");
+            addr = getRegionAddress(getJSONData(url), fromIndex);
         }catch(Exception e){
-            System.out.println("Kakao API Exception occur");
+            //System.out.println("Kakao API Exception occur");
             e.printStackTrace();
         }
         System.out.println("+++++++++++++++++ 변환된 주소값 ++++++++++++++++" +addr);
-
         return addr;
     }
 
     //주소를 좌표로 변화 Method
-    public Map<String, String> getJsonAddress(String address) throws Exception {
+    public static Map<String, Object> getJsonAddress(String address) throws Exception {
 
         address = URLEncoder.encode(address,"UTF-8");
 
@@ -155,7 +163,7 @@ public class KakaoMapApi {
         URL Url = new URL(url);
 
         HttpsURLConnection conn = (HttpsURLConnection) Url.openConnection();
-        String auth ="KakaoAK " +"6230abede953ee2dbfed27975e15f04a";
+        String auth ="KakaoAK " +"b6ebc978fd15666147bd090e0e7ae4c5";
         conn.setRequestMethod("GET");
         conn.setRequestProperty("X-Requested-With", "curl");
         conn.setRequestProperty("Authorization", auth);
@@ -172,7 +180,7 @@ public class KakaoMapApi {
         JSONArray data = (JSONArray) jObj.get("documents");
         long size = (long) meta.get("total_count");
 
-        Map<String, String> mapInfo = new HashMap<String, String>();
+        Map<String, Object> mapInfo = new HashMap<String, Object>();
 
         if(size > 0) {
             JSONObject jsonX = (JSONObject)data.get(0);

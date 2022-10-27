@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
          pageEncoding="EUC-KR" %>
 
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet" href="/resources/OpenSource/fullcalendar-5.11.3/lib/main.css">
 <script type="text/javascript"
         src="/resources/OpenSource/fullcalendar-5.11.3/lib/main.js"></script>

@@ -175,6 +175,7 @@ border-radius: 5px;
     box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
 }
 
+
 .addcomment:hover {
     color: rgba(255, 255, 255, 0.85);
     box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
@@ -186,29 +187,44 @@ border-radius: 5px;
 .commentList {
     width: 600px;
 }
+.commentContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+}
 
 .commentText {
-    background: #adb5bd;
+    background: #eaebe5e0;;
     border-radius: 10px;
-    height: 80px;
+    height: 104px;
     width: 700px;
     margin-bottom: 20px;
     font-size: 0.9em;
 
 }
+.hideRecomment{
+    display: flex;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
 
 .RecommentText {
-    background: #adb5bd;
     border-radius: 10px;
-    height: 80px;
-    width: 500px;
     margin-bottom: 20px;
     font-size: 0.9em;
+    width: 543px;
+    height: 104px;
+    margin-left: 191px;
+    background: #ebcdcdb8;
 }
 
 .commentitembox {
     width: 140px;
     height: 80px;
+    display: flex;
+    flex-direction: row-reverse;
 }
 
 .Recommentitembox {
@@ -217,7 +233,9 @@ border-radius: 5px;
 }
 
 .commentitem {
-    height: 50%;
+    text-align: left;
+    height: 22px;
+    display: flex;
     width: 100%;
 }
 
@@ -227,25 +245,18 @@ border-radius: 5px;
 }
 
 .bntbox {
-    position: absolute;
+    padding: 5px;
 }
 
 .addbox {
-    float: left;
-    height: 40px;
-    width: 80px;
+    display: flex;
+    height: 91%;
+    flex-direction: column-reverse;
 }
 
-.addbox > button {
-    width: 76px;
-    height: 37px;
-    font-size: 0.5em;
-}
 
 .updatebox > button {
-    width: 46px;
-    height: 20px;
-    font-size: 0.5em;
+
 }
 
 .itmesize {
@@ -266,31 +277,37 @@ border-radius: 5px;
 .commentTexts {
     width: 480px;
     align-self: center;
+    padding: 10px;
     float: left;
     height: 50px;
-    font-size: 0.8em;
+    font-size: 1.2em;
+    border-bottom: 1px solid;
+    margin-bottom: 10px;
+    text-align: left;
 }
 
 .RecommentTexts {
-    width: 360px;
+    width: 311px;
     align-self: center;
     float: left;
-    height: 50px;
-    font-size: 0.8em;
+    text-align: left;
+    height: 38px;
+    border-bottom: 1px solid;
+    font-size: 1.2em;
 }
 
 .buttonMargin{
-    margin-right: 2px;
+margin-right: 2px;
 }
 
 
 .animation-init {
-    opacity: 0;
-    padding-top: 1em;
+opacity: 0;
+padding-top: 1em;
 }
 
 .animation-fade {
-    opacity: 1;
-    padding-top: 0;
-    transition: all 1s;
+opacity: 1;
+padding-top: 0;
+transition: all 1s;
 }

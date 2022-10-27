@@ -15,7 +15,7 @@
 
     var calendar = null;
 
-    $(document).ready(function () {
+    function calenderInfo() {
 
         var Calendar = FullCalendar.Calendar;
         var Draggable = FullCalendar.Draggable;
@@ -109,7 +109,7 @@
 
         calendar.render();
 
-    });
+    }
 
     function lodinCalender() {
 
@@ -151,6 +151,8 @@
 
     $(function () {
 
+        calenderInfo()
+
         var dealBoardNum = $(".dealNum").val();
 
         $(".getDealPage").on("click", ()=>{
@@ -163,10 +165,6 @@
         })
 
 
-        $(".updateSubmit").on("click", function () {
-
-
-        })
     })
 
 
