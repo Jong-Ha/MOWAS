@@ -42,10 +42,12 @@ ${user.userId}
     </div>
 </div>
 <!-- Example Code -->
-<div class="wap">
+<div class="container">
     <input type="hidden" class="userId" value="${user.userId}">
 
     <form id="listForm">
+        <input type="hidden" class="searchLng" name="searchLng" value="">
+        <input type="hidden" class="searchLat" name="searchLat" value="">
         <div style="display: none" class="tagForm">
             <c:forEach items="${searchTag}" var="tag">
                 <input type="hidden" name='searchTag' class='searchTag' value="${tag}">
@@ -175,6 +177,8 @@ ${user.userId}
     </div>
     <%--버튼 모음 끝--%>
 
+    <div class="resultList" style="padding-bottom: 50px;">
+
     <c:if test="${empty list}">
         <div class="p-5 mb-4 bg-light rounded-3">
             <div class="container-fluid py-5">
@@ -186,7 +190,7 @@ ${user.userId}
         </div>
     </c:if>
 
-    <div class="listClub" style="display: grid;grid-template-columns: 1fr 1fr 1fr;">
+    <div class="listClub">
         <c:forEach var="club" items="${list}">
             <div class="row row-cols-1 row-cols-md-3 g-4 cardbox">
                 <div class="col clubBox" style="cursor: pointer">
@@ -239,6 +243,8 @@ ${user.userId}
         </c:forEach>
     </div>
 
+    </div>
+
     <%--모임 만들기 모달창 시작--%>
     <c:if test="${!empty user}">
         <div class="modal fade" id="addClub" tabindex="-1" aria-labelledby="addClubLabel" aria-hidden="true">
@@ -289,8 +295,9 @@ ${user.userId}
                             </div>
 
                             <div class="input-group mb-3">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon1">주요활동위치</button>
-                                <input type="text" class="form-control" placeholder="" name="villCode" id="villCode"
+                                <button class="btn btn-outline-secondary" type="button" id="addClubMap" data-bs-toggle="modal"
+                                        data-bs-target="#searchLocation">주요활동위치</button>
+                                <input type="text" class="form-control" placeholder="" name="villCode" readonly id="villCode"
                                 >
                             </div>
 
@@ -317,17 +324,21 @@ ${user.userId}
     </c:if>
     <%--모임 만들기 모달창 끝--%>
 
-    <%--모임 만들기 모달창 시작--%>
+    <%--searchLocation 모달창 시작--%>
         <div class="modal fade" id="searchLocation" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-<%--                    <jsp:include page="/view/site/clubMap.jsp"/>--%>
+                    <jsp:include page="/view/site/clubMap.jsp"/>
                 </div>
             </div>
         </div>
-    <%--모임 만들기 모달창 끝--%>
+    <%--searchLocation 모달창 끝--%>
 
 </div>
+
+<%--하단바--%>
+<jsp:include page="/layout/footer.jsp"/>
+
 </body>
 </html>
 

@@ -21,12 +21,36 @@ $(function () {
     })
     //위치 검색
     $(".searchLocation").on("click", function () {
-        popWin = window.open("/view/site/clubMap.jsp", "popWin", "left=300,top=200,width=800,height=500,marginwidth=0,marginheight=0,scrollbars=no,scrolling=no,menubar=no,resizable=no");
-        $('#searchLocation').load('/view/site/clubMap.jsp')
+        $('#searchLocation .getLocation').off('click').on('click',function(){
+            let villCode = $("#searchLocation .villCode")
+
+            $('.searchLocation').html(villCode.val())
+            $('[name="searchLocation"]').val(villCode.val())
+            $('#searchLocation .btn-close').click()
+        })
     })
+
+    //모임 생성시 지도 부르기
+    $("#addClubMap").on("click", function () {
+        $('#searchLocation .back-btn').css('display','block').off('click').on('click',function(){
+            $('.addClub').click()
+        })
+        $('#searchLocation .getLocation').off('click').on('click',function(){
+            let villCode = $("#searchLocation .villCode")
+
+            $('#addClubForm #villCode').val(villCode.val())
+            $('.addClub').click()
+        })
+    })
+
+    //위치 검색
+    $('.searchLocation').on('click',function(){
+        $('#searchLocation .back-btn').css('display','none')
+    })
+
+    //지도 조회시 레이아웃 조정
     $("#searchLocation").on("shown.bs.modal", function () {
-        // popWin = window.open("/view/site/clubMap.jsp", "popWin", "left=300,top=200,width=800,height=500,marginwidth=0,marginheight=0,scrollbars=no,scrolling=no,menubar=no,resizable=no");
-        // $('#searchLocation').load('/view/site/clubMap.jsp')
+        relayout()
     })
     // //관심목록 다이얼로그 변환
     // const interDialog = $(".searchInterListDialog");

@@ -11,10 +11,25 @@
   <component name="ChangeListManager">
     <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="LJH 2022.10.17&#10;&#10;css, js, jsp 구분">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/common/KakaoMapApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/common/KakaoMapApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/footer.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/css/getClub.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/css/getClub.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/css/listClub.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/css/listClub.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/js/getClub.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/js/getClub.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/js/listClub.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/js/listClub.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubImages/017c5092-cbec-4526-bc66-b97e214a1374카카오.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/addClubMasterBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/addClubMasterBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/bak/getClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/bak/getClub.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/getClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/getClub.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/getClubMasterBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/getClubMasterBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClubCalendarApply.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClubCalendarApply.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/test.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/updateClubMasterBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/updateClubMasterBoard.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/calender.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/calender.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/clubMap.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/clubMap.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,37 +97,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit4&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4&quot;: &quot;&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Project/MOWAS/src/main/webapp/view/myPage&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;라이브러리&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.12528735&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;0644e903b0ad21f514b0480754c0a1e2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
+    "last_opened_file_path": "C:/Project/MOWAS/src/main/webapp/view/club/modal수정전",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "라이브러리",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.12528735",
+    "settings.editor.selected.configurable": "project.propCompiler",
+    "spring.configuration.checksum": "0644e903b0ad21f514b0480754c0a1e2"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;oracle&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "oracle"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Project\MOWAS\src\main\webapp\view\club\modal수정전" />
       <recent name="C:\Project\MOWAS\src\main\webapp\view\myPage" />
       <recent name="C:\Project\MOWAS\src\main\webapp\view\user" />
       <recent name="C:\Project\MOWAS\src\main\webapp\resources\images" />
@@ -420,7 +436,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666620792032</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="LJH 2022.10.26&#10;&#10;탭바 선택 유지&#10;모임 탭바 레이아웃 조정">
+      <created>1666753497488</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1666753497488</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -525,7 +548,8 @@
     <MESSAGE value="JHK 2022.10.17&#10;&#10;마이페이지 서비스 커밋" />
     <MESSAGE value="JHK 2022.10.19&#10;&#10;메일인증 수정" />
     <MESSAGE value="JHK 2022.10.24&#10;&#10;마이페이지 JSP 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="JHK 2022.10.24&#10;&#10;마이페이지 JSP 수정" />
+    <MESSAGE value="LJH 2022.10.26&#10;&#10;탭바 선택 유지&#10;모임 탭바 레이아웃 조정" />
+    <option name="LAST_COMMIT_MESSAGE" value="LJH 2022.10.26&#10;&#10;탭바 선택 유지&#10;모임 탭바 레이아웃 조정" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -538,7 +562,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDao.java</url>
           <line>33</line>
-          <properties class="com.project.user.dao.UserDao">
+          <properties class="com.project.user.dao.UserDao" method="updateLcd">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>

@@ -1,6 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-
 <link rel="stylesheet" href="/resources/OpenSource/fullcalendar-5.11.3/lib/main.css">
 <script type="text/javascript"
         src="/resources/OpenSource/fullcalendar-5.11.3/lib/main.min.js"></script>
@@ -269,7 +269,12 @@
 
         calendar.render();
 
+
     });
+
+    function upSize(){
+        calendar.updateSize()
+    }
 
     function lodinCalender() {
         var boardNum = $(".boardNum").val()
@@ -863,16 +868,16 @@
         width: 35px;
     }
 </style>
-<html>
-<body>
 <input hidden class="boardNum" value="${param.clubNum}">
 <div class='demo-topbar' style="display: flex;align-items: center;justify-content: center;">
-    <div id='calendar-container' style="float: left; width: 50%; font-size: 0.7em; ">
+    <div id='calendar-container' style="float: left; width: 80%; font-size: 0.7em; ">
         <div style="display:none; height: 30px; text-align: center; font-size: 30px; font-weight: bold; color: rgba(69, 69, 199, 0.721); margin-bottom: 20px;">
             모임 일정
         </div>
         <div id='calendar' style="padding-top: 30px;"></div>
+<c:if test="${param.cluberStatus=='5'||param.cluberStatus=='6'}">
         <input type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="addCalender" value="모임 일정 작성">
+</c:if>
     </div>
 </div>
 
@@ -1399,7 +1404,4 @@
         </div>
     </div>
 </div>
-
-</body>
-</html>
 
