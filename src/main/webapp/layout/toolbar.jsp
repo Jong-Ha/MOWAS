@@ -8,6 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+
 <script type="text/javascript" src="/resources/OpenSource/js/jquery.cookie.js"></script>
 
 <script type="text/javascript">
@@ -17,8 +19,9 @@
 
         $("#login1").on("click", function () {
             console.log('${user.userId}')
-            console.log($.cookie("#keepLogin"))
-            if ($.cookie('#keepLogin') != undefined) {                self.location = "/user/loginNow";
+            console.log($.cookie("keepLogin"))
+            if ($.cookie('keepLogin') != undefined) {
+                self.location = "/user/loginNow";
             }
         });
     });
@@ -79,6 +82,22 @@
     };
 
     $(function () {
+        $('input[name="userId"]').focus();
+        console.log('keepId의 값은? : ' + $.cookie('keepId'))
+        if ($.cookie('keepId') != undefined) {
+            $('#keepId').prop('checked', true);
+            $('#keepLogin').prop('disabled', !$('#keepId').prop('checked'));
+            $('input[name="userId"]').val($.cookie('keepId'));
+            $('input[name="password"]').focus();
+        }
+        console.log('keepLogin의 값은? : ' + $.cookie('keepLogin'))
+        if ($.cookie('keepLogin') != undefined) {
+            $('#keepLogin').prop('checked', true);
+            $('input[name="password"]').val($.cookie('keepLogin'));
+        }
+        $('#keepId').on('click', function () {
+            $('#keepLogin').prop('disabled', !$(this).prop('checked'));
+        });
 
         $(".loginStart").on('click', function () {
             fncLogin();
@@ -87,8 +106,15 @@
                 location.reload();
             },1000);
         });
-
-
+        $('input[name="password"]').on('keydown', function (key) {
+            if (key.keyCode == 13) {
+                fncLogin();
+                setTimeout(function(){
+                    location.reload();
+                },1000);
+            }
+        })
+    });
     $(function () {
         $(".addUserStart").on("click", function () {
             location.href = "/view/user/addUser.jsp"
@@ -129,36 +155,6 @@
             );
             naverLogin.init();
         });
-
-        $('input[name="userId"]').focus();
-        console.log('keepId의 값은? : ' + $.cookie('keepId'))
-        if ($.cookie('keepId') != undefined) {
-            $('#keepId').prop('checked', true);
-            $('#keepLogin').prop('disabled', !$('#keepId').prop('checked'));
-            $('input[name="userId"]').val($.cookie('keepId'));
-            $('input[name="password"]').focus();
-        }
-        console.log('keepLogin의 값은? : ' + $.cookie('keepLogin'))
-        if ($.cookie('keepLogin') != undefined) {
-            $('#keepLogin').prop('checked', true);
-            $('input[name="password"]').val($.cookie('keepLogin'));
-        }
-        $('#keepId').on('click', function () {
-            $('#keepLogin').prop('disabled', !$(this).prop('checked'));
-        });
-
-
-
-        $('input[name="password"]').on('keydown', function (key) {
-            if (key.keyCode == 13) {
-                fncLogin();
-
-                setTimeout(function(){
-                    location.reload();
-                },1000);
-            }
-        })
-    });
     });
 
 
@@ -513,10 +509,12 @@
 
                     </div>
 
+                    <div>
 
                         <button class="btn btn-outline-primary btnlf addUserStart" type="button"> 회원 가입</button>
                         <button class="btn btn-outline-info btnlf loginStart" style="margin-right: 39px;" type="button">login</button>
 
+                    </div>
 
                     <div class="snsLogin" style="    display: flex;justify-content: center;align-items: center;flex-direction: column;">
 

@@ -15,7 +15,7 @@
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
     <title>Bootstrap Example</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     <style>
     .wap{ width: 400px; }
@@ -29,13 +29,14 @@
 
       $("#updateSNSUserInfor").on("click",function (){
       alert('aaaa');
-
+        var userId=$("input[name='userId']").val();
         var name=$("input[name='userName']").val();
         var rrd=$("input[name='rrd']").val();
         var villCode=$("input[name='villCode']").val();
         var loginType = $("#loginType").val();
         var interList=$("input[name='interList']").val();
 
+        alert('userId'+userId);
         alert('loginType'+loginType);
 
         if(loginType==3 && name == null || name.length <1){
@@ -52,18 +53,22 @@
           url: "/user/json/updateSNSUserInfor",
           method: "POST",
           data:JSON.stringify({
+            userId : userId,
             userName : name,
             rrd : rrd,
             villCode : villCode,
             loginType : loginType
           }),
-          dataType: "json",
+
           contentType : "application/json;charset:UTF-8",
-          success : function (){
-            alert('ajax 성공');
+          success : function (result){
+            alert(54611561456)
+            console.log(result)
+           if(result){
+             alert('ajax 성공');
               window.opener.parent.location.reload();
               window.close();
-          },
+          }},
           error : function (){
             console.log('ajax 실패');
           }
@@ -993,12 +998,12 @@
           }
         </script>
 
-      <input type="hidden" id="userId" name="userId" value="${user.userId}">${user.userId}
-        <c:if test="${kakaoUser.loginType=='2'})">
-      <input type="hidden" id="loginType" name="loginType" value="${kakaoUser.loginType}">${kakaoUser.loginType}
+      <input type="hidden" id="userId" name="userId" value="${user.userId}">${user.userId},로그인타입${user.loginType}
+        <c:if test="${user.loginType=='2'}">
+      <input type="hidden" id="loginType" name="loginType" value="${user.loginType}">${user.loginType}
         </c:if>
-        <c:if test="${naverUser.loginType=='3' || naverUser2.loginType=='3'}">
-      <input type="hidden" id="loginType" name="loginType" value="${naverUser.loginType}">${naverUser.loginType}
+        <c:if test="${user.loginType=='3'}">
+      <input type="hidden" id="loginType" name="loginType" value="${user.loginType}">${user.loginType}
         </c:if>
 
 

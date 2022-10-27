@@ -219,7 +219,19 @@ public class UserController {
         System.out.println("keepLogin 쿠키의 네임keepLogin 값"+cookie.getName().equals("keepLogin"));
         System.out.println("keepLogin 쿠키의 벨류 값"+cookie.getValue());
         response.addCookie(cookie);
- ///*/
+
+
+        String referer = request.getHeader("referer");
+        System.out.println("로그아웃 referer 의 값?"+referer);
+        //referer.substring(referer.lastIndexOf("/view"),referer.length());
+        int a = referer.lastIndexOf(":")+5;
+        System.out.println("인트a의 값? : "+a);
+        String logoutNow= referer.substring(a, referer.length());
+        System.out.println("loginNow의 값...."+logoutNow);
+
+
+
+        ///*/
         /* 모든 쿠키 삭제
         Cookie[] cookies = request.getCookies(); // 모든 쿠키의 정보를 cookies에 저장
 
@@ -235,7 +247,7 @@ public class UserController {
 
         }
         */
-        return "redirect:/view/user/main.jsp";
+        return "redirect:"+logoutNow;
     }
 
     /*

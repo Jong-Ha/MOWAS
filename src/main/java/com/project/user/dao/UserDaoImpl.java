@@ -37,6 +37,7 @@ public class UserDaoImpl implements UserDao{
     }
 
     public void updateSNSUserInfor(User user)throws Exception{
+        System.out.println("업데이트 SNS 디에이오임플 user"+user);
         sqlSession.update("UserMapper.updateSNSUserInfor", user);
     }
 
