@@ -343,6 +343,10 @@
             background-size: 100% 100%;
         }
 
+        .selectedTab {
+            background-size: 100% 100%;
+        }
+
         .btn-primary {
             --bs-btn-color: #000;
             --bs-btn-bg: #f8cd07b3;

@@ -32,7 +32,7 @@
 }
 
 .clubBoarder {
-    height: 600px;
+    height: 900px;
     margin-bottom: 50px;
     /*background: #e9ecef;*/
     border-radius: 10px;
@@ -80,10 +80,20 @@ tags.tagify {
     border-radius: 7px;
 }
 
-.clubTab {
+.navbar.navbar-expand-lg.clubTab {
     margin-top: 50px;
-    justify-content: center;
+    justify-content: space-evenly;
     text-align: center;
+    display: flex;
+    width: 60%;
+}
+
+.clubTab .underline {
+    margin-right: 0;
+}
+
+.selectedTab{
+    background-size: 100% 100%;
 }
 
 .text-wrap {

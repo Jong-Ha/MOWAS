@@ -164,9 +164,16 @@ values (seq_deal.NEXTVAL,
                tag
 
         FROM deal
-        WHERE board_category = #{boardCategory}
-          AND deal_title LIKE ('%' || #{search.searchKeyword} || '%')
-        ORDER BY deal_reg_date DESC
+        <if test="(boardCategory=='08' or boardCategory=='09')">
+            WHERE board_category = #{boardCategory}
+            AND deal_title LIKE ('%' || #{search.searchKeyword} || '%')
+            ORDER BY deal_reg_date DESC
+        </if>
+        <if test="boardCategory=='99'">
+            WHERE deal_title LIKE ('%' || #{search.searchKeyword} || '%')
+            ORDER BY deal_reg_date DESC
+        </if>
+
     </sql>
 
 
@@ -221,22 +228,25 @@ values (seq_deal.NEXTVAL,
 <!--    WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum}-->
 
 
-  <!--  <select  id="getTotalCount"  parameterType="search"	 resultType="int">
+    <select  id="getTotalCount"  parameterType="search"	 resultType="int">
         SELECT COUNT(*)
         FROM(	SELECT deal_board_num,deal_title,deal_text
         FROM deal
         <if test="searchCondition != null">
             <where>
                 <if test="searchCondition == 0 and searchKeyword !='' ">
-                    deal_board_num= to_char(#{searchKeyword})
+                    deal_title= #{searchKeyword}
                 </if>
                 <if test="searchCondition == 1 and searchKeyword !='' ">
+                    product_name = ${searchKeyword}
+                </if>
+                <if test="searchCondition == 2 and searchKeyword !='' ">
                     tag = ${searchKeyword}
                 </if>
             </where>
         </if> ) countTable
     </select>
--->
+
     <select id="getUserId" resultType="com.project.domain.Deal">
 
         select user_id, review, review_pt

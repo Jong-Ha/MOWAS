@@ -46,8 +46,8 @@
                 </button>
             </div>
         </div>
-        <div class="container-fluid py-5" style="text-align: center; width: 100%; height: 500px">
-            <img src="/resources/${club.clubImage}" alt="모임 대표 이미지" style="object-fit: contain; width: 100%; height: 100%">
+        <div class="container-fluid py-5" style="text-align: center; width: 70%;">
+            <img src="/resources/${club.clubImage}" alt="모임 대표 이미지" style="object-fit: cover; width: 100%; height: 100%">
         </div>
 
         <p>${club.clubText}</p>
@@ -126,6 +126,7 @@
 
                 <div>
                     <div class="underline yellow listClubMasterBoardView">모임 공지사항</div>
+                    <input type="button" class="getClubMasterBoard" data-bs-toggle="modal" data-bs-target="#getClubMasterBoard" style="display: none"></input>
                 </div>
 
                 <div>
@@ -142,10 +143,14 @@
 
             </nav>
 
-            <div class="clubBoarder container">
+            <div class="clubBoarder container" id="ClubBoard" style="display: none">
                 <div style="text-align: center">내용 출력 예정</div>
             </div>
+            <div class="clubBoarder" id="ClubBoardRest">
+
+            </div>
         </div>
+
 
         <div style="text-align: right; margin-right: 150px;">
             <c:if test="${currentCluber.cluberStatus=='6'}">
@@ -175,182 +180,200 @@
                     가입 신청 수정
                 </button>
             </c:if>
+
+            <button class="btn btn-primary addClubMasterBoardView" data-bs-toggle="modal"
+                    data-bs-target="#addClubMasterBoard">
+                모공작
+            </button>
+
+            <button class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#updateClubMasterBoard">
+                테스트
+            </button>
+
+            <button class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#getClubMasterBoard">
+                테스트Get
+            </button>
+
+
         </footer>
 
     </div>
 
 
     <%--모임 수정 모달창 시작--%>
-        <c:if test="${currentCluber.cluberStatus=='5'||currentCluber.cluberStatus=='6'}">
-            <div class="modal fade" id="updateClub" tabindex="-1" aria-labelledby="updateClubLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="updateClubLabel">모임 수정</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="updateClubForm" enctype="multipart/form-data">
-                                <input type="hidden" name="clubNum" value="${club.clubNum}">
-                                <input type="hidden" name="deleteFileName" value="${club.clubImage}" disabled>
-                                <div class="input-group mb-3">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="clubName" name="clubName"
-                                               placeholder="모임명"
-                                               value="${club.clubName}" required>
-                                        <label for="clubName">모임명</label>
-                                    </div>
+    <c:if test="${currentCluber.cluberStatus=='5'||currentCluber.cluberStatus=='6'}">
+        <div class="modal fade" id="updateClub" tabindex="-1" aria-labelledby="updateClubLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="updateClubLabel">모임 수정</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="updateClubForm" enctype="multipart/form-data">
+                            <input type="hidden" name="clubNum" value="${club.clubNum}">
+                            <input type="hidden" name="deleteFileName" value="${club.clubImage}" disabled>
+                            <div class="input-group mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="clubName" name="clubName"
+                                           placeholder="모임명"
+                                           value="${club.clubName}" required>
+                                    <label for="clubName">모임명</label>
                                 </div>
+                            </div>
 
-                                <div class="input-group mb-3">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="clubText" name="clubText"
-                                               placeholder="모임소개"
-                                               value="${club.clubText}" required>
-                                        <label for="clubText">모임소개</label>
-                                    </div>
+                            <div class="input-group mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="clubText" name="clubText"
+                                           placeholder="모임소개"
+                                           value="${club.clubText}" required>
+                                    <label for="clubText">모임소개</label>
                                 </div>
+                            </div>
 
-                                <div class="input-group mb-3">
-                                    <div class="form-floating">
-                                        <select class="form-select" id="interList" name="interList" required>
-                                            <option value="00">선택하세요</option>
-                                            <option value="01" ${club.interList=='독서'?'selected':''}>독서</option>
-                                            <option value="02" ${club.interList=='자동차'?'selected':''}>자동차</option>
-                                            <option value="03" ${club.interList=='반려동물'?'selected':''}>반려동물</option>
-                                            <option value="04" ${club.interList=='공예'?'selected':''}>공예</option>
-                                            <option value="05" ${club.interList=='스포츠'?'selected':''}>스포츠</option>
-                                            <option value="06" ${club.interList=='댄스'?'selected':''}>댄스</option>
-                                            <option value="07" ${club.interList=='여행'?'selected':''}>여행</option>
-                                            <option value="08" ${club.interList=='사진'?'selected':''}>사진</option>
-                                            <option value="09" ${club.interList=='육아'?'selected':''}>육아</option>
-                                            <option value="10" ${club.interList=='공연'?'selected':''}>공연</option>
-                                            <option value="11" ${club.interList=='음악'?'selected':''}>음악</option>
-                                            <option value="12" ${club.interList=='게임'?'selected':''}>게임</option>
-                                            <option value="13" ${club.interList=='그외'?'selected':''}>그외</option>
-                                        </select>
-                                        <label for="interList">관심목록</label>
-                                    </div>
+                            <div class="input-group mb-3">
+                                <div class="form-floating">
+                                    <select class="form-select" id="interList" name="interList" required>
+                                        <option value="00">선택하세요</option>
+                                        <option value="01" ${club.interList=='독서'?'selected':''}>독서</option>
+                                        <option value="02" ${club.interList=='자동차'?'selected':''}>자동차</option>
+                                        <option value="03" ${club.interList=='반려동물'?'selected':''}>반려동물</option>
+                                        <option value="04" ${club.interList=='공예'?'selected':''}>공예</option>
+                                        <option value="05" ${club.interList=='스포츠'?'selected':''}>스포츠</option>
+                                        <option value="06" ${club.interList=='댄스'?'selected':''}>댄스</option>
+                                        <option value="07" ${club.interList=='여행'?'selected':''}>여행</option>
+                                        <option value="08" ${club.interList=='사진'?'selected':''}>사진</option>
+                                        <option value="09" ${club.interList=='육아'?'selected':''}>육아</option>
+                                        <option value="10" ${club.interList=='공연'?'selected':''}>공연</option>
+                                        <option value="11" ${club.interList=='음악'?'selected':''}>음악</option>
+                                        <option value="12" ${club.interList=='게임'?'selected':''}>게임</option>
+                                        <option value="13" ${club.interList=='그외'?'selected':''}>그외</option>
+                                    </select>
+                                    <label for="interList">관심목록</label>
                                 </div>
+                            </div>
 
-                                <div class="input-group mb-3">
-                                    <button class="btn btn-outline-secondary" type="button" id="button-addon1">주요활동위치
-                                    </button>
-                                    <input type="text" class="form-control" placeholder="" name="villCode" id="villCode"
-                                           value="${club.villCode}"
-                                    >
-                                </div>
+                            <div class="input-group mb-3">
+                                <button class="btn btn-outline-secondary" type="button" id="updateClubMap" data-bs-toggle="modal"
+                                        data-bs-target="#searchLocation">주요활동위치
+                                </button>
+                                <input type="text" class="form-control" placeholder="" readonly name="villCode" id="villCode"
+                                       value="${club.villCode}"
+                                >
+                            </div>
 
-                                <div class="mb-3">
-                                    <div style="width: 466px;height: 233px; text-align: center;">
-                                        <img src="/resources/${club.clubImage}"
-                                             style="object-fit: contain; width: 100%; height: 100%" alt="수정전 이미지">
-                                    </div>
-                                    <label for="file" class="form-label" style="display: none"></label>
-                                    <input class="form-control" type="file" id="file" name="file">
+                            <div class="mb-3">
+                                <div style="width: 466px;height: 233px; text-align: center;">
+                                    <img src="/resources/${club.clubImage}"
+                                         style="object-fit: contain; width: 100%; height: 100%" alt="수정전 이미지">
                                 </div>
+                                <label for="file" class="form-label" style="display: none"></label>
+                                <input class="form-control" type="file" id="file" name="file">
+                            </div>
 
-                                <div class="input-group mb-3">
-                                    <div class="form-floating">
-                                        <input type="text" class="tagify shadow-lg" id="clubTag" style="border-radius: 7px;"
-                                               placeholder="태그 : Enter!">
-                                        <label for="clubTag" style="display: none">태그 : Enter!</label>
-                                        <c:forEach items="${tagList}" var="tag">
-                                            <input type="hidden" class="tagList" value="${tag}">
-                                        </c:forEach>
-                                    </div>
+                            <div class="input-group mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="tagify shadow-lg" id="clubTag" style="border-radius: 7px;"
+                                           placeholder="태그 : Enter!">
+                                    <label for="clubTag" style="display: none">태그 : Enter!</label>
+                                    <c:forEach items="${tagList}" var="tag">
+                                        <input type="hidden" class="tagList" value="${tag}">
+                                    </c:forEach>
                                 </div>
+                            </div>
 
-                                <div class="input-group mb-3">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch" id="gatherCheck"
-                                               value="1"
-                                               name="gatherCheck" ${club.gatherCheck=='1'?'checked':''}>
-                                        <label class="form-check-label"
-                                               for="gatherCheck">${club.gatherCheck=='1'?'모집중':'모집완료'}</label>
-                                    </div>
+                            <div class="input-group mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="gatherCheck"
+                                           value="1"
+                                           name="gatherCheck" ${club.gatherCheck=='1'?'checked':''}>
+                                    <label class="form-check-label"
+                                           for="gatherCheck">${club.gatherCheck=='1'?'모집중':'모집완료'}</label>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer" style="display: block">
-                            <button type="button" class="btn btn-primary updateClub">모임 수정
-                            </button>
-                        </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer" style="display: block">
+                        <button type="button" class="btn btn-primary updateClub">모임 수정
+                        </button>
                     </div>
                 </div>
             </div>
-        </c:if>
+        </div>
+    </c:if>
     <%--모임 수정 모달창 끝--%>
 
 
     <%--모임 가입 신청 모달창 시작--%>
     <c:if test="${club.gatherCheck=='1'}">
-    <div class="modal fade" id="cluberApply" tabindex="-1" aria-labelledby="CluberApplyLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="CluberApplyLabel">모임 가입 신청</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="cluberApplyForm">
-                        <c:if test="${!empty currentCluber.clubUserNum}">
-                            <input type="hidden" name="clubUserNum" value="${currentCluber.clubUserNum}">
-                        </c:if>
-                        <input type="hidden" name="clubNum" value="${club.clubNum}">
+        <div class="modal fade" id="cluberApply" tabindex="-1" aria-labelledby="CluberApplyLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="CluberApplyLabel">모임 가입 신청</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="cluberApplyForm">
+                            <c:if test="${!empty currentCluber.clubUserNum}">
+                                <input type="hidden" name="clubUserNum" value="${currentCluber.clubUserNum}">
+                            </c:if>
+                            <input type="hidden" name="clubNum" value="${club.clubNum}">
 
-                        <div class="input-group mb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" name="userId" id="userId" placeholder="모임명"
-                                       value="${user.userId}" required readonly>
-                                <label for="userId">아이디</label>
+                            <div class="input-group mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="userId" id="userId" placeholder="모임명"
+                                           value="${user.userId}" required readonly>
+                                    <label for="userId">아이디</label>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="input-group mb-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" name="clubName" placeholder="모임명"
-                                       value="${club.clubName}" required readonly>
-                                <label for="clubName">모임명</label>
+                            <div class="input-group mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="clubName" placeholder="모임명"
+                                           value="${club.clubName}" required readonly>
+                                    <label for="clubName">모임명</label>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="input-group mb-3">
-                            <div class="form-floating">
+                            <div class="input-group mb-3">
+                                <div class="form-floating">
                                 <textarea class="form-control" placeholder="자기소개" id="cluberText" name="cluberText"
                                           style="height: 200px;">${currentCluber.cluberText}</textarea>
-                                <label for="cluberText">자기소개</label>
+                                    <label for="cluberText">자기소개</label>
+                                </div>
                             </div>
-                        </div>
 
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <c:if test="${currentCluber.cluberStatus!='2'}">
-                        <button type="button" class="btn btn-primary addCluberApply" style="margin-right: 185px">모임 가입
-                            신청
-                        </button>
-                    </c:if>
-                    <c:if test="${currentCluber.cluberStatus=='2'}">
-                        <button type="button" class="btn btn-primary updateCluberApply" style="margin-right: 10px">수정
-                        </button>
-                        <button type="button" class="btn btn-primary deleteCluberApply" style="margin-right: 175px">삭제
-                        </button>
-                    </c:if>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <c:if test="${currentCluber.cluberStatus!='2'}">
+                            <button type="button" class="btn btn-primary addCluberApply" style="margin-right: 185px">모임 가입
+                                신청
+                            </button>
+                        </c:if>
+                        <c:if test="${currentCluber.cluberStatus=='2'}">
+                            <button type="button" class="btn btn-primary updateCluberApply" style="margin-right: 10px">수정
+                            </button>
+                            <button type="button" class="btn btn-primary deleteCluberApply" style="margin-right: 175px">삭제
+                            </button>
+                        </c:if>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </c:if>
     <%--모임 가입 신청 모달창 끝--%>
 
     <%--모임 탈퇴 모달창 시작--%>
-        <div class="modal fade" id="deleteCluber" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                </div>
+    <div class="modal fade" id="deleteCluber" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
             </div>
         </div>
+    </div>
     <%--모임 탈퇴 신청 모달창 끝--%>
 
     <%--모임원 목록 조회 모달창 시작--%>
@@ -372,12 +395,12 @@
     <%--모임원 목록 조회 모달창 끝--%>
 
     <%--getCluber 모달창 시작--%>
-        <div class="modal fade" id="getCluber" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                </div>
+    <div class="modal fade" id="getCluber" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
             </div>
         </div>
+    </div>
     <%--getCluber 모달창 끝--%>
 
     <%--listCluberApply 모달창 시작--%>
@@ -443,7 +466,48 @@
     </div>
     <%--addClubReport 모달창 끝--%>
 
+    <%--searchLocation 모달창 시작--%>
+    <div class="modal fade" id="searchLocation" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <jsp:include page="/view/site/clubMap.jsp"/>
+            </div>
+        </div>
+    </div>
+    <%--searchLocation 모달창 끝--%>
+
+    <%--addClubMasterBoard 모달창 시작--%>
+    <div class="modal fade" id="addClubMasterBoard" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+    <%--addClubMasterBoard 모달창 끝--%>
+
+    <%--getClubMasterBoard 모달창 시작--%>
+    <div class="modal fade" id="getClubMasterBoard" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+    <%--getClubMasterBoard 모달창 끝--%>
+
+    <%--updateClubMasterBoard 모달창 시작--%>
+    <div class="modal fade" id="updateClubMasterBoard" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+    <%--updateClubMasterBoard 모달창 끝--%>
+
 
 </div>
+
+<%--하단바--%>
+<jsp:include page="/layout/footer.jsp"/>
+
 </body>
 </html>

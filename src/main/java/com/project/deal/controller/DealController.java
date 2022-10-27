@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.io.File;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.*;
 
 @Controller
@@ -170,7 +172,35 @@ public DealController(){
             return "forward:/deal/getListDeal";
         }
     @RequestMapping(value = "getDeal/{dealBoardNum}")
-    public String getDeal(Model model, @PathVariable int dealBoardNum, HttpSession session, HttpServletResponse response) throws Exception {
+    public String getDeal(Model model, @PathVariable int dealBoardNum, HttpSession session, HttpServletResponse response, @CookieValue(value = "history",required = false)String history) throws Exception {
+       //쿠키 추가
+//      쿠키관리
+        if(history!=null) {
+            history = URLDecoder.decode(history,"EUC_KR");
+        }else {
+            history = "";
+        }
+
+        String[] histories = history.split(",");
+        history = "";
+        if(histories.length>0) {
+            for(String str : histories) {
+                if(str!=null && str.length()>4 && Integer.parseInt(str) != dealBoardNum ) {
+                    history+= (history.length()==0?"":",")+str;
+                }
+            }
+        }
+
+        history+= (history.length()==0?"":",")+dealBoardNum;
+
+        Cookie cookie = new Cookie("history", URLEncoder.encode(history,"EUC_KR"));
+        cookie.setMaxAge(30*60);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+
+        System.out.println("내가 만든 쿠키 ~"+ cookie.getValue());
+
+       //getdeal 기본
         Deal deal = dealService.getDeal(dealBoardNum);
 
 //Object User=session.getAttribute("userId");
@@ -178,23 +208,53 @@ public DealController(){
         System.out.println(deal.getBoardCategory());
 //String likeCheck =commuService.getLikeCheck((String)session.getAttribute("userId"),dealBoardNum, (Integer.parseInt(deal.getBoardCategory())));
        String likeCheck =commuService.getLikeCheck(deal.getUser().getUserId(),dealBoardNum, (Integer.parseInt(deal.getBoardCategory())));
+
         int reviewPt=dealService.getReviewPt(deal);
 
         System.out.println("리뷰포인트를 얻기위한 노력"+deal);
         System.out.println("likecheck"+likeCheck);
-        model.addAttribute("reviewPt",reviewPt);
+        if(reviewPt==0) {
+            reviewPt=0;
+            model.addAttribute("reviewPt", reviewPt);
+        }else{
+
+            model.addAttribute("reviewPt",reviewPt);
+        }
         model.addAttribute("deal", deal);
         model.addAttribute("likeCheck",likeCheck);
         return "/view/deal/getDeal.jsp";
     }
+    @RequestMapping(value = "history")
+    public String history(HttpServletRequest request, Model model) throws Exception {
 
+        Cookie[] cookies = request.getCookies();
+String history="";
+        for(Cookie c : cookies) {
+            if(c.getName().equals("history")) {
+                history = URLDecoder.decode(c.getValue(),"EUC_KR");
+            }
+        }
+
+        if(!history.equals("")) {
+            List<String> listcook = new ArrayList<String>();
+
+            String[] records = history.trim().split(",");
+            for(String str : records) {
+                listcook.add(0,str);
+            }
+            System.out.println(listcook);
+            model.addAttribute("listcook", listcook);
+        }
+
+        return "forward:/view/deal/history.jsp";
+    }
 
 
 
 
     @RequestMapping(value = "getListDeal")
     public String getListDeal(@ModelAttribute("search") Search search, Model model,HttpServletRequest request
-                            ,@RequestParam(value = "boardCategory", defaultValue = "08") String boardCategory, @RequestParam(value = "searchTag", required = false) List<String> searchTag) throws Exception {
+                            ,@RequestParam(value = "boardCategory", defaultValue = "99") String boardCategory, @RequestParam(value = "searchTag", required = false) List<String> searchTag) throws Exception {
         System.out.println("getListDeal : GET POST");
 
         System.out.println(boardCategory);
@@ -236,9 +296,10 @@ public DealController(){
             model.addAttribute("boardCategory","09");
             model.addAttribute("searchTag",searchTag);
 
-        }else {
+        }else{
 
-            Map<String, Object> map = dealService.getListDeal(search, boardCategory,searchTag);
+
+        Map<String, Object> map = dealService.getListDeal(search, boardCategory, searchTag);
 
 
             Page resultPage = new Page(search.getCurrentPage(), ((Integer) map.get("totalCount")).intValue(), pageUnit, pageSize);

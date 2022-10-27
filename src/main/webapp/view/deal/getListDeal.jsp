@@ -199,19 +199,26 @@
         location.href = "/deal/getDeal/" + $(this).find('[name="dealBoardNum"]').val()
     })
 //판매 리스트 보기
-    $(".deal").on("click", function () {
-
-      location.href = "/deal/getListDeal?boardCategory="+$(".deal").val();
-      //$(this).attr("action","/deal/getListDeal/08").attr("method","post")--%>
-    });
+//     $(".deal").on("click", function () {
+//
+//       location.href = "/deal/getListDeal?boardCategory="+$(".deal").val();
+//       //$(this).attr("action","/deal/getListDeal/08").attr("method","post")--%>
+//     });
 
     //판매요청 리스트
-    $(".dealRequest").on("click", function () {
-      alert($(".dealRequest").val());
-      location.href = "/deal/getListDeal?boardCategory="+$(".dealRequest").val();
+    $(".dealCategory").on("change", function () {
+      if ($(".dealCategory").val() == "08") {
+          location.href = "/deal/getListDeal?boardCategory=" + $(".dealCategory").val();
+        }else if ($(".dealCategory").val() == "09") {
+          location.href = "/deal/getListDeal?boardCategory=" + $(".dealCategory").val();
+      }else if ($(".dealCategory").val() =="99") {
+        alert("dsjfjewljr'w")
+        location.href = "/deal/getListDeal?boardCategory=" + $(".dealCategory").val();
+      }
+    })
 
       // $(this).attr("action","/deal/getListDeal/09").attr("method","post")--%>
-    })
+
 
 
     //태그
@@ -468,6 +475,22 @@ $(".addDeal").on('click',function (){
         width: 0
       }
     }
+    .btn-primary {
+      --bs-btn-color: #000;
+      --bs-btn-bg: #f8cd07b3;
+      --bs-btn-border-color: #f8cd07b3;
+      --bs-btn-hover-color: #000;
+      --bs-btn-hover-bg: #f8cd07;
+      --bs-btn-hover-border-color: #f8cd07;
+      --bs-btn-focus-shadow-rgb: 130,138,145;
+      --bs-btn-active-color: #000;
+      --bs-btn-active-bg: #f8cd07;
+      --bs-btn-active-border-color: #f8cd07;
+      --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+      --bs-btn-disabled-color: #fff;
+      --bs-btn-disabled-bg: #6c757d;
+      --bs-btn-disabled-border-color: #6c757d;
+    }
   </style>
 </head>
 
@@ -484,6 +507,7 @@ $(".addDeal").on('click',function (){
 <%--${user.userId}--%>
 <!-- Example Code -->
 <jsp:include page="/layout/toolbar.jsp"/>
+<jsp:include page="/view/deal/history.jsp"/>
 <img src="/resources/uploadFiles/dealBoardFiles/중고거래.png" style="height: 500px;border-radius: 10px;  width: 1600px;">
 <div class="wap">
 
@@ -537,13 +561,13 @@ $(".addDeal").on('click',function (){
       거래 작성
     </button>
     <div>
+<select class="btn btn-primary dealCategory" name="dealCategory">
+  <option selected>판매구분</option>
+  <option value="99" >전체</option>
+  <option value="08">판매</option>
+  <option value="09">판매요청</option>
+</select>
 
-      <button class="btn btn-primary deal" value="08">
-        판매
-      </button>
-      <button class="btn btn-primary dealRequest" value="09">
-        판매요청
-      </button>
       <button class="center btn btn-primary searchTag">
         태그
       </button>
@@ -551,9 +575,9 @@ $(".addDeal").on('click',function (){
 
         <div class="form-group">
           <select class="form-control" name="searchCondition" >
-            <option value="0"  ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" : "" }>번호</option>
-            <option value="1"  ${ ! empty search.searchCondition && search.searchCondition==1 ? "selected" : "" }>제목</option>
-            <option value="2"  ${ ! empty search.searchCondition && search.searchCondition==2 ? "selected" : "" }>내용</option>
+            <option value="0"  ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" : "" }>제목</option>
+            <option value="1"  ${ ! empty search.searchCondition && search.searchCondition==1 ? "selected" : "" }>상품명</option>
+            <option value="2"  ${ ! empty search.searchCondition && search.searchCondition==2 ? "selected" : "" }>태그#</option>
           </select>
         </div>
 
@@ -699,7 +723,6 @@ $(".addDeal").on('click',function (){
         </div>
         <div class="modal-body">
           <form id="addDealForm" enctype="multipart/form-data" method="post">
-            <input type="text" class="asasas" name="user.userId" value="${user.userId}"/>
             <div class="input-group mb-3">
               <div class="form-floating">
                 <input type="text" class="form-control" id="dealTitle" name="dealTitle" placeholder="거래명"

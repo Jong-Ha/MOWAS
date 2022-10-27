@@ -922,7 +922,7 @@
     </delete>
 
     <!--clubService.getCalendarCluberCondition-->
-    <!--모임 일정 참여자 삭제-->
+    <!--모임 일정 참여상태 조회-->
     <select id="getCalendarCluberCondition" parameterType="map" resultType="string">
         SELECT apply_status
         FROM club_calendar_apply

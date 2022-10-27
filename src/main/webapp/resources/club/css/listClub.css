@@ -17,11 +17,16 @@
     font-size: 1.2em;
 }
 
-.cardbox {
+.listClub {
     display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.cardbox {
+    display: block;
     flex-direction: row;
-    margin: 6px;
-    float: left;
+    margin-bottom: 20px;
 }
 
 button.buttonBox {
@@ -178,6 +183,6 @@ tags.tagify{
     transition: all 0.2s linear;
 }
 
-.cardbox:hover  {
-    transform: scale(1.12);
+.cardbox:hover {
+    transform: scale(1.05);
 }

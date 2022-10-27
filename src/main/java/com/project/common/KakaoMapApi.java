@@ -150,7 +150,7 @@ public class KakaoMapApi {
     }
 
     //주소를 좌표로 변화 Method
-    public Map<String, String> getJsonAddress(String address) throws Exception {
+    public static Map<String, Object> getJsonAddress(String address) throws Exception {
 
         address = URLEncoder.encode(address,"UTF-8");
 
@@ -180,7 +180,7 @@ public class KakaoMapApi {
         JSONArray data = (JSONArray) jObj.get("documents");
         long size = (long) meta.get("total_count");
 
-        Map<String, String> mapInfo = new HashMap<String, String>();
+        Map<String, Object> mapInfo = new HashMap<String, Object>();
 
         if(size > 0) {
             JSONObject jsonX = (JSONObject)data.get(0);

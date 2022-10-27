@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<div class="footer">
+<div class="footer" style="margin-top: 50px;">
   <div class="b-example-divider"></div>
 
   <div class="bg-dark text-secondary px-4 py-5 text-center" style="height : 220px;">

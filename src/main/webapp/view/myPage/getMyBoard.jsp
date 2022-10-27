@@ -11,12 +11,25 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
     $(function(){
+        var userId = $(".myPageUserId").val();
         $(".paging").on("click",function(){
             $("#currentPage").val($(this).text())
             $("form").submit()
         })
         $("form").on("submit",function(){
             $(this).attr("action","/club/listClubMasterBoard/${clubNum}").attr("method","post")
+        })
+        $(".getMyVillBoard").on("click", function (){
+            self.location="/myPage/getMyBoard?userId="+userId;
+        })
+        $(".getMyCbMaster").on("click", function (){
+            self.location="/myPage/getMyCbMaster?userId="+userId;
+        })
+        $(".getMyCbReviewBoard").on("click", function (){
+            self.location="/myPage/getMyCbReviewBoard?userId="+userId;
+        })
+        $(".getMyDealBoard").on("click", function (){
+            self.location="/myPage/getMyDealBoard?userId="+userId;
         })
     })
 
@@ -29,9 +42,15 @@
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
 
-내가 쓴 글<br/>
 <hr/>
-<h3>우리동네 게시글</h3>
+<div>
+<h3 class="getMyVillBoard">우리동네 게시글</h3>
+<h3 class="getMyCbMaster">모임 공지사항 게시글</h3>
+<h3 class="getMyCbReviewBoard">모임 일정 후기 게시글</h3>
+<h3 class="getMyDealBoard">판매/판매요청 게시글</h3>
+</div>
+<hr/>
+<h4>우리동네 게시글</h4>
 <hr/>
 <c:set var="i" value="0" />
 <c:forEach var="list" items="${map.myVillBoard}"><br/>
@@ -42,53 +61,7 @@
     게시글카테고리${list.boardCategory}<br/>
 
 </c:forEach> <br/>
-<hr/>
-<h3>모임장 작성글</h3>
-<hr/>
-<c:set var="i" value="0" />
-<c:forEach var="list" items="${map.myclubBoard}"><br/>
-    모임번호${list.clubNum}<br/>
-    <a href="/club/getClubMasterBoard/${list.boardNum}">제목 ${list.title}</a><br/>
-    회원아이디 ${list.userId}<br/>
-    작성날짜 ${list.regDate}<br/>
-    게시글번호${list.boardNum}<br/>
-</c:forEach> <br/>
 
-<c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" var="i">
-    <span class="paging">${i}</span>
-</c:forEach>
-<label>
-    <input type="hidden" id="currentPage" name="currentPage" value="1">
-    <input type="text" name="searchKeyword" value="${search.searchKeyword}">
-</label>
-<input type="submit" value="검색">
-
-
-<hr/>
-<h3>모임 후기글</h3>
-<hr/>
-<c:set var="i" value="0" />
-<c:forEach var="list" items="${map.clubCalendarReview}"><br/>
-   <a href="/clubCal/listCalenderReview?boardCategory=${list.boardCategory}"> 제목 ${list.reviewTitle}</a><br/>
-    회원아이디 ${list.userId}<br/>
-    작성날짜 ${list.regDate}<br/>
-    조회수 ${list.viewCount}<br/>
-    좋아요수 ${list.likeConunt}<br/>
-    게시글번호 ${list.clubCalenderReviewNum}<br/>
-    카테고리번호 ${list.boardCategory}<br/>
-</c:forEach> <br/>
-<hr/>
-<h3>판매/판매요청 게시글</h3>
-<hr/>
-<c:set var="i" value="0" />
-<c:forEach var="list" items="${map.dealBoard}"><br/>
-    <a href="/deal/getDeal/${list.dealBoardNum}">제목${list.dealTitle}</a><br/>
-    회원아이디 ${list.user.userId}<br/>
-    작성날짜 ${list.dealRegDate}<br/>
-    조회수 ${list.viewCount}<br/>
-    게시글번호 ${list.dealBoardNum}<br/>
-</c:forEach> <br/>
-
-
+<div id="villBoardUserId" name="villBoardUserId" value="${user.userId}"/>
 </body>
 </html>

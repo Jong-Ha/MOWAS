@@ -89,21 +89,75 @@
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
+
+     $(function () {
+        var userId = $(".myPageUserId").val();
+
+        $("#listUser").on("click", function () {
+        self.location = "/user/listUser";
+    });
+        $("#getMyInfor").on("click", function () {
+        self.location = "/myPage/getMyInfor?userId="+userId;
+    });
+        $(".getMyBoard").on("click", function () {
+            alert('userId'+userId);
+        self.location = "/myPage/getMyBoard?userId="+userId;
+    });
+        $(".getMyComment").on("click", function () {
+            alert('1234');
+        self.location = "/myPage/getMyComment?userId="+userId;
+    });
+
+        $(".getMyBoardLike").on("click", function () {
+        self.location = "/myPage/getMyLike?userId="+userId;
+    });
+        $(".getMyClub").on("click", function () {
+        self.location = "/myPage/getMyClub?userId="+userId;
+    });
+        $(".getMyDeal").on("click", function () {
+        self.location = "/myPage/getMyDeal?userId="+userId;
+    });
+        $(".getMyDealReview").on("click", function () {
+        self.location = "/myPage/getMyDealReview?userId="+userId;
+    });
+        $(".getMyReport").on("click", function () {
+        self.location = "/myPage/getMyReport?userId="+userId;
+    });
+        $(".getMyPpt").on("click", function () {
+        self.location = "/myPage/getMyPpt?userId="+userId;
+    });
+
+  });
+
+
+
     $(function () {
         $("#mainPage").on("click", function () {
             self.location = "/view/user/main.jsp";
         });
 
-        $(".myBoard").on("click",()=>{
+        $(".myBoard").on("click",function (){
+
+            $(".myPageTogle1").slideToggle();
+        })
+        $(".MyClub").on("click",function (){
 
             $(".myPageTogle2").slideToggle();
+        })
+        $(".MyDeal").on("click",function (){
+
+            $(".myPageTogle3").slideToggle();
+        })
+        $(".MyPpt").on("click",function (){
+
+            $(".myPageTogle4").slideToggle();
         })
 
     });
 
 </script>
 <body>
-
+<input type="hidden" class="myPageUserId" id="userId" name="userId" value="${user.userId}">
 <header class="tool-bar con-min-width">
     <div class="con">
         <nav class="top-bar__menu-box-1">
@@ -124,13 +178,15 @@
 
     <nav class="navbar navbar-expand-lg myPageBox">
         <div>
-            <div class="underline yellow myBoard">작성 게시글</div>
-            <div class="shadow-lg myPageTogle2" style="display: none;  width: 100px; height: 200px;  position: absolute;">
+            <div class="underline yellow myBoard">
+                작성 게시글
+            </div>
+            <div class="shadow-lg myPageTogle1" style="display: none;  width: 200px; height: 200px;  position: absolute;">
                 <ul>
-                    <li>내가 작성한 글</li>
-                    <li>내가 작성한 댓글</li>
-                    <li>좋아요한 게시글</li>
-                    <li>좋아요한 댓글</li>
+                    <li class="getMyBoard" >내가 작성한 게시글</li>
+                    <li class="getMyComment">내가 작성한 댓글</li>
+                    <li class="getMyBoardLike">좋아요한 게시글</li>
+                    <li class="getMyCommentLike">좋아요한 댓글</li>
 
                 </ul>
             </div>
@@ -142,12 +198,12 @@
 
 
         <div>
-            <div class="underline yellow clubCalenderReview">모임</div>
-            <div class="shadow-lg myPageTogle2" style="display: none; border: 1px solid; width: 100px; height: 200px; background: #1817174d; position: absolute">
+            <div class="underline yellow MyClub">모임</div>
+            <div class="shadow-lg myPageTogle2" style="display: none;  width: 200px; height: 200px;  position: absolute;">
                 <ul>
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
+                    <li class="getMyClub">가입한 모임</li>
+                    <li class="getMyComment">가입신청한 모임</li>
+
 
                 </ul>
             </div>
@@ -161,12 +217,11 @@
 
 
         <div>
-            <div class="underline yellow  clubCalenderReviewShort">거래</div>
-            <div class="shadow-lg myPageTogle2" style="display: none; border: 1px solid; width: 100px; height: 200px; background: #1817174d; position: absolute">
+            <div class="underline yellow  MyDeal">거래</div>
+            <div class="shadow-lg myPageTogle3" style="display: none;  width: 200px; height: 200px;  position: absolute;">
                 <ul>
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
+                    <li class="getMyDeal">거래 내역</li>
+                    <li class="getMyDealReview">거래 후기</li>
 
                 </ul>
             </div>
@@ -180,12 +235,11 @@
 
 
         <div>
-            <div class="underline yellow villBoard">벌점/신고 </div>
-            <div class="shadow-lg myPageTogle2" style="display: none; border: 1px solid; width: 100px; height: 200px; background: #1817174d; position: absolute">
+            <div class="underline yellow MyPpt">벌점/신고 </div>
+            <div class="shadow-lg myPageTogle4" style="display: none;  width: 200px; height: 200px;  position: absolute;">
                 <ul>
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
+                    <li class="getMyPpt">받은 벌점 내역</li>
+                    <li class="getMyReport">신고한 내역</li>
 
                 </ul>
             </div>
@@ -196,6 +250,5 @@
     </nav>
     <hr>
 </div>
-
 </body>
 </html>

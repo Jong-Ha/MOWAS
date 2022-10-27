@@ -21,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
@@ -443,21 +442,40 @@ public class MyPageController {
                             )throws Exception{
         System.out.println("getMyBoard컨트롤러 userId의 값?"+userId);
 
-
         Map<String, Object> map = myPageService.getMyBoard(userId);
-
-
-
-
-
-/////보드 게시판 각각 만들기
-
-
-
         System.out.println("getMyBoard 컨트롤러 map의 값은?"+map);
-
         model.addAttribute("map", map);
         return "forward:/view/myPage/getMyBoard.jsp";
+    }
+    @RequestMapping(value = "getMyCbMaster", method = RequestMethod.GET)
+    public String getMyCbMaster(@RequestParam(value ="userId")String userId,Model model
+    )throws Exception{
+        System.out.println("getMyCbMaster컨트롤러 userId의 값?"+userId);
+
+        Map<String, Object> map = myPageService.getMyBoard(userId);
+        System.out.println("getMyCbMaster 컨트롤러 map의 값은?"+map);
+        model.addAttribute("map", map);
+        return "forward:/view/myPage/getMyCbMaster.jsp";
+    }
+    @RequestMapping(value = "getMyCbReviewBoard", method = RequestMethod.GET)
+    public String getMyCbReviewBoard(@RequestParam(value ="userId")String userId,Model model
+    )throws Exception{
+        System.out.println("getMyCbReviewBoard컨트롤러 userId의 값?"+userId);
+
+        Map<String, Object> map = myPageService.getMyBoard(userId);
+        System.out.println("getMyCbReviewBoard 컨트롤러 map의 값은?"+map);
+        model.addAttribute("map", map);
+        return "forward:/view/myPage/getMyCbReviewBoard.jsp";
+    }
+    @RequestMapping(value = "getMyDealBoard", method = RequestMethod.GET)
+    public String getMyDealBoard(@RequestParam(value ="userId")String userId,Model model
+    )throws Exception{
+        System.out.println("getMyDealBoard컨트롤러 userId의 값?"+userId);
+
+        Map<String, Object> map = myPageService.getMyBoard(userId);
+        System.out.println("getMyDealBoard 컨트롤러 map의 값은?"+map);
+        model.addAttribute("map", map);
+        return "forward:/view/myPage/getMyDealBoard.jsp";
     }
     ///*
     @RequestMapping(value = "listClubMasterBoard/{clubNum}")
@@ -475,7 +493,7 @@ public class MyPageController {
         Page resultPage = new Page(search.getCurrentPage(), (Integer) map.get("totalCount"), pageUnit, pageSize);
         map.put("resultPage", resultPage);
         model.addAllAttributes(map);
-        return "/view/myPage/getMyBoard.jsp";
+        return "forward:/view/myPage/getMyBoard.jsp";
     }
     //*/
     @RequestMapping(value = "getMyComment", method = RequestMethod.GET)
@@ -487,6 +505,15 @@ public class MyPageController {
         model.addAttribute("map", map);
         return "forward:/view/myPage/getMyComment.jsp";
     }
+    @RequestMapping(value = "getMyRecomment", method = RequestMethod.GET)
+    public String getMyRecomment(@RequestParam(value ="userId")String userId,Model model)throws Exception{
+        System.out.println("getMyRecomment 컨트롤러 userId의 값?"+userId);
+
+        Map<String, Object> map = myPageService.getMyComment(userId);
+        System.out.println("getMyRecomment 컨트롤러 map의 값은?"+map);
+        model.addAttribute("map", map);
+        return "forward:/view/myPage/getMyRecomment.jsp";
+    }
 
     @RequestMapping(value = "getMyLike", method = RequestMethod.GET)
     public String getMyLike(@RequestParam(value ="userId")String userId,Model model)throws Exception{
@@ -496,6 +523,26 @@ public class MyPageController {
         System.out.println("getMyLike 컨트롤러 map의 값은?"+map);
         model.addAttribute("map", map);
         return "forward:/view/myPage/getMyLike.jsp";
+    }
+
+    @RequestMapping(value = "getMyCbRvLike", method = RequestMethod.GET)
+    public String getMyCbRvLike(@RequestParam(value ="userId")String userId,Model model)throws Exception{
+        System.out.println("getMyCbRvLike 컨트롤러 userId의 값?"+userId);
+
+        Map<String, Object> map = myPageService.getMyLike(userId);
+        System.out.println("getMyCbRvLike 컨트롤러 map의 값은?"+map);
+        model.addAttribute("map", map);
+        return "forward:/view/myPage/getMyCbRvLike.jsp";
+    }
+
+    @RequestMapping(value = "getMyDealLike", method = RequestMethod.GET)
+    public String getMyDealLike(@RequestParam(value ="userId")String userId,Model model)throws Exception{
+        System.out.println("getMyDealLike 컨트롤러 userId의 값?"+userId);
+
+        Map<String, Object> map = myPageService.getMyLike(userId);
+        System.out.println("getMyDealLike 컨트롤러 map의 값은?"+map);
+        model.addAttribute("map", map);
+        return "forward:/view/myPage/getMyDealLike.jsp";
     }
 
     @RequestMapping(value = "getMyClub", method = RequestMethod.GET)
@@ -515,9 +562,17 @@ public class MyPageController {
         Map<String, Object> map = myPageService.getMyDeal(userId);
         System.out.println("getMyDeal 컨트롤러 map의 값은?"+map);
         model.addAttribute("map", map);
-        return "forward:/view/myPage/getMyDeal.jsp";
+        return "forward:/view/myPage/getMyEndDeal.jsp";
     }
+    @RequestMapping(value = "getMyDealReview", method = RequestMethod.GET)
+    public String getMyDealReview(@RequestParam(value ="userId")String userId,Model model)throws Exception{
+        System.out.println("getMyDealReview 컨트롤러 userId의 값?"+userId);
 
+        Map<String, Object> map = myPageService.getMyDeal(userId);
+        System.out.println("getMyDealReview 컨트롤러 map의 값은?"+map);
+        model.addAttribute("map", map);
+        return "forward:/view/myPage/getMyDealReview.jsp";
+    }
     @RequestMapping(value = "getMyReport", method = RequestMethod.GET)
     public String getMyReport(@RequestParam(value ="userId")String userId,Model model)throws Exception{
         System.out.println("getMyReport 컨트롤러 userId의 값?"+userId);
