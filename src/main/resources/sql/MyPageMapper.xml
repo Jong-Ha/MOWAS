@@ -263,6 +263,12 @@
         FROM likes a, deal b
         WHERE a.board_category = b.board_category and a.user_id=#{userId}
     </select>
+    <!--좋아요한 댓글 조호-->
+    <select id="getMyCommentLike" parameterType="String" resultMap="comemntSelect" >
+        SELECT *
+        FROM likes a, comments b
+        WHERE a.board_category = b.board_category and a.user_id=#{userId}
+    </select>
 
     <!--가입한 모임 조회-->
     <select id="getMyClub" parameterType="String" resultMap="ClubResultMap" >

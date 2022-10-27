@@ -42,26 +42,31 @@
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
 
+
+
+
 <hr/>
 <div>
-<h3 class="getMyVillBoard">우리동네 게시글</h3>
-<h3 class="getMyCbMaster">모임 공지사항 게시글</h3>
-<h3 class="getMyCbReviewBoard">모임 일정 후기 게시글</h3>
-<h3 class="getMyDealBoard">판매/판매요청 게시글</h3>
+    <h3 class="getMyVillBoard">우리동네 게시글</h3>
+    <h3 class="getMyCbMaster">모임 공지사항 게시글</h3>
+    <h3 class="getMyCbReviewBoard">모임 일정 후기 게시글</h3>
+    <h3 class="getMyDealBoard">판매/판매요청 게시글</h3>
 </div>
+
 <hr/>
-<h4>우리동네 게시글</h4>
+<h4>모임 후기글</h4>
 <hr/>
 <c:set var="i" value="0" />
-<c:forEach var="list" items="${map.myVillBoard}"><br/>
-<a href="/commu/getVillBoard?villBoardNum=${list.villBoardNum}&boardCategory=${list.boardCategory}">제목${list.villTitle}</a><br/>
-   조회수 ${list.viewCount}<br/>
-    좋아요수${list.likeCount}<br/>
-    게시글번호${list.villBoardNum}<br/>
-    게시글카테고리${list.boardCategory}<br/>
-
+<c:forEach var="list" items="${map.clubCalendarReview}"><br/>
+   <a href="/clubCal/listCalenderReview?boardCategory=${list.boardCategory}"> 제목 ${list.reviewTitle}</a><br/>
+    회원아이디 ${list.userId}<br/>
+    작성날짜 ${list.regDate}<br/>
+    조회수 ${list.viewCount}<br/>
+    좋아요수 ${list.likeConunt}<br/>
+    게시글번호 ${list.clubCalenderReviewNum}<br/>
+    카테고리번호 ${list.boardCategory}<br/>
 </c:forEach> <br/>
 
-<div id="villBoardUserId" name="villBoardUserId" value="${user.userId}"/>
+
 </body>
 </html>

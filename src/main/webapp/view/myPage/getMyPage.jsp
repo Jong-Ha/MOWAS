@@ -95,39 +95,7 @@
 <script type="text/javascript">
     $(function () {
         var userId = $("#userId").val();
-        $("#listUser").on("click", function () {
-            self.location = "/user/listUser";
-        });
-        $("#getMyInfor").on("click", function () {
-            self.location = "/myPage/getMyInfor?userId=" + userId;
-        });
-        $("#getMyBoard").on("click", function () {
-            self.location = "/myPage/getMyBoard?userId=" + userId;
-        });
-        $("#getMyComment").on("click", function () {
-            self.location = "/myPage/getMyComment?userId=" + userId;
-        });
-        $("#getMyLike").on("click", function () {
-            self.location = "/myPage/getMyLike?userId=" + userId;
-        });
-        $("#getMyClub").on("click", function () {
-            self.location = "/myPage/getMyClub?userId=" + userId;
-        });
-        $("#getMyDeal").on("click", function () {
-            self.location = "/myPage/getMyDeal?userId=" + userId;
-        });
-        $("#getMyReport").on("click", function () {
-            self.location = "/myPage/getMyReport?userId=" + userId;
-        });
-        $("#getMyPpt").on("click", function () {
-            self.location = "/myPage/getMyPpt?userId=" + userId;
-        });
- /*       $("#getMyNotice").on("click", function () {
-            self.location = "/myPage/getMyNotice?userId=" + userId;
-        });
-        $("#getMyCalendar").on("click", function () {
-            self.location = "/myPage/getMyCalendar?userId=" + userId;
-        });*/
+
 
         $(".aaa").on("click", function () {
             var userPhoto = $(".userPhoto1").val();
@@ -176,13 +144,6 @@
     <button type="button" class="listUser" id="listUser">회원목록조회</button>
 </c:if>
 
-    <button type="button" class="getMyBoard" id="getMyBoard">작성글</button>
-    <button type="button" class="getMyComment" id="getMyComment">작성 댓글, 대댓글</button>
-    <button type="button" class="getMyLike" id="getMyLike">좋아요</button>
-    <button type="button" class="getMyClub" id="getMyClub">모임</button>
-    <button type="button" class="getMyDeal" id="getMyDeal">거래</button>
-    <button type="button" class="getMyReport" id="getMyReport">신고</button>
-    <button type="button" class="getMyPpt" id="getMyPpt">벌점</button>
 
 </div>
 

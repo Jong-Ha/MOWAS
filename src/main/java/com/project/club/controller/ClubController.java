@@ -540,6 +540,7 @@ public class ClubController {
         if (search.getPageSize() == 0) {
             search.setPageSize(pageSize);
         }
+
         if (search.getSearchKeyword() == null) {
             search.setSearchKeyword("");
         }

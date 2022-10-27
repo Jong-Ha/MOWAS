@@ -12,17 +12,17 @@
 <script type="text/javascript">
     $(function(){
         var userId = $(".myPageUserId").val();
-    $(".getMyLike").on("click", function (){
-        alert('user'+userId)
-        self.location="/myPage/getMyLike?userId="+userId;
-    })
+        $(".getMyLike").on("click", function (){
+            alert('user'+userId)
+            self.location="/myPage/getMyLike?userId="+userId;
+        })
         $(".getMyCbRvLike").on("click", function (){
             self.location="/myPage/getMyCbRvLike?userId="+userId;
         })
 
-    $(".getMyDealLike").on("click", function (){
-        location.href="/myPage/getMyDealLike?userId="+userId;
-    })
+        $(".getMyDealLike").on("click", function (){
+            location.href="/myPage/getMyDealLike?userId="+userId;
+        })
     })
 
 </script>
@@ -41,17 +41,16 @@
 </div>
 <hr/>
 <hr/>
-<h3>좋아요한 우리동네 게시글</h3>
+<h3>좋아요한 모임 후기글</h3>
 <hr/>
 <c:set var="i" value="0" />
-<c:forEach var="list" items="${map.villBoardLike}"><br/>
-    게시판 카테고리 ${list.boardCategory}<br/>
-    <a href="/commu/getVillBoard?villBoardNum=${list.villBoardNum}&boardCategory=${list.boardCategory}">우리동네 게시글 제목 ${list.villTitle}</a><br/>
+<c:forEach var="list" items="${map.clubCalendarReviewLike}"><br/>
+    게시판 카테고리  ${list.boardCategory}<br/>
+    <a href="/clubCal/listCalenderReview?boardCategory=${list.boardCategory}"> 좋아요한 모임 후기글 제목 ${list.reviewTitle}</a><br/>
     작성날짜 ${list.regDate}<br/>
     조회수 ${list.viewCount}<br/>
-    좋아요수 ${list.likeCount}<br/>
-    게시글번호${list.villBoardNum}<br/>
-
+    좋아요수 ${list.likeConunt}<br/>
+    게시글번호 ${list.clubCalenderReviewNum}<br/>
 </c:forEach> <br/>
 
 

@@ -116,7 +116,7 @@ public class UserController {
         return "forward:/view/user/addInterList.jsp";
     }
 
- /*   @RequestMapping(value = "updateSNSUserInfor",method = RequestMethod.POST)
+    @RequestMapping(value = "updateSNSUserInfor",method = RequestMethod.POST)
     public String updateSNSUserInfor(@ModelAttribute User user,
                           HttpSession session) throws Exception{
         System.out.println("/user/updateSNSUserInfor : POST 실행");
@@ -130,7 +130,7 @@ public class UserController {
         System.out.println("/user/updateSNSUserInfor : POST 종료");
         return "forward:/view/user/main.jsp";
     }
-*/
+
     @RequestMapping(value = "getUser", method = RequestMethod.GET)
     public String getUser(@RequestParam("userId")String userId, Model model)throws Exception{
         System.out.println("/user/getUser : GET 실행");
@@ -227,7 +227,7 @@ public class UserController {
         int a = referer.lastIndexOf(":")+5;
         System.out.println("인트a의 값? : "+a);
         String logoutNow= referer.substring(a, referer.length());
-        System.out.println("loginNow의 값...."+logoutNow);
+        System.out.println("logoutNow의 값...."+logoutNow);
 
 
 
