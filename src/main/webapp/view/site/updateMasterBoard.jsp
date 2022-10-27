@@ -24,7 +24,7 @@
     })
   </script>
 </head>
-<body>
+<body>PPT
 <form>
   <label>
     <input type="hidden" name="masterBoardNo" value="${masterBoard.masterBoardNo}">

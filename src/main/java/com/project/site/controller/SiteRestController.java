@@ -33,8 +33,8 @@ public class SiteRestController {
         return vilCode;
     }
 
-    @RequestMapping( value="communityMap" , method= RequestMethod.POST, produces = "application/text; charset=UTF-8")
-    public String communityMap(@RequestParam String longitude, @RequestParam String latitude)  throws Exception {
+    @RequestMapping( value="calendarMap" , method= RequestMethod.POST, produces = "application/text; charset=UTF-8")
+    public String calendarMap(@RequestParam String longitude, @RequestParam String latitude)  throws Exception {
 
         String vilCode = "";
         vilCode = coordToAddress(longitude, latitude, 2);
