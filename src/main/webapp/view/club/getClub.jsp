@@ -181,22 +181,6 @@
                 </button>
             </c:if>
 
-            <button class="btn btn-primary addClubMasterBoardView" data-bs-toggle="modal"
-                    data-bs-target="#addClubMasterBoard">
-                모공작
-            </button>
-
-            <button class="btn btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#updateClubMasterBoard">
-                테스트
-            </button>
-
-            <button class="btn btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#getClubMasterBoard">
-                테스트Get
-            </button>
-
-
         </footer>
 
     </div>
@@ -487,7 +471,7 @@
 
     <%--getClubMasterBoard 모달창 시작--%>
     <div class="modal fade" id="getClubMasterBoard" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
             </div>
         </div>
@@ -496,7 +480,7 @@
 
     <%--updateClubMasterBoard 모달창 시작--%>
     <div class="modal fade" id="updateClubMasterBoard" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
             </div>
         </div>

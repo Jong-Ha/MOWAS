@@ -853,7 +853,8 @@
                user_id,
                title,
                reg_date,
-               update_date
+               update_date,
+               text
         FROM club_master_board
         WHERE club_num = #{clubNum}
           AND title LIKE ('%' || #{search.searchKeyword} || '%')

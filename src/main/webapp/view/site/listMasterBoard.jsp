@@ -149,10 +149,10 @@
       });
 
      $( ".clubMap" ).on("click" , function() {
-        //$(self.location).attr("href", "/view/site/clubMap.jsp");
-       //alert("click clubMap")
+        $(self.location).attr("href", "/view/site/clubMap.jsp");
+       alert("click clubMap")
        //resizeMap()
-       relayout()
+       //relayout()
       });
 
       //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
@@ -318,7 +318,7 @@
             <a class="btn btn-default btn" href = "#" role="button">취 소 </a>
             <button type="button" class="commReport" >커뮤니티신고</button>
             <button type="button" class="clubReport" >모임신고</button>
-            <%--<button type="button" class="clubMap" data-bs-toggle="modal" data-bs-target="#addMap">클럽맵 Test</button>--%>
+            <button type="button" class="clubMap" data-bs-toggle="modal" data-bs-target="#addMap">클럽맵 Test</button>
           </div>
 
           <div class="pt-3">

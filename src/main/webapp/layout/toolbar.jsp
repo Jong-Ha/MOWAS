@@ -8,8 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-
 <script type="text/javascript" src="/resources/OpenSource/js/jquery.cookie.js"></script>
 
 <script type="text/javascript">
@@ -388,6 +386,9 @@
                 <div class="collapse navbar-collapse" id="navbarScroll">
                     <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                         <li class="nav-item">
+                            <a class="nav-link active  underline yellow" aria-current="page" onclick="location.href='/site/listMasterBoard'"  style="color : #ffffff; font-size: 1.3em;">공지 사항</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link active  underline yellow" aria-current="page" onclick="location.href='/club/listClub'"  style="color : #ffffff; font-size: 1.3em;">모임 게시판</a>
                         </li>
                         <li class="nav-item">
@@ -397,6 +398,26 @@
                         <li class="nav-item">
                             <a class="nav-link  underline yellow" style="color : #ffffff; font-size: 1.3em;" onclick="location.href='/deal/getListDeal?boardCategory=99'">중고 거래 게시판</a>
                         </li>
+
+                <%--<c:if test="${user.masterCheck eq 2}">--%>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a class="nav-link  underline yellow dropdown-toggle" style="color : #ffffff; font-size: 1.3em;"
+                                   role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    관리자 게시판
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="/site/listCommunityReport">커뮤니티 신고</a></li>
+                                    <li><a class="dropdown-item" href="/site/listCommunityReportProcess">커뮤니티 신고 처리</a></li>
+                                    <li><a class="dropdown-item" href="/site/listClubReport">모임 신고</a></li>
+                                    <li><a class="dropdown-item" href="/site/listClubReportProcess">모임 신고 처리</a></li>
+
+                                </ul>
+                            </div>
+                         </li>
+                <%--</c:if>--%>
+
                     </ul>
                     <div class="logitem">
                         <img src="${pageContext.request.contextPath}/resources/images/proplePoto.png"

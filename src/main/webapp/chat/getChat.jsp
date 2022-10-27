@@ -251,6 +251,21 @@
 
         </c:if>
 
+
+        <div style=" width: 100%;display: flex;flex-direction: row-reverse;">
+
+            <label for="file">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-paperclip" viewBox="0 0 16 16" style="font-size: 3em">
+                    <path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z"/>
+                </svg>
+            </label>
+
+            <form id="fileForm">
+                <input id="file" type="file" multiple class="send-file" value="파일 전송" style="display: none"/>
+            </form>
+        </div>
+
+
     </div>
 
     <div class="dropdown-box" style="display: none;    position: absolute;
@@ -288,13 +303,13 @@
         </ul>
     </div>
     <div class="input-container">
-            <span>
-                <input type="text" class="chatting-input">
-                <button class="send-button">전송</button>
-            </span>
-        <form>
-            <input id="file" type="file" multiple class="send-file" value="파일 전송"/>
-        </form>
+
+        <input type="text" class="chatting-input">
+
+
+        <button class="send-button">전송</button>
+
+
     </div>
 </div>
 
@@ -311,7 +326,6 @@
             </div>
             <div class="modal-body">
 
-                <form id="fileForm4">
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control dealCalenderTitle" id="recipient-name" value=""
@@ -333,7 +347,6 @@
 
                     </div>
 
-                </form>
 
             </div>
 
@@ -410,7 +423,7 @@
         //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
         var formData = new FormData(form);
         //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
-        var fileSize = $("#file")[0].files;
+        var fileSize = $("#fileForm #file")[0].files;
 
         console.log(fileSize.length);
 
@@ -420,6 +433,9 @@
             //파일이 잘 들어 갔는지 확인
             console.log(fileSize[i]);
         }
+
+        $(".chatting-input").html(fileSize);
+
         //파일은 json형식으로 보낼수 없기 떄문에 contentType, processData, dataType을 false로 지정
         $.ajax({
             url: "/chat/json/chatFile",
@@ -464,7 +480,8 @@
             }
         })
         // 거래 계시판 번호 얻기
-        socket.emit('getboardNum', () => { })
+        socket.emit('getboardNum', () => {
+        })
 
         socket.on("postboardNum", (date) => {
 
@@ -472,10 +489,6 @@
 
             $(".dealNum").val(date);
         })
-
-
-
-
 
 
         socket.on("json", (msg) => {
@@ -516,8 +529,6 @@
         })
 
 
-
-
         // 거래 모달창 오픈
         $(".dealCalender").on("click", () => {
 
@@ -544,7 +555,7 @@
 
                     var deal = JSONData.deal
 
-                    console.log("deal : "+ deal);
+                    console.log("deal : " + deal);
 
                     var date = new Date(deal.dealDate);
 
@@ -693,6 +704,17 @@
         })
 
 
+        $("#file").on("change", function () {
+
+            const file = $(this)
+
+            fileUpload(file, fileForm);
+
+            sendMessage(socket)
+
+        })
+
+
     })
 
 
@@ -730,15 +752,13 @@
                 '<span class="message">' + this.msg + '</span>' +
                 '<span class="time">' + this.time + '</span>';
 
-/*$(li).css('display','none')*/
 
-                //catList에 li의 html을 append한다
-                chatList.appendChild(li);
-                //$('.chatting-list li:last-child').slideDown();
-                displayContainer.scrollTo(0, displayContainer.scrollHeight);
+            //catList에 li의 html을 append한다
+            chatList.appendChild(li);
+            //$('.chatting-list li:last-child').slideDown();
+            displayContainer.scrollTo(0, displayContainer.scrollHeight);
 
 
-            $(chatInput).val('')
         }
     }
 </script>
