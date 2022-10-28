@@ -2,6 +2,10 @@
     text-align: -webkit-center;
 }
 
+.bi-heart-fill {
+    fill : #ff0000
+}
+
 .wap {
     width: 1000px;
 }

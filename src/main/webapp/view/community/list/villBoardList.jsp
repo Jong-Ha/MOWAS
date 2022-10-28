@@ -387,6 +387,26 @@
         var tagify2 = new Tagify(input2, {});
 
 
+
+        $(".report").on("click", function () {
+            var boardNum = $(this).parents(".cardbox").find(".villBoardNum").val()
+            var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val()
+            var reportedId =$(this).parents(".cardbox").find(".SUserId").val();
+
+
+            $("#commuReport .modal-content").load("/view/site/addCommunityReport.jsp",
+                {boardNum: boardNum, boardCategory: boardCategory, reportedId: reportedId},
+                function (re) {
+
+                    // console.log(re);
+                    $("#commuReport .modal-content").html(re);
+
+                    $("#commuReport").modal("show");
+                })
+
+        })
+
+
     });
 
 
@@ -396,7 +416,7 @@
 
     .wap {
 
-        width: 1209px;
+        width: 1100px;
         height: 1200px;
 
     }
@@ -458,6 +478,10 @@
         margin-left: 3px;
         cursor: pointer;
     }
+    .update{
+        font-size: 0.5em;
+        margin-right: 19px;
+    }
 
     .addBox {
         margin-bottom: 50px;
@@ -472,6 +496,8 @@
     }
 
     .cardbox {
+        margin-right: 43px;
+        width: 314px;
         transition: all 0.1s linear;
     }
 
@@ -526,7 +552,7 @@
         <div class=" cardbox">
             <input hidden class="villNum" value="${villBoard.villBoardNum}">
             <input hidden class="boardCategory" value="${villBoard.boardCategory}">
-
+            <input hidden class="SUserId" value="${villBoard.userId}">
             <div class="col villBox">
 
                 <div class="card h-100 shadow-lg" style="width: 311px">
@@ -579,7 +605,7 @@
                                               style="z-index: 1; font-size: 0.5em;">${villBoard.viewCount} </span>
                                     </button>
 
-                                    <button type="button" class="btn btn-outline-danger buttonBox">
+                                    <button type="button" class="btn btn-danger buttonBox report">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                              fill="currentColor"
                                              class="bi bi-hand-thumbs-down-fill" viewBox="0 0 16 16">
@@ -594,8 +620,7 @@
             </div>
             <div class="updatebox">
                 <c:if test="${user.userId  eq villBoard.userId}">
-                    <div type="button" class="update" data-bs-toggle="modal" data-bs-target="#exampleModal2"
-                         style="font-size: 0.5em; left: 20px">
+                    <div type="button" class="update" data-bs-toggle="modal" data-bs-target="#exampleModal2">
                         수정
                     </div>
                     <div type="button" class=" delete " style="font-size: 0.5em;">삭제
@@ -716,6 +741,15 @@
                 <button type="button" class="btn btn-primary villBoardUpdateSubmit">수정</button>
 
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="commuReport" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+
         </div>
     </div>
 </div>

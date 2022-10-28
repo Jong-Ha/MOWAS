@@ -22,6 +22,7 @@
     <link href="/resources/club/css/listClub.css" rel="stylesheet" type="text/css"/>
 </head>
 <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
+<input type="hidden" class="userId" value="${user.userId}">
 
 <%--구현 후 빼야함--%>
 <input type="button" class="clubLogin" value="로그인">
@@ -43,7 +44,6 @@ ${user.userId}
 </div>
 <!-- Example Code -->
 <div class="container">
-    <input type="hidden" class="userId" value="${user.userId}">
 
     <form id="listForm">
         <input type="hidden" class="searchLng" name="searchLng" value="">

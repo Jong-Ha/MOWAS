@@ -8,8 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-
 <script type="text/javascript" src="/resources/OpenSource/js/jquery.cookie.js"></script>
 
 <script type="text/javascript">
@@ -398,7 +396,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link  underline yellow" style="color : #ffffff; font-size: 1.3em;" onclick="location.href='/deal/getListDeal?boardCategory=08'">중고 거래 게시판</a>
+                            <a class="nav-link  underline yellow" style="color : #ffffff; font-size: 1.3em;" onclick="location.href='/deal/getListDeal?boardCategory=99'">중고 거래 게시판</a>
                         </li>
 
                 <%--<c:if test="${user.masterCheck eq 2}">--%>

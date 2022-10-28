@@ -45,7 +45,7 @@
     <!--모임 일정 -->
     <insert id="addClubCalender" parameterType="clubCalender" useGeneratedKeys="true">
         INSERT INTO
-            club_calendar(club_calendar_num, club_num,reg_date,calendar_title,calendar_text,club_date,location,notice_check,notice_time,calendar_apply_check,apply_auto_check)
+            club_calendar(club_calendar_num, club_num,reg_date,calendar_title,calendar_text,club_date,location,notice_check,notice_time,calendar_apply_check,apply_auto_check,board_category)
             values(  SEQ_CLUB_CALENDAR.nextval
                 ,#{clubNum}
                 ,SYSDATE
@@ -56,7 +56,8 @@
                 ,#{noticeCheck}
                 ,#{noticeTime}
                 ,#{calendarApplyCheck}
-                ,#{applyAutoCheck})
+                ,#{applyAutoCheck}
+                ,#{boardCategory})
         <selectKey resultType="int" keyProperty="clubCalenderNum" order="AFTER">
            SELECT SEQ_CLUB_CALENDAR.CURRVAL from  DUAL
         </selectKey>
@@ -71,6 +72,7 @@
                 ,calendar_text = #{calenderText}
                 ,location = #{location}
                 ,notice_check = #{noticeCheck}
+                ,club_date = #{clubDate}
                 ,notice_time = #{noticeTime}
                 ,calendar_apply_check = #{calendarApplyCheck}
                 ,apply_auto_check = #{applyAutoCheck}
@@ -94,6 +96,19 @@
         SELECT * FROM club_calendar
         WHERE club_num = #{clubNum}
     </select>
+
+
+    <!--마이 페이지 모임원-->
+    <select id="getCluberCalenderList" parameterType="string" resultMap="clubCalenderSelect">
+        select *
+        from CLUB_CALENDAR cn1,(select CLUB_CALENDAR_NUM
+                                from CLUB_CALENDAR_APPLY
+                                where USER_ID= '${userId}')cn2
+        where cn2.CLUB_CALENDAR_NUM = cn1.CLUB_CALENDAR_NUM ;
+    </select>
+
+
+
     <!--모임 일정 후기글-->
     <insert id="addCalenderReview" parameterType="calenderReview" useGeneratedKeys="true" >
         INSERT INTO

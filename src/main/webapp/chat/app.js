@@ -116,33 +116,6 @@ chatlist.on('connection', (socket) => {
 
     Room.find({'users.userId': userId, chatCategory: chatCategory}, function (error, room) {
 
-        // if (error) {
-        //     // console.log(error);
-        // } else {
-        //     chatlist.to(socket.id).emit("list", room);
-        //     // var rs = []
-        //     for (let i = 0; i < room.length; i++) {
-        //         // console.log(room[i].roomId);
-        //         Msg.find({'roomId': room[i].roomId}, function (error, msg) {
-        //             // console.log("마지막 매시지 : " + msg);
-        //             /*     var r1 = JSON.stringify(room[i]);
-        //                  var r2 = JSON.parse(r1);
-        //
-        //                  r2.msg = msg[0];
-        //                  rs.push(r2);*/
-        //             // console.log("list로 보낼 data : " + rs);
-        //             // console.log("list로 보낼 data : " + rs);
-        //             // chatlist.emit("list", rs);
-        //
-        //             chatlist.emit("msg", msg);
-        //
-        //         }).sort({_id: -1}).limit(1)
-        //
-        //
-        //     }
-        //
-        // }
-
         if (error) {
             // console.log(error);
         } else {
@@ -154,14 +127,6 @@ chatlist.on('connection', (socket) => {
                 Msg.find({'roomId': el.roomId}, function (error, msg) {
                     console.log("=====================================================");
                     console.log(msg);
-                    /*     var r1 = JSON.stringify(room[i]);
-                         var r2 = JSON.parse(r1);
-
-                         r2.msg = msg[0];
-                         rs.push(r2);*/
-                    // console.log("list로 보낼 data : " + rs);
-                    // console.log("list로 보낼 data : " + rs);
-                    // chatlist.emit("list", rs);
 
                     chatlist.emit("msg", msg);
 
