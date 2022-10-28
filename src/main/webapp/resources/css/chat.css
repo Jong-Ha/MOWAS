@@ -123,6 +123,28 @@ html, body {
 }
 
 
+.Imgsent{
+    flex-direction: row-reverse;
+    float: right;
+    width : 38%
+}
+
+.Imgreceived{
+    width: 38%;
+    text-align: right;
+}
+
+
+.Imgsent .message{
+    background: #ffeb33;
+}
+
+.Imgreceived .message{
+    width: 150px;
+    background: #ffffff;
+}
+
+
 .wap {
     display: flex;
     align-items: center;

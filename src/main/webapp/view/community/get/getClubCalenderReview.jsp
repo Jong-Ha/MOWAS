@@ -995,7 +995,7 @@
             })
 
 
-            $(".chatBoard").on("click", function () {
+            $(".chating").on("click", function () {
                 var boardUserId = $(".boardUserId").val();
 
                 if (userId === '') {
@@ -1072,7 +1072,7 @@
     </script>
 
 
-<body class="bg-light">
+<body class="bg-light p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 
 <jsp:include page="/layout/toolbar.jsp"/>
 
@@ -1144,7 +1144,7 @@
                                       style="z-index: 1; font-size: 0.5em;">${calenderReview.viewCount}</span>
                             </div>
 
-                            <div type="button" class="btn btn-success  chating" style=" font-size: 1.9em;height: 42px;">
+                            <div type="button" class="btn btn-success chating" style=" font-size: 1.9em;height: 42px;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                      fill="currentColor" class="bi bi-chat-left-quote "
                                      viewBox="0 0 16 16" style="margin-top: -22px;">

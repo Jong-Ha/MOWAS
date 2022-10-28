@@ -90,10 +90,11 @@ const msg = mongoose.Schema({
     roomId: 'string',
     chatCategory: 'string',
     msg: 'string',
-    flie : 'string',
+    file : 'string',
     time: 'string',
     rtime: 'number',
-    unreadUser : ['string']
+    unreadUser : ['string'],
+    imgCheck : 'number'
 })
 
 //정의된 스키마르 객체처럼 사용할수 있도록 model()함수로 컴파일
@@ -193,6 +194,45 @@ onebyone.on('connection', (socket) => {
             }
         })
 
+
+        socket.on("chatImg", (data)=> {
+            var newMsg = new Msg({
+                userId: data.name,
+                roomId: roomId,
+                msg: data.msg,
+                file: data.file,
+                time: moment(new Date()).format("h:mm A"),
+                rtime: moment(new Date()),
+                imgCheck : data.imgCheck
+
+            });
+
+            onebyone.to(roomId).emit("chatting", newMsg);
+            chatlist.emit("msg", [newMsg]);
+
+            newMsg.save((error, data, res) => {
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log("============="+ data);
+
+                    Msg.find({'roomId': roomId}, function (error, msg) {
+                        // console.log(msg);
+                        console.log('--- onebyone ---');
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            onebyone.to(roomId).emit("json", msg);
+
+                            // console.log("내 테이터 가져 오기" + msg);
+                        }
+                    })
+                    console.log('성공이다!!!!!');
+                }
+            });
+
+        });
+
         //클라이언트에게 받은 data를 server에 받음
         socket.on("chatting", (data) => {
             // console.log(data);
@@ -202,9 +242,10 @@ onebyone.on('connection', (socket) => {
                 userId: data.name,
                 roomId: roomId,
                 msg: data.msg,
-                flie: data.file,
+                file: data.file,
                 time: moment(new Date()).format("h:mm A"),
-                rtime: moment(new Date())
+                rtime: moment(new Date()),
+                imgcheck : data.imgcheck
             });
 
             // console.log(newMsg)
@@ -323,7 +364,7 @@ dealChat.on('connection', (socket) => {
                 userId: data.name,
                 roomId: roomId,
                 msg: data.msg,
-                flie: data.file,
+                file: data.file,
                 time: moment(new Date()).format("h:mm A"),
                 rtime: moment(new Date())
             });
