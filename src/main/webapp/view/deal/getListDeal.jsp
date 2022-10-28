@@ -267,8 +267,8 @@
             // })
             $(".addDeal").on('click', function () {
                 var userId = $(".userId").val();
-                alert(userId)
-                alert($(".userId").val())
+                // alert(userId)
+                // alert($(".userId").val())
                 if (userId === '' || userId === null) {
                     alert("로그인후 사용해 주세요")
 
@@ -292,17 +292,21 @@
                             alert("상품 설명은 필수입니다")
                             return;
                         }
-
+                        if ($("#file").val() === '') {
+                            alert("파일 첨부는 필수입니다")
+                            return;
+                        }
                         // if($("#clubTag").val()===''){
                         //     return;
                         // }
                         // alert(JSON.parse($("#clubTag").val()))
-                        let addForm = $("#addDealForm");
+                        // let addForm = $("#addDealForm");
                         // $.each(JSON.parse($("#dealTag").val()), function (index, item) {
                         //     addForm.append('<input type="hidden" name="dealTags" value="' + item.value + '">')
                         // })
+                        $('#addDealForm').attr("action", "/deal/addDeal").attr("method", "post").submit();
 
-                        addForm.attr("action", "/deal/addDeal").attr("method", "post").submit()
+                        // alert('asd')
                     })
                 }
             })
@@ -340,8 +344,21 @@
         // }
         // })
         // })
+        //deallistBox 시작
+        $(function () {
 
+            $(".allList").on("click", function () {
+                location.href = "/deal/getListDeal?boardCategory=" + "99";
+            });
 
+            $(".deallist").on("click", function () {
+                location.href = "/deal/getListDeal?boardCategory=" + "08";
+            })
+
+            $(".dealrequestlist").on("click", function () {
+                location.href = "/deal/getListDeal?boardCategory=" + "09";
+            });
+        })
     </script>
 
 
@@ -497,6 +514,73 @@
             --bs-btn-disabled-bg: #6c757d;
             --bs-btn-disabled-border-color: #6c757d;
         }
+
+        /*deallistBox 시작*/
+        .deallistBox {
+            margin-bottom: 50px;
+            justify-content: center;
+        }
+
+
+        a {
+            text-decoration: none;
+        }
+
+        .underline {
+            line-height: 1.2;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+            font-size: 1.5em;
+            font-weight: 700;
+            background-image: linear-gradient(transparent calc(100% - 3px), #000 3px);
+            background-repeat: no-repeat;
+            background-size: 0% 100%;
+            transition: background-size 0.2s;
+            color: #000;
+            cursor: pointer;
+            margin-right: 25px;
+        }
+
+        @media (min-width: 1000px) {
+            .underline {
+                font-size: 1.5em;
+            }
+        }
+
+        .underline.yellow {
+            background-image: linear-gradient(transparent 60%, #F8CD07 40%);
+        }
+
+        .underline:hover {
+            background-size: 100% 100%;
+        }
+
+        .wrapper {
+            height: 13ch;
+            display: grid;
+            place-items: center;
+        }
+
+        .typing {
+            width: 14ch;
+            animation: typing 0.9s steps(22), blink .5s step-end infinite alternate;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid;
+            font-size: 2em;
+            height: 2ch;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0
+            }
+        }
+
+        @keyframes blink {
+            80% {
+                border-color: transparent
+            }
+        }
     </style>
 </head>
 
@@ -519,18 +603,33 @@
 <img src="/resources/uploadFiles/dealBoardFiles/중고거래.png" style="height: 500px;border-radius: 10px;  width: 1600px;">
 <div class="wap">
 
-
-
-    <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
-
-
     <div class="wrapper">
         <div class="typing">
             <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
                     background-image: linear-gradient(transparent 60%, #F8CD07 40%);">
-                거래 물품</h4>
+                중고 거래</h4>
         </div>
     </div>
+
+
+    <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
+
+    <nav class="navbar navbar-expand-lg deallistBox">
+
+        <div>
+            <div class="underline yellow allList">전체</div>
+        </div>
+
+        <div>
+            <div class="underline yellow deallist">판매</div>
+        </div>
+
+        <div>
+            <div class="underline yellow dealrequestlist">판매 요청</div>
+        </div>
+
+    </nav>
+    <hr>
     <%--
     사진 들어가야지 ??
 
@@ -560,42 +659,55 @@
         <button class="btn btn-primary addDeal" data-bs-toggle="modal" data-bs-target="#addDeal">
             거래 작성
         </button>
+
+
         <div>
-            <select class="btn btn-primary dealCategory" name="dealCategory">
-                <%--  <option selected>판매구분</option>--%>
-                <option value="99" ${boardCategory == "99"? 'selected':''}>전체</option>
-                <option value="08" ${boardCategory == "08"? 'selected':''}>판매</option>
-                <option value="09" ${boardCategory == "09"? 'selected':''}>판매요청</option>
-            </select>
+            <%--            <select class="btn btn-primary dealCategory" name="dealCategory">--%>
+            <%--                &lt;%&ndash;  <option selected>판매구분</option>&ndash;%&gt;--%>
+            <%--                <option value="99" ${boardCategory == "99"? 'selected':''}>전체</option>--%>
+            <%--                <option value="08" ${boardCategory == "08"? 'selected':''}>판매</option>--%>
+            <%--                <option value="09" ${boardCategory == "09"? 'selected':''}>판매요청</option>--%>
+            <%--            </select>--%>
 
-<%--            <button class="center btn btn-primary searchTag">--%>
-<%--                태그--%>
-<%--            </button>--%>
-            <form class="form-inline" name="detailForm">
+            <%--            <button class="center btn btn-primary searchTag">--%>
+            <%--                태그--%>
+            <%--            </button>--%>
+<%--            <form class="form-inline" name="detailForm">--%>
 
-                <div class="form-group">
-                    <select class="form-control" name="searchCondition">
-                        <option value="0"  ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" : "" }>
-                            제목
-                        </option>
-                        <option value="1"  ${ ! empty search.searchCondition && search.searchCondition==1 ? "selected" : "" }>
-                            상품명
-                        </option>
-                    </select>
+                <%--        <div class="form-group">--%>
+                <%--                    <select class="form-control" name="searchCondition">--%>
+                <%--                        <option value="0"  ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" : "" }>--%>
+                <%--                            제목--%>
+                <%--                        </option>--%>
+                <%--                        <option value="1"  ${ ! empty search.searchCondition && search.searchCondition==1 ? "selected" : "" }>--%>
+                <%--                            상품명--%>
+                <%--                        </option>--%>
+                <%--                    </select>--%>
+                <%--                </div>--%>
+
+                <%--                <div class="form-group">--%>
+                <%--                    <label class="sr-only" for="searchKeyword">검색어</label>--%>
+                <%--                    <input type="text" class="form-control" id="searchKeyword" name="searchKeyword" placeholder="검색어"--%>
+                <%--                           value="${! empty search.searchKeyword ? search.searchKeyword : '' }">--%>
+                <%--                </div>--%>
+
+                <%--                <button type="submit" class="btn btn-secondary">--%>
+                <%--                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>--%>
+                <%--                <!-- PageNavigation 선택 페이지 값을 보내는 부분 -->--%>
+                <%--                <input type="hidden" id="currentPage" name="currentPage" value=""/>--%>
+                <%--    <span class="_1knjz499"><input class="_1knjz49b" placeholder="물품을 검색해보세요" value=""/></span></span>--%>
+<%--                            </form>--%>
+                <div class="input-group mb-3">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">검색
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">제목</a></li>
+                        <li><a class="dropdown-item" href="#">상품명</a></li>
+
+                    </ul>
+                    <input type="text" class="form-control" aria-label="Text input with dropdown button">
                 </div>
-
-                <div class="form-group">
-                    <label class="sr-only" for="searchKeyword">검색어</label>
-                    <input type="text" class="form-control" id="searchKeyword" name="searchKeyword" placeholder="검색어"
-                           value="${! empty search.searchKeyword ? search.searchKeyword : '' }">
-                </div>
-
-                <button type="submit" class="btn btn-secondary">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                <!-- PageNavigation 선택 페이지 값을 보내는 부분 -->
-                <input type="hidden" id="currentPage" name="currentPage" value=""/>
-
-            </form>
         </div>
     </div>
     <%--버튼 모음 끝--%>
@@ -610,6 +722,16 @@
                     <div class="card h-100 shadow-lg">
                         <div class="card-footer" style=" border-bottom: 1px solid; display: flex; font-weight: bold">
                                 ${deal.dealTitle}
+                            <p class="allFlex " style="position: absolute; right: 10px;"><c:if
+                                    test="${deal.dealStatus == 0}">
+                                거래전
+                            </c:if>
+                                <c:if test="${deal.dealStatus ==1}">
+                                    거래중
+                                </c:if>
+                                <c:if test="${deal.dealStatus ==2}">
+                                    거래완료
+                                </c:if></p>
                         </div>
                             <%--  <div id="carouselExampleSlidesOnly" class="carousel potoBox" data-bs-ride="carousel">--%>
                         <div class="potoBox">
@@ -621,30 +743,24 @@
                                 <%--    </div>--%>
                         </div>
                         <div class="cardM " style="display: flex; padding: 10px 0 0 10px; height: 120px;; ">
-                            <div class="card-text text allFlex" style="width: 50%; ">
-                                    ${deal.productName}
-                            </div>
+                                <%--                            <div class="card-text text allFlex" style="width: 50%; ">--%>
+                                <%--                                    ${deal.productName}--%>
+                                <%--                            </div>--%>
 
                             <div class="dealinfo cartFont" style="flex: 1; width: 50%;">
-                                <p class="allFlex "><c:if test="${deal.dealStatus == 0}">
-                                    거래전
-                                </c:if>
-                                    <c:if test="${deal.dealStatus ==1}">
-                                        거래중
-                                    </c:if>
-                                    <c:if test="${deal.dealStatus ==2}">
-                                        거래완료
-                                    </c:if></p>
-                                <p class="allFlex">가격 : ${deal.price} 원 </p>
-                                <p class="allFlex">${deal.villCode}</p>
-                                <p class="allFlex">${deal.dealRegDate}</p>
+                                <p class="allFlex" style="font-size: 1.3em; font-weight: bold"> ${deal.price} 원 </p>
+                                <p class="allFlex" style="font-size: 1.3em; font-weight: bold">${deal.villCode}
+                                    ∙ ${deal.dealRegDate}</p>
+                                <p class="allFlex" style="font-size: 1em"> 좋아요 ${deal.likeCount} ∙
+                                    조회수 ${deal.viewCount} </p>
+
                             </div>
                         </div>
-<%--                        <div class="tags" style="height: 30px;">--%>
+                            <%--                        <div class="tags" style="height: 30px;">--%>
 
-<%--                                &lt;%&ndash;              ${deal.tag}&ndash;%&gt;--%>
+                            <%--                                &lt;%&ndash;              ${deal.tag}&ndash;%&gt;--%>
 
-<%--                        </div>--%>
+                            <%--                        </div>--%>
 
                     </div>
                 </div>
@@ -652,145 +768,147 @@
         </c:forEach>
     </div>
 
+</div>
+<%--  <c:forEach var="deal" items="${list}">--%>
 
-    <%--  <c:forEach var="deal" items="${list}">--%>
-
-    <%--  <div class="row row-cols-1 row-cols-md-3 g-4 cardbox">--%>
-    <%--    <div class="col dealBox">--%>
-    <%--      <input type="hidden" name="dealBoardNum" class="dealBoardNum" value="${deal.dealBoardNum}">--%>
-    <%--      <div class="card h-100">--%>
-    <%--          &lt;%&ndash;            <c:forEach var="File" items="${Deal.files}">&ndash;%&gt;--%>
-    <%--          &lt;%&ndash;              <div class="carousel-inner">&ndash;%&gt;--%>
-    <%--          &lt;%&ndash;                <div class="carousel-item active get">&ndash;%&gt;--%>
-    <%--          &lt;%&ndash;                  <img class="poto" width="100%" height="100%"  src="/resources/${File.fileName }" alt="any">&ndash;%&gt;--%>
-    <%--          &lt;%&ndash;                </div>&ndash;%&gt;--%>
-    <%--          &lt;%&ndash;              </div>&ndash;%&gt;--%>
-    <%--          &lt;%&ndash;            </c:forEach>&ndash;%&gt;--%>
-
-
-    <%--        <div class="card-img-top" style="cursor: pointer">--%>
-    <%--          <img src="/resources/${deal.files[0].fileName}" alt="거래이미지">--%>
-    <%--        </div>--%>
+<%--  <div class="row row-cols-1 row-cols-md-3 g-4 cardbox">--%>
+<%--    <div class="col dealBox">--%>
+<%--      <input type="hidden" name="dealBoardNum" class="dealBoardNum" value="${deal.dealBoardNum}">--%>
+<%--      <div class="card h-100">--%>
+<%--          &lt;%&ndash;            <c:forEach var="File" items="${Deal.files}">&ndash;%&gt;--%>
+<%--          &lt;%&ndash;              <div class="carousel-inner">&ndash;%&gt;--%>
+<%--          &lt;%&ndash;                <div class="carousel-item active get">&ndash;%&gt;--%>
+<%--          &lt;%&ndash;                  <img class="poto" width="100%" height="100%"  src="/resources/${File.fileName }" alt="any">&ndash;%&gt;--%>
+<%--          &lt;%&ndash;                </div>&ndash;%&gt;--%>
+<%--          &lt;%&ndash;              </div>&ndash;%&gt;--%>
+<%--          &lt;%&ndash;            </c:forEach>&ndash;%&gt;--%>
 
 
-    <%--        <div class="card-body carditem">--%>
-    <%--          <h3 class="card-title">${deal.dealTitle}</h3>--%>
-    <%--          <div class="row g-3">--%>
-    <%--            <div class="col-6">--%>
-    <%--              <div class="badge bg-primary text-wrap" style="width: 6rem;">--%>
-    <%--                <c:if test="${deal.dealStatus == 0}">--%>
-    <%--                  거래전--%>
-    <%--                </c:if>--%>
-    <%--                <c:if test="${deal.dealStatus ==1}">--%>
-    <%--                  거래중--%>
-    <%--                </c:if>--%>
-    <%--                <c:if test="${deal.dealStatus ==2}">--%>
-    <%--                  거래완료--%>
-    <%--                </c:if>--%>
-    <%--              </div>--%>
-    <%--              <div class="badge bg-primary text-wrap" style="width: 6rem;">--%>
-    <%--                  ${deal.villCode}--%>
-    <%--              </div>--%>
-    <%--              <div class="badge bg-primary text-wrap" style="width: 6rem;">--%>
-    <%--                  ${deal.price}--%>
-    <%--              </div>--%>
-    <%--            </div>--%>
-
-    <%--          </div>--%>
-    <%--          <button type="button" class="btn btn-outline-primary dealTag">${deal.tag}</button>--%>
-    <%--        </div>--%>
-
-    <%--          &lt;%&ndash;<div class="card-footer">--%>
-    <%--              <small class="text-muted">Last updated 3 mins ago</small>--%>
-    <%--          </div>&ndash;%&gt;--%>
-    <%--      </div>--%>
-    <%--    </div>--%>
-    <%--  </div> </c:forEach>--%>
+<%--        <div class="card-img-top" style="cursor: pointer">--%>
+<%--          <img src="/resources/${deal.files[0].fileName}" alt="거래이미지">--%>
+<%--        </div>--%>
 
 
-    <%--거래 만들기 모달창 시작--%>
-    <c:if test="${!empty user}">
-        <div class="modal fade" id="addDeal" tabindex="-1" aria-labelledby="addDealLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="addDealLabel">거래 게시글 작성</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="addDealForm" enctype="multipart/form-data" method="post">
-                            <div class="input-group mb-3">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="dealTitle" name="dealTitle"
-                                           placeholder="거래명"
-                                           required>
-                                    <label for="dealTitle">거래명</label>
-                                </div>
+<%--        <div class="card-body carditem">--%>
+<%--          <h3 class="card-title">${deal.dealTitle}</h3>--%>
+<%--          <div class="row g-3">--%>
+<%--            <div class="col-6">--%>
+<%--              <div class="badge bg-primary text-wrap" style="width: 6rem;">--%>
+<%--                <c:if test="${deal.dealStatus == 0}">--%>
+<%--                  거래전--%>
+<%--                </c:if>--%>
+<%--                <c:if test="${deal.dealStatus ==1}">--%>
+<%--                  거래중--%>
+<%--                </c:if>--%>
+<%--                <c:if test="${deal.dealStatus ==2}">--%>
+<%--                  거래완료--%>
+<%--                </c:if>--%>
+<%--              </div>--%>
+<%--              <div class="badge bg-primary text-wrap" style="width: 6rem;">--%>
+<%--                  ${deal.villCode}--%>
+<%--              </div>--%>
+<%--              <div class="badge bg-primary text-wrap" style="width: 6rem;">--%>
+<%--                  ${deal.price}--%>
+<%--              </div>--%>
+<%--            </div>--%>
+
+<%--          </div>--%>
+<%--          <button type="button" class="btn btn-outline-primary dealTag">${deal.tag}</button>--%>
+<%--        </div>--%>
+
+<%--          &lt;%&ndash;<div class="card-footer">--%>
+<%--              <small class="text-muted">Last updated 3 mins ago</small>--%>
+<%--          </div>&ndash;%&gt;--%>
+<%--      </div>--%>
+<%--    </div>--%>
+<%--  </div> </c:forEach>--%>
+
+
+<%--거래 만들기 모달창 시작--%>
+<c:if test="${!empty user}">
+    <div class="modal fade" id="addDeal" tabindex="-1" aria-labelledby="addDealLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addDealLabel">거래 게시글 작성</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addDealForm" enctype="multipart/form-data" method="post">
+                        <div class="input-group mb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="dealTitle" name="dealTitle"
+                                       placeholder="거래명"
+                                       required>
+                                <label for="dealTitle">거래명</label>
                             </div>
+                        </div>
 
-                            <div class="input-group mb-3">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="productName" name="productName"
-                                           placeholder="제품명"
-                                           required>
-                                    <label for="productName">제품명</label>
-                                </div>
+                        <div class="input-group mb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="productName" name="productName"
+                                       placeholder="제품명"
+                                       required>
+                                <label for="productName">제품명</label>
                             </div>
-                            <div class="input-group mb-3">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="price" name="price" placeholder="가격"
-                                           required>
-                                    <label for="price">가격</label>
-                                </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="price" name="price" placeholder="가격"
+                                       required>
+                                <label for="price">가격</label>
                             </div>
+                        </div>
 
-                            <div class="input-group mb-3">
-                                <div class="form-floating">
-                                    <select class="form-select" id="boardCategory" name="boardCategory" required>
-                                        <option value="08" selected>판매</option>
-                                        <option value="09">판매요청</option>
+                        <div class="input-group mb-3">
+                            <div class="form-floating">
+                                <select class="form-select" id="boardCategory" name="boardCategory" required>
+                                    <option value="08" selected>판매</option>
+                                    <option value="09">판매요청</option>
 
-                                    </select>
-                                    <label for="boardCategory">판매구분</label>
-                                </div>
+                                </select>
+                                <label for="boardCategory">판매구분</label>
                             </div>
-                            <div class="input-group mb-3">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="dealText" name="dealText"
-                                           placeholder="상품 설명"
-                                           required>
-                                    <label for="dealText">상품설명</label>
-                                </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="dealText" name="dealText"
+                                       placeholder="상품 설명"
+                                       required>
+                                <label for="dealText">상품설명</label>
                             </div>
+                        </div>
 
 
-                            <div class="mb-3">
-                                <label for="file" class="form-label" style="display: none"></label>
-                                <input class="form-control" type="file" id="file" name="file" multiple="multiple">
-                            </div>
+                        <div class="mb-3">
+                            <label for="file" class="form-label" style="display: none"></label>
+                            <input class="form-control" type="file" id="file" name="file" multiple="multiple">
+                        </div>
 
-<%--                            <div class="input-group mb-3">--%>
-<%--                                <div class="form-floating">--%>
-<%--                                    <input type="text" class="tagify shadow-lg" id="dealTag" style="border-radius: 7px;"--%>
-<%--                                           placeholder="태그 : Enter!">--%>
-<%--                                    <label for="dealTag" style="display: none">태그 : Enter!</label>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary newDeal" style="margin-right: 185px">거래 게시글 작성
-                        </button>
-                    </div>
+                            <%--                            <div class="input-group mb-3">--%>
+                            <%--                                <div class="form-floating">--%>
+                            <%--                                    <input type="text" class="tagify shadow-lg" id="dealTag" style="border-radius: 7px;"--%>
+                            <%--                                           placeholder="태그 : Enter!">--%>
+                            <%--                                    <label for="dealTag" style="display: none">태그 : Enter!</label>--%>
+                            <%--                                </div>--%>
+                            <%--                            </div>--%>
+                    </form>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary newDeal" style="margin-right: 185px">거래 게시글 작성
+                    </button>
                 </div>
             </div>
         </div>
-    </c:if>
-    <%--거래 만들기 모달창 끝--%>
+    </div>
 
-    </body>
+</c:if>
+<%--거래 만들기 모달창 끝--%>
 
-</div>
+
+</body>
 </html>
 
 

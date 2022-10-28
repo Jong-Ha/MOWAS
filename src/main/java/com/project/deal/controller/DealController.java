@@ -454,6 +454,7 @@ String history="";
                 }
             }
 
+
       //  model.addAttribute("deal",dealService.getDeal(deal.getDealBoardNum()));
         System.out.println( dealService.getDeal(deal.getDealBoardNum()));
         System.out.println(deal.getDealBoardNum());

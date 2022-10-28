@@ -929,7 +929,7 @@ Product vo=(Product)request.getAttribute("vo");
 <%--모임 수정 모달창 시작--%>
 
 <div class="modal fade" id="updateDeal" tabindex="-1" aria-labelledby="updateDealLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
 <%--                <a class="navbar-brand back-btn" data-bs-target="#getClubMasterBoard" data-bs-toggle="modal"></a>--%>
@@ -939,6 +939,7 @@ Product vo=(Product)request.getAttribute("vo");
             <div class="modal-body">
                 <form id="updateDealForm" enctype="multipart/form-data" method="post">
                     <input hidden name="dealBoardNum" value="${deal.dealBoardNum}" class="dealBoardNum">
+                    <input hidden name="boardCategory" value="${deal.boardCategory}" class="boardCategory">
                     <%--                                <input type="hidden" name="deleteFileName" value="${deal.clubImage}" disabled>--%>
                     <div class="input-group mb-3">
                         <div class="form-floating">
@@ -1009,8 +1010,8 @@ Product vo=(Product)request.getAttribute("vo");
                     <%--                    </div>--%>
                     <%--                            </c:forEach>--%>
                     <div class="mb-3">
-                        <label for="file" class="form-label" style="display: none"></label>
-                        <input class="form-control" type="file" id="file" multiplee="multiple" name="file">
+                        <label for="dealBoardFile" class="form-label" style="display: none"></label>
+                        <input class="form-control" type="file" id="dealBoardFile" multiple name="file">
                     </div>
                     <div>
                         <c:forEach items="${deal.files}" var="File">
@@ -1079,7 +1080,7 @@ Product vo=(Product)request.getAttribute("vo");
                 </form>
 
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" >
                 <button type="button" class="btn btn-primary btn-lg updateDeal" style="margin-right: 185px">거래 수정
                 </button>
 

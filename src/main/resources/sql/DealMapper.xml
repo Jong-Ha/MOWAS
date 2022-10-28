@@ -154,15 +154,7 @@ values (seq_deal.NEXTVAL,
 
 
     <sql id="listDealBoardSql">
-        SELECT deal_board_num,
-               user_id,
-               deal_title,
-               vill_code,
-               deal_reg_date,
-               price,
-               deal_status,
-               tag
-
+        SELECT *
         FROM deal
         <if test="(boardCategory=='08' or boardCategory=='09')">
             WHERE board_category = #{boardCategory}
