@@ -160,15 +160,30 @@ public class SiteController {
     public String getCommunityReport(@PathVariable int reportNo, Model model) throws Exception {
         System.out.println("/site/getCommunityReport : GET");
         CommunityReport communityReport = siteService.getCommunityReport(reportNo);
-/*
-        VilBoard villBoard = new VilBoard();
-        if(communityReport.getBoardCategory().equals("01")) {
+
+        System.out.println("Board Category : " +communityReport.getBoardCategory());
+
+        if(communityReport.getBoardCategory().equals("1 ")) {
+
+        }
+        else if(communityReport.getBoardCategory().equals("2 ")) {
+
+        }
+        else if(communityReport.getBoardCategory().equals("3 ")) {
+            VilBoard villBoard = new VilBoard();
+            System.out.println("----- Board Category : " + communityReport.getBoardCategory());
             villBoard = commuService.getVillBoard(communityReport.getBoardNo());
+
+            if (villBoard != null) {
+                model.addAttribute("villBoard", villBoard);
+            }
+        }else if(communityReport.getBoardCategory().equals("10")) {
+
+        }else if(communityReport.getBoardCategory().equals("11")) {
+
         }
-        if(villBoard != null) {
-            model.addAttribute("villBoard", villBoard);
-        }
-*/
+
+
         model.addAttribute("communityReport", communityReport);
         return "forward:/view/site/getCommunityReport.jsp";
     }

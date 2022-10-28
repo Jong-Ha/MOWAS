@@ -358,10 +358,12 @@
  </div>
 </div>
 </div>
+    <%--
     <div class="col-md-12 text-center ">
         <button type="button" class="listCrProcess" >확인</button>
         <a class="btn btn-default btn" href = "#" role="button">취 소 </a>
     </div>
+    --%>
 </div>
 </body>
 </html>
