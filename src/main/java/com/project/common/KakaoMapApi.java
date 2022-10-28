@@ -106,7 +106,6 @@ public class KakaoMapApi {
 
                 if(fromIndex == 1) {
                     value = (String) subsubJobj.get("region_3depth_name");
-                    //System.out.println("vilcode 111:" + value);
                 } else if(fromIndex == 2) {
                     value = (String) subsubJobj.get("address_name");
                 }
@@ -114,7 +113,6 @@ public class KakaoMapApi {
             }else{
                 if(fromIndex == 1) {
                     value = (String) roadAddress.get("region_3depth_name");
-                    //System.out.println("vilcode 222:" + value);
                 } else if(fromIndex == 2) {
                     value = (String) roadAddress.get("address_name");
                 }
@@ -139,18 +137,15 @@ public class KakaoMapApi {
         String url = "https://dapi.kakao.com/v2/local/geo/coord2address.json?x="+longitude+"&y="+latitude;
         String addr = "";
         try{
-            //System.out.println("+++++++++++++++ Kakao API Start +++++++++++++++++");
-            addr = getRegionAddress(getJSONData(url), fromIndex);
+           addr = getRegionAddress(getJSONData(url), fromIndex);
         }catch(Exception e){
-            //System.out.println("Kakao API Exception occur");
-            e.printStackTrace();
+           e.printStackTrace();
         }
         System.out.println("+++++++++++++++++ 변환된 주소값 ++++++++++++++++" +addr);
         return addr;
     }
 
-    //좌표값으로 행정구역 정보 받기
-
+    //좌표값으로 행정구역 정보 받기 region_type이 B-법정동, H-행정동
     private static String getRegionCode(String jsonString) {
         String value = "";
         //System.out.println(jsonString);
@@ -161,16 +156,18 @@ public class KakaoMapApi {
 
         if(size  == 1){
             JSONObject subJobj = (JSONObject) jArray.get(0);
-            JSONObject regionBType =  (JSONObject) subJobj.get("region_type");
+            String regionBType =  (String) subJobj.get("region_type");
 
             if(regionBType.equals("B")) {
               value = (String) subJobj.get("region_3depth_name");
             }
         }else if(size == 2) {
             JSONObject subJobj = (JSONObject) jArray.get(1);
-            JSONObject regionHType =  (JSONObject) subJobj.get("region_type");
+            //System.out.println(subJobj);
+            String regionHType =  (String) subJobj.get("region_type");
+            //System.out.println(regionHType);
             if(regionHType.equals("H")) {
-                value = (String) subJobj.get("region_3depth_name");
+              value = (String) subJobj.get("region_3depth_name");
             }
         }
         return value;
@@ -180,13 +177,11 @@ public class KakaoMapApi {
         String url = "https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?x="+longitude+"&y="+latitude;
         String addr = "";
         try{
-            //System.out.println("+++++++++++++++ Kakao API Start +++++++++++++++++");
             addr = getRegionCode(getJSONData(url));
         }catch(Exception e){
-            //System.out.println("Kakao API Exception occur");
             e.printStackTrace();
         }
-        System.out.println("+++++++++++++++++ 변환된 주소값 ++++++++++++++++" +addr);
+        //System.out.println("+++++++++++++++++ 변환된 주소값 ++++++++++++++++" +addr);
         return addr;
     }
 
