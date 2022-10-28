@@ -2,10 +2,10 @@ package com.project.club.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.club.service.ClubService;
+import com.project.common.Search;
 import com.project.community.service.CommunityService;
-import com.project.domain.CalendarCluber;
-import com.project.domain.User;
-import com.project.domain.Voter;
+import com.project.domain.*;
+import com.project.myPage.service.MyPageService;
 import com.project.user.service.UserService;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -13,10 +13,13 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,8 +33,19 @@ public class ClubRestController {
     private CommunityService communityService;
 
     @Autowired
+    @Qualifier("userServiceImpl")
+    private UserService userService;
+
+    @Autowired
     @Qualifier("clubServiceImpl")
     private ClubService clubService;
+
+    @Autowired
+    @Qualifier("myPageServiceImpl")
+    private MyPageService myPageService;
+
+    @Value("#{commonProperties['pageSize']}")
+    int pageSize;
 
     @RequestMapping(value = "clubLike")
     public int clubLike(@RequestBody String Board, HttpSession session) throws ParseException {
@@ -169,6 +183,70 @@ public class ClubRestController {
         return map;
     }
 
+    @RequestMapping(value = "listClub")
+//    public Model listClub(Model model, @ModelAttribute("search") Search search) throws Exception {
+        public Map<String ,Object> listClub(@RequestBody Map<String ,Object> map) throws Exception {
+
+        Search search = new Search();
+
+        if(map.get("currentPage")!=null){
+            int currentPage = Integer.parseInt((String)map.get("currentPage"));
+            search.setCurrentPage(currentPage);
+            if (currentPage == 0) {
+                search.setCurrentPage(1);
+            }
+        }
+
+        String userId = "";
+        String searchLocation = "";
+        List<String> searchTag = null;
+        List<String> searchInterList = null;
+
+        if(map.get("userId")!=null){
+            userId = (String)map.get("userId");
+        }
+
+        search.setPageSize(pageSize);
+        if(map.get("searchLocation")!=null){
+            searchLocation = (String)map.get("searchLocation");
+        }
+
+        if(map.get("searchTag")!=null){
+            searchTag = (List<String>)map.get("searchTag");
+        }
+
+        if(map.get("searchInterList")!=null){
+            searchInterList = (List<String>)map.get("searchInterList");
+        }
+
+        if (!userId.equals("")) {
+            if(searchLocation.equals("")){
+                searchLocation = userService.getUser(userId).getVillCode();
+                searchInterList = new ArrayList<>();
+                for(UserInterList uil : (List<UserInterList>) myPageService.getMyInfor(userId).get("interList")){
+                    String str = null;
+                    int item = Integer.parseInt(uil.getInterList().trim());
+                    if(item<10){
+                        str = "0"+item;
+                    }else {
+                        str = ""+item;
+                    }
+                    searchInterList.add(str);
+                }
+            }
+        }else {
+            userId = "";
+            if(searchLocation==null){
+                searchLocation="역삼1동";
+            }
+        }
+        List<Club> list = clubService.listClub(userId,search,searchLocation,searchInterList,searchTag);
+        for(Club club : list){
+            club.parseInterList();
+        }
+        map.put("list", list);
+        return map;
+    }
 //    @RequestMapping(value = "updateVoter", method = RequestMethod.POST)
 //    public boolean updateVoter(@RequestBody Map<String, Object> map) {
 //        List<String> voterItems = (List<String>) map.get("voterItems");

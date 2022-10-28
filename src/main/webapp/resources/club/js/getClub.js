@@ -476,13 +476,20 @@ function setGetClubCalendar() {
 
 //레이아웃 사이즈 조절
 function clubLayout(){
-    $('[alt="모임 대표 이미지"]').parent().height($('[alt="모임 대표 이미지"]').parent().width() / 3 * 2)
+    $('[alt="모임 대표 이미지"]').parent().height($('[alt="모임 대표 이미지"]').parent().width() *0.55)
     $('.clubBoarder').height($('.clubBoarder').width() * 0.7)
 }
 
 
 /////////////////////////////// 로드시 실행 ///////////////////////////////
 $(function () {
+
+    $('.modal').off('show.bs.modal').on('show.bs.modal',function(){
+        $('body').addClass('stop-scrolling')
+    })
+    $('.modal').off('hide.bs.modal').on('hide.bs.modal',function(){
+        $('body').removeClass('stop-scrolling')
+    })
 
     clubLayout()
     $(window).on('resize', clubLayout)
@@ -547,9 +554,17 @@ $(function () {
     })
     tagify.addTags(items)
 
+    $('#updateClub #clubName').off('keyup').on('keyup',function(){
+        if($(this).val().length>13){
+            alert('모임명은 최대 13글자입니다')
+            $(this).val($(this).val().substring(0, 13));
+        }
+    })
+
     //업데이트
     $(".updateClub").on("click", function () {
         const updateForm = $("#updateClubForm");
+
         $.each(JSON.parse($("#clubTag").val()), function (index, item) {
             updateForm.append('<input type="hidden" name="clubTags" value="' + item.value + '">')
         })
@@ -651,6 +666,9 @@ $(function () {
     const clubBoardRest = $("#ClubBoardRest")
 
     function beforeToolbar(tab) {
+        if(loadCheck){
+            $('.clubTab')[0].scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"})
+        }
         if (clubBoardRest.css('display') === 'block' && loadCheck) {
             return true
         }
@@ -712,5 +730,7 @@ $(function () {
     })
 
     $('.calendarView').click()
+
+    $('.clubInfo')[0].scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
 
 })//$(function(){}) 종료 지점

@@ -96,7 +96,7 @@
                      style="margin: 20px 0 30px 0;">
 
                     <button type="button" class="btn position-relative updateImgBox"
-                            style="width: 90%; border: 1px #000 solid; border-radius: 5px; cursor: default">
+                            style="width: 90%; border: 1px #ced4da solid; border-radius: 5px; cursor: default">
 
                         <img src="/resources/${i.fileName}" alt="모임 공지사항 파일"
                              style="object-fit: contain;height: 99%;width: 99%;border-radius: 10px;">

@@ -181,9 +181,11 @@ public class ClubServiceImpl implements ClubService {
         clubDao.addClubMasterBoard(clubMasterBoard);
         int clubMasterBoardNum = clubDao.getClubMasterBoardNum(clubMasterBoard.getUserId());
         List<File> files = clubMasterBoard.getFiles();
-        for (File file : files) {
-            file.setBoardNum(clubMasterBoardNum);
-            clubDao.addClubMasterBoardFile(file);
+        if(files!=null){
+            for (File file : files) {
+                file.setBoardNum(clubMasterBoardNum);
+                clubDao.addClubMasterBoardFile(file);
+            }
         }
         return clubMasterBoardNum;
     }

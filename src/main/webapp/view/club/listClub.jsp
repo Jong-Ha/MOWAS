@@ -47,6 +47,8 @@ ${user.userId}
 
     <form id="listForm">
         <input type="hidden" class="searchLng" name="searchLng" value="">
+        <input type="hidden" class="currentPage" name="currentPage" value="2">
+        <input type="hidden" name="userId" value="${user.userId}">
         <input type="hidden" class="searchLat" name="searchLat" value="">
         <div style="display: none" class="tagForm">
             <c:forEach items="${searchTag}" var="tag">
@@ -215,7 +217,6 @@ ${user.userId}
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                        ${club.currentCluber}/25<br>
                                     <span class="likeToggle">
                                         <c:if test="${club.likeCheck!='y'}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -233,9 +234,6 @@ ${user.userId}
                             </div>
                             <button type="button" class="btn btn-outline-primary clubTag">${club.tag}</button>
                         </div>
-                            <%--<div class="card-footer">
-                                <small class="text-muted">Last updated 3 mins ago</small>
-                            </div>--%>
                     </div>
                 </div>
             </div>
@@ -336,6 +334,8 @@ ${user.userId}
 
 </div>
 
+<%--채팅아이콘--%>
+<jsp:include page="/layout/chatIcon.jsp"/>
 <%--하단바--%>
 <jsp:include page="/layout/footer.jsp"/>
 

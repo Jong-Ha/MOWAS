@@ -26,10 +26,10 @@
             </label>
         </div>
         <c:if test="${empty list}">
-            <div class="card shadow-lg cardBox" style="grid-template-columns: 1fr;">블랙리스트 대상자가 없습니다!</div>
+            <div class="card shadow-lg cardBox noHover" style="grid-template-columns: 1fr;">블랙리스트 대상자가 없습니다!</div>
         </c:if>
         <c:if test="${!empty list}">
-            <div class="card-list" style="overflow-y: scroll;height: 600px;">
+            <div class="card-list">
                 <c:forEach items="${list}" var="clubBlacklist">
                     <div class="card shadow-lg cardBox each">
                         <input type="checkbox" class="clubUserNum" name="clubUserNum" value="${clubBlacklist.clubUserNum}"
@@ -64,16 +64,18 @@
                     </div>
                 </c:forEach>
             </div>
-            <div style="margin-left: 335px;">
-                <input type="button" class="updateClubBlacklist btn btn-primary" value="등록">
-                <input type="button" class="updateClubBlacklist btn btn-primary" value="취소">
-            </div>
-            <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" var="i">
-                <span class="paging">${i}</span>
-            </c:forEach>
-            <label>
-                <input type="hidden" id="currentPage" name="currentPage" value="1">
-            </label>
         </c:if>
+        <label>
+            <input type="hidden" id="currentPage" name="currentPage" value="1">
+        </label>
     </form>
 </div>
+    <div class="modal-footer">
+        <div style="margin-left: 335px;">
+            <input type="button" class="updateClubBlacklist btn btn-primary" value="등록">
+            <input type="button" class="updateClubBlacklist btn btn-primary" value="취소">
+        </div>
+        <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" var="i">
+            <span class="paging">${i}</span>
+        </c:forEach>
+    </div>

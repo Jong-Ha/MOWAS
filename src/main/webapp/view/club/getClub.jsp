@@ -31,7 +31,7 @@
 <%--상단 툴바--%>
 <jsp:include page="/layout/toolbar.jsp"/>
 <!-- Example Code -->
-<div class="container">
+<div class="container" style="padding-top: 30px;">
 
     <div id="nonModal">
         <div class="row" style="display: flex; align-items: center">
@@ -41,16 +41,18 @@
                 <h1>${club.clubName}</h1>
             </div>
             <div class="col-2" style="text-align: left;">
-                <button class="btn btn-primary addClubReportView" data-bs-toggle="modal" data-bs-target="#addClubReport">
+                <button class="btn btn-primary addClubReportView" data-bs-toggle="modal"
+                        data-bs-target="#addClubReport">
                     모임 신고
                 </button>
             </div>
         </div>
-        <div class="container-fluid py-5" style="text-align: center; width: 70%;">
-            <img src="/resources/${club.clubImage}" alt="모임 대표 이미지" style="object-fit: cover; width: 100%; height: 100%">
+        <div class="container-fluid py-3" style="text-align: center; width: 70%;">
+            <img src="/resources/${club.clubImage}" alt="모임 대표 이미지"
+                 style="object-fit: cover; width: 100%; height: 100%">
         </div>
 
-        <p>${club.clubText}</p>
+        <h5 style="width: 70%">${club.clubText}</h5>
 
 
         <div class="clubInfo" style="display: flex;">
@@ -89,7 +91,9 @@
                         </div>
                         <div class="col-4">
                             <c:if test="${currentCluber.cluberStatus=='4'||currentCluber.cluberStatus=='5'||currentCluber.cluberStatus=='6'}">
-                                <button type="button" class="btn btn-primary font listCluber" data-bs-toggle="modal" data-bs-target="#listCluber">모임원 목록</button>
+                                <button type="button" class="btn btn-primary font listCluber" data-bs-toggle="modal"
+                                        data-bs-target="#listCluber">모임원 목록
+                                </button>
                             </c:if>
                         </div>
                     </div>
@@ -126,7 +130,8 @@
 
                 <div>
                     <div class="underline yellow listClubMasterBoardView">모임 공지사항</div>
-                    <input type="button" class="getClubMasterBoard" data-bs-toggle="modal" data-bs-target="#getClubMasterBoard" style="display: none"></input>
+                    <input type="button" class="getClubMasterBoard" data-bs-toggle="modal"
+                           data-bs-target="#getClubMasterBoard" style="display: none"></input>
                 </div>
 
                 <div>
@@ -240,10 +245,12 @@
                             </div>
 
                             <div class="input-group mb-3">
-                                <button class="btn btn-outline-secondary" type="button" id="updateClubMap" data-bs-toggle="modal"
+                                <button class="btn btn-outline-secondary" type="button" id="updateClubMap"
+                                        data-bs-toggle="modal"
                                         data-bs-target="#searchLocation">주요활동위치
                                 </button>
-                                <input type="text" class="form-control" placeholder="" readonly name="villCode" id="villCode"
+                                <input type="text" class="form-control" placeholder="" readonly name="villCode"
+                                       id="villCode"
                                        value="${club.villCode}"
                                 >
                             </div>
@@ -334,14 +341,17 @@
                     </div>
                     <div class="modal-footer">
                         <c:if test="${currentCluber.cluberStatus!='2'}">
-                            <button type="button" class="btn btn-primary addCluberApply" style="margin-right: 185px">모임 가입
+                            <button type="button" class="btn btn-primary addCluberApply" style="margin-right: 185px">모임
+                                가입
                                 신청
                             </button>
                         </c:if>
                         <c:if test="${currentCluber.cluberStatus=='2'}">
-                            <button type="button" class="btn btn-primary updateCluberApply" style="margin-right: 10px">수정
+                            <button type="button" class="btn btn-primary updateCluberApply" style="margin-right: 10px">
+                                수정
                             </button>
-                            <button type="button" class="btn btn-primary deleteCluberApply" style="margin-right: 175px">삭제
+                            <button type="button" class="btn btn-primary deleteCluberApply" style="margin-right: 175px">
+                                삭제
                             </button>
                         </c:if>
                     </div>
@@ -353,7 +363,7 @@
 
     <%--모임 탈퇴 모달창 시작--%>
     <div class="modal fade" id="deleteCluber" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
             </div>
         </div>
@@ -362,7 +372,7 @@
 
     <%--모임원 목록 조회 모달창 시작--%>
     <div class="modal fade listCluberModal" id="listCluber" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
             </div>
         </div>
@@ -371,7 +381,7 @@
 
     <%--모임원 목록 조회 모달창 시작--%>
     <div class="modal fade listCluberModal" id="listCluberOut" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
             </div>
         </div>
@@ -380,7 +390,7 @@
 
     <%--getCluber 모달창 시작--%>
     <div class="modal fade" id="getCluber" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
             </div>
         </div>
@@ -398,7 +408,7 @@
 
     <%--listClubBlacklist 모달창 시작--%>
     <div class="modal fade" id="listClubBlacklist" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
             </div>
         </div>
@@ -407,7 +417,7 @@
 
     <%--addClubBlacklist 모달창 시작--%>
     <div class="modal fade" id="addClubBlacklist" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
             </div>
         </div>
@@ -416,7 +426,7 @@
 
     <%--updateCluber 모달창 시작--%>
     <div class="modal fade" id="updateCluber" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
             </div>
         </div>
@@ -443,7 +453,7 @@
 
     <%--addClubReport 모달창 시작--%>
     <div class="modal fade" id="addClubReport" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
             </div>
         </div>
@@ -452,7 +462,7 @@
 
     <%--searchLocation 모달창 시작--%>
     <div class="modal fade" id="searchLocation" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <jsp:include page="/view/site/clubMap.jsp"/>
             </div>
@@ -462,7 +472,7 @@
 
     <%--addClubMasterBoard 모달창 시작--%>
     <div class="modal fade" id="addClubMasterBoard" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
             </div>
         </div>
@@ -490,6 +500,8 @@
 
 </div>
 
+<%--채팅아이콘--%>
+<jsp:include page="/layout/chatIcon.jsp"/>
 <%--하단바--%>
 <jsp:include page="/layout/footer.jsp"/>
 

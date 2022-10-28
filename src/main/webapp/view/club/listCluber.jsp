@@ -24,11 +24,9 @@
             <div class="badge bg-primary text-wrap listCluber" data-bs-target="#listCluber" data-bs-toggle="modal">현재 모임원 목록 조회</div>
         </c:if>
     </div>
-</div>
-<div class="modal-footer">
     <div class="card-list">
         <c:if test="${empty list}">
-            <div class="card shadow-lg cardBox" style="grid-template-columns: 1fr;">탈퇴한 모임원이 없습니다!</div>
+            <div class="card shadow-lg cardBox noHover" style="grid-template-columns: 1fr;">탈퇴한 모임원이 없습니다!</div>
         </c:if>
         <c:if test="${!empty list}">
             <c:forEach items="${list}" var="cluber">
@@ -66,6 +64,9 @@
             </c:forEach>
         </c:if>
     </div>
+</div>
+<div class="modal-footer">
+
     <c:if test="${!empty list}">
         <c:if test="${search.searchCondition==1}">
             <form id="listCluberOutForm">

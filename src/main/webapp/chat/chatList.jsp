@@ -74,15 +74,22 @@
                                 '<div class="card-body " >' +
                                 '<h5 class="card-title">'+chatter+'</h5>' +
                                 '<hr>' +
-                                '<p class="card-text lastchatText"></p>' +
+                                '<p class="card-text lastchatText">&nbsp;</p>' +
                                 '<hr>' +
-                                '<p class="card-text"><small class="text-muted chatTime">Last updated 3 mins ago</small></p>' +
+                                '<p class="card-text"><small class="text-muted chatTime">&nbsp;</small></p>' +
                                 '</div>' +
                                 '</div>' +
                                 '</div>' +
                                 '</div>'
 
                 $(".chatList").append(chatList);
+
+                $(".chatBox").off('click').on("click", function () {
+                    var roomId =  $(this).find(".roomId").val()
+
+
+                    location.href = "/chat/getChat?roomId="+roomId+"&chatNameSpace="+'${chatCategory}';
+                })
             })
 
             socket.on("msg", (msg) => {
@@ -91,26 +98,33 @@
                 //     console.log(b)
                 //     console.log(a)
                 // })
+                // console.log()
+                // console.log()
+                // console.log('===============================')
+                // console.log(msg)
+                // console.log('===============================')
+                // console.log(msg[0])
+                // console.log('===============================')
+                // console.log()
+                // console.log(i++)
+                if(msg[0]===undefined){
+                    return false
+                }
                 var card = $(".roomId[value='"+msg[0].roomId+"']").parent()
                 card.find(".lastchatText").html(msg[0].msg)
                 card.find(".chatTime").html(msg[0].time)
-                var chatBox = $(".chatBox")
+                card.find(".rTime").val(msg[0].rtime)
+                // alert(msg[0].rtime)
+                // var chatBox = $(".chatBox")
                 // console.log(chatBox.length)
-                $.each(chatBox, function(index, item){
+                $.each($(".chatBox"), function(index, item){
+                    // alert($(item).find(".rTime").val())
                     if($(item).find(".rTime").val() < msg[0].rtime){
 
                         $(item).before(card)
 
                         return false;
                     }
-                })
-
-
-                chatBox.off('click').on("click", function () {
-                    var roomId =  $(this).find(".roomId").val()
-
-
-                    location.href = "/chat/getChat?roomId="+roomId+"&chatNameSpace="+'${chatCategory}';
                 })
 
             });
