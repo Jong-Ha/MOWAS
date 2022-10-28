@@ -31,6 +31,7 @@ public interface SiteDao {
     //Community Report CRUD
     public void addCommunityReport(CommunityReport communityReport) throws Exception;
 
+    public void addCommuReportFiles(File file) throws Exception;
     public  CommunityReport getCommunityReport(int reportNo) throws Exception;
 
     public List<CommunityReport> listCommunityReport(Search search) throws Exception;

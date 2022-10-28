@@ -415,47 +415,6 @@
 
 <script>
 
-    function fileUpload() {
-        //alert("파일 업로드 시작 합니다");
-
-        //form 테그를 불러와서 form변수에 등록
-        var form = document.querySelector("form");
-        //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
-        var formData = new FormData(form);
-        //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
-        var fileSize = $("#fileForm #file")[0].files;
-
-        console.log(fileSize.length);
-
-        //file길이 만큼 for문으로 formData에 append함
-        for (var i = 0; i < fileSize.length; i++) {
-            formData.append("form", fileSize[i]);
-            //파일이 잘 들어 갔는지 확인
-            console.log(fileSize[i]);
-        }
-
-        $(".chatting-input").html(fileSize);
-
-        //파일은 json형식으로 보낼수 없기 떄문에 contentType, processData, dataType을 false로 지정
-        $.ajax({
-            url: "/chat/json/chatFile",
-            type: "post",
-            processData: false,
-            contentType: false,
-            cache: false,
-            timeout: 600000,
-            data: formData,
-            headers: {'cache-control': 'no-cache', 'pragma': 'no-cache'},
-            enctype: "multipart/form-data",
-            success: function (result) {
-                console.log(result);
-
-                $("#file").val("");
-            }
-
-        })
-    }
-
     //dom을 사용해서 클라이언트에서 기록되는 내용을 가지고온다
     const nickname = document.querySelector("#nickname");
     const chatList = document.querySelector(".chatting-list");
@@ -499,8 +458,8 @@
 
             $.each(msg, (index, item) => {
 
-                const newItem = new LiModel(item.userId[0], item.msg, item.time);
-
+                const newItem = new LiModel(item.userId[0], item.msg, item.time, item.file, item.imgCheck);
+console.log(item)
                 //makeLi를 실행한다.
                 newItem.makeLi();
             })
@@ -522,8 +481,8 @@
         //server에서 data를 받음
         socket.on("chatting", (newMsg) => {
 
-            const item = new LiModel(newMsg.userId, newMsg.msg, newMsg.time);
-
+            const item = new LiModel(newMsg.userId, newMsg.msg, newMsg.time, newMsg.file, newMsg.imgCheck);
+console.log(newMsg)
             item.makeLi();
 
         })
@@ -704,13 +663,57 @@
         })
 
 
-        $("#file").on("change", function () {
+        $(".send-file").on("change", function () {
 
-            const file = $(this)
+            //form 테그를 불러와서 form변수에 등록
+            var form = document.querySelector("form");
+            //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
+            var formData = new FormData(form);
+            //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
+            var fileSize = $("#fileForm #file")[0].files;
 
-            fileUpload(file, fileForm);
+            console.log(fileSize.length);
 
-            sendMessage(socket)
+            //file길이 만큼 for문으로 formData에 append함
+            for (var i = 0; i < fileSize.length; i++) {
+                formData.append("form", fileSize[i]);
+                //파일이 잘 들어 갔는지 확인
+                console.log(fileSize[i]);
+            }
+
+            //파일은 json형식으로 보낼수 없기 떄문에 contentType, processData, dataType을 false로 지정
+            $.ajax({
+                url: "/chat/json/chatFile",
+                type: "post",
+                processData: false,
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+                data: formData,
+                headers: {'cache-control': 'no-cache', 'pragma': 'no-cache'},
+                enctype: "multipart/form-data",
+                success: function (JSONData, result) {
+
+                    $.each(JSONData.list , function (inedx, item) {
+
+                        console.log(item.fileName);
+
+
+                        const data = {
+                            name: nickname.value,
+                            file: item.fileName,
+                            imgCheck: 2
+                        }
+
+                        socket.emit("chatImg", data);
+                    })
+
+
+                }
+
+            })
+
+
 
         })
 
@@ -723,8 +726,6 @@
             return
         }
 
-        fileUpload();
-
         const data = {
             name: nickname.value,
             msg: chatInput.value
@@ -733,24 +734,42 @@
         socket.emit("chatting", data)
     }
 
-    function LiModel(name, msg, time) {
+    function LiModel(name, msg, time, file, imgCheck) {
         this.name = name;
         this.msg = msg;
         this.time = time;
+        this.file = file
+        this.imgCheck = imgCheck
 
         this.makeLi = () => {
             //li 상수에 li테크를 만드는 method를 담는다
             const li = document.createElement("li");
-            //내가 작성한건지 상대방이 작성한건지 비교하는 method
-            li.classList.add(nickname.value == this.name ? "sent" : "received")
-            //li에 html을 넣는다
-            li.innerHTML =
-                '<span class="profile">' +
-                '<span class="user">' + this.name + '</span>' +
-                '<img class="userimg" src="https://placeimg.com/50/50/any" alt="any">' +
-                '</span>' +
-                '<span class="message">' + this.msg + '</span>' +
-                '<span class="time">' + this.time + '</span>';
+
+            if( imgCheck === 2 ){
+                li.innerHTML +=
+                    '<span class="profile">' +
+                    '<span class="user">' + this.name + '</span>' +
+                    '<img class="userimg" src="https://placeimg.com/50/50/any" alt="any">' +
+                    '</span>'+
+                    '<span class="message">'+
+                    '<img src="/resources/'+this.file+'" alt="/resources/images/proplePoto.png"></span>' +
+                    '<span class="time">' + this.time + '</span>';
+
+                li.classList.add(nickname.value == this.name ? "Imgsent" : "Imgreceived")
+
+            }
+
+            if(imgCheck !== 2 ) {
+                li.innerHTML +=
+                    '<span class="profile">' +
+                    '<span class="user">' + this.name + '</span>' +
+                    '<img class="userimg" src="https://placeimg.com/50/50/any" alt="any">' +
+                    '</span>'+
+                    '<span class="message">' + this.msg + '</span>' +
+                    '<span class="time">' + this.time + '</span>';
+
+                li.classList.add(nickname.value == this.name ? "sent" : "received")
+            }
 
 
             //catList에 li의 html을 append한다
@@ -764,3 +783,9 @@
 </script>
 </body>
 </html>
+<style>
+    .message > img {
+        width: 100px;
+        height: 100px;
+    }
+</style>

@@ -78,6 +78,14 @@ public class SiteServiceImpl implements SiteService {
     //커뮤니티 신고 CRUD
     @Override
     public void addCommunityReport(CommunityReport communityReport) throws Exception {
+        List<File> files = communityReport.getFiles();
+
+        if(files != null) {
+            for (File file : files) {
+                file.setBoardNum(communityReport.getReportNo());
+                siteDao.addCommuReportFiles(file);
+            }
+        }
         siteDao.addCommunityReport(communityReport);
     }
 

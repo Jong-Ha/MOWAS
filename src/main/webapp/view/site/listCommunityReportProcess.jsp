@@ -268,7 +268,7 @@
             <c:forEach var="cr" items="${list}">
                 <c:set var="i" value="${ i+1 }" />
                 <tr>
-                    <td><a href="/site/getCommunityReportProcess/${cr.reportNo}">${ i }</a>
+                    <td><a href="/site/getCommunityReport/${cr.reportNo}">${ i }</a>
                         <input id="crNo" type="hidden" value="${cr.reportNo }"/>
                     </td>
                     <td>${cr.reportedId}
@@ -335,11 +335,11 @@
         </div>
     </div>
 </div>
-
+<%--
     <div class="col-md-12 text-center ">
         <button type="button" class="listCrProcess" >확인</button>
         <a class="btn btn-default btn" href = "#" role="button">취 소 </a>
     </div>
-
+--%>
     </body>
 </html>
