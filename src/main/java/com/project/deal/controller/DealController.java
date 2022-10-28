@@ -403,10 +403,10 @@ String history="";
     }
     @RequestMapping(value="updateDeal",method = RequestMethod.POST)
     public String updateDeal(@ModelAttribute("deal") Deal deal,MultipartHttpServletRequest multi, @RequestParam(value = "deleteFileName", required = false) List<String> deleteFileNames) throws Exception {
-            ////파일 업로드
+        ////파일 업로드
             //파일 추출
             List<MultipartFile> mfs = multi.getFiles("file");
-            System.out.println(mfs);
+            System.out.println("여긴어딘가요 ? 파일 들어가나요 ?"+mfs);
             //저장할 리스트 생성
            // List<com.project.domain.File> files = new ArrayList<>();
         List<com.project.domain.File> files = new ArrayList<>();

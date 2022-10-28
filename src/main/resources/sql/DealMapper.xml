@@ -54,8 +54,8 @@
         SELECT file_name
         FROM files
         WHERE board_num = #{boardNum}
-            AND board_category = '08'
-           OR board_category = '09'
+            AND (board_category = '08'
+           OR board_category = '09')
     </select>
 
     <!--파일 삭제-->
@@ -136,7 +136,7 @@ values (seq_deal.NEXTVAL,
 
     product_name=#{productName:VARCHAR},
         price=#{price:NUMERIC},
-        tag=#{tag:VARCHAR}
+
 </set>
 
         <where> deal_board_num=#{dealBoardNum}</where>
