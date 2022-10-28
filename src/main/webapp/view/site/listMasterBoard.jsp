@@ -85,6 +85,22 @@
       border-color: transparent
     }
   }
+  .table > thead {
+    background-color: #20a4ea;
+  }
+  .table > thead > tr > th {
+    text-align: center;
+  }
+  .table-hover > tbody > tr:hover {
+    background-color: #add9f1;
+  }
+  .table > tbody > tr > td {
+    text-align: center;
+  }
+  .table > tbody > tr > #title {
+    text-align: left;
+  }
+
   </style>
 
   <script type="text/javascript">
@@ -269,12 +285,14 @@
             <table class="table project-table table-centered table-nowrap table-hover table-striped">
               <thead>
               <tr>
-                <th scope="col width=5%">번호</th>
-                <th scope="col width=60%">제목</th>
-                <th scope="col width=10%">작성자</th>
-                <th scope="col width=10%">날짜</th>
-                <th scope="col width=10%">상세보기</th>
-                <th scope="col width=5%">Action</th>
+                <th scope="col">번호</th>
+                <th scope="col">제목</th>
+                <th scope="col">작성자</th>
+                <th scope="col">날짜</th>
+                <th scope="col">상세보기</th>
+                <c:if test="${user.masterCheck eq 2}">
+                <th scope="col">Action</th>
+                </c:if>
               </tr>
               </thead>
               <tbody>
@@ -300,10 +318,12 @@
                   <span class="text-success mr-4 getMb" data-toggle="tooltip" data-placement="top" title="" data-original-title="NewMb">
                   <i class="bi bi-file-earmark-text h5 m-0"></i></span>
                 </td>
+                <c:if test="${user.masterCheck eq 2}">
                 <td>
                     <a href="#" class="text-success mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"> <i class="fa fa-pencil h5 m-0"></i></a>
                     <a href="#" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close"> <i class="fa fa-remove h5 m-0"></i></a>
                 </td>
+                </c:if>
               </tr>
               </c:forEach>
 
@@ -313,12 +333,15 @@
 
           <!-- end project-list -->
           <div class="col-md-12 text-left ">
-            <button type="button" class="addMb btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addMasterBoard">글쓰기</button>
+        <c:if test="${user.masterCheck eq 2}">
+            <button type="button" class="addMb btn" style="background-color: #F8CD07;" data-bs-toggle="modal" data-bs-target="#addMasterBoard">글쓰기</button>
             <%--<button type="button" class="addMb" data-bs-toggle="modal" data-bs-target="#addMasterBoard">--%>
-            <a class="btn btn-default btn" href = "#" role="button">취 소 </a>
+            <a class="btn btn-secondary" href = "#" role="button">취 소 </a>
+        </c:if>
+            <!--test version
             <button type="button" class="commReport" >커뮤니티신고</button>
             <button type="button" class="clubReport" >모임신고</button>
-            <button type="button" class="clubMap" data-bs-toggle="modal" data-bs-target="#addMap">클럽맵 Test</button>
+            <button type="button" class="clubMap" data-bs-toggle="modal" data-bs-target="#addMap">클럽맵 Test</button>-->
           </div>
 
           <div class="pt-3">

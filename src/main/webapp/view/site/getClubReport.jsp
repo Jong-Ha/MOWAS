@@ -26,7 +26,7 @@
     }
     .account-block {
       padding: 0;
-      background-image: url(https://bootdey.com/img/Content/bg1.jpg);
+      background-image: url('/resources/images/pngwing.com.png');
       background-repeat: no-repeat;
       background-size: cover;
       height: 100%;
@@ -41,11 +41,11 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background-color: rgba(0, 0, 0, 0.4);
+      background-color: rgba(231, 219, 224, 0.4);
     }
     .account-block .account-testimonial {
       text-align: center;
-      color: #fff;
+      color: #111111;
       position: absolute;
       margin: 0 auto;
       padding: 0 1.75rem;
@@ -184,12 +184,12 @@
               <div class="account-block rounded-right">
                 <div class="overlay rounded-right"></div>
                 <div class="account-testimonial">
-                  <h4 class="text-white mb-4">모임 신고 처리 기준은 다음과 같습니다.</h4>
-                  <p class="lead text-white">▶ 목적과 다른 모임 - 경고 </p>
-                  <p class="lead text-white">▶ 상업적 모임 - 경고 </p>
-                  <p class="lead text-white">▶ 정치적 성향의 모임 - 경고 </p>
-                  <p class="lead text-white">▶ 도박 모임 - 폐쇄 </p>
-                  <p class="lead text-white">▶ 다단계 판매 - 폐쇄 </p>
+                  <h4 class="mb-4">모임 신고 처리 기준은 다음과 같습니다.</h4>
+                  <p class="lead ">▶ 목적과 다른 모임 - 경고 </p>
+                  <p class="lead ">▶ 상업적 모임 - 경고 </p>
+                  <p class="lead ">▶ 정치적 성향의 모임 - 경고 </p>
+                  <p class="lead ">▶ 도박 모임 - 폐쇄 </p>
+                  <p class="lead ">▶ 다단계 판매 - 폐쇄 </p>
                   <p>- Admin -</p>
 
                 </div>

@@ -33,7 +33,7 @@ Product vo=(Product)request.getAttribute("vo");
     <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css"/>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="/resources/deal/js/getDeal.js"></script>
-    <link href="/resources/deal/css/getDeal.css" rel="stylesheet" type="text/css"/>
+<%--    <link href="/resources/deal/css/getDeal.css" rel="stylesheet" type="text/css"/>--%>
 
     <title>Bootstrap Example</title>
 
@@ -50,30 +50,60 @@ Product vo=(Product)request.getAttribute("vo");
     <script>
 
 
-        $(document).ready(function () {
 
-        })
         $(function () {
-            // //파일 삭제
-            $('input[name="file"]').on("change", function () {
-                $('.deleteFile').attr("disabled", false)
+            $("#updateDeal .updateDeal").on("click", function () {
+                // $("form").attr("method","post").attr("action","/club/updateClubMasterBoard").submit()
+                const data = new FormData($('#updateDealForm')[0])
+
+                $.ajax({
+                    url: "/deal/updateDeal",
+                    method: 'post',
+                    enctype: 'multipart/form-data',
+                    processData: false,
+                    contentType: false,
+                    'data': data,
+                    success: function (re) {
+                        alert('수정되었습니다')
+                       // $('#getClubMasterBoard .modal-content').html(re)
+                     //   $('.getClubMasterBoard').click()
+                       // $('.listClubMasterBoardView').click()
+                        $('#updateDeal').modal('hide')
+                        window.location.reload();
+
+                    }
+                })
+
             })
+
             //파일 갯수 체크
-            $("input:file").on("change", function () {
+            $("#updateDealForm input:file").on("change", function () {
                 if ($(this)[0].files.length > 10 - $('#fileSize').val()) {
                     alert('파일 갯수를 초과하였습니다.');
                     // alert(10-$('#fileSize').val());
                     $(this).val('');
                 }
             })
+
             //파일 삭제 버튼
-            $(".deleteFile").on("click", function () {
-                alert("${deal.files}");
-                var size = $("#fileSize");
-                size.parent().append('<input type="hidden" name="deleteFileName" value="' + $(this).parent().attr('id') + '">')
-                $(this).parent().remove()
+            var deleteFiles = $("#updateDealForm .deleteFile")
+
+            deleteFiles.off('click').on("click", function () {
+                $(this).css('display','none')
+                var size = $("#updateDealForm #fileSize");
+                size.parent().append('<input type="hidden" name="deleteFileName" value="' + $(this).parents('.dealBoardFiles').attr('id') + '">')
+                $(this).parents('.dealBoardFiles').slideUp('slow')
                 size.val(size.val() - 1)
             })
+
+            deleteFiles.on('mouseenter',function(){
+                $(this).addClass('bg-danger')
+            })
+
+            deleteFiles.on('mouseleave',function(){
+                $(this).removeClass('bg-danger')
+            })
+
 
 
             $(".dealChat").on("click", function () {
@@ -210,23 +240,77 @@ Product vo=(Product)request.getAttribute("vo");
             })
         })
 
-
+//업데이트
+        $(function () {
+//             // $(".updateClub").on("click",function(){
+//             //     location.href="/club/updateClub/"+$(".boardNum").val()
+//             // })
+            $(".delete").on("click", function () {
+                var check = confirm("진짜 삭제?");
+                if (check === true) {
+                    location.href = "/deal/deleteDeal/" + $(".dealBoardNum").val()
+                }
+            })
+//         //업데이트
+//         var dealTag = document.querySelector("#dealTag")
+//         var tagify = new Tagify(dealTag, {
+//             dropdown: {
+//                 position: "input",
+//                 enabled: 0 // always opens dropdown when input gets focus
+//             }
+//         })
+//         $("#updateDeal").find(".newDeal").on("click", function () {
+//             if ($("#dealTitle").val() === '') {
+//                 alert("제목은 필수입니다")
+//                 return;
+//             }
+//             if ($("#dealProduct").val() === '') {
+//                 alert("제품명은 필수입니다")
+//                 return;
+//             }
+//             if ($("#price").val() === '') {
+//                 alert("가격은 필수입니다")
+//                 return;
+//             }
+//             let updateForm = $("#updateDealForm");
+//             $.each(JSON.parse($("#dealTag").val()), function (index, item) {
+//                 updateForm.append('<input type="hidden" name="dealTags" value="' + item.value + '">')
+//             })
+//             updateForm.attr("method", "post").attr("action", "/deal/updateDeal").submit();
+//         })
+        })
         //최근 본 상품
-
+        $(function (){
+            $(".list").on("click", function(){
+                history.go(-1);
+            })
+        })
     </script>
     <style type="text/css">
         /*body {*/
         /*  padding-top: 50px;*/
         /*}*/
 
-        /*.wap {*/
-        /*  width: 700px;*/
-        /*  font-size: 0.9em;*/
-        /*}*/
-        /*.check{*/
-        /*  height: 20px;*/
-        /*  width: 35px;*/
-        /*}*/
+        .wap {
+          width: 1400px;
+          font-size: 1.2em;
+            height: 1000px;
+        }
+        .check{
+          height: 20px;
+          width: 35px;
+        }
+
+        .userImage1 {
+            margin-top: -20px;
+            display: flex;
+        }
+        .likebox {
+            height: 75px;
+            background: #ffff;
+            margin-top: -30px;
+            border-radius: 5px;
+        }
 
         /* 창 여분 없애기 */
         body {
@@ -341,7 +425,11 @@ Product vo=(Product)request.getAttribute("vo");
             --bs-btn-disabled-bg: #6c757d;
             --bs-btn-disabled-border-color: #6c757d;
         }
-
+        #article-profile #article-profile-right {
+            position: absolute;
+            right: 0;
+            padding-right: 15%;
+        }
     </style>
 
 </head>
@@ -349,7 +437,10 @@ Product vo=(Product)request.getAttribute("vo");
 
 <body>
 <%-- toolbar 시작--%>
-
+<input hidden class="userId" value="${user.userId}"></h2>
+<input hidden name="dealBoardNum" value="${deal.dealBoardNum}" class="dealBoardNum">
+<input hidden name="boardCategory" value="${deal.boardCategory}" class="boardCategory">
+<input hidden class="dealUserId" value="${deal.user.userId}">
 <jsp:include page="/layout/toolbar.jsp"/>
 <jsp:include page="/view/deal/history.jsp"/>
 <%--&lt;%&ndash; toolbar 종료&ndash;%&gt;--%>
@@ -544,10 +635,7 @@ Product vo=(Product)request.getAttribute("vo");
 <%--</form>--%>
 
 <div class="container" style="text-align: -webkit-center;">
-    <input hidden class="userId" value="${user.userId}"></h2>
-    <input hidden name="dealBoardNum" value="${deal.dealBoardNum}" class="dealBoardNum">
-    <input hidden name="boardCategory" value="${deal.boardCategory}" class="boardCategory">
-    <input hidden class="dealUserId" value="${deal.user.userId}">
+
     <div class="wap shadow-lg">
 
         <div class="usedbox">
@@ -580,6 +668,29 @@ Product vo=(Product)request.getAttribute("vo");
                         </button>
                     </div>
                 </div>
+                <section id="article-profile">
+                        <div class="space-between">
+                            <div style="display: flex;">
+                                <div id="article-profile-image">
+                                    <img src="/resources/${deal.user.userImage}">
+                                </div>
+                                <div id="article-profile-left">
+                                    <div id="nickname">${deal.user.userId}</div>
+                                    <div id="region-name">${deal.villCode}</div>
+                                </div>
+                                <div id="article-profile-right">
+                                    <dl id="temperature-wrap">
+                                        <dt>신뢰온도</dt>
+                                        <dd class="text-color-05 ">
+                                            ${reviewPt}
+                                            <span>°C</span>
+                                        </dd>
+                                    </dl>
+
+                                </div>
+                            </div>
+                            </a>  </div>  </section>
+                            </div>
 
                 <div class="likebox shadow-lg">
                     <div class="itembox" style="padding: 20px;">
@@ -643,7 +754,7 @@ Product vo=(Product)request.getAttribute("vo");
                         </button>
 
                         <c:if test="${user.userId == deal.user.userId}">
-                            <button type="button" class="btn btn-primary itembutton update" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-primary itembutton updateDeal" data-bs-toggle="modal"
                                     data-bs-target="#updateDeal">
                                 수정
                             </button>
@@ -657,34 +768,46 @@ Product vo=(Product)request.getAttribute("vo");
             <div class="textbox shadow-lg">
                 <div class="container">
                     <div class="row textboxrow">
-                        <div class="col-2">제목</div>
-                        <div class="col-4">${deal.dealTitle}</div>
-                        <div class="col-2">상품명</div>
-                        <div class="col-4 prod">${deal.productName}</div>
+                        <div class="col-3">제목</div>
+                        <div class="col-6"></div>
+                        <div class="col-3">${deal.dealTitle}</div>
+
                     </div>
+
                     <div class="row textboxrow">
-                        <c:if test="${reviewPt ==0}">
-                            <div class="col-3">신뢰온도</div>
-                            <div class="col-4">첫거래입니다</div>
-                        </c:if>
-                        <c:if test="${reviewPt !=0}">
+                        <div class="col-3">상품명</div>
+                        <div class="col-6"></div>
+                        <div class="col-3">${deal.productName}</div>
+                    </div>
+<%--                    <div class="row textboxrow">--%>
+<%--                        <c:if test="${reviewPt ==0}">--%>
+<%--                            <div class="col-3">신뢰온도</div>--%>
+<%--                            <div class="col-4">첫거래입니다</div>--%>
+<%--                        </c:if>--%>
+<%--                        <c:if test="${reviewPt !=0}">--%>
 
 
-                            <div class="col-3">신뢰온도</div>
-                            <div class="col-4">${reviewPt}</div>
-                        </c:if>
-                        <div class="col-5"><img id="userImage1" style="width : 15%;"
-                                                src="/resources/${deal.user.userImage}"></div>
-                    </div>
+<%--                            <div class="col-3">신뢰온도</div>--%>
+<%--                            <div class="col-4">${reviewPt}</div>--%>
+<%--                        </c:if>--%>
+<%--                        <div class="col-5"><img id="userImage1" style="width : 15%;"--%>
+<%--                                                src="/resources/${deal.user.userImage}"></div>--%>
+<%--                    </div>--%>
+<%--                    <div class="row textboxrow">--%>
+<%--                        <div class="col-2">작성자</div>--%>
+<%--                        <div class="col-4">${deal.user.userId}</div>--%>
+<%--                        <div class="col-2">동네</div>--%>
+<%--                        <div class="col-4">${deal.villCode}</div>--%>
+<%--                    </div>--%>
                     <div class="row textboxrow">
-                        <div class="col-2">작성자</div>
-                        <div class="col-4">${deal.user.userId}</div>
-                        <div class="col-2">동네</div>
-                        <div class="col-4">${deal.villCode}</div>
-                    </div>
+                                                <div class="col-3">가격</div>
+                        <div class="col-6"></div>
+                                                <div class="col-3">${deal.price}원</div>
+
+                                            </div>
                     <div class="row textboxrow">
-                        <div class="col-2">내용</div>
-                        <div class="col-10">
+                        <div class="col-3">내용</div>
+                        <div class="col-9">
                             <label for="exampleFormControlTextarea1" class="form-label"></label>
                             <textarea class="form-control" id="exampleFormControlTextarea1"
                                       rows="3" style="height: 255px;"
@@ -696,7 +819,7 @@ Product vo=(Product)request.getAttribute("vo");
 
         </div>
 
-        <jsp:include page="/layout/chatIcon.jsp"/>
+<%--        <jsp:include page="/layout/chatIcon.jsp"/>--%>
 
 
     </div>
@@ -806,15 +929,17 @@ Product vo=(Product)request.getAttribute("vo");
 <%--모임 수정 모달창 시작--%>
 
 <div class="modal fade" id="updateDeal" tabindex="-1" aria-labelledby="updateDealLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="updateDealLabel">거래 수정</h1>
+<%--                <a class="navbar-brand back-btn" data-bs-target="#getClubMasterBoard" data-bs-toggle="modal"></a>--%>
+                <h1 class="modal-title fs-5">거래 수정</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="updateDealForm" enctype="multipart/form-data" method="post">
                     <input hidden name="dealBoardNum" value="${deal.dealBoardNum}" class="dealBoardNum">
+                    <input hidden name="boardCategory" value="${deal.boardCategory}" class="boardCategory">
                     <%--                                <input type="hidden" name="deleteFileName" value="${deal.clubImage}" disabled>--%>
                     <div class="input-group mb-3">
                         <div class="form-floating">
@@ -843,8 +968,8 @@ Product vo=(Product)request.getAttribute("vo");
                     <div class="input-group mb-3 form-floating">
                         <select class="form-select" id="boardCategory"  required>
                                 <option selected>판매 구분을 선택 하세요</option>
-                                <option value="1">판매</option>
-                                <option value="2">판매요청</option>
+                                <option value="1" ${deal.boardCategory == "08"? 'selected':''}>판매</option>
+                                <option value="2" ${deal.boardCategory == "09"? 'selected':''}>판매요청</option>
                             </select>
 
                             <label for="boardCategory">판매 구분</label>
@@ -885,61 +1010,82 @@ Product vo=(Product)request.getAttribute("vo");
                     <%--                    </div>--%>
                     <%--                            </c:forEach>--%>
                     <div class="mb-3">
-                        <label for="file" class="form-label" style="display: none"></label>
-                        <input class="form-control" type="file" id="file" name="file" multiple="multiple">
+                        <label for="dealBoardFile" class="form-label" style="display: none"></label>
+                        <input class="form-control" type="file" id="dealBoardFile" multiple name="file">
                     </div>
-                    <div class="shadow-lg midle"
-                         style="margin-bottom: 50px; margin-top: -3px; width: 490px; overflow: hidden; height: 400px;">
-                        <div id="carouselExampleDark1" class=" shadow-lg carousel carousel-dark slide"
-                             data-bs-ride="carousel">
-                            <c:set var="i" value="0"/>
-                            <c:forEach var="File" items="${deal.files}">
-                                <c:set var="i" value="${i+1}"/>
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active" data-bs-interval="10000">
-                                        <div type=hidden class="file" value="${File.fileName}"><img
-                                                src="/resources/${File.fileName}" width="430px" height="330px"></div>
-                                    </div>
-                                </div>
+                    <div>
+                        <c:forEach items="${deal.files}" var="File">
+                            <div class="dealBoardFiles" id="${File.fileName}"
+                                 style="margin: 20px 0 30px 0;">
 
-                            </c:forEach>
-                            <input type="button" class="deleteFile" value="삭제">
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark1"
-                                    data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"
-                                  style="z-index: 3; position: absolute;"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark1"
-                                    data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"
-                                  style="z-index: 3; position: absolute;"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
+                                <button type="button" class="btn position-relative updateImgBox"
+                                        style="width: 90%; border: 1px #000 solid; border-radius: 5px; cursor: default">
+
+                                    <img src="/resources/${File.fileName}" alt="중고거래 파일"
+                                         style="object-fit: contain;height: 99%;width: 99%;border-radius: 10px;">
+                                    <span class="position-absolute top-0 start-100 translate-middle border border-danger rounded-circle deleteFile" style="cursor:pointer; background-color: #FFFFFF">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16" style="font-size: 40px;">
+  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+</svg>
+  </span>
+                                </button>
+                            </div>
+                        </c:forEach>
                     </div>
+<%--                    <div class="shadow-lg midle"--%>
+<%--                         style="margin-bottom: 50px; margin-top: -3px; width: 490px; overflow: hidden; height: 400px;">--%>
+<%--                        <div id="carouselExampleDark1" class=" shadow-lg carousel carousel-dark slide"--%>
+<%--                             data-bs-ride="carousel">--%>
+<%--                            <c:set var="i" value="0"/>--%>
+<%--                            <c:forEach var="File" items="${deal.files}">--%>
+<%--                                <c:set var="i" value="${i+1}"/>--%>
+<%--                                <div class="carousel-inner">--%>
+<%--                                    <div class="carousel-item active" data-bs-interval="10000">--%>
+<%--                                        <div type=hidden class="file" value="${File.fileName}"><img--%>
+<%--                                                src="/resources/${File.fileName}" width="430px" height="330px"></div>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+
+<%--                            </c:forEach>--%>
+<%--                            <input type="button" class="deleteFile" value="삭제">--%>
+<%--                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark1"--%>
+<%--                                    data-bs-slide="prev">--%>
+<%--                            <span class="carousel-control-prev-icon" aria-hidden="true"--%>
+<%--                                  style="z-index: 3; position: absolute;"></span>--%>
+<%--                                <span class="visually-hidden">Previous</span>--%>
+<%--                            </button>--%>
+<%--                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark1"--%>
+<%--                                    data-bs-slide="next">--%>
+<%--                            <span class="carousel-control-next-icon" aria-hidden="true"--%>
+<%--                                  style="z-index: 3; position: absolute;"></span>--%>
+<%--                                <span class="visually-hidden">Next</span>--%>
+<%--                            </button>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
 
 
-                    <div class="input-group mb-3">
-                        <div class="form-floating">
-                            <input type="text" class="tagify shadow-lg" id="dealTag"
-                                   style="border-radius: 7px;"
-                                   placeholder="태그 : Enter!">
-                            <label for="dealTag" style="display: none">태그 : Enter!</label>
-                            <c:forEach items="${deal.tag}" var="tag">
-                                <input type="hidden" class="tagList" value="${tag}">
-                            </c:forEach>
-                        </div>
-                    </div>
+<%--                    <div class="input-group mb-3">--%>
+<%--                        <div class="form-floating">--%>
+<%--                            <input type="text" class="tagify shadow-lg" id="dealTag"--%>
+<%--                                   style="border-radius: 7px;"--%>
+<%--                                   placeholder="태그 : Enter!">--%>
+<%--                            <label for="dealTag" style="display: none">태그 : Enter!</label>--%>
+<%--                            <c:forEach items="${deal.tag}" var="tag">--%>
+<%--                                <input type="hidden" class="tagList" value="${tag}">--%>
+<%--                            </c:forEach>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
 
 
                 </form>
+
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary btn-lg newDeal" style="margin-right: 185px">거래 수정
+            <div class="modal-footer" >
+                <button type="button" class="btn btn-primary btn-lg updateDeal" style="margin-right: 185px">거래 수정
                 </button>
 
             </div>
+
         </div>
     </div>
 </div>
@@ -949,6 +1095,7 @@ Product vo=(Product)request.getAttribute("vo");
 
 
 <button type="button" class="addReview" data-bs-toggle="modal" data-bs-target="#addReview">리뷰작성</button>
+<button class="btn btn-primary btn-lg list" style="margin-right: 185px">목록</button>
 <%-- 리뷰 모달창 만들기 헤헷--%>
 
 <div class="modal fade" id="addReview" tabindex="-1" aria-labelledby="addReviewLabel" aria-hidden="true">
@@ -1009,6 +1156,7 @@ Product vo=(Product)request.getAttribute("vo");
 </div>
 </div>
 <%--모임 수정 모달창 끝--%>
+
 
 
 </body>

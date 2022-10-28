@@ -25,7 +25,8 @@
   }
   .account-block {
     padding: 0;
-    background-image: url(https://bootdey.com/img/Content/bg1.jpg);
+    <%--background-image: url(https://bootdey.com/img/Content/bg1.jpg);--%>
+    background-image: url('/resources/images/pngwing.com.png');
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
@@ -40,18 +41,19 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(231, 219, 224, 0.4);
   }
   .account-block .account-testimonial {
     text-align: center;
-    color: #fff;
+    color: #111111;
     position: absolute;
     margin: 0 auto;
     padding: 0 1.75rem;
-    bottom: 3rem;
+    top: 10rem;
     left: 0;
     right: 0;
   }
+
 
   .text-theme {
     color: #5369f8 !important;
@@ -70,7 +72,7 @@
   }
 
   .typing {
-    width: 28ch;
+    width: 22ch;
     animation: typing 0.9s steps(22), blink .5s step-end infinite alternate;
     white-space: nowrap;
     overflow: hidden;
@@ -130,7 +132,7 @@
     <div class="typing">
       <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
                     background-image: linear-gradient(transparent 60%, #F8CD07 40%);">
-        커뮤니티 신고 상세보기와 처리</h4>
+        커뮤니티 신고 상세보기</h4>
     </div>
   </div>
 </div>
@@ -173,12 +175,46 @@
               <div class="account-block rounded-right">
                 <div class="overlay rounded-right"></div>
                 <div class="account-testimonial">
-                  <h4 class="text-white mb-4">벌점 처리 기준은 다음과 같습니다.</h4>
-                  <p class="lead text-white">▶ 욕설 및 음담패설 - 5 </p>
-                  <p class="lead text-white">▶ 도용 - 10 </p>
-                  <p class="lead text-white">▶ 무단불참 및 연락두절 - 10 </p>
-                  <p class="lead text-white">▶ 정치적 발언 - 5 </p>
-                  <p>- Admin -</p>
+                  <h4 class="mb-0">게시판 종류</h4>
+                  <p class="mt-2 mb-3">
+                    <c:choose>
+                    <c:when test="${! empty communityReport.boardCategory && communityReport.boardCategory eq '1 '}">
+                      ▶ 모임 일정 후기글
+                    </c:when>
+                    <c:when test="${! empty communityReport.boardCategory && communityReport.boardCategory eq '2 '}">
+                      ▶ 모임 일정 후기 쇼츠
+                    </c:when>
+                    <c:when test="${! empty communityReport.boardCategory && communityReport.boardCategory eq '3 '}">
+                      ▶ 우리 동네 게시글
+                    </c:when>
+                    <c:when test="${! empty communityReport.boardCategory && communityReport.boardCategory eq '10'}">
+                      ▶ 댓글
+                    </c:when>
+                    <c:when test="${! empty communityReport.boardCategory && communityReport.boardCategory eq '11'}">
+                      ▶ 대댓글
+                    </c:when>
+                  </c:choose>
+                  </p>
+                  <h4 class="mb-0">게시판 제목</h4>
+                  <p class="mt-2 mb-3">
+                    <c:if test="${villBoard.villTitle ne null}">
+                      ▶ ${villBoard.villTitle}
+                    </c:if>
+                    <c:if test="${villBoard.villTitle == null}">
+                      ▶ 게시글을 찾을 수 없습니다.
+                    </c:if>
+                  </p>
+
+                  <h4 class="mb-0">게시판 내용</h4>
+                  <p class="mt-2 mb-3">
+                    <c:if test="${villBoard.villText ne null}">
+                      ▶ ${villBoard.villText}
+                    </c:if>
+                    <c:if test="${villBoard.villText == null}">
+                      ▶ 게시글을 찾을 수 없습니다.
+                    </c:if>
+                  </p>
+
                 </div>
               </div>
             </div>

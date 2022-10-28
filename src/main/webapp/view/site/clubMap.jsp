@@ -45,6 +45,22 @@
       }
     })
   }
+
+  function getCalendarLocation(address) {
+    const addr = "address=" + address;
+    $.ajax({
+      url: '/site/json/calendarLocation',
+      method: 'POST',
+      data: addr,
+      success: function(data) {
+        alert("latitude" +data.latitude+ "longitude" +data.longitude);
+      },
+      error: function() {
+        alert("get CalendarLocation Error!!!")
+      }
+    });
+  }
+
   function relayout() {
     if(mapCheck){
       return false;

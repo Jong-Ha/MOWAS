@@ -91,7 +91,7 @@ public class KakaoMapApi {
 
     private static String getRegionAddress(String jsonString, int fromIndex) {
         String value = "";
-        System.out.println(jsonString);
+        //System.out.println(jsonString);
         JSONObject jObj = (JSONObject) JSONValue.parse(jsonString);
         JSONObject meta = (JSONObject) jObj.get("meta");
         long size = (long) meta.get("total_count");
@@ -106,7 +106,6 @@ public class KakaoMapApi {
 
                 if(fromIndex == 1) {
                     value = (String) subsubJobj.get("region_3depth_name");
-                    //System.out.println("vilcode 111:" + value);
                 } else if(fromIndex == 2) {
                     value = (String) subsubJobj.get("address_name");
                 }
@@ -114,7 +113,6 @@ public class KakaoMapApi {
             }else{
                 if(fromIndex == 1) {
                     value = (String) roadAddress.get("region_3depth_name");
-                    //System.out.println("vilcode 222:" + value);
                 } else if(fromIndex == 2) {
                     value = (String) roadAddress.get("address_name");
                 }
@@ -139,18 +137,56 @@ public class KakaoMapApi {
         String url = "https://dapi.kakao.com/v2/local/geo/coord2address.json?x="+longitude+"&y="+latitude;
         String addr = "";
         try{
-            //System.out.println("+++++++++++++++ Kakao API Start +++++++++++++++++");
-            addr = getRegionAddress(getJSONData(url), fromIndex);
+           addr = getRegionAddress(getJSONData(url), fromIndex);
         }catch(Exception e){
-            //System.out.println("Kakao API Exception occur");
-            e.printStackTrace();
+           e.printStackTrace();
         }
         System.out.println("+++++++++++++++++ 변환된 주소값 ++++++++++++++++" +addr);
         return addr;
     }
 
+    //좌표값으로 행정구역 정보 받기 region_type이 B-법정동, H-행정동
+    private static String getRegionCode(String jsonString) {
+        String value = "";
+        //System.out.println(jsonString);
+        JSONObject jObj = (JSONObject) JSONValue.parse(jsonString);
+        JSONObject meta = (JSONObject) jObj.get("meta");
+        long size = (long) meta.get("total_count");
+        JSONArray jArray = (JSONArray) jObj.get("documents");
+
+        if(size  == 1){
+            JSONObject subJobj = (JSONObject) jArray.get(0);
+            String regionBType =  (String) subJobj.get("region_type");
+
+            if(regionBType.equals("B")) {
+              value = (String) subJobj.get("region_3depth_name");
+            }
+        }else if(size == 2) {
+            JSONObject subJobj = (JSONObject) jArray.get(1);
+            //System.out.println(subJobj);
+            String regionHType =  (String) subJobj.get("region_type");
+            //System.out.println(regionHType);
+            if(regionHType.equals("H")) {
+              value = (String) subJobj.get("region_3depth_name");
+            }
+        }
+        return value;
+    }
+
+    public static String coordToRegioncode(String longitude, String latitude) {
+        String url = "https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?x="+longitude+"&y="+latitude;
+        String addr = "";
+        try{
+            addr = getRegionCode(getJSONData(url));
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        //System.out.println("+++++++++++++++++ 변환된 주소값 ++++++++++++++++" +addr);
+        return addr;
+    }
+
     //주소를 좌표로 변화 Method
-    public static Map<String, Object> getJsonAddress(String address) throws Exception {
+    public static Map<String, String> getJsonAddress(String address) throws Exception {
 
         address = URLEncoder.encode(address,"UTF-8");
 
@@ -180,7 +216,7 @@ public class KakaoMapApi {
         JSONArray data = (JSONArray) jObj.get("documents");
         long size = (long) meta.get("total_count");
 
-        Map<String, Object> mapInfo = new HashMap<String, Object>();
+        Map<String, String> mapInfo = new HashMap<String, String>();
 
         if(size > 0) {
             JSONObject jsonX = (JSONObject)data.get(0);

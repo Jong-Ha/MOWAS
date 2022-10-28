@@ -172,7 +172,7 @@ public DealController(){
             return "forward:/deal/getListDeal";
         }
     @RequestMapping(value = "getDeal/{dealBoardNum}")
-    public String getDeal(Model model, @PathVariable int dealBoardNum, HttpSession session, HttpServletResponse response, @CookieValue(value = "history",required = false)String history) throws Exception {
+    public String getDeal(Model model, @PathVariable int dealBoardNum, HttpSession session, HttpServletResponse response, @CookieValue(value = "history",required = false)String history,HttpServletRequest request) throws Exception {
        //쿠키 추가
 //      쿠키관리
         if(history!=null) {
@@ -222,6 +222,25 @@ public DealController(){
         }
         model.addAttribute("deal", deal);
         model.addAttribute("likeCheck",likeCheck);
+        //쿠키넣기
+        Cookie[] cookies = request.getCookies();
+
+        for(Cookie c : cookies) {
+            if(c.getName().equals("history")) {
+                history = URLDecoder.decode(c.getValue(),"EUC_KR");
+            }
+        }
+
+        if(!history.equals("")) {
+            List<String> listcook = new ArrayList<String>();
+
+            String[] records = history.trim().split(",");
+            for(String str : records) {
+                listcook.add(0,str);
+            }
+            System.out.println(listcook);
+            model.addAttribute("listcook", listcook);
+        }
         return "/view/deal/getDeal.jsp";
     }
     @RequestMapping(value = "history")
@@ -246,6 +265,7 @@ String history="";
             model.addAttribute("listcook", listcook);
         }
 
+
         return "forward:/view/deal/history.jsp";
     }
 
@@ -256,9 +276,25 @@ String history="";
     public String getListDeal(@ModelAttribute("search") Search search, Model model,HttpServletRequest request
                             ,@RequestParam(value = "boardCategory", defaultValue = "99") String boardCategory, @RequestParam(value = "searchTag", required = false) List<String> searchTag) throws Exception {
         System.out.println("getListDeal : GET POST");
-
         System.out.println(boardCategory);
+        Cookie[] cookies = request.getCookies();
+        String history="";
+        for(Cookie c : cookies) {
+            if(c.getName().equals("history")) {
+                history = URLDecoder.decode(c.getValue(),"EUC_KR");
+            }
+        }
 
+        if(!history.equals("")) {
+            List<String> listcook = new ArrayList<String>();
+
+            String[] records = history.trim().split(",");
+            for(String str : records) {
+                listcook.add(0,str);
+            }
+            System.out.println(listcook);
+            model.addAttribute("listcook", listcook);
+        }
         if (search.getCurrentPage() == 0) {
             search.setCurrentPage(1);
         }
@@ -278,11 +314,11 @@ String history="";
             Page resultPage=new Page(search.getCurrentPage(),((Integer)map.get("totalCount")).intValue(),pageUnit,pageSize);
             System.out.println(resultPage);
 
-
             System.out.println(map.get("list"));
             model.addAttribute("list", (List<Deal>)map.get("list"));
             model.addAttribute("resultPage", resultPage);
             model.addAttribute("search", search);
+            model.addAttribute("boardCategory",boardCategory);
             model.addAttribute("searchTag",searchTag);
 
         } else if (boardCategory == "09") {
@@ -293,7 +329,7 @@ String history="";
             model.addAttribute("list", (List<Deal>)map.get("list"));
             model.addAttribute("resultPage", resultPage);
             model.addAttribute("search", search);
-            model.addAttribute("boardCategory","09");
+            model.addAttribute("boardCategory",boardCategory);
             model.addAttribute("searchTag",searchTag);
 
         }else{
@@ -310,6 +346,7 @@ String history="";
             model.addAttribute("list", (List<Deal>)map.get("list"));
             model.addAttribute("resultPage", resultPage);
             model.addAttribute("search", search);
+            model.addAttribute("boardCategory",boardCategory);
             model.addAttribute("searchTag",searchTag);
 
             System.out.println("여기까지 ? ? !!1111");
@@ -366,10 +403,10 @@ String history="";
     }
     @RequestMapping(value="updateDeal",method = RequestMethod.POST)
     public String updateDeal(@ModelAttribute("deal") Deal deal,MultipartHttpServletRequest multi, @RequestParam(value = "deleteFileName", required = false) List<String> deleteFileNames) throws Exception {
-            ////파일 업로드
+        ////파일 업로드
             //파일 추출
             List<MultipartFile> mfs = multi.getFiles("file");
-            System.out.println(mfs);
+            System.out.println("여긴어딘가요 ? 파일 들어가나요 ?"+mfs);
             //저장할 리스트 생성
            // List<com.project.domain.File> files = new ArrayList<>();
         List<com.project.domain.File> files = new ArrayList<>();
@@ -416,6 +453,7 @@ String history="";
                     }
                 }
             }
+
 
       //  model.addAttribute("deal",dealService.getDeal(deal.getDealBoardNum()));
         System.out.println( dealService.getDeal(deal.getDealBoardNum()));
