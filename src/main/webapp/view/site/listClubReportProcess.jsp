@@ -295,7 +295,7 @@
             <c:forEach var="cr" items="${list}">
                 <c:set var="i" value="${ i+1 }" />
                 <tr>
-                    <td><a href="/site/getClubReport/${cr.clubReportNo}">${ i }</a>
+                    <td><a href="/site/getClubReport/${cr.clubReportNo}/${cr.clubNum}">${ i }</a>
                         <input id="crNo" type="hidden" value="${cr.clubReportNo }"/>
                      </td>
                     <td>${cr.clubNum}

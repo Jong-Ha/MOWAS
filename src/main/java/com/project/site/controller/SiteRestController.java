@@ -16,8 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import java.util.*;
 
-import static com.project.common.KakaoMapApi.coordToAddress;
-import static com.project.common.KakaoMapApi.getJsonAddress;
+import static com.project.common.KakaoMapApi.*;
 
 @RestController
 @RequestMapping("/site/json/*")
@@ -39,7 +38,7 @@ public class SiteRestController {
     public String clubMap(@RequestParam String longitude, @RequestParam String latitude)  throws Exception {
 
         String vilCode = "";
-        vilCode = coordToAddress(longitude, latitude, 1);
+        vilCode = coordToRegioncode(longitude, latitude);
         return vilCode;
     }
 

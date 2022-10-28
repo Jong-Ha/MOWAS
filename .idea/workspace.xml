@@ -9,30 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="LJH 2022.10.17&#10;&#10;css, js, jsp 구분">
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="KSM 2022.10.26&#10;&#10;toobar navigation 추가,&#10;지도 캘린더 rest API 추가&#10;지도 법정동 method 추가">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/css/getClub.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/css/getClub.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/css/listClub.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/css/listClub.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/js/getClub.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/js/getClub.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/js/listClub.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/js/listClub.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/4aad17a6-7758-442f-a7bb-82e60c6667b9세로로김.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/535de9d3-b1f0-4f01-bee3-857cb683c698다운로드.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/5dd5da7a-d71d-465d-bbb3-24ac050b035fbit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/8f1b65f6-56d8-44f0-a4b7-0cb480d7496e라이언.jfif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/ccc7bb44-788f-49cf-987c-8aed5c8dd194애플.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/f2824456-c8d7-430e-9dae-c5f38f9eeb9c다운로드.jfif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubMasterBoardFiles/f7c51912-f9ac-4019-a477-9e8af082c40a비트캠프.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/addClubMasterBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/addClubMasterBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/getClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/getClub.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/getClubMasterBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/getClubMasterBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClubMasterBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClubMasterBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/updateClubMasterBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/updateClubMasterBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/calender.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/calender.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/common/KakaoMapApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/common/KakaoMapApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/controller/SiteRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/controller/SiteRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/getClubReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/getClubReport.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/getCommunityReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/getCommunityReport.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/listClubReportProcess.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/listClubReportProcess.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +91,7 @@
     "WebServerToolWindowFactoryState": "false",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
-    "last_opened_file_path": "C:/Project/MOWAS/src/main/webapp/view/club/modal수정전",
+    "last_opened_file_path": "C:/Project/MOWAS/src/main/webapp/resources/images",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -131,10 +114,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Project\MOWAS\src\main\webapp\resources\images" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\resources\uploadFiles\commuReportFiles" />
       <recent name="C:\Project\MOWAS\src\main\webapp\view\club\modal수정전" />
       <recent name="C:\Project\MOWAS\src\main\webapp\view\myPage" />
       <recent name="C:\Project\MOWAS\src\main\webapp\view\user" />
-      <recent name="C:\Project\MOWAS\src\main\webapp\resources\images" />
       <recent name="C:\Project\MOWAS\src\main\webapp\resources\club\js" />
       <recent name="C:\Project\MOWAS\src\main\webapp\resources\club\css" />
       <recent name="C:\Project\MOWAS\src\main\resources\config" />
@@ -170,7 +154,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat 서버.Tomcat 9.0.58">
+  <component name="RunManager" selected="JUnit.MongoDbDaoImplTest.addClub">
     <configuration name="ClubServiceTest.updateVoter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MOWAS" />
       <extension name="coverage">
@@ -347,7 +331,7 @@
       <item itemvalue="JUnit.MongoDbDaoImplTest.deleteClub" />
       <item itemvalue="JUnit.MongoDbDaoImplTest.deleteCluber" />
       <item itemvalue="JUnit.ClubServiceTest.updateVoter" />
-      <item itemvalue="Tomcat 서버.Tomcat 9.0.58" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.58" />
     </list>
     <recent_temporary>
       <list>
@@ -492,7 +476,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="KSM" />
                       </list>
                     </value>
                   </entry>
