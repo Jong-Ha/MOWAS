@@ -8,6 +8,7 @@ import com.project.deal.service.DealService;
 import com.project.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +41,13 @@ public class ClubCalendarController {
     @Autowired
     @Qualifier("dealServiceImpl")
     private DealService dealService;
+
+    @Value("#{commonProperties['pageSize']}")
+    int pageSize;
+
+    @Value("#{commonProperties['pageUnit']}")
+    int pageUnit;
+
 
     /*모임 일정*/
 
@@ -240,10 +248,22 @@ public class ClubCalendarController {
 
     @RequestMapping("listCalenderReview")
     public String listCalenderReview(@RequestParam("boardCategory") int boardCategory
-            , Model model, HttpServletRequest request) {
+                                    ,@RequestParam("reviewRange")int reviewRange
+                                     ,@ModelAttribute("search") Search search
+                                     ,Model model) {
+
+        if (search.getCurrentPage() == 0) {
+            search.setCurrentPage(1);
+        }
+
+        search.setPageSize(pageSize);
+        search.setSearchCondition("1");
+
         System.out.println(boardCategory);
 
-        Map<String, Object> map = calenderService.listCalenderReview(boardCategory);
+        System.out.println(search.getCurrentPage());
+
+        Map<String, Object> map = calenderService.listCalenderReview(boardCategory,search,reviewRange);
 
         model.addAttribute("list", map.get("list"));
         model.addAttribute("list2", map.get("list2"));

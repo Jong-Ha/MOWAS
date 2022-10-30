@@ -22,9 +22,11 @@
 <script type="text/javascript">
     $(function () {
 
+        var boardCategory = $(".boardCategory").val()
+
         $(".get").on("click", function () {
             var villBoardNum = $(this).parents(".cardbox").find(".villNum").val();
-            var boardCategory = $(".boardCategory").val()
+
             console.log(villBoardNum);
             location.href = "/commu/getVillBoard?villBoardNum=" + villBoardNum + "&boardCategory=" + boardCategory;
         })
@@ -32,7 +34,6 @@
 
         $(".delete").on("click", function () {
             var boardNum = $(this).parents(".cardbox").find(".villNum").val();
-            var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val()
 
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
@@ -86,7 +87,6 @@
 
                 var likeCount = $(this).parents(".cardbox").find(".likeText").html();
                 var boardNum = $(this).parents(".cardbox").find(".villNum").val();
-                var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val()
                 var likeText = $(this).parents(".cardbox").find(".likeText")
 
                 $.ajax({
@@ -112,12 +112,11 @@
 
         $(".villBoardSubmit").on("click", function () {
 
-            var boardCategory = $(".boardCategory").val()
             var villTitle = $(".villTitle1").val()
             var villText = $(".villText1").val()
 
-            var villTag = $("#villTag").val();
 
+            var villTag = $("#villTag").val();
             var villTag2 = JSON.parse(villTag);
 
 
@@ -149,7 +148,7 @@
 
                     var boardNum = JSONData
 
-                    var file = $("#file1").length
+                    var file = $("#addForm #file1").length
 
                     if (file > 0) {
 
@@ -158,7 +157,7 @@
                         //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
                         var formData = new FormData(form);
                         //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
-                        var fileSize = $("#fileForm1 #file1")[0].files;
+                        var fileSize = $("#addForm #file1")[0].files;
                         console.log(fileSize.length);
                         //formData에 해당 게시글 번호, 게시글 category append
                         formData.append("boardNum", boardNum);
@@ -223,14 +222,7 @@
         $(".update").on("click", function () {
             var boardNum = $(this).parents(".cardbox").find(".villNum").val();
 
-            alert("boardNum :  " + boardNum);
-
             $(".updateVillBoardNum").val(boardNum)
-            /* window.open(
-                 "/commu/updateVillBoard?boardNum=" + boardNum, "우리 동네 게시글 수정",
-                 "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no"
-             )*/
-
 
             $.ajax({
                 url: "/commu/json/getVillBoard",
@@ -259,13 +251,10 @@
 
 
             var updateVillBoardNum = $(".updateVillBoardNum").val();
-            var boardCategory = "03";
-
             var villTitle = $(".villTitle2").val()
             var villText = $(".villText2").val()
 
             var villTag = $("#villTag2").val();
-
             var villTag2 = JSON.parse(villTag);
 
 
@@ -295,16 +284,20 @@
 
                 success: function (JSONData, result) {
 
-                    var file = $("#file2").length
+                    alert(result);
+
+                    var file = $("#updateFile #file2").length
 
                     if (file > 0) {
+
+                        alert("gkgk");
 
                         //form 테그를 불러와서 form변수에 등록
                         var form = document.querySelector("form");
                         //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
                         var formData = new FormData(form);
                         //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
-                        var fileSize = $("#fileForm2 #file2")[0].files;
+                        var fileSize = $("#updateFile #file2")[0].files;
                         console.log(fileSize.length);
                         //formData에 해당 게시글 번호, 게시글 category append
                         formData.append("boardNum", updateVillBoardNum);
@@ -387,11 +380,10 @@
         var tagify2 = new Tagify(input2, {});
 
 
-
         $(".report").on("click", function () {
-            var boardNum = $(this).parents(".cardbox").find(".villBoardNum").val()
-            var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val()
-            var reportedId =$(this).parents(".cardbox").find(".SUserId").val();
+            var boardNum = $(this).parents(".cardbox").find(".villNum").val()
+            var reportedId = $(this).parents(".cardbox").find(".SUserId").val();
+
 
 
             $("#commuReport .modal-content").load("/view/site/addCommunityReport.jsp",
@@ -478,7 +470,8 @@
         margin-left: 3px;
         cursor: pointer;
     }
-    .update{
+
+    .update {
         font-size: 0.5em;
         margin-right: 19px;
     }
@@ -539,7 +532,7 @@
 
     <jsp:include page="/layout/commubar.jsp"/>
 
-    <input hidden class="boardCategory" value="03">
+    <input hidden class="boardCategory" value="3">
 
     <div class="addBox">
         <button class="btn btn-primary add" data-bs-toggle="modal" data-bs-target="#exampleModal"> 우리 동네 게시글 작성
@@ -549,9 +542,8 @@
     <c:set var="i" value="0"/>
     <c:forEach var="villBoard" items="${list}">
         <c:set var="i" value="${i+1}"/>
-        <div class=" cardbox">
+        <div class="cardbox">
             <input hidden class="villNum" value="${villBoard.villBoardNum}">
-            <input hidden class="boardCategory" value="${villBoard.boardCategory}">
             <input hidden class="SUserId" value="${villBoard.userId}">
             <div class="col villBox">
 
@@ -647,7 +639,7 @@
             </div>
             <div class="modal-body">
 
-                <form id="fileForm1">
+                <form id="addForm">
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control villTitle1" id="recipient-name" value=""
@@ -703,7 +695,7 @@
             </div>
             <div class="modal-body">
 
-                <form id="fileForm2">
+                <form id="updateFile">
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control villTitle2" id="recipient-name2" value=""
@@ -754,6 +746,7 @@
     </div>
 </div>
 
+<jsp:include page="/layout/chatIcon.jsp"/>
 
 <jsp:include page="/layout/footer.jsp"/>
 

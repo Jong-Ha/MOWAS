@@ -1,5 +1,9 @@
 package com.project.common;
 
+
+import lombok.ToString;
+
+@ToString
 public class Search {
     private String searchCondition;
     private String searchKeyword;
