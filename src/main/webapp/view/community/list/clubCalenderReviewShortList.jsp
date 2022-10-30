@@ -522,9 +522,7 @@
 
 <jsp:include page="/layout/chatIcon.jsp"/>
 
-    <div style="margin-bottom: 400px;">
 
-    </div>
 
     <jsp:include page="/layout/footer.jsp"/>
 

@@ -16,11 +16,11 @@
         $(function () {
 
             $(".clubCalenderReview").on("click", function () {
-                location.href = "/clubCal/listCalenderReview?boardCategory=" + 1
+                location.href = "/clubCal/listCalenderReview?boardCategory="+1+"&reviewRange=" + 1
             });
 
             $(".clubCalenderReviewShort").on("click", function () {
-                location.href = "/clubCal/listCalenderReview?boardCategory=" + 2
+                location.href = "/clubCal/listCalenderReview?boardCategory=" + 2 +"&reviewRange=" + 1
             })
 
             $(".villBoard").on("click", function () {

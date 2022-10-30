@@ -16,7 +16,7 @@
         $(function (){
             $(".commu").on("click",
                 function (){
-                    location.href="/clubCal/listCalenderReview?boardCategory="+1
+                    location.href="/clubCal/listCalenderReview?boardCategory="+1+"&reviewRange=" + 1
                 });
 
             $("li > a:contains('모임 관리')").on("click",

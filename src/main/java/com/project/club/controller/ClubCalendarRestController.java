@@ -330,6 +330,8 @@ public class ClubCalendarRestController<list> {
 
         calenderService.deleteFile(boardNum);
 
+        System.out.println("파일 업로드 진입 : " + file);
+
         List<Map<String, String>> fileList = new ArrayList<>();
 
         String fileName = null;
@@ -375,8 +377,9 @@ public class ClubCalendarRestController<list> {
 
     }
 
-    @RequestMapping("listCalenderReview")
-    public String listCalenderReview(@RequestParam("boardCategory") int boardCategory
+  /*  @RequestMapping("listCalenderReview")
+    public String listCalenderReview(@Request
+
             , Model model, HttpServletRequest request) {
         System.out.println(boardCategory);
         Map<String, Object> map = calenderService.listCalenderReview(boardCategory);
@@ -391,7 +394,7 @@ public class ClubCalendarRestController<list> {
 
         return null;
 
-    }
+    }*/
 
 
     @RequestMapping("getListCluber")
