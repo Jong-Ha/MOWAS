@@ -33,6 +33,7 @@ public class ClubServiceImpl implements ClubService {
     @Override
     public void updateClub(Club club) {
         clubDao.updateClub(club);
+        mongoDbDao.updateClub(club.getClubNum(),club.getClubName());
     }
 
     @Override

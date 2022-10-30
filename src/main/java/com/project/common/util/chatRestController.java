@@ -1,5 +1,6 @@
 package com.project.common.util;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,9 @@ import java.util.*;
 public class chatRestController {
 
 
+    @Value("#{commonProperties['resourcesPath']}")
+    String resourcesPath;
+
     @RequestMapping("chatFile")
     public Map<String, Object> chatfileUpload(@RequestParam("form") List<MultipartFile> file
                                 ,HttpServletRequest request, HttpServletResponse response){
@@ -26,6 +30,11 @@ public class chatRestController {
         List<Map<String, String>> fileList = new ArrayList<>();
 
         List<Map<String, String>> charImg = new ArrayList<>();
+
+        File folder = new File(resourcesPath+"/uploadFiles/chatImg/");
+        if(!folder.exists()){
+            folder.mkdir();
+        }
 
         for (int i = 0; i < file.size(); i++) {
             String fileName = file.get(i).getOriginalFilename();
