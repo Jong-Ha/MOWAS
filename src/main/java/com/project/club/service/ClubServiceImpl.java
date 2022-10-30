@@ -62,11 +62,13 @@ public class ClubServiceImpl implements ClubService {
     @Override
     public List<Club> listClub(String userId, Search search, String searchLocation, List<String> searchInterList, List<String> searchTag) {
         Map<String, Object> map = new HashMap<>();
+
         map.put("search",search);
         map.put("searchLocation",searchLocation);
         map.put("searchInterList",searchInterList);
         map.put("searchTag",searchTag);
         map.put("userId",userId);
+
         return clubDao.listClub(map);
     }
 

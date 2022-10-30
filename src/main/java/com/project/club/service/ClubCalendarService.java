@@ -1,5 +1,6 @@
 package com.project.club.service;
 
+import com.project.common.Search;
 import com.project.domain.ClubCalendar;
 import com.project.domain.ClubCalendarReview;
 import com.project.domain.Deal;
@@ -18,7 +19,7 @@ public interface ClubCalendarService {
 
     void deleteCalenderReview(int calenderNum);
 
-    Map<String, Object> listCalenderReview(int boardCategory);
+    Map<String, Object> listCalenderReview(int boardCategory, Search search, int reviewRange);
 
     ClubCalendarReview getCalenderReview(int clubCalenderReviewNum);
 

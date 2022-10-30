@@ -776,15 +776,16 @@
 
 
                 console.log(boardNum);
-
+                console.log(boardCategory);
 
                 $.ajax({
-                    url: "/clubCal/json/getClubCalender",
+                    url: "/clubCal/json/getClubCalenderReview",
                     method: "post",
                     dataType: "json",
                     contentType: 'application/json; charset=UTF-8',
                     data: JSON.stringify({
-                        "clubCalenderReviewNum": boardNum
+                        "clubCalenderReviewNum": boardNum,
+                        "boardCategory" : boardCategory
                     }),
                     success: function (JSONData, result) {
 
@@ -829,7 +830,7 @@
 
                         var boardNum = $(".clubCalenderReviewNum").val();
 
-                        var file = $("#file").length;
+                        var file = $("#updateForm #file").length;
 
                         if (file > 0) {
 
@@ -840,7 +841,7 @@
                             //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
                             var formData = new FormData(form);
                             //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
-                            var fileSize = $("#file")[0].files;
+                            var fileSize = $("#updateForm #file")[0].files;
 
                             //formData에 해당 게시글 번호, 게시글 category append
                             formData.append("boardNum", boardNum);
@@ -1189,7 +1190,8 @@
                                     aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form>
+
+                            <form id="updateForm">
 
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control reviewTitle" id="recipient-name" value=""

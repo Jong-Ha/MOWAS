@@ -35,6 +35,8 @@
             location.href = "/clubCal/getClubCalenderReview?clubCalenderReviewNum=" + boardNum + "&boardCategory=" + boardCatagory;
         })
 
+
+        // 수정 모달 창 오픈
         $(".update").on("click", function () {
             var boardNum = $(this).parents(".cardbox").find(".CalenderReviewNum").val();
 
@@ -162,22 +164,18 @@
                 contentType: 'application/json; charset=UTF-8',
                 success: function (JSONData, result) {
 
-                    console.log(JSONData);
-
                     var boardNum = $(".clubCalenderReviewNum").val();
 
                     var file = $("#file").length;
 
                     if (file > 0) {
 
-                        alert("파일 업로드 시작 : " + boardNum);
-
                         //form 테그를 불러와서 form변수에 등록
-                        var form = document.querySelector("form");
+                        var form = document.querySelector("#updateform");
                         //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
                         var formData = new FormData(form);
                         //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
-                        var fileSize = $("#file")[0].files;
+                        var fileSize = $("#updateform #file")[0].files;
 
                         //formData에 해당 게시글 번호, 게시글 category append
                         formData.append("boardNum", boardNum);
@@ -221,7 +219,7 @@
                     });
 
                     setTimeout(function () {
-                        window.location.reload()
+                        //window.location.reload()
                     }, 2000);
                     //error 발생시 그냥 창을 닫음
                 }, error: function () {
@@ -233,7 +231,7 @@
                         timer: 1500
                     });
                     setTimeout(function () {
-                        window.location.reload()
+                        //window.location.reload()
                     }, 2000);
 
                 }
@@ -258,6 +256,11 @@
                     $("#commuReport").modal("show");
                 })
         })
+
+
+        $(".user_manu").on("click", function () {
+            $(this).parents(".card").find(".user_hidden_manu").slideToggle();
+        })
     })
 
 
@@ -265,6 +268,10 @@
 
 
 <style>
+
+    ul li {
+        list-style:none;
+    }
 
     .wap {
         width: 1000px;
@@ -274,6 +281,7 @@
     .carditem {
         display: flex;
         flex-direction: column;
+        float: left;
     }
 
     .card-title {
@@ -286,6 +294,12 @@
         flex-direction: row;
         margin-bottom: 30px;
         float: left;
+        width: 442px;
+        transition: all 0.1s linear;
+    }
+
+    .cardbox:hover {
+        transform: scale(1.12);
     }
 
     .itemBox {
@@ -310,7 +324,7 @@
     }
 
     .col.reviewBox {
-        width: 320px;
+        width: 100%;
         margin-right: 30px;
     }
 
@@ -336,9 +350,14 @@
     }
 
     .get {
-        width: 100px;
-        height: 200px;
+        width: 100%;
+        height: 100%;
         overflow: hidden;
+    }
+
+    .carousel-inner {
+        width: 100%;
+        height: 100%;
     }
 
     .updatebox {
@@ -350,37 +369,68 @@
         cursor: pointer;
     }
 
-    .cardbox {
-        transition: all 0.1s linear;
-    }
-
-    .cardbox:hover {
-        transform: scale(1.12);
-    }
 
     .potoBox {
         cursor: pointer;
         padding: 1px;
-        width: 296px;
+        width: 100%;
         height: 361px;
         overflow: hidden;
         border-radius: 0 0 5px 5px;
         border-bottom: 2px solid #0a090912;
     }
 
-    .text {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    .userImg {
+        width: 60px;
+        height: 60px;
+        padding: 5px;
     }
 
-    .allFlex {
+    .userInfo {
+        padding: 6px;
         display: flex;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    .cartFont {
-        font-size: 0.8em;
+    .user_manu {
+        padding: 14px;
+        display: flex;
+        width: 101%;
+        font-size: 1.9em;
+        flex-direction: row-reverse;
     }
+
+    .user_hidden_manu {
+        width: 98px;
+        height: 75px;
+        position: absolute;
+        z-index: 2;
+        margin-top: -14px;
+        margin-left: 146px;
+
+    }
+
+    .user_hidden_manu > ul{
+        width: 67px;
+        border: 1px solid #0000001a;
+        padding: 10px;
+        border-radius: 5px;
+        background: #ffff;
+    }
+
+    .card-top {
+        border-bottom: 1px solid;
+        display: flex;
+        font-weight: bold
+    }
+
+
+
+    .card-footer {
+        height: 208px;
+    }
+
 </style>
 </head>
 <input hidden class="userId" value="${user.userId}">
@@ -395,7 +445,7 @@
 
 <div class="wap">
     <jsp:include page="/layout/commubar.jsp"/>
-    <input hidden class="boardCategory" value="01">
+    <input hidden class="boardCategory" value="1">
 
     <%--상단 툴바--%>
 
@@ -417,10 +467,38 @@
                 <input hidden class="boardCategory" value="${ClubCalendarReview.boardCategory}">
                 <input hidden class="SUserId" value="${ClubCalendarReview.userId}">
 
-                <div class="card h-100 shadow-lg" style="width: 311px">
+                <div class="card h-100 shadow-lg" style="width: 100%">
 
-                    <div class="card-footer" style=" border-bottom: 1px solid; display: flex; font-weight: bold">
-                            ${ClubCalendarReview.reviewTitle}
+                    <div class="card-top" style=" border-bottom: 1px solid; display: flex; font-weight: bold">
+                        <div class="userImg">
+                            <img src="/resources/${ClubCalendarReview.userImg}" alt=""
+                                 style="border-radius: 10px; width: 100%; height: 100%;">
+                        </div>
+                        <div class="userInfo">
+                            <div>
+                                    ${ClubCalendarReview.userId}
+                            </div>
+                            <div style="font-size: 0.7em; margin-top: 5px">
+                                    ${ClubCalendarReview.location}
+                            </div>
+                        </div>
+                        <div style="width: 56%;">
+                            <div class="user_manu">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-three-dots" viewBox="0 0 16 16">
+                                    <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                                </svg>
+
+                            </div>
+
+                            <div class="user_hidden_manu" style="display: none">
+                                <ul class=" shadow-lg">
+                                    <li>수정</li>
+                                    <li>삭제</li>
+                                </ul>
+                            </div>
+
+                        </div>
                     </div>
 
                     <div id="carouselExampleSlidesOnly" class="carousel slide potoBox getPage" data-bs-ride="carousel">
@@ -478,7 +556,9 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
+
             </div>
             <div class="updatebox">
                 <c:if test="${user.userId eq ClubCalendarReview.userId}">
@@ -509,7 +589,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+
+                <form id="updateform">
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control reviewTitle" id="recipient-name" value=""
@@ -566,15 +647,16 @@
         </div>
     </div>
 </div>
-    <div class="modal fade" id="commuReport" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+<div class="modal fade" id="commuReport" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
 
 
-            </div>
         </div>
     </div>
+</div>
 
+<jsp:include page="/layout/chatIcon.jsp"/>
 
 <jsp:include page="/layout/footer.jsp"/>
 </body>

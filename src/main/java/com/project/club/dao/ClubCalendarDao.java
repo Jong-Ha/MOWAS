@@ -19,7 +19,7 @@ public interface ClubCalendarDao {
 
     void deleteCalenderReview(int calenderNum);
 
-    List<ClubCalendarReview> listCalenderReview(int boardCategory);
+    List<ClubCalendarReview> listCalenderReview(Map<String, Object> map);
 
     ClubCalendarReview getCalenderReview(int clubCalenderReviewNum);
 
