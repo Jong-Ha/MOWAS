@@ -54,8 +54,8 @@
         SELECT file_name
         FROM files
         WHERE board_num = #{boardNum}
-            AND board_category = '08'
-           OR board_category = '09'
+            AND (board_category = '08'
+           OR board_category = '09')
     </select>
 
     <!--파일 삭제-->
@@ -136,7 +136,7 @@ values (seq_deal.NEXTVAL,
 
     product_name=#{productName:VARCHAR},
         price=#{price:NUMERIC},
-        tag=#{tag:VARCHAR}
+
 </set>
 
         <where> deal_board_num=#{dealBoardNum}</where>
@@ -154,15 +154,7 @@ values (seq_deal.NEXTVAL,
 
 
     <sql id="listDealBoardSql">
-        SELECT deal_board_num,
-               user_id,
-               deal_title,
-               vill_code,
-               deal_reg_date,
-               price,
-               deal_status,
-               tag
-
+        SELECT *
         FROM deal
         <if test="(boardCategory=='08' or boardCategory=='09')">
             WHERE board_category = #{boardCategory}
@@ -266,7 +258,7 @@ values (seq_deal.NEXTVAL,
         <where>deal_board_num=#{dealBoardNum}</where>
     </update>
     <select id="getReviewPt" parameterType="deal" resultType="int">
-        select AVG(review_pt)
+        select NVL(AVG(review_pt),0)
         from deal
         where user_id = #{user.userId}
     </select>

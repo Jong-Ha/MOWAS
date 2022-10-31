@@ -17,14 +17,13 @@
         <result property="noticeTime"         column="notice_time"          jdbcType="VARCHAR"/>
         <result property="calendarApplyCheck" column="calendar_apply_check" jdbcType="VARCHAR"/>
         <result property="applyAutoCheck"     column="apply_auto_check"     jdbcType="VARCHAR"/>
-        <result property="boardCategory"      column="board_category"       jdbcType="VARCHAR"/>
-    </resultMap>
+</resultMap>
 
     <resultMap id="calenderReviewSelect" type="calenderReview">
         <result property="clubCalenderReviewNum"    column="club_calendar_review_num"    jdbcType="INTEGER"/>
         <result property="clubCalenderNum"          column="club_calendar_num"           jdbcType="INTEGER"/>
         <result property="clubNum"                  column="club_num"                    jdbcType="INTEGER"/>
-        <result property="userId"            column="user_id"                     jdbcType="VARCHAR"/>
+        <result property="userId"                   column="user_id"                     jdbcType="VARCHAR"/>
         <result property="reviewRange"              column="review_range"                jdbcType="VARCHAR"/>
         <result property="reviewTitle"              column="review_title"                jdbcType="VARCHAR"/>
         <result property="reviewText"               column="review_text"                 jdbcType="VARCHAR"/>
@@ -33,6 +32,10 @@
         <result property="likeConunt"               column="like_count"                  jdbcType="INTEGER"/>
         <result property="updateDate"               column="update_date"                 jdbcType="DATE"/>
         <result property="boardCategory"            column="board_category"              jdbcType="INTEGER"/>
+        <result property="boardCategory"            column="board_category"              jdbcType="VARCHAR"/>
+        <result property="userImg"                  column="user_image"                  jdbcType="VARCHAR"/>
+        <result property="calendarTitle"            column="calendar_title"              jdbcType="VARCHAR"/>
+        <result property="location"                  column="location"                   jdbcType="VARCHAR"/>
     </resultMap>
 
     <resultMap type="com.project.domain.File" id="FileResultMap">
@@ -167,11 +170,42 @@
         WHERE club_calendar_review_num = #{clubCalenderReviewNum}
     </select>
 
-    <select id="listCalenderReview" parameterType="int" resultMap="calenderReviewSelect">
-        select * from CLUB_CALENDAR_REVIEW
-        WHERE BOARD_CATEGORY = #{boardCategory}
-        AND REVIEW_RANGE = '1'
+
+
+    <sql id="listCalenderReviewSql">
+        SELECT cr.* , us.user_image, cc.location, cc.calendar_title
+        FROM club_calendar_review cr , users us, club_calendar cc
+        WHERE cr.user_id = us.user_id
+          AND cr.club_calendar_num = cc.club_calendar_num
+          AND cr.board_category = #{boardCategory}
+          AND cr.review_range = #{reviewRange}
+        ORDER BY club_calendar_review_num DESC
+    </sql>
+
+
+    <select id="getTotalClub" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM (
+        <include refid="listCalenderReviewSql"/>
+        )
     </select>
+
+    <select id="listCalenderReview" parameterType="map" resultMap="calenderReviewSelect">
+        SELECT * FROM (
+        SELECT ROWNUM row_num, vt.* FROM (
+        <include refid="listCalenderReviewSql"/>
+        ) vt
+        <if test="search.currentPage*search.pageSize!=0">
+            WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}
+        </if>
+        )
+        <where>
+            <if test="search.currentPage*search.pageSize!=0">
+                row_num >= ((#{search.currentPage}-1)*#{search.pageSize}+1)
+            </if>
+        </where>
+    </select>
+
+
 
     <!--파일 등록-->
     <insert id="addFileUpload" parameterType="map">
