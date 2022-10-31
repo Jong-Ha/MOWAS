@@ -1,6 +1,10 @@
 package com.project.common.util;
 
 
+import com.project.domain.User;
+import com.project.user.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,15 +18,20 @@ import java.util.UUID;
 @RequestMapping("/chat/*")
 public class ChatController {
 
+    @Autowired
+    @Qualifier("userServiceImpl")
+    private UserService userService;
+
     @RequestMapping("addOneChat")
     public String addOneChat(@RequestParam("userId")String userId
                             ,@RequestParam(value = "boardNum", defaultValue = "0") String  boardNum
                             ,Model model
-                            ,@RequestParam("chatNameSpace")String chatNameSpace) {
+                            ,@RequestParam("chatNameSpace")String chatNameSpace, HttpSession session) throws Exception {
 
         model.addAttribute("roomId", UUID.randomUUID().toString());
 
         model.addAttribute("userId", userId);
+        model.addAttribute("userImage",userService.getUser(userId).getUserImage().replaceAll("\\\\","/"));
         model.addAttribute("chatNameSpace", chatNameSpace);
 
 
@@ -33,6 +42,10 @@ public class ChatController {
         }
 
         System.out.println( chatNameSpace );
+
+        User user = (User)session.getAttribute("user");
+
+        user.setUserImage(user.getUserImage().replaceAll("\\\\","/"));
 
         return "/chat/getChat.jsp";
     }
@@ -52,13 +65,17 @@ public class ChatController {
     @RequestMapping("getChat")
     public String getChat( @RequestParam("roomId")String roomId
                             ,@RequestParam("chatNameSpace")String chatNameSpace
-                            , Model model) {
+                            , Model model, HttpSession session) {
 
 
             model.addAttribute("roomId", roomId);
             model.addAttribute("chatNameSpace", chatNameSpace);
 
             System.out.println(chatNameSpace);
+
+        User user = (User)session.getAttribute("user");
+
+        user.setUserImage(user.getUserImage().replaceAll("\\\\","/"));
 
             return "/chat/getChat.jsp";
 

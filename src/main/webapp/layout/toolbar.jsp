@@ -163,8 +163,7 @@
     });
     $(function () {
         $("#myPage").on("click", function () {
-            var userId = $("#modelUser").val();
-            self.location = "/myPage/getMyPage?userId=" + userId;
+            self.location = "/myPage/getMyPage?userId=${user.userId}";
         });
     });
 

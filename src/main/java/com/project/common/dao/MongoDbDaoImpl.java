@@ -20,14 +20,16 @@ public class MongoDbDaoImpl implements MongoDbDao{
     }
 
     @Override
-    public void addClub(int clubNum, String clubName, String userId) {
+    public void addClub(int clubNum, String clubName, String userId, String userImage, String clubImage) {
         Map<String, Object> room = new HashMap<>();
         List<Map<String, Object>> users = new ArrayList<>();
         Map<String, Object> user = new HashMap<>();
         user.put("userId",userId);
+        user.put("userImage",userImage);
         user.put("regDate",String.valueOf(new Date().getTime()));
         users.add(user);
         room.put("users",users);
+        room.put("roomImage",clubImage);
         room.put("roomId", UUID.randomUUID().toString());
         room.put("chatCategory","clubChat");
         room.put("roomName",clubName);
@@ -38,7 +40,7 @@ public class MongoDbDaoImpl implements MongoDbDao{
     }
 
     @Override
-    public void addCluber(int clubNum, String userId) {
+    public void addCluber(int clubNum, String userId, String userImage) {
         Query query = new Query(new Criteria().andOperator(
                 Criteria.where("chatCategory").is("clubChat"),
                 Criteria.where("boardNum").is(clubNum)
@@ -51,6 +53,7 @@ public class MongoDbDaoImpl implements MongoDbDao{
 
         Map<String, Object> user = new HashMap<>();
         user.put("userId",userId);
+        user.put("userImage",userImage);
         user.put("regDate",String.valueOf(new Date().getTime()));
 
         List<Map<String, Object>> users = (List<Map<String, Object>>) map.get("users");
@@ -96,13 +99,16 @@ public class MongoDbDaoImpl implements MongoDbDao{
     }
 
     @Override
-    public void updateClub(int clubNum, String clubName) {
+    public void updateClub(int clubNum, String clubName, String clubImage) {
         Query query = new Query(new Criteria().andOperator(
                 Criteria.where("chatCategory").is("clubChat"),
                 Criteria.where("boardNum").is(clubNum)
         ));
         Map<String, Object> map = mongoTemplate.find(query, Map.class, "rooms").get(0);
         map.put("roomName",clubName);
+        if(clubImage!=null){
+            map.put("roomImage",clubImage);
+        }
         mongoTemplate.save(map, "rooms");
     }
 }
