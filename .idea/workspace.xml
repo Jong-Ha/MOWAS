@@ -10,10 +10,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="JHK 2022.10.31&#10;&#10;마이페이지 리스트 유저 커밋">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/controller/ClubCalendarController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/controller/ClubCalendarController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/service/ClubCalendarServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/service/ClubCalendarServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/community/controller/CommunityController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/community/controller/CommunityController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/community/controller/CommunityRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/community/controller/CommunityRestController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/community/dao/CommunityDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/community/dao/CommunityDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/community/dao/CommunityDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/community/dao/CommunityDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/community/service/CommunityService.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/community/service/CommunityService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/community/service/CommunityServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/community/service/CommunityServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/Comment.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/Comment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/Recomment.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/Recomment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/VilBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/VilBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/controller/MyPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/controller/MyPageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/dao/MyPageDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/dao/MyPageDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/dao/MyPageDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/dao/MyPageDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/service/MyPageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/service/MyPageService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/service/MyPageServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/service/MyPageServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/site/controller/SiteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/site/controller/SiteController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/user/controller/UserRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/user/controller/UserRestController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/ClubCalenderMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/ClubCalenderMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/CommunityMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/CommunityMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/DBtext.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/DBtext.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/MyPageMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/MyPageMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/SiteMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/SiteMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/myPageTitle.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/myPageTitle.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyClub.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyClubApply.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyClubApply.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyPpt.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyPpt.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyReport.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/callBack.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/callBack.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/updateSNSUserInfor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/updateSNSUserInfor.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +68,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="master" />
+    <option name="BRANCH" value="origin/master" />
   </component>
   <component name="Git.Settings">
     <option name="PUSH_TAGS">
@@ -485,7 +517,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="JHK" />
+                        <option value="origin/master" />
                       </list>
                     </value>
                   </entry>
