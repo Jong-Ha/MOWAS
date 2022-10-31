@@ -9,13 +9,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="KSM 2022.10.26&#10;&#10;toobar navigation 추가,&#10;지도 캘린더 rest API 추가&#10;지도 법정동 method 추가">
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="KSM 2022.10.28&#10;&#10;지도 법정동 method 확인&#10;커뮤니티 get, 모임 get 화면 Upgrade">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/common/KakaoMapApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/common/KakaoMapApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/controller/SiteRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/controller/SiteRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/getClubReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/getClubReport.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/getCommunityReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/getCommunityReport.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/listClubReportProcess.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/listClubReportProcess.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/site/controller/SiteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/site/controller/SiteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/SiteMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/SiteMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/addCommunityReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/addCommunityReport.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/listMasterBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/listMasterBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/updateMasterBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/updateMasterBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/listUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/listUser.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +42,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="master" />
+    <option name="BRANCH" value="KSM" />
   </component>
   <component name="Git.Settings">
     <option name="PUSH_TAGS">
@@ -83,32 +87,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
-    "last_opened_file_path": "C:/Project/MOWAS/src/main/webapp/resources/images",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "아티팩트",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.32133675",
-    "settings.editor.selected.configurable": "project.propCompiler",
-    "spring.configuration.checksum": "0644e903b0ad21f514b0480754c0a1e2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit4&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4&quot;: &quot;&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Project/MOWAS/src/main/webapp&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.32133675&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;database.query.execution&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;0644e903b0ad21f514b0480754c0a1e2&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "oracle"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;oracle&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -380,6 +384,10 @@
       <workItem from="1666338226193" duration="5083000" />
       <workItem from="1666343876167" duration="55962000" />
       <workItem from="1666589308433" duration="18822000" />
+      <workItem from="1666950124144" duration="5131000" />
+      <workItem from="1667019472953" duration="14787000" />
+      <workItem from="1667174096662" duration="132000" />
+      <workItem from="1667174285542" duration="1013000" />
     </task>
     <task id="LOCAL-00001" summary="설정">
       <created>1664436990723</created>
@@ -437,7 +445,21 @@
       <option name="project" value="LOCAL" />
       <updated>1666753497488</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="KSM 2022.10.28&#10;&#10;지도 법정동 method 확인&#10;커뮤니티 get, 모임 get 화면 Upgrade">
+      <created>1666929407501</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1666929407501</updated>
+    </task>
+    <task id="LOCAL-00010" summary="KSM 2022.10.28&#10;&#10;지도 법정동 method 확인&#10;커뮤니티 get, 모임 get 화면 Upgrade">
+      <created>1666929428648</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1666929428649</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -543,7 +565,8 @@
     <MESSAGE value="JHK 2022.10.19&#10;&#10;메일인증 수정" />
     <MESSAGE value="JHK 2022.10.24&#10;&#10;마이페이지 JSP 수정" />
     <MESSAGE value="LJH 2022.10.26&#10;&#10;탭바 선택 유지&#10;모임 탭바 레이아웃 조정" />
-    <option name="LAST_COMMIT_MESSAGE" value="LJH 2022.10.26&#10;&#10;탭바 선택 유지&#10;모임 탭바 레이아웃 조정" />
+    <MESSAGE value="KSM 2022.10.28&#10;&#10;지도 법정동 method 확인&#10;커뮤니티 get, 모임 get 화면 Upgrade" />
+    <option name="LAST_COMMIT_MESSAGE" value="KSM 2022.10.28&#10;&#10;지도 법정동 method 확인&#10;커뮤니티 get, 모임 get 화면 Upgrade" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -556,7 +579,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDao.java</url>
           <line>33</line>
-          <properties class="com.project.user.dao.UserDao">
+          <properties class="com.project.user.dao.UserDao" method="updateLcd">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>

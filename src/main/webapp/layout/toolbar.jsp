@@ -408,6 +408,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="/user/listUser">회 원 관 리</a></li>
                                     <li><a class="dropdown-item" href="/site/listCommunityReport">커뮤니티 신고</a></li>
                                     <li><a class="dropdown-item" href="/site/listCommunityReportProcess">커뮤니티 신고 처리</a></li>
                                     <li><a class="dropdown-item" href="/site/listClubReport">모임 신고</a></li>
