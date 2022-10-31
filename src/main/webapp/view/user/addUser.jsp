@@ -469,80 +469,88 @@
  <%--상단 툴바--%>
  <jsp:include page="/layout/toolbar.jsp"/>
 
-<div class="container" style="text-align: -webkit-center;">
+<div class="container" style="text-align: -webkit-center;display: flex;
+    width: 1080px;
+    border: 1px solid;
+    color: inherit;
+    flex-direction: column;">
 
 
   <main>
-    <div class="py-5 text-center">
-        <img id="userImage1" src="https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png" class="w-50">
-
-        <h2>회원가입</h2>
-        <p class="lead">MOWAS에 오신걸 환영합니다</p>
-      <p class="lead">계정 정보를 입력해주세요</p>
+    <div class="text-center">
+        <h2 style=" margin-top: 10px; padding: 10px;">회원가입</h2>
     </div>
-
-      <hr>
-
-
+      <hr style="margin: 10px">
     <form class="needs-validation" novalidate enctype="multipart/form-data">
-      <div class="row g-3">
 
-        <div class="col-sm">
-            <span><h4><label for="userId" class="form-label" >아이디</label></h4></span>
-          <input type="text" class="form-control" id="userId" name="userId" maxLength="20" required>
-        </div>
+        <div style="display: inline-block; height: 200px; width: 450px; border-right: #6c757d 1px solid">
+             <div class="col-12" style=" display:flex ">
+                <span style="width: 50%;">아이디</span>
+                 <div class="input-group has-validation">
+                 <input type="text" class="form-control" id="userId" name="userId" maxLength="20" style="margin-bottom: 25px;" required>
+                 </div>
+            </div>
 
-        <span id="idChk" style="display: none;">
+             <span id="idChk" style="display: none;">
                 <strong class="text-danger" >이미 가입된 아이디입니다</strong>
-        </span>
-        <div class="col-12">
-          <label for="password" class="form-label" >비밀번호</label>
-            <strong class="text-danger" style="color : red;" >영문,숫자 혼합, 8~16글자로 입력해주세요</strong><br/>
-          <div class="input-group has-validation">
-            <input type="password" class="form-control" id="password" name="password" maxLength="16" required>
-          </div>
-        </div>
-        <span id="passwordChk" style="display: none;">
+             </span>
+
+              <div class="col-12"  style="display:flex">
+                  <span style="width: 50%">비밀번호</span>
+                     <div class="input-group has-validation">
+                        <input type="password" class="form-control" id="password" name="password" maxLength="16" placeholder="영문,숫자 혼합, 8~16글자 입력" style="margin-bottom: 25px;"required>
+                     </div>
+              </div>
+
+             <span id="passwordChk" style="display: none;">
                 <strong class="text-danger" >영문,숫자 혼합, 8~16글자로 입력해주세요</strong>
-        </span>
+             </span>
 
-        <div class="col-12">
-          <label for="password2" class="form-label">비밀번호 확인</label>
-          <div class="input-group has-validation">
-            <input type="password" class="form-control" id="password2" name="password2" maxLength="16" required>
-          </div>
-        </div>
-        <span id="password2Chk" style="display: none;">
+             <div class="col-12" style="display:flex">
+               <span style="width: 50%;">비밀번호 확인</span>
+                 <div class="input-group has-validation">
+                  <input type="password" class="form-control" id="password2" name="password2" maxLength="16" style="margin-bottom: 25px;" required>
+                  </div>
+             </div>
+
+            <span id="password2Chk" style="display: none;">
                 <strong class="text-danger" >비밀번호가 틀렸습니다</strong>
-        </span>
+           </span>
 
-        <div class="col-12">
-          <label for="userName" class="form-label">이름</label>
-          <div class="input-group has-validation">
-            <input type="text" class="form-control" id="userName" name="userName"  required>
-          </div>
-        </div>
+             <div class="col-12" style="display:flex">
+               <span style="width: 50%;">이름</span>
+                     <div class="input-group has-validation">
+                       <input type="text" class="form-control" id="userName" name="userName"  style="margin-bottom: 25px;" required>
+                      </div>
+             </div>
 
-        <div class="col-12 ">
-          <label for="rrd" class="form-label">주민등록번호</label>
-          <div class="input-group has-validation">
-            <input type="text" class="form-control" id="rrd" name="rrd"  required>
-          </div>
-            <span id="rrdChk" style="display: none;" >
-              <strong class="text-danger" >이미 가입한 회원입니다</strong>
+          <div class="col-12" style="display:flex">
+               <span style="width: 50%;">주민등록번호</span>
+                <div class="input-group has-validation">
+                   <input type="text" class="form-control" id="rrd" name="rrd"  style="margin-bottom: 25px;" required>
+              </div>
+
+             <span id="rrdChk" style="display: none;" >
+                 <strong class="text-danger" >이미 가입한 회원입니다</strong>
               </span>
-
-
-
-
-        <div class="col-12">
-          성별<label for="male" class="form-label">
-          <input type="radio" class="form-check-input" id="male" name="gender" value="남자" required>남자</label>
-          <label for="female" class="form-label">
-            <input type="radio" class="form-check-input" id="female" name="gender" value="여자" required>여자</label>
+         </div>
         </div>
 
-        <h6>이메일 또는 휴대폰번호 인증하기(택1)</h6>
+
+
+
+
+        <div style="display: inline-block; height: 200px; width: 450px;">
+
+            <div  >
+                성별<label for="male" class="form-label">
+                <input type="radio" class="form-check-input" id="male" name="gender" value="남자" required>남자</label>
+                <label for="female" class="form-label">
+                    <input type="radio" class="form-check-input" id="female" name="gender" value="여자" required>여자</label>
+            </div>
+
+
+            <h6>이메일 또는 휴대폰번호 인증하기(택1)</h6>
 
 
         <div class="col-12">
@@ -579,9 +587,12 @@
               </span>
       </div>
 
-      <div class="col-12">
+        </div>
+
+
+      <div  style="display: inline-block">
         <label for="address" class="form-label">동네인증</label>
-      </div>
+
 
       <div class="col-12">
         <input type="hidden" id="currentPage" value="1" style="text-align:center;"/>
@@ -617,6 +628,7 @@
           <input type="hidden" class="form-control" id="addressFalse" value="동네인증 실패. 현재위치를 확인해주세요" readonly>
         </div>
 
+      </div>
       </div>
 
       <div  id="map" style="width:500px;height:400px;"></div>
@@ -756,8 +768,7 @@
             <button class="w-100 btn btn-prm btn-lg cancle" type="button"> 취소</button>
             <button class="w-100 btn btn-prm btn-lg addUser" type="submit"> 관심목록 선택</button>
           </div>
-        </div>
-      </div>
+
     </form>
 
   </main>

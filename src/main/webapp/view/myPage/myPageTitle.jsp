@@ -187,11 +187,11 @@
         });
         $(".getMyComment").on("click", function () {
             alert('1234');
-            self.location = "/myPage/getMyComment?userId=" + userId;
+            self.location = "/myPage/getMyComment?userId="+userId;
         });
 
         $(".getMyBoardLike").on("click", function () {
-            self.location = "/myPage/getMyLike?userId=" + userId;
+            self.location = "/myPage/getMyLike?userId="+userId;
         });
         self.location = "/myPage/getMyLike?userId="+userId;
     });
@@ -202,7 +202,7 @@
             self.location = "/myPage/getMyClub?userId=" + userId;
         });
         self.location = "/myPage/getMyClub?userId="+userId;
-    });
+        });
          $(".getMyClubApply").on("click", function () {
              self.location = "/myPage/getMyClubApply?userId="+userId;
          });

@@ -217,7 +217,7 @@
     </select>
 
     <select id="getMyClubBoard" parameterType="String" resultMap="ClubMasterBoardResultMap" >
-        SELECT title, reg_date, user_id, club_num, club_master_board_num
+        SELECT *
         FROM club_master_board
         WHERE user_id=#{userId}
     </select>
@@ -272,7 +272,7 @@
 
     <!--가입한 모임 조회-->
     <select id="getMyClub" parameterType="String" resultMap="ClubResultMap" >
-        SELECT a.cluber_status, b.inter_list, b.club_name, b.vill_code, b.club_image, b.gather_check, b.club_tag
+        SELECT a.*, b.*
         FROM club_user a, club b
         WHERE a.club_num = b.club_num and a.user_id=#{userId}
     </select>
@@ -297,7 +297,7 @@
 
 
     <select id="getMyPpt" parameterType="String" resultMap="CommunityReportSelectMap" >
-        SELECT board_category, board_num, report_basis, ppt, ppt_date
+        SELECT *
         FROM community_report
         WHERE reported_id=#{userId}
     </select>
