@@ -11,7 +11,8 @@
     ul li {
         list-style: none;
     }
-    li{
+
+    li {
         margin-bottom: 10px;
         cursor: pointer;
     }
@@ -30,6 +31,7 @@
     .myPageBox {
         margin-bottom: 50px;
         justify-content: center;
+        margin-top: 50px;
     }
 
     .underline {
@@ -64,12 +66,12 @@
         width: 50px;
     }
 
-    .liTag:after{
+    .liTag:after {
         border-bottom: 1px solid black;
         transition: all 0.5s;
     }
 
-    .liTag:hover:after{
+    .liTag:hover:after {
         transition: all 0.5s;
     }
 
@@ -126,7 +128,7 @@
         transition: all 1s;
     }
 
-    .MyPpt .sub{
+    .MyPpt .sub {
         font-size: 0.7em;
         font-weight: normal;
         display: none;
@@ -139,11 +141,11 @@
         transition: all 1s;
         background: #eee;
     }
-    .MyPpt:hover .sub{
+
+    .MyPpt:hover .sub {
         display: block;
         transition: all 1s;
     }
-
 
 
     .typing {
@@ -155,6 +157,7 @@
         font-size: 2em;
         height: 2ch;
     }
+
     @keyframes typing {
         from {
             width: 0
@@ -167,9 +170,6 @@
     <title>Title</title>
 </head>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
 
     $(function () {
@@ -178,13 +178,16 @@
         $("#listUser").on("click", function () {
             self.location = "/user/listUser";
         });
+
         $("#getMyInfor").on("click", function () {
             self.location = "/myPage/getMyInfor?userId=" + userId;
         });
+
         $(".getMyBoard").on("click", function () {
             alert('userId' + userId);
             self.location = "/myPage/getMyBoard?userId=" + userId;
         });
+
         $(".getMyComment").on("click", function () {
             alert('1234');
             self.location = "/myPage/getMyComment?userId=" + userId;
@@ -193,63 +196,50 @@
         $(".getMyBoardLike").on("click", function () {
             self.location = "/myPage/getMyLike?userId=" + userId;
         });
-        self.location = "/myPage/getMyLike?userId="+userId;
-    });
-         $(".getMyCommentLike").on("click", function () {
-             self.location = "/myPage/getMyCommentLike?userId="+userId;
-         });
+
+
+        $(".getMyCommentLike").on("click", function () {
+            self.location = "/myPage/getMyCommentLike?userId=" + userId;
+        });
+
         $(".getMyClub").on("click", function () {
             self.location = "/myPage/getMyClub?userId=" + userId;
         });
-        self.location = "/myPage/getMyClub?userId="+userId;
-    });
-         $(".getMyClubApply").on("click", function () {
-             self.location = "/myPage/getMyClubApply?userId="+userId;
-         });
+
+
+        $(".getMyClubApply").on("click", function () {
+            self.location = "/myPage/getMyClubApply?userId=" + userId;
+        });
+
         $(".getMyDeal").on("click", function () {
             self.location = "/myPage/getMyDeal?userId=" + userId;
         });
+
         $(".getMyDealReview").on("click", function () {
             self.location = "/myPage/getMyDealReview?userId=" + userId;
         });
+
         $(".getMyReport").on("click", function () {
             self.location = "/myPage/getMyReport?userId=" + userId;
         });
+
         $(".getMyPpt").on("click", function () {
             self.location = "/myPage/getMyPpt?userId=" + userId;
         });
 
-    });
 
-  });
-     $(function (){
-         $("#myPageMain").on("click" , function (){
-             self.location = "/view/myPage/getMyPage.jsp"
-         });
-     });
+        $(function () {
+            $("#myPageMain").on("click", function () {
+                self.location = "/view/myPage/getMyPage.jsp"
+            });
+        });
+    });
 
 
     $(function () {
         $("#mainPage").on("click", function () {
             self.location = "/view/user/main.jsp";
         });
-        /*
-                $(".myBoard").on("click",function (){
-
-                    $(".myPageTogle1").slideToggle();
-                })
-                $(".MyClub").on("click",function (){
-
-                    $(".myPageTogle2").slideToggle();
-                })
-                $(".MyDeal").on("click",function (){
-
-                    $(".myPageTogle3").slideToggle();
-                })
-                $(".MyPpt").on("click",function (){
-
-                    $(".myPageTogle4").slideToggle();
-                })*/
 
     });
 
@@ -263,13 +253,12 @@
         </nav>
     </div>
 </header>
-<button type="button" class="mainPage" id="mainPage">메인페이지</button>
-<br>
+
 
 
 <div class="wrapper">
 
-    <div class="typing" id="myPageMain" style="cursor: pointer">
+    <div class="typing" id="myPageMain" style="cursor: pointer; margin-top: 100px">
 
         <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
                     background-image: linear-gradient(transparent 60%, #F8CD07 40%);">
@@ -277,6 +266,7 @@
     </div>
 
     <nav class="navbar navbar-expand-lg myPageBox">
+
         <div class="myBoard">
             <div class="underline yellow">
                 작성 게시글
@@ -293,32 +283,18 @@
         </div>
 
 
-        <div class="abc"></div>
-
-
-        <div>
-            <div class="underline yellow MyClub">모임
-            <div class="underline yellow MyClub">모임</div>
-            <div class="shadow-lg myPageTogle2" style="display: none;  width: 200px; height: 200px;  position: absolute;">
-                <ul>
+        <div class="underline yellow MyClub">모임
+            <div class=" myPageTogle2">
+                <ul class="shadow-lg sub">
                     <li class="getMyClub">가입한 모임</li>
                     <li class="getMyClubApply">가입신청한 모임</li>
 
-                <div class="myPageTogle2">
-                    <ul class="shadow-lg sub">
-                        <li class="getMyClub liTag">가입한 모임</li>
-                        <li class="getMyComment liTag">가입신청한 모임</li>
-
-                    </ul>
-                </div>
+                </ul>
             </div>
         </div>
 
 
         <div class="abc"></div>
-
-
-
 
 
         <div>
@@ -336,28 +312,25 @@
         </div>
 
 
-
-
         <div class="abc"></div>
-
 
 
         <div>
             <div class="underline yellow MyPpt">벌점/신고
                 <div class=" myPageTogle4">
                     <ul class="shadow-lg sub">
-                        <li class="getMyPpt liTag" >받은 벌점 내역</li>
+                        <li class="getMyPpt liTag">받은 벌점 내역</li>
                         <li class="getMyReport liTag">신고한 내역</li>
 
                     </ul>
                 </div>
             </div>
         </div>
-
-
-
     </nav>
+
+
     <hr>
 </div>
+
 </body>
 </html>

@@ -6,7 +6,7 @@
 
     <resultMap id="villBoardSelect" type="villBoard">
         <result property="villBoardNum"     column="vill_board_num"     jdbcType="INTEGER"/>
-        <result property="userId"    column="user_id"            jdbcType="VARCHAR"/>
+        <result property="userId"           column="user_id"            jdbcType="VARCHAR"/>
         <result property="villCode"         column="vill_code"          jdbcType="VARCHAR"/>
         <result property="villTitle"        column="vill_title"         jdbcType="VARCHAR"/>
         <result property="villText"         column="vill_text"          jdbcType="VARCHAR"/>
@@ -15,6 +15,7 @@
         <result property="viewCount"        column="view_count"         jdbcType="INTEGER"/>
         <result property="likeCount"        column="like_count"         jdbcType="INTEGER"/>
         <result property="boardCategory"    column="board_category"     jdbcType="INTEGER"/>
+        <result property="userImg"          column="user_image"     jdbcType="INTEGER"/>
     </resultMap>
 
 
@@ -37,6 +38,7 @@
         <result property="commentText"    column="comment_text"    jdbcType="VARCHAR"/>
         <result property="likeCount"      column="like_count"      jdbcType="INTEGER"/>
         <result property="regDate"        column="reg_date"        jdbcType="DATE"/>
+        <result property="userImg"        column="user_image"      jdbcType="VARCHAR"/>
     </resultMap>
 
     <resultMap id="recommentSelect" type="recomment">
@@ -47,6 +49,7 @@
         <result property="recommentText"    column="recomment_text"    jdbcType="VARCHAR"/>
         <result property="likeCount"        column="like_count"        jdbcType="INTEGER"/>
         <result property="regDate"          column="reg_date"          jdbcType="DATE"/>
+        <result property="userImg"          column="user_image"        jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--우리 동네 게시판-->
@@ -85,18 +88,57 @@
         WHERE vill_board_num = #{villBoardNum}
     </delete>
 
-    <select id="getVillBoard" parameterType="int" resultMap="villBoardSelect">
-        SELECT *
-        FROM vill_board
-        WHERE vill_board_num = #{villBoardNum}
+    <sql id="getVillBoardSql">
+        SELECT vb.* , us.USER_IMAGE
+        FROM VILL_BOARD vb, users us
+        WHERE vb.user_id =  us.USER_ID
+            AND vb.vill_code LIKE '%'||#{villCode}||'%'
+
+        <if test="search.searchKeyword != null ">
+            AND vill_title LIKE '%'||#{search.searchKeyword}||'%'
+        </if>
+
+        <if test="search.searchCondition == 1">
+            ORDER BY vill_board_num DESC
+        </if>
+        <if test="search.searchCondition == 2">
+            ORDER BY like_count DESC NULLS LAST
+        </if>
+        <if test="search.searchCondition == 3">
+            ORDER BY view_count DESC NULLS LAST
+        </if>
+        <if test="search.searchCondition == 4">
+            AND vill_tag like '%'||#{search.searchKeyword}||'%'
+            ORDER BY vill_board_num DESC
+        </if>
+    </sql>
+
+
+    <select id="getTotalvillBoard" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM (
+        <include refid="getVillBoardSql"/>
+        )
+    </select>
+
+    <select id="listVillBoard" parameterType="map" resultMap="villBoardSelect">
+        SELECT * FROM (
+        SELECT ROWNUM row_num, vt.* FROM (
+        <include refid="getVillBoardSql"/>
+        ) vt
+        <if test="search.currentPage*search.pageSize!=0">
+            WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}
+        </if>
+        )
+        <where>
+            <if test="search.currentPage*search.pageSize!=0">
+                row_num >= ((#{search.currentPage}-1)*#{search.pageSize}+1)
+            </if>
+        </where>
     </select>
 
 
-    <select id="listVillBoard" parameterType="String" resultMap="villBoardSelect">
-        SELECT *
-        FROM vill_board
-        WHERE vill_code LIKE '%'||#{villCode}||'%'
-    </select>
+
+
 
     <!--종아요-->
     <insert id="addLike" parameterType="map">
@@ -172,7 +214,7 @@
         <if test="boardCategory == 1 or boardCategory == 2">
             club_calendar_review
             <set>
-                like_count = #{likeCount} -1
+                like_count = #{lieCount} -1
             </set>
             WHERE club_calendar_review_num = #{boardNum}
         </if>
@@ -300,9 +342,11 @@
     </update>
 
     <select id="listComment"  parameterType="map" resultMap="comemntSelect">
-        SELECT * FROM comments
+        SELECT  cs.* , us.user_image
+        FROM comments cs, users us
         WHERE board_num = #{boardNum}
           AND board_category = #{boardCategory}
+          AND cs.user_id = us.user_id
     </select>
 
     <delete id="deleteAllComment" parameterType="map">
@@ -338,8 +382,10 @@
     </delete>
 
     <select id="listRecomment" parameterType="map" resultMap="recommentSelect">
-        select * from RECOMMENT
+        select rt.* , us.user_image
+        from RECOMMENT rt, users us
         where COMMENT_NUM = #{commentNum}
+            AND rt.user_id = us.user_id
     </select>
 
     <!--게시글 지우기-->

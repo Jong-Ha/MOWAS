@@ -668,7 +668,7 @@
             var reviewTitle = $(".reviewTitle1").val();
             var reviewText = $(".reviewText1").val();
             var reviewRange = $(".reviewRange1").val();
-            var boardCategory = '01'
+            var boardCategory = '1'
 
             //ajax로 비동기식으로 RestController로 보냄
             $.ajax({
@@ -785,7 +785,7 @@
 
         $(".calenderReviewShortSubmit").on("click", function () {
             var clubCalenderNum = $(".clubCalnderNum").val()
-            var boardCategory = '02'
+            var boardCategory = '2'
             var reviewTitle = $(".reviewTitle2").val();
             var reviewRange = $(".reviewRange2").val();
 
@@ -910,6 +910,23 @@
         //일정 등록
         $("#location1").on("shown.bs.modal", function () {
             relayout1();
+        })
+
+
+
+        $(".location2").on("click", function () {
+            var location = $(".location2").val();
+
+            alert(location)
+            $("#location2 .modal-content").load("/view/site/getCalenderMap.jsp",
+                {location : location},
+                function (re) {
+
+                $("#location2 .modal-content").html(re);
+
+                $("#location2").modal("show")
+                })
+
         })
 
         //상세보기 지도 보기
@@ -1451,7 +1468,6 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
 
-            <jsp:include page="/view/site/getCalenderMap.jsp"/>
 
         </div>
     </div>

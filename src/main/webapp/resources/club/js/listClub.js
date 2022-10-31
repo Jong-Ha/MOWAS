@@ -233,6 +233,7 @@ $(function () {
 
 //무한스크롤
 $(function () {
+
     function getFormJson(selector) {
         // Select Form
         let selForm = document.querySelector(selector);
@@ -245,6 +246,7 @@ $(function () {
 
         // Log
         console.log(JSON.stringify(serializedFormData));
+
         return JSON.stringify(serializedFormData)
     }
 
@@ -287,7 +289,7 @@ $(function () {
             // console.log(data)
 
             const json = getFormJson('#listForm')
-alert(json)
+        alert(json)
             $.ajax({
                 url: '/club/json/listClub',
                 method: 'post',

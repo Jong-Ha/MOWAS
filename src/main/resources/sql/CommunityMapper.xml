@@ -94,10 +94,11 @@
         WHERE vb.user_id =  us.USER_ID
             AND vb.vill_code LIKE '%'||#{villCode}||'%'
 
-
+        <if test="search.searchKeyword != null ">
+            AND vill_title LIKE '%'||#{search.searchKeyword}||'%'
+        </if>
 
         <if test="search.searchCondition == 1">
-            AND vill_title LIKE '%'||#{search.searchKeyword}||'%'
             ORDER BY vill_board_num DESC
         </if>
         <if test="search.searchCondition == 2">

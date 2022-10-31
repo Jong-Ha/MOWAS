@@ -135,6 +135,15 @@
                                         <if test="searchCondition == 1 and searchKeyword !='' ">
                                             mb_text LIKE  '%${searchKeyword}%'
                                         </if>
+                                        <if test="searchCondition == 100 and searchKeyword =='' ">
+                                             mb_category = '1'
+                                        </if>
+                                        <if test="searchCondition == 200 and searchKeyword =='' ">
+                                             mb_category = '2'
+                                        </if>
+                                        <if test="searchCondition == 300 and searchKeyword =='' ">
+                                             mb_category = '3'
+                                        </if>
                                         </where>
                                     </if>
                                     ORDER BY master_board_num ) inner_table
@@ -153,6 +162,15 @@
                             </if>
                             <if test="searchCondition == 1 and searchKeyword !='' ">
                                 mb_text LIKE '%${searchKeyword}%'
+                            </if>
+                            <if test="searchCondition == 100 and searchKeyword =='' ">
+                                mb_category = '1'
+                            </if>
+                            <if test="searchCondition == 200 and searchKeyword =='' ">
+                                mb_category = '2'
+                            </if>
+                            <if test="searchCondition == 300 and searchKeyword =='' ">
+                                mb_category = '3'
                             </if>
                         </where>
                     </if> ) countTable
