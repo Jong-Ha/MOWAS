@@ -4,86 +4,48 @@
 <head>
 
     <style>
-        ul li{
-            list-style:none;
-        }
-        .wap {
-            display: flex;
-            flex-direction: column;
-            margin-top: 70px;
-        }
-        .wrapper{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .aaa{
-            transition: 0.3s;
+        ul li {
+            list-style: none;
         }
 
-        #userImage1{
-            transition: all 0.2s linear;
+
+        #userImage1 {
+            border-radius: 50%;
+            width: 60%;
+            border: 1px solid #00000024;
         }
 
-        #userImage1:hover {
-            transform: scale(2);
-        }
-        #userImage2:hover {
-            transform: scale(2);
-        }
-        #userImage3:hover {
-            transform: scale(2);
-        }
-        .navbar {
-            justify-content: center;
-        }
-        .navCenter {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 1200px;
-            margin: auto;
-            color: #fff;
+        #userImage2 {
+            border-radius: 50%;
+            width: 60%;
+            border: 1px solid #00000024;
         }
 
-        .myPageBox {
-            margin-bottom: 50px;
-            justify-content: center;
-        }
-        .underline {
-            line-height: 1.2;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
-            font-size: 1.5em;
-            font-weight: 700;
-            background-image: linear-gradient(transparent calc(100% - 3px), #000 3px);
-            background-repeat: no-repeat;
-            background-size: 0% 100%;
-            transition: background-size 0.2s;
-            color: #000;
-            cursor: pointer;
-            margin-right: 25px;
-        }
-        @media (min-width: 1000px) {
-            .underline {
-                font-size: 1.5em;
-            }
-        }
-        @keyframes typing {
-            from {
-                width: 0
-            }
+        #userImage3 {
+            border-radius: 50%;
+            width: 60%;
+            border: 1px solid #00000024;
         }
 
-        .underline.yellow {
-            background-image: linear-gradient(transparent 60%, #F8CD07 40%);
+        .userInfo{
+            text-align:center;
+            width: 20%;
+            height: 352px;
+            padding: 10px;
+            margin-right: 30px;
+            margin-left: 30px;
+            border-radius: 10px;
+
         }
-        .underline:hover {
-            background-size: 100% 100%;
+
+        .userText {
+            height: 36%;
+            text-align: left;
+            margin-top: 37px;
+            font-size: 1.2em;
         }
-        .abc{
-            width: 50px;
-        }
+
+
     </style>
     <title>Title</title>
 </head>
@@ -123,7 +85,7 @@
             self.location = "/view/user/main.jsp";
         });
 
-        $(".myBoard").on("click",()=>{
+        $(".myBoard").on("click", () => {
 
             $(".myPageTogle2").slideToggle();
         })
@@ -140,9 +102,9 @@
 <hr>
 </div>
 <div class="myPageButton" style="display: flex; align-items: center; justify-content: center; margin-top: 50px;">
-<c:if test="${user.userId=='admin'}">
-    <button type="button" class="listUser" id="listUser">회원목록조회</button>
-</c:if>
+    <c:if test="${user.userId=='admin'}">
+        <button type="button" class="listUser" id="listUser">회원목록조회</button>
+    </c:if>
 
 
 </div>
@@ -150,59 +112,63 @@
 <input type="hidden" id="userId" name="userId" value="${user.userId}">
 
 
-<div class="wap">
+<div class="container">
 
     <div class="myPage-top" style=" display: flex; padding: 10px">
 
-        <div class="userInfo shadow-lg" style=" text-align:center; width: 20%; height: 400px;  padding: 10px;  margin-right: 30px;margin-left: 30px;">
+        <div class="userInfo shadow-lg">
 
             <c:if test="${user.loginType=='1'}">
                 <span class="aaa">
-                <img id="userImage1" style="width : 60%;" src="/resources/${user.userImage}">
+                <img id="userImage1" class="userImgae1" src="/resources/${user.userImage}">
                 <input type="hidden" class="userPhoto1" value="${user.userImage}">
                 </span>
             </c:if>
+
             <c:if test="${user.loginType=='2'}">
-                <span class="bbb">회원 사진
                 <img id="userImage2" style="width : 60%;" src="${user.userImage}">
                 <input type="hidden" class="userPhoto2" value="${user.userImage}">
-                </span>
-            </c:if>
-            <c:if test="${user.loginType=='3'}">
-                <span class="ccc">회원 사진
-                  <img id="userImage3" style="width : 60%;" src="${user.userImage}">
-                   <input type="hidden" class="userPhoto3" value="${user.userImage}">
-                </span>
             </c:if>
 
-            <div >
+            <c:if test="${user.loginType=='3'}">
+                <img id="userImage3" style="width : 60%;" src="${user.userImage}">
+                <input type="hidden" class="userPhoto3" value="${user.userImage}">
+            </c:if>
+
+            <div class="userText">
 
                 <div>
-                    아이디
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                    </svg>
                     ${user.userId}
                 </div>
-            </div>
 
-            <div>
+
                 <div>
-                    이름
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
+                        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+                        <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
                     ${user.userName}
                 </div>
-            </div>
-            <div>
-                이메일 ${user.email}
-            </div>
 
-            <br>
-            <button type="button" class="getMyInfor" id="getMyInfor">내 정보 보기</button>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                    </svg>
+                    ${user.email}
+                </div>
+
+                <br>
+            </div>
+                <button type="button" class="getMyInfor btn btn-primary" id="getMyInfor">내 정보 보기</button>
         </div>
 
         <div class="userCalender shadow-lg" style=" height: 600px; overflow: scroll; padding: 10px;">
             <jsp:include page="/view/user/userCalender.jsp"/>
         </div>
-</div>
-
-
+    </div>
 
 
 </div>

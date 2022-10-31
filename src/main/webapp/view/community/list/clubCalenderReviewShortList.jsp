@@ -284,10 +284,6 @@
         text-align: -webkit-center;
     }
 
-    .wap {
-        width: 1000px;
-        height: 1500px;
-    }
 
     .carditem {
         display: flex;
@@ -426,7 +422,7 @@
      style="height: 500px;border-radius: 10px;  width: 1600px;">
 
 
-<div class="wap">
+<div class="container">
 
 
     <jsp:include page="/layout/commubar.jsp"/>
@@ -554,9 +550,6 @@
                                         ${ClubCalendarReview.reviewTitle}
                                 </div>
 
-                                <div class="reviewText">
-                                        ${ClubCalendarReview.reviewText}
-                                </div>
                             </div>
                         </div>
                     </div>
