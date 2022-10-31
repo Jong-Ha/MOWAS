@@ -136,39 +136,39 @@ $(function () {
     //     })
     // })
 })
-
-$(function(){
-    var dealTag = document.querySelector("#dealTag")
-    var tagify = new Tagify(dealTag, {
-        dropdown: {
-            position: "input",
-            enabled: 0 // always opens dropdown when input gets focus
-        }
-    })
-
-    $("#addDeal").find(".newDeal").on('click',function(){
-        if($("#dealTitle").val()===''){
-            alert("제목은 필수입니다")
-            return;
-        }
-        if($("#price").val()===''){
-            alert("가격은 필수입니다")
-            return;
-        }
-        if($("#dealProduct").val()===''){
-            alert("제품명은 필수입니다")
-            return;
-        }
-
-        // if($("#clubTag").val()===''){
-        //     return;
-        // }
-        // alert(JSON.parse($("#clubTag").val()))
-        let addForm = $("#addDealForm");
-        $.each(JSON.parse($("#dealTag").val()),function(index,item){
-            addForm.append('<input type="hidden" name="dealTags" value="'+item.value+'">')
-        })
-
-        addForm.attr("action","/deal/addDeal").attr("method","post").submit()
-    })
-})
+//
+// $(function(){
+//     var dealTag = document.querySelector("#dealTag")
+//     var tagify = new Tagify(dealTag, {
+//         dropdown: {
+//             position: "input",
+//             enabled: 0 // always opens dropdown when input gets focus
+//         }
+//     })
+//
+//     $("#addDeal").find(".newDeal").on('click',function(){
+//         if($("#dealTitle").val()===''){
+//             alert("제목은 필수입니다")
+//             return;
+//         }
+//         if($("#price").val()===''){
+//             alert("가격은 필수입니다")
+//             return;
+//         }
+//         if($("#dealProduct").val()===''){
+//             alert("제품명은 필수입니다")
+//             return;
+//         }
+//
+//         // if($("#clubTag").val()===''){
+//         //     return;
+//         // }
+//         // alert(JSON.parse($("#clubTag").val()))
+//         let addForm = $("#addDealForm");
+//         $.each(JSON.parse($("#dealTag").val()),function(index,item){
+//             addForm.append('<input type="hidden" name="dealTags" value="'+item.value+'">')
+//         })
+//
+//         addForm.attr("action","/deal/addDeal").attr("method","post").submit()
+//     })
+// })

@@ -10,61 +10,58 @@ $(function() {
 //         }
 //     })
 // });
-    $(function () {
-        /* 리뷰쓰기 */
-        $(".reply_button_wrap").on("click", function (e) {
-
-            e.preventDefault();
-
-            const userId = '${user.userId}';
-            const dealId = '${deal.dealId}';
-
-            let popUrl = "/deal/review/${dealBoardNum}";
-
-
-            console.log(popUrl);
-            let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes";
-
-            window.open(popUrl, "리뷰 쓰기", popOption);
-        });
-    })
+//     $(function () {
+//         /* 리뷰쓰기 */
+//         $(".reply_button_wrap").on("click", function (e) {
 //
-    $(function () {
-        $(".dealLogin").on("click", function () {
-            location.href = "/deal/login?userId=" + $("input[name='userId']").val() + "&dealBoardNum=${deal.dealBoardNum}";
-        })
-        //좋아요
-        $(".likeToggle").on("click", function () {
-            var dealNum = $(this).parent().children("[name='dealBoardNum']").val();
-            var boardCategory = $(this).parent().children("[name='boardCategory']").val();
-            $.ajax({
-                url: "/deal/json/dealLike",
-                method: "POST",
-                data: JSON.stringify({
-                    "boardNum": dealNum,
-                    "boardCategory": boardCategory
-                }),
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json; charset=UTF-8"
-                },
-                dataType: "JSON",
-                success: function (JSONData, result) {
-                    alert(result)
-                    alert(JSONData);
-                    if (JSONData.like === 'n') {
-                        alert("누름")
-                        $(".likeToggle").val("좋아요 해제");
-                    } else if (JSONData.like == 'null') {
-                        $(".likeToggle").val
-                    } else {
-                        alert("뺌")
-                        $(".likeToggle").val("좋아요!");
-                    }
-                }
-            })
-        })
-    })
+//             e.preventDefault();
+//
+//             const userId = '${user.userId}';
+//             const dealId = '${deal.dealId}';
+//
+//             let popUrl = "/deal/review/${dealBoardNum}";
+//
+//
+//             console.log(popUrl);
+//             let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes";
+//
+//             window.open(popUrl, "리뷰 쓰기", popOption);
+//         });
+//     })
+//
+//     $(function () {
+//         //좋아요
+//         $(".likeToggle").on("click", function () {
+//             var dealNum = $(this).parent().children("[name='dealBoardNum']").val();
+//             var boardCategory = $(this).parent().children("[name='boardCategory']").val();
+//             $.ajax({
+//                 url: "/deal/json/dealLike",
+//                 method: "POST",
+//                 data: JSON.stringify({
+//                     "boardNum": dealNum,
+//                     "boardCategory": boardCategory
+//                 }),
+//                 headers: {
+//                     "Accept": "application/json",
+//                     "Content-Type": "application/json; charset=UTF-8"
+//                 },
+//                 dataType: "JSON",
+//                 success: function (JSONData, result) {
+//                     alert(result)
+//                     alert(JSONData);
+//                     if (JSONData.like === 'n') {
+//                         alert("누름")
+//                         $(".likeToggle").val("좋아요 해제");
+//                     } else if (JSONData.like == 'null') {
+//                         $(".likeToggle").val
+//                     } else {
+//                         alert("뺌")
+//                         $(".likeToggle").val("좋아요!");
+//                     }
+//                 }
+//             })
+//         })
+//     })
 
 // $(function () {
 //     var dealNum = $(this).parent().children("[name='dealBoardNum']").val();
@@ -182,16 +179,16 @@ $(function() {
 //     })
 // })
 
-    $(function () {
+    // $(function () {
         // $(".updateClub").on("click",function(){
         //     location.href="/club/updateClub/"+$(".boardNum").val()
         // })
-        $(".delete").on("click", function () {
-            var check = confirm("진짜 삭제?");
-            if (check === true) {
-                location.href = "/deal/deleteDeal/" + $(".dealBoardNum").val()
-            }
-        })
+        // $(".delete").on("click", function () {
+        //     var check = confirm("진짜 삭제?");
+        //     if (check === true) {
+        //         location.href = "/deal/deleteDeal/" + $(".dealBoardNum").val()
+        //     }
+        // })
 //         $(".listCluber").on("click", function () {
 //             var nWidth = "400";
 //             var nHeight = "500";
@@ -235,80 +232,83 @@ $(function() {
 //         tagify.addTags(items)
 //
         //업데이트
-        var dealTag = document.querySelector("#dealTag")
-        var tagify = new Tagify(dealTag, {
-            dropdown: {
-                position: "input",
-                enabled: 0 // always opens dropdown when input gets focus
-            }
-        })
+        // var dealTag = document.querySelector("#dealTag")
+        // var tagify = new Tagify(dealTag, {
+        //     dropdown: {
+        //         position: "input",
+        //         enabled: 0 // always opens dropdown when input gets focus
+        //     }
+        // })
 //완성~~~
-        $("#updateDeal").find(".updateDeal").on('click',function(){
-            alert("클릭되ㅏㅁ? ")
-            if($("#dealTitle").val()===''){
-                alert("제목은 필수입니다")
-                return;
-            }
-            if($("#price").val()===''){
-                alert("가격은 필수입니다")
-                return;
-            }
-            if($("#dealProduct").val()===''){
-                alert("제품명은 필수입니다")
-                return;
-            }
-            // if($("#clubTag").val()===''){
-            //     return;
-            // }
-            // alert(JSON.parse($("#clubTag").val()))
-            let updateForm = $("#updateDealForm");
-            $.each(JSON.parse($("#dealTag").val()),function(index,item){
-                addForm.append('<input type="hidden" name="dealTags" value="'+item.value+'">')
-            })
-
-            updateForm.attr("action","/deal/updateDeal").attr("method","post").submit()
-        })
-    })
+//         $("#updateDeal").find(".updateDeal").on('click', function () {
+//             alert("클릭되ㅏㅁ? ")
+//             if ($("#dealTitle").val() === '') {
+//                 alert("제목은 필수입니다")
+//                 return;
+//             }
+//             if ($("#price").val() === '') {
+//                 alert("가격은 필수입니다")
+//                 return;
+//             }
+//             if ($("#dealProduct").val() === '') {
+//                 alert("제품명은 필수입니다")
+//                 return;
+//             }
+//             // if($("#clubTag").val()===''){
+//             //     return;
+//             // }
+//             // alert(JSON.parse($("#clubTag").val()))
+//             let updateForm = $("#updateDealForm");
+//             $.each(JSON.parse($("#dealTag").val()), function (index, item) {
+//                 updateForm.append('<input type="hidden" name="dealTags" value="' + item.value + '">')
+//             })
+//
+//             updateForm.attr("action", "/deal/updateDeal").attr("method", "post").submit()
+//         })
+//     })
 //완성 ~~~~
+//
+//
+//         $("#updateDeal").find(".newDeal").on("click", function () {
+//             if ($("#dealTitle").val() === '') {
+//                 alert("제목은 필수입니다")
+//                 return;
+//             }
+//             if ($("#dealProduct").val() === '') {
+//                 alert("제품명은 필수입니다")
+//                 return;
+//             }
+//             if ($("#price").val() === '') {
+//                 alert("가격은 필수입니다")
+//                 return;
+//             }
+//             let updateForm = $("#updateDealForm");
+//             $.each(JSON.parse($("#dealTag").val()), function (index, item) {
+//                 updateForm.append('<input type="hidden" name="dealTags" value="' + item.value + '">')
+//             })
+//             updateForm.attr("method", "post").attr("action", "/deal/updateDeal").submit();
+//         })
+//     })
+        // $('input[name="file"]').on("change", function () {
+        //     $('input[name="deleteFile"]').attr("disabled", false)
+        // })
 
-
-    //     $("#updateDeal").find(".updateDeal").on("click", function () {
-    //         if ($("#dealTitle").val() === '') {
-    //             alert("제목은 필수입니다")
-    //             return;
-    //         }
-    //         if ($("#dealProduct").val() === '') {
-    //             alert("제품명은 필수입니다")
-    //             return;
-    //         }
-    //         if ($("#price").val() === '') {
-    //             alert("가격은 필수입니다")
-    //             return;
-    //         }
-    //         let updateForm = $("#updateDealForm");
-    //         $.each(JSON.parse($("#dealTag").val()), function (index, item) {
-    //             updateForm.append('<input type="hidden" name="dealTags" value="' + item.value + '">')
-    //         })
-    //         updateForm.attr("method", "post").attr("action", "/deal/updateDeal").submit();
-    //     })
-    //     $('input[name="file"]').on("change", function () {
-    //         $('input[name="deleteFileName"]').attr("disabled", false)
-    //     })
-    //     //파일 갯수 체크
+        //파일 갯수 체크
     //     $("input:file").on("change", function () {
     //         if ($(this)[0].files.length > 10 - $('#fileSize').val()) {
     //             alert('파일 갯수를 초과하였습니다.');
     //             // alert(10-$('#fileSize').val());
     //             $(this).val('');
     //         }
+    //     })
     //         //파일 삭제 버튼
     //         $(".deleteFile").on("click", function () {
     //             alert("${deal.files}");
     //             var size = $("#fileSize");
     //             size.parent().append('<input type="hidden" name="deleteFileName" value="' + $(this).parent().attr('id') + '">')
-    //             $(this).parent().remove()
+    //            // $(this).parent().remove()
     //             size.val(size.val() - 1)
-    //         })
+    //
     //     })
     // })
 
@@ -413,7 +413,7 @@ $(function () {
                 if (userId === '' || userId === null) {
 
                     alert("로그인후 이용 가능합니다")
-                } else if (userId !== '') {
+                }else if (userId !== '') {
 
                     var likeCount = $(".likeText").html();
                     var dealBoardNum = $(".dealBoardNum").val();

@@ -90,10 +90,11 @@ const msg = mongoose.Schema({
     roomId: 'string',
     chatCategory: 'string',
     msg: 'string',
-    flie : 'string',
+    file : 'string',
     time: 'string',
     rtime: 'number',
-    unreadUser : ['string']
+    unreadUser : ['string'],
+    imgCheck : 'number'
 })
 
 //정의된 스키마르 객체처럼 사용할수 있도록 model()함수로 컴파일
@@ -116,52 +117,17 @@ chatlist.on('connection', (socket) => {
 
     Room.find({'users.userId': userId, chatCategory: chatCategory}, function (error, room) {
 
-        // if (error) {
-        //     // console.log(error);
-        // } else {
-        //     chatlist.to(socket.id).emit("list", room);
-        //     // var rs = []
-        //     for (let i = 0; i < room.length; i++) {
-        //         // console.log(room[i].roomId);
-        //         Msg.find({'roomId': room[i].roomId}, function (error, msg) {
-        //             // console.log("마지막 매시지 : " + msg);
-        //             /*     var r1 = JSON.stringify(room[i]);
-        //                  var r2 = JSON.parse(r1);
-        //
-        //                  r2.msg = msg[0];
-        //                  rs.push(r2);*/
-        //             // console.log("list로 보낼 data : " + rs);
-        //             // console.log("list로 보낼 data : " + rs);
-        //             // chatlist.emit("list", rs);
-        //
-        //             chatlist.emit("msg", msg);
-        //
-        //         }).sort({_id: -1}).limit(1)
-        //
-        //
-        //     }
-        //
-        // }
-
         if (error) {
             // console.log(error);
         } else {
             chatlist.to(socket.id).emit("list", room);
             // var rs = []
 
-            room.forEach(function(el, i){
+            room.forEach(function (el, i) {
                 // console.log(room[i].roomId);
                 Msg.find({'roomId': el.roomId}, function (error, msg) {
                     console.log("=====================================================");
                     console.log(msg);
-                    /*     var r1 = JSON.stringify(room[i]);
-                         var r2 = JSON.parse(r1);
-
-                         r2.msg = msg[0];
-                         rs.push(r2);*/
-                    // console.log("list로 보낼 data : " + rs);
-                    // console.log("list로 보낼 data : " + rs);
-                    // chatlist.emit("list", rs);
 
                     chatlist.emit("msg", msg);
 
@@ -195,19 +161,27 @@ onebyone.on('connection', (socket) => {
     console.log("roomId onebyone : " + roomId);
 
     //방이 없으면 새롭게 생성
-    Room.findOne({chatCategory: 'onebyone', $or : [{$or: [{'users.0.userId': userId1, 'users.1.userId':userId2},{'users.1.userId': userId1, 'users.0.userId':userId2}]},{roomId:roomId}]}, function (error, result) {
+    Room.findOne({
+        chatCategory: 'onebyone',
+        $or: [{
+            $or: [{'users.0.userId': userId1, 'users.1.userId': userId2}, {
+                'users.1.userId': userId1,
+                'users.0.userId': userId2
+            }]
+        }, {roomId: roomId}]
+    }, function (error, result) {
         if (result == null) {
             result = new Room({
                 users: [{userId: userId1, regDate: moment(new Date())}, {
                     userId: userId2,
                     regDate: moment(new Date())
                 }],
-                roomId: roomId, chatCategory: 'onebyone', roomName: roomId, boardNum:0
+                roomId: roomId, chatCategory: 'onebyone', roomName: roomId, boardNum: 0
             })
             result.save(function (error, result) {
 
             })
-        }else {
+        } else {
             roomId = result.roomId;
         }
 
@@ -228,6 +202,45 @@ onebyone.on('connection', (socket) => {
             }
         })
 
+
+        socket.on("chatImg", (data)=> {
+            var newMsg = new Msg({
+                userId: data.name,
+                roomId: roomId,
+                msg: data.msg,
+                file: data.file,
+                time: moment(new Date()).format("h:mm A"),
+                rtime: moment(new Date()),
+                imgCheck : data.imgCheck
+
+            });
+
+            onebyone.to(roomId).emit("chatting", newMsg);
+            chatlist.emit("msg", [newMsg]);
+
+            newMsg.save((error, data, res) => {
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log("============="+ data);
+
+                    Msg.find({'roomId': roomId}, function (error, msg) {
+                        // console.log(msg);
+                        console.log('--- onebyone ---');
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            onebyone.to(roomId).emit("json", msg);
+
+                            // console.log("내 테이터 가져 오기" + msg);
+                        }
+                    })
+                    console.log('성공이다!!!!!');
+                }
+            });
+
+        });
+
         //클라이언트에게 받은 data를 server에 받음
         socket.on("chatting", (data) => {
             // console.log(data);
@@ -237,9 +250,10 @@ onebyone.on('connection', (socket) => {
                 userId: data.name,
                 roomId: roomId,
                 msg: data.msg,
-                flie: data.file,
+                file: data.file,
                 time: moment(new Date()).format("h:mm A"),
-                rtime: moment(new Date())
+                rtime: moment(new Date()),
+                imgcheck : data.imgcheck
             });
 
             // console.log(newMsg)
@@ -288,18 +302,75 @@ clubChat.on('connection', (socket) => {
 
     const roomId = socket.handshake.query.roomId
 
+    console.log("roomId club : " + roomId);
+
+    //socket에 roomId를 join
     socket.join(roomId);
+
+    console.log("roomId club : " + roomId);
+
+
+    Msg.find({'roomId': roomId}, function (error, msg) {
+        // console.log(msg);
+        console.log('--- club ---');
+        if (error) {
+            console.log(error);
+        } else {
+            clubChat.to(roomId).emit("json", msg);
+
+        }
+    })
 
     //클라이언트에게 받은 data를 server에 받음
     socket.on("chatting", (data) => {
-        console.log(data);
-        //서버가 현재 접속해 있는 모든 클라이언트에게 data를 전달 한다
-        clubChat.to(roomId).emit("chatting", {
-            name: data.name,
+        // console.log(data);
+
+        // test객체를 new로 생성 해서 값을 입력
+        var newMsg = new Msg({
+            userId: data.name,
+            roomId: roomId,
             msg: data.msg,
-            time: moment(new Date()).format("h:mm A")
-        })
+            file: data.file,
+            time: moment(new Date()).format("h:mm A"),
+            rtime: moment(new Date())
+        });
+
+        // console.log(newMsg)
+        // console.log(roomId)
+
+        // 서버가 현재 접속해 있는 모든 클라이언트에게 data를 전달 한다
+        clubChat.to(roomId).emit("chatting", newMsg);
+        chatlist.emit("msg", [newMsg]);
+
+        //데이터를 저장
+        newMsg.save((error, data, res) => {
+            if (error) {
+                console.log(error);
+            } else {
+                Msg.find({'roomId': roomId}, function (error, msg) {
+                    // console.log(msg);
+                    console.log('--- club ---');
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        clubChat.to(roomId).emit("json", msg);
+
+                        // console.log("내 테이터 가져 오기" + msg);
+                    }
+                })
+                // console.log('성공이다!!!!!???');
+            }
+        });
+
     })
+
+    socket.on('disconnect', () => {
+        //사용자가 퇴장했음을 퇴장자 본인을 제외한 다른 사람들에게 알려준다.
+        socket.broadcast.to(roomId).emit('leave');
+        socket.leave(roomId);
+        console.log('접속 종료');
+    });
+
 })
 
 
@@ -317,7 +388,16 @@ dealChat.on('connection', (socket) => {
     console.log("roomId dealChat : " + roomId);
 
     //방이 없으면 새롭게 생성
-    Room.findOne({chatCategory: 'dealChat', $or : [{boardNum:boardNum, $or: [{'users.0.userId': userId1, 'users.1.userId':userId2},{'users.1.userId': userId1, 'users.0.userId':userId2}]},{roomId:roomId}]}, function (error, result) {
+    Room.findOne({
+        chatCategory: 'dealChat',
+        $or: [{
+            boardNum: boardNum,
+            $or: [{'users.0.userId': userId1, 'users.1.userId': userId2}, {
+                'users.1.userId': userId1,
+                'users.0.userId': userId2
+            }]
+        }, {roomId: roomId}]
+    }, function (error, result) {
         if (result == null) {
             result = new Room({
                 users: [{userId: userId1, regDate: moment(new Date())}, {
@@ -329,7 +409,7 @@ dealChat.on('connection', (socket) => {
             result.save(function (error, result) {
 
             })
-        }else {
+        } else {
             roomId = result.roomId;
         }
 
@@ -358,7 +438,7 @@ dealChat.on('connection', (socket) => {
                 userId: data.name,
                 roomId: roomId,
                 msg: data.msg,
-                flie: data.file,
+                file: data.file,
                 time: moment(new Date()).format("h:mm A"),
                 rtime: moment(new Date())
             });

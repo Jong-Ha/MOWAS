@@ -71,6 +71,13 @@ public class SiteDaoImpl implements SiteDao{
     public void addCommunityReport(CommunityReport communityReport) throws Exception {
         sqlSession.insert("SiteMapper.addCommunityReport", communityReport);
     }
+
+    @Override
+    public void addCommuReportFiles(File file) {
+
+        sqlSession.insert("SiteMapper.addCommuReportFiles", file);
+    }
+
     @Override
     public  CommunityReport getCommunityReport(int reportNo) throws Exception {
         return sqlSession.selectOne("SiteMapper.getCommunityReport", reportNo);

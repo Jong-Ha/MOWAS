@@ -1,5 +1,22 @@
+body {
+    overflow-y:scroll;
+}
+
+.modal .modal-body::-webkit-scrollbar {
+    display: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.stop-scrolling {
+    height: 100%;
+    overflow: hidden;
+}
+
 .clubInfo {
-    margin-top: 50px;
+    margin-top: 15px;
     border-radius: 10px;
     height: 125px;
     display: flex;
@@ -9,6 +26,7 @@
 .modal-header .btn-close{
     padding: 0;
     margin: 0;
+    width: 32px;
 }
 
 .clubInfo > div {
@@ -32,8 +50,8 @@
 }
 
 .clubBoarder {
-    height: 600px;
-    margin-bottom: 50px;
+    height: 900px;
+    /*margin-bottom: 50px;*/
     /*background: #e9ecef;*/
     border-radius: 10px;
 }
@@ -80,10 +98,21 @@ tags.tagify {
     border-radius: 7px;
 }
 
-.clubTab {
-    margin-top: 50px;
-    justify-content: center;
+.navbar.navbar-expand-lg.clubTab {
+    padding-top: 30px;
+    margin-top: 20px;
+    justify-content: space-evenly;
     text-align: center;
+    display: flex;
+    width: 60%;
+}
+
+.clubTab .underline {
+    margin-right: 0;
+}
+
+.selectedTab{
+    background-size: 100% 100%;
 }
 
 .text-wrap {
@@ -93,6 +122,7 @@ tags.tagify {
 .back-btn {
     font-size: 1.5rem;
     cursor: pointer;
+    width: 32px;
 }
 
 .listCluberModal .buttonClass * {
@@ -124,6 +154,14 @@ tags.tagify {
 
 .listCluberModal .cardBox:hover  {
     transform: scale(1.05);
+}
+
+.listCluberModal .cardBox.noHover:hover {
+    transform: scale(1);
+}
+
+.listCluberModal .cardBox.noHover {
+    cursor: default;
 }
 
 .listCluberModal .photoBox {
@@ -162,6 +200,15 @@ tags.tagify {
     margin-bottom: 20px;
     grid-template-columns: 1fr 5fr;
     cursor: default;
+    transition: all 0.2s linear;
+}
+
+#listClubBlacklist .cardBox:hover {
+    transform: scale(1.05);
+}
+
+#listClubBlacklist .cardBox.noHover:hover {
+    transform: scale(1);
 }
 
 #listClubBlacklist .photoBox {

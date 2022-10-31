@@ -8,8 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-
 <script type="text/javascript" src="/resources/OpenSource/js/jquery.cookie.js"></script>
 
 <script type="text/javascript">
@@ -343,7 +341,26 @@
             background-size: 100% 100%;
         }
 
+        .selectedTab {
+            background-size: 100% 100%;
+        }
 
+        .btn-primary {
+            --bs-btn-color: #000;
+            --bs-btn-bg: #f8cd07b3;
+            --bs-btn-border-color: #f8cd07b3;
+            --bs-btn-hover-color: #000;
+            --bs-btn-hover-bg: #f8cd07;
+            --bs-btn-hover-border-color: #f8cd07;
+            --bs-btn-focus-shadow-rgb: 130, 138, 145;
+            --bs-btn-active-color: #000;
+            --bs-btn-active-bg: #f8cd07;
+            --bs-btn-active-border-color: #f8cd07;
+            --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+            --bs-btn-disabled-color: #fff;
+            --bs-btn-disabled-bg: #6c757d;
+            --bs-btn-disabled-border-color: #6c757d;
+        }
 
         .bg-primary {
             --bs-bg-opacity: 1;
@@ -369,15 +386,39 @@
                 <div class="collapse navbar-collapse" id="navbarScroll">
                     <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                         <li class="nav-item">
+                            <a class="nav-link active  underline yellow" aria-current="page" onclick="location.href='/site/listMasterBoard'"  style="color : #ffffff; font-size: 1.3em;">공지 사항</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link active  underline yellow" aria-current="page" onclick="location.href='/club/listClub'"  style="color : #ffffff; font-size: 1.3em;">모임 게시판</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link  underline yellow" href="#" style="color : #ffffff;font-size: 1.3em;" onclick="location.href='/commu/main'">커뮤니티 게시판</a>
+                            <a class="nav-link  underline yellow" href="#" style="color : #ffffff;font-size: 1.3em;" onclick="location.href='/clubCal/listCalenderReview?boardCategory='+1+'&reviewRange='+1">커뮤니티 게시판</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link  underline yellow" style="color : #ffffff; font-size: 1.3em;" onclick="location.href='/deal/getListDeal?boardCategory=08'">중고 거래 게시판</a>
+                            <a class="nav-link  underline yellow" style="color : #ffffff; font-size: 1.3em;" onclick="location.href='/deal/getListDeal?boardCategory=99'">중고 거래 게시판</a>
                         </li>
+
+                <%--<c:if test="${user.masterCheck eq 2}">--%>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a class="nav-link  underline yellow dropdown-toggle" style="color : #ffffff; font-size: 1.3em;"
+                                   role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    관리자 게시판
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="/user/listUser">회 원 관 리</a></li>
+                                    <li><a class="dropdown-item" href="/site/listCommunityReport">커뮤니티 신고</a></li>
+                                    <li><a class="dropdown-item" href="/site/listCommunityReportProcess">커뮤니티 신고 처리</a></li>
+                                    <li><a class="dropdown-item" href="/site/listClubReport">모임 신고</a></li>
+                                    <li><a class="dropdown-item" href="/site/listClubReportProcess">모임 신고 처리</a></li>
+
+                                </ul>
+                            </div>
+                         </li>
+                <%--</c:if>--%>
+
                     </ul>
                     <div class="logitem">
                         <img src="${pageContext.request.contextPath}/resources/images/proplePoto.png"
@@ -533,8 +574,7 @@
     </div>
 
 </div>
-</div>
-</div>
+
 
 <%--로그인 모달창 끝--%>
 </body>

@@ -16,7 +16,7 @@
         $(function (){
             $(".commu").on("click",
                 function (){
-                    location.href="/commu/main"
+                    location.href="/clubCal/listCalenderReview?boardCategory="+1+"&reviewRange=" + 1
                 });
 
             $("li > a:contains('모임 관리')").on("click",
@@ -52,10 +52,9 @@
         </div>
         <nav>
             <ul>
-                <li ><a href="/view/user/main.jsp"> 메인화면</a></li>
                 <li><a>모임 관리</a></li>
                 <li><a class="commu">커뮤니티</a></li>
-                <li><a href="/deal/getListDeal?boardCategory=08">중고 거래</a></li>
+                <li><a href="/deal/getListDeal?boardCategory=99">중고 거래</a></li>
                 <li><a class="site">공지 사항</a></li>
                 <!--<li><a href="#elements">Elements</a></li>-->
             </ul>

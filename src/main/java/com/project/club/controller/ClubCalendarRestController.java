@@ -52,8 +52,7 @@ public class ClubCalendarRestController<list> {
 
         User user = (User) session.getAttribute("user");
 
-
-        calender.setLocation("창원시 진해구 소사동");
+        calender.setBoardCategory(5);
 
         System.out.println("=================" + calender.getApplyAutoCheck() + "==================");
         /*자동 참여*/
@@ -178,7 +177,7 @@ public class ClubCalendarRestController<list> {
             clubCalendar.setNoticeCheck("2");
         }
 
-        System.out.println("addClubCalender 진입 " + clubCalendar);
+        System.out.println("updateClubCalender 진입 " + clubCalendar);
 
         calenderService.updateClubCalender(clubCalendar);
 
@@ -331,6 +330,8 @@ public class ClubCalendarRestController<list> {
 
         calenderService.deleteFile(boardNum);
 
+        System.out.println("파일 업로드 진입 : " + file);
+
         List<Map<String, String>> fileList = new ArrayList<>();
 
         String fileName = null;
@@ -376,8 +377,9 @@ public class ClubCalendarRestController<list> {
 
     }
 
-    @RequestMapping("listCalenderReview")
-    public String listCalenderReview(@RequestParam("boardCategory") int boardCategory
+  /*  @RequestMapping("listCalenderReview")
+    public String listCalenderReview(@Request
+
             , Model model, HttpServletRequest request) {
         System.out.println(boardCategory);
         Map<String, Object> map = calenderService.listCalenderReview(boardCategory);
@@ -392,7 +394,7 @@ public class ClubCalendarRestController<list> {
 
         return null;
 
-    }
+    }*/
 
 
     @RequestMapping("getListCluber")

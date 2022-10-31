@@ -360,11 +360,12 @@
    </div>
   </div>
 <!-- end row -->
+<%--
         <div class="col-md-12 text-center ">
             <button type="button" class="newCR btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addClubReport">신고</button>
             <a class="btn btn-default btn" href = "#" role="button">취 소 </a>
         </div>
-
+--%>
 <%-- 모달창 시작--%>
 <div class="modal model-center fade" id="addClubReport" tabindex="-1" aria-labelledby="addCrLabel" aria-hidden="true">
 

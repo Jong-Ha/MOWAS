@@ -22,6 +22,7 @@
     <link href="/resources/club/css/listClub.css" rel="stylesheet" type="text/css"/>
 </head>
 <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
+<input type="hidden" class="userId" value="${user.userId}">
 
 <%--구현 후 빼야함--%>
 <input type="button" class="clubLogin" value="로그인">
@@ -42,10 +43,13 @@ ${user.userId}
     </div>
 </div>
 <!-- Example Code -->
-<div class="wap">
-    <input type="hidden" class="userId" value="${user.userId}">
+<div class="container">
 
     <form id="listForm">
+        <input type="hidden" class="searchLng" name="searchLng" value="">
+        <input type="hidden" class="currentPage" name="currentPage" value="2">
+        <input type="hidden" name="userId" value="${user.userId}">
+        <input type="hidden" class="searchLat" name="searchLat" value="">
         <div style="display: none" class="tagForm">
             <c:forEach items="${searchTag}" var="tag">
                 <input type="hidden" name='searchTag' class='searchTag' value="${tag}">
@@ -165,7 +169,7 @@ ${user.userId}
             <button class="btn btn-primary searchTag" data-bs-toggle="modal" data-bs-target="#searchTagDialog">
                 태그
             </button>
-            <button class="btn btn-primary searchListClub">
+            <button class="btn btn-primary "searchListClub>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
                      viewBox="0 0 16 16" style="font-size: 20px;">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -174,6 +178,8 @@ ${user.userId}
         </div>
     </div>
     <%--버튼 모음 끝--%>
+
+    <div class="resultList" style="padding-bottom: 50px;">
 
     <c:if test="${empty list}">
         <div class="p-5 mb-4 bg-light rounded-3">
@@ -186,7 +192,7 @@ ${user.userId}
         </div>
     </c:if>
 
-    <div class="listClub" style="display: grid;grid-template-columns: 1fr 1fr 1fr;">
+    <div class="listClub">
         <c:forEach var="club" items="${list}">
             <div class="row row-cols-1 row-cols-md-3 g-4 cardbox">
                 <div class="col clubBox" style="cursor: pointer">
@@ -211,7 +217,6 @@ ${user.userId}
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                        ${club.currentCluber}/25<br>
                                     <span class="likeToggle">
                                         <c:if test="${club.likeCheck!='y'}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -229,14 +234,13 @@ ${user.userId}
                             </div>
                             <button type="button" class="btn btn-outline-primary clubTag">${club.tag}</button>
                         </div>
-                            <%--<div class="card-footer">
-                                <small class="text-muted">Last updated 3 mins ago</small>
-                            </div>--%>
                     </div>
                 </div>
             </div>
 
         </c:forEach>
+    </div>
+
     </div>
 
     <%--모임 만들기 모달창 시작--%>
@@ -289,8 +293,9 @@ ${user.userId}
                             </div>
 
                             <div class="input-group mb-3">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon1">주요활동위치</button>
-                                <input type="text" class="form-control" placeholder="" name="villCode" id="villCode"
+                                <button class="btn btn-outline-secondary" type="button" id="addClubMap" data-bs-toggle="modal"
+                                        data-bs-target="#searchLocation">주요활동위치</button>
+                                <input type="text" class="form-control" placeholder="" name="villCode" readonly id="villCode"
                                 >
                             </div>
 
@@ -317,17 +322,23 @@ ${user.userId}
     </c:if>
     <%--모임 만들기 모달창 끝--%>
 
-    <%--모임 만들기 모달창 시작--%>
+    <%--searchLocation 모달창 시작--%>
         <div class="modal fade" id="searchLocation" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-<%--                    <jsp:include page="/view/site/clubMap.jsp"/>--%>
+                    <jsp:include page="/view/site/clubMap.jsp"/>
                 </div>
             </div>
         </div>
-    <%--모임 만들기 모달창 끝--%>
+    <%--searchLocation 모달창 끝--%>
 
 </div>
+
+<%--채팅아이콘--%>
+<jsp:include page="/layout/chatIcon.jsp"/>
+<%--하단바--%>
+<jsp:include page="/layout/footer.jsp"/>
+
 </body>
 </html>
 

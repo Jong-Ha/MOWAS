@@ -165,7 +165,7 @@
             });
 
             //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-            $( ".addCr" ).on("click" , function() {
+           <%-- $( ".addCr" ).on("click" , function() {
 
                 $(self.location).attr("href", "/site/addCommunityReport?reportedId=user01&boardCategory=01&boardNo=10020");
             });
@@ -174,6 +174,7 @@
             $("a[href='#' ]").on("click" , function() {
                 $("form")[0].reset();
             });
+            --%>
         });
 
     </script>
@@ -291,20 +292,21 @@
                     </td>
                     <td><span class="text-success font-12"><i class="mdi mdi-checkbox-blank-circle mr-1"></i>${cr.reportedId}</span>
                     </td>
-                    <td><c:choose>
-                        <c:when test="${! empty cr.boardCategory && cr.boardCategory eq '01'}">
+                    <td>
+                        <c:choose>
+                        <c:when test="${! empty cr.boardCategory && cr.boardCategory eq '1 '}">
                             모임일정후기글
                         </c:when>
-                        <c:when test="${! empty cr.boardCategory && cr.boardCategory eq '02'}">
+                        <c:when test="${! empty cr.boardCategory && cr.boardCategory eq '2 '}">
                             모임일정후기쇼츠
                         </c:when>
-                        <c:when test="${! empty cr.boardCategory && cr.boardCategory eq '03'}">
+                        <c:when test="${! empty cr.boardCategory && cr.boardCategory eq '3 '}">
                             우리동네게시글
                         </c:when>
-                        <c:when test="${! empty cr.boardCategory && cr.boardCategory eq '04'}">
+                        <c:when test="${! empty cr.boardCategory && cr.boardCategory eq '10'}">
                             댓글
                         </c:when>
-                        <c:when test="${! empty cr.boardCategory && cr.boardCategory eq '05'}">
+                        <c:when test="${! empty cr.boardCategory && cr.boardCategory eq '11'}">
                             대댓글
                         </c:when>
                     </c:choose>
@@ -368,10 +370,11 @@
       </div>
       </div>
     </div>
+    <%--
     <div class="col-md-12 text-center ">
         <button type="button" class="addCr" >추 가</button>
         <a class="btn btn-default btn" href = "#" role="button">취 소 </a>
     </div>
-
+--%>
     </body>
 </html>

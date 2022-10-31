@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,5 +23,6 @@ public class CommunityReport {
     private int ppt;
     private Date pptDate;
     private String processResult;
+    List<File> files;
 }
 

@@ -17,14 +17,13 @@
         <result property="noticeTime"         column="notice_time"          jdbcType="VARCHAR"/>
         <result property="calendarApplyCheck" column="calendar_apply_check" jdbcType="VARCHAR"/>
         <result property="applyAutoCheck"     column="apply_auto_check"     jdbcType="VARCHAR"/>
-        <result property="boardCategory"      column="board_category"       jdbcType="VARCHAR"/>
-    </resultMap>
+</resultMap>
 
     <resultMap id="calenderReviewSelect" type="calenderReview">
         <result property="clubCalenderReviewNum"    column="club_calendar_review_num"    jdbcType="INTEGER"/>
         <result property="clubCalenderNum"          column="club_calendar_num"           jdbcType="INTEGER"/>
         <result property="clubNum"                  column="club_num"                    jdbcType="INTEGER"/>
-        <result property="userId"            column="user_id"                     jdbcType="VARCHAR"/>
+        <result property="userId"                   column="user_id"                     jdbcType="VARCHAR"/>
         <result property="reviewRange"              column="review_range"                jdbcType="VARCHAR"/>
         <result property="reviewTitle"              column="review_title"                jdbcType="VARCHAR"/>
         <result property="reviewText"               column="review_text"                 jdbcType="VARCHAR"/>
@@ -33,6 +32,10 @@
         <result property="likeConunt"               column="like_count"                  jdbcType="INTEGER"/>
         <result property="updateDate"               column="update_date"                 jdbcType="DATE"/>
         <result property="boardCategory"            column="board_category"              jdbcType="INTEGER"/>
+        <result property="boardCategory"            column="board_category"              jdbcType="VARCHAR"/>
+        <result property="userImg"                  column="user_image"                  jdbcType="VARCHAR"/>
+        <result property="calendarTitle"            column="calendar_title"              jdbcType="VARCHAR"/>
+        <result property="location"                  column="location"                   jdbcType="VARCHAR"/>
     </resultMap>
 
     <resultMap type="com.project.domain.File" id="FileResultMap">
@@ -45,7 +48,7 @@
     <!--모임 일정 -->
     <insert id="addClubCalender" parameterType="clubCalender" useGeneratedKeys="true">
         INSERT INTO
-            club_calendar(club_calendar_num, club_num,reg_date,calendar_title,calendar_text,club_date,location,notice_check,notice_time,calendar_apply_check,apply_auto_check)
+            club_calendar(club_calendar_num, club_num,reg_date,calendar_title,calendar_text,club_date,location,notice_check,notice_time,calendar_apply_check,apply_auto_check,board_category)
             values(  SEQ_CLUB_CALENDAR.nextval
                 ,#{clubNum}
                 ,SYSDATE
@@ -56,7 +59,8 @@
                 ,#{noticeCheck}
                 ,#{noticeTime}
                 ,#{calendarApplyCheck}
-                ,#{applyAutoCheck})
+                ,#{applyAutoCheck}
+                ,#{boardCategory})
         <selectKey resultType="int" keyProperty="clubCalenderNum" order="AFTER">
            SELECT SEQ_CLUB_CALENDAR.CURRVAL from  DUAL
         </selectKey>
@@ -71,6 +75,7 @@
                 ,calendar_text = #{calenderText}
                 ,location = #{location}
                 ,notice_check = #{noticeCheck}
+                ,club_date = #{clubDate}
                 ,notice_time = #{noticeTime}
                 ,calendar_apply_check = #{calendarApplyCheck}
                 ,apply_auto_check = #{applyAutoCheck}
@@ -94,6 +99,19 @@
         SELECT * FROM club_calendar
         WHERE club_num = #{clubNum}
     </select>
+
+
+    <!--마이 페이지 모임원-->
+    <select id="getCluberCalenderList" parameterType="string" resultMap="clubCalenderSelect">
+        select *
+        from CLUB_CALENDAR cn1,(select CLUB_CALENDAR_NUM
+                                from CLUB_CALENDAR_APPLY
+                                where USER_ID= '${userId}')cn2
+        where cn2.CLUB_CALENDAR_NUM = cn1.CLUB_CALENDAR_NUM ;
+    </select>
+
+
+
     <!--모임 일정 후기글-->
     <insert id="addCalenderReview" parameterType="calenderReview" useGeneratedKeys="true" >
         INSERT INTO
@@ -152,11 +170,93 @@
         WHERE club_calendar_review_num = #{clubCalenderReviewNum}
     </select>
 
-    <select id="listCalenderReview" parameterType="int" resultMap="calenderReviewSelect">
-        select * from CLUB_CALENDAR_REVIEW
-        WHERE BOARD_CATEGORY = #{boardCategory}
-        AND REVIEW_RANGE = '1'
+
+
+    <sql id="listCalenderReviewSql">
+        SELECT cr.* , us.user_image, cc.location, cc.calendar_title
+        FROM club_calendar_review cr , users us, club_calendar cc
+        WHERE cr.user_id = us.user_id
+          AND cr.club_calendar_num = cc.club_calendar_num
+          AND cr.board_category = #{boardCategory}
+          AND cr.review_range = #{reviewRange}
+
+        <if test="search.searchKeyword != null ">
+            AND review_title LIKE '%'||#{search.searchKeyword}||'%'
+        </if>
+
+        <if test="search.searchCondition == 1">
+        ORDER BY club_calendar_review_num DESC
+        </if>
+        <if test="search.searchCondition == 2">
+        ORDER BY like_count DESC NULLS LAST
+        </if>
+        <if test="search.searchCondition == 3">
+        ORDER BY view_count DESC NULLS LAST
+        </if>
+    </sql>
+
+
+    <select id="getTotalCalenderReview" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM (
+        <include refid="listCalenderReviewSql"/>
+        )
     </select>
+
+    <select id="listCalenderReview" parameterType="map" resultMap="calenderReviewSelect">
+        SELECT * FROM (
+        SELECT ROWNUM row_num, vt.* FROM (
+        <include refid="listCalenderReviewSql"/>
+        ) vt
+        <if test="search.currentPage*search.pageSize!=0">
+            WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}
+        </if>
+        )
+        <where>
+            <if test="search.currentPage*search.pageSize!=0">
+                row_num >= ((#{search.currentPage}-1)*#{search.pageSize}+1)
+            </if>
+        </where>
+    </select>
+
+
+
+
+
+
+    <sql id="lisClubCalenderReviewSql">
+        SELECT cr.* , us.user_image, cc.location, cc.calendar_title
+        FROM club_calendar_review cr , users us, club_calendar cc
+        WHERE cr.user_id = us.user_id
+        AND cr.club_calendar_num = cc.club_calendar_num
+        AND cr.board_category = #{boardCategory}
+        AND cr.review_range = #{reviewRange}
+        AND cr.CLUB_NUM = #{clubNum}
+    </sql>
+
+
+    <select id="getTotalClub" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM (
+        <include refid="lisClubCalenderReviewSql"/>
+        )
+    </select>
+
+    <select id="lisClubCalenderReview" parameterType="map" resultMap="calenderReviewSelect">
+        SELECT * FROM (
+        SELECT ROWNUM row_num, vt.* FROM (
+        <include refid="lisClubCalenderReviewSql"/>
+        ) vt
+        <if test="search.currentPage*search.pageSize!=0">
+            WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}
+        </if>
+        )
+        <where>
+            <if test="search.currentPage*search.pageSize!=0">
+                row_num >= ((#{search.currentPage}-1)*#{search.pageSize}+1)
+            </if>
+        </where>
+    </select>
+
+
 
     <!--파일 등록-->
     <insert id="addFileUpload" parameterType="map">

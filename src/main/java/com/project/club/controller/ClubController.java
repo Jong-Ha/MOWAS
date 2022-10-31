@@ -1,6 +1,7 @@
 package com.project.club.controller;
 
 import com.project.club.service.ClubService;
+import com.project.common.KakaoMapApi;
 import com.project.common.Page;
 import com.project.common.Search;
 import com.project.domain.*;
@@ -96,9 +97,7 @@ public class ClubController {
 
     @RequestMapping(value = "listClub")
     public String listClub(Model model, HttpSession session, @RequestParam(value = "searchLocation", required = false) String searchLocation, @RequestParam(value = "searchTag", required = false) List<String> searchTag, @RequestParam(value = "searchInterList", required = false) List<String> searchInterList, @ModelAttribute("search") Search search) throws Exception {
-        if (search.getCurrentPage() == 0) {
             search.setCurrentPage(1);
-        }
         search.setPageSize(pageSize);
         search.setSearchCondition("1");
 //        System.out.println(searchLocation);
@@ -139,7 +138,7 @@ public class ClubController {
     }
 
     @RequestMapping(value = "getClub/{clubNum}")
-    public String getClub(Model model, @PathVariable int clubNum, HttpSession session) {
+    public String getClub(Model model, @PathVariable int clubNum, HttpSession session) throws Exception {
         User user = (User) session.getAttribute("user");
         if (user != null) {
             Cluber currentCluber = clubService.getCluberCondition(user, clubNum);
@@ -155,6 +154,7 @@ public class ClubController {
             }
         }
         club.parseInterList();
+        model.addAllAttributes(KakaoMapApi.getJsonAddress(club.getVillCode()));
         model.addAttribute("club", club);
         model.addAttribute("tagList", tagList);
         return "/view/club/getClub.jsp";

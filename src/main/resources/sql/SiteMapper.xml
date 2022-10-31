@@ -37,6 +37,8 @@
         <result property="ppt" 	column="ppt"       jdbcType="INTEGER"/>
         <result property="pptDate" 	column="ppt_date"       jdbcType="DATE"/>
         <result property="processResult" 	column="process_result"       jdbcType="VARCHAR"/>
+        <collection property="files" column="report_num" ofType="com.project.domain.File"
+                    select="getCommuReportFiles"/>
     </resultMap>
 
 
@@ -133,6 +135,15 @@
                                         <if test="searchCondition == 1 and searchKeyword !='' ">
                                             mb_text LIKE  '%${searchKeyword}%'
                                         </if>
+                                        <if test="searchCondition == 100 and searchKeyword =='' ">
+                                             mb_category = '1'
+                                        </if>
+                                        <if test="searchCondition == 200 and searchKeyword =='' ">
+                                             mb_category = '2'
+                                        </if>
+                                        <if test="searchCondition == 300 and searchKeyword =='' ">
+                                             mb_category = '3'
+                                        </if>
                                         </where>
                                     </if>
                                     ORDER BY master_board_num ) inner_table
@@ -152,12 +163,24 @@
                             <if test="searchCondition == 1 and searchKeyword !='' ">
                                 mb_text LIKE '%${searchKeyword}%'
                             </if>
+                            <if test="searchCondition == 100 and searchKeyword =='' ">
+                                mb_category = '1'
+                            </if>
+                            <if test="searchCondition == 200 and searchKeyword =='' ">
+                                mb_category = '2'
+                            </if>
+                            <if test="searchCondition == 300 and searchKeyword =='' ">
+                                mb_category = '3'
+                            </if>
                         </where>
                     </if> ) countTable
     </select>
 
     <!-- 커뮤니티 신고 CRUD -->
     <insert id="addCommunityReport" parameterType="communityReport">
+        <selectKey keyProperty="reportNo" resultType="int" order="BEFORE">
+            SELECT seq_community_report.NEXTVAL FROM dual
+        </selectKey>
         INSERT INTO community_report(
             report_num,
             board_num,
@@ -169,7 +192,7 @@
             report_date,
             ppt,
             process_result)
-        VALUES (    seq_community_report.NEXTVAL,
+        VALUES (    #{reportNo},
                     #{boardNo},
                     #{boardCategory},
                     #{reportId},
@@ -478,7 +501,7 @@
                    board_num,
                    board_category,
                    file_name)
-        VALUES (seq_files.NEXTVAL, #{boardNum}, '01', #{fileName})
+        VALUES (seq_files.NEXTVAL, #{boardNum}, '13', #{fileName})
     </insert>
 
     <!--파일 가져오가-->
@@ -486,7 +509,7 @@
         SELECT *
         FROM files
         WHERE board_num = #{masterBoardNo}
-          AND board_category = '01'
+          AND board_category = '13'
         ORDER BY file_num DESC
     </select>
 
@@ -506,6 +529,25 @@
         FROM files
         WHERE board_num = #{clubReportNo}
           AND board_category = '06'
+        ORDER BY file_num DESC
+    </select>
+
+    <!--파일 등록-->
+    <insert id="addCommuReportFiles" parameterType="com.project.domain.File">
+        INSERT
+        INTO files(file_num,
+                   board_num,
+                   board_category,
+                   file_name)
+        VALUES (seq_files.NEXTVAL, #{boardNum}, '07', #{fileName})
+    </insert>
+
+    <!--파일 가져오가-->
+    <select id="getCommuReportFiles" resultMap="FileResultMap">
+        SELECT *
+        FROM files
+        WHERE board_num = #{reportNo}
+          AND board_category = '07'
         ORDER BY file_num DESC
     </select>
 

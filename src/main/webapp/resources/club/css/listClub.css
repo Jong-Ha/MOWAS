@@ -1,5 +1,31 @@
+body {
+    overflow-y:scroll;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.stop-scrolling {
+    height: 100%;
+    overflow: hidden;
+}
+
+.card-body .row {
+    display: flex;
+    align-items: center;
+}
+
 .body {
     text-align: -webkit-center;
+}
+
+.bi-heart-fill {
+    fill : #ff0000
+}
+
+.bi-heart {
+    fill : #ff0000
 }
 
 .wap {
@@ -17,11 +43,16 @@
     font-size: 1.2em;
 }
 
-.cardbox {
+.listClub {
     display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.cardbox {
+    display: block;
     flex-direction: row;
-    margin: 6px;
-    float: left;
+    margin-bottom: 20px;
 }
 
 button.buttonBox {
@@ -54,7 +85,7 @@ button.buttonBox {
 }
 
 svg {
-    font-size: 40px;
+    font-size: 50px;
 }
 
 .clubTag {
@@ -178,6 +209,6 @@ tags.tagify{
     transition: all 0.2s linear;
 }
 
-.cardbox:hover  {
-    transform: scale(1.12);
+.cardbox:hover {
+    transform: scale(1.05);
 }

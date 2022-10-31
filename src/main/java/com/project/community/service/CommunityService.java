@@ -1,5 +1,6 @@
 package com.project.community.service;
 
+import com.project.common.Search;
 import com.project.domain.ClubCalendar;
 import com.project.domain.Comment;
 import com.project.domain.Recomment;
@@ -25,7 +26,7 @@ public interface CommunityService {
 
     void deleteRecomment(int recommentNum);
 
-    Map<String, Object> listVillBoard(String villCode);
+    Map<String, Object> listVillBoard(String villCode, Search search);
 
     VilBoard getVillBoard(int villBoardNum);
 

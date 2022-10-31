@@ -359,7 +359,7 @@ function setListCluberBlacklist() {
 }
 
 //getClubCalendar 모달창 로드 시 이벤트 걸어주기
-function setGetClubCalendar(){
+function setGetClubCalendar() {
     ////////////일정 참여 버튼////////////
     // 일정 참여 신청 관련
     $("#exampleModal2 .addClubCalendarApply").off('click').on("click", function () {
@@ -410,9 +410,9 @@ function setGetClubCalendar(){
     ////////////일정 참여 버튼 끝////////////
 
     //모임 참가자 조회
-    $('#exampleModal2 .listCalendarCluberView').off('click').on('click', function(){
+    $('#exampleModal2 .listCalendarCluberView').off('click').on('click', function () {
         $.ajax({
-            url: '/club/listCalendarCluber/'+$('#exampleModal2 .clubCalnderNum').val(),
+            url: '/club/listCalendarCluber/' + $('#exampleModal2 .clubCalnderNum').val(),
             success: function (re) {
                 $('#listCalendarCluber .modal-content').html(re)
 
@@ -420,12 +420,12 @@ function setGetClubCalendar(){
                     // location.href="/club/listClubCalendarApply/${clubCalendarNum}"
                     //모임 일정 참가 신청자 조회
                     $.ajax({
-                        url: "/club/listClubCalendarApply/"+$('#exampleModal2 .clubCalnderNum').val(),
+                        url: "/club/listClubCalendarApply/" + $('#exampleModal2 .clubCalnderNum').val(),
                         success: function (re) {
                             $('#listClubCalendarApply .modal-content').html(re)
 
                             //뒤로가기 이벤트 걸기 $('#exampleModal2 .listCalendarCluberView')
-                            $('#listClubCalendarApply .back-btn').off('click').on('click',function(){
+                            $('#listClubCalendarApply .back-btn').off('click').on('click', function () {
                                 $('#exampleModal2 .listCalendarCluberView').click()
                             })
 
@@ -474,9 +474,25 @@ function setGetClubCalendar(){
 
 }
 
+//레이아웃 사이즈 조절
+function clubLayout(){
+    $('[alt="모임 대표 이미지"]').parent().height($('[alt="모임 대표 이미지"]').parent().width() *0.55)
+    $('.clubBoarder').height($('.clubBoarder').width() * 0.7)
+}
+
 
 /////////////////////////////// 로드시 실행 ///////////////////////////////
 $(function () {
+
+    $('.modal').off('show.bs.modal').on('show.bs.modal',function(){
+        $('body').addClass('stop-scrolling')
+    })
+    $('.modal').off('hide.bs.modal').on('hide.bs.modal',function(){
+        $('body').removeClass('stop-scrolling')
+    })
+
+    clubLayout()
+    $(window).on('resize', clubLayout)
 
     const clubNum = $('.boardNum').val()
     // $(".updateClub").on("click",function(){
@@ -538,9 +554,17 @@ $(function () {
     })
     tagify.addTags(items)
 
+    $('#updateClub #clubName').off('keyup').on('keyup',function(){
+        if($(this).val().length>13){
+            alert('모임명은 최대 13글자입니다')
+            $(this).val($(this).val().substring(0, 13));
+        }
+    })
+
     //업데이트
     $(".updateClub").on("click", function () {
         const updateForm = $("#updateClubForm");
+
         $.each(JSON.parse($("#clubTag").val()), function (index, item) {
             updateForm.append('<input type="hidden" name="clubTags" value="' + item.value + '">')
         })
@@ -564,7 +588,6 @@ $(function () {
 
 //모임원 목록 조회
     $('#listCluber').on('show.bs.modal', function () {
-        alert("asdf")
         $.ajax({
             url: "/club/listCluber/" + clubNum,
             success: function (re) {
@@ -604,7 +627,6 @@ $(function () {
             $('#addClubReport .addCr').on('click', function () {
                 const data = new FormData($('#addCrForm')[0])
 
-                console.log(formData)
                 $.ajax({
                     url: "/site/addClubReport",
                     method: 'post',
@@ -620,28 +642,95 @@ $(function () {
         })
     })
 
-//////////////////////////////// 모임 툴바 ////////////////////////////////
-    //모임 공지사항
-    $('.listClubMasterBoardView').on('click',function(){
-        $('.clubBoarder').load('/view/community/calender.jsp', {clubNum: $('.boardNum').val()})
-    })
+    //모임 생성시 지도 부르기
+    $("#updateClubMap").on("click", function () {
+        $('#searchLocation .back-btn').css('display', 'block').off('click').on('click', function () {
+            $('.updateClubView').click()
+        })
+        $('#searchLocation .getLocation').off('click').on('click', function () {
+            let villCode = $("#searchLocation .villCode")
 
-    //모임 일정
-    $('.calendarView').on('click',function(){
-        $('.clubBoarder').load('/view/community/calender.jsp', {clubNum: $('.boardNum').val()},function(){
-            setGetClubCalendar()
+            $('#updateClubForm #villCode').val(villCode.val())
+            $('.updateClubView').click()
         })
     })
 
+    //지도 조회시 레이아웃 조정
+    $("#searchLocation").on("shown.bs.modal", function () {
+        relayout()
+    })
+
+//////////////////////////////// 모임 툴바 ////////////////////////////////
+    let loadCheck = false
+    const clubBoard = $("#ClubBoard")
+    const clubBoardRest = $("#ClubBoardRest")
+
+    function beforeToolbar(tab) {
+        if(loadCheck){
+            $('.clubTab')[0].scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"})
+        }
+        if (clubBoardRest.css('display') === 'block' && loadCheck) {
+            return true
+        }
+        loadCheck = true
+        clubBoard.css('display', 'none')
+        clubBoard.html('')
+        clubBoardRest.css('display', '')
+        $('.clubTab *').removeClass('selectedTab')
+        tab.addClass('selectedTab')
+        return false
+    }
+
+    function afterToolbar() {
+        clubBoard.slideDown('slow');
+        clubBoardRest.slideUp('slow');
+    }
+
+    //모임 공지사항
+    $('.listClubMasterBoardView').on('click', function () {
+        if (beforeToolbar($(this))) {
+            return false
+        }
+        clubBoard.load('/club/listClubMasterBoard/'+clubNum)
+        afterToolbar()
+    })
+
+    //모임 일정
+    $('.calendarView').on('click', function () {
+        if (beforeToolbar($(this))) {
+            return false
+        }
+        clubBoard.load('/view/community/calender.jsp', {
+            clubNum: $('.boardNum').val(),
+            cluberStatus: $('.cluberStatus').val()
+        }, function () {
+            setGetClubCalendar()
+            setTimeout(upSize, 100)
+            setTimeout(upSize, 500)
+        })
+        afterToolbar()
+    })
+
     //모임 일정 후기
-    $('.listClubCalendarReviewView').on('click',function(){
-        $('.clubBoarder').load('/view/community/calender.jsp', {clubNum: $('.boardNum').val()})
+    $('.listClubCalendarReviewView').on('click', function () {
+        if (beforeToolbar($(this))) {
+            return false
+        }
+        clubBoard.load('/view/community/calender.jsp', {clubNum: $('.boardNum').val()})
+        afterToolbar()
     })
 
     //모임 일정 쇼츠
-    $('.listClubCalendarShortView').on('click',function(){
-        $('.clubBoarder').load('/view/community/calender.jsp', {clubNum: $('.boardNum').val()})
+    $('.listClubCalendarShortView').on('click', function () {
+        if (beforeToolbar($(this))) {
+            return false
+        }
+        clubBoard.load('/view/community/calender.jsp', {clubNum: $('.boardNum').val()})
+        afterToolbar()
     })
 
+    $('.calendarView').click()
+
+    $('.clubInfo')[0].scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
 
 })//$(function(){}) 종료 지점

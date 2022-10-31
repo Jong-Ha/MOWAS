@@ -30,6 +30,11 @@
             })
 
 
+            //투표합시당
+            $('.listVoteView').on('click',function(){
+                $('#listVote .modal-content').load('/club/listVote/${roomId}')
+            })
+
         })
 
     </script>
@@ -251,6 +256,26 @@
 
         </c:if>
 
+
+        <div style=" width: 100%;display: flex;flex-direction: row-reverse;">
+
+            <label for="file">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-paperclip" viewBox="0 0 16 16" style="font-size: 3em">
+                    <path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z"/>
+                </svg>
+            </label>
+
+            <form id="fileForm">
+                <input id="file" type="file" multiple class="send-file" value="파일 전송" style="display: none"/>
+            </form>
+
+            <c:if test="${chatNameSpace=='clubChat'}">
+                <button type="button" class="btn btn-primary listVoteView" data-bs-target="#listVote" data-bs-toggle="modal">투표</button>
+            </c:if>
+
+        </div>
+
+
     </div>
 
     <div class="dropdown-box" style="display: none;    position: absolute;
@@ -288,13 +313,13 @@
         </ul>
     </div>
     <div class="input-container">
-            <span>
-                <input type="text" class="chatting-input">
-                <button class="send-button">전송</button>
-            </span>
-        <form>
-            <input id="file" type="file" multiple class="send-file" value="파일 전송"/>
-        </form>
+
+        <input type="text" class="chatting-input">
+
+
+        <button class="send-button">전송</button>
+
+
     </div>
 </div>
 
@@ -311,7 +336,6 @@
             </div>
             <div class="modal-body">
 
-                <form id="fileForm4">
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control dealCalenderTitle" id="recipient-name" value=""
@@ -333,7 +357,6 @@
 
                     </div>
 
-                </form>
 
             </div>
 
@@ -393,6 +416,46 @@
     </div>
 </div>
 
+<div class="container">
+
+    <%--listVote 모달창 시작--%>
+    <div class="modal fade voteModal" id="listVote" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+    <%--listVote 모달창 끝--%>
+
+        <%--addVote 모달창 시작--%>
+        <div class="modal fade voteModal" id="addVote" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                </div>
+            </div>
+        </div>
+        <%--addVote 모달창 끝--%>
+
+        <%--getVote 모달창 시작--%>
+        <div class="modal fade voteModal" id="getVote" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                </div>
+            </div>
+        </div>
+        <%--getVote 모달창 끝--%>
+
+        <%--updateVote 모달창 시작--%>
+        <div class="modal fade voteModal" id="updateVote" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                </div>
+            </div>
+        </div>
+        <%--updateVote 모달창 끝--%>
+
+</div>
+
 
 <!--html이 로드된후 soket과 연결 하기 위해-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.2/socket.io.js"
@@ -401,44 +464,6 @@
 <link rel="stylesheet" href="/resources/css/chat.css">
 
 <script>
-
-    function fileUpload() {
-        //alert("파일 업로드 시작 합니다");
-
-        //form 테그를 불러와서 form변수에 등록
-        var form = document.querySelector("form");
-        //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
-        var formData = new FormData(form);
-        //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
-        var fileSize = $("#file")[0].files;
-
-        console.log(fileSize.length);
-
-        //file길이 만큼 for문으로 formData에 append함
-        for (var i = 0; i < fileSize.length; i++) {
-            formData.append("form", fileSize[i]);
-            //파일이 잘 들어 갔는지 확인
-            console.log(fileSize[i]);
-        }
-        //파일은 json형식으로 보낼수 없기 떄문에 contentType, processData, dataType을 false로 지정
-        $.ajax({
-            url: "/chat/json/chatFile",
-            type: "post",
-            processData: false,
-            contentType: false,
-            cache: false,
-            timeout: 600000,
-            data: formData,
-            headers: {'cache-control': 'no-cache', 'pragma': 'no-cache'},
-            enctype: "multipart/form-data",
-            success: function (result) {
-                console.log(result);
-
-                $("#file").val("");
-            }
-
-        })
-    }
 
     //dom을 사용해서 클라이언트에서 기록되는 내용을 가지고온다
     const nickname = document.querySelector("#nickname");
@@ -464,7 +489,8 @@
             }
         })
         // 거래 계시판 번호 얻기
-        socket.emit('getboardNum', () => { })
+        socket.emit('getboardNum', () => {
+        })
 
         socket.on("postboardNum", (date) => {
 
@@ -472,10 +498,6 @@
 
             $(".dealNum").val(date);
         })
-
-
-
-
 
 
         socket.on("json", (msg) => {
@@ -486,8 +508,8 @@
 
             $.each(msg, (index, item) => {
 
-                const newItem = new LiModel(item.userId[0], item.msg, item.time);
-
+                const newItem = new LiModel(item.userId[0], item.msg, item.time, item.file, item.imgCheck);
+console.log(item)
                 //makeLi를 실행한다.
                 newItem.makeLi();
             })
@@ -509,13 +531,11 @@
         //server에서 data를 받음
         socket.on("chatting", (newMsg) => {
 
-            const item = new LiModel(newMsg.userId, newMsg.msg, newMsg.time);
-
+            const item = new LiModel(newMsg.userId, newMsg.msg, newMsg.time, newMsg.file, newMsg.imgCheck);
+console.log(newMsg)
             item.makeLi();
 
         })
-
-
 
 
         // 거래 모달창 오픈
@@ -544,7 +564,7 @@
 
                     var deal = JSONData.deal
 
-                    console.log("deal : "+ deal);
+                    console.log("deal : " + deal);
 
                     var date = new Date(deal.dealDate);
 
@@ -693,6 +713,61 @@
         })
 
 
+        $(".send-file").on("change", function () {
+
+            //form 테그를 불러와서 form변수에 등록
+            var form = document.querySelector("form");
+            //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
+            var formData = new FormData(form);
+            //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
+            var fileSize = $("#fileForm #file")[0].files;
+
+            console.log(fileSize.length);
+
+            //file길이 만큼 for문으로 formData에 append함
+            for (var i = 0; i < fileSize.length; i++) {
+                formData.append("form", fileSize[i]);
+                //파일이 잘 들어 갔는지 확인
+                console.log(fileSize[i]);
+            }
+
+            //파일은 json형식으로 보낼수 없기 떄문에 contentType, processData, dataType을 false로 지정
+            $.ajax({
+                url: "/chat/json/chatFile",
+                type: "post",
+                processData: false,
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+                data: formData,
+                headers: {'cache-control': 'no-cache', 'pragma': 'no-cache'},
+                enctype: "multipart/form-data",
+                success: function (JSONData, result) {
+
+                    $.each(JSONData.list , function (inedx, item) {
+
+                        console.log(item.fileName);
+
+
+                        const data = {
+                            name: nickname.value,
+                            file: item.fileName,
+                            imgCheck: 2
+                        }
+
+                        socket.emit("chatImg", data);
+                    })
+
+
+                }
+
+            })
+
+
+
+        })
+
+
     })
 
 
@@ -700,8 +775,6 @@
         if (chatInput.value === '') {
             return
         }
-
-        fileUpload();
 
         const data = {
             name: nickname.value,
@@ -711,36 +784,81 @@
         socket.emit("chatting", data)
     }
 
-    function LiModel(name, msg, time) {
+    function LiModel(name, msg, time, file, imgCheck) {
         this.name = name;
         this.msg = msg;
         this.time = time;
+        this.file = file
+        this.imgCheck = imgCheck
 
         this.makeLi = () => {
             //li 상수에 li테크를 만드는 method를 담는다
             const li = document.createElement("li");
-            //내가 작성한건지 상대방이 작성한건지 비교하는 method
-            li.classList.add(nickname.value == this.name ? "sent" : "received")
-            //li에 html을 넣는다
-            li.innerHTML =
-                '<span class="profile">' +
-                '<span class="user">' + this.name + '</span>' +
-                '<img class="userimg" src="https://placeimg.com/50/50/any" alt="any">' +
-                '</span>' +
-                '<span class="message">' + this.msg + '</span>' +
-                '<span class="time">' + this.time + '</span>';
 
-/*$(li).css('display','none')*/
+            if( imgCheck === 2 ){
+                li.innerHTML +=
+                    '<span class="profile">' +
+                    '<span class="user">' + this.name + '</span>' +
+                    '<img class="userimg" src="https://placeimg.com/50/50/any" alt="any">' +
+                    '</span>'+
+                    '<span class="message">'+
+                    '<img src="/resources/'+this.file+'" alt="/resources/images/proplePoto.png"></span>' +
+                    '<span class="time">' + this.time + '</span>';
 
-                //catList에 li의 html을 append한다
-                chatList.appendChild(li);
-                //$('.chatting-list li:last-child').slideDown();
-                displayContainer.scrollTo(0, displayContainer.scrollHeight);
+                li.classList.add(nickname.value == this.name ? "Imgsent" : "Imgreceived")
+
+            }
+
+            if(imgCheck !== 2 ) {
+                li.innerHTML +=
+                    '<span class="profile">' +
+                    '<span class="user">' + this.name + '</span>' +
+                    '<img class="userimg" src="https://placeimg.com/50/50/any" alt="any">' +
+                    '</span>'+
+                    '<span class="message">' + this.msg + '</span>' +
+                    '<span class="time">' + this.time + '</span>';
+
+                li.classList.add(nickname.value == this.name ? "sent" : "received")
+            }
 
 
-            $(chatInput).val('')
+            //catList에 li의 html을 append한다
+            chatList.appendChild(li);
+            //$('.chatting-list li:last-child').slideDown();
+            displayContainer.scrollTo(0, displayContainer.scrollHeight);
+
+
         }
     }
 </script>
 </body>
 </html>
+<style>
+    .message > img {
+        width: 100px;
+        height: 100px;
+    }
+    .modal.voteModal .modal-body::-webkit-scrollbar {
+        display: none;
+    }
+    .voteModal .back-btn {
+        font-size: 1.5rem;
+        cursor: pointer;
+        width: 32px;
+    }
+    .voteModal .btn-close {
+        margin: 0;
+    }
+    .voteModal .modal-title{
+        text-align: center;
+    }
+    .voteModal .modal-text{
+        font-size: 18px;
+        border: 1px solid #ced4da;
+        padding: 10px;
+        border-radius: 0.375rem;
+        align-items: baseline;
+        background-color: #00000003;
+        margin-bottom: 15px;
+    }
+</style>

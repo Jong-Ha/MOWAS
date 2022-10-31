@@ -12,8 +12,8 @@
 </head>
 <body>
 
-<div class="footer">
-  <div class="b-example-divider"></div>
+<footer class="footer mt-auto" style="margin-top: 50px;">
+  <div class="b-example-divider container"></div>
 
   <div class="bg-dark text-secondary px-4 py-5 text-center" style="height : 220px;">
     <div class="">
@@ -26,7 +26,7 @@
       </div>
     </div>
   </div>
-</div>
+</footer>
 
 <div class="b-example-divider mb-0"></div>
 

@@ -1,7 +1,9 @@
 package com.project.deal.controller;
 
+import com.project.common.Search;
 import com.project.community.service.CommunityService;
 import com.project.deal.service.DealService;
+import com.project.domain.Club;
 import com.project.domain.Deal;
 import com.project.domain.User;
 import org.json.simple.JSONObject;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -210,4 +213,36 @@ public class DealRestController {
         return dealService.getViewCount(deal.getDealBoardNum(),deal.getBoardCategory());
     }
 
+    @RequestMapping(value="getListDeal" )
+    public Map<String, Object> getListDeal(@RequestBody Map<String, Object> map)throws Exception {
+        System.out.println("json list 무한 스크롤 가보자구 ");
+        Search search = new Search();
+        System.out.println(map);
+        if(map.get("currentPage")!=null){
+            int currentPage = Integer.parseInt((String)map.get("currentPage"));
+            search.setCurrentPage(currentPage);
+            if (currentPage == 0) {
+                search.setCurrentPage(1);
+            }
+        }
+        String boardCategory = "";
+        String searchProduct= "";
+        String searchTitle= "";
+        if(map.get("boardCategory")!=null){
+            boardCategory = (String)map.get("boardCategory");
+        }
+        if(map.get("searchCondition")!=null){
+            searchProduct = (String)map.get("searchCondition");
+        }
+
+        if(map.get("searchKeyword")!=null){
+            searchTitle = (String)map.get("searchKeyword");
+        }
+        List<Deal> list = (List<Deal>) dealService.getListDeal(search,boardCategory);
+        for(Deal deal : list){
+
+        }
+        map.put("list", list);
+        return map;
+    }
 }

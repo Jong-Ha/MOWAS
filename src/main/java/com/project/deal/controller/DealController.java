@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.io.File;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.*;
 
 @Controller
@@ -170,7 +172,35 @@ public DealController(){
             return "forward:/deal/getListDeal";
         }
     @RequestMapping(value = "getDeal/{dealBoardNum}")
-    public String getDeal(Model model, @PathVariable int dealBoardNum, HttpSession session, HttpServletResponse response) throws Exception {
+    public String getDeal(Model model, @PathVariable int dealBoardNum, HttpSession session, HttpServletResponse response, @CookieValue(value = "history",required = false)String history,HttpServletRequest request) throws Exception {
+       //쿠키 추가
+//      쿠키관리
+        if(history!=null) {
+            history = URLDecoder.decode(history,"EUC_KR");
+        }else {
+            history = "";
+        }
+
+        String[] histories = history.split(",");
+        history = "";
+        if(histories.length>0) {
+            for(String str : histories) {
+                if(str!=null && str.length()>4 && Integer.parseInt(str) != dealBoardNum ) {
+                    history+= (history.length()==0?"":",")+str;
+                }
+            }
+        }
+
+        history+= (history.length()==0?"":",")+dealBoardNum;
+
+        Cookie cookie = new Cookie("history", URLEncoder.encode(history,"EUC_KR"));
+        cookie.setMaxAge(30*60);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+
+        System.out.println("내가 만든 쿠키 ~"+ cookie.getValue());
+
+       //getdeal 기본
         Deal deal = dealService.getDeal(dealBoardNum);
 
 //Object User=session.getAttribute("userId");
@@ -178,27 +208,95 @@ public DealController(){
         System.out.println(deal.getBoardCategory());
 //String likeCheck =commuService.getLikeCheck((String)session.getAttribute("userId"),dealBoardNum, (Integer.parseInt(deal.getBoardCategory())));
        String likeCheck =commuService.getLikeCheck(deal.getUser().getUserId(),dealBoardNum, (Integer.parseInt(deal.getBoardCategory())));
+
         int reviewPt=dealService.getReviewPt(deal);
 
         System.out.println("리뷰포인트를 얻기위한 노력"+deal);
         System.out.println("likecheck"+likeCheck);
-        model.addAttribute("reviewPt",reviewPt);
+        if(reviewPt==0) {
+            reviewPt=0;
+            model.addAttribute("reviewPt", reviewPt);
+        }else{
+
+            model.addAttribute("reviewPt",reviewPt);
+        }
         model.addAttribute("deal", deal);
         model.addAttribute("likeCheck",likeCheck);
+        //쿠키넣기
+        Cookie[] cookies = request.getCookies();
+
+        for(Cookie c : cookies) {
+            if(c.getName().equals("history")) {
+                history = URLDecoder.decode(c.getValue(),"EUC_KR");
+            }
+        }
+
+        if(!history.equals("")) {
+            List<String> listcook = new ArrayList<String>();
+
+            String[] records = history.trim().split(",");
+            for(String str : records) {
+                listcook.add(0,str);
+            }
+            System.out.println(listcook);
+            model.addAttribute("listcook", listcook);
+        }
         return "/view/deal/getDeal.jsp";
     }
+    @RequestMapping(value = "history")
+    public String history(HttpServletRequest request, Model model) throws Exception {
 
+        Cookie[] cookies = request.getCookies();
+String history="";
+        for(Cookie c : cookies) {
+            if(c.getName().equals("history")) {
+                history = URLDecoder.decode(c.getValue(),"EUC_KR");
+            }
+        }
+
+        if(!history.equals("")) {
+            List<String> listcook = new ArrayList<String>();
+
+            String[] records = history.trim().split(",");
+            for(String str : records) {
+                listcook.add(0,str);
+            }
+            System.out.println(listcook);
+            model.addAttribute("listcook", listcook);
+        }
+
+
+        return "forward:/view/deal/history.jsp";
+    }
 
 
 
 
     @RequestMapping(value = "getListDeal")
     public String getListDeal(@ModelAttribute("search") Search search, Model model,HttpServletRequest request
-                            ,@RequestParam(value = "boardCategory", defaultValue = "08") String boardCategory, @RequestParam(value = "searchTag", required = false) List<String> searchTag) throws Exception {
+                            ,@RequestParam(value = "boardCategory", defaultValue = "99") String boardCategory) throws Exception {
         System.out.println("getListDeal : GET POST");
-
+        search.setCurrentPage(1);
+        System.out.println(search.getCurrentPage());
         System.out.println(boardCategory);
+        Cookie[] cookies = request.getCookies();
+        String history="";
+        for(Cookie c : cookies) {
+            if(c.getName().equals("history")) {
+                history = URLDecoder.decode(c.getValue(),"EUC_KR");
+            }
+        }
 
+        if(!history.equals("")) {
+            List<String> listcook = new ArrayList<String>();
+
+            String[] records = history.trim().split(",");
+            for(String str : records) {
+                listcook.add(0,str);
+            }
+            System.out.println(listcook);
+            model.addAttribute("listcook", listcook);
+        }
         if (search.getCurrentPage() == 0) {
             search.setCurrentPage(1);
         }
@@ -212,33 +310,33 @@ public DealController(){
 
         if(boardCategory == "08"){
 
-            Map<String , Object> map=dealService.getListDeal(search, boardCategory,searchTag);
+            Map<String , Object> map=dealService.getListDeal(search, boardCategory);
 
 
             Page resultPage=new Page(search.getCurrentPage(),((Integer)map.get("totalCount")).intValue(),pageUnit,pageSize);
             System.out.println(resultPage);
-
 
             System.out.println(map.get("list"));
             model.addAttribute("list", (List<Deal>)map.get("list"));
             model.addAttribute("resultPage", resultPage);
             model.addAttribute("search", search);
-            model.addAttribute("searchTag",searchTag);
+            model.addAttribute("boardCategory",boardCategory);
 
         } else if (boardCategory == "09") {
 
-            Map<String , Object> map=dealService.getListDeal(search, boardCategory,searchTag);
+            Map<String , Object> map=dealService.getListDeal(search, boardCategory);
             Page resultPage=new Page(search.getCurrentPage(),((Integer)map.get("totalCount")).intValue(),pageUnit,pageSize);
             System.out.println(resultPage);
             model.addAttribute("list", (List<Deal>)map.get("list"));
             model.addAttribute("resultPage", resultPage);
             model.addAttribute("search", search);
-            model.addAttribute("boardCategory","09");
-            model.addAttribute("searchTag",searchTag);
+            model.addAttribute("boardCategory",boardCategory);
 
-        }else {
 
-            Map<String, Object> map = dealService.getListDeal(search, boardCategory,searchTag);
+        }else{
+
+
+        Map<String, Object> map = dealService.getListDeal(search, boardCategory);
 
 
             Page resultPage = new Page(search.getCurrentPage(), ((Integer) map.get("totalCount")).intValue(), pageUnit, pageSize);
@@ -249,7 +347,8 @@ public DealController(){
             model.addAttribute("list", (List<Deal>)map.get("list"));
             model.addAttribute("resultPage", resultPage);
             model.addAttribute("search", search);
-            model.addAttribute("searchTag",searchTag);
+            model.addAttribute("boardCategory",boardCategory);
+
 
             System.out.println("여기까지 ? ? !!1111");
             System.out.println(map);
@@ -305,10 +404,10 @@ public DealController(){
     }
     @RequestMapping(value="updateDeal",method = RequestMethod.POST)
     public String updateDeal(@ModelAttribute("deal") Deal deal,MultipartHttpServletRequest multi, @RequestParam(value = "deleteFileName", required = false) List<String> deleteFileNames) throws Exception {
-            ////파일 업로드
+        ////파일 업로드
             //파일 추출
             List<MultipartFile> mfs = multi.getFiles("file");
-            System.out.println(mfs);
+            System.out.println("여긴어딘가요 ? 파일 들어가나요 ?"+mfs);
             //저장할 리스트 생성
            // List<com.project.domain.File> files = new ArrayList<>();
         List<com.project.domain.File> files = new ArrayList<>();
@@ -355,6 +454,7 @@ public DealController(){
                     }
                 }
             }
+
 
       //  model.addAttribute("deal",dealService.getDeal(deal.getDealBoardNum()));
         System.out.println( dealService.getDeal(deal.getDealBoardNum()));
