@@ -233,6 +233,7 @@ $(function () {
 
 //무한스크롤
 $(function () {
+
     function getFormJson(selector) {
         // Select Form
         let selForm = document.querySelector(selector);
@@ -245,6 +246,7 @@ $(function () {
 
         // Log
         console.log(JSON.stringify(serializedFormData));
+
         return JSON.stringify(serializedFormData)
     }
 

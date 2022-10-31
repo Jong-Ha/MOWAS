@@ -31,244 +31,41 @@
     <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css"/>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    <%--  <script src="/resources/deal/js/listDeal.js"></script>--%>
-    <%--  <link href="/resources/deal/css/listDeal.css" rel="stylesheet" type="text/css"/>--%>
-    <!--  ///////////////////////// CSS ////////////////////////// -->
-    <%--  <style>--%>
-    <%--    body > div.container{--%>
-    <%--      border: 3px solid #D6CDB7;--%>
-    <%--      margin-top: 10px;--%>
-    <%--    }--%>
-    <%--  </style>--%>
 
-    <%--  <!--  ///////////////////////// JavaScript ////////////////////////// -->--%>
-    <%--  <script type="text/javascript">--%>
-
-    <%--    // ============= "가입"  Event 연결 =============--%>
-    <%--    $(function() {--%>
-    <%--      $(".paging").on("click",function(){--%>
-
-    <%--        $("#currentPage").val($(this).text())--%>
-    <%--        $("form").submit()--%>
-    <%--      })--%>
-    <%--      $("form").on("submit",function(){--%>
-
-
-    <%--        $(this).attr("action","/deal/getListDeal?${deal.boardCategory}").attr("method","post")--%>
-    <%--      })--%>
-
-
-    <%--      // //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)--%>
-    <%--      // $( "button.btn.btn-primary" ).on("click" , function() {--%>
-    <%--      //   self.location = "/deal/getDeal?dealBoardNum="+$(this).children().val();--%>
-    <%--      // });--%>
-    <%--      // $(".dealLogin").on("click",function(){--%>
-    <%--      //   location.href="/deal/login?userId="+$("input[name='userId']").val()--%>
-    <%--      // })--%>
-
-
-    <%--    });--%>
-
-
-    <%--    // $(function() {--%>
-    <%--    //   //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)--%>
-    <%--    //   $( .addDeal ).on("click" , function() {--%>
-    <%--    //     self.location = "/deal/dd="+$(this).children().val();--%>
-    <%--    //   });--%>
-    <%--    // });--%>
-
-    <%--    // //============= "취소"  Event 처리 및  연결 =============--%>
-    <%--    // $(function() {--%>
-    <%--    //   //==> 추가된부분 : "addUser"  Event 연결--%>
-    <%--    //   $("a[href='#' ]:contains('상세 보기')").on("click", function() {--%>
-    <%--    //     self.location = "/deal/getDeal?dealBoardNum="+$(this).children().val();--%>
-    <%--    //   });--%>
-    <%--    // });--%>
-    <%--    $(function () {--%>
-    <%--      $(".deal").on("click", function () {--%>
-
-    <%--         location.href = "/deal/getListDeal?boardCategory="+$(".deal").val();--%>
-
-    <%--        //$(this).attr("action","/deal/getListDeal/08").attr("method","post")--%>
-    <%--      });--%>
-
-    <%--      $(".dealRequest").on("click", function () {--%>
-    <%--        alert($(".dealRequest").val());--%>
-    <%--        location.href = "/deal/getListDeal?boardCategory="+$(".dealRequest").val();--%>
-
-    <%--       // $(this).attr("action","/deal/getListDeal/09").attr("method","post")--%>
-    <%--      })--%>
-    <%--      $(".dealBox").on('click', function (e) {--%>
-    <%--        alert("hi")--%>
-    <%--        var dealBoardNum= $(this).find(".dealBoardNum").val()--%>
-    <%--        alert(dealBoardNum);--%>
-    <%--        location.href = "/deal/getDeal/"+dealBoardNum;--%>
-
-    <%--      })--%>
-    <%--      $(".addDeal").on("click", function () {--%>
-    <%--        location.href = "/deal/addDeal"--%>
-    <%--      })--%>
-    <%--    });--%>
-    <%--  </script>--%>
-
-
-    <%--  <style>--%>
-    <%--    .body {--%>
-    <%--      text-align: -webkit-center;--%>
-    <%--    }--%>
-
-    <%--    .wap {--%>
-    <%--      width: 1000px;--%>
-    <%--    }--%>
-
-    <%--    .carditem {--%>
-    <%--      height: 210px;--%>
-    <%--      display: flex;--%>
-    <%--      flex-direction: column;--%>
-    <%--    }--%>
-
-    <%--    .card-title {--%>
-    <%--      width: 250px;--%>
-    <%--      font-size: 1.2em;--%>
-    <%--    }--%>
-
-    <%--    .cardbox {--%>
-    <%--      display: flex;--%>
-    <%--      flex-direction: row;--%>
-    <%--      margin: 6px;--%>
-    <%--      float: left;--%>
-    <%--    }--%>
-
-    <%--    button.buttonBox {--%>
-    <%--      font-size: 0.7em;--%>
-    <%--      /* float: left; */--%>
-    <%--      /* size: b4; */--%>
-    <%--      height: 25px;--%>
-    <%--      width: 5px;--%>
-    <%--    }--%>
-
-    <%--    .col.dealBox {--%>
-    <%--      width: 320px;--%>
-    <%--    }--%>
-
-    <%--    .add {--%>
-    <%--      /*margin-right: 800px;*/--%>
-    <%--      margin-bottom: 50px;--%>
-    <%--    }--%>
-
-    <%--    .card-img-top {--%>
-    <%--      text-align: center;--%>
-    <%--      width: 100%;--%>
-    <%--      height: 200px;--%>
-    <%--    }--%>
-
-    <%--    .card-img-top > img {--%>
-    <%--      object-fit: contain;--%>
-    <%--      width: 100%;--%>
-    <%--      height: 100%;--%>
-    <%--    }--%>
-
-    <%--    svg {--%>
-    <%--      font-size: 40px;--%>
-    <%--    }--%>
-
-    <%--    .dealTag {--%>
-    <%--      height: 210px;--%>
-    <%--      --bs-btn-color: #000000;--%>
-    <%--      --bs-btn-border-color: #000000;--%>
-    <%--      --bs-btn-hover-color: #000000;--%>
-    <%--      --bs-btn-hover-bg: #fff;--%>
-    <%--      --bs-btn-hover-border-color: #000000;--%>
-    <%--      --bs-btn-focus-shadow-rgb: 13,110,253;--%>
-    <%--      --bs-btn-active-color: #000000;--%>
-    <%--      --bs-btn-active-bg: #fff;--%>
-    <%--      --bs-btn-active-border-color: #000000;--%>
-    <%--      --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);--%>
-    <%--      --bs-btn-disabled-color: #000000;--%>
-    <%--      --bs-btn-disabled-bg: transparent;--%>
-    <%--      --bs-btn-disabled-border-color: #000000;--%>
-    <%--      --bs-gradient: none;--%>
-    <%--    }--%>
-
-    <%--  </style>--%>
     <script>
+        let submitCheck=false
         $(function () {
             // 작성 페이지로 navigation
-            $(".dealBox").on('click', function (e) {
+            $(".dealBox").off('click').on('click', function (e) {
+                if (check) {
 
-                location.href = "/deal/getDeal/" + $(this).find('[name="dealBoardNum"]').val()
-            })
-//판매 리스트 보기
-//     $(".deal").on("click", function () {
-//
-//       location.href = "/deal/getListDeal?boardCategory="+$(".deal").val();
-//       //$(this).attr("action","/deal/getListDeal/08").attr("method","post")--%>
-//     });
-
-            //판매요청 리스트
-            // $(".dealCategory").on("change", function () {
-            //     if ($(".dealCategory").val() == "08") {
-            //         location.href = "/deal/getListDeal?boardCategory=" + $(".dealCategory").val();
-            //     } else if ($(".dealCategory").val() == "09") {
-            //         location.href = "/deal/getListDeal?boardCategory=" + $(".dealCategory").val();
-            //     } else if ($(".dealCategory").val() == "99") {
-            //         alert("dsjfjewljr'w")
-            //         location.href = "/deal/getListDeal?boardCategory=" + $(".dealCategory").val();
-            //     }
-            // })
-
-            // $(this).attr("action","/deal/getListDeal/09").attr("method","post")--%>
-
-
-            //태그
-            var input = document.querySelector("[name='searchTagInput']")
-
-            // init Tagify script on the above inputs
-            var tagify = new Tagify(input, {
-                dropdown: {
-                    position: "input",
-                    enabled: 0 // always opens dropdown when input gets focus
+                    location.href = "/deal/getDeal/" + $(this).find('[name="dealBoardNum"]').val();
                 }
             })
 
-            let items = []
+            $('.searchBtn').on('click',function(){
+                submitCheck=true;
+                $('#listForm').attr('method','post').attr('action','/deal/getListDeal').submit()
+            })
 
-            // $.each($(".searchTag"), function (index, item) {
-            //     // alert($(item).val())
-            //     items.push($(item).val())
-            // })
-            // tagify.addTags(items)
-            //
-            // $('.modal.fade .modal-footer button').on("click", function () {
-            //     // alert($(".tagify__tag").attr('value'))
-            //     $(".tagForm").html('')
-            //     $.each($(".tagify__tag"), function (index, item) {
-            //         $(".tagForm").append('<input type="hidden" name="searchTag" class="searchTag" value="' + $(item).attr('value') + '">')
-            //     })
-            // })
-
-
-            //리스트 조회
-            $(".searchListDeal").on("click", function () {
-                $("#listForm").attr("action", "/deal/getListDeal").attr("method", "pt").submit()
+            $('#listForm').on('submit',function(){
+                if(!submitCheck){
+                    return false
+                }
             })
         })
+
+
+
 
         $(function () {
             var dealBoardNum = $(this).find(".dealBoardNum").val()
 
 
-            // var dealTag = document.querySelector("#dealTag")
-            // var tagify = new Tagify(dealTag, {
-            //     dropdown: {
-            //         position: "input",
-            //         enabled: 0 // always opens dropdown when input gets focus
-            //     }
-            // })
-            $(".addDeal").on('click', function () {
+            $(".adddealbox").on('click', function () {
                 var userId = $(".userId").val();
-                 alert(userId)
-                 alert($(".userId").val())
+                // alert(userId)
+                // alert($(".userId").val())
                 if (userId === '' || userId === null) {
                     alert("로그인후 사용해 주세요")
 
@@ -296,55 +93,15 @@
                             alert("파일 첨부는 필수입니다")
                             return;
                         }
-                        // if($("#clubTag").val()===''){
-                        //     return;
-                        // }
-                        // alert(JSON.parse($("#clubTag").val()))
-                        // let addForm = $("#addDealForm");
-                        // $.each(JSON.parse($("#dealTag").val()), function (index, item) {
-                        //     addForm.append('<input type="hidden" name="dealTags" value="' + item.value + '">')
-                        // })
+
                         $('#addDealForm').attr("action", "/deal/addDeal").attr("method", "post").submit();
 
-                        // alert('asd')
+
                     })
                 }
             })
         })
 
-        // $(".likeButton").on("click", function () {
-        // var userId = $(".userId").val();
-        //
-        // console.log("유저의 아이디는 : " + userId);
-        //
-        // if ( userId === '' || userId === null) {
-        // alert("로그인후 사용해 주세요")
-        //
-        // } else if (userId !== '') {
-        //
-        // var likeCount = $(this).parents(".cardbox").find(".likeText").html();
-        // var boardNum = $(this).parents(".cardbox").find(".CalenderReviewNum").val();
-        // var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val();
-        // var likeText = $(this).parents(".cardbox").find(".likeText")
-        //
-        // $.ajax({
-        // url: "/commu/json/addLike",
-        // type: "POST",
-        // data: JSON.stringify({
-        // "likeCount": likeCount,
-        // "boardNum": boardNum,
-        // "boardCategory": boardCategory
-        // }),
-        // dataType: "JSON",
-        // contentType: 'application/json; charset=UTF-8',
-        // success: function (JSONData, result) {
-        // likeText.html(JSONData)
-        // }
-        // })
-        // }
-        // })
-        // })
-        //deallistBox 시작
         $(function () {
 
             $(".allList").on("click", function () {
@@ -414,14 +171,14 @@
                     // console.log(data)
 
                     const json = getFormJson('#listForm')
-                    alert(json)
+                    //  alert(json)
                     $.ajax({
                         url: '/deal/json/getListDeal',
                         method: 'post',
                         'data': json,
                         contentType: 'application/json; charset=utf-8',
                         success: function (re) {
-                            alert("되나요 ?")
+                            //  alert("되나요 ?")
                             $.each(re.list, function (index, item) {
                                 console.log(index)
                                 console.log(item)
@@ -439,29 +196,42 @@
                                     html += '거래완료'
                                 }
                                 html += '</div>' +
-                                    '<div class= "potoBox">' +
-                                    '<img class="poto" width="100%" height="100%" src="/resources/"+item.files[0].fileName+" alt="any">' +
-                                    '</div>' +
+                                    '<div class= "potoBox">'
+                                if (item.files.fileName === undefined) {
+                                    html += '<img class="poto" width="100%" height="100%"  alt="any">'
+                                } else {
+                                    html += '<img class="poto" width="100%" height="100%" src="/resources/' + item.files[0].fileName + '"  alt="any">'
+                                }
+
+                                html += '</div>' +
                                     '<div class="cardM " style="display: flex; padding: 10px 0 0 10px; height: 120px; ">' +
                                     ' <div class="dealinfo cartFont" style="flex: 1; width: 50%;">' +
-                                    '<p class="allFlex" style="font-size: 1.3em; font-weight: bold"> +item.price+ 원 </p>' +
-                                    ' <p class="allFlex" style="font-size: 1.3em; font-weight: bold">+item.villCode + ∙ + item.dealRegDate+</p>' +
-                                    '<p class="allFlex" style="font-size: 1em"> 좋아요 +item.likeCount+∙조회수 +item.viewCount+ </p>' +
+                                    '<p class="allFlex" style="font-size: 1.3em; font-weight: bold"> ' + item.price + '원 </p>' +
+                                    ' <p class="allFlex" style="font-size: 1.3em; font-weight: bold">' + item.villCode + '∙ ' + item.dealRegDate + '</p>' +
+                                    '<p class="allFlex" style="font-size: 1em"> 좋아요 ' + item.likeCount + '∙조회수 ' + item.viewCount + '</p>' +
                                     '   </div>' +
                                     '</div>' +
                                     '</div>' +
                                     '</div>' +
                                     '</div>'
 
-                                $('.wap').append($(html))
+                                $('.addlistbox').append($(html))
                             })
-                            $('.listForm.currentPage').val(parseInt($('#listForm .currentPage').val()));
-                            // setListDeal()
-                            // if (re.list.length > 0) {
-                            //     loadCheck = false
-                            // } else {
-                            //     $(window).off('scroll')
-                            // }
+                            $('#listForm .currentPage').val(parseInt($('#listForm .currentPage').val()) + 1);
+                            $(function () {
+                                // 작성 페이지로 navigation
+                                $(".dealBox").off('click').on('click', function (e) {
+
+
+                                        location.href = "/deal/getDeal/" + $(this).find('[name="dealBoardNum"]').val();
+
+                                })
+                            })
+                            if (re.list.length > 0) {
+                                loadCheck = false
+                            } else {
+                                $(window).off('scroll')
+                            }
                         }
                     })
                 }
@@ -556,7 +326,8 @@
             display: flex;
             flex-direction: row;
             margin-bottom: 40px;
-
+            width: 360px;
+            height: 400px;
             float: left;
             transition: all 0.2s linear;
         }
@@ -568,8 +339,8 @@
         .potoBox {
             cursor: pointer;
             padding: 1px;
-            width: 294px;
-            height: 200px;
+            width: 360px;
+            height: 250px;
             overflow: hidden;
             border-radius: 0 0 5px 5px;
             border-bottom: 2px solid #0a090945
@@ -693,7 +464,55 @@
             80% {
                 border-color: transparent
             }
+
         }
+
+        .addlistbox {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        /*검색*/
+        /*.form-control {*/
+        /*    display: block;*/
+        /*    width: 100%;*/
+        /*    padding: 0.375rem 0.75rem;*/
+        /*    font-size: 1rem;*/
+        /*    font-weight: 400;*/
+        /*    line-height: 1.5;*/
+        /*    color: #212529;*/
+        /*    background-color: #fff;*/
+        /*    background-clip: padding-box;*/
+        /*    border: 1px solid #ced4da;*/
+        /*    -webkit-appearance: none;*/
+        /*    -moz-appearance: none;*/
+        /*    appearance: none;*/
+        /*    border-radius: 0.375rem;*/
+        /*    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;*/
+        /*}*/
+        /*.form-select {*/
+        /*    display: block;*/
+        /*    width: 100%;*/
+        /*    padding: 0.375rem 2.25rem 0.375rem 0.75rem;*/
+        /*    -moz-padding-start: calc(0.75rem - 3px);*/
+        /*    font-size: 1rem;*/
+        /*    font-weight: 400;*/
+        /*    line-height: 1.5;*/
+        /*    color: #212529;*/
+        /*    background-color: #fff;*/
+        /*    background-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e);*/
+        /*    background-repeat: no-repeat;*/
+        /*    background-position: right 0.75rem center;*/
+        /*    background-size: 16px 12px;*/
+        /*    border: 1px solid #ced4da;*/
+        /*    border-radius: 0.375rem;*/
+        /*    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;*/
+        /*    -webkit-appearance: none;*/
+        /*    -moz-appearance: none;*/
+        /*    appearance: none;*/
+        /*}*/
     </style>
 </head>
 
@@ -714,7 +533,7 @@
 <jsp:include page="/layout/toolbar.jsp"/>
 <jsp:include page="/view/deal/history.jsp"/>
 <img src="/resources/uploadFiles/dealBoardFiles/중고거래.png" style="height: 500px;border-radius: 10px;  width: 1600px;">
-<div class="wap">
+<div class="container">
 
     <div class="wrapper">
         <div class="typing">
@@ -729,9 +548,9 @@
     <form id="listForm">
         <input type="hidden" class="currentPage" name="currentPage" value="2">
         <input hidden class="userId" value="${user.userId}">
-        <input hidden class="boardCategory" value="" name="boardCategory">
-        <input type="hidden" class="searchKeyword" name="searchKeyword" value="">
-        <input type="hidden" class="searchCondition" name="searchCondition" value="">
+        <input hidden class="boardCategory" value="${boardCategory}" name="boardCategory">
+
+
         <nav class="navbar navbar-expand-lg deallistBox">
 
             <div>
@@ -774,67 +593,79 @@
 
         <%--버튼 모음 시작--%>
         <div class="addBox" style="display:flex;justify-content: space-between;align-items: center;">
-            <button class="btn btn-primary addDeal" data-bs-toggle="modal" data-bs-target="#addDeal">
-                거래 작성
-            </button>
-
-
-            <div>
-                <%--            <select class="btn btn-primary dealCategory" name="dealCategory">--%>
-                <%--                &lt;%&ndash;  <option selected>판매구분</option>&ndash;%&gt;--%>
-                <%--                <option value="99" ${boardCategory == "99"? 'selected':''}>전체</option>--%>
-                <%--                <option value="08" ${boardCategory == "08"? 'selected':''}>판매</option>--%>
-                <%--                <option value="09" ${boardCategory == "09"? 'selected':''}>판매요청</option>--%>
-                <%--            </select>--%>
-
-                <%--            <button class="center btn btn-primary searchTag">--%>
-                <%--                태그--%>
-                <%--            </button>--%>
-                <%--            <form class="form-inline" name="detailForm">--%>
-
-                <%--        <div class="form-group">--%>
-                <%--                    <select class="form-control" name="searchCondition">--%>
-                <%--                        <option value="0"  ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" : "" }>--%>
-                <%--                            제목--%>
-                <%--                        </option>--%>
-                <%--                        <option value="1"  ${ ! empty search.searchCondition && search.searchCondition==1 ? "selected" : "" }>--%>
-                <%--                            상품명--%>
-                <%--                        </option>--%>
-                <%--                    </select>--%>
-                <%--                </div>--%>
-
-                <%--                <div class="form-group">--%>
-                <%--                    <label class="sr-only" for="searchKeyword">검색어</label>--%>
-                <%--                    <input type="text" class="form-control" id="searchKeyword" name="searchKeyword" placeholder="검색어"--%>
-                <%--                           value="${! empty search.searchKeyword ? search.searchKeyword : '' }">--%>
-                <%--                </div>--%>
-
-                <%--                <button type="submit" class="btn btn-secondary">--%>
-                <%--                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>--%>
-                <%--                <!-- PageNavigation 선택 페이지 값을 보내는 부분 -->--%>
-<%--                <input type="hidden" id="currentPage" name="currentPage" value="2"/>--%>
-                <%--    <span class="_1knjz499"><input class="_1knjz49b" placeholder="물품을 검색해보세요" value=""/></span></span>--%>
-                <%--                            </form>--%>
-                <div class="input-group mb-3">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">검색
-                    </button>
-                    <ul class="dropdown-menu" name="searchCondition">
-                        <li><a class="dropdown-item" href="#" value="0"${!empty search.searchCondition&&search.searchCondition==0 ? "selected":"" }>제목</a></li>
-                        <li><a class="dropdown-item" href="#" value="1"${!empty search.searchCondition&&search.searchCondition==0 ? "selected":"" }>상품명</a></li>
-
-                    </ul>
-                    <input type="text" class="form-control" id="searchKeyword" name="searchKeyword" aria-label="Text input with dropdown button">
-                </div>
+            <div class="adddealbox">
+                <button class="btn btn-primary addDeal" data-bs-toggle="modal" data-bs-target="#addDeal">
+                    거래 작성
+                </button>
             </div>
+
+
+            <%--            <select class="btn btn-primary dealCategory" name="dealCategory">--%>
+            <%--                &lt;%&ndash;  <option selected>판매구분</option>&ndash;%&gt;--%>
+            <%--                <option value="99" ${boardCategory == "99"? 'selected':''}>전체</option>--%>
+            <%--                <option value="08" ${boardCategory == "08"? 'selected':''}>판매</option>--%>
+            <%--                <option value="09" ${boardCategory == "09"? 'selected':''}>판매요청</option>--%>
+            <%--            </select>--%>
+
+            <%--            <button class="center btn btn-primary searchTag">--%>
+            <%--                태그--%>
+            <%--            </button>--%>
+            <%--            <form class="form-inline" name="detailForm">--%>
+
+            <%--        <div class="form-group">--%>
+            <%--                    <select class="form-control" name="searchCondition">--%>
+            <%--                        <option value="0"  ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" : "" }>--%>
+            <%--                            제목--%>
+            <%--                        </option>--%>
+            <%--                        <option value="1"  ${ ! empty search.searchCondition && search.searchCondition==1 ? "selected" : "" }>--%>
+            <%--                            상품명--%>
+            <%--                        </option>--%>
+            <%--                    </select>--%>
+            <%--                </div>--%>
+
+            <%--                <div class="form-group">--%>
+            <%--                    <label class="sr-only" for="searchKeyword">검색어</label>--%>
+            <%--                    <input type="text" class="form-control" id="searchKeyword" name="searchKeyword" placeholder="검색어"--%>
+            <%--                           value="${! empty search.searchKeyword ? search.searchKeyword : '' }">--%>
+            <%--                </div>--%>
+
+            <%--                <button type="submit" class="btn btn-secondary">--%>
+            <%--                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>--%>
+            <%--                <!-- PageNavigation 선택 페이지 값을 보내는 부분 -->--%>
+            <%--                <input type="hidden" id="currentPage" name="currentPage" value="2"/>--%>
+            <%--    <span class="_1knjz499"><input class="_1knjz49b" placeholder="물품을 검색해보세요" value=""/></span></span>--%>
+            <%--                            </form>--%>
+            <%--                <div class="input-group mb-3">--%>
+            <%--                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"--%>
+            <%--                            aria-expanded="false">검색--%>
+            <%--                    </button>--%>
+            <%--                    <ul class="dropdown-menu" name="searchCondition">--%>
+            <%--                        <li><a class="dropdown-item" href="#" value="0"${!empty search.searchCondition&&search.searchCondition==0 ? "selected":"" }>제목</a></li>--%>
+            <%--                        <li><a class="dropdown-item" href="#" value="1"${!empty search.searchCondition&&search.searchCondition==0 ? "selected":"" }>상품명</a></li>--%>
+
+            <%--                    </ul>--%>
+            <%--                    <input type="text" class="form-control" id="searchKeyword" name="searchKeyword" aria-label="Text input with dropdown button">--%>
+            <%--                </div>--%>
+            <div>
+                <div>
+                    <select name="searchCondition" class="form-select" aria-label="Default select example">
+                        <option value="0">선택 하세요</option>
+                        <option ${search.searchCondition == '1' ? 'selected' : '' } value="1">제목</option>
+                        <option ${search.searchCondition == '2' ? 'selected' : '' } value="2">상품명</option>
+                    </select>
+                </div>
+
+                <input class="form-control me-2" type="search" name="searchKeyword" placeholder="검색" aria-label="Search"
+                       value="${search.searchKeyword}" style="width: 255px;">
+                <button class="btn btn-primary searchBtn" type="submit">검색</button>
+            </div>
+
         </div>
     </form>
     <%--버튼 모음 끝--%>
-    <div class="wap">
-        <div style="    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;">
+
+    <div class="container">
+        <div class="addlistbox">
             <c:set var="i" value="0"/>
             <c:forEach var="deal" items="${list}">
                 <c:set var="i" value="${i+1}"/>

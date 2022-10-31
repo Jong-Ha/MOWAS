@@ -164,6 +164,8 @@
                 <p class="text-danger mt-2 mb-3"><i class="bi bi-info-square-fill"></i>  ${clubReport.reportDate}</p>
                 <h7 class="h5 mb-0">신고 상세 내용</h7>
                 <p class="text-danger mt-2 mb-3"><i class="bi bi-info-square-fill"></i>  ${clubReport.reportText}</p>
+
+                <c:if test="${clubReport.rereportApplyCheck eq 'Y'}">
                 <h7 class="h5 mb-0">이의 제출 여부
                   <button type="button" class="btn" style="background-color: #F8CD07;">이의처리</button>
                 </h7>
@@ -171,11 +173,12 @@
                 <h7 class="h5 mb-0">이의 내용</h7>
                 <p class="text-danger mt-2 mb-3"><i class="bi bi-info-square-fill"></i>
                   <c:if test="${clubReport.rereportText == null}">
-                    내용 없음</p>
+                    내용 없음
                   </c:if>
                   <c:if test="${clubReport.rereportText != null}">
-                  ${clubReport.rereportText}</p>
-                  </c:if>
+                  ${clubReport.rereportText}
+                  </c:if></p>
+                </c:if>
                 <button type="button" class="btn" style="background-color: #F8CD07;">확인</button>
                 <button type="button" class="btn btn-secondary">삭제</button>
               </div>

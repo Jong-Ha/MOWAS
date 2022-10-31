@@ -149,7 +149,12 @@
                 <div class="mb-5">
                   <h3 class="h4 font-weight-bold text-theme">커뮤니티 신고 상세 보기</h3>
                 </div>
-
+                <c:if test="${user.userId} == null">
+                <input type="hidden" name="adminId" value="admin">
+                </c:if>
+                <c:if test="${user.userId} != null">
+                  <input type="hidden" name="adminId" value="${user.userId}">
+                </c:if>
                 <h7 class="h5 mb-0">신고 번호</h7>
                 <p class="text-danger mt-2 mb-3"><i class="bi bi-info-square-fill"></i>  ${communityReport.reportNo}</p>
 
@@ -176,43 +181,93 @@
                 <div class="overlay rounded-right"></div>
                 <div class="account-testimonial">
                   <h4 class="mb-0">게시판 종류</h4>
-                  <p class="mt-2 mb-3">
+                  <p class="text-danger mt-2 mb-3">
                     <c:choose>
                     <c:when test="${! empty communityReport.boardCategory && communityReport.boardCategory eq '1 '}">
-                      ▶ 모임 일정 후기글
+                      <i class="bi bi-info-square-fill"></i> 모임 일정 후기글
                     </c:when>
                     <c:when test="${! empty communityReport.boardCategory && communityReport.boardCategory eq '2 '}">
-                      ▶ 모임 일정 후기 쇼츠
+                      <i class="bi bi-info-square-fill"></i> 모임 일정 후기 쇼츠
                     </c:when>
                     <c:when test="${! empty communityReport.boardCategory && communityReport.boardCategory eq '3 '}">
-                      ▶ 우리 동네 게시글
+                      <i class="bi bi-info-square-fill"></i> 우리 동네 게시글
                     </c:when>
                     <c:when test="${! empty communityReport.boardCategory && communityReport.boardCategory eq '10'}">
-                      ▶ 댓글
+                      <i class="bi bi-info-square-fill"></i> 댓글
                     </c:when>
                     <c:when test="${! empty communityReport.boardCategory && communityReport.boardCategory eq '11'}">
-                      ▶ 대댓글
+                      <i class="bi bi-info-square-fill"></i> 대댓글
                     </c:when>
                   </c:choose>
                   </p>
                   <h4 class="mb-0">게시판 제목</h4>
-                  <p class="mt-2 mb-3">
-                    <c:if test="${villBoard.villTitle ne null}">
-                      ▶ ${villBoard.villTitle}
-                    </c:if>
-                    <c:if test="${villBoard.villTitle == null}">
-                      ▶ 게시글을 찾을 수 없습니다.
-                    </c:if>
+                  <p class="text-danger mt-2 mb-3">
+                    <c:choose>
+                      <c:when test="${! empty communityReport.boardCategory && communityReport.boardCategory eq '1 '}">
+                        <i class="bi bi-info-square-fill"></i>
+                        <c:if test="${clubCalReview.reviewTitle ne null}">
+                          ${clubCalReview.reviewTitle}
+                        </c:if>
+                        <c:if test="${clubCalReview.reviewTitle == null}">
+                          게시글을 찾을 수 없습니다.
+                        </c:if>
+                      </c:when>
+                      <c:when test="${! empty communityReport.boardCategory && communityReport.boardCategory eq '2 '}">
+                        <i class="bi bi-info-square-fill"></i>
+                        <c:if test="${clubCalReview.reviewTitle ne null}">
+                          ${clubCalReview.reviewTitle}
+                        </c:if>
+                        <c:if test="${clubCalReview.reviewTitle == null}">
+                          게시글을 찾을 수 없습니다.
+                        </c:if>
+                      </c:when>
+                      <c:when test="${! empty communityReport.boardCategory && communityReport.boardCategory eq '3 '}">
+                        <i class="bi bi-info-square-fill"></i>
+                        <c:if test="${villBoard.villTitle ne null}">
+                          < ${villBoard.villTitle}
+                        </c:if>
+                        <c:if test="${villBoard.villTitle == null}">
+                           게시글을 찾을 수 없습니다.
+                        </c:if>
+                      </c:when>
+                      <c:when test="${! empty communityReport.boardCategory && communityReport.boardCategory eq '10'}">
+                        <i class="bi bi-info-square-fill"></i> 댓글
+                      </c:when>
+                      <c:when test="${! empty communityReport.boardCategory && communityReport.boardCategory eq '11'}">
+                        <i class="bi bi-info-square-fill"></i> 대댓글
+                      </c:when>
+                    </c:choose>
                   </p>
-
                   <h4 class="mb-0">게시판 내용</h4>
-                  <p class="mt-2 mb-3">
-                    <c:if test="${villBoard.villText ne null}">
-                      ▶ ${villBoard.villText}
-                    </c:if>
-                    <c:if test="${villBoard.villText == null}">
-                      ▶ 게시글을 찾을 수 없습니다.
-                    </c:if>
+                  <p class="text-danger mt-2 mb-3">
+                    <c:choose>
+                      <c:when test="${! empty communityReport.boardCategory && communityReport.boardCategory eq '1 '}">
+                        <i class="bi bi-info-square-fill"></i>
+                        <c:if test="${clubCalReview.reviewText ne null}">
+                          ${clubCalReview.reviewText}
+                        </c:if>
+                        <c:if test="${clubCalReview.reviewText == null}">
+                          게시글을 찾을 수 없습니다.
+                        </c:if>
+                      </c:when>
+                      <c:when test="${! empty communityReport.boardCategory && communityReport.boardCategory eq '2 '}">
+                        <i class="bi bi-info-square-fill"></i> 모임 일정 후기 쇼츠는 동영상 파일입니다.
+                      </c:when>
+                      <c:when test="${! empty communityReport.boardCategory && communityReport.boardCategory eq '3 '}">
+                        <c:if test="${villBoard.villText ne null}">
+                          ${villBoard.villText}
+                        </c:if>
+                        <c:if test="${villBoard.villText == null}">
+                          게시글을 찾을 수 없습니다.
+                        </c:if>
+                      </c:when>
+                      <c:when test="${! empty communityReport.boardCategory && communityReport.boardCategory eq '10'}">
+                        <i class="bi bi-info-square-fill"></i> 댓글
+                      </c:when>
+                      <c:when test="${! empty communityReport.boardCategory && communityReport.boardCategory eq '11'}">
+                        <i class="bi bi-info-square-fill"></i> 대댓글
+                      </c:when>
+                    </c:choose>
                   </p>
 
                 </div>

@@ -217,7 +217,7 @@
     </select>
 
     <select id="getMyClubBoard" parameterType="String" resultMap="ClubMasterBoardResultMap" >
-        SELECT title, reg_date, user_id, club_num, club_master_board_num
+        SELECT *
         FROM club_master_board
         WHERE user_id=#{userId}
     </select>
@@ -272,25 +272,32 @@
 
     <!--가입한 모임 조회-->
     <select id="getMyClub" parameterType="String" resultMap="ClubResultMap" >
-        SELECT a.cluber_status, b.inter_list, b.club_name, b.vill_code, b.club_image, b.gather_check, b.club_tag
+        SELECT a.*, b.*
         FROM club_user a, club b
         WHERE a.club_num = b.club_num and a.user_id=#{userId}
     </select>
 
     <select id="getMyDeal" parameterType="String" resultMap="dealSelectMap" >
-        SELECT user_id, product_name, deal_id, review, review_pt, deal_end_date, price
+        SELECT *
         FROM deal
         WHERE user_id=#{userId} and deal_status='3'
     </select>
 
     <select id="getMyReport" parameterType="String" resultMap="CommunityReportSelectMap" >
-        SELECT report_id, reported_id, report_basis, report_date, report_text, process_result
+        SELECT *
         FROM community_report
         WHERE report_id=#{userId}
     </select>
 
+    <select id="getTotalCount" parameterType="search" resultType="int" >
+        SELECT count(*)
+        FROM community_report
+    </select>
+
+
+
     <select id="getMyPpt" parameterType="String" resultMap="CommunityReportSelectMap" >
-        SELECT board_category, board_num, report_basis, ppt, ppt_date
+        SELECT *
         FROM community_report
         WHERE reported_id=#{userId}
     </select>

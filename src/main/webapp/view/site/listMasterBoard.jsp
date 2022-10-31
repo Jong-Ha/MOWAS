@@ -86,13 +86,13 @@
     }
   }
   .table > thead {
-    background-color: #20a4ea;
+    background-color: #ccd1d3;
   }
   .table > thead > tr > th {
     text-align: center;
   }
   .table-hover > tbody > tr:hover {
-    background-color: #add9f1;
+    background-color: #edf2f5;
   }
   .table > tbody > tr > td {
     text-align: center;
@@ -106,8 +106,8 @@
   <script type="text/javascript">
 
     function fncGetList(currentPage) {
-      /* 	document.getElementById("currentPage").value = currentPage;
-             document.detailForm.submit();	 */
+      //document.getElementById("currentPage").value = currentPage;
+      //document.detailForm.submit();
       $("#currentPage").val(currentPage)
       $("form[id='masterBoard']").attr("method" , "POST").attr("action" , "/site/listMasterBoard").submit();
     }
@@ -115,7 +115,9 @@
     $(function() {
 
       $( ".userMb" ).on("click" , function() {
-        fncGetList(1);
+
+        $("#currentPage").val(currentPage)
+        $("form[id='masterBdTag1']").attr("method" , "POST").attr("action" , "/site/listMasterBoard").submit();
       });
 
       //$( "td.ct_btn01:contains('검색')" ).on("click" , function() {
@@ -126,7 +128,6 @@
       //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
       $( ".newMb" ).on("click" , function() {
         $("form").attr("method" , "POST").attr("action" , "/site/addMasterBoard").submit();
-        //$(self.location).attr("href", "/site/addMasterBoard");
       });
 
       $(".updateMasterBoard").on("click",function(){
@@ -171,6 +172,7 @@
         });
       });
 
+    <%--
       $( ".commReport" ).on("click" , function() {
 
         $(self.location).attr("href", "/site/listCommunityReport");
@@ -187,7 +189,7 @@
        //resizeMap()
        //relayout()
       });
-
+    --%>
       //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
       $("a[href='#' ]").on("click" , function() {
         $("form")[0].reset();
@@ -198,36 +200,47 @@
 
 </head>
 <body>
-<jsp:include page="/layout/toolbar.jsp"/>
+  <jsp:include page="/layout/toolbar.jsp"/>
 
   <div class="page-header text-center">
     <div class="wrapper">
-  <div class="typing">
+    <div class="typing">
     <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
                     background-image: linear-gradient(transparent 60%, #F8CD07 40%);">
       공    지    사    항</h4>
-  </div>
-  </div>
+    </div>
+    </div>
   </div>
 
   <nav class="navbar navbar-expand-lg mbBox">
+    <form id = "masterBdTag1">
+      <div>
+          <div class="underline yellow userMb">
+          <input type="hidden" id="currentPage1" name="currentPage" value=""/>
+          <input type="hidden" name="searchCondition" value="100"/>회원
+        </div>
+      </div>
+    </form>
 
+    <form id = "masterBdTag2">
     <div>
-      <div class="underline yellow userMb"><input type="hidden" value="${search.searchCondition = "100"}">회원</div>
+      <input type="hidden" id="currentPage2" name="currentPage" value=""/>
+      <input type="hidden" name="searchCondition" value="200"/>
+      <div class="underline yellow clubMb">모임</div>
     </div>
-
+    </form>
+    <form id = "masterBdTag3">
     <div>
-      <div class="underline yellow clubMb"><input type="hidden" value="${search.searchCondition = "200"}">모임</div>
+      <input type="hidden" id="currentPage3" name="currentPage" value=""/>
+      <input type="hidden" name="searchCondition" value="300"/>
+      <div class="underline yellow reportMb">신고</div>
     </div>
-
-    <div>
-      <div class="underline yellow reportMb"><input type="hidden" value="${search.searchCondition = "300"}">신고</div>
-    </div>
-
+    </form>
   </nav>
-  <hr>
+
 
 <div class="container">
+  <hr>
   <div class="row">
     <div class="col-xl-3 col-md-6">
       <div class="card bg-pattern">
@@ -269,7 +282,6 @@
           <form id="masterBoard">
             <div class="form-group">
               <label>Search</label>
-
               <div class="input-group">
                 <select class="form-control" name="searchCondition" >
                   <option value="0"${!empty search.searchCondition&&search.searchCondition==0 ? "selected":"" }>제목</option>
@@ -284,15 +296,14 @@
                   <button class="btn btn-danger" type="button" id="project-search-addon"><i class="fa fa-search search-icon fa-2x font-12"></i></button>
                 </div>
               </div>
-            </div>
             <input type="hidden" id="currentPage" name="currentPage" value=""/>
-          </form>
         </div>
-      </div>
-    </div>
-  </div>
 
   <!-- end row -->
+   </form>
+   </div>
+  </div>
+ </div>
 
   <div class="row">
     <div class="col-lg-12">
@@ -307,9 +318,9 @@
                 <th scope="col">작성자</th>
                 <th scope="col">날짜</th>
                 <th scope="col">상세보기</th>
-                <%--<c:if test="${user.masterCheck eq 2}">--%>
+                <c:if test="${user.masterCheck eq 2}">
                 <th scope="col">Action</th>
-                <%--</c:if>--%>
+                </c:if>
               </tr>
               </thead>
               <tbody>
@@ -336,7 +347,7 @@
                   <i class="fa fa-file-text h5 m-0"></i></span>
                 </td>
 
-                <%--<c:if test="${user.masterCheck eq 2}">--%>
+                <c:if test="${user.masterCheck eq 2}">
                 <td>
                   <button data-masterbdno="${mb.masterBoardNo}" class="btn updateMasterBoard" data-bs-toggle="modal"
                           data-bs-target="#updateMasterBoard">
@@ -345,7 +356,7 @@
                     <%--<a href="#" class="text-success mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"> <i class="fa fa-pencil h5 m-0"></i></a>--%>
                     <a href="#" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close"> <i class="fa fa-remove h5 m-0"></i></a>
                 </td>
-                <%--</c:if>--%>
+                </c:if>
 
               </tr>
               </c:forEach>
@@ -356,13 +367,13 @@
 
           <!-- end project-list -->
           <div class="col-md-12 text-left ">
-        <%--<c:if test="${user.masterCheck eq 2}">--%>
+        <c:if test="${user.masterCheck eq 2}">
             <button type="button" class="addMb btn" style="background-color: #F8CD07;" data-bs-toggle="modal" data-bs-target="#addMasterBoard">글쓰기</button>
           <button type="button" class="updateMb btn" style="background-color: #F8CD07;" data-bs-toggle="modal" data-bs-target="#updateMasterBoard">수정</button>
 
             <%--<button type="button" class="addMb" data-bs-toggle="modal" data-bs-target="#addMasterBoard">--%>
             <a class="btn btn-secondary" href = "#" role="button">취 소 </a>
-        <%--</c:if>--%>
+        </c:if>
             <!--test version
             <button type="button" class="commReport" >커뮤니티신고</button>
             <button type="button" class="clubReport" >모임신고</button>

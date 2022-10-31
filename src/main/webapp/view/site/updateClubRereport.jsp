@@ -191,6 +191,9 @@
                 <p class="lead text-white">▶ 정치적 성향의 모임 - 경고 </p>
                 <p class="lead text-white">▶ 도박 모임 - 폐쇄 </p>
                 <p class="lead text-white">▶ 다단계 판매 - 폐쇄 </p>
+                <h4 class="text-white mb-4">모임 신고 처리 이의기준은 다음과 같습니다.</h4>
+                <p class="lead text-white">▶ 사유가 정당할 경우 : 수락 </p>
+                <p class="lead text-white">▶ 사유가 황당할 경우 : 거절 </p>
                 <p>- Admin -</p>
                </div>
               </div>

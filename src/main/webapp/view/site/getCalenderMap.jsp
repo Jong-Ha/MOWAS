@@ -36,31 +36,34 @@
 <script>
     let mapCheck4 = false;
 
-    function getClubVilCode3(longitude, latitude) {
-        const sendData = "longitude=" + longitude + "&latitude=" + latitude;
+    function getClubLocarion() {
+        const sendData = "address=" + '${param.location}';
+
+        alert(sendData);
 
         $.ajax({
-            url: '/site/json/clubMap',
+            url: '/site/json/calendarLocation',
             method: 'POST',
             data: sendData,
             success: function (vilCode) {
-                //$(".searchLocation").html(vilCode);
-                //alert(vilCode);
-                $("#location2 .villCode1").val(vilCode)
+                console.log("==========" + vilCode.longitude + "::::" + vilCode.latitude);
+
+                relayout3(vilCode.longitude, vilCode.latitude);
             }
         })
+
     }
 
-    function relayout3() {
+
+    function relayout3(longitude, latitude) {
         if (mapCheck4) {
             return false;
         }
         mapCheck4 = true;
         var mapContainer = document.getElementById('map4'), // 지도를 표시할 div
             mapOption = {
-                center: new kakao.maps.LatLng(
-                    ${empty param.searchLat?empty latitude?'37.4994558002948':latitude:param.searchLat},
-                    ${empty param.searchLng?empty longitude?'127.029020621527':longitude:param.searchLng}
+                center: new kakao.maps.LatLng(longitude,latitude
+
                 ), // 지도의 중심좌표
                 level: 3 // 지도의 확대 레벨
             };
@@ -106,6 +109,8 @@
 
 
         $(function () {
+
+            getClubLocarion();
 
             $('#location2 .back-btn').on('click', function () {
 

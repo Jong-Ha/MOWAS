@@ -214,7 +214,8 @@
             board_category,
             board_num,
             report_basis,
-            report_text
+            report_text,
+            admin_id
         FROM community_report
         WHERE report_num = #{value}
     </select>
@@ -223,6 +224,7 @@
     <update	id="processCommunityReport"	parameterType="communityReport" >
         UPDATE community_report
         <set>
+            admin_id    = #{adminId},
             ppt 		= #{ppt} ,
             process_result = <if test='ppt==0'>'처리중'</if>
                              <if test='ppt!=0'>'처리완료'</if>,
@@ -258,13 +260,14 @@
                 FROM
                     (SELECT report_num, reported_id, report_date, ppt, ppt_date, admin_id
                         FROM community_report
+                        WHERE ppt != 0
                             <if test="searchCondition != null">
                                 <where>
                                 <if test="searchCondition == 0 and searchKeyword !='' ">
-                                    reported_id LIKE '%${searchKeyword}%'
+                                    AND reported_id = #{searchKeyword}
                                 </if>
                                 <if test="searchCondition == 1 and searchKeyword !='' ">
-                                    board_category = #{searchKeyword}
+                                    AND board_category = #{searchKeyword}
                                 </if>
                                  </where>
                             </if>
@@ -318,13 +321,14 @@
         <if test='where=="communityReportProcessList"'>
             SELECT report_num, reported_id, report_date, ppt, ppt_date, admin_id
             FROM community_report
+            WHERE ppt != 0
             <if test="searchCondition != null">
                 <where>
                     <if test="searchCondition == 0 and searchKeyword !='' ">
-                        report_num = to_char(#{searchKeyword})
+                        AND reported_id = #{searchKeyword}
                     </if>
                     <if test="searchCondition == 1 and searchKeyword !='' ">
-                        reported_id = #{searchKeyword}
+                        AND board_category = #{searchKeyword}
                     </if>
                 </where>
             </if>
@@ -341,6 +345,23 @@
                     </if>
                     <if test="searchCondition == 1 and searchKeyword !='' ">
                         report_id LIKE "%"||#{searchKeyword}||"%"
+                    </if>
+                </where>
+            </if>
+            ) countTable
+        </if>
+
+        <if test='where=="clubReportProcessList"'>
+            SELECT club_report_num, club_num, report_id, cr_basis, report_result, report_date
+            FROM club_report
+            WHERE report_result != '대기'
+            <if test="searchCondition != null">
+                <where>
+                    <if test="searchCondition == 0 and searchKeyword !='' ">
+                        AND club_report_num = to_char(#{searchKeyword})
+                    </if>
+                    <if test="searchCondition == 1 and searchKeyword !='' ">
+                        AND report_id LIKE "%"||#{searchKeyword}||"%"
                     </if>
                 </where>
             </if>
@@ -467,9 +488,9 @@
                 c.club_master_id,
                 c.club_name
         FROM club_report cr, club c
+        WHERE cr.club_num = c.club_num AND cr.report_result != '대기'
         <if test="searchCondition != null">
             <where>
-                cr.club_num = c.club_num
                 <if test="searchCondition == 0 and searchKeyword !='' ">
                     AND cr.club_report_num = to_char(#{searchKeyword})
                 </if>
@@ -478,9 +499,7 @@
                 </if>
             </where>
         </if>
-        <if test="searchCondition == null">
-        WHERE cr.club_num = c.club_num
-        </if>
+
         ORDER BY club_report_num ) inner_table
         WHERE ROWNUM &lt;= #{endRowNum} )
         WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum}
