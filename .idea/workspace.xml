@@ -9,37 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="JHK 2022.10.27&#10;&#10;마이페이지 탭바 수정">
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="JHK 2022.10.31&#10;&#10;마이페이지 리스트 유저 커밋">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/myPage/controller/MyPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/myPage/controller/MyPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/myPage/dao/MyPageDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/myPage/dao/MyPageDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/myPage/dao/MyPageDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/myPage/dao/MyPageDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/myPage/service/MyPageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/myPage/service/MyPageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/myPage/service/MyPageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/myPage/service/MyPageServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/DBtext.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/DBtext.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/MyPageMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/MyPageMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyCbMaster.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyCbMaster.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyCbReviewBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyCbReviewBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyClub.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyComment.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyComment.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyDealBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyDealBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyDealReview.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyDealReview.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyEndDeal.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyEndDeal.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyInfor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyInfor.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyPage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyPage.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyPpt.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyPpt.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyRecomment.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyRecomment.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyReport.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/myPageTitle.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/myPageTitle.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/updateMyInfor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/updateMyInfor.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/getMyId.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/getMyId.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/getUserDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/getUserDetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/listUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/listUser.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,6 +142,9 @@
       <recent name="com.project.notice.service" />
     </key>
   </component>
+  <component name="RunDashboard">
+    <option name="openRunningConfigInTab" value="true" />
+  </component>
   <component name="RunManager" selected="Tomcat 서버.Tomcat 9.0.58">
     <configuration name="ClubServiceTest.updateVoter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MOWAS" />
@@ -249,10 +226,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tomcat 9.0.58" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.58" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="$PROJECT_DIR$/../../Program Files/Java/jdk1.8.0_181" nameIsGenerated="true">
+    <configuration name="Tomcat 9.0.58" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.58" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="COMMON_VM_ARGUMENTS" value="-Dfile.encoding=UTF-8" />
-      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
-      <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="MOWAS:war exploded">
           <settings>
@@ -261,8 +237,7 @@
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="e0944415-630b-49a5-af46-6b2de8f9187b" />
-        <option name="DEPLOY_TOMCAT_APPS" value="true" />
+        <option name="BASE_DIRECTORY_NAME" value="2f911be2-0ce1-4887-877a-030b087824a2" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -270,7 +245,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="65206" />
+        <option name="DEBUG_PORT" value="50064" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -395,6 +370,7 @@
       <workItem from="1666343876167" duration="55962000" />
       <workItem from="1666589308433" duration="18822000" />
       <workItem from="1666915748740" duration="65683000" />
+      <workItem from="1667180522531" duration="1123000" />
     </task>
     <task id="LOCAL-00001" summary="설정">
       <created>1664436990723</created>
@@ -577,7 +553,9 @@
     <MESSAGE value="JHK 2022.10.24&#10;&#10;마이페이지 JSP 수정" />
     <MESSAGE value="JHK 2022.10.26&#10;&#10;카카오로그인 팝업창 변경, 로그인페이지 모달창 변경" />
     <MESSAGE value="JHK 2022.10.26&#10;&#10;로그아웃 이전페이지 기능 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="JHK 2022.10.26&#10;&#10;로그아웃 이전페이지 기능 추가" />
+    <MESSAGE value="JHK 2022.10.31&#10;&#10;마이페이지 JSP 생성, 탭바 수정" />
+    <MESSAGE value="JHK 2022.10.31&#10;&#10;마이페이지 리스트 유저 커밋" />
+    <option name="LAST_COMMIT_MESSAGE" value="JHK 2022.10.31&#10;&#10;마이페이지 리스트 유저 커밋" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

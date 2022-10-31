@@ -420,9 +420,11 @@
                 <%--</c:if>--%>
 
                     </ul>
+<c:if test="${user.userId ne null}">
                     <div class="logitem">
                         <img src="${pageContext.request.contextPath}/resources/images/proplePoto.png"
                              style="width: 60px;margin-right: 10px; border-radius: 40px; height: 50px;">
+                        </c:if>
 
                         <div class="login ">
                             <div class="d-grid gap-2">
