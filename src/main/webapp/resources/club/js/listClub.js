@@ -78,10 +78,6 @@ $(function () {
             alert('로그인이 필요합니다')
         }
     })
-    //로그인 나중에 없앨거
-    $(".clubLogin").on("click", function () {
-        location.href = "/club/login?userId=" + $("input[name='userId']").val()
-    })
     //위치 검색
     $(".searchLocation").on("click", function () {
         $('#searchLocation .getLocation').off('click').on('click', function () {
@@ -291,7 +287,7 @@ $(function () {
             // console.log(data)
 
             const json = getFormJson('#listForm')
-
+alert(json)
             $.ajax({
                 url: '/club/json/listClub',
                 method: 'post',

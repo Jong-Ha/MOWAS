@@ -77,16 +77,18 @@ const port = process.env.port || 5000
 
 //moongoDB에 Schema 생성
 const room = mongoose.Schema({
-    users: [{userId: 'string', regDate: 'number'}],
+    users: [{userId: 'string', regDate: 'number',userImage:'string'}],
     roomId: 'string',
     chatCategory: 'string',
     roomName: 'string',
+    roomImage: 'string',
     boardNum: 'number'
 });
 
 //moongoDB에 Schema 생성
 const msg = mongoose.Schema({
     userId: ['string'],
+    userImage: 'string',
     roomId: 'string',
     chatCategory: 'string',
     msg: 'string',
@@ -155,6 +157,8 @@ onebyone.on('connection', (socket) => {
     let roomId = socket.handshake.query.roomId
     const userId1 = socket.handshake.query.userId1
     const userId2 = socket.handshake.query.userId2
+    const userImage1 = socket.handshake.query.userImage1
+    const userImage2 = socket.handshake.query.userImage2
 
     console.log(userId1)
     console.log(userId2)
@@ -172,9 +176,9 @@ onebyone.on('connection', (socket) => {
     }, function (error, result) {
         if (result == null) {
             result = new Room({
-                users: [{userId: userId1, regDate: moment(new Date())}, {
+                users: [{userId: userId1, regDate: moment(new Date()), userImage: userImage1}, {
                     userId: userId2,
-                    regDate: moment(new Date())
+                    regDate: moment(new Date()), userImage: userImage2
                 }],
                 roomId: roomId, chatCategory: 'onebyone', roomName: roomId, boardNum: 0
             })
@@ -206,6 +210,7 @@ onebyone.on('connection', (socket) => {
         socket.on("chatImg", (data)=> {
             var newMsg = new Msg({
                 userId: data.name,
+                userImage: data.userImage,
                 roomId: roomId,
                 msg: data.msg,
                 file: data.file,
@@ -248,6 +253,7 @@ onebyone.on('connection', (socket) => {
             // test객체를 new로 생성 해서 값을 입력
             var newMsg = new Msg({
                 userId: data.name,
+                userImage: data.userImage,
                 roomId: roomId,
                 msg: data.msg,
                 file: data.file,
@@ -328,6 +334,7 @@ clubChat.on('connection', (socket) => {
         // test객체를 new로 생성 해서 값을 입력
         var newMsg = new Msg({
             userId: data.name,
+            userImage: data.userImage,
             roomId: roomId,
             msg: data.msg,
             file: data.file,
@@ -381,6 +388,8 @@ dealChat.on('connection', (socket) => {
     const userId1 = socket.handshake.query.userId1
     const userId2 = socket.handshake.query.userId2
     const boardNum = socket.handshake.query.boardNum
+    const userImage1 = socket.handshake.query.userImage1
+    const userImage2 = socket.handshake.query.userImage2
 
     console.log("유저 아이디1:" + userId1)
     console.log("유저 아이디2:" + userId2)
@@ -400,9 +409,9 @@ dealChat.on('connection', (socket) => {
     }, function (error, result) {
         if (result == null) {
             result = new Room({
-                users: [{userId: userId1, regDate: moment(new Date())}, {
+                users: [{userId: userId1, regDate: moment(new Date()),userImage:userImage1}, {
                     userId: userId2,
-                    regDate: moment(new Date())
+                    regDate: moment(new Date()),userImage:userImage2
                 }],
                 roomId: roomId, chatCategory: 'dealChat', roomName: roomId, boardNum: boardNum
             })
@@ -436,6 +445,7 @@ dealChat.on('connection', (socket) => {
 
             var newMsg = new Msg({
                 userId: data.name,
+                userImage: data.userImage,
                 roomId: roomId,
                 msg: data.msg,
                 file: data.file,

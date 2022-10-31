@@ -20,6 +20,10 @@ body::-webkit-scrollbar {
     text-align: -webkit-center;
 }
 
+.clubCard{
+    /*width: 360px;*/
+}
+
 .bi-heart-fill {
     fill : #ff0000
 }
@@ -39,7 +43,7 @@ body::-webkit-scrollbar {
 }
 
 .card-title {
-    width: 250px;
+    width: 100%;
     font-size: 1.2em;
 }
 
@@ -64,7 +68,8 @@ button.buttonBox {
 }
 
 .col.clubBox {
-    width: 320px;
+    width: 360px;
+    padding: 0;
 }
 
 .add {
@@ -91,6 +96,7 @@ svg {
 .clubTag {
     height: 210px;
     margin-top: 5px;
+    word-break: keep-all;
     --bs-btn-color: #000000;
     --bs-btn-border-color: #000000;
     --bs-btn-hover-color: #000000;

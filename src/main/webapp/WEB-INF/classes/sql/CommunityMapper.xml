@@ -1,0 +1,409 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="CommunityMapper">
+
+    <resultMap id="villBoardSelect" type="villBoard">
+        <result property="villBoardNum"     column="vill_board_num"     jdbcType="INTEGER"/>
+        <result property="userId"           column="user_id"            jdbcType="VARCHAR"/>
+        <result property="villCode"         column="vill_code"          jdbcType="VARCHAR"/>
+        <result property="villTitle"        column="vill_title"         jdbcType="VARCHAR"/>
+        <result property="villText"         column="vill_text"          jdbcType="VARCHAR"/>
+        <result property="villTag"          column="vill_tag"           jdbcType="VARCHAR"/>
+        <result property="regDate"          column="reg_date"           jdbcType="DATE"/>
+        <result property="viewCount"        column="view_count"         jdbcType="INTEGER"/>
+        <result property="likeCount"        column="like_count"         jdbcType="INTEGER"/>
+        <result property="boardCategory"    column="board_category"     jdbcType="INTEGER"/>
+        <result property="userImg"          column="user_image"     jdbcType="INTEGER"/>
+    </resultMap>
+
+
+    <resultMap id="liikeSelect" type="like">
+        <result property="likeNum"          column="like_num"           jdbcType="INTEGER"/>
+        <result property="userId"           column="user_id"            jdbcType="VARCHAR"/>
+        <result property="boardCategory"    column="board_category"     jdbcType="VARCHAR"/>
+        <result property="boardNum"         column="board_num"          jdbcType="VARCHAR"/>
+        <result property="likeCheck"        column="like_check"         jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <resultMap id="comemntSelect" type="comment">
+        <result property="commentNum"     column="comment_num"     jdbcType="INTEGER"/>
+        <result property="userId"         column="user_id"         jdbcType="VARCHAR"/>
+        <result property="clubNum"        column="club_num"       jdbcType="INTEGER"/>
+        <result property="boardNum"       column="board_Num"       jdbcType="INTEGER"/>
+        <result property="boardCategory"  column="board_category"  jdbcType="VARCHAR"/>
+        <result property="commentCheck"   column="comment_check"   jdbcType="VARCHAR"/>
+        <result property="commentText"    column="comment_text"    jdbcType="VARCHAR"/>
+        <result property="likeCount"      column="like_count"      jdbcType="INTEGER"/>
+        <result property="regDate"        column="reg_date"        jdbcType="DATE"/>
+        <result property="userImg"        column="user_image"      jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="recommentSelect" type="recomment">
+        <result property="recommentNum"     column="recomment_num"     jdbcType="INTEGER"/>
+        <result property="commentNum"       column="comment_num"       jdbcType="INTEGER"/>
+        <result property="userId"           column="user_id"           jdbcType="VARCHAR"/>
+        <result property="boardCategory"    column="board_category"    jdbcType="VARCHAR"/>
+        <result property="recommentText"    column="recomment_text"    jdbcType="VARCHAR"/>
+        <result property="likeCount"        column="like_count"        jdbcType="INTEGER"/>
+        <result property="regDate"          column="reg_date"          jdbcType="DATE"/>
+        <result property="userImg"          column="user_image"        jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--우리 동네 게시판-->
+    <insert id="addVillBoard" parameterType="villBoard" useGeneratedKeys="true">
+        INSERT INTO
+            vill_board (vill_board_num,user_id, vill_code ,vill_title,vill_text ,vill_tag,reg_date,board_category)
+        VALUES ( seq_vill_board.NEXTVAL
+               ,#{userId}
+               ,#{villCode}
+               ,#{villTitle}
+               ,#{villText}
+               ,#{villTag}
+               ,SYSDATE
+               ,#{boardCategory}
+               )
+        <selectKey keyProperty="villBoardNum" resultType="int"  order="AFTER">
+            SELECT seq_vill_board.CURRVAL FROM DUAL
+        </selectKey>
+    </insert>
+
+
+    <update id="updateVillBoard" parameterType="villBoard">
+        UPDATE vill_board
+        <set>
+            vill_title = #{villTitle}
+            ,vill_text = #{villText}
+            ,vill_tag = #{villTag}
+            ,reg_date = SYSDATE
+        </set>
+        WHERE vill_board_num = #{villBoardNum}
+    </update>
+
+
+    <delete id="deleteVillBoard" parameterType="int">
+        DELETE vill_board
+        WHERE vill_board_num = #{villBoardNum}
+    </delete>
+
+    <sql id="getVillBoardSql">
+        SELECT vb.* , us.USER_IMAGE
+        FROM VILL_BOARD vb, users us
+        WHERE vb.user_id =  us.USER_ID
+            AND vb.vill_code LIKE '%'||#{villCode}||'%'
+
+
+
+        <if test="search.searchCondition == 1">
+            AND vill_title LIKE '%'||#{search.searchKeyword}||'%'
+            ORDER BY vill_board_num DESC
+        </if>
+        <if test="search.searchCondition == 2">
+            ORDER BY like_count DESC NULLS LAST
+        </if>
+        <if test="search.searchCondition == 3">
+            ORDER BY view_count DESC NULLS LAST
+        </if>
+        <if test="search.searchCondition == 4">
+            AND vill_tag like '%'||#{search.searchKeyword}||'%'
+            ORDER BY vill_board_num DESC
+        </if>
+    </sql>
+
+
+    <select id="getTotalvillBoard" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM (
+        <include refid="getVillBoardSql"/>
+        )
+    </select>
+
+    <select id="listVillBoard" parameterType="map" resultMap="villBoardSelect">
+        SELECT * FROM (
+        SELECT ROWNUM row_num, vt.* FROM (
+        <include refid="getVillBoardSql"/>
+        ) vt
+        <if test="search.currentPage*search.pageSize!=0">
+            WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}
+        </if>
+        )
+        <where>
+            <if test="search.currentPage*search.pageSize!=0">
+                row_num >= ((#{search.currentPage}-1)*#{search.pageSize}+1)
+            </if>
+        </where>
+    </select>
+
+
+
+
+
+    <!--종아요-->
+    <insert id="addLike" parameterType="map">
+        INSERT INTO
+            likes (like_num,user_id,board_category,board_num,like_check)
+        VALUES (seq_likes.NEXTVAL
+               ,#{userId}
+               ,#{boardCategory}
+               ,#{boardNum}
+               ,#{likeCheck} )
+    </insert>
+
+    <update id="updateLike" parameterType="map">
+        UPDATE likes
+        <set>
+            like_check = #{likeCheck}
+        </set>
+        WHERE board_num = #{boardNum}
+        AND board_category = #{boardCategory}
+        AND user_id = #{userId}
+    </update>
+
+    <select id="checkLike" parameterType="map" resultType="String">
+        SELECT LIKE_CHECK FROM likes
+        WHERE board_num = #{boardNum}
+          AND board_category = #{boardCategory}
+          AND user_id = #{userId}
+    </select>
+
+
+    <update id="updateLikeCount" parameterType="map">
+        UPDATE
+        <if test="boardCategory == 1 or boardCategory == 2">
+            club_calendar_review
+            <set>
+                like_count = #{likeCount} + 1
+            </set>
+            WHERE club_calendar_review_num = #{boardNum}
+        </if>
+        <if test="boardCategory == 3">
+            vill_board
+            <set>
+                like_count = #{likeCount} + 1
+            </set>
+            WHERE vill_board_num =#{boardNum}
+        </if>
+        <if test="boardCategory==10">
+            comments
+            <set>
+                like_count = #{likeCount}+1
+            </set>
+            where comment_num = #{boardNum}
+        </if>
+        <if test="boardCategory==11">
+            recomment
+            <set>
+                like_count = #{likeCount}+1
+            </set>
+            where recomment_num = #{boardNum}
+        </if>
+        <if test="boardCategory == '08' or boardCategory == '09'">
+            deal
+            <set>
+                like_count = #{likeCount} +1
+            </set>
+            WHERE deal_board_num = #{boardNum}
+        </if>
+
+    </update>
+
+    <update id="deleteLikeCount" parameterType="map">
+        UPDATE
+        <if test="boardCategory == 1 or boardCategory == 2">
+            club_calendar_review
+            <set>
+                like_count = #{lieCount} -1
+            </set>
+            WHERE club_calendar_review_num = #{boardNum}
+        </if>
+        <if test="boardCategory == 3">
+            vill_board
+            <set>
+                like_count = #{likeCount} -1
+            </set>
+            WHERE vill_board_num = #{boardNum}
+        </if>
+        <if test="boardCategory == 10">
+            comments
+            <set>
+                like_count = #{likeCount} -1
+            </set>
+            WHERE comment_num = #{boardNum}
+        </if>
+        <if test="boardCategory == 11">
+            recomment
+            <set>
+                like_count = #{likeCount} -1
+            </set>
+            WHERE recomment_num = #{boardNum}
+        </if>
+        <if test="boardCategory == '08' or boardCategory =='09'">
+            deal
+            <set>
+                like_count = #{likeCount} -1
+            </set>
+            WHERE deal_board_num = #{boardNum}
+        </if>
+
+    </update>
+
+    <select id="getLikeCount" parameterType="map" resultType="int">
+        SELECT like_count
+        <if test="boardCategory == 1 or boardCategory == 2">
+            FROM club_calendar_review
+            WHERE club_calendar_review_num = #{boardNum}
+        </if>
+        <if test="boardCategory ==3">
+            FROM vill_board
+            WHERE vill_board_num = #{boardNum}
+        </if>
+        <if test="boardCategory == 10">
+            FROM comments
+            WHERE comment_num = #{boardNum}
+        </if>
+        <if test="boardCategory == 11">
+            FROM recomment
+            WHERE recomment_num = #{boardNum}
+        </if>
+        <if test="boardCategory == '08' or boardCategory == '09'">
+            FROM deal
+            WHERE deal_board_num=#{boardNum}
+        </if>
+
+    </select>
+
+    <delete id="deleteAllLike" parameterType="map">
+        DELETE likes
+        WHERE board_num = #{boardNum}
+        AND board_category = #{boardCategory}
+    </delete>
+
+    <!--조회수-->
+    <update id="updateViewCount" parameterType="map">
+        UPDATE
+        <if test="boardCategory == 1 or boardCategory == 2">
+            club_calendar_review
+            <set>
+                view_count=#{viewCount} +1
+            </set>
+            WHERE club_calendar_review_num = #{boardNum}
+        </if>
+        <if test="boardCategory == 3">
+            vill_board
+            <set>
+                view_count=#{viewCount} +1
+            </set>
+            WHERE vill_board_num = #{boardNum}
+        </if>
+    </update>
+
+    <select id="getViewCount" parameterType="map" resultType="int">
+        SELECT view_count
+        <if test="boardCategory == 1 or boardCategory == 2">
+            FROM club_calendar_review
+            WHERE club_calendar_review_num = #{boardNum}
+        </if>
+        <if test="boardCategory == 3">
+            FROM vill_board
+            WHERE vill_board_num = #{boardNum}
+        </if>
+    </select>
+
+    <!--댓글-->
+    <insert id="addComment" parameterType="comment">
+        INSERT INTO
+            comments(comment_num,user_id,club_num,board_Num,board_category,comment_check,comment_text,reg_date)
+        VALUES(seq_comments.NEXTVAL
+              ,#{userId}
+              ,#{clubNum}
+              ,#{boardNum}
+              ,#{boardCategory}
+              ,#{commentCheck}
+              ,#{commentText}
+              ,SYSDATE)
+    </insert>
+
+    <update id="updateComment" parameterType="comment">
+        UPDATE comments
+        <set>
+            comment_text = #{commentText}
+        </set>
+        WHERE comment_num = #{commentNum}
+    </update>
+
+    <update id="deleteComment" parameterType="comment">
+        UPDATE comments
+        <set>
+            comment_check = #{commentCheck}
+        </set>
+        WHERE comment_num = #{commentNum}
+    </update>
+
+    <select id="listComment"  parameterType="map" resultMap="comemntSelect">
+        SELECT  cs.* , us.user_image
+        FROM comments cs, users us
+        WHERE board_num = #{boardNum}
+          AND board_category = #{boardCategory}
+          AND cs.user_id = us.user_id
+    </select>
+
+    <delete id="deleteAllComment" parameterType="map">
+        DELETE comments
+        WHERE BOARD_NUM = #{boardNum}
+        AND board_category = #{boardCategory}
+    </delete>
+
+    <!--대댓글-->
+    <insert id="addRecomment" parameterType="recomment">
+        INSERT INTO
+            recomment (recomment_num,comment_num,user_id,board_category,recomment_text,reg_date)
+        VALUES (seq_recomment.NEXTVAL
+               ,#{commentNum}
+               ,#{userId}
+               ,#{boardCategory}
+               ,#{recommentText}
+               ,SYSDATE
+               )
+    </insert>
+
+    <update id="updateRecomment" parameterType="recomment">
+        UPDATE recomment
+        <set>
+            recomment_text = #{recommentText}
+        </set>
+        WHERE recomment_num = #{recommentNum}
+    </update>
+
+    <delete id="deleteRecomment" parameterType="int">
+        DELETE recomment
+        WHERE recomment_num = #{recommentNun}
+    </delete>
+
+    <select id="listRecomment" parameterType="map" resultMap="recommentSelect">
+        select rt.* , us.user_image
+        from RECOMMENT rt, users us
+        where COMMENT_NUM = #{commentNum}
+            AND rt.user_id = us.user_id
+    </select>
+
+    <!--게시글 지우기-->
+    <delete id="deleteBoard" parameterType="map">
+        DELETE
+        <if test="boardCategory == 1 || boardCategory == 2">
+            club_calendar_review
+            WHERE club_calendar_review_num = #{boardNum}
+        </if>
+        <if test="boardCategory == 3">
+            vill_board
+            WHERE vill_board_num=#{boardNum}
+        </if>
+        <if test="boardCategory == 12">
+            recomment
+            WHERE recomment_num = #{boardNum}
+        </if>
+    </delete>
+
+
+
+</mapper>

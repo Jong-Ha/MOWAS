@@ -1,5 +1,6 @@
 package com.project.myPage.dao;
 
+import com.project.common.Search;
 import com.project.domain.*;
 
 import java.util.List;
@@ -36,6 +37,8 @@ public interface MyPageDao {
     public List<Deal> getMyDeal(String userId)throws Exception;
 
     public List<CommunityReport> getMyReport(String userId)throws Exception;
+
+    public int getTotalCount(Search search)throws Exception;
 
     public List<CommunityReport> getMyPpt(String userId)throws Exception;
 

@@ -206,16 +206,16 @@
 //     });
 
             //판매요청 리스트
-            $(".dealCategory").on("change", function () {
-                if ($(".dealCategory").val() == "08") {
-                    location.href = "/deal/getListDeal?boardCategory=" + $(".dealCategory").val();
-                } else if ($(".dealCategory").val() == "09") {
-                    location.href = "/deal/getListDeal?boardCategory=" + $(".dealCategory").val();
-                } else if ($(".dealCategory").val() == "99") {
-                    alert("dsjfjewljr'w")
-                    location.href = "/deal/getListDeal?boardCategory=" + $(".dealCategory").val();
-                }
-            })
+            // $(".dealCategory").on("change", function () {
+            //     if ($(".dealCategory").val() == "08") {
+            //         location.href = "/deal/getListDeal?boardCategory=" + $(".dealCategory").val();
+            //     } else if ($(".dealCategory").val() == "09") {
+            //         location.href = "/deal/getListDeal?boardCategory=" + $(".dealCategory").val();
+            //     } else if ($(".dealCategory").val() == "99") {
+            //         alert("dsjfjewljr'w")
+            //         location.href = "/deal/getListDeal?boardCategory=" + $(".dealCategory").val();
+            //     }
+            // })
 
             // $(this).attr("action","/deal/getListDeal/09").attr("method","post")--%>
 
@@ -267,8 +267,8 @@
             // })
             $(".addDeal").on('click', function () {
                 var userId = $(".userId").val();
-                // alert(userId)
-                // alert($(".userId").val())
+                 alert(userId)
+                 alert($(".userId").val())
                 if (userId === '' || userId === null) {
                     alert("로그인후 사용해 주세요")
 
@@ -359,6 +359,114 @@
                 location.href = "/deal/getListDeal?boardCategory=" + "09";
             });
         })
+
+        //무한스크롤
+        $(function () {
+            function getFormJson(selector) {
+                // Select Form
+                let selForm = document.querySelector(selector);
+
+                // Getting an FormData
+                let data = new FormData(selForm);
+
+                // Getting a Serialize Data from FormData
+                let serializedFormData = serialize(selector, data);
+
+                // Log
+                console.log(JSON.stringify(serializedFormData));
+                return JSON.stringify(serializedFormData)
+            }
+
+            function serialize(selector, rawData) {
+
+                let rtnData = {};
+                for (let [key, value] of rawData) {
+                    let sel = document.querySelectorAll(selector + " [name=" + key + "]");
+
+                    // Array Values
+                    if (sel.length > 1) {
+                        if (rtnData[key] === undefined) {
+                            rtnData[key] = [];
+                        }
+                        rtnData[key].push(value);
+                    }
+                    // Other
+                    else {
+                        rtnData[key] = value;
+                    }
+                }
+
+                return rtnData;
+            }
+
+            let loadCheck = false
+            $(window).on('scroll', function () {
+                console.log($(window).scrollTop())
+                console.log($(document).height() - $(window).height())
+                if ($(document).height() - $(window).height() - $(window).scrollTop() < 1300) {
+                    if (loadCheck) {
+                        return
+                    }
+                    loadCheck = true
+                    console.log('ajax!')
+
+                    // const data = $('#listForm').serializeArray()
+                    // console.log(data)
+
+                    const json = getFormJson('#listForm')
+                    alert(json)
+                    $.ajax({
+                        url: '/deal/json/getListDeal',
+                        method: 'post',
+                        'data': json,
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (re) {
+                            alert("되나요 ?")
+                            $.each(re.list, function (index, item) {
+                                console.log(index)
+                                console.log(item)
+                                let html = '<div class="cardbox">' +
+                                    '<div class="col dealBox">' +
+                                    '<input type="hidden" name="dealBoardNum" class="dealBoardNum" value="' + item.dealBoardNum + '">' +
+                                    ' <div class="card h-100 shadow-lg">' +
+                                    ' <div class="card-footer" style=" border-bottom: 1px solid; display: flex; font-weight: bold">' + item.dealTitle +
+                                    '<p class="allFlex " style="position: absolute; right: 10px;">'
+                                if (item.dealStatus === 0) {
+                                    html += '거래전'
+                                } else if (item.dealStatus === 1) {
+                                    html += '거래중'
+                                } else {
+                                    html += '거래완료'
+                                }
+                                html += '</div>' +
+                                    '<div class= "potoBox">' +
+                                    '<img class="poto" width="100%" height="100%" src="/resources/"+item.files[0].fileName+" alt="any">' +
+                                    '</div>' +
+                                    '<div class="cardM " style="display: flex; padding: 10px 0 0 10px; height: 120px; ">' +
+                                    ' <div class="dealinfo cartFont" style="flex: 1; width: 50%;">' +
+                                    '<p class="allFlex" style="font-size: 1.3em; font-weight: bold"> +item.price+ 원 </p>' +
+                                    ' <p class="allFlex" style="font-size: 1.3em; font-weight: bold">+item.villCode + ∙ + item.dealRegDate+</p>' +
+                                    '<p class="allFlex" style="font-size: 1em"> 좋아요 +item.likeCount+∙조회수 +item.viewCount+ </p>' +
+                                    '   </div>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>'
+
+                                $('.wap').append($(html))
+                            })
+                            $('.listForm.currentPage').val(parseInt($('#listForm .currentPage').val()));
+                            // setListDeal()
+                            // if (re.list.length > 0) {
+                            //     loadCheck = false
+                            // } else {
+                            //     $(window).off('scroll')
+                            // }
+                        }
+                    })
+                }
+            })
+        })
     </script>
 
 
@@ -386,7 +494,8 @@
             display: flex;
             flex-direction: row;
             margin-bottom: 30px;
-            float: left;
+
+            transition: all 0.2s linear;
         }
 
         button.buttonBox {
@@ -399,7 +508,7 @@
 
         .col.dealBox {
             width: 320px;
-            margin-right: 30px;
+            /*margin-right: 30px;*/
         }
 
         .like {
@@ -411,6 +520,9 @@
         }
 
         .addBox {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 50px;
         }
 
@@ -443,7 +555,8 @@
         .cardbox {
             display: flex;
             flex-direction: row;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+
             float: left;
             transition: all 0.2s linear;
         }
@@ -613,66 +726,71 @@
 
 
     <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
+    <form id="listForm">
+        <input type="hidden" class="currentPage" name="currentPage" value="2">
+        <input hidden class="userId" value="${user.userId}">
+        <input hidden class="boardCategory" value="" name="boardCategory">
+        <input type="hidden" class="searchKeyword" name="searchKeyword" value="">
+        <input type="hidden" class="searchCondition" name="searchCondition" value="">
+        <nav class="navbar navbar-expand-lg deallistBox">
 
-    <nav class="navbar navbar-expand-lg deallistBox">
+            <div>
+                <div class="underline yellow allList">전체</div>
+            </div>
 
-        <div>
-            <div class="underline yellow allList">전체</div>
-        </div>
+            <div>
+                <div class="underline yellow deallist">판매</div>
+            </div>
 
-        <div>
-            <div class="underline yellow deallist">판매</div>
-        </div>
+            <div>
+                <div class="underline yellow dealrequestlist">판매 요청</div>
+            </div>
 
-        <div>
-            <div class="underline yellow dealrequestlist">판매 요청</div>
-        </div>
+        </nav>
+        <hr>
+        <%--
+        사진 들어가야지 ??
 
-    </nav>
-    <hr>
-    <%--
-    사진 들어가야지 ??
-
-    --%>
-
-
-    <%--  <div class="add" style="display:flex;justify-content: space-between;align-items: center;">--%>
-    <%--    <button class="btn btn-primary addDeal">--%>
-    <%--      거래 만들기--%>
-    <%--    </button>--%>
-    <%--    <div>--%>
-    <%--      <button class="btn btn-primary deal" value="08">--%>
-    <%--        판매--%>
-    <%--      </button>--%>
-    <%--      <button class="btn btn-primary dealRequest" value="09">--%>
-    <%--        판매요청--%>
-    <%--      </button>--%>
-    <%--      <button class="btn btn-primary searchTag">--%>
-    <%--        태그--%>
-    <%--      </button>--%>
-    <%--    </div>--%>
-    <%--  </div>--%>
+        --%>
 
 
-    <%--버튼 모음 시작--%>
-    <div class="addBox" style="display:flex;justify-content: space-between;align-items: center;">
-        <button class="btn btn-primary addDeal" data-bs-toggle="modal" data-bs-target="#addDeal">
-            거래 작성
-        </button>
+        <%--  <div class="add" style="display:flex;justify-content: space-between;align-items: center;">--%>
+        <%--    <button class="btn btn-primary addDeal">--%>
+        <%--      거래 만들기--%>
+        <%--    </button>--%>
+        <%--    <div>--%>
+        <%--      <button class="btn btn-primary deal" value="08">--%>
+        <%--        판매--%>
+        <%--      </button>--%>
+        <%--      <button class="btn btn-primary dealRequest" value="09">--%>
+        <%--        판매요청--%>
+        <%--      </button>--%>
+        <%--      <button class="btn btn-primary searchTag">--%>
+        <%--        태그--%>
+        <%--      </button>--%>
+        <%--    </div>--%>
+        <%--  </div>--%>
 
 
-        <div>
-            <%--            <select class="btn btn-primary dealCategory" name="dealCategory">--%>
-            <%--                &lt;%&ndash;  <option selected>판매구분</option>&ndash;%&gt;--%>
-            <%--                <option value="99" ${boardCategory == "99"? 'selected':''}>전체</option>--%>
-            <%--                <option value="08" ${boardCategory == "08"? 'selected':''}>판매</option>--%>
-            <%--                <option value="09" ${boardCategory == "09"? 'selected':''}>판매요청</option>--%>
-            <%--            </select>--%>
+        <%--버튼 모음 시작--%>
+        <div class="addBox" style="display:flex;justify-content: space-between;align-items: center;">
+            <button class="btn btn-primary addDeal" data-bs-toggle="modal" data-bs-target="#addDeal">
+                거래 작성
+            </button>
 
-            <%--            <button class="center btn btn-primary searchTag">--%>
-            <%--                태그--%>
-            <%--            </button>--%>
-<%--            <form class="form-inline" name="detailForm">--%>
+
+            <div>
+                <%--            <select class="btn btn-primary dealCategory" name="dealCategory">--%>
+                <%--                &lt;%&ndash;  <option selected>판매구분</option>&ndash;%&gt;--%>
+                <%--                <option value="99" ${boardCategory == "99"? 'selected':''}>전체</option>--%>
+                <%--                <option value="08" ${boardCategory == "08"? 'selected':''}>판매</option>--%>
+                <%--                <option value="09" ${boardCategory == "09"? 'selected':''}>판매요청</option>--%>
+                <%--            </select>--%>
+
+                <%--            <button class="center btn btn-primary searchTag">--%>
+                <%--                태그--%>
+                <%--            </button>--%>
+                <%--            <form class="form-inline" name="detailForm">--%>
 
                 <%--        <div class="form-group">--%>
                 <%--                    <select class="form-control" name="searchCondition">--%>
@@ -694,78 +812,84 @@
                 <%--                <button type="submit" class="btn btn-secondary">--%>
                 <%--                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>--%>
                 <%--                <!-- PageNavigation 선택 페이지 값을 보내는 부분 -->--%>
-                <%--                <input type="hidden" id="currentPage" name="currentPage" value=""/>--%>
+<%--                <input type="hidden" id="currentPage" name="currentPage" value="2"/>--%>
                 <%--    <span class="_1knjz499"><input class="_1knjz49b" placeholder="물품을 검색해보세요" value=""/></span></span>--%>
-<%--                            </form>--%>
+                <%--                            </form>--%>
                 <div class="input-group mb-3">
                     <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                             aria-expanded="false">검색
                     </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">제목</a></li>
-                        <li><a class="dropdown-item" href="#">상품명</a></li>
+                    <ul class="dropdown-menu" name="searchCondition">
+                        <li><a class="dropdown-item" href="#" value="0"${!empty search.searchCondition&&search.searchCondition==0 ? "selected":"" }>제목</a></li>
+                        <li><a class="dropdown-item" href="#" value="1"${!empty search.searchCondition&&search.searchCondition==0 ? "selected":"" }>상품명</a></li>
 
                     </ul>
-                    <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                </div>
-        </div>
-    </div>
-    <%--버튼 모음 끝--%>
-    <div class="wap">
-
-        <c:set var="i" value="0"/>
-        <c:forEach var="deal" items="${list}">
-            <c:set var="i" value="${i+1}"/>
-            <div class="row row-cols-1 row-cols-md-3 g-4 cardbox">
-                <div class="col dealBox">
-                    <input type="hidden" name="dealBoardNum" class="dealBoardNum" value="${deal.dealBoardNum}">
-                    <div class="card h-100 shadow-lg">
-                        <div class="card-footer" style=" border-bottom: 1px solid; display: flex; font-weight: bold">
-                                ${deal.dealTitle}
-                            <p class="allFlex " style="position: absolute; right: 10px;"><c:if
-                                    test="${deal.dealStatus == 0}">
-                                거래전
-                            </c:if>
-                                <c:if test="${deal.dealStatus ==1}">
-                                    거래중
-                                </c:if>
-                                <c:if test="${deal.dealStatus ==2}">
-                                    거래완료
-                                </c:if></p>
-                        </div>
-                            <%--  <div id="carouselExampleSlidesOnly" class="carousel potoBox" data-bs-ride="carousel">--%>
-                        <div class="potoBox">
-                                <%--    <div class="carousel-inner">--%>
-                                <%--      <div class="carousel-item active get">--%>
-                            <img class="poto" width="100%" height="100%" src="/resources/${deal.files[0].fileName}"
-                                 alt="any">
-                                <%--      </div>--%>
-                                <%--    </div>--%>
-                        </div>
-                        <div class="cardM " style="display: flex; padding: 10px 0 0 10px; height: 120px;; ">
-                                <%--                            <div class="card-text text allFlex" style="width: 50%; ">--%>
-                                <%--                                    ${deal.productName}--%>
-                                <%--                            </div>--%>
-
-                            <div class="dealinfo cartFont" style="flex: 1; width: 50%;">
-                                <p class="allFlex" style="font-size: 1.3em; font-weight: bold"> ${deal.price} 원 </p>
-                                <p class="allFlex" style="font-size: 1.3em; font-weight: bold">${deal.villCode}
-                                    ∙ ${deal.dealRegDate}</p>
-                                <p class="allFlex" style="font-size: 1em"> 좋아요 ${deal.likeCount} ∙
-                                    조회수 ${deal.viewCount} </p>
-
-                            </div>
-                        </div>
-                            <%--                        <div class="tags" style="height: 30px;">--%>
-
-                            <%--                                &lt;%&ndash;              ${deal.tag}&ndash;%&gt;--%>
-
-                            <%--                        </div>--%>
-
-                    </div>
+                    <input type="text" class="form-control" id="searchKeyword" name="searchKeyword" aria-label="Text input with dropdown button">
                 </div>
             </div>
-        </c:forEach>
+        </div>
+    </form>
+    <%--버튼 모음 끝--%>
+    <div class="wap">
+        <div style="    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;">
+            <c:set var="i" value="0"/>
+            <c:forEach var="deal" items="${list}">
+                <c:set var="i" value="${i+1}"/>
+                <div class="cardbox">
+                    <div class="col dealBox">
+                        <input type="hidden" name="dealBoardNum" class="dealBoardNum" value="${deal.dealBoardNum}">
+                        <div class="card h-100 shadow-lg">
+                            <div class="card-footer"
+                                 style=" border-bottom: 1px solid; display: flex; font-weight: bold">
+                                    ${deal.dealTitle}
+                                <p class="allFlex " style="position: absolute; right: 10px;"><c:if
+                                        test="${deal.dealStatus == 0}">
+                                    거래전
+                                </c:if>
+                                    <c:if test="${deal.dealStatus ==1}">
+                                        거래중
+                                    </c:if>
+                                    <c:if test="${deal.dealStatus ==2}">
+                                        거래완료
+                                    </c:if></p>
+                            </div>
+                                <%--  <div id="carouselExampleSlidesOnly" class="carousel potoBox" data-bs-ride="carousel">--%>
+                            <div class="potoBox">
+                                    <%--    <div class="carousel-inner">--%>
+                                    <%--      <div class="carousel-item active get">--%>
+                                <img class="poto" width="100%" height="100%" src="/resources/${deal.files[0].fileName}"
+                                     alt="any">
+                                    <%--      </div>--%>
+                                    <%--    </div>--%>
+                            </div>
+                            <div class="cardM " style="display: flex; padding: 10px 0 0 10px; height: 120px;; ">
+                                    <%--                            <div class="card-text text allFlex" style="width: 50%; ">--%>
+                                    <%--                                    ${deal.productName}--%>
+                                    <%--                            </div>--%>
+
+                                <div class="dealinfo cartFont" style="flex: 1; width: 50%;">
+                                    <p class="allFlex" style="font-size: 1.3em; font-weight: bold"> ${deal.price} 원 </p>
+                                    <p class="allFlex" style="font-size: 1.3em; font-weight: bold">${deal.villCode}
+                                        ∙ ${deal.dealRegDate}</p>
+                                    <p class="allFlex" style="font-size: 1em"> 좋아요 ${deal.likeCount} ∙
+                                        조회수 ${deal.viewCount} </p>
+
+                                </div>
+                            </div>
+                                <%--                        <div class="tags" style="height: 30px;">--%>
+
+                                <%--                                &lt;%&ndash;              ${deal.tag}&ndash;%&gt;--%>
+
+                                <%--                        </div>--%>
+
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
     </div>
 
 </div>
@@ -905,6 +1029,7 @@
     </div>
 
 </c:if>
+
 <%--거래 만들기 모달창 끝--%>
 
 
