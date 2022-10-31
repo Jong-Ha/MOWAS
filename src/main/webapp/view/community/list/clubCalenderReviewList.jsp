@@ -446,7 +446,7 @@
 <img src="${pageContext.request.contextPath}/resources/images/mim.jpeg"
      style="height: 500px;border-radius: 10px;  width: 1600px;">
 
-<div class="wap">
+<div class="container">
     <jsp:include page="/layout/commubar.jsp"/>
     <input hidden class="boardCategory" value="1">
 

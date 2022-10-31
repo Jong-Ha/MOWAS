@@ -601,7 +601,7 @@
      style="height: 500px;border-radius: 10px;  width: 1600px;">
 
 <!-- Example Code -->
-<div class="wap">
+<div class="container">
 
     <jsp:include page="/layout/commubar.jsp"/>
 
