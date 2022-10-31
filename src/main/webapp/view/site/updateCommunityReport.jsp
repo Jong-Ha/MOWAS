@@ -153,7 +153,9 @@
                                 </div>
 
 <form class="form-horizontal" name="detailForm">
+    ${user.userId}
 
+    <input type="hidden" name="adminId" value="${user.userId}">
     <%--관리자 아이디 : ${masterBoard.adminId} </br>--%>
     <input type="hidden" name="reportNo" value="${communityReport.reportNo}">
 

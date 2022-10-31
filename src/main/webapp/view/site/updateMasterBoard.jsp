@@ -102,6 +102,6 @@
         </form>
       </div>
       <div class="modal-footer text-center">
-        <button type="button" class="btn btn-danger updateMb" data-bs-dismiss="modal" style="margin-right: 185px">수 정</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >취소</button>
+        <button type="button" class="btn btn-danger updateMb" data-bs-dismiss="modal">수 정</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
       </div>

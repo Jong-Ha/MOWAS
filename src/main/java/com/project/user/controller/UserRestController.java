@@ -474,8 +474,9 @@ public class UserRestController {
 
             // ajax에서 성공 결과에서 ok인지 no인지에 따라 다른 페이지에 갈 수 있게끔 result의 기본값을 "no"로 선언
         String result = "no";
-
-        if(user!=null) {
+        User naverUser2 = userService.getUser2(email);
+        System.out.println("마지막 user의값 !!"+user);
+        if(naverUser2!=null) {
             // user가 비어있지 않는다는건 데이터를 잘 받아왔다는 뜻이므로 result를 "ok"로 설정
             result = "ok";
         }

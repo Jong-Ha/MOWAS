@@ -186,7 +186,7 @@ public class SiteServiceImpl implements SiteService {
         System.out.println("++++listClubReportProcess " +list);
 
         Map<String,Object> totalCountmap = new HashMap<String, Object>();
-        totalCountmap.put("where", "clubReportList");
+        totalCountmap.put("where", "clubReportProcessList");
         int totalCount = siteDao.getTotalCount(totalCountmap);
 
         System.out.println("++++totalCount:: " +totalCount+ "++++++");

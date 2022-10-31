@@ -5,6 +5,25 @@
 <head>
     <title>Title</title>
 </head>
+<style>
+    .tabBox {
+        display: flex;
+        margin: 0 15px;
+    }
+
+    .tabBox span {
+        font-size: 25px;
+        margin: 5px;
+        font-weight: bolder;
+    }
+
+    .tabBox span.tabBtn {
+        font-size: 25px;
+        margin: 5px;
+        font-weight: bolder;
+        cursor: pointer;
+    }
+</style>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
@@ -17,7 +36,16 @@
 
         $("form").attr("method" , "POST").attr("action" , "/myPage/getMyPpt").submit();
     }
+    $(function(){
+        var userId = $(".myPageUserId").val();
 
+        $(".getMyPpt").on("click", function (){
+            self.location="/myPage/getMyPpt?userId="+userId;
+        })
+        $(".getMyReport").on("click", function (){
+            self.location="/myPage/getMyReport?userId="+userId;
+        })
+    })
 </script>
 <body>
 <form>
@@ -26,14 +54,13 @@
 
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
-<hr/>
+    <div class="tabBox">
+        <span class="tabBtn getMyPpt" >내 벌점 조회</span>
+        <span>|</span>
+        <span class="tabBtn getMyReport" >내가 신고한 내역</span class="tabBtn">
+    </div>
 
     <div class="container">
-        <div class="row my-5">
-            <div class="col-4 d-flex justify-content-between">
-                <h5 class="fw-bold">내 벌점 조회</h5>
-            </div>
-        </div>
         <hr>
         <table class="table table-bordered my-5">
             <thead>

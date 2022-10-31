@@ -232,8 +232,8 @@
 
                             <div class="input-group">
                                 <select class="form-control" name="searchCondition" >
-                                    <option value="0"${!empty search.searchCondition&&search.searchCondition==0 ? "selected":"" }>제목</option>
-                                    <option value="1"${!empty search.searchCondition&&search.searchCondition==1 ? "selected":"" }>내용</option>
+                                    <option value="0"${!empty search.searchCondition&&search.searchCondition==0 ? "selected":"" }>신고받은회원</option>
+                                    <option value="1"${!empty search.searchCondition&&search.searchCondition==1 ? "selected":"" }>게시판종류</option>
                                 </select>
                             </div>
 

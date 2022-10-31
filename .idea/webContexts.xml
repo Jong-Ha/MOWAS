@@ -28,6 +28,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/myPage/updateMyInfor.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/myPage" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/site/addCommunityReport.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/site" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/site/clubMap.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/site" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/site/getClubReport.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/site" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/site/getCommunityReport.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/site" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/site/getMasterBoard.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/site" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/site/listClubReport.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/site" />
