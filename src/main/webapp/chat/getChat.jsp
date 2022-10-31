@@ -485,7 +485,9 @@
                 roomId: '${roomId}',
                 userId1: '${userId}',
                 userId2: '${user.userId}',
-                boardNum: '${boardNum}'
+                boardNum: '${boardNum}',
+                userImage1: '${userImage}',
+                userImage2: '${user.userImage}'
             }
         })
         // 거래 계시판 번호 얻기
@@ -508,7 +510,7 @@
 
             $.each(msg, (index, item) => {
 
-                const newItem = new LiModel(item.userId[0], item.msg, item.time, item.file, item.imgCheck);
+                const newItem = new LiModel(item.userId[0], item.msg, item.time, item.file, item.imgCheck, item.userImage);
 console.log(item)
                 //makeLi를 실행한다.
                 newItem.makeLi();
@@ -531,7 +533,7 @@ console.log(item)
         //server에서 data를 받음
         socket.on("chatting", (newMsg) => {
 
-            const item = new LiModel(newMsg.userId, newMsg.msg, newMsg.time, newMsg.file, newMsg.imgCheck);
+            const item = new LiModel(newMsg.userId, newMsg.msg, newMsg.time, newMsg.file, newMsg.imgCheck, newMsg.userImage);
 console.log(newMsg)
             item.makeLi();
 
@@ -752,7 +754,8 @@ console.log(newMsg)
                         const data = {
                             name: nickname.value,
                             file: item.fileName,
-                            imgCheck: 2
+                            imgCheck: 2,
+                            userImage: '${user.userImage}'
                         }
 
                         socket.emit("chatImg", data);
@@ -778,18 +781,20 @@ console.log(newMsg)
 
         const data = {
             name: nickname.value,
-            msg: chatInput.value
+            msg: chatInput.value,
+            userImage: '${user.userImage}'
         }
         //Server에 socket.on으로 data정보를 전달
         socket.emit("chatting", data)
     }
 
-    function LiModel(name, msg, time, file, imgCheck) {
+    function LiModel(name, msg, time, file, imgCheck, userImage) {
         this.name = name;
         this.msg = msg;
         this.time = time;
         this.file = file
         this.imgCheck = imgCheck
+        this.userImage = userImage
 
         this.makeLi = () => {
             //li 상수에 li테크를 만드는 method를 담는다
@@ -799,10 +804,10 @@ console.log(newMsg)
                 li.innerHTML +=
                     '<span class="profile">' +
                     '<span class="user">' + this.name + '</span>' +
-                    '<img class="userimg" src="https://placeimg.com/50/50/any" alt="any">' +
+                    '<img class="userimg" src="/resources/'+this.userImage+'" alt="any">' +
                     '</span>'+
                     '<span class="message">'+
-                    '<img src="/resources/'+this.file+'" alt="/resources/images/proplePoto.png"></span>' +
+                    '<img src="/resources'+this.file+'" alt="/resources/images/proplePoto.png"></span>' +
                     '<span class="time">' + this.time + '</span>';
 
                 li.classList.add(nickname.value == this.name ? "Imgsent" : "Imgreceived")
@@ -813,7 +818,7 @@ console.log(newMsg)
                 li.innerHTML +=
                     '<span class="profile">' +
                     '<span class="user">' + this.name + '</span>' +
-                    '<img class="userimg" src="https://placeimg.com/50/50/any" alt="any">' +
+                    '<img class="userimg" src="/resources/'+this.userImage+'" alt="any">' +
                     '</span>'+
                     '<span class="message">' + this.msg + '</span>' +
                     '<span class="time">' + this.time + '</span>';
