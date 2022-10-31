@@ -291,7 +291,7 @@ $(function () {
             // console.log(data)
 
             const json = getFormJson('#listForm')
-
+alert(json)
             $.ajax({
                 url: '/club/json/listClub',
                 method: 'post',

@@ -392,7 +392,7 @@
                             <a class="nav-link active  underline yellow" aria-current="page" onclick="location.href='/club/listClub'"  style="color : #ffffff; font-size: 1.3em;">모임 게시판</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link  underline yellow" href="#" style="color : #ffffff;font-size: 1.3em;" onclick="location.href='/clubCal/listCalenderReview?boardCategory='+1 ">커뮤니티 게시판</a>
+                            <a class="nav-link  underline yellow" href="#" style="color : #ffffff;font-size: 1.3em;" onclick="location.href='/clubCal/listCalenderReview?boardCategory='+1+'&reviewRange=' + 1">커뮤니티 게시판</a>
                         </li>
 
                         <li class="nav-item">
