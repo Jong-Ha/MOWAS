@@ -27,15 +27,26 @@
 <%--상단 툴바--%>
 <jsp:include page="/layout/toolbar.jsp"/>
 
-<div class="wrapper">
-    <div class="typing">
-        <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
-                    background-image: linear-gradient(transparent 60%, #F8CD07 40%);">
-            모임 찾기</h4>
-    </div>
-</div>
+<%--<img src="/resources/images/club1.png" alt="대문사진" style="width: 1600px;height: 500px;object-fit: cover;border-radius: 10px;">--%>
+
+<%--<img src="/resources/images/club5.jpg" alt="대문사진" style="width: 1600px;height: 500px;object-fit: cover;border-radius: 10px;">--%>
+
+<%--<div class="shadow-lg" style="width: 1600px;height: 500px;border-radius: 10px;">--%>
+<%--    <img src="/resources/images/club6.png" alt="대문사진" style="width: 1600px;height: 500px;object-fit: contain;border-radius: 10px;">--%>
+<%--</div>--%>
+
+<img class="shadow-lg" src="/resources/images/club7.jpg" alt="대문사진" style="width: 1600px;height: 500px;object-fit: cover;border-radius: 10px;">
+
 <!-- Example Code -->
 <div class="container">
+    
+    <div class="wrapper">
+        <div class="typing">
+            <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
+                    background-image: linear-gradient(transparent 60%, #F8CD07 40%);">
+                모임 찾기</h4>
+        </div>
+    </div>
 
     <form id="listForm">
         <input type="hidden" class="searchLng" name="searchLng" value="">
@@ -161,7 +172,7 @@
             <button class="btn btn-primary searchTag" data-bs-toggle="modal" data-bs-target="#searchTagDialog">
                 태그
             </button>
-            <button class="btn btn-primary "searchListClub>
+            <button class="btn btn-primary searchListClub">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
                      viewBox="0 0 16 16" style="font-size: 20px;">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>

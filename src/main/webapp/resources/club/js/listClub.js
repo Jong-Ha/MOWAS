@@ -287,7 +287,7 @@ $(function () {
             // console.log(data)
 
             const json = getFormJson('#listForm')
-alert(json)
+// alert(json)
             $.ajax({
                 url: '/club/json/listClub',
                 method: 'post',
@@ -295,8 +295,8 @@ alert(json)
                 contentType: 'application/json; charset=utf-8',
                 success: function (re) {
                     $.each(re.list,function(index,item){
-                        console.log(index)
-                        console.log(item)
+                        // console.log(index)
+                        // console.log(item)
                         let html = '<div class="row row-cols-1 row-cols-md-3 g-4 cardbox">' +
                             '                <div class="col clubBox" style="cursor: pointer">' +
                             '                    <input type="hidden" name="clubNum" value="'+item.clubNum+'">' +

@@ -16,7 +16,7 @@
     $(function () {
 
         $("#login1").on("click", function () {
-            console.log('${user.userId}')
+            console.log('${sessionScope.user.userId}')
             console.log($.cookie("keepLogin"))
             if ($.cookie('keepLogin') != undefined) {
                 self.location = "/user/loginNow";
@@ -163,7 +163,7 @@
     });
     $(function () {
         $("#myPage").on("click", function () {
-            self.location = "/myPage/getMyPage?userId=${user.userId}";
+            self.location = "/myPage/getMyPage?userId=${sessionScope.user.userId}";
         });
     });
 
@@ -426,7 +426,7 @@
                         <div class="login ">
                             <div class="d-grid gap-2">
 
-                                <c:if test="${user.userId eq null}">
+                                <c:if test="${sessionScope.user.userId eq null}">
 
                                     <div class="loginbox login underline yellow" id="login1"
                                          style="font-size: 1.2em; color: #FFFFFF; " data-bs-toggle="modal"
@@ -436,7 +436,7 @@
 
                                 </c:if>
 
-                                <c:if test="${user.userId ne null}">
+                                <c:if test="${sessionScope.user.userId ne null}">
 
                                 <div class="loginbox login underline yellow" style="font-size: 1.2em; color: #FFFFFF;"
                                      id="logout">로그아웃
