@@ -282,7 +282,8 @@ Product vo=(Product)request.getAttribute("vo");
         //최근 본 상품
         $(function (){
             $(".list").on("click", function(){
-                history.go(-1);
+                window.location.assign('/deal/getListDeal')
+
             })
         })
     </script>
