@@ -261,6 +261,16 @@
         $(".user_manu").on("click", function () {
             $(this).parents(".card").find(".user_hidden_manu").slideToggle();
         })
+
+        $(".searchBtn").on("click", function () {
+
+            $("#textSerch").attr("method", "get").attr("action", "listCalenderReview")
+        })
+
+        $(".getClub").on("click", function () {
+            var clubNum = $(this).parents(".card").find(".clubNum").val()
+            location.href = "/club/getClub/" + clubNum
+        })
     })
 
 
@@ -270,7 +280,8 @@
 <style>
 
     ul li {
-        list-style:none;
+        list-style: none;
+        cursor: pointer;
     }
 
     .wap {
@@ -284,10 +295,7 @@
         float: left;
     }
 
-    .card-title {
-        width: 250px;
-        font-size: 1em;
-    }
+
 
     .cardbox {
         display: flex;
@@ -315,12 +323,18 @@
         float: left;
         text-align: right;
         width: 100%;
-        justify-content: center;
+        margin-right: 39px;
+        margin-bottom: 11px;
     }
 
     .buttonBox {
         margin-left: 10px;
         cursor: pointer;
+        height: 28px;
+        width: 39px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .col.reviewBox {
@@ -328,26 +342,15 @@
         margin-right: 30px;
     }
 
-    .like {
-        font-size: 0.1rem;
-        width: 45px;
-        outline: 0;
-        border: none;
-        background-color: #fff;
-    }
+
 
     .addBox {
-        margin-bottom: 50px;
+        width: 100%;
+        display: flex;
+        flex-direction: row-reverse;
+        margin-bottom: 100px;
     }
 
-    .add {
-        margin-right: -700px;
-    }
-
-    .update,
-    .delete {
-        font-size: 0.5em;
-    }
 
     .get {
         width: 100%;
@@ -359,16 +362,6 @@
         width: 100%;
         height: 100%;
     }
-
-    .updatebox {
-        display: flex;
-        font-size: 2.5em;
-        font-weight: bold;
-        margin-top: 5px;
-        margin-left: 3px;
-        cursor: pointer;
-    }
-
 
     .potoBox {
         cursor: pointer;
@@ -402,21 +395,32 @@
     }
 
     .user_hidden_manu {
-        width: 98px;
+        width: 100px;
         height: 75px;
         position: absolute;
         z-index: 2;
         margin-top: -14px;
-        margin-left: 146px;
+        margin-left: 111px;
 
     }
 
-    .user_hidden_manu > ul{
-        width: 67px;
+    .user_hidden_manu > ul {
+        width: 125px;
         border: 1px solid #0000001a;
         padding: 10px;
         border-radius: 5px;
         background: #ffff;
+    }
+    .reviewTitle{
+        text-align: left;
+        width: 100%;
+        margin-bottom: 20px;
+        font-size: 1.3em;
+    }
+    .reviewText{
+        width: 100%;
+        text-align: left;
+        font-size: 0.1em;
     }
 
     .card-top {
@@ -424,7 +428,6 @@
         display: flex;
         font-weight: bold
     }
-
 
 
     .card-footer {
@@ -453,21 +456,34 @@
 
 
     <div class="addBox">
-        <button class="btn btn-primary add ">
-            모임 일정 후기글 작성
-        </button>
+        <form id="textSerch" class="d-flex" role="search">
+            <input type="hidden" class="boardCategory" name="boardCategory" value="1">
+            <input type="hidden" class="reviewRange" name="reviewRange" value="1">
+
+            <div>
+                <select name="searchCondition" class="form-select" aria-label="Default select example">
+                    <option value=" ">선택 하세요</option>
+                    <option ${search.searchCondition == '2' ? 'selected' : '' } value="2">좋아요</option>
+                    <option ${search.searchCondition == '3' ? 'selected' : '' } value="3">조회수</option>
+                </select>
+            </div>
+
+            <input class="form-control me-2" type="search" name="searchKeyword" placeholder="검색" aria-label="Search"
+                   value="${search.searchKeyword}" style="width: 255px;">
+            <button class="btn btn-primary searchBtn" type="submit">검색</button>
+        </form>
     </div>
 
     <c:set var="i" value="0"/>
     <c:forEach var="ClubCalendarReview" items="${list}">
         <c:set var="i" value="${i+1}"/>
-        <div class="row row-cols-1 row-cols-md-3 g-4 cardbox">
+        <div class="row row-cols-1 row-cols-md-3 g-4 cardbox" style=" margin-left: 66px;">
             <div class="col reviewBox">
                 <input hidden class="CalenderReviewNum" value="${ClubCalendarReview.clubCalenderReviewNum}">
                 <input hidden class="boardCategory" value="${ClubCalendarReview.boardCategory}">
                 <input hidden class="SUserId" value="${ClubCalendarReview.userId}">
-
-                <div class="card h-100 shadow-lg" style="width: 100%">
+                <input hidden class="clubNum" value="${ClubCalendarReview.clubNum}">
+                <div class="card h-100 shadow-lg" style="width: 100% ">
 
                     <div class="card-top" style=" border-bottom: 1px solid; display: flex; font-weight: bold">
                         <div class="userImg">
@@ -490,11 +506,21 @@
                                 </svg>
 
                             </div>
-
                             <div class="user_hidden_manu" style="display: none">
                                 <ul class=" shadow-lg">
-                                    <li>수정</li>
-                                    <li>삭제</li>
+                                    <li class="getClub">
+                                        모임 방문하기
+                                    </li>
+
+                                    <c:if test="${user.userId eq ClubCalendarReview.userId}">
+                                        <li data-bs-toggle="modal" data-bs-target="#exampleModal" class="update">
+                                            수정
+                                        </li>
+                                        <li class="delete">
+                                            삭제
+                                        </li>
+                                    </c:if>
+
                                 </ul>
                             </div>
 
@@ -515,7 +541,7 @@
 
 
                     <div class="card-footer">
-                        <div class="card-body carditem">
+                        <div class="card-body carditem" style="padding: 0;">
 
                             <div class="itemBox">
 
@@ -550,8 +576,14 @@
                                             <path d="M6.956 14.534c.065.936.952 1.659 1.908 1.42l.261-.065a1.378 1.378 0 0 0 1.012-.965c.22-.816.533-2.512.062-4.51.136.02.285.037.443.051.713.065 1.669.071 2.516-.211.518-.173.994-.68 1.2-1.272a1.896 1.896 0 0 0-.234-1.734c.058-.118.103-.242.138-.362.077-.27.113-.568.113-.856 0-.29-.036-.586-.113-.857a2.094 2.094 0 0 0-.16-.403c.169-.387.107-.82-.003-1.149a3.162 3.162 0 0 0-.488-.9c.054-.153.076-.313.076-.465a1.86 1.86 0 0 0-.253-.912C13.1.757 12.437.28 11.5.28H8c-.605 0-1.07.08-1.466.217a4.823 4.823 0 0 0-.97.485l-.048.029c-.504.308-.999.61-2.068.723C2.682 1.815 2 2.434 2 3.279v4c0 .851.685 1.433 1.357 1.616.849.232 1.574.787 2.132 1.41.56.626.914 1.28 1.039 1.638.199.575.356 1.54.428 2.591z"/>
                                         </svg>
                                     </div>
+                                </div>
 
+                                <div class="reviewTitle">
+                                        ${ClubCalendarReview.reviewTitle}
+                                </div>
 
+                                <div class="reviewText">
+                                        ${ClubCalendarReview.reviewText}
                                 </div>
                             </div>
                         </div>
@@ -559,17 +591,6 @@
 
                 </div>
 
-            </div>
-            <div class="updatebox">
-                <c:if test="${user.userId eq ClubCalendarReview.userId}">
-                    <div data-bs-toggle="modal" data-bs-target="#exampleModal" class=" update"
-                         style=" margin-right: 13px;">
-                        수정
-                    </div>
-                    <div class="delete">
-                        삭제
-                    </div>
-                </c:if>
             </div>
         </div>
 
@@ -658,7 +679,7 @@
 
 <jsp:include page="/layout/chatIcon.jsp"/>
 
-<jsp:include page="/layout/footer.jsp"/>
+<%--<jsp:include page="/layout/footer.jsp"/>--%>
 </body>
 </html>
 

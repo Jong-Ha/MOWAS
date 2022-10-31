@@ -10,24 +10,93 @@
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
+    function fncGetMyPpt(currentPage) {
+        $("#currentPage").val(currentPage)
+        var userIdReport = $("#userIdReport").val()
+        alert('유저아이디? '+userIdReport)
 
+        $("form").attr("method" , "POST").attr("action" , "/myPage/getMyPpt").submit();
+    }
 
 </script>
 <body>
+<form>
 <%--상단 툴바--%>
 <jsp:include page="/layout/toolbar.jsp"/>
 
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
-<h3>내 벌점 조회</h3>
 <hr/>
-<c:set var="i" value="0" />
-<c:forEach var="list" items="${map.getMyPpt}"><br/>
-    신고받은 게시글 종류 ${list.boardCategory}<br/>
-    신고받은 게시글 번호 ${list.boardNo}<br/>
-    신고기준 ${list.reportBasis}<br/>
-    벌점${list.ppt}<br/>
-    벌점 부여 날짜${list.pptDate}<br/>
-</c:forEach> <br/>
+
+    <div class="container">
+        <div class="row my-5">
+            <div class="col-4 d-flex justify-content-between">
+                <h5 class="fw-bold">내 벌점 조회</h5>
+            </div>
+        </div>
+        <hr>
+        <table class="table table-bordered my-5">
+            <thead>
+            <tr class="bg-light text-center">
+                <th scope="col">번호</th>
+                <th scope="col">신고받은 게시글 종류</th>
+                <th scope="col">신고받은 게시글 번호</th>
+                <th scope="col">신고기준</th>
+                <th scope="col">벌점</th>
+                <th scope="col">벌점 부여 날짜</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:set var="i" value="0" />
+            <c:forEach var="list" items="${map.getMyPpt}">
+                <c:set var="i" value="${ i+1 }" />
+                <tr class="userTable">
+                    <th scope="row">${i}</th>
+                    <th scope="row">${list.boardCategory}</th>
+                    <th scope="row">${list.boardNo}</th>
+                    <th scope="row">${list.reportBasis}</th>
+                    <td class="ia">${list.ppt}</td>
+                    <td class="ib">${list.pptDate}</td>
+
+                </tr>
+            </c:forEach>
+
+            </tbody>
+        </table>
+        <input type="hidden" id="currentPage" name="currentPage" value="${resultPage.currentPage}"/>
+        <input type="hidden" id="userIdReport" name="userIdReport" value="${user.userId}"/>
+
+        <nav class="d-flex justify-content-center mt-3">
+            <ul class="pagination">
+                <c:if test="${ resultPage.currentPage <= resultPage.pageUnit }">
+                    <li class="page-item disabled mx-1">
+                        <
+                    </li>
+                </c:if>
+                <c:if test="${ resultPage.currentPage > resultPage.pageUnit }">
+                    <li class="page-item disabled mx-1">
+                        <a class="page-link" href="javascript:fncGetMyPpt('${ resultPage.currentPage-1}')">
+                            < </a>
+                    </li>
+                </c:if>
+                <c:forEach var="i"  begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" step="1">
+                    <li class="page-item active mx-1"><a class="page-link" href="javascript:fncGetMyPpt('${i}');">${i}</a></li>
+                </c:forEach>
+
+                <c:if test="${ resultPage.endUnitPage >= resultPage.maxPage }">
+                    <li class="page-item mx-1">
+                        >
+                    </li>
+                </c:if>
+                <c:if test="${ resultPage.endUnitPage < resultPage.maxPage }">
+                    <li class="page-item mx-1">
+                        <a class="page-link" href="javascript:fncGetMyPpt('${resultPage.endUnitPage+1}')">></a>
+                    </li>
+                </c:if>
+            </ul>
+        </nav>
+    </div>
+
+</form>
 </body>
 </html>

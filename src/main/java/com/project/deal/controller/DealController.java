@@ -274,8 +274,10 @@ String history="";
 
     @RequestMapping(value = "getListDeal")
     public String getListDeal(@ModelAttribute("search") Search search, Model model,HttpServletRequest request
-                            ,@RequestParam(value = "boardCategory", defaultValue = "99") String boardCategory, @RequestParam(value = "searchTag", required = false) List<String> searchTag) throws Exception {
+                            ,@RequestParam(value = "boardCategory", defaultValue = "99") String boardCategory) throws Exception {
         System.out.println("getListDeal : GET POST");
+        search.setCurrentPage(1);
+        System.out.println(search.getCurrentPage());
         System.out.println(boardCategory);
         Cookie[] cookies = request.getCookies();
         String history="";
@@ -308,7 +310,7 @@ String history="";
 
         if(boardCategory == "08"){
 
-            Map<String , Object> map=dealService.getListDeal(search, boardCategory,searchTag);
+            Map<String , Object> map=dealService.getListDeal(search, boardCategory);
 
 
             Page resultPage=new Page(search.getCurrentPage(),((Integer)map.get("totalCount")).intValue(),pageUnit,pageSize);
@@ -319,23 +321,22 @@ String history="";
             model.addAttribute("resultPage", resultPage);
             model.addAttribute("search", search);
             model.addAttribute("boardCategory",boardCategory);
-            model.addAttribute("searchTag",searchTag);
 
         } else if (boardCategory == "09") {
 
-            Map<String , Object> map=dealService.getListDeal(search, boardCategory,searchTag);
+            Map<String , Object> map=dealService.getListDeal(search, boardCategory);
             Page resultPage=new Page(search.getCurrentPage(),((Integer)map.get("totalCount")).intValue(),pageUnit,pageSize);
             System.out.println(resultPage);
             model.addAttribute("list", (List<Deal>)map.get("list"));
             model.addAttribute("resultPage", resultPage);
             model.addAttribute("search", search);
             model.addAttribute("boardCategory",boardCategory);
-            model.addAttribute("searchTag",searchTag);
+
 
         }else{
 
 
-        Map<String, Object> map = dealService.getListDeal(search, boardCategory, searchTag);
+        Map<String, Object> map = dealService.getListDeal(search, boardCategory);
 
 
             Page resultPage = new Page(search.getCurrentPage(), ((Integer) map.get("totalCount")).intValue(), pageUnit, pageSize);
@@ -347,7 +348,7 @@ String history="";
             model.addAttribute("resultPage", resultPage);
             model.addAttribute("search", search);
             model.addAttribute("boardCategory",boardCategory);
-            model.addAttribute("searchTag",searchTag);
+
 
             System.out.println("여기까지 ? ? !!1111");
             System.out.println(map);

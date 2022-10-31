@@ -34,7 +34,7 @@
     <h3 class="getMyClubApply1">가입신청한 모임</h3>
 </div>
 <hr>
-<h3>내가 가입한 모임</h3>
+<h3>내가 가입신청한 모임</h3>
 <hr/>
 <c:set var="i" value="0" />
 <c:forEach var="list" items="${map.getMyClub}"><br/>

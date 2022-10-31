@@ -385,7 +385,6 @@
             var reportedId = $(this).parents(".cardbox").find(".SUserId").val();
 
 
-
             $("#commuReport .modal-content").load("/view/site/addCommunityReport.jsp",
                 {boardNum: boardNum, boardCategory: boardCategory, reportedId: reportedId},
                 function (re) {
@@ -395,7 +394,15 @@
 
                     $("#commuReport").modal("show");
                 })
+        })
 
+        $(".user_manu").on("click", function () {
+            $(this).parents(".card-top").find(".user_hidden_manu").slideToggle();
+        })
+
+        $(".searchBtn").on("click", function () {
+
+            $("#textSerch").attr("method", "get").attr("action", "villBoardList")
         })
 
 
@@ -405,6 +412,11 @@
 </script>
 
 <style>
+
+    ul li {
+        list-style: none;
+        cursor: pointer;
+    }
 
     .wap {
 
@@ -416,6 +428,7 @@
     .carditem {
         display: flex;
         flex-direction: column;
+        float: left;;
     }
 
 
@@ -432,7 +445,8 @@
         float: left;
         text-align: right;
         width: 100%;
-        justify-content: center;
+        margin-right: 39px;
+        margin-bottom: 11px;
     }
 
 
@@ -441,40 +455,30 @@
         flex-direction: row;
         margin-bottom: 30px;
         float: left;
-        flex-wrap: wrap;
+        width: 442px;
+        transition: all 0.1s linear;
+    }
+
+    .cardbox:hover {
+        transform: scale(1.12);
     }
 
 
     .buttonBox {
         margin-left: 10px;
         cursor: pointer;
+        height: 28px;
+        width: 39px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .col.villBox {
-        width: 320px;
+        width: 100%;
+        margin-right: 30px;
     }
 
-    .like {
-        font-size: 0.1rem;
-        width: 45px;
-        outline: 0;
-        border: none;
-        background-color: #fff;
-    }
-
-    .updatebox {
-        display: flex;
-        font-size: 2.5em;
-        font-weight: bold;
-        margin-top: 5px;
-        margin-left: 3px;
-        cursor: pointer;
-    }
-
-    .update {
-        font-size: 0.5em;
-        margin-right: 19px;
-    }
 
     .addBox {
         margin-bottom: 50px;
@@ -485,18 +489,16 @@
     }
 
     .get {
+        width: 100%;
+        height: 100%;
         overflow: hidden;
     }
 
-    .cardbox {
-        margin-right: 43px;
-        width: 314px;
-        transition: all 0.1s linear;
+    .carousel-inner {
+        width: 100%;
+        height: 100%;
     }
 
-    .cardbox:hover {
-        transform: scale(1.12);
-    }
 
     .text {
         white-space: nowrap;
@@ -508,11 +510,82 @@
     .potoBox {
         cursor: pointer;
         padding: 1px;
-        width: 296px;
+        width: 100%;
         height: 361px;
         overflow: hidden;
         border-radius: 0 0 5px 5px;
         border-bottom: 2px solid #0a090912;
+    }
+
+    .searchBox {
+        width: 100%;
+        display: flex;
+        flex-direction: row-reverse;
+        margin-bottom: 100px;
+    }
+
+    .userImg {
+        width: 60px;
+        height: 60px;
+        padding: 5px;
+    }
+
+    .userInfo {
+        padding: 6px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .user_manu {
+        padding: 14px;
+        display: flex;
+        width: 120%;
+        font-size: 1.9em;
+        flex-direction: row-reverse;
+    }
+
+    .user_hidden_manu {
+        width: 100px;
+        height: 75px;
+        position: absolute;
+        z-index: 2;
+        margin-top: -14px;
+        margin-left: 111px;
+
+    }
+
+    .user_hidden_manu > ul {
+        width: 125px;
+        border: 1px solid #0000001a;
+        padding: 10px;
+        border-radius: 5px;
+        margin-left: 51px;
+        background: #ffff;
+    }
+
+    .villTitle {
+        text-align: left;
+        width: 100%;
+        margin-bottom: 20px;
+        font-size: 1.3em;
+    }
+
+    .villText {
+        width: 100%;
+        text-align: left;
+        font-size: 0.1em;
+    }
+
+    .card-top {
+        border-bottom: 1px solid;
+        display: flex;
+        font-weight: bold
+    }
+
+
+    .card-footer {
+        height: 208px;
     }
 
 </style>
@@ -538,6 +611,25 @@
         <button class="btn btn-primary add" data-bs-toggle="modal" data-bs-target="#exampleModal"> 우리 동네 게시글 작성
         </button>
     </div>
+    <div class="searchBox">
+        <form id="textSerch" class="d-flex" role="search">
+            <input type="hidden" class="villCode" name="villCode" value="${user.villCode}">
+
+            <div>
+                <select name="searchCondition" class="form-select" aria-label="Default select example">
+                    <option ${search.searchCondition == '1' ? 'selected' : '' } value="1">선택 하세요</option>
+                    <option ${search.searchCondition == '2' ? 'selected' : '' } value="2">좋아요</option>
+                    <option ${search.searchCondition == '3' ? 'selected' : '' } value="3">조회수</option>
+                    <option ${search.searchCondition == '4' ? 'selected' : '' } value="4">테그</option>
+                </select>
+            </div>
+
+            <input class="form-control me-2" type="search" name="searchKeyword" placeholder="검색" aria-label="Search"
+                   value="${search.searchKeyword}" style="width: 255px;">
+            <button class="btn btn-primary searchBtn" type="submit">검색</button>
+        </form>
+    </div>
+
 
     <c:set var="i" value="0"/>
     <c:forEach var="villBoard" items="${list}">
@@ -547,7 +639,50 @@
             <input hidden class="SUserId" value="${villBoard.userId}">
             <div class="col villBox">
 
-                <div class="card h-100 shadow-lg" style="width: 311px">
+                <div class="card h-100 shadow-lg">
+
+                    <div class="card-top" style=" border-bottom: 1px solid; display: flex; font-weight: bold">
+                        <div class="userImg">
+                            <img src="/resources/${villBoard.userImg}" alt=""
+                                 style="border-radius: 10px; width: 100%; height: 100%;">
+                        </div>
+                        <div class="userInfo">
+                            <div>
+                                    ${villBoard.userId}
+                            </div>
+                            <div style="font-size: 0.7em; margin-top: 5px">
+                                    ${villBoard.villCode}
+                            </div>
+                        </div>
+                        <div style="width: 56%;">
+                            <div class="user_manu">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-three-dots" viewBox="0 0 16 16">
+                                    <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                                </svg>
+
+                            </div>
+
+                            <div class="user_hidden_manu" style="display: none">
+                                <ul class=" shadow-lg">
+                                    <li class="getClub">
+                                        모임 방문하기
+                                    </li>
+
+                                    <c:if test="${user.userId eq villBoard.userId}">
+                                        <li data-bs-toggle="modal" data-bs-target="#exampleModal" class="update">
+                                            수정
+                                        </li>
+                                        <li class="delete">
+                                            삭제
+                                        </li>
+                                    </c:if>
+
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
 
                     <div id="carouselExampleSlidesOnly " class="carousel slide potoBox get" data-bs-ride="carousel"
                          style="cursor: pointer">
@@ -570,7 +705,7 @@
 
                     <div class="card-footer">
 
-                        <div class="card-body carditem">
+                        <div class="card-body carditem" style="padding: 0;">
 
                             <div class="itemBox">
 
@@ -605,20 +740,18 @@
                                         </svg>
                                     </button>
                                 </div>
+                                <div class="villTitle">
+                                        ${villBoard.villTitle}
+                                </div>
+                                <div class="villText">
+                                        ${villBoard.villText}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="updatebox">
-                <c:if test="${user.userId  eq villBoard.userId}">
-                    <div type="button" class="update" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                        수정
-                    </div>
-                    <div type="button" class=" delete " style="font-size: 0.5em;">삭제
-                    </div>
-                </c:if>
-            </div>
+
         </div>
 
 
@@ -748,7 +881,7 @@
 
 <jsp:include page="/layout/chatIcon.jsp"/>
 
-<jsp:include page="/layout/footer.jsp"/>
+<%--<jsp:include page="/layout/footer.jsp"/>--%>
 
 </body>
 </html>

@@ -21,5 +21,6 @@ public class Comment {
     private Date regDate;
     private List<Recomment> recommentList;
     private int likeCount;
+    private String userImg;
 
 }

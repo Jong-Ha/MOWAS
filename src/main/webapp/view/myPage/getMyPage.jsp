@@ -84,6 +84,23 @@
         .abc{
             width: 50px;
         }
+        .btn-primary {
+            --bs-btn-color: #000;
+            --bs-btn-bg: #f8cd07b3;
+            --bs-btn-border-color: #f8cd07b3;
+            --bs-btn-hover-color: #000;
+            --bs-btn-hover-bg: #f8cd07;
+            --bs-btn-hover-border-color: #f8cd07;
+            --bs-btn-focus-shadow-rgb: 130, 138, 145;
+            --bs-btn-active-color: #000;
+            --bs-btn-active-bg: #f8cd07;
+            --bs-btn-active-border-color: #f8cd07;
+            --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+            --bs-btn-disabled-color: #fff;
+            --bs-btn-disabled-bg: #6c757d;
+            --bs-btn-disabled-border-color: #6c757d;
+        }
+
     </style>
     <title>Title</title>
 </head>
@@ -118,17 +135,9 @@
                 "height=500, width=500");
         })
     });
-    $(function () {
-        $("#mainPage").on("click", function () {
-            self.location = "/view/user/main.jsp";
-        });
 
-        $(".myBoard").on("click",()=>{
 
-            $(".myPageTogle2").slideToggle();
-        })
 
-    });
 
 </script>
 <body>
@@ -194,7 +203,8 @@
             </div>
 
             <br>
-            <button type="button" class="getMyInfor" id="getMyInfor">내 정보 보기</button>
+            <button type="button" class="btn btn-primary btn-sm getMyInfor" id="getMyInfor">내 정보 보기</button>
+
         </div>
 
         <div class="userCalender shadow-lg" style=" height: 600px; overflow: scroll; padding: 10px;">
