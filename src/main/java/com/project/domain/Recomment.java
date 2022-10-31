@@ -17,5 +17,6 @@ public class Recomment {
     private String recommentText;
     private Date regDate;
     private int likeCount;
+    private String userImg;
 
 }

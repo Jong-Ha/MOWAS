@@ -257,14 +257,17 @@ public class ClubCalendarController {
         }
 
         search.setPageSize(pageSize);
-        search.setSearchCondition("1");
 
-        System.out.println(boardCategory);
+        if (search.getSearchCondition() == null){
+         search.setSearchCondition("1");
+        }
 
-        System.out.println(search.getCurrentPage());
+        System.out.println("search의 정보 : " + search);
+
 
         Map<String, Object> map = calenderService.listCalenderReview(boardCategory,search,reviewRange);
 
+        model.addAttribute("search", search);
         model.addAttribute("list", map.get("list"));
         model.addAttribute("list2", map.get("list2"));
 

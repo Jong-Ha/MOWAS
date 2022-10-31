@@ -30,6 +30,11 @@
             })
 
 
+            //투표합시당
+            $('.listVoteView').on('click',function(){
+                $('#listVote .modal-content').load('/club/listVote/${roomId}')
+            })
+
         })
 
     </script>
@@ -263,6 +268,11 @@
             <form id="fileForm">
                 <input id="file" type="file" multiple class="send-file" value="파일 전송" style="display: none"/>
             </form>
+
+            <c:if test="${chatNameSpace=='clubChat'}">
+                <button type="button" class="btn btn-primary listVoteView" data-bs-target="#listVote" data-bs-toggle="modal">투표</button>
+            </c:if>
+
         </div>
 
 
@@ -404,6 +414,46 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="container">
+
+    <%--listVote 모달창 시작--%>
+    <div class="modal fade voteModal" id="listVote" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+    <%--listVote 모달창 끝--%>
+
+        <%--addVote 모달창 시작--%>
+        <div class="modal fade voteModal" id="addVote" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                </div>
+            </div>
+        </div>
+        <%--addVote 모달창 끝--%>
+
+        <%--getVote 모달창 시작--%>
+        <div class="modal fade voteModal" id="getVote" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                </div>
+            </div>
+        </div>
+        <%--getVote 모달창 끝--%>
+
+        <%--updateVote 모달창 시작--%>
+        <div class="modal fade voteModal" id="updateVote" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                </div>
+            </div>
+        </div>
+        <%--updateVote 모달창 끝--%>
+
 </div>
 
 
@@ -787,5 +837,28 @@ console.log(newMsg)
     .message > img {
         width: 100px;
         height: 100px;
+    }
+    .modal.voteModal .modal-body::-webkit-scrollbar {
+        display: none;
+    }
+    .voteModal .back-btn {
+        font-size: 1.5rem;
+        cursor: pointer;
+        width: 32px;
+    }
+    .voteModal .btn-close {
+        margin: 0;
+    }
+    .voteModal .modal-title{
+        text-align: center;
+    }
+    .voteModal .modal-text{
+        font-size: 18px;
+        border: 1px solid #ced4da;
+        padding: 10px;
+        border-radius: 0.375rem;
+        align-items: baseline;
+        background-color: #00000003;
+        margin-bottom: 15px;
     }
 </style>

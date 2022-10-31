@@ -392,7 +392,7 @@
                             <a class="nav-link active  underline yellow" aria-current="page" onclick="location.href='/club/listClub'"  style="color : #ffffff; font-size: 1.3em;">모임 게시판</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link  underline yellow" href="#" style="color : #ffffff;font-size: 1.3em;" onclick="location.href='/clubCal/listCalenderReview?boardCategory='+1+'&reviewRange=' + 1">커뮤니티 게시판</a>
+                            <a class="nav-link  underline yellow" href="#" style="color : #ffffff;font-size: 1.3em;" onclick="location.href='/clubCal/listCalenderReview?boardCategory='+1+'&reviewRange='+1">커뮤니티 게시판</a>
                         </li>
 
                         <li class="nav-item">
@@ -408,6 +408,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="/user/listUser">회 원 관 리</a></li>
                                     <li><a class="dropdown-item" href="/site/listCommunityReport">커뮤니티 신고</a></li>
                                     <li><a class="dropdown-item" href="/site/listCommunityReportProcess">커뮤니티 신고 처리</a></li>
                                     <li><a class="dropdown-item" href="/site/listClubReport">모임 신고</a></li>

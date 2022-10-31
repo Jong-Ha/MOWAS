@@ -9,4 +9,5 @@ public interface MongoDbDao {
     public void addCluber(int clubNum, String userId);
     public void deleteCluber(int clubNum, String userId);
     public void deleteClub(int clubNum);
+    public void updateClub(int clubNum, String clubName);
 }

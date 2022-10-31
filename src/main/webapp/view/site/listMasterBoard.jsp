@@ -114,9 +114,9 @@
 
     $(function() {
 
-      //==> 검색 Event 연결처리부분
-      //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-      //==> 1 과 3 방법 조합 : $("tagName.className:filter함수") 사용함.
+      $( ".userMb" ).on("click" , function() {
+        fncGetList(1);
+      });
 
       //$( "td.ct_btn01:contains('검색')" ).on("click" , function() {
       $( "button.btn.btn-danger" ).on("click" , function() {
@@ -129,11 +129,28 @@
         //$(self.location).attr("href", "/site/addMasterBoard");
       });
 
+      $(".updateMasterBoard").on("click",function(){
+
+        var masterBdNo = $(this).data('masterbdno')
+
+        $("#updateMB .modal-content").load("/view/site/updateMasterBoard.jsp",
+                {masterBoardNo: masterBdNo},
+                function (re) {
+
+                  // console.log(re);
+                  $("#updateMB .modal-content").html(re);
+
+                  $("#updateMB").modal("show");
+                })
+      });
+
+      $( "button:contains('수 정')" ).on("click" , function() {
+        self.location = "/site/updateMasterBoard/${masterBoard.masterBoardNo }"
+      });
+
       $( "td.masterBdNo" ).on("click" , function() {
 
         var masterBdNo = $(this).data('masterbdno')
-        //$(self.location).attr("href" , "/site/getMasterBoard/"+masterBdNo);
-        //$(self.location).attr("href", "/site/addMasterBoard");
 
         $.ajax({
             url : "/site/json/getMasterBoard/"+masterBdNo,
@@ -196,15 +213,15 @@
   <nav class="navbar navbar-expand-lg mbBox">
 
     <div>
-      <div class="underline yellow userMb">회원</div>
+      <div class="underline yellow userMb"><input type="hidden" value="${search.searchCondition = "100"}">회원</div>
     </div>
 
     <div>
-      <div class="underline yellow clubMb">모임</div>
+      <div class="underline yellow clubMb"><input type="hidden" value="${search.searchCondition = "200"}">모임</div>
     </div>
 
     <div>
-      <div class="underline yellow reportMb">신고</div>
+      <div class="underline yellow reportMb"><input type="hidden" value="${search.searchCondition = "300"}">신고</div>
     </div>
 
   </nav>
@@ -253,14 +270,6 @@
             <div class="form-group">
               <label>Search</label>
 
-              <div class="input-group mb-0">
-                <input type="text" class="form-control" id="searchKeyword" name="searchKeyword" placeholder="Search..." aria-describedby="project-search-addon"
-                       value="${! empty search.searchKeyword ? search.searchKeyword : '' }"/>
-                <div class="input-group-append">
-                  <button class="btn btn-danger" type="button" id="project-search-addon"><i class="fa fa-search search-icon fa-2x font-12"></i></button>
-                </div>
-              </div>
-
               <div class="input-group">
                 <select class="form-control" name="searchCondition" >
                   <option value="0"${!empty search.searchCondition&&search.searchCondition==0 ? "selected":"" }>제목</option>
@@ -268,6 +277,13 @@
                 </select>
               </div>
 
+              <div class="input-group mb-0">
+                <input type="text" class="form-control" id="searchKeyword" name="searchKeyword" placeholder="Search..." aria-describedby="project-search-addon"
+                       value="${! empty search.searchKeyword ? search.searchKeyword : '' }"/>
+                <div class="input-group-append">
+                  <button class="btn btn-danger" type="button" id="project-search-addon"><i class="fa fa-search search-icon fa-2x font-12"></i></button>
+                </div>
+              </div>
             </div>
             <input type="hidden" id="currentPage" name="currentPage" value=""/>
           </form>
@@ -275,6 +291,7 @@
       </div>
     </div>
   </div>
+
   <!-- end row -->
 
   <div class="row">
@@ -290,9 +307,9 @@
                 <th scope="col">작성자</th>
                 <th scope="col">날짜</th>
                 <th scope="col">상세보기</th>
-                <c:if test="${user.masterCheck eq 2}">
+                <%--<c:if test="${user.masterCheck eq 2}">--%>
                 <th scope="col">Action</th>
-                </c:if>
+                <%--</c:if>--%>
               </tr>
               </thead>
               <tbody>
@@ -315,15 +332,21 @@
 
                 </td>
                 <td data-masterbdno="${mb.masterBoardNo}" class="masterBdNo">
-                  <span class="text-success mr-4 getMb" data-toggle="tooltip" data-placement="top" title="" data-original-title="NewMb">
-                  <i class="bi bi-file-earmark-text h5 m-0"></i></span>
+                  <span class="text-success mr-4 getMb" data-toggle="tooltip" data-placement="center" title="" data-original-title="NewMb">
+                  <i class="fa fa-file-text h5 m-0"></i></span>
                 </td>
-                <c:if test="${user.masterCheck eq 2}">
+
+                <%--<c:if test="${user.masterCheck eq 2}">--%>
                 <td>
-                    <a href="#" class="text-success mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"> <i class="fa fa-pencil h5 m-0"></i></a>
+                  <button data-masterbdno="${mb.masterBoardNo}" class="btn updateMasterBoard" data-bs-toggle="modal"
+                          data-bs-target="#updateMasterBoard">
+                    <i class="fa fa-pencil h5 m-0"></i>
+                  </button>
+                    <%--<a href="#" class="text-success mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"> <i class="fa fa-pencil h5 m-0"></i></a>--%>
                     <a href="#" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close"> <i class="fa fa-remove h5 m-0"></i></a>
                 </td>
-                </c:if>
+                <%--</c:if>--%>
+
               </tr>
               </c:forEach>
 
@@ -333,11 +356,13 @@
 
           <!-- end project-list -->
           <div class="col-md-12 text-left ">
-        <c:if test="${user.masterCheck eq 2}">
+        <%--<c:if test="${user.masterCheck eq 2}">--%>
             <button type="button" class="addMb btn" style="background-color: #F8CD07;" data-bs-toggle="modal" data-bs-target="#addMasterBoard">글쓰기</button>
+          <button type="button" class="updateMb btn" style="background-color: #F8CD07;" data-bs-toggle="modal" data-bs-target="#updateMasterBoard">수정</button>
+
             <%--<button type="button" class="addMb" data-bs-toggle="modal" data-bs-target="#addMasterBoard">--%>
             <a class="btn btn-secondary" href = "#" role="button">취 소 </a>
-        </c:if>
+        <%--</c:if>--%>
             <!--test version
             <button type="button" class="commReport" >커뮤니티신고</button>
             <button type="button" class="clubReport" >모임신고</button>
@@ -389,7 +414,15 @@
       </div>
     </div>
   </div>
-  <!-- end row -->
+  <%-- end row --%>
+</div>
+
+
+<div class="modal fade" id="updateMB" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+    </div>
+  </div>
 </div>
 
 <%-- 모달창 시작--%>
@@ -437,100 +470,15 @@
 
         </form>
       </div>
+
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger newMb" data-bs-dismiss="modal" style="margin-right: 185px">저 장</button>
+        <button type="button" class="btn btn-danger newMb" data-bs-dismiss="modal">저 장</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >취소</button>
       </div>
+
     </div>
   </div>
 </div>
-
-<%-- 모달창 끝--%>
-<%-- 지도 모달창 Test
-<div class="modal model-center " id="addMap" tabindex="-1" aria-labelledby="addMapLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-<div class="modal-header">
-  <h1 class="modal-title fs-5">모임 만들기</h1>
-  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-</div>
-<div class="modal-body">
-
-  <div id="map" style="width:100%;height:350px;"></div>
-  <p><em>지도를 클릭해주세요!</em></p>
-  <div id="clickLatlng"></div>
-
-  <div class="col-md-4 text-center col-md-offset-1">
-    <input type="text" class="villCode" name="villCode" value="역삼동">
-    <button type="button" class="btn btn-primary">확인</button>
-  </div>
-
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-primary">모임 만들기</button>
-</div>
-
-
-
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fdddcf3f747ce062a0dc0af6d4a8b009&libraries=services"></script>
-<script>
-  var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-          mapOption = {
-            center: new kakao.maps.LatLng(37.4994558002948, 127.029020621527), // 지도의 중심좌표
-            level: 3 // 지도의 확대 레벨
-          };
-
-  var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-  // 지도를 클릭한 위치에 표출할 마커입니다
-  var marker = new kakao.maps.Marker({
-    // 지도 중심좌표에 마커를 생성합니다
-    position: map.getCenter()
-  });
-  // 지도에 마커를 표시합니다
-  marker.setMap(map);
-
-  // 지도에 클릭 이벤트를 등록합니다
-  // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
-  kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
-
-    // 클릭한 위도, 경도 정보를 가져옵니다
-    var latlng = mouseEvent.latLng;
-
-    // 마커 위치를 클릭한 위치로 옮깁니다
-    marker.setPosition(latlng);
-
-    var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
-    message += '경도는 ' + latlng.getLng() + ' 입니다';
-
-    var resultDiv = document.getElementById('clickLatlng');
-    resultDiv.innerHTML = message;
-    getClubVilCode(latlng.getLng(), latlng.getLat());
-
-  });
-
-
-  function resizeMap() {
-    var mapContainer = document.getElementById('map');
-    mapContainer.style.width = '100%';
-    mapContainer.style.height = '350px';
-  }
-
-  function relayout() {
-
-    // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
-    // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다
-    // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
-    map.relayout();
-  }
-</script>
-
-<div class="col-md-4 text-center col-md-offset-1">
-  <input type="text" class="villCode" name="villCode" value="역삼동">
-  <button type="button" class="btn btn-primary">확인</button>
-</div>
-    </div>
-  </div>
-</div>
---%>
+<%--Add Modal 창 시작--%>
 </body>
 </html>

@@ -26,7 +26,7 @@ public interface CommunityDao {
 
     List<Recomment> listRecomment(int commentNo);
 
-    List<VilBoard> listVillBoard(String villCode);
+    List<VilBoard> listVillBoard(Map<String,Object> map);
 
     VilBoard getVillBoard(int villBoardNum);
 

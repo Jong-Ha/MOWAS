@@ -1018,7 +1018,7 @@
                 #{voteText},
                 #{multiVoteCheck},
                 #{hideVoteCheck},
-                TO_Date(#{endDate}, 'yyyy-mm-dd hh24:mi'),
+                TO_Date(#{endDate:VARCHAR}, 'yyyy-mm-dd hh24:mi'),
                 #{endDateCheck},
                 SYSDATE,
                 '0',
@@ -1052,7 +1052,7 @@
             multi_vote_check = #{multiVoteCheck},
             hide_vote_check = #{hideVoteCheck},
             vote_end_date_check = #{endDateCheck},
-            vote_end_date = TO_Date(#{endDate},'yyyy-mm-dd hh24:mi'),
+            vote_end_date = TO_Date(#{endDate:VARCHAR},'yyyy-mm-dd hh24:mi'),
             vote_item_1 = #{voteItem1},
             vote_item_2 = #{voteItem2:VARCHAR},
             vote_item_3 = #{voteItem3:VARCHAR},
@@ -1093,6 +1093,7 @@
                vote_end_check
         FROM vote
         WHERE room_id = #{roomId}
+        ORDER BY vote_end_check ASC
     </select>
 
     <!--clubService.getVote-->
