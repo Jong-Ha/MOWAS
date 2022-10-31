@@ -61,6 +61,8 @@ public class ClubCalendarServiceImpl implements ClubCalendarService {
         map2.put("search", search);
         map2.put("reviewRange", reviewRange);
 
+        System.out.println("========================="+ map2.get("search"));
+
         List<ClubCalendarReview> list =  clubCalendarDao.listCalenderReview(map2);
 
         Map<String, Object> map = new HashMap<String, Object>();;

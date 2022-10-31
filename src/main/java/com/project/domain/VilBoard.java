@@ -12,7 +12,6 @@ import java.util.List;
 @ToString
 public class VilBoard {
     private int villBoardNum;
-    //private User userId;
     private String userId;
     private String villCode;
     private String villTitle;
@@ -23,6 +22,8 @@ public class VilBoard {
     private int likeCount;
     private int boardCategory;
     private List<File> file;
+    private String userImg;
+    private String userVillCode;
 
 }
 

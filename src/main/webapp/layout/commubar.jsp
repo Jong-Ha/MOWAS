@@ -24,7 +24,8 @@
             })
 
             $(".villBoard").on("click", function () {
-                location.href = "/commu/villBoardList?villCode=" + "창원" + "&boardCategory=" + 3;
+                var villCode = '${user.villCode}'
+                location.href = "/commu/villBoardList?villCode=" + villCode + "&boardCategory=" + 3;
             });
 
 

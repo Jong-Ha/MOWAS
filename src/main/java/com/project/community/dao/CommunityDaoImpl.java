@@ -77,8 +77,8 @@ public class CommunityDaoImpl implements CommunityDao {
     }
 
     @Override
-    public List<VilBoard> listVillBoard(String villCode) {
-        return sqlSession.selectList("CommunityMapper.listVillBoard", villCode);
+    public List<VilBoard> listVillBoard(Map<String,Object> map) {
+        return sqlSession.selectList("CommunityMapper.listVillBoard", map);
     }
 
     @Override

@@ -179,11 +179,24 @@
           AND cr.club_calendar_num = cc.club_calendar_num
           AND cr.board_category = #{boardCategory}
           AND cr.review_range = #{reviewRange}
+
+        <if test="search.searchKeyword != null ">
+            AND review_title LIKE '%'||#{search.searchKeyword}||'%'
+        </if>
+
+        <if test="search.searchCondition == 1">
         ORDER BY club_calendar_review_num DESC
+        </if>
+        <if test="search.searchCondition == 2">
+        ORDER BY like_count DESC NULLS LAST
+        </if>
+        <if test="search.searchCondition == 3">
+        ORDER BY view_count DESC NULLS LAST
+        </if>
     </sql>
 
 
-    <select id="getTotalClub" parameterType="map" resultType="int">
+    <select id="getTotalCalenderReview" parameterType="map" resultType="int">
         SELECT COUNT(*) FROM (
         <include refid="listCalenderReviewSql"/>
         )
@@ -193,6 +206,44 @@
         SELECT * FROM (
         SELECT ROWNUM row_num, vt.* FROM (
         <include refid="listCalenderReviewSql"/>
+        ) vt
+        <if test="search.currentPage*search.pageSize!=0">
+            WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}
+        </if>
+        )
+        <where>
+            <if test="search.currentPage*search.pageSize!=0">
+                row_num >= ((#{search.currentPage}-1)*#{search.pageSize}+1)
+            </if>
+        </where>
+    </select>
+
+
+
+
+
+
+    <sql id="lisClubCalenderReviewSql">
+        SELECT cr.* , us.user_image, cc.location, cc.calendar_title
+        FROM club_calendar_review cr , users us, club_calendar cc
+        WHERE cr.user_id = us.user_id
+        AND cr.club_calendar_num = cc.club_calendar_num
+        AND cr.board_category = #{boardCategory}
+        AND cr.review_range = #{reviewRange}
+        AND cr.CLUB_NUM = #{clubNum}
+    </sql>
+
+
+    <select id="getTotalClub" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM (
+        <include refid="lisClubCalenderReviewSql"/>
+        )
+    </select>
+
+    <select id="lisClubCalenderReview" parameterType="map" resultMap="calenderReviewSelect">
+        SELECT * FROM (
+        SELECT ROWNUM row_num, vt.* FROM (
+        <include refid="lisClubCalenderReviewSql"/>
         ) vt
         <if test="search.currentPage*search.pageSize!=0">
             WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}

@@ -1,11 +1,13 @@
 package com.project.community.controller;
 
 import com.project.club.service.ClubCalendarService;
+import com.project.common.Search;
 import com.project.community.service.CommunityService;
 import com.project.deal.service.DealService;
 import com.project.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -33,16 +35,22 @@ public class CommunityController {
     @Qualifier("clubCalenderServiceImpl")
     private ClubCalendarService calenderService;
 
+    @Value("#{commonProperties['pageSize']}")
+    int pageSize;
+
+    @Value("#{commonProperties['pageUnit']}")
+    int pageUnit;
+
+
 
 
 
     @RequestMapping("main")
     public String Calender() {
         System.out.println("calender진입");
-        return "/view/community/list/Community.jsp";
-    }
 
-    ;
+        return "/view/community/list/Community.jsp";
+    };
 
     //우리동네 게시글
     @RequestMapping(value = "getVillBoard")
@@ -63,11 +71,28 @@ public class CommunityController {
     }
 
     @RequestMapping(value = "villBoardList")
-    public String villBoardList(@RequestParam("villCode") String villCode,
-                                Model model) {
+    public String villBoardList(@RequestParam("villCode") String villCode
+                                ,@ModelAttribute("search") Search search
+                                ,Model model) {
 
-        Map<String, Object> map = commuService.listVillBoard(villCode);
 
+        if (search.getCurrentPage() == 0) {
+            search.setCurrentPage(1);
+        }
+
+        search.setPageSize(pageSize);
+
+        if (search.getSearchCondition() == null){
+            search.setSearchCondition("1");
+        }
+
+        System.out.println("search의 정보 : " + search);
+
+
+        Map<String, Object> map = commuService.listVillBoard(villCode, search);
+
+
+        model.addAttribute("search", search);
         model.addAttribute("list", map.get("list"));
 
         return "/view/community/list/villBoardList.jsp";
