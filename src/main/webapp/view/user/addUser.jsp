@@ -491,7 +491,7 @@
 
   <main>
     <div class="py-5 text-center">
-      <img src="/resources/images/proplePoto.png"  style="width: 70px;margin-right: 10px; border-radius: 40px; height: 50px;">
+        <img id="userImage1" src="https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png" class="w-50">
 
         <h2>회원가입</h2>
         <p class="lead">MOWAS에 오신걸 환영합니다</p>

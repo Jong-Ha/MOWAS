@@ -5,6 +5,25 @@
 <head>
     <title>Title</title>
 </head>
+<style>
+    .tabBox {
+        display: flex;
+        margin: 0 15px;
+    }
+
+    .tabBox span {
+        font-size: 25px;
+        margin: 5px;
+        font-weight: bolder;
+    }
+
+    .tabBox span.tabBtn {
+        font-size: 25px;
+        margin: 5px;
+        font-weight: bolder;
+        cursor: pointer;
+    }
+</style>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
@@ -42,12 +61,14 @@
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
 
-<hr/>
-<div>
-    <h3 class="getMyVillBoard">우리동네 게시글</h3>
-    <h3 class="getMyCbMaster">모임 공지사항 게시글</h3>
-    <h3 class="getMyCbReviewBoard">모임 일정 후기 게시글</h3>
-    <h3 class="getMyDealBoard">판매/판매요청 게시글</h3>
+<div class="tabBox">
+    <span class="tabBtn getMyVillBoard" >우리동네 게시글</span>
+    <span>|</span>
+    <span class="tabBtn getMyCbMaster" >모임 공지사항 게시글</span class="tabBtn">
+    <span>|</span>
+    <span class="tabBtn getMyCbReviewBoard">모임 일정 후기 게시글</span class="tabBtn">
+    <span>|</span>
+    <span class="tabBtn getMyDealBoard" >판매/판매요청 게시글</span class="tabBtn">
 </div>
 <hr/>
 <h4>모임장 작성글</h4>

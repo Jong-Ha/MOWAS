@@ -77,7 +77,20 @@
     .abc{
         width: 50px;
     }
-
+    .typing {
+        width: 9ch;
+        animation: typing 0.9s steps(22), blink .5s step-end infinite alternate;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 3px solid;
+        font-size: 2em;
+        height: 2ch;
+    }
+    @keyframes typing {
+        from {
+            width: 0
+        }
+    }
 </style>
 
 <head>
@@ -111,9 +124,15 @@
         $(".getMyBoardLike").on("click", function () {
         self.location = "/myPage/getMyLike?userId="+userId;
     });
+         $(".getMyCommentLike").on("click", function () {
+             self.location = "/myPage/getMyCommentLike?userId="+userId;
+         });
         $(".getMyClub").on("click", function () {
         self.location = "/myPage/getMyClub?userId="+userId;
     });
+         $(".getMyClubApply").on("click", function () {
+             self.location = "/myPage/getMyClubApply?userId="+userId;
+         });
         $(".getMyDeal").on("click", function () {
         self.location = "/myPage/getMyDeal?userId="+userId;
     });
@@ -128,7 +147,11 @@
     });
 
   });
-
+     $(function (){
+         $("#myPageMain").on("click" , function (){
+             self.location = "/view/myPage/getMyPage.jsp"
+         });
+     });
 
 
     $(function () {
@@ -170,7 +193,8 @@
 
 
 <div class="wrapper">
-    <div class="typing">
+    <div class="typing" id="myPageMain" style="cursor: pointer">
+
         <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
                     background-image: linear-gradient(transparent 60%, #F8CD07 40%);">
             마이페이지</h4>
@@ -202,7 +226,7 @@
             <div class="shadow-lg myPageTogle2" style="display: none;  width: 200px; height: 200px;  position: absolute;">
                 <ul>
                     <li class="getMyClub">가입한 모임</li>
-                    <li class="getMyComment">가입신청한 모임</li>
+                    <li class="getMyClubApply">가입신청한 모임</li>
 
 
                 </ul>

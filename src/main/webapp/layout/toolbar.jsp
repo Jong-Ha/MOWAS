@@ -343,22 +343,7 @@
             background-size: 100% 100%;
         }
 
-        .btn-primary {
-            --bs-btn-color: #000;
-            --bs-btn-bg: #f8cd07b3;
-            --bs-btn-border-color: #f8cd07b3;
-            --bs-btn-hover-color: #000;
-            --bs-btn-hover-bg: #f8cd07;
-            --bs-btn-hover-border-color: #f8cd07;
-            --bs-btn-focus-shadow-rgb: 130, 138, 145;
-            --bs-btn-active-color: #000;
-            --bs-btn-active-bg: #f8cd07;
-            --bs-btn-active-border-color: #f8cd07;
-            --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-            --bs-btn-disabled-color: #fff;
-            --bs-btn-disabled-bg: #6c757d;
-            --bs-btn-disabled-border-color: #6c757d;
-        }
+
 
         .bg-primary {
             --bs-bg-opacity: 1;

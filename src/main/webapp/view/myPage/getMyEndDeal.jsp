@@ -10,8 +10,9 @@
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
-
-
+    $(function () {
+        var userId = $(".myPageUserId").val();
+    });
 </script>
 
 <style>
@@ -25,17 +26,141 @@
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
 
-<h3>완료한 거래 조회</h3>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+<style>
+    .tabBox {
+        display: flex;
+        margin: 0 15px;
+    }
+
+    .tabBox span {
+        font-size: 25px;
+        margin: 5px;
+        font-weight: bolder;
+    }
+
+    .tabBox span.tabBtn {
+        font-size: 25px;
+        margin: 5px;
+        font-weight: bolder;
+        cursor: pointer;
+    }
+
+    .searchBox {
+        margin: 20px;
+    }
+
+    .searchBox .searchIcon {
+        border: 1px solid rgb(118, 118, 118);
+        padding: 3.5px;
+        margin-right: -7px;
+    }
+
+    .searchBox .searchInput {
+        width: 150px;
+        height: 30px;
+    }
+
+    .goods_wrapper {
+        height: 50%;
+        overflow-y: auto;
+        padding: 15px;
+    }
+
+    .goods_wrapper .tit_month {
+        width: 100%;
+        height: 39px;
+        margin: -9px 0;
+        background: url(./bg_tit_month.gif) repeat-x;
+        text-align: center;
+    }
+
+    .goods_wrapper .tit_month h4 {
+        width: 110px;
+        height: 39px;
+        margin: 0 auto;
+        background: url(./bg_tit_month2.gif) no-repeat;
+        line-height: 39px;
+        font-family: Tahoma,Geneva,sans-serif;
+        font-size: 16px;
+        font-weight: normal;
+        color: #000;
+    }
+
+    .goods_wrapper .goods_group .goods_item {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .goods_wrapper .goods_group .goods_item > img {
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+    }
+
+    .goods_wrapper .goods_group .goods_item .goods_info > ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    .goods_wrapper .goods_group .goods_item .goods_info > ul > li.goods_name {
+        font-weight: bold;
+    }
+</style>
+<div class="tabBox">
+    <span class="tabBtn" onclick="javascript:location.href='/myPage/getMyDeal?userId=${user.userId}';">완료한 거래 목록</span>
+    <span>|</span>
+    <span class="tabBtn" onclick="javascript:location.href='/myPage/getMyDealReview?userId=${user.userId}';">거래 후기 목록</span class="tabBtn">
+</div>
+
+
+
+<div class="searchBox">
+    <span class="searchIcon"><i class="fa-solid fa-magnifying-glass"></i></span>
+    <input class="searchInput" type="text" name="search" id="search" />
+</div>
+
 <hr/>
-<c:set var="i" value="0" />
-<c:forEach var="list" items="${map.getMyDeal}"><br/>
-    가격${list.price}<br/>
-    거래물품명${list.productName}<br/>
-    거래자 아이디${list.dealId}<br/>
-    거래물품 사진<br>
-    거래완료날짜${list.dealEndDate}<br/>
-</c:forEach> <br/>
+
+
+
+
+    <div class="goods_wrapper">
+        <div class="tit_month">
+            <h4>2022.10</h4>
+        </div>
+        <c:set var="i" value="0" />
+        <c:forEach var="list" items="${map.getMyDeal}"><br/>
+        <div class="goods_group">
+            <div class="goods_item">
+                <img src="https://phinf.pstatic.net/checkout/20181005_67/pEBjoin_1538725581806UviEL_PNG/60x60.png">
+                <div class="goods_info">
+                    <ul class="info">
+                        <li class="goods_name"">거래물품명 : <span>${list.productName}</span></li>
+                        <li><span">거래날짜 : </span> ${list.dealEndDate}</li>
+                        <li><span">가격 : </span>${list.price}원</li>
+                        <li><span">거래자 아이디 : </span>${list.dealId}</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        </c:forEach>
+    </div>
+ <br/>
 <hr>
+
+
+
+
+
+</div>
+
+
+
+
 
 
 </body>

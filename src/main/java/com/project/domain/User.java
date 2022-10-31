@@ -34,6 +34,8 @@ public class User {
 
     private String loginType;
 
+
+
     public User() {
     }
 
