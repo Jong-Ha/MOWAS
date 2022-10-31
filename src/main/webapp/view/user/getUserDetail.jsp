@@ -12,22 +12,42 @@
 <head>
     <title>Title</title>
 </head>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<style>
+    .btn-prm {
+        --bs-btn-color: #000;
+        --bs-btn-bg: #f8cd07b3;
+        --bs-btn-border-color: #f8cd07b3;
+        --bs-btn-hover-color: #000;
+        --bs-btn-hover-bg: #f8cd07;
+        --bs-btn-hover-border-color: #f8cd07;
+        --bs-btn-focus-shadow-rgb: 130, 138, 145;
+        --bs-btn-active-color: #000;
+        --bs-btn-active-bg: #f8cd07;
+        --bs-btn-active-border-color: #f8cd07;
+        --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+        --bs-btn-disabled-color: #fff;
+        --bs-btn-disabled-bg: #6c757d;
+        --bs-btn-disabled-border-color: #6c757d;
+    }
 
+</style>
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
 
 
     $(function (){
         $("#updatePsd").on("click" , function (){
-            var userId = $("#userId").text();
+            var userId = $(".myPageUserId").text();
             alert('userid는? '+userId);
             self.location ="/user/updatePsd?userId="+userId;
         });
     });
     $(function (){
         $("#kickoutUser").on("click" , function (){
-            var userId = $("#userId").text();
+            var userId = $(".myPageUserId").text();
             var result =confirm('정말로 강퇴하시겠습니까?');
             if(result) {
                 self.location = "/user/kickoutUser?userId=" + userId;
@@ -43,45 +63,237 @@
 </script>
 
 <body>
-회원 상세 조회<br/>
-회원아이디 <div id="userId">${map.userDetail.userId}</div><br>
-회원 상태${map.userDetail.userStatus}<br>
-이름${map.userDetail.userName}<br>
-성별${map.userDetail.gender}<br>
-이메일${map.userDetail.email}<br>
-휴대폰번호${map.userDetail.phone}<br>
-동네코드${map.userDetail.villCode}<br>
-마지막 접속 날짜${map.userDetail.lcd}<br>
-패널티 시작 날짜${map.userDetail.psd}<br>
-패널티 종료 날짜${map.userDetail.ped}<br>
-벌점${map.userDetail.ppt}<br>
-회원가입 상태${map.userDetail.loginType}<br>
-관심목록<br>
+<%--상단 툴바--%>
+<jsp:include page="/layout/toolbar.jsp"/>
+
+<%--상단 탑바--%>
+<jsp:include page="/view/myPage/myPageTitle.jsp"/>
+<div class="container">
+    <div class="row g-5">
+        <div class="col-md-4 d-flex justify-content-end"><h3 class="fw-bold mt-4">회원 상세 조회</h3></div>
+        <div class="col-md-8 d-flex justify-content-center flex-column align-items-start">
+            <form action="">
+                <div class="col-lg-8">
+                    <div class="card mb-4 border-0">
+                        <div class="card-body">
+                            <div class="row mt-2 mb-2">
+                                <div class="col-sm-4">
+                                    <p class="mb-0 fw-bold">회원아이디</p>
+                                </div>
+                                <div class="col-sm-8">
+                                    <p class="text-muted mb-0">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control"  id="userId" name="userId" value="${map.userDetail.userId}" disabled="disabled">
+                                    </div>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row mt-2 mb-2">
+                                <div class="col-sm-4">
+                                    <p class="mb-0 fw-bold">이름</p>
+                                </div>
+                                <div class="col-sm-8">
+                                    <p class="text-muted mb-0">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="userName" name="userName" value="${map.userDetail.userName}" disabled="disabled">
+                                    </div>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row mt-2 mb-2">
+                                <div class="col-sm-4">
+                                    <p class="mb-0 fw-bold">성별</p>
+                                </div>
+                                <div class="col-sm-8">
+                                    <p class="text-muted mb-0">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="gender" name="gender" value="${map.userDetail.gender}" disabled="disabled">
+                                    </div>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row mt-2 mb-2">
+                                <div class="col-sm-4">
+                                    <p class="mb-0 fw-bold">이메일</p>
+                                </div>
+                                <div class="col-sm-8">
+                                    <p class="text-muted mb-0">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control"  id="email" name="email" value="${map.userDetail.email}" disabled="disabled">
+                                    </div>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row mt-2 mb-2">
+                                <div class="col-sm-4">
+                                    <p class="mb-0 fw-bold">휴대폰번호</p>
+                                </div>
+                                <div class="col-sm-8">
+                                    <p class="text-muted mb-0">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control"  id="phone" name="phone" value="${map.userDetail.phone}"  disabled="disabled">
+                                    </div>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row mt-2 mb-2">
+                                <div class="col-sm-4">
+                                    <p class="mb-0 fw-bold">동네코드</p>
+                                </div>
+                                <div class="col-sm-8">
+                                    <p class="text-muted mb-0">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="villCode" name="villCode" value="${map.userDetail.villCode}" disabled="disabled">
+                                    </div>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row mt-2 mb-2">
+                                <div class="col-sm-4">
+                                    <p class="mb-0 fw-bold">관심목록</p>
+                                </div>
+                                <div class="col-sm-8">
+                                    <p class="text-muted mb-0">
+                                    <div class="form-group">
+                                        <select multiple class="form-control" id="attentionList">
 <c:set var="i" value="0" />
-    <c:forEach var="list" items="${map.listInterList}">
-    ${list.interList}<br/>
-    </c:forEach>
+<c:forEach var="list" items="${map.listInterList}">
+    <option>     ${list.interList}</option>
+    </c:forEach><br/>
+                                        </select>
+                                </div>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row mt-2 mb-2">
+                                <div class="col-sm-4">
+                                    <p class="mb-0 fw-bold">벌점</p>
+                                </div>
+                                <div class="col-sm-8">
+                                    <p class="text-muted mb-0">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="ppt" name="ppt" value="${map.userDetail.ppt}" disabled="disabled">
+                                    </div>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row mt-2 mb-2">
+                                <div class="col-sm-4">
+                                    <p class="mb-0 fw-bold">신뢰온도</p>
+                                </div>
+                                <div class="col-sm-8">
+                                    <p class="text-muted mb-0">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="reviewPt" name="reviewPt" value="${map.userDetail.reviewPt}"  disabled="disabled">
+                                    </div>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row mt-2 mb-2">
+                                <div class="col-sm-4">
+                                    <p class="mb-0 fw-bold">패널티 시작 날짜</p>
+                                </div>
+                                <div class="col-sm-8">
+                                    <p class="text-muted mb-0">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="psd" name="psd" value="${map.userDetail.psd}" disabled="disabled">
+                                    </div>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row mt-2 mb-2">
+                                <div class="col-sm-4">
+                                    <p class="mb-0 fw-bold">패널티 종료 날짜</p>
+                                </div>
+                                <div class="col-sm-8">
+                                    <p class="text-muted mb-0">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="ped" name="ped" value="${map.userDetail.ped}"  disabled="disabled">
+                                    </div>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row mt-2 mb-2">
+                                <div class="col-sm-4">
+                                    <p class="mb-0 fw-bold">회원 상태</p>
+                                </div>
+                                <div class="col-sm-8">
+                                    <p class="text-muted mb-0">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="userStatus" name="userStatus" value="${map.userDetail.userStatus}"  disabled="disabled">
+                                    </div>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row mt-2 mb-2">
+                                <div class="col-sm-4">
+                                    <p class="mb-0 fw-bold">회원가입 상태</p>
+                                </div>
+                                <div class="col-sm-8">
+                                    <p class="text-muted mb-0">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="loginType" name="loginType" value="${map.userDetail.loginType}"  disabled="disabled">
+                                    </div>
+                                    </p>
+                                </div>
+                            </div>
+
+
 <c:if test="${map.userDetail.loginType=='1'}">
-<span class="aaa" >회원 사진
-    <img id="userImage1" style="width : 15%;" src="/resources/${map.userDetail.userImage}">
+                            <div class="row mt-2 mb-2">
+                                <div class="col-sm-4">
+                                    <p class="mb-0 fw-bold">회원 사진</p>
+                                </div>
+                                <div class="col-sm-8">
+                                        <span class="aaa">
+    <img id="userImage1"  class="w-50" src="/resources/${map.userDetail.userImage}">
     <input type="hidden" class="userPhoto" value="${map.userDetail.userImage}">
-</span>
+     </span>
+                                </div>
+                            </div>
 </c:if>
 <c:if test="${map.userDetail.loginType=='2'}">
-<span class="aaa" >회원 사진
-    <img id="userImage2" style="width : 15%;" src="${map.userDetail.userImage}">
+                            <div class="row mt-2 mb-2">
+                                <div class="col-sm-4">
+                                    <p class="mb-0 fw-bold">회원 사진</p>
+                                </div>
+                                <div class="col-sm-8">
+                                        <span class="aaa">
+    <img id="userImage2"  class="w-50" src="${map.userDetail.userImage}">
     <input type="hidden" class="userPhoto" value="${map.userDetail.userImage}">
 </span>
+                                </div>
+                            </div>
 </c:if>
 <c:if test="${map.userDetail.loginType=='3'}">
-<span class="aaa" >회원 사진
-    <img id="userImage3" style="width : 15%;" src="${map.userDetail.userImage}">
+                            <div class="row mt-2 mb-2">
+                                <div class="col-sm-4">
+                                    <p class="mb-0 fw-bold">회원 사진</p>
+                                </div>
+                                <div class="col-sm-8">
+                                        <span class="aaa">
+    <img id="userImage3" class="w-50" src="${map.userDetail.userImage}">
     <input type="hidden" class="userPhoto" value="${map.userDetail.userImage}">
-</span>
+ </span>
+                                </div>
+                            </div>
 </c:if>
+                        </div>
+                    </div>
+                </div>
 <br>
-<button type="button" id="updatePsd" >수정하기</button>
-<button type="button" id="kickoutUser">강퇴하기</button>
-<button type="button" id="ok">확인</button>
+                <div class="col-lg-8 d-flex justify-content-around mb-3">
+<button type="button" class="listUser btn  btn-prm btn-primary   me-3" id="updatePsd" >수정하기</button>
+<button type="button"  class="listUser btn btn-prm  btn-primary " id="kickoutUser">강퇴하기</button>
+<button type="button"  class="listUser btn btn-prm  btn-primary " id="ok">확인</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>
 </body>
 </html>

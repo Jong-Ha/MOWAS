@@ -21,7 +21,7 @@ public class ClubReport {
     private String reportText;
     private Date processDate;
     private String reportResult;
-    private char rereportApplyCheck;
+    private String rereportApplyCheck;
     private Date rereportApplyDate;
     private String rereportText;
     private String rereportResult;

@@ -78,10 +78,6 @@ $(function () {
             alert('로그인이 필요합니다')
         }
     })
-    //로그인 나중에 없앨거
-    $(".clubLogin").on("click", function () {
-        location.href = "/club/login?userId=" + $("input[name='userId']").val()
-    })
     //위치 검색
     $(".searchLocation").on("click", function () {
         $('#searchLocation .getLocation').off('click').on('click', function () {
@@ -237,6 +233,7 @@ $(function () {
 
 //무한스크롤
 $(function () {
+
     function getFormJson(selector) {
         // Select Form
         let selForm = document.querySelector(selector);
@@ -249,6 +246,7 @@ $(function () {
 
         // Log
         console.log(JSON.stringify(serializedFormData));
+
         return JSON.stringify(serializedFormData)
     }
 
@@ -291,7 +289,7 @@ $(function () {
             // console.log(data)
 
             const json = getFormJson('#listForm')
-alert(json)
+        alert(json)
             $.ajax({
                 url: '/club/json/listClub',
                 method: 'post',

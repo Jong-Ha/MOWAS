@@ -2,6 +2,7 @@ package com.project.club.controller;
 
 import com.project.club.service.ClubCalendarService;
 import com.project.club.service.ClubService;
+import com.project.common.Search;
 import com.project.community.service.CommunityService;
 import com.project.deal.service.DealService;
 import com.project.domain.*;
@@ -10,6 +11,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -43,6 +45,9 @@ public class ClubCalendarRestController<list> {
     @Autowired
     @Qualifier("dealServiceImpl")
     private DealService dealService;
+
+    @Value("#{commonProperties['pageSize']}")
+    int pageSize;
 
 
     /*캘린더 등록 ajax 처리*/
@@ -184,6 +189,41 @@ public class ClubCalendarRestController<list> {
         return 0;
     }
 
+    @RequestMapping("listClubCalendarReview")
+    public Map<String,Object> listClubCalendarReview(@RequestBody Map<String, Object> map){
+
+        Search search = new Search();
+        ClubCalendarReview calendarReview = new ClubCalendarReview();
+
+        if(map.get("currentPage")!= null){
+            int currentPage = Integer.parseInt((String)map.get("currentPage"));
+            search.setCurrentPage(currentPage);
+            if (currentPage == 0){
+                search.setCurrentPage(1);
+            }
+        }
+
+        if(map.get("searchCondition") != null){
+            String searchCondition = (String) map.get("searchCondition");
+            search.setSearchCondition(searchCondition);
+        }
+        search.setPageSize(pageSize);
+        if(map.get("searchKeyword")!=null){
+            String searchKeyword = (String) map.get("searchKeyword");
+            search.setSearchKeyword(searchKeyword);
+        }
+
+        String SboardCategory = (String) map.get("boardCategory");
+        String SreviewRange = (String) map.get("reviewRange");
+
+
+        Map<String,Object> map2 =  calenderService.listCalenderReview(Integer.parseInt(SboardCategory),search,Integer.parseInt(SreviewRange));
+
+        System.out.println(map2.get("list"));
+
+        return map2;
+    }
+
     @RequestMapping("deleteClubCalender")
     public int deleteClubCalender(@RequestBody ClubCalendar clubCalendar) {
 
@@ -292,11 +332,11 @@ public class ClubCalendarRestController<list> {
         String fileName = null;
         for (int i = 0; i < file.size(); i++) {
 
-            if (boardCategory.equals("01") || boardCategory.equals("02")) {
+            if (boardCategory.equals("1") || boardCategory.equals("2")) {
 
                 fileName = "/uploadFiles/clubCalendarReviewFiles/" + UUID.randomUUID() + file.get(i).getOriginalFilename();
 
-            } else if (boardCategory.equals("03")) {
+            } else if (boardCategory.equals("3")) {
 
                 fileName = "/uploadFiles/villBoardFiles/" + UUID.randomUUID() + file.get(i).getOriginalFilename();
 
@@ -377,24 +417,6 @@ public class ClubCalendarRestController<list> {
 
     }
 
-  /*  @RequestMapping("listCalenderReview")
-    public String listCalenderReview(@Request
-
-            , Model model, HttpServletRequest request) {
-        System.out.println(boardCategory);
-        Map<String, Object> map = calenderService.listCalenderReview(boardCategory);
-
-        model.addAttribute("list", map.get("list"));
-
-        if (boardCategory == 1) {
-            return "forward:/view/community/list/clubCalenderReviewList.jsp";
-        } else if (boardCategory == 2) {
-            return "forward:/view/community/list/clubCalenderReviewShortList.jsp";
-        }
-
-        return null;
-
-    }*/
 
 
     @RequestMapping("getListCluber")

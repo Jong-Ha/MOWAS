@@ -33,9 +33,9 @@ public class ClubServiceTest {
         club.setClubImage("이미지");
         club.setTag("#asdf #qwer #zxcv");
 
-        Club result = clubService.addClub(club);
+//        Club result = clubService.addClub(club);
 
-        System.out.println(result);
+//        System.out.println(result);
     }
 
     @Test

@@ -21,9 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 @RequestMapping("/myPage/*")
@@ -91,6 +89,79 @@ public class MyPageController {
         System.out.println("getMyInfor컨트롤러 userId의 값?"+userId);
 
         Map<String, Object> map = myPageService.getMyInfor(userId);
+        String tm = "";
+        ArrayList tmlist = null;
+
+        System.out.println("맵안의 인터리스트값 : "+map.get("interList"));
+        List<UserInterList> abcd = (List<UserInterList>)map.get("interList");
+        for (int i = 0; i < abcd.size(); i++) {
+            String abc = abcd.get(i).getInterList().trim();
+            System.out.println("abc의 값...." + abc);
+            String interList = "";
+            String str = "";
+            switch (Integer.parseInt(abc)) {
+                case 1:
+                    interList = "독서";
+                    str += interList;
+                    break;
+                case 2:
+                    interList = "자동차";
+                    str += interList;
+                    break;
+                case 3:
+                    interList = "반려동물";
+                    str += interList;
+                    break;
+                case 4:
+                    interList = "공예";
+                    str += interList;
+                    break;
+                case 5:
+                    interList = "스포츠";
+                    str += interList;
+                    break;
+                case 6:
+                    interList = "댄스";
+                    str += interList;
+                    break;
+                case 7:
+                    interList = "여행";
+                    str += interList;
+                    break;
+                case 8:
+                    interList = "사진";
+                    str += interList;
+                    break;
+                case 9:
+                    interList = "육아";
+                    str += interList;
+                    break;
+                case 10:
+                    interList = "공연";
+                    str += interList;
+                    break;
+                case 11:
+                    interList = "음악";
+                    str += interList;
+                    break;
+                case 12:
+                    interList = "게임";
+                    str += interList;
+                    break;
+                case 13:
+                    interList = "그외";
+                    str += interList;
+                    break;
+            }
+            System.out.println("str의 값..?" + str);
+            tm += str+"\n\r";
+            System.out.println("tm의값.....! " + tm);
+            tmlist = new ArrayList<>();
+            tmlist.add(tm);
+
+            map.put("interList", tmlist);
+        }
+
         System.out.println("getMyInfor 컨트롤러 map의 값은?"+map);
         model.addAttribute("map", map);
         return "forward:/view/myPage/getMyInfor.jsp";
@@ -101,6 +172,80 @@ public class MyPageController {
         System.out.println("updateClick컨트롤러 userId의 값?"+userId);
 
         Map<String, Object> map = myPageService.getMyInfor(userId);
+
+        String tm = "";
+        ArrayList tmlist = null;
+
+        System.out.println("맵안의 인터리스트값 : "+map.get("interList"));
+        List<UserInterList> abcd = (List<UserInterList>)map.get("interList");
+        for (int i = 0; i < abcd.size(); i++) {
+            String abc = abcd.get(i).getInterList().trim();
+            System.out.println("abc의 값...." + abc);
+            String interList = "";
+            String str = "";
+            switch (Integer.parseInt(abc)) {
+                case 1:
+                    interList = "독서";
+                    str += interList;
+                    break;
+                case 2:
+                    interList = "자동차";
+                    str += interList;
+                    break;
+                case 3:
+                    interList = "반려동물";
+                    str += interList;
+                    break;
+                case 4:
+                    interList = "공예";
+                    str += interList;
+                    break;
+                case 5:
+                    interList = "스포츠";
+                    str += interList;
+                    break;
+                case 6:
+                    interList = "댄스";
+                    str += interList;
+                    break;
+                case 7:
+                    interList = "여행";
+                    str += interList;
+                    break;
+                case 8:
+                    interList = "사진";
+                    str += interList;
+                    break;
+                case 9:
+                    interList = "육아";
+                    str += interList;
+                    break;
+                case 10:
+                    interList = "공연";
+                    str += interList;
+                    break;
+                case 11:
+                    interList = "음악";
+                    str += interList;
+                    break;
+                case 12:
+                    interList = "게임";
+                    str += interList;
+                    break;
+                case 13:
+                    interList = "그외";
+                    str += interList;
+                    break;
+            }
+            System.out.println("str의 값..?" + str);
+            tm += str+"\n\r";
+            System.out.println("tm의값.....! " + tm);
+            tmlist = new ArrayList<>();
+            tmlist.add(tm);
+
+            map.put("interList", tmlist);
+        }
+
         System.out.println("updateClick 컨트롤러 map의 값은?"+map);
         model.addAttribute("map", map);
         return "forward:/view/myPage/updateMyInfor.jsp";
@@ -544,7 +689,24 @@ public class MyPageController {
         model.addAttribute("map", map);
         return "forward:/view/myPage/getMyDealLike.jsp";
     }
+    @RequestMapping(value = "getMyCommentLike", method = RequestMethod.GET)
+    public String getMyCommentLike(@RequestParam(value ="userId")String userId,Model model)throws Exception{
+        System.out.println("getMyCommentLike 컨트롤러 userId의 값?"+userId);
 
+        Map<String, Object> map = myPageService.getMyComment(userId);
+        System.out.println("getMyCommentLike 컨트롤러 map의 값은?"+map);
+        model.addAttribute("map", map);
+        return "forward:/view/myPage/getMyCommentLike.jsp";
+    }
+    @RequestMapping(value = "getMyRecommentLike", method = RequestMethod.GET)
+    public String getMyRecommentLike(@RequestParam(value ="userId")String userId,Model model)throws Exception{
+        System.out.println("getMyRecommentLike 컨트롤러 userId의 값?"+userId);
+
+        Map<String, Object> map = myPageService.getMyComment(userId);
+        System.out.println("getMyRecommentLike 컨트롤러 map의 값은?"+map);
+        model.addAttribute("map", map);
+        return "forward:/view/myPage/getMyRecommentLike.jsp";
+    }
     @RequestMapping(value = "getMyClub", method = RequestMethod.GET)
     public String getMyClub(@RequestParam(value ="userId")String userId,Model model)throws Exception{
         System.out.println("getMyClub 컨트롤러 userId의 값?"+userId);
@@ -553,6 +715,15 @@ public class MyPageController {
         System.out.println("getMyClub 컨트롤러 map의 값은?"+map);
         model.addAttribute("map", map);
         return "forward:/view/myPage/getMyClub.jsp";
+    }
+    @RequestMapping(value = "getMyClubApply", method = RequestMethod.GET)
+    public String getMyClubApply(@RequestParam(value ="userId")String userId,Model model)throws Exception{
+        System.out.println("getMyClubApply 컨트롤러 userId의 값?"+userId);
+
+        Map<String, Object> map = myPageService.getMyClub(userId);
+        System.out.println("getMyClubApply 컨트롤러 map의 값은?"+map);
+        model.addAttribute("map", map);
+        return "forward:/view/myPage/getMyClubApply.jsp";
     }
 
     @RequestMapping(value = "getMyDeal", method = RequestMethod.GET)
@@ -573,23 +744,41 @@ public class MyPageController {
         model.addAttribute("map", map);
         return "forward:/view/myPage/getMyDealReview.jsp";
     }
-    @RequestMapping(value = "getMyReport", method = RequestMethod.GET)
-    public String getMyReport(@RequestParam(value ="userId")String userId,Model model)throws Exception{
+    @RequestMapping(value = "getMyReport")
+    public String getMyReport(@RequestParam(value ="userId")String userId, @ModelAttribute("search") Search search,Model model)throws Exception{
         System.out.println("getMyReport 컨트롤러 userId의 값?"+userId);
+        if (search.getCurrentPage() == 0) {
+            search.setCurrentPage(1);
+        }
+        search.setPageSize(pageSize);
 
         Map<String, Object> map = myPageService.getMyReport(userId);
         System.out.println("getMyReport 컨트롤러 map의 값은?"+map);
+        Map<String, Object> mapTotalCount = myPageService.getTotalCount(search);
+        Page resultPage = new Page( search.getCurrentPage(), ((Integer)mapTotalCount.get("totalCount")).intValue(), pageUnit, pageSize);
+        System.out.println(resultPage);
+
         model.addAttribute("map", map);
+        model.addAttribute("resultPage", resultPage);
         return "forward:/view/myPage/getMyReport.jsp";
     }
 
-    @RequestMapping(value = "getMyPpt", method = RequestMethod.GET)
-    public String getMyPpt(@RequestParam(value ="userId")String userId,Model model)throws Exception{
+    @RequestMapping(value = "getMyPpt")
+    public String getMyPpt(@RequestParam(value ="userId")String userId, @ModelAttribute("search") Search search, Model model)throws Exception{
         System.out.println("getMyPpt 컨트롤러 userId의 값?"+userId);
+        if (search.getCurrentPage() == 0) {
+            search.setCurrentPage(1);
+        }
+        search.setPageSize(pageSize);
 
         Map<String, Object> map = myPageService.getMyPpt(userId);
         System.out.println("getMyPpt 컨트롤러 map의 값은?"+map);
+        Map<String, Object> mapTotalCount = myPageService.getTotalCount(search);
+        Page resultPage = new Page( search.getCurrentPage(), ((Integer)mapTotalCount.get("totalCount")).intValue(), pageUnit, pageSize);
+        System.out.println(resultPage);
+
         model.addAttribute("map", map);
+        model.addAttribute("resultPage", resultPage);
         return "forward:/view/myPage/getMyPpt.jsp";
     }
     //*/

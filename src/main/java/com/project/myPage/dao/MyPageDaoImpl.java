@@ -1,5 +1,6 @@
 package com.project.myPage.dao;
 
+import com.project.common.Search;
 import com.project.domain.*;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +81,10 @@ public class MyPageDaoImpl implements MyPageDao{
 
     public List<CommunityReport> getMyReport(String userId)throws Exception{
         return sqlSession.selectList("MyPageMapper.getMyReport", userId);
+    }
+
+    public int getTotalCount(Search search)throws Exception{
+        return sqlSession.selectOne("MyPageMapper.getTotalCount", search);
     }
 
     public List<CommunityReport> getMyPpt(String userId)throws Exception{

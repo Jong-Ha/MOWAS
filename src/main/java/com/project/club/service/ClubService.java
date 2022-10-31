@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface ClubService {
 
-    public Club addClub(Club club);
+    public Club addClub(Club club, User user);
     public void updateClub(Club club);
     public void deleteClub(Club club);
     public Club getClub(int clubNum);
@@ -20,7 +20,7 @@ public interface ClubService {
     public void deleteCluberApply(int clubUserNum);
     public List<Cluber> listCluberApply(int clubNum);
     public String getCluberApply(int clubUserNum);
-    public void updateCluberApply(int clubNum, int clubUserNum, String userId, String result);
+    public void updateCluberApply(int clubNum, int clubUserNum, String userId, String userImage, String result);
     public void addClubManager(int clubUserNum);
     public void deleteClubManager(int clubUserNum);
     public void updateClubMaster(Cluber cluber);

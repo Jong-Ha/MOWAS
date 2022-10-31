@@ -31,7 +31,7 @@
 <%--상단 툴바--%>
 <jsp:include page="/layout/toolbar.jsp"/>
 <!-- Example Code -->
-<div class="container" style="padding-top: 30px;">
+<div class="container" style="padding-top: 30px;margin-bottom: 50px;">
 
     <div id="nonModal">
         <div class="row" style="display: flex; align-items: center">

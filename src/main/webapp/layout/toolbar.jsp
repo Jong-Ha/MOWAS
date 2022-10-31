@@ -9,6 +9,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script type="text/javascript" src="/resources/OpenSource/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+
 
 <script type="text/javascript">
 
@@ -16,7 +18,7 @@
     $(function () {
 
         $("#login1").on("click", function () {
-            console.log('${user.userId}')
+            console.log('${sessionScope.user.userId}')
             console.log($.cookie("keepLogin"))
             if ($.cookie('keepLogin') != undefined) {
                 self.location = "/user/loginNow";
@@ -135,25 +137,53 @@
         });
     });
 
-    $(function () {
-        $(".naverIdLogin").on("click", function () {
-            alert('asdfdf');
 
-            var naverLogin = new naver.LoginWithNaverId(
-                {
-                    clientId: "LVp6wWTSWO4roaPEeGxT",
-                    // 본인의 Client ID로 수정, 띄어쓰기는 사용하지 마세요.
-                    callbackUrl: "http://localhost:8080/user/callBack",
-                    // 본인의 callBack url로 수정하세요.
-                    isPopup: false,// 팝업창으로 로그인을 진행할 것인지?
-                    loginButton: {color: "green", type: 3, height: 70}
-                    // 버튼 타입 ( 색상, 타입, 크기 변경 가능 )
-                    // 네이버 로그인버튼 디자인 설정. 한번 바꿔보세요:D
-                }
-            );
-            naverLogin.init();
-        });
-    });
+
+    // const { naver } = window as any;
+    //
+    // function fncLogin(props: any) {
+    //     const initializeNaverLogin = () => {
+    //         const naverLogin = new naver.LoginWithNaverId({
+    //             clientId: "LVp6wWTSWO4roaPEeGxT",
+    //             callbackUrl: "http://192.168.0.235:8080/user/callBack",
+    //             isPopup: true, // popup 형식으로 띄울것인지 설정
+    //             loginButton: { color: 'white', type: 1, height: '47' }, //버튼의 스타일, 타입, 크기를 지정
+    //         });
+    //         naverLogin.init();
+    //     };
+    //
+    //     useEffect(() => {
+    //         initializeNaverLogin();
+    //     }, []);
+    //
+    //     return (
+    // ...
+    //     <div id='naverIdLogin' /> { /* id 꼭 입력해주어야 함 */}
+    // ...
+    // )
+    // }
+
+
+
+    // $(function () {
+    //     $(".naverIdLogin").on("click", function () {
+    //         alert('asdfdf');
+    //
+    //         var naverLogin = new naver.LoginWithNaverId(
+    //             {
+    //                 clientId: "LVp6wWTSWO4roaPEeGxT",
+    //                 // 본인의 Client ID로 수정, 띄어쓰기는 사용하지 마세요.
+    //                 callbackUrl: "http://192.168.0.235:8080/user/callBack",
+    //                 // 본인의 callBack url로 수정하세요.
+    //                 isPopup: true,// 팝업창으로 로그인을 진행할 것인지?
+    //                 loginButton: {color: "green", type: 3, height: 70}
+    //                 // 버튼 타입 ( 색상, 타입, 크기 변경 가능 )
+    //                 // 네이버 로그인버튼 디자인 설정. 한번 바꿔보세요:D
+    //             }
+    //         );
+    //         naverLogin.init();
+    //     });
+    // });
 
 
     $(function () {
@@ -163,8 +193,7 @@
     });
     $(function () {
         $("#myPage").on("click", function () {
-            var userId = $("#modelUser").val();
-            self.location = "/myPage/getMyPage?userId=" + userId;
+            self.location = "/myPage/getMyPage?userId=${sessionScope.user.userId}";
         });
     });
 
@@ -399,7 +428,7 @@
                             <a class="nav-link  underline yellow" style="color : #ffffff; font-size: 1.3em;" onclick="location.href='/deal/getListDeal?boardCategory=99'">중고 거래 게시판</a>
                         </li>
 
-                <%--<c:if test="${user.masterCheck eq 2}">--%>
+                <%--<c:if test="${sessionScope.user.masterCheck eq 2}">--%>
                         <li class="nav-item">
                             <div class="dropdown">
                                 <a class="nav-link  underline yellow dropdown-toggle" style="color : #ffffff; font-size: 1.3em;"
@@ -420,14 +449,16 @@
                 <%--</c:if>--%>
 
                     </ul>
+<c:if test="${sessionScope.user.userId ne null}">
                     <div class="logitem">
                         <img src="${pageContext.request.contextPath}/resources/images/proplePoto.png"
                              style="width: 60px;margin-right: 10px; border-radius: 40px; height: 50px;">
+                        </c:if>
 
                         <div class="login ">
                             <div class="d-grid gap-2">
 
-                                <c:if test="${user.userId eq null}">
+                                <c:if test="${sessionScope.user.userId eq null}">
 
                                     <div class="loginbox login underline yellow" id="login1"
                                          style="font-size: 1.2em; color: #FFFFFF; " data-bs-toggle="modal"
@@ -437,7 +468,7 @@
 
                                 </c:if>
 
-                                <c:if test="${user.userId ne null}">
+                                <c:if test="${sessionScope.user.userId ne null}">
 
                                 <div class="loginbox login underline yellow" style="font-size: 1.2em; color: #FFFFFF;"
                                      id="logout">로그아웃
@@ -538,7 +569,7 @@
                     <div>
 
                         <button class="btn btn-outline-primary btnlf addUserStart" type="button"> 회원 가입</button>
-                        <button class="btn btn-outline-info btnlf loginStart" style="margin-right: 39px;" type="button">login</button>
+                        <button class="btn btn-outline-info btnlf loginStart" style="margin-right: 39px;" type="button">로그인</button>
 
                     </div>
 
@@ -550,23 +581,41 @@
                         <!-- REST_API키 및 REDIRECT_URi는 본인걸로 수정하세요 -->
                         <!-- 저는 redirect_uri을 http://localhost:8080/member/kakaoLogin로 했습니다. -->
                         <!-- 본인걸로 수정 시 띄어쓰기 절대 하지 마세요. 오류납니다. -->
-                        <img class="kakaoImage" src="/resources/images/kakao_login_medium_wide.png" style="height:50px; cursor:pointer">
+                        <img class="kakaoImage" src="/resources/images/kakao_login_medium_wide.png" style="height:50px; width:255px; cursor:pointer">
                         <!-- 이미지는 카카오 개발자센터에서 제공하는 login 이미지를 사용했습니다. -->
 
-                        <img class="naverIdLogin" src="/resources/images/naverLogin.png" style="height: 50px;width: 71.2%; margin-top: 10px;cursor:pointer">
+                       <!--<img class="naverIdLogin" src="/resources/images/naverLogin.png" style="height: 50px;width: 71.2%; margin-top: 10px;cursor:pointer">-->
 
-                        <div id="naver_id_login"></div>
+                        <div id="naverIdLogin"></div>
                     </div>
-                    <!-- //네이버 로그인 버튼 노출 영역 -->
+
                     <script type="text/javascript">
-                        var naver_id_login = new window.naver_id_login("LVp6wWTSWO4roaPEeGxT", "http://localhost:8080/user/callBack");
+                        var naverLogin = new naver.LoginWithNaverId(
+                            {
+                                clientId: "LVp6wWTSWO4roaPEeGxT",
+                                callbackUrl: "http://192.168.0.235:8080//view/user/callBack.jsp",
+                                isPopup: true, /* 팝업을 통한 연동처리 여부 */
+                                loginButton: {color: "green", type: 3, height: 55} /* 로그인 버튼의 타입을 지정 */
+                            }
+                        );
+
+                        /* 설정정보를 초기화하고 연동을 준비 */
+                        naverLogin.init();
+
+                    </script>
+                    <!-- // 네이버아이디로로그인 초기화 Script -->
+
+
+                    <!-- //네이버 로그인 버튼 노출 영역
+                    <script type="text/javascript">
+                        var naver_id_login = new window.naver_id_login("LVp6wWTSWO4roaPEeGxT", "http://192.168.0.235:8080/user/callBack");
                         var state = naver_id_login.getUniqState();
                         naver_id_login.setButton("white", 2, 40);
-                        naver_id_login.setDomain("http://localhost:8080/");
+                        naver_id_login.setDomain("http://192.168.0.235:8080/");
                         naver_id_login.setState(state);
                         naver_id_login.setPopup(false);
                         naver_id_login.init_naver_id_login();
-                    </script>
+                    </script>-->
                 </form>
             </div>
         </div>

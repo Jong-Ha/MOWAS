@@ -9,9 +9,7 @@
 <title>Insert title here</title>
 </head>
    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
     <title>Bootstrap Example</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -38,8 +36,9 @@
 
         alert('userId'+userId);
         alert('loginType'+loginType);
+        alert('userName'+name);
 
-        if(loginType==3 && name == null || name.length <1){
+        if(name == null || name.length <1){
           alert("이름은  반드시 입력하셔야 합니다.");
           return false;//해당 메서드(펑션)을 종료한다
         }
@@ -834,13 +833,13 @@
     <form class="needs-validation" novalidate enctype="multipart/form-data">
       <div class="row g-3">
 
-          <c:if test="${kakaoUser.loginType=='2'}">
+
         <div class="col-12">
           <label for="userName" class="form-label">이름</label>
             <input type="text" class="form-control" id="userName" name="userName"  required>
           </div>
         </div>
-        </c:if>
+
 
         <div class="col-12 ">
           <label for="rrd" class="form-label">주민등록번호</label>

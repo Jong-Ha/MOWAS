@@ -1,5 +1,6 @@
 package com.project.club.controller;
 
+import com.project.club.service.ClubCalendarService;
 import com.project.club.service.ClubService;
 import com.project.common.KakaoMapApi;
 import com.project.common.Page;
@@ -17,8 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.sql.Date;
 import java.util.*;
 
 @Controller
@@ -28,6 +27,10 @@ public class ClubController {
     @Autowired
     @Qualifier("clubServiceImpl")
     private ClubService clubService;
+
+    @Autowired
+    @Qualifier("clubCalenderServiceImpl")
+    private ClubCalendarService clubCalendarService;
 
     @Autowired
     @Qualifier("userServiceImpl")
@@ -91,7 +94,7 @@ public class ClubController {
 
         club.setTag(clubTag.toString().trim());
 
-        club = clubService.addClub(club);
+        club = clubService.addClub(club, user);
         return "redirect:/club/getClub/" + club.getClubNum();
     }
 
@@ -640,8 +643,9 @@ public class ClubController {
         return "redirect:/club/getVote/" + voteNum;
     }
 
-    @RequestMapping(value = "feane/{page}", method = RequestMethod.GET)
-    public String feane(@PathVariable String page) {
-        return "/view/feane/"+page+".jsp";
+    @RequestMapping(value = "/club/listClubCalendarReview")
+    public String listClubCalendarReview(int clubNum){
+
+        return "/view/club/listClubCalendarReview.jsp";
     }
 }
