@@ -1,4 +1,5 @@
 package com.project.site.controller;
+import com.project.club.service.ClubCalendarService;
 import com.project.club.service.ClubService;
 import com.project.common.Page;
 import com.project.common.Search;
@@ -32,6 +33,10 @@ public class SiteController {
     @Autowired
     @Qualifier("communityServiceImpl")
     private CommunityService commuService;
+
+    @Autowired
+    @Qualifier("clubCalenderServiceImpl")
+    private ClubCalendarService calenderService;
 
     public SiteController() {
         System.out.println(this.getClass());
@@ -165,23 +170,25 @@ public class SiteController {
         System.out.println("/site/getCommunityReport : GET");
         CommunityReport communityReport = siteService.getCommunityReport(reportNo);
 
-        System.out.println("Board Category : " +communityReport.getBoardCategory());
+        System.out.println("-------- Board Category : " +communityReport.getBoardCategory());
 
-        if(communityReport.getBoardCategory().equals("1 ")) {
+        if(communityReport.getBoardCategory().equals("1") || communityReport.getBoardCategory().equals("2")) {
+            ClubCalendarReview clubCalReview = new ClubCalendarReview();
+            clubCalReview = calenderService.getCalenderReview(communityReport.getBoardNo());
 
+            if(clubCalReview != null) {
+                model.addAttribute("clubCalReview", clubCalReview);
+            }
         }
-        else if(communityReport.getBoardCategory().equals("2 ")) {
-
-        }
-        else if(communityReport.getBoardCategory().equals("3 ")) {
+        else if(communityReport.getBoardCategory().equals("3")) {
             VilBoard villBoard = new VilBoard();
-            System.out.println("----- Board Category : " + communityReport.getBoardCategory());
             villBoard = commuService.getVillBoard(communityReport.getBoardNo());
 
             if (villBoard != null) {
                 model.addAttribute("villBoard", villBoard);
             }
         }else if(communityReport.getBoardCategory().equals("10")) {
+
 
         }else if(communityReport.getBoardCategory().equals("11")) {
 
@@ -272,7 +279,7 @@ public class SiteController {
 
         CommunityReport communityReport = siteService.getCommunityReport(reportNo);
 
-        siteService.processCommunityReport(communityReport);
+        //siteService.processCommunityReport(communityReport);
 
         model.addAttribute("communityReport", communityReport);
         return "forward:/view/site/updateCommunityReport.jsp";

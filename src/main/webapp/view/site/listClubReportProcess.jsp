@@ -257,8 +257,8 @@
 
                                 <div class="input-group">
                                     <select class="form-control" name="searchCondition" >
-                                        <option value="0"${!empty search.searchCondition&&search.searchCondition==0 ? "selected":"" }>회원</option>
-                                        <option value="1"${!empty search.searchCondition&&search.searchCondition==1 ? "selected":"" }>게시글종류</option>
+                                        <option value="0"${!empty search.searchCondition&&search.searchCondition==0 ? "selected":"" }>번호</option>
+                                        <option value="1"${!empty search.searchCondition&&search.searchCondition==1 ? "selected":"" }>신고한회원</option>
                                     </select>
                                 </div>
 

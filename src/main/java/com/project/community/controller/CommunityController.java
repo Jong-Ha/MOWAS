@@ -124,11 +124,11 @@ public class CommunityController {
         User user = (User) session.getAttribute("user");
 
         System.out.println("유저의 이름 :" + user.getUserId());
-        villBoard.setUserId(user.getUserId());
-        villBoard.setVillCode("창원");
-        villBoard.setBoardCategory(3);
 
-        //commuService.addVillBoard(villBoard);
+        villBoard.setUserId(user.getUserId());
+        villBoard.setVillCode(user.getVillCode());
+
+        commuService.addVillBoard(villBoard);
 
         return null;
     }
@@ -171,9 +171,11 @@ public class CommunityController {
         commuService.deleteBoard(boardNum,boardCategory);
 
 
-        /*session.getAttribute("villCode");*/
+        User user = (User) session.getAttribute("user");
 
-        String villCode = "창원";
+
+
+        String villCode = user.getVillCode();
 
         String encode = "";
 

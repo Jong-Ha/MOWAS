@@ -40,7 +40,7 @@
         const sendData = "longitude=" + longitude + "&latitude=" + latitude;
 
         $.ajax({
-            url: '/site/json/clubMap',
+            url: '/site/json/calendarMap',
             method: 'POST',
             data: sendData,
             success: function (vilCode) {

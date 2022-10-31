@@ -144,7 +144,6 @@
                 success: function (JSONData, result) {
                     console.log(JSONData);
 
-                    alert(JSONData);
 
                     var boardNum = JSONData
 
@@ -455,7 +454,7 @@
         flex-direction: row;
         margin-bottom: 30px;
         float: left;
-        width: 442px;
+        width: 360px;
         transition: all 0.1s linear;
     }
 
@@ -772,7 +771,7 @@
             </div>
             <div class="modal-body">
 
-                <form id="addForm">
+
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control villTitle1" id="recipient-name" value=""
@@ -789,18 +788,18 @@
 
 
                     </div>
-
+                <form id="addForm">
                     <div class="input-group mb-3">
                         <input type="file" id="file1" class="form-control file" multiple value="파일 첨부">
                     </div>
-
+                </form>
                     <div class="mb-3" style="text-align: left;">
                         <input type="hidden" class="form-control villTag" name="villTag" id="villTag"
                                placeholder="테그 입력칸입니다">
                     </div>
 
 
-                </form>
+
 
             </div>
 
