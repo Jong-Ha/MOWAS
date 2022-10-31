@@ -33,6 +33,7 @@ public class ClubServiceImpl implements ClubService {
     @Override
     public void updateClub(Club club) {
         clubDao.updateClub(club);
+        mongoDbDao.updateClub(club.getClubNum(),club.getClubName());
     }
 
     @Override
@@ -61,11 +62,13 @@ public class ClubServiceImpl implements ClubService {
     @Override
     public List<Club> listClub(String userId, Search search, String searchLocation, List<String> searchInterList, List<String> searchTag) {
         Map<String, Object> map = new HashMap<>();
+
         map.put("search",search);
         map.put("searchLocation",searchLocation);
         map.put("searchInterList",searchInterList);
         map.put("searchTag",searchTag);
         map.put("userId",userId);
+
         return clubDao.listClub(map);
     }
 
@@ -181,9 +184,11 @@ public class ClubServiceImpl implements ClubService {
         clubDao.addClubMasterBoard(clubMasterBoard);
         int clubMasterBoardNum = clubDao.getClubMasterBoardNum(clubMasterBoard.getUserId());
         List<File> files = clubMasterBoard.getFiles();
-        for (File file : files) {
-            file.setBoardNum(clubMasterBoardNum);
-            clubDao.addClubMasterBoardFile(file);
+        if(files!=null){
+            for (File file : files) {
+                file.setBoardNum(clubMasterBoardNum);
+                clubDao.addClubMasterBoardFile(file);
+            }
         }
         return clubMasterBoardNum;
     }

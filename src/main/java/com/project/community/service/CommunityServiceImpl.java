@@ -1,6 +1,7 @@
 package com.project.community.service;
 
 import com.project.club.dao.ClubCalendarDao;
+import com.project.common.Search;
 import com.project.community.dao.CommunityDao;
 import com.project.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,8 +66,13 @@ public class CommunityServiceImpl implements CommunityService {
 
 
     @Override
-    public Map<String, Object> listVillBoard(String villCode) {
-        List<VilBoard> list = commuDao.listVillBoard(villCode);
+    public Map<String, Object> listVillBoard(String villCode, Search search) {
+        Map<String, Object> map2 = new HashMap<>();
+        map2.put("villCode", villCode);
+        map2.put("search", search);
+
+
+        List<VilBoard> list = commuDao.listVillBoard(map2);
 
         Map<String, Object> map = new HashMap<String, Object>();
 

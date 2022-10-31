@@ -97,9 +97,7 @@ public class ClubController {
 
     @RequestMapping(value = "listClub")
     public String listClub(Model model, HttpSession session, @RequestParam(value = "searchLocation", required = false) String searchLocation, @RequestParam(value = "searchTag", required = false) List<String> searchTag, @RequestParam(value = "searchInterList", required = false) List<String> searchInterList, @ModelAttribute("search") Search search) throws Exception {
-        if (search.getCurrentPage() == 0) {
             search.setCurrentPage(1);
-        }
         search.setPageSize(pageSize);
         search.setSearchCondition("1");
 //        System.out.println(searchLocation);

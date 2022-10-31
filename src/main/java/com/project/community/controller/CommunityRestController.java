@@ -218,7 +218,7 @@ public class CommunityRestController {
         User user = (User) session.getAttribute("user");
 
         villBoard.setUserId(user.getUserId());
-        villBoard.setVillCode("창원");
+        villBoard.setVillCode(user.getVillCode());
 
         communityService.addVillBoard(villBoard);
 

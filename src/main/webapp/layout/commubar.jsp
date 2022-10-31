@@ -16,29 +16,18 @@
         $(function () {
 
             $(".clubCalenderReview").on("click", function () {
-                location.href = "/clubCal/listCalenderReview?boardCategory=" + 1
+                location.href = "/clubCal/listCalenderReview?boardCategory="+1+"&reviewRange=" + 1
             });
 
             $(".clubCalenderReviewShort").on("click", function () {
-                location.href = "/clubCal/listCalenderReview?boardCategory=" + 2
+                location.href = "/clubCal/listCalenderReview?boardCategory=" + 2 +"&reviewRange=" + 1
             })
 
             $(".villBoard").on("click", function () {
-                location.href = "/commu/villBoardList?villCode=" + "창원" + "&boardCategory=" + 3;
+                var villCode = '${user.villCode}'
+                location.href = "/commu/villBoardList?villCode=" + villCode + "&boardCategory=" + 3;
             });
 
-            $(".publicText").on("click", function () {
-                location.href = "/commu/main"
-            });
-
-            $(".clubPage").on("click", function () {
-                location.href = "/view/community/clubPage.jsp"
-            });
-
-            $(".calender").on("click", function () {
-                window.open("/view/community/list/dealCalender.jsp", "거래 일정",
-                    "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no")
-            })
 
         });
     </script>
@@ -121,13 +110,6 @@
 
 <nav class="navbar navbar-expand-lg commuBox">
 
-    <div>
-        <div class="underline yellow publicText">인기 모임글</div>
-    </div>
-
-    <div>
-        <div class="underline yellow calender">캘린더</div>
-    </div>
 
     <div>
         <div class="underline yellow clubCalenderReview">모임 일정 후기</div>
@@ -141,9 +123,6 @@
         <div class="underline yellow villBoard">우리 동네 게시글</div>
     </div>
 
-    <div>
-        <div class="underline yellow clubPage">클럽</div>
-    </div>
 
 </nav>
 <hr>

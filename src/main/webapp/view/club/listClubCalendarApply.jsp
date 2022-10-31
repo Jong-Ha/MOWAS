@@ -1,6 +1,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
+<style>
+    #listClubCalendarApply .cardBox {
+        padding: 5px 5px;
+        width: 100%;
+        display: grid;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        border: 1px solid #2c262669;
+        max-width: 500px;
+        margin-bottom: 20px;
+        grid-template-columns: 1fr 5fr;
+        cursor: default;
+    }
+</style>
 <div class="modal-header">
     <input type="hidden" id="clubNum" value="${clubNum}">
     <a class="navbar-brand back-btn">
@@ -17,7 +33,7 @@
 <div class="clubCalendarApplyList">
 
     <c:if test="${empty list}">
-        <div class="card shadow-lg cardBox" style="grid-template-columns: 1fr;">참여 신청자가 없습니다!</div>
+        <div class="card shadow-lg" style="grid-template-columns: 1fr;">참여 신청자가 없습니다!</div>
     </c:if>
 
     <c:if test="${!empty list}">
@@ -28,25 +44,26 @@
                     <img class="bd-placeholder-img img-fluid rounded-start photo"
                          src="/resources/${clubCalendarApply.user.userImage}" alt="any">
                 </div>
-                <div>
+                <div style="display: flex; align-items: center">
                     <div class="card-body">
                         <div>
-                            <h3 class="card-title">
+                            <h3 class="card-title" style="text-align: left">
                                     ${clubCalendarApply.user.userId}
+                                <br>
                                 <small class="text-muted" style="font-size: 16px;">
                                         ${clubCalendarApply.applyDate}
                                 </small>
                             </h3>
                         </div>
-                        <div>
-                            <c:if test="${currentCluber.cluberStatus=='5'||currentCluber.cluberStatus=='6'}">
-                                <small class="text-muted">
-                                    <input type="button" class="accept btn btn-primary" name="accept" value="승인">
-                                    <input type="button" class="reject btn btn-primary" name="reject" value="거절">
-                                </small>
-                            </c:if>
-                        </div>
                     </div>
+                        <c:if test="${currentCluber.cluberStatus=='5'||currentCluber.cluberStatus=='6'}">
+                    <div>
+                    <small class="text-muted" style="display: grid">
+                                <input type="button" class="accept btn btn-primary" name="accept" value="승인" style="margin: 5px;">
+                                <input type="button" class="reject btn btn-primary" name="reject" value="거절" style="margin: 5px;">
+                            </small>
+                    </div>
+                        </c:if>
                 </div>
             </div>
         </c:forEach>

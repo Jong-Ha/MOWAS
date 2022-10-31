@@ -94,4 +94,15 @@ public class MongoDbDaoImpl implements MongoDbDao{
         ));
         mongoTemplate.remove(query,"rooms");
     }
+
+    @Override
+    public void updateClub(int clubNum, String clubName) {
+        Query query = new Query(new Criteria().andOperator(
+                Criteria.where("chatCategory").is("clubChat"),
+                Criteria.where("boardNum").is(clubNum)
+        ));
+        Map<String, Object> map = mongoTemplate.find(query, Map.class, "rooms").get(0);
+        map.put("roomName",clubName);
+        mongoTemplate.save(map, "rooms");
+    }
 }

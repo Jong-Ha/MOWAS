@@ -24,6 +24,9 @@ public class ClubCalendarReview {
     private Date updateDate;
     private int boardCategory;
     private Date clubDate;
+    private String userImg;
+    private String location;
+    private String calendarTitle;
     //파일을 담을 list파일
     private List<File> file;
 }

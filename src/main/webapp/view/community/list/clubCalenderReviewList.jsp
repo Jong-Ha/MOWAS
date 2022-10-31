@@ -35,6 +35,8 @@
             location.href = "/clubCal/getClubCalenderReview?clubCalenderReviewNum=" + boardNum + "&boardCategory=" + boardCatagory;
         })
 
+
+        // 수정 모달 창 오픈
         $(".update").on("click", function () {
             var boardNum = $(this).parents(".cardbox").find(".CalenderReviewNum").val();
 
@@ -162,22 +164,18 @@
                 contentType: 'application/json; charset=UTF-8',
                 success: function (JSONData, result) {
 
-                    console.log(JSONData);
-
                     var boardNum = $(".clubCalenderReviewNum").val();
 
                     var file = $("#file").length;
 
                     if (file > 0) {
 
-                        alert("파일 업로드 시작 : " + boardNum);
-
                         //form 테그를 불러와서 form변수에 등록
-                        var form = document.querySelector("form");
+                        var form = document.querySelector("#updateform");
                         //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
                         var formData = new FormData(form);
                         //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
-                        var fileSize = $("#file")[0].files;
+                        var fileSize = $("#updateform #file")[0].files;
 
                         //formData에 해당 게시글 번호, 게시글 category append
                         formData.append("boardNum", boardNum);
@@ -221,7 +219,7 @@
                     });
 
                     setTimeout(function () {
-                        window.location.reload()
+                        //window.location.reload()
                     }, 2000);
                     //error 발생시 그냥 창을 닫음
                 }, error: function () {
@@ -233,7 +231,7 @@
                         timer: 1500
                     });
                     setTimeout(function () {
-                        window.location.reload()
+                        //window.location.reload()
                     }, 2000);
 
                 }
@@ -258,6 +256,21 @@
                     $("#commuReport").modal("show");
                 })
         })
+
+
+        $(".user_manu").on("click", function () {
+            $(this).parents(".card").find(".user_hidden_manu").slideToggle();
+        })
+
+        $(".searchBtn").on("click", function () {
+
+            $("#textSerch").attr("method", "get").attr("action", "listCalenderReview")
+        })
+
+        $(".getClub").on("click", function () {
+            var clubNum = $(this).parents(".card").find(".clubNum").val()
+            location.href = "/club/getClub/" + clubNum
+        })
     })
 
 
@@ -265,6 +278,11 @@
 
 
 <style>
+
+    ul li {
+        list-style: none;
+        cursor: pointer;
+    }
 
     .wap {
         width: 1000px;
@@ -274,18 +292,22 @@
     .carditem {
         display: flex;
         flex-direction: column;
+        float: left;
     }
 
-    .card-title {
-        width: 250px;
-        font-size: 1em;
-    }
+
 
     .cardbox {
         display: flex;
         flex-direction: row;
         margin-bottom: 30px;
         float: left;
+        width: 442px;
+        transition: all 0.1s linear;
+    }
+
+    .cardbox:hover {
+        transform: scale(1.12);
     }
 
     .itemBox {
@@ -301,86 +323,117 @@
         float: left;
         text-align: right;
         width: 100%;
-        justify-content: center;
+        margin-right: 39px;
+        margin-bottom: 11px;
     }
 
     .buttonBox {
         margin-left: 10px;
         cursor: pointer;
+        height: 28px;
+        width: 39px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .col.reviewBox {
-        width: 320px;
+        width: 100%;
         margin-right: 30px;
     }
 
-    .like {
-        font-size: 0.1rem;
-        width: 45px;
-        outline: 0;
-        border: none;
-        background-color: #fff;
-    }
+
 
     .addBox {
-        margin-bottom: 50px;
+        width: 100%;
+        display: flex;
+        flex-direction: row-reverse;
+        margin-bottom: 100px;
     }
 
-    .add {
-        margin-right: -700px;
-    }
-
-    .update,
-    .delete {
-        font-size: 0.5em;
-    }
 
     .get {
-        width: 100px;
-        height: 200px;
+        width: 100%;
+        height: 100%;
         overflow: hidden;
     }
 
-    .updatebox {
-        display: flex;
-        font-size: 2.5em;
-        font-weight: bold;
-        margin-top: 5px;
-        margin-left: 3px;
-        cursor: pointer;
-    }
-
-    .cardbox {
-        transition: all 0.1s linear;
-    }
-
-    .cardbox:hover {
-        transform: scale(1.12);
+    .carousel-inner {
+        width: 100%;
+        height: 100%;
     }
 
     .potoBox {
         cursor: pointer;
         padding: 1px;
-        width: 296px;
+        width: 100%;
         height: 361px;
         overflow: hidden;
         border-radius: 0 0 5px 5px;
         border-bottom: 2px solid #0a090912;
     }
 
-    .text {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    .userImg {
+        width: 60px;
+        height: 60px;
+        padding: 5px;
     }
 
-    .allFlex {
+    .userInfo {
+        padding: 6px;
         display: flex;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    .cartFont {
-        font-size: 0.8em;
+    .user_manu {
+        padding: 14px;
+        display: flex;
+        width: 101%;
+        font-size: 1.9em;
+        flex-direction: row-reverse;
     }
+
+    .user_hidden_manu {
+        width: 100px;
+        height: 75px;
+        position: absolute;
+        z-index: 2;
+        margin-top: -14px;
+        margin-left: 111px;
+
+    }
+
+    .user_hidden_manu > ul {
+        width: 125px;
+        border: 1px solid #0000001a;
+        padding: 10px;
+        border-radius: 5px;
+        background: #ffff;
+    }
+    .reviewTitle{
+        text-align: left;
+        width: 100%;
+        margin-bottom: 20px;
+        font-size: 1.3em;
+    }
+    .reviewText{
+        width: 100%;
+        text-align: left;
+        font-size: 0.1em;
+    }
+
+    .card-top {
+        border-bottom: 1px solid;
+        display: flex;
+        font-weight: bold
+    }
+
+
+    .card-footer {
+        height: 208px;
+    }
+
 </style>
 </head>
 <input hidden class="userId" value="${user.userId}">
@@ -395,7 +448,7 @@
 
 <div class="wap">
     <jsp:include page="/layout/commubar.jsp"/>
-    <input hidden class="boardCategory" value="01">
+    <input hidden class="boardCategory" value="1">
 
     <%--상단 툴바--%>
 
@@ -403,24 +456,75 @@
 
 
     <div class="addBox">
-        <button class="btn btn-primary add ">
-            모임 일정 후기글 작성
-        </button>
+        <form id="textSerch" class="d-flex" role="search">
+            <input type="hidden" class="boardCategory" name="boardCategory" value="1">
+            <input type="hidden" class="reviewRange" name="reviewRange" value="1">
+
+            <div>
+                <select name="searchCondition" class="form-select" aria-label="Default select example">
+                    <option value=" ">선택 하세요</option>
+                    <option ${search.searchCondition == '2' ? 'selected' : '' } value="2">좋아요</option>
+                    <option ${search.searchCondition == '3' ? 'selected' : '' } value="3">조회수</option>
+                </select>
+            </div>
+
+            <input class="form-control me-2" type="search" name="searchKeyword" placeholder="검색" aria-label="Search"
+                   value="${search.searchKeyword}" style="width: 255px;">
+            <button class="btn btn-primary searchBtn" type="submit">검색</button>
+        </form>
     </div>
 
     <c:set var="i" value="0"/>
     <c:forEach var="ClubCalendarReview" items="${list}">
         <c:set var="i" value="${i+1}"/>
-        <div class="row row-cols-1 row-cols-md-3 g-4 cardbox">
+        <div class="row row-cols-1 row-cols-md-3 g-4 cardbox" style=" margin-left: 66px;">
             <div class="col reviewBox">
                 <input hidden class="CalenderReviewNum" value="${ClubCalendarReview.clubCalenderReviewNum}">
                 <input hidden class="boardCategory" value="${ClubCalendarReview.boardCategory}">
                 <input hidden class="SUserId" value="${ClubCalendarReview.userId}">
+                <input hidden class="clubNum" value="${ClubCalendarReview.clubNum}">
+                <div class="card h-100 shadow-lg" style="width: 100% ">
 
-                <div class="card h-100 shadow-lg" style="width: 311px">
+                    <div class="card-top" style=" border-bottom: 1px solid; display: flex; font-weight: bold">
+                        <div class="userImg">
+                            <img src="/resources/${ClubCalendarReview.userImg}" alt=""
+                                 style="border-radius: 10px; width: 100%; height: 100%;">
+                        </div>
+                        <div class="userInfo">
+                            <div>
+                                    ${ClubCalendarReview.userId}
+                            </div>
+                            <div style="font-size: 0.7em; margin-top: 5px">
+                                    ${ClubCalendarReview.location}
+                            </div>
+                        </div>
+                        <div style="width: 56%;">
+                            <div class="user_manu">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-three-dots" viewBox="0 0 16 16">
+                                    <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                                </svg>
 
-                    <div class="card-footer" style=" border-bottom: 1px solid; display: flex; font-weight: bold">
-                            ${ClubCalendarReview.reviewTitle}
+                            </div>
+                            <div class="user_hidden_manu" style="display: none">
+                                <ul class=" shadow-lg">
+                                    <li class="getClub">
+                                        모임 방문하기
+                                    </li>
+
+                                    <c:if test="${user.userId eq ClubCalendarReview.userId}">
+                                        <li data-bs-toggle="modal" data-bs-target="#exampleModal" class="update">
+                                            수정
+                                        </li>
+                                        <li class="delete">
+                                            삭제
+                                        </li>
+                                    </c:if>
+
+                                </ul>
+                            </div>
+
+                        </div>
                     </div>
 
                     <div id="carouselExampleSlidesOnly" class="carousel slide potoBox getPage" data-bs-ride="carousel">
@@ -437,7 +541,7 @@
 
 
                     <div class="card-footer">
-                        <div class="card-body carditem">
+                        <div class="card-body carditem" style="padding: 0;">
 
                             <div class="itemBox">
 
@@ -472,24 +576,21 @@
                                             <path d="M6.956 14.534c.065.936.952 1.659 1.908 1.42l.261-.065a1.378 1.378 0 0 0 1.012-.965c.22-.816.533-2.512.062-4.51.136.02.285.037.443.051.713.065 1.669.071 2.516-.211.518-.173.994-.68 1.2-1.272a1.896 1.896 0 0 0-.234-1.734c.058-.118.103-.242.138-.362.077-.27.113-.568.113-.856 0-.29-.036-.586-.113-.857a2.094 2.094 0 0 0-.16-.403c.169-.387.107-.82-.003-1.149a3.162 3.162 0 0 0-.488-.9c.054-.153.076-.313.076-.465a1.86 1.86 0 0 0-.253-.912C13.1.757 12.437.28 11.5.28H8c-.605 0-1.07.08-1.466.217a4.823 4.823 0 0 0-.97.485l-.048.029c-.504.308-.999.61-2.068.723C2.682 1.815 2 2.434 2 3.279v4c0 .851.685 1.433 1.357 1.616.849.232 1.574.787 2.132 1.41.56.626.914 1.28 1.039 1.638.199.575.356 1.54.428 2.591z"/>
                                         </svg>
                                     </div>
+                                </div>
 
+                                <div class="reviewTitle">
+                                        ${ClubCalendarReview.reviewTitle}
+                                </div>
 
+                                <div class="reviewText">
+                                        ${ClubCalendarReview.reviewText}
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
-            </div>
-            <div class="updatebox">
-                <c:if test="${user.userId eq ClubCalendarReview.userId}">
-                    <div data-bs-toggle="modal" data-bs-target="#exampleModal" class=" update"
-                         style=" margin-right: 13px;">
-                        수정
-                    </div>
-                    <div class="delete">
-                        삭제
-                    </div>
-                </c:if>
+
             </div>
         </div>
 
@@ -509,7 +610,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+
+                <form id="updateform">
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control reviewTitle" id="recipient-name" value=""
@@ -566,17 +668,18 @@
         </div>
     </div>
 </div>
-    <div class="modal fade" id="commuReport" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+<div class="modal fade" id="commuReport" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
 
 
-            </div>
         </div>
     </div>
+</div>
 
+<jsp:include page="/layout/chatIcon.jsp"/>
 
-<jsp:include page="/layout/footer.jsp"/>
+<%--<jsp:include page="/layout/footer.jsp"/>--%>
 </body>
 </html>
 

@@ -10,9 +10,9 @@
 <script>
   $(function () {
 
-    $(".chatBox").on("click", ()=> {
+    $(".chat").on("click", ()=> {
       window.open("/chat/chatList", "chatList",
-      "top=100, width=700px, height=600px, marginwidth=0, marginheight=0, marginright:100px; scrollbars=no, scrolling=no, menubar=no, resizable=no")
+      "top=100, width=750px, height=600px, marginwidth=0, marginheight=0, marginright:100px; scrollbars=no, scrolling=no, menubar=no, resizable=no")
     })
 
   })
@@ -21,32 +21,20 @@
 <head>
   <style>
     .chat{
-      display: flex;
-      justify-content: space-between;
       font-size: 3em;
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1;
-      margin-top: 600px;
-      margin-left: 1450px;
+      bottom: 50px;
+      right: 50px;
+      z-index: 3;
       text-align:center;
-    }
-    .chatBox{
-      float: right;
-      margin-top: 200px;
     }
   </style>
     <title>Title</title>
 </head>
 <body>
-
-<div class="chatBox">
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-text chat" viewBox="0 0 16 16">
     <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
     <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
   </svg>
-</div>
 </body>
 </html>

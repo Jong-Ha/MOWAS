@@ -4,6 +4,7 @@
 
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:websocket="http://www.springframework.org/schema/websocket"
 
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:aop="http://www.springframework.org/schema/aop"
@@ -18,7 +19,10 @@
 				http://www.springframework.org/schema/mvc/spring-mvc.xsd
 
 				http://www.springframework.org/schema/aop
-				http://www.springframework.org/schema/aop/spring-aop.xsd">
+				http://www.springframework.org/schema/aop/spring-aop.xsd
+
+                  http://www.springframework.org/schema/websocket
+                 http://www.springframework.org/schema/websocket/spring-websocket.xsd">
 
     <!-- :: 공통적인 사항을 설정한 common-servlet.xml 사용. -->
 
@@ -26,12 +30,12 @@
     		ㅇ @Controller annotation 선언된 Bean 만 Wiring
 		   ㅇ @Service / @Repository  annotation 선언된 Bean 은 Scan 제외 -->
     <context:component-scan base-package="com.project">
-        <context:include-filter 	type="annotation"	expression="org.springframework.stereotype.Controller" />
-        <context:exclude-filter 	type="annotation" 	expression="org.springframework.stereotype.Service"/>
-        <context:exclude-filter 	type="annotation" 	expression="org.springframework.stereotype.Repository"/>
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
     </context:component-scan>
 
-    <mvc:annotation-driven />
+    <mvc:annotation-driven/>
 
     <!-- :: 인터셉터 설정 -->
     <!--<mvc:interceptors>
@@ -50,14 +54,14 @@
      -->
 
     <!-- :: 디스패쳐 서블릿을 경유하지 않는 static contents -->
-    <mvc:resources mapping="/resources/**" location="/resources/" />
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
 
     <!--  :: ViewResolver 선언 -->
     <bean id="viewResolver"
-          class="org.springframework.web.servlet.view.InternalResourceViewResolver" />
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver"/>
 
     <!-- 파일 업로드 -->
-    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
+    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
 
     <!-- :: 컨트롤러 로그 찍기 -->
     <aop:config>
@@ -65,7 +69,15 @@
             <aop:around method="controllerLog" pointcut="execution(* com.project..*Controller*.*(..))"/>
         </aop:aspect>
     </aop:config>
-
+    <!-- websocket handler -->
+    <bean id="echoHandler" class="com.project.notice.controller.NoticeController" />
+    <websocket:handlers>
+        <websocket:mapping handler="echoHandler" path="/echo" />
+        <websocket:handshake-interceptors>
+            <bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor" />
+        </websocket:handshake-interceptors>
+        <websocket:sockjs websocket-enabled="true"/>
+    </websocket:handlers>
     <!-- 	:: exception resolver  선언 :: 서술적 / 선언적 예외처리
             :: Servlet 에서의 선언적 예외처리를 다시 생각하며....  -->
     <!-- 	<bean id="exceptionResolver"

@@ -1,6 +1,7 @@
 package com.project.club.service;
 
 import com.project.club.dao.ClubCalendarDao;
+import com.project.common.Search;
 import com.project.domain.ClubCalendar;
 import com.project.domain.ClubCalendarReview;
 import com.project.domain.Deal;
@@ -52,9 +53,17 @@ public class ClubCalendarServiceImpl implements ClubCalendarService {
     }
 
     @Override
-    public Map<String, Object> listCalenderReview(int boardCategory) {
+    public Map<String, Object> listCalenderReview(int boardCategory,Search search, int reviewRange) {
 
-        List<ClubCalendarReview> list =  clubCalendarDao.listCalenderReview(boardCategory);
+        Map<String, Object> map2 = new HashMap<>();
+
+        map2.put("boardCategory", boardCategory);
+        map2.put("search", search);
+        map2.put("reviewRange", reviewRange);
+
+        System.out.println("========================="+ map2.get("search"));
+
+        List<ClubCalendarReview> list =  clubCalendarDao.listCalenderReview(map2);
 
         Map<String, Object> map = new HashMap<String, Object>();;
 

@@ -22,9 +22,11 @@
 <script type="text/javascript">
     $(function () {
 
+        var boardCategory = $(".boardCategory").val()
+
         $(".get").on("click", function () {
             var villBoardNum = $(this).parents(".cardbox").find(".villNum").val();
-            var boardCategory = $(".boardCategory").val()
+
             console.log(villBoardNum);
             location.href = "/commu/getVillBoard?villBoardNum=" + villBoardNum + "&boardCategory=" + boardCategory;
         })
@@ -32,7 +34,6 @@
 
         $(".delete").on("click", function () {
             var boardNum = $(this).parents(".cardbox").find(".villNum").val();
-            var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val()
 
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
@@ -86,7 +87,6 @@
 
                 var likeCount = $(this).parents(".cardbox").find(".likeText").html();
                 var boardNum = $(this).parents(".cardbox").find(".villNum").val();
-                var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val()
                 var likeText = $(this).parents(".cardbox").find(".likeText")
 
                 $.ajax({
@@ -112,12 +112,11 @@
 
         $(".villBoardSubmit").on("click", function () {
 
-            var boardCategory = $(".boardCategory").val()
             var villTitle = $(".villTitle1").val()
             var villText = $(".villText1").val()
 
-            var villTag = $("#villTag").val();
 
+            var villTag = $("#villTag").val();
             var villTag2 = JSON.parse(villTag);
 
 
@@ -149,7 +148,7 @@
 
                     var boardNum = JSONData
 
-                    var file = $("#file1").length
+                    var file = $("#addForm #file1").length
 
                     if (file > 0) {
 
@@ -158,7 +157,7 @@
                         //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
                         var formData = new FormData(form);
                         //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
-                        var fileSize = $("#fileForm1 #file1")[0].files;
+                        var fileSize = $("#addForm #file1")[0].files;
                         console.log(fileSize.length);
                         //formData에 해당 게시글 번호, 게시글 category append
                         formData.append("boardNum", boardNum);
@@ -223,14 +222,7 @@
         $(".update").on("click", function () {
             var boardNum = $(this).parents(".cardbox").find(".villNum").val();
 
-            alert("boardNum :  " + boardNum);
-
             $(".updateVillBoardNum").val(boardNum)
-            /* window.open(
-                 "/commu/updateVillBoard?boardNum=" + boardNum, "우리 동네 게시글 수정",
-                 "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no"
-             )*/
-
 
             $.ajax({
                 url: "/commu/json/getVillBoard",
@@ -259,13 +251,10 @@
 
 
             var updateVillBoardNum = $(".updateVillBoardNum").val();
-            var boardCategory = "03";
-
             var villTitle = $(".villTitle2").val()
             var villText = $(".villText2").val()
 
             var villTag = $("#villTag2").val();
-
             var villTag2 = JSON.parse(villTag);
 
 
@@ -295,16 +284,20 @@
 
                 success: function (JSONData, result) {
 
-                    var file = $("#file2").length
+                    alert(result);
+
+                    var file = $("#updateFile #file2").length
 
                     if (file > 0) {
+
+                        alert("gkgk");
 
                         //form 테그를 불러와서 form변수에 등록
                         var form = document.querySelector("form");
                         //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
                         var formData = new FormData(form);
                         //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
-                        var fileSize = $("#fileForm2 #file2")[0].files;
+                        var fileSize = $("#updateFile #file2")[0].files;
                         console.log(fileSize.length);
                         //formData에 해당 게시글 번호, 게시글 category append
                         formData.append("boardNum", updateVillBoardNum);
@@ -387,11 +380,9 @@
         var tagify2 = new Tagify(input2, {});
 
 
-
         $(".report").on("click", function () {
-            var boardNum = $(this).parents(".cardbox").find(".villBoardNum").val()
-            var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val()
-            var reportedId =$(this).parents(".cardbox").find(".SUserId").val();
+            var boardNum = $(this).parents(".cardbox").find(".villNum").val()
+            var reportedId = $(this).parents(".cardbox").find(".SUserId").val();
 
 
             $("#commuReport .modal-content").load("/view/site/addCommunityReport.jsp",
@@ -403,7 +394,15 @@
 
                     $("#commuReport").modal("show");
                 })
+        })
 
+        $(".user_manu").on("click", function () {
+            $(this).parents(".card-top").find(".user_hidden_manu").slideToggle();
+        })
+
+        $(".searchBtn").on("click", function () {
+
+            $("#textSerch").attr("method", "get").attr("action", "villBoardList")
         })
 
 
@@ -413,6 +412,11 @@
 </script>
 
 <style>
+
+    ul li {
+        list-style: none;
+        cursor: pointer;
+    }
 
     .wap {
 
@@ -424,6 +428,7 @@
     .carditem {
         display: flex;
         flex-direction: column;
+        float: left;;
     }
 
 
@@ -440,7 +445,8 @@
         float: left;
         text-align: right;
         width: 100%;
-        justify-content: center;
+        margin-right: 39px;
+        margin-bottom: 11px;
     }
 
 
@@ -449,39 +455,30 @@
         flex-direction: row;
         margin-bottom: 30px;
         float: left;
-        flex-wrap: wrap;
+        width: 442px;
+        transition: all 0.1s linear;
+    }
+
+    .cardbox:hover {
+        transform: scale(1.12);
     }
 
 
     .buttonBox {
         margin-left: 10px;
         cursor: pointer;
+        height: 28px;
+        width: 39px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .col.villBox {
-        width: 320px;
+        width: 100%;
+        margin-right: 30px;
     }
 
-    .like {
-        font-size: 0.1rem;
-        width: 45px;
-        outline: 0;
-        border: none;
-        background-color: #fff;
-    }
-
-    .updatebox {
-        display: flex;
-        font-size: 2.5em;
-        font-weight: bold;
-        margin-top: 5px;
-        margin-left: 3px;
-        cursor: pointer;
-    }
-    .update{
-        font-size: 0.5em;
-        margin-right: 19px;
-    }
 
     .addBox {
         margin-bottom: 50px;
@@ -492,18 +489,16 @@
     }
 
     .get {
+        width: 100%;
+        height: 100%;
         overflow: hidden;
     }
 
-    .cardbox {
-        margin-right: 43px;
-        width: 314px;
-        transition: all 0.1s linear;
+    .carousel-inner {
+        width: 100%;
+        height: 100%;
     }
 
-    .cardbox:hover {
-        transform: scale(1.12);
-    }
 
     .text {
         white-space: nowrap;
@@ -515,11 +510,82 @@
     .potoBox {
         cursor: pointer;
         padding: 1px;
-        width: 296px;
+        width: 100%;
         height: 361px;
         overflow: hidden;
         border-radius: 0 0 5px 5px;
         border-bottom: 2px solid #0a090912;
+    }
+
+    .searchBox {
+        width: 100%;
+        display: flex;
+        flex-direction: row-reverse;
+        margin-bottom: 100px;
+    }
+
+    .userImg {
+        width: 60px;
+        height: 60px;
+        padding: 5px;
+    }
+
+    .userInfo {
+        padding: 6px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .user_manu {
+        padding: 14px;
+        display: flex;
+        width: 120%;
+        font-size: 1.9em;
+        flex-direction: row-reverse;
+    }
+
+    .user_hidden_manu {
+        width: 100px;
+        height: 75px;
+        position: absolute;
+        z-index: 2;
+        margin-top: -14px;
+        margin-left: 111px;
+
+    }
+
+    .user_hidden_manu > ul {
+        width: 125px;
+        border: 1px solid #0000001a;
+        padding: 10px;
+        border-radius: 5px;
+        margin-left: 51px;
+        background: #ffff;
+    }
+
+    .villTitle {
+        text-align: left;
+        width: 100%;
+        margin-bottom: 20px;
+        font-size: 1.3em;
+    }
+
+    .villText {
+        width: 100%;
+        text-align: left;
+        font-size: 0.1em;
+    }
+
+    .card-top {
+        border-bottom: 1px solid;
+        display: flex;
+        font-weight: bold
+    }
+
+
+    .card-footer {
+        height: 208px;
     }
 
 </style>
@@ -539,23 +605,84 @@
 
     <jsp:include page="/layout/commubar.jsp"/>
 
-    <input hidden class="boardCategory" value="03">
+    <input hidden class="boardCategory" value="3">
 
     <div class="addBox">
         <button class="btn btn-primary add" data-bs-toggle="modal" data-bs-target="#exampleModal"> 우리 동네 게시글 작성
         </button>
     </div>
+    <div class="searchBox">
+        <form id="textSerch" class="d-flex" role="search">
+            <input type="hidden" class="villCode" name="villCode" value="${user.villCode}">
+
+            <div>
+                <select name="searchCondition" class="form-select" aria-label="Default select example">
+                    <option ${search.searchCondition == '1' ? 'selected' : '' } value="1">선택 하세요</option>
+                    <option ${search.searchCondition == '2' ? 'selected' : '' } value="2">좋아요</option>
+                    <option ${search.searchCondition == '3' ? 'selected' : '' } value="3">조회수</option>
+                    <option ${search.searchCondition == '4' ? 'selected' : '' } value="4">테그</option>
+                </select>
+            </div>
+
+            <input class="form-control me-2" type="search" name="searchKeyword" placeholder="검색" aria-label="Search"
+                   value="${search.searchKeyword}" style="width: 255px;">
+            <button class="btn btn-primary searchBtn" type="submit">검색</button>
+        </form>
+    </div>
+
 
     <c:set var="i" value="0"/>
     <c:forEach var="villBoard" items="${list}">
         <c:set var="i" value="${i+1}"/>
-        <div class=" cardbox">
+        <div class="cardbox">
             <input hidden class="villNum" value="${villBoard.villBoardNum}">
-            <input hidden class="boardCategory" value="${villBoard.boardCategory}">
             <input hidden class="SUserId" value="${villBoard.userId}">
             <div class="col villBox">
 
-                <div class="card h-100 shadow-lg" style="width: 311px">
+                <div class="card h-100 shadow-lg">
+
+                    <div class="card-top" style=" border-bottom: 1px solid; display: flex; font-weight: bold">
+                        <div class="userImg">
+                            <img src="/resources/${villBoard.userImg}" alt=""
+                                 style="border-radius: 10px; width: 100%; height: 100%;">
+                        </div>
+                        <div class="userInfo">
+                            <div>
+                                    ${villBoard.userId}
+                            </div>
+                            <div style="font-size: 0.7em; margin-top: 5px">
+                                    ${villBoard.villCode}
+                            </div>
+                        </div>
+                        <div style="width: 56%;">
+                            <div class="user_manu">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-three-dots" viewBox="0 0 16 16">
+                                    <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                                </svg>
+
+                            </div>
+
+                            <div class="user_hidden_manu" style="display: none">
+                                <ul class=" shadow-lg">
+                                    <li class="getClub">
+                                        모임 방문하기
+                                    </li>
+
+                                    <c:if test="${user.userId eq villBoard.userId}">
+                                        <li data-bs-toggle="modal" data-bs-target="#exampleModal" class="update">
+                                            수정
+                                        </li>
+                                        <li class="delete">
+                                            삭제
+                                        </li>
+                                    </c:if>
+
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
 
                     <div id="carouselExampleSlidesOnly " class="carousel slide potoBox get" data-bs-ride="carousel"
                          style="cursor: pointer">
@@ -578,7 +705,7 @@
 
                     <div class="card-footer">
 
-                        <div class="card-body carditem">
+                        <div class="card-body carditem" style="padding: 0;">
 
                             <div class="itemBox">
 
@@ -613,20 +740,18 @@
                                         </svg>
                                     </button>
                                 </div>
+                                <div class="villTitle">
+                                        ${villBoard.villTitle}
+                                </div>
+                                <div class="villText">
+                                        ${villBoard.villText}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="updatebox">
-                <c:if test="${user.userId  eq villBoard.userId}">
-                    <div type="button" class="update" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                        수정
-                    </div>
-                    <div type="button" class=" delete " style="font-size: 0.5em;">삭제
-                    </div>
-                </c:if>
-            </div>
+
         </div>
 
 
@@ -647,7 +772,7 @@
             </div>
             <div class="modal-body">
 
-                <form id="fileForm1">
+                <form id="addForm">
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control villTitle1" id="recipient-name" value=""
@@ -703,7 +828,7 @@
             </div>
             <div class="modal-body">
 
-                <form id="fileForm2">
+                <form id="updateFile">
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control villTitle2" id="recipient-name2" value=""
@@ -754,8 +879,9 @@
     </div>
 </div>
 
+<jsp:include page="/layout/chatIcon.jsp"/>
 
-<jsp:include page="/layout/footer.jsp"/>
+<%--<jsp:include page="/layout/footer.jsp"/>--%>
 
 </body>
 </html>
