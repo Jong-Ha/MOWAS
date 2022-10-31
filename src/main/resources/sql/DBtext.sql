@@ -2,6 +2,9 @@
 테이블 삭제
 ======================================================
 
+alter table deal drop column chat_num;
+alter table chat drop column deal_board_num;
+
 DROP TABLE voter;
 DROP TABLE vote;
 DROP TABLE chat_message;
@@ -93,28 +96,29 @@ CREATE SEQUENCE seq_master_board 	INCREMENT BY 1 START WITH 10000;
 CREATE SEQUENCE seq_community_report 	INCREMENT BY 1 START WITH 10000;
 CREATE SEQUENCE seq_club_report 	INCREMENT BY 1 START WITH 10000;
 
-========================================================
 회원
+========================================================
 ========================================================
 create table users
 (
     user_id      varchar2(20) primary key not null ,
-    master_check char(1)       not null,
-    user_status  char(1) ,
-    password     varchar2(50)  not null,
-    user_name    varchar2(50)  not null,
-    rrd          varchar2(20) unique not null,
-    gender       varchar2(20)  not null,
+    master_check char(1) default '1',
+    user_status  char(1) default '1',
+    password     varchar2(50),
+    user_name    varchar2(50),
+    rrd          varchar2(20),
+    gender       varchar2(20),
     email        varchar2(100),
     phone        varchar2(20),
-    vill_code    varchar2(100) not null,
+    vill_code    varchar2(100),
     user_image   varchar2(100),
     lcd          date,
     login_check  char(1),
     psd          date,
     ped          date,
-    ppt          number,
-    review_pt    number
+    ppt          number default '0',
+    review_pt    number default '0',
+    login_type  char(1) default '1'
 );
 
 create table user_inter_list(
@@ -131,7 +135,7 @@ CREATE TABLE files (
                        file_num 			NUMBER	NOT NULL,
                        board_num		NUMBER		NOT NULL,
                        board_category 		CHAR(2)	NOT NULL,
-                       file_name 			VARCHAR2(100) NOT NULL,
+                       file_name 			VARCHAR2(150) NOT NULL,
                        PRIMARY KEY(file_num)
 );
 
@@ -197,7 +201,7 @@ CREATE TABLE deal(
                      price			NUMBER NOT NULL,
                      tag			VARCHAR2(120),
                      view_count			NUMBER	NOT NULL,
-                     vill_code			VARCHAR2(10) NOT NULL,
+                     vill_code			VARCHAR2(100) NOT NULL,
                      deal_id			VARCHAR2(20),
                      deal_mode_check		CHAR(1) DEFAULT '0' NOT NULL,
                      chat_num		NUMBER,
@@ -205,7 +209,8 @@ CREATE TABLE deal(
                      review_pt           NUMBER,
                      deal_end_date   DATE,
                      deal_date   DATE,
-                     deal_location VARCHAR2(100)
+                     deal_location VARCHAR2(100),
+                     like_count NUMBER
 );
 
 
@@ -249,7 +254,7 @@ CREATE TABLE vill_board(
                            view_count NUMBER,
                            like_count NUMBER,
                            board_category CHAR,
-                           files VARCHAR2(100)
+                           files VARCHAR2(150)
 );
 
 CREATE TABLE likes(
@@ -290,10 +295,10 @@ CREATE TABLE club_calendar_review(
                                      review_text VARCHAR2(1000),
                                      reg_date DATE,
                                      view_count NUMBER,
-                                     like_conunt NUMBER,
+                                     like_count NUMBER,
                                      update_date DATE,
                                      board_category CHAR(2),
-                                     files VARCHAR2(100)
+                                     files VARCHAR2(150)
 );
 ==========================================================
 알림
@@ -324,7 +329,6 @@ alter table deal 	modify	chat_num NUMBER REFERENCES chat(chat_num);
 alter table chat modify deal_board_num       NUMBER  REFERENCES deal(deal_board_num);
 
 
-
 CREATE TABLE chatter (
                          chatter_num 			NUMBER	NOT NULL,
                          chat_num 			NUMBER	NOT NULL REFERENCES chat(chat_num),
@@ -338,14 +342,14 @@ CREATE TABLE chat_message (
                               chat_num 			NUMBER		NOT NULL REFERENCES chat(chat_num),
                               user_id 				VARCHAR2(20)		NOT NULL REFERENCES users(user_id),
                               chat_message 			VARCHAR2(1000),
-                              chat_file				VARCHAR2(100),
+                              chat_file				VARCHAR2(150),
                               chat_date 			DATE NOT NULL,
                               PRIMARY KEY(message_num)
 );
 
 CREATE TABLE vote (
                       vote_num 		NUMBER	NOT NULL,
-                      chat_num			NUMBER NOT NULL REFERENCES chat(chat_num),
+                      room_id			VARCHAR2(36) NOT NULL,
                       vote_master_id 		VARCHAR2(20)		NOT NULL REFERENCES users(user_id),
                       vote_title 		VARCHAR2(30) NOT NULL,
                       vote_text			VARCHAR2(200) NOT NULL,
@@ -366,7 +370,7 @@ CREATE TABLE vote (
 CREATE TABLE voter (
                        voter_num 			NUMBER	NOT NULL,
                        vote_num 			NUMBER		NOT NULL REFERENCES vote(vote_num),
-                       vote_item 			NUMBER(1)	NOT NULL,
+                       vote_item 			VARCHAR2(30) NOT NULL,
                        user_id 				VARCHAR2(20)		NOT NULL REFERENCES users(user_id),
                        PRIMARY KEY(voter_num)
 );

@@ -25,18 +25,18 @@
         $( ".addCR" ).on("click" , function() {
 
             //Controller
-            //$("form").attr("method" , "POST").attr("action" , "/site/addCommunityReport").submit();
+            $("form[id='addCommuForm']").attr("method" , "POST").attr("action" , "/site/addCommunityReport").submit();
+
+
             //RestController - ajax 사용
 
-            var userId = '${user.userId}';
-
+            /*
             var boardCategory = $(".boardCategory").val();
             var boardNo = $(".boardNo").val();
             var reportedId = $(".reportedId").val();
-            var reportId = userId
+            var reportId = $(".reportId").val();
             var reportBasis = $(".reportBasis").val();
             var reportText = $(".reportText").val();
-
 
             $.ajax({
                 url: "/site/json/addCommunityReport",
@@ -49,7 +49,7 @@
                     "reportBasis": reportBasis,
                     "reportText": reportText
                 }),
-                dataType: "text",
+                dataType: "json",
                 contentType: "application/json; charset=UTF-8",
                 success: function(result) {
 
@@ -58,8 +58,10 @@
                     $("#commuReport").modal("hide");
                 }
             });
+            */
         });
-      });
+     });
+
 
 /*      $(function() {
         //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
@@ -69,55 +71,51 @@
       });*/
 
     </script>
+    <div class="modal-header" >
+       <h3 class="modal-title text-danger fs-5" id="addCommuLabel">커뮤니티 신고</h3>
+       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+       <form id="addCommuForm" enctype="multipart/form-data">
 
+       <input type="hidden" class= "boardNo" name="boardNo" value="${param.boardNum}">
+       <input type="hidden" class= "boardCategory" name="boardCategory" value="${param.boardCategory}">
+       <input type="hidden" class= "reportedId" name="reportedId" value="${param.reportedId}">
+       <input type="hidden" class= "reportId" name="reportId" value="${user.userId}">
 
+       <div class="input-group mb-3 mt-3">
+       <div class="form-floating" >
+       <select class="form-select reportBasis" id="reportBasis" name="reportBasis" required>
+           <option value="0" selected>선택하세요</option>
+           <option value="1">욕설</option>
+           <option value="2">음담패설</option>
+           <option value="3">도용</option>
+           <option value="4">무단불참</option>
+           <option value="5">연락두절</option>
+           <option value="6">정치적발언</option>
+       </select>
+           <label for="reportBasis">카테고리</label>
+       </div>
+       </div>
 
+       <div class="input-group mb-3 mt-3">
+          <div class="form-floating">
+             <input type="text" class="form-control reportText" id=reportText name="reportText" placeholder="상세신고내용"
+                      required>
+             <label for="reportText">상세신고내용</label>
+          </div>
+        </div>
 
-            <div class="modal-header" >
-                <h3 class="modal-title text-danger fs-5" id="addCommuLabel">커뮤니티 신고</h3>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
+       <div class="mb-3 mt-3">
+             <label for="file" class="form-label" style="display: none"></label>
+             <input class="form-control" type="file" id="file" name="file">
+       </div>
 
-                <form id="addCommuForm" enctype="multipart/form-data">
-
-                <input type="hidden" class= "boardNo" name="boardNo" value="${param.boardNum}">
-                <input type="hidden" class= "boardCategory" name="boardCategory" value="${param.boardCategory}">
-                <input type="hidden" class= "reportedId" name="reportedId" value="${param.reportedId}">
-
-                <div class="input-group mb-3 mt-3">
-                    <div class="form-floating" >
-                    <select class="form-select reportBasis" id="reportBasis" name="reportBasis" required>
-                        <option value="0" selected>선택하세요</option>
-                        <option value="1">욕설</option>
-                        <option value="2">음담패설</option>
-                        <option value="3">도용</option>
-                        <option value="4">무단불참</option>
-                        <option value="5">연락두절</option>
-                        <option value="6">정치적발언</option>
-                     </select>
-                     <label for="reportBasis">카테고리</label>
-                    </div>
-                 </div>
-
-                 <div class="input-group mb-3 mt-3">
-                        <div class="form-floating">
-                            <input type="text" class="form-control reportText" id=reportText name="reportText" placeholder="상세신고내용"
-                                   required>
-                            <label for="reportText">상세신고내용</label>
-                        </div>
-                    </div>
-
-                    <div class="mb-3 mt-3">
-                        <label for="file" class="form-label" style="display: none"></label>
-                        <input class="form-control" type="file" id="file" name="file">
-                    </div>
-
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger addCR"  style="margin-right: 185px">신 고</button>
-            </div>
+       </form>
+       </div>
+       <div class="modal-footer">
+        <button type="button" class="btn btn-danger addCR"  style="margin-right: 185px">신 고</button>
+       </div>
 
 
  <%-- <form>

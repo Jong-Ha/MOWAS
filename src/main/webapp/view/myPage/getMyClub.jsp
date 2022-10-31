@@ -10,7 +10,16 @@
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
+    $(function(){
+        var userId = $(".myPageUserId").val();
 
+        $(".getMyClub1").on("click", function () {
+            self.location = "/myPage/getMyClub?userId="+userId;
+        });
+        $(".getMyClubApply1").on("click", function () {
+            self.location = "/myPage/getMyClubApply?userId="+userId;
+        });
+    })
 
 </script>
 <body>
@@ -19,6 +28,12 @@
 
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
+<hr/>
+<div>
+    <h3 class="getMyClub1">가입한 모임</h3>
+    <h3 class="getMyClubApply1">가입신청한 모임</h3>
+</div>
+<hr>
 <h3>내가 가입한 모임</h3>
 <hr/>
 <c:set var="i" value="0" />

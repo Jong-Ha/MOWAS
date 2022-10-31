@@ -24,14 +24,6 @@
 <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 <input type="hidden" class="userId" value="${user.userId}">
 
-<%--구현 후 빼야함--%>
-<input type="button" class="clubLogin" value="로그인">
-<label>
-    아이디 : <input type="text" name="userId" value="user01">
-</label>
-${user.userId}
-<%--여기까지--%>
-
 <%--상단 툴바--%>
 <jsp:include page="/layout/toolbar.jsp"/>
 
@@ -197,7 +189,7 @@ ${user.userId}
             <div class="row row-cols-1 row-cols-md-3 g-4 cardbox">
                 <div class="col clubBox" style="cursor: pointer">
                     <input type="hidden" name="clubNum" value="${club.clubNum}">
-                    <div class="card h-100 shadow-lg">
+                    <div class="card h-100 shadow-lg clubCard">
                         <div class="card-img-top">
                             <img src="/resources/${club.clubImage}" alt="모임이미지">
                         </div>

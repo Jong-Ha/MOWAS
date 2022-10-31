@@ -98,10 +98,12 @@ public class DealServiceImpl implements DealService {
     }
 
     @Override
-    public Map<String, Object> getListDeal(Search search, String boardCategory, List<String> searchTag) throws Exception {
+//    public Map<String, Object> getListDeal(Search search, String boardCategory, List<String> searchTag) throws Exception {
+        public Map<String, Object> getListDeal(Search search, String boardCategory) throws Exception {
         Map<String, Object> map = new HashMap<>();
 
         map.put("search", search);
+        System.out.println("이것은 서치입니다 "+search);
         map.put("boardCategory", boardCategory);
         int totalCount = dealDao.getTotalCount(map);
         List<Deal> list = dealDao.getListDeal(map);

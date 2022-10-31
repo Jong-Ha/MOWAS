@@ -89,13 +89,13 @@ public class ClubRestController {
     }
 
     @RequestMapping(value = "processCluberApply", method = RequestMethod.POST)
-    public int processCluberApply(@RequestBody Map<String, Object> map) {
+    public int processCluberApply(@RequestBody Map<String, Object> map) throws Exception {
         System.out.println(map);
         int clubNum = Integer.parseInt((String) map.get("clubNum"));
         int clubUserNum = Integer.parseInt((String) map.get("clubUserNum"));
         String userId = (String) map.get("userId");
         String result = (String) map.get("result");
-        clubService.updateCluberApply(clubNum, clubUserNum, userId, result);
+        clubService.updateCluberApply(clubNum, clubUserNum, userId, userService.getUser(userId).getUserImage(), result);
         return 0;
     }
 

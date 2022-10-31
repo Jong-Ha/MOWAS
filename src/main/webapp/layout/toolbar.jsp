@@ -163,8 +163,7 @@
     });
     $(function () {
         $("#myPage").on("click", function () {
-            var userId = $("#modelUser").val();
-            self.location = "/myPage/getMyPage?userId=" + userId;
+            self.location = "/myPage/getMyPage?userId=${user.userId}";
         });
     });
 
@@ -408,6 +407,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="/user/listUser">회 원 관 리</a></li>
                                     <li><a class="dropdown-item" href="/site/listCommunityReport">커뮤니티 신고</a></li>
                                     <li><a class="dropdown-item" href="/site/listCommunityReportProcess">커뮤니티 신고 처리</a></li>
                                     <li><a class="dropdown-item" href="/site/listClubReport">모임 신고</a></li>
@@ -419,9 +419,11 @@
                 <%--</c:if>--%>
 
                     </ul>
+<c:if test="${user.userId ne null}">
                     <div class="logitem">
                         <img src="${pageContext.request.contextPath}/resources/images/proplePoto.png"
                              style="width: 60px;margin-right: 10px; border-radius: 40px; height: 50px;">
+                        </c:if>
 
                         <div class="login ">
                             <div class="d-grid gap-2">

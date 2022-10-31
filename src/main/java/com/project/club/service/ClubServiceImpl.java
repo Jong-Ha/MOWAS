@@ -22,18 +22,18 @@ public class ClubServiceImpl implements ClubService {
     MongoDbDao mongoDbDao;
 
     @Override
-    public Club addClub(Club club) {
+    public Club addClub(Club club, User user) {
         clubDao.addClub(club);
         clubDao.addClubMasterNewClub(club);
         club = clubDao.getClub(club);
-        mongoDbDao.addClub(club.getClubNum(), club.getClubName(), club.getClubMasterId());
+        mongoDbDao.addClub(club.getClubNum(), club.getClubName(), club.getClubMasterId(), user.getUserImage(), club.getClubImage());
         return club;
     }
 
     @Override
     public void updateClub(Club club) {
         clubDao.updateClub(club);
-        mongoDbDao.updateClub(club.getClubNum(),club.getClubName());
+        mongoDbDao.updateClub(club.getClubNum(),club.getClubName(),club.getClubImage());
     }
 
     @Override
@@ -103,7 +103,7 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public void updateCluberApply(int clubNum, int clubUserNum, String userId, String result) {
+    public void updateCluberApply(int clubNum, int clubUserNum, String userId, String userImage, String result) {
         Map<String, Object> map = new HashMap<String, Object>();
 
         map.put("result", result);
@@ -113,7 +113,7 @@ public class ClubServiceImpl implements ClubService {
         clubDao.processCluberApply(map);
         if (result.equals("accept")) {
             clubDao.updateClubNewCluber(clubNum);
-            mongoDbDao.addCluber(clubNum, userId);
+            mongoDbDao.addCluber(clubNum, userId, userImage);
         }
     }
 

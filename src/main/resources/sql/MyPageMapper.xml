@@ -278,16 +278,23 @@
     </select>
 
     <select id="getMyDeal" parameterType="String" resultMap="dealSelectMap" >
-        SELECT user_id, product_name, deal_id, review, review_pt, deal_end_date, price
+        SELECT *
         FROM deal
         WHERE user_id=#{userId} and deal_status='3'
     </select>
 
     <select id="getMyReport" parameterType="String" resultMap="CommunityReportSelectMap" >
-        SELECT report_id, reported_id, report_basis, report_date, report_text, process_result
+        SELECT *
         FROM community_report
         WHERE report_id=#{userId}
     </select>
+
+    <select id="getTotalCount" parameterType="search" resultType="int" >
+        SELECT count(*)
+        FROM community_report
+    </select>
+
+
 
     <select id="getMyPpt" parameterType="String" resultMap="CommunityReportSelectMap" >
         SELECT board_category, board_num, report_basis, ppt, ppt_date
