@@ -67,7 +67,7 @@
             <tr class="bg-light text-center">
                 <th scope="col">번호</th>
                 <th scope="col">신고받은 게시글 종류</th>
-                <th scope="col">신고받은 게시글 번호</th>
+                <th scope="col">신고한 게시글 내용</th>
                 <th scope="col">신고기준</th>
                 <th scope="col">벌점</th>
                 <th scope="col">벌점 부여 날짜</th>
@@ -80,7 +80,7 @@
                 <tr class="userTable">
                     <th scope="row">${i}</th>
                     <th scope="row">${list.boardCategory}</th>
-                    <th scope="row">${list.boardNo}</th>
+                    <th scope="row">${list.reportText}</th>
                     <th scope="row">${list.reportBasis}</th>
                     <td class="ia">${list.ppt}</td>
                     <td class="ib">${list.pptDate}</td>

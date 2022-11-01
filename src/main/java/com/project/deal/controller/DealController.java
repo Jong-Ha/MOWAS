@@ -274,11 +274,23 @@ String history="";
 
     @RequestMapping(value = "getListDeal")
     public String getListDeal(@ModelAttribute("search") Search search, Model model,HttpServletRequest request
-                            ,@RequestParam(value = "boardCategory", defaultValue = "99") String boardCategory) throws Exception {
+                            ,@RequestParam(value = "boardCategory", defaultValue = "99") String boardCategory, @RequestParam(value = "searchKeyword", required = false) String searchKeyword, @RequestParam(value = "searchCondition", required = false) String searchCondition) throws Exception {
         System.out.println("getListDeal : GET POST");
         search.setCurrentPage(1);
         System.out.println(search.getCurrentPage());
         System.out.println(boardCategory);
+        if (search.getCurrentPage() == 0) {
+            search.setCurrentPage(1);
+        }
+
+        search.setPageSize(pageSize);
+
+        if (search.getSearchCondition() == null){
+            search.setSearchCondition("1");
+        }
+
+        System.out.println("search의 정보 : " + search);
+
         Cookie[] cookies = request.getCookies();
         String history="";
         for(Cookie c : cookies) {
@@ -310,48 +322,57 @@ String history="";
 
         if(boardCategory == "08"){
 
-            Map<String , Object> map=dealService.getListDeal(search, boardCategory);
+            List<Deal> list=dealService.getListDeal(search, boardCategory,searchCondition, searchKeyword);
 
 
-            Page resultPage=new Page(search.getCurrentPage(),((Integer)map.get("totalCount")).intValue(),pageUnit,pageSize);
-            System.out.println(resultPage);
+            //Page resultPage=new Page(search.getCurrentPage(),((Integer)map.get("totalCount")).intValue(),pageUnit,pageSize);
+            //System.out.println(resultPage);
 
-            System.out.println(map.get("list"));
-            model.addAttribute("list", (List<Deal>)map.get("list"));
-            model.addAttribute("resultPage", resultPage);
+            //System.out.println(map.get("list"));
+            //model.addAttribute("list", (List<Deal>)map.get("list"));
+            //model.addAttribute("resultPage", resultPage);
+            //model.addAttribute("map",map);
+            model.addAttribute("list",list);
             model.addAttribute("search", search);
             model.addAttribute("boardCategory",boardCategory);
+            model.addAttribute("searchCondition",searchCondition);
+            model.addAttribute("searchKeyword",searchKeyword);
 
         } else if (boardCategory == "09") {
 
-            Map<String , Object> map=dealService.getListDeal(search, boardCategory);
-            Page resultPage=new Page(search.getCurrentPage(),((Integer)map.get("totalCount")).intValue(),pageUnit,pageSize);
-            System.out.println(resultPage);
-            model.addAttribute("list", (List<Deal>)map.get("list"));
-            model.addAttribute("resultPage", resultPage);
+            List<Deal> list=dealService.getListDeal(search, boardCategory,searchCondition, searchKeyword);
+            //Page resultPage=new Page(search.getCurrentPage(),((Integer)map.get("totalCount")).intValue(),pageUnit,pageSize);
+            //System.out.println(resultPage);
+//            model.addAttribute("list", (List<Deal>)map.get("list"));
+//            model.addAttribute("map",map);
+            //model.addAttribute("resultPage", resultPage);
+            model.addAttribute("list",list);
             model.addAttribute("search", search);
             model.addAttribute("boardCategory",boardCategory);
-
+            model.addAttribute("searchCondition",searchCondition);
+            model.addAttribute("searchKeyword",searchKeyword);
 
         }else{
 
 
-        Map<String, Object> map = dealService.getListDeal(search, boardCategory);
+            List<Deal> list = dealService.getListDeal(search, boardCategory,searchCondition, searchKeyword);
 
 
-            Page resultPage = new Page(search.getCurrentPage(), ((Integer) map.get("totalCount")).intValue(), pageUnit, pageSize);
-            System.out.println(resultPage);
+            //Page resultPage = new Page(search.getCurrentPage(), ((Integer) map.get("totalCount")).intValue(), pageUnit, pageSize);
+            //System.out.println(resultPage);
 
-
-            System.out.println(map.get("list"));
-            model.addAttribute("list", (List<Deal>)map.get("list"));
-            model.addAttribute("resultPage", resultPage);
+//            model.addAttribute("map",map);
+//            System.out.println(map.get("list"));
+//            model.addAttribute("list", (List<Deal>)map.get("list"));
+            model.addAttribute("list",list);
+            //model.addAttribute("resultPage", resultPage);
             model.addAttribute("search", search);
             model.addAttribute("boardCategory",boardCategory);
-
+            model.addAttribute("searchCondition",searchCondition);
+            model.addAttribute("searchKeyword",searchKeyword);
 
             System.out.println("여기까지 ? ? !!1111");
-            System.out.println(map);
+            System.out.println(list+"list");
         }
         return "forward:/view/deal/getListDeal.jsp";
     }

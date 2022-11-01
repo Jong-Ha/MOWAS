@@ -41,6 +41,7 @@ public class ClubDaoImpl implements ClubDao {
 
     @Override
     public List<Club> listClub(Map<String, Object> map) {
+        System.out.println("club과 비교하기 위해"+map );
         return sqlSession.selectList("ClubMapper.listClub", map);
     }
 

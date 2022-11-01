@@ -11,10 +11,7 @@
 
 <html>
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
     <title>Bootstrap Example</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script type="text/javascript">
         $(function () {
@@ -31,16 +28,13 @@
                 location.href = "/chat/chatList?chatCategory="+ 'clubChat';
             });
 
-            $(".siteChat").on("click", function () {
-                location.href = "/chat/chatList?chatCategory="+ 'siteChat';
-            });
-
         });
     </script>
 
     <style>
         .commuBox {
-            margin-bottom: 50px;
+            margin-top: 10px;
+            margin-bottom: 10px;
             justify-content: center;
         }
 
@@ -60,7 +54,7 @@
             transition: background-size 0.2s;
             color: #000;
             cursor: pointer;
-            margin-right: 25px;
+            margin-right: 0;
         }
         @media (min-width: 1000px) {
             .underline {
@@ -106,34 +100,14 @@
 
 </head>
 <body>
-<div class="wrapper">
-    <div class="typing">
-        <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
-                    background-image: linear-gradient(transparent 60%, #F8CD07 40%);">
-            채팅방</h4>
-    </div>
-</div>
+<nav class="navbar navbar-expand-lg commuBox" style="display: flex;justify-content: space-between;width: 100%;">
 
-<nav class="navbar navbar-expand-lg commuBox">
-
-    <div>
         <div class="underline yellow onebyone">1대1 채팅</div>
-    </div>
 
-    <div>
         <div class="underline yellow dealChat">거래 채팅</div>
-    </div>
 
-    <div>
         <div class="underline yellow clubChat">모임 채팅</div>
-    </div>
-
-    <div>
-        <div class="underline yellow  siteChat">고객센터 채팅</div>
-    </div>
-
 
 </nav>
-<hr>
 </body>
 </html>

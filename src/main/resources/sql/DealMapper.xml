@@ -154,18 +154,32 @@ values (seq_deal.NEXTVAL,
 
 
     <sql id="listDealBoardSql">
+
         SELECT *
         FROM deal
         <if test="(boardCategory=='08' or boardCategory=='09')">
-            WHERE board_category = #{boardCategory}
-            AND deal_title LIKE ('%' || #{search.searchKeyword} || '%')
-            ORDER BY deal_reg_date DESC
+        WHERE board_category = #{boardCategory}
+
+            <if test="(search.searchCondition == 1 or search.searchCondition == 0)">
+                AND deal_title LIKE ('%' || #{search.searchKeyword} || '%')
+                ORDER BY deal_reg_date DESC
+            </if>
+            <if test="search.searchCondition == 2">
+                AND product_name LIKE ('%' || #{search.searchKeyword} || '%')
+                ORDER BY deal_reg_date DESC
+            </if>
+
         </if>
         <if test="boardCategory=='99'">
-            WHERE deal_title LIKE ('%' || #{search.searchKeyword} || '%')
-            ORDER BY deal_reg_date DESC
+            <if test="(search.searchCondition == 1 or search.searchCondition == 0)">
+                WHERE deal_title LIKE ('%' || #{search.searchKeyword} || '%')
+                ORDER BY deal_reg_date DESC
+            </if>
+            <if test="search.searchCondition == 2">
+                WHERE product_name LIKE ('%' || #{search.searchKeyword} || '%')
+                ORDER BY deal_reg_date DESC
+            </if>
         </if>
-
     </sql>
 
 

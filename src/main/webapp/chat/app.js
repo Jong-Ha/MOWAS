@@ -108,14 +108,15 @@ var Room = mongoose.model("room", room);
 
 var chatlist = io.of('/chatlist');
 chatlist.on('connection', (socket) => {
+    console.log('채팅리스트 접속')
 
 
     const userId = socket.handshake.query.userId
     const chatCategory = socket.handshake.query.chatCategory
-    console.log(userId)
-    console.log(chatCategory)
+    // console.log(userId)
+    // console.log(chatCategory)
 
-    console.log('---' + chatCategory + ' chatList  ---');
+    // console.log('---' + chatCategory + ' chatList  ---');
 
     Room.find({'users.userId': userId, chatCategory: chatCategory}, function (error, room) {
 
@@ -128,8 +129,8 @@ chatlist.on('connection', (socket) => {
             room.forEach(function (el, i) {
                 // console.log(room[i].roomId);
                 Msg.find({'roomId': el.roomId}, function (error, msg) {
-                    console.log("=====================================================");
-                    console.log(msg);
+                    // console.log("=====================================================");
+                    // console.log(msg);
 
                     chatlist.emit("msg", msg);
 
@@ -143,8 +144,10 @@ chatlist.on('connection', (socket) => {
     })
 
     socket.on('disconnect', () => {
-        console.log('끝!')
+        console.log('채팅 리스트 나가짐 끝!')
     })
+
+    // console.log(socket.id)
 
 })
 
@@ -159,6 +162,8 @@ onebyone.on('connection', (socket) => {
     const userId2 = socket.handshake.query.userId2
     const userImage1 = socket.handshake.query.userImage1
     const userImage2 = socket.handshake.query.userImage2
+
+    // console.log(socket)
 
     console.log(userId1)
     console.log(userId2)
@@ -305,20 +310,22 @@ onebyone.on('connection', (socket) => {
 // namesoaces 설정 하기
 const clubChat = io.of('/clubChat');
 clubChat.on('connection', (socket) => {
+    console.log('클럽채팅 접속')
 
     const roomId = socket.handshake.query.roomId
 
     console.log("roomId club : " + roomId);
+    // console.log(socket)
 
     //socket에 roomId를 join
     socket.join(roomId);
 
-    console.log("roomId club : " + roomId);
+    // console.log("roomId club : " + roomId);
 
 
     Msg.find({'roomId': roomId}, function (error, msg) {
         // console.log(msg);
-        console.log('--- club ---');
+        // console.log('--- club ---');
         if (error) {
             console.log(error);
         } else {
@@ -371,13 +378,19 @@ clubChat.on('connection', (socket) => {
 
     })
 
+    socket.on('bye', () => {
+        socket.leave(roomId)
+    })
+
     socket.on('disconnect', () => {
         //사용자가 퇴장했음을 퇴장자 본인을 제외한 다른 사람들에게 알려준다.
         socket.broadcast.to(roomId).emit('leave');
         socket.leave(roomId);
-        console.log('접속 종료');
+        console.log('클럽채팅 접속 종료');
     });
 
+    // console.log(socket.id)
+    // console.log(socket.handshake.query)
 })
 
 

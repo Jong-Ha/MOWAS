@@ -68,5 +68,46 @@
     모집여부 ${list.gatherCheck}<br/>
     태그 ${list.tag}<br/>
 </c:forEach> <br/>
+
+
+<div class="row row-cols-1 row-cols-md-3 g-4 cardbox">
+    <div class="col clubBox" style="cursor: pointer">
+        <input type="hidden" name="clubNum" value="10087">
+        <div class="card h-100 shadow-lg clubCard">
+            <div class="card-img-top">
+                <img src="/resources/uploadFiles\clubImages\5176af9c-4389-4d3b-a23f-3809cfc828b7sunset-gafedb3e5b_1280.jpg" alt="모임이미지">
+            </div>
+
+            <div class="card-body carditem">
+                <h3 class="card-title">채팅 있는 새로운 모임</h3>
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="badge bg-primary text-wrap" style="width: 6rem;">
+                            모집중
+                        </div>
+                        <div class="badge bg-primary text-wrap" style="width: 6rem;">
+                            역삼1동
+                        </div>
+                        <div class="badge bg-primary text-wrap" style="width: 6rem;">
+                            독서
+                        </div>
+                    </div>
+                    <div class="col-6">
+                                    <span class="likeToggle">
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                 fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16"> <path
+                                                    d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/> </svg>
+
+
+                                </span>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-outline-primary clubTag">#태그1 #태그2 #태그3 #하나는엄청긴태그 #그런거다 #이런거다 #그렇게하자</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
