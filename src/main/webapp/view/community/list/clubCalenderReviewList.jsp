@@ -278,15 +278,10 @@
     }
 
 
-
-
-
     /*무한스크롤*/
     $(function () {
 
         lodingListClubCalender()
-
-
 
 
         function getFormJson(select) {
@@ -326,7 +321,6 @@
 
             return rtnData;
         }
-
 
 
         let loadCheck = false
@@ -388,18 +382,18 @@
                                 '                                    </div>' +
                                 '                                  </div>' +
                                 '                               </div>' +
-                                '                            <div id="carouselExampleSlidesOnly" class="carousel slide potoBox getPage" data-bs-ride="carousel">'
+                                '                            <div id="'+item.clubCalenderReviewNum+'" class="carousel slide potoBox getPage" data-bs-ride="carousel">'+
+                                '                               <div class="carousel-inner">'
                             $.each(item.file, function (index, item) {
                                 str +=
-                                    '<div class="carousel-inner">' +
-                                    '   <div class="carousel-item active get">' +
-                                    '       <img class="poto" width="100%" height="100%" src="/resources/' + item.fileName + '" alt="any">' +
-                                    '    </div>' +
-                                    '</div>'
+                                    '               <div class="carousel-item active get">' +
+                                    '                   <img class="poto" width="100%" height="100%" src="/resources/' + item.fileName + '" alt="any">' +
+                                    '               </div>'
                             })
 
                             str +=
-                                '                               </div>' +
+                                '                                </div>'+
+                                '                              </div>' +
                                 '                               <div class="card-footer">' +
                                 '                                     <div class="card-body carditem" style="padding: 0;">' +
                                 '                                        <div class="itemBox">' +
@@ -437,10 +431,21 @@
 
                             $(".ClubCalendarReviewList").append(str);
 
+                            setTimeout( function () {
+
+                                const carousel = new bootstrap.Carousel($('#'+item.clubCalenderReviewNum), {
+                                    interval: 2000,
+                                    wrap: true
+                                })
+                            }, 1)
+
+
                         })
 
                         $("#textSerch .currentPage").val(parseInt($("#textSerch .currentPage").val() + 1))
                         lodingListClubCalender()
+
+
 
                         if (JSON.list.length > 0) {
                             loadCheck = false
@@ -448,9 +453,11 @@
                             $(window).off('scroll')
                         }
 
+
                     }
 
                 })
+
             }
 
 
@@ -578,13 +585,15 @@
         flex-direction: row-reverse;
     }
 
+
     .user_hidden_manu {
         width: 100px;
         height: 75px;
         position: absolute;
         z-index: 2;
         margin-top: -14px;
-        margin-left: 111px;
+        margin-left: -10px;
+
 
     }
 
@@ -718,17 +727,15 @@
                             </div>
                         </div>
 
-                        <div id="carouselExampleSlidesOnly" class="carousel slide potoBox getPage"
-                             data-bs-ride="carousel">
+                        <div id="carouselExampleSlidesOnly" class="carousel slide potoBox getPage" data-bs-ride="carousel" >
 
-                            <c:forEach var="File" items="${ClubCalendarReview.file}">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active get">
-                                        <img class="poto" width="100%" height="100%" src="/resources/${File.fileName}"
-                                             alt="any">
+                            <div class="carousel-inner">
+                                <c:forEach var="File" items="${ClubCalendarReview.file}">
+                                    <div class="carousel-item active get" data-bs-interval="2000">
+                                        <img class="d-block w-100 poto" width="100%" height="100%" src="/resources/${File.fileName}" alt="any">
                                     </div>
-                                </div>
-                            </c:forEach>
+                                </c:forEach>
+                            </div>
                         </div>
 
 

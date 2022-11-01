@@ -125,7 +125,7 @@
     <select id="listMasterBoard" parameterType="search" resultMap="MasterBoardSelectMap">
         SELECT *
         FROM (	SELECT inner_table.* , ROWNUM AS row_seq
-                FROM		(	SELECT master_board_num, admin_id, mb_category, mb_title, reg_date
+                FROM		(	SELECT master_board_num, admin_id, mb_category, mb_title, mb_text, reg_date
                                 FROM master_board
                                     <if test="searchCondition != null">
                                         <where>
@@ -135,13 +135,13 @@
                                         <if test="searchCondition == 1 and searchKeyword !='' ">
                                             mb_text LIKE  '%${searchKeyword}%'
                                         </if>
-                                        <if test="searchCondition == 100 and searchKeyword =='' ">
+                                        <if test="searchCondition == 100">
                                              mb_category = '1'
                                         </if>
-                                        <if test="searchCondition == 200 and searchKeyword =='' ">
+                                        <if test="searchCondition == 200">
                                              mb_category = '2'
                                         </if>
-                                        <if test="searchCondition == 300 and searchKeyword =='' ">
+                                        <if test="searchCondition == 300">
                                              mb_category = '3'
                                         </if>
                                         </where>
@@ -153,7 +153,7 @@
 
     <select  id="getMbTotalCount"  parameterType="search"	 resultType="int">
         SELECT COUNT(*)
-        FROM(	SELECT master_board_num, admin_id, mb_category, mb_title, reg_date
+        FROM(	SELECT master_board_num, admin_id, mb_category, mb_title, mb_text, reg_date
                 FROM master_board
                     <if test="searchCondition != null">
                         <where>
@@ -163,13 +163,13 @@
                             <if test="searchCondition == 1 and searchKeyword !='' ">
                                 mb_text LIKE '%${searchKeyword}%'
                             </if>
-                            <if test="searchCondition == 100 and searchKeyword =='' ">
+                            <if test="searchCondition == 100">
                                 mb_category = '1'
                             </if>
-                            <if test="searchCondition == 200 and searchKeyword =='' ">
+                            <if test="searchCondition == 200">
                                 mb_category = '2'
                             </if>
-                            <if test="searchCondition == 300 and searchKeyword =='' ">
+                            <if test="searchCondition == 300">
                                 mb_category = '3'
                             </if>
                         </where>
@@ -344,7 +344,7 @@
                         club_report_num = to_char(#{searchKeyword})
                     </if>
                     <if test="searchCondition == 1 and searchKeyword !='' ">
-                        report_id LIKE "%"||#{searchKeyword}||"%"
+                        report_id LIKE '%${searchKeyword}%'
                     </if>
                 </where>
             </if>
@@ -361,7 +361,7 @@
                         AND club_report_num = to_char(#{searchKeyword})
                     </if>
                     <if test="searchCondition == 1 and searchKeyword !='' ">
-                        AND report_id LIKE "%"||#{searchKeyword}||"%"
+                        AND report_id LIKE '%${searchKeyword}%'
                     </if>
                 </where>
             </if>
@@ -459,7 +459,7 @@
                     club_report_num = to_char(#{searchKeyword})
                 </if>
                 <if test="searchCondition == 1 and searchKeyword !='' ">
-                    report_id = #{searchKeyword}
+                    report_id = '%${searchKeyword}%'
                 </if>
             </where>
         </if>

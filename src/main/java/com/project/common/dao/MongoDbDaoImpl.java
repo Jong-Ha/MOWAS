@@ -25,11 +25,11 @@ public class MongoDbDaoImpl implements MongoDbDao{
         List<Map<String, Object>> users = new ArrayList<>();
         Map<String, Object> user = new HashMap<>();
         user.put("userId",userId);
-        user.put("userImage",userImage);
+        user.put("userImage",userImage.replaceAll("\\\\","/"));
         user.put("regDate",String.valueOf(new Date().getTime()));
         users.add(user);
         room.put("users",users);
-        room.put("roomImage",clubImage);
+        room.put("roomImage",clubImage.replaceAll("\\\\","/"));
         room.put("roomId", UUID.randomUUID().toString());
         room.put("chatCategory","clubChat");
         room.put("roomName",clubName);
@@ -53,7 +53,7 @@ public class MongoDbDaoImpl implements MongoDbDao{
 
         Map<String, Object> user = new HashMap<>();
         user.put("userId",userId);
-        user.put("userImage",userImage);
+        user.put("userImage",userImage.replaceAll("\\\\","/"));
         user.put("regDate",String.valueOf(new Date().getTime()));
 
         List<Map<String, Object>> users = (List<Map<String, Object>>) map.get("users");
@@ -107,8 +107,38 @@ public class MongoDbDaoImpl implements MongoDbDao{
         Map<String, Object> map = mongoTemplate.find(query, Map.class, "rooms").get(0);
         map.put("roomName",clubName);
         if(clubImage!=null){
-            map.put("roomImage",clubImage);
+            map.put("roomImage",clubImage.replaceAll("\\\\","/"));
         }
         mongoTemplate.save(map, "rooms");
+    }
+
+    @Override
+    public void updateUser(String userId, String userImage) {
+
+        //채팅방
+        Query query = new Query(new Criteria().andOperator(
+                Criteria.where("users.userId").is("userId")
+        ));
+        Map<String, Object> map = mongoTemplate.find(query, Map.class, "rooms").get(0);
+        List<Map<String, Object>> users = (List<Map<String, Object>>) map.get("users");
+        for (int i = 0; i < users.size(); i++) {
+            Map<String, Object> user = users.get(i);
+            if (user.get("userId").equals(userId)) {
+                user.put("userImage",userImage);
+                break;
+            }
+        }
+        map.put("users",users);
+        mongoTemplate.save(map, "rooms");
+
+        //채팅메시지
+        query = new Query(new Criteria().andOperator(
+                Criteria.where("userId").is("userId")
+        ));
+        List<Map> msgs = mongoTemplate.find(query, Map.class, "msgs");
+        for(Map<String, Object> msg : msgs){
+            msg.put("userImage",userImage);
+            mongoTemplate.save(msg, "msgs");
+        }
     }
 }

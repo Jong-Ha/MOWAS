@@ -281,8 +281,6 @@
 <div class="tabBox">
     <span class="tabBtn getMyVillBoard" >우리동네 게시글</span>
     <span>|</span>
-    <span class="tabBtn getMyCbMaster" >모임 공지사항 게시글</span class="tabBtn">
-    <span>|</span>
     <span class="tabBtn getMyCbReviewBoard">모임 일정 후기 게시글</span class="tabBtn">
     <span>|</span>
     <span class="tabBtn getMyDealBoard" >판매/판매요청 게시글</span class="tabBtn">
@@ -292,15 +290,8 @@
 <h4>모임 후기글</h4>
 <hr/>
 <c:set var="i" value="0" />
-<c:forEach var="list" items="${map.clubCalendarReview}"><br/>
-   <a href="/clubCal/listCalenderReview?boardCategory=${list.boardCategory}"> 제목 ${list.reviewTitle}</a><br/>
-    회원아이디 ${list.userId}<br/>
-    작성날짜 ${list.regDate}<br/>
-    조회수 ${list.viewCount}<br/>
-    좋아요수 ${list.likeConunt}<br/>
-    게시글번호 ${list.clubCalenderReviewNum}<br/>
-    카테고리번호 ${list.boardCategory}<br/>
-</c:forEach> <br/>
+<c:forEach var="list" items="${map.clubCalendarReview}">
+
 
 <div class="row row-cols-1 row-cols-md-3 g-4 cardbox" style=" margin-left: 66px;">
     <div class="col reviewBox">
@@ -317,10 +308,10 @@
                 </div>
                 <div class="userInfo">
                     <div>
-                        user01
+                        ${list.userId}
                     </div>
                     <div style="font-size: 0.7em; margin-top: 5px">
-                        서울 서초구 반포동 128-7
+                        ${list.reviewRange}
                     </div>
                 </div>
                 <div style="width: 56%;">
@@ -411,11 +402,11 @@
                         </div>
 
                         <div class="reviewTitle">
-                            무한스크롤용 게시글20
+                            <a href="/clubCal/listCalenderReview?boardCategory=${list.boardCategory}">    ${list.reviewTitle}</a>
                         </div>
 
                         <div class="reviewText">
-                            무한스크롤~~
+                            ${list.reviewText}
                         </div>
                     </div>
                 </div>
@@ -425,5 +416,9 @@
 
     </div>
 </div>
+
+</c:forEach>
+<jsp:include page="/layout/chatIcon.jsp"/>
+<jsp:include page="/layout/footer.jsp"/>
 </body>
 </html>

@@ -236,17 +236,9 @@
                 <div class="col-xl-3 col-md-6 text-right">
                     <div class="card">
                         <div class="card-body">
-                            <form id="communityReport">
+                            <form>
                                 <div class="form-group">
                                     <label>Search</label>
-
-                                    <div class="input-group mb-0">
-                                        <input type="text" class="form-control" id="searchKeyword" name="searchKeyword" placeholder="Search..." aria-describedby="project-search-addon"
-                                               value="${! empty search.searchKeyword ? search.searchKeyword : '' }"/>
-                                        <div class="input-group-append">
-                                            <button class="btn btn-danger" type="button" id="project-search-addon"><i class="fa fa-search search-icon fa-2x font-12"></i></button>
-                                        </div>
-                                    </div>
 
                                     <div class="input-group">
                                         <select class="form-control" name="searchCondition" >
@@ -255,7 +247,14 @@
                                         </select>
                                     </div>
 
-                                </div>
+                                    <div class="input-group mb-0">
+                                        <input type="text" class="form-control" id="searchKeyword" name="searchKeyword" placeholder="Search..." aria-describedby="project-search-addon"
+                                               value="${! empty search.searchKeyword ? search.searchKeyword : '' }"/>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-danger" type="button" id="project-search-addon"><i class="fa fa-search search-icon fa-2x font-12"></i></button>
+                                        </div>
+                                    </div>
+                                  </div>
                                 <input type="hidden" id="currentPage" name="currentPage" value=""/>
                             </form>
                         </div>

@@ -106,7 +106,7 @@ Product vo=(Product)request.getAttribute("vo");
 
             $(".dealChat").on("click", function () {
 
-                var dealUserId = $(".active").val();
+                var dealUserId = $(".dealUserId").val();
                 var userId = $(".userId").val()
                 var dealBoardNum = $(".dealBoardNum").val()
                 var chatNameSpace = "dealChat"
@@ -141,11 +141,30 @@ Product vo=(Product)request.getAttribute("vo");
                                 swalWithBootstrapButtons.fire(
                                     dealUserId + ' 님이 초대 되었습니다',
                                     'success',
-                                )
-                                setTimeout(() => (
-                                    window.open("/chat/addOneChat?chatNameSpace=" + chatNameSpace + "&userId=" + dealUserId + "&boardNum=" + dealBoardNum, "채팅방",
-                                        "left=500, top=100, width=500px, height=500px, marginwidth=0, marginheight=0,")
-                                ), 2500)
+                                ).then(()=>{
+                                    var openWin = window.open("/chat/chatList?chatCategory="+chatNameSpace,'chatList')
+                                    $.ajax({
+                                        url : "/chat/addOneChat",
+                                        data : {
+                                            'userId' : dealUserId,
+                                            'chatNameSpace' : chatNameSpace,
+                                            'roomName' : dealUserId,
+                                            'boardNum' : dealBoardNum
+                                        },
+                                        success : function(re){
+                                            // console.log(re)
+                                            let loadCheck = true
+                                            setInterval(function(){
+                                                if(loadCheck){
+                                                    if($(openWin.document).find('.chatRoom').html()!==undefined){
+                                                        $(openWin.document).find('.chatRoom').html(re)
+                                                        loadCheck = false
+                                                    }
+                                                }
+                                            },100)
+                                        }
+                                    })
+                                })
                             } else if (
                                 /* Read more about handling dismissals below */
                                 result.dismiss === Swal.DismissReason.cancel

@@ -40,6 +40,8 @@ public interface MyPageDao {
 
     public int getTotalCount(Search search)throws Exception;
 
+    public int getTotalCmt(Search search)throws Exception;
+
     public List<CommunityReport> getMyPpt(String userId)throws Exception;
 
 }

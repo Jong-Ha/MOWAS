@@ -19,5 +19,7 @@
 <body>
 회원님께서 가입한 아이디는
 ${user.userId}입니다
+<jsp:include page="/layout/chatIcon.jsp"/>
+<jsp:include page="/layout/footer.jsp"/>
 </body>
 </html>

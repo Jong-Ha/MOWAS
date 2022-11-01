@@ -161,6 +161,8 @@ html, body {
     justify-content: center;
     border-radius: 5px;
     border: 2px solid #2c262669;
+    margin-bottom: 20px;
+    margin-top: 10px;
 }
 
 .potoBox {

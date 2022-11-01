@@ -111,7 +111,11 @@ public class ClubController {
         if (user != null) {
             userId = user.getUserId();
             if(searchLocation==null){
-                searchLocation = ((User)session.getAttribute("user")).getVillCode();
+                String vc = ((User)session.getAttribute("user")).getVillCode();
+//                vc = vc.substring(0,vc.indexOf("동 ")+1);
+//                searchLocation = vc.substring(vc.lastIndexOf(" ")+1);
+                searchLocation = vc.split(" ")[2];
+
                 searchInterList = new ArrayList<>();
                 for(UserInterList uil : (List<UserInterList>) myPageService.getMyInfor(userId).get("interList")){
                     String str = null;
@@ -643,9 +647,24 @@ public class ClubController {
         return "redirect:/club/getVote/" + voteNum;
     }
 
-    @RequestMapping(value = "/club/listClubCalendarReview")
-    public String listClubCalendarReview(int clubNum){
+    @RequestMapping(value = "listClubCalendarReview/{clubNum}/{boardCategory}")
+    public String listClubCalendarReview(Model model, @PathVariable("clubNum") int clubNum, @ModelAttribute("search") Search search, @PathVariable int boardCategory) {
+        if (search.getCurrentPage() == 0) {
+            search.setCurrentPage(1);
+        }
+        search.setPageSize(pageSize);
 
-        return "/view/club/listClubCalendarReview.jsp";
+        if (search.getSearchCondition() == null){
+            search.setSearchCondition("1");
+        }
+        Map<String, Object> map = clubCalendarService.listClubCalendarReview(search,clubNum,boardCategory);
+        Page resultPage = new Page(search.getCurrentPage(), (Integer) map.get("totalCount"), pageUnit, pageSize);
+        map.put("resultPage", resultPage);
+        model.addAllAttributes(map);
+        if(boardCategory==1){
+            return "/view/club/listClubCalendarReview.jsp";
+        }else {
+            return "/view/club/listClubCalendarReviewShort.jsp";
+        }
     }
 }

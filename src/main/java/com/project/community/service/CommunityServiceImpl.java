@@ -60,8 +60,8 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
     @Override
-    public void deleteRecomment(int recommentNum) {
-        commuDao.deleteRecomment(recommentNum);
+    public void deleteRecomment(int commentNum) {
+        commuDao.deleteRecomment(commentNum);
     }
 
 
@@ -104,11 +104,12 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
     @Override
-    public Map<String, Object> listComment(int villBoardNum, int boardCategory) {
+    public Map<String, Object> listComment(int villBoardNum, int boardCategory, Search search) {
         Map<String, Object> map = new HashMap<String, Object>();
 
         map.put("boardNum", villBoardNum);
         map.put("boardCategory", boardCategory);
+        map.put("search", search);
 
         List<Comment> list = commuDao.listComment(map);
 
@@ -264,6 +265,27 @@ public class CommunityServiceImpl implements CommunityService {
         map.put("boardCategory", boardCategory);
 
         commuDao.deleteAllLike(map);
+
+    }
+
+    @Override
+    public Map<String, Object> allListComment(int boardNum, int boardCategory) {
+        Map<String, Object>map = new HashMap<>();
+
+        map.put("boardNum", boardNum);
+        map.put("boardCategory", boardCategory);
+
+        List<Comment> list = commuDao.allListComment(map);
+
+        for (Comment comment : list) {
+            comment.setRecommentList(commuDao.listRecomment(comment.getCommentNum()));
+        }
+
+        map.put("list", list);
+
+        return map;
+
+
 
     }
 

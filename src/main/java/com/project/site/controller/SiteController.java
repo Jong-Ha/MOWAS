@@ -109,7 +109,7 @@ public class SiteController {
         return "forward:/view/site/getMasterBoard.jsp";
     }
 
-    @RequestMapping(value = "listMasterBoard")
+   @RequestMapping(value = "listMasterBoard")
     public String listMasterBoard(@ModelAttribute("search") Search search, Model model) throws Exception {
         System.out.println("/site/listMasterBoard : GET / POST");
 
@@ -117,7 +117,6 @@ public class SiteController {
             search.setCurrentPage(1);
         }
         search.setPageSize(pageSize);
-        System.out.println("======================SearchCondition" +search.getSearchCondition());
 
         Map<String , Object> map = siteService.listMasterBoard(search);
 
@@ -170,19 +169,17 @@ public class SiteController {
         System.out.println("/site/getCommunityReport : GET");
         CommunityReport communityReport = siteService.getCommunityReport(reportNo);
 
-        System.out.println("-------- Board Category : " +communityReport.getBoardCategory());
+        System.out.println("-------- Board Category :" +communityReport.getBoardCategory());
 
-        if(communityReport.getBoardCategory().equals("1") || communityReport.getBoardCategory().equals("2")) {
-            ClubCalendarReview clubCalReview = new ClubCalendarReview();
-            clubCalReview = calenderService.getCalenderReview(communityReport.getBoardNo());
+        if(communityReport.getBoardCategory().trim().equals("1") || communityReport.getBoardCategory().trim().equals("2")) {
+            ClubCalendarReview clubCalReview = calenderService.getCalenderReview(communityReport.getBoardNo());
 
             if(clubCalReview != null) {
                 model.addAttribute("clubCalReview", clubCalReview);
             }
         }
-        else if(communityReport.getBoardCategory().equals("3")) {
-            VilBoard villBoard = new VilBoard();
-            villBoard = commuService.getVillBoard(communityReport.getBoardNo());
+        else if(communityReport.getBoardCategory().trim().equals("3")) {
+            VilBoard villBoard = commuService.getVillBoard(communityReport.getBoardNo());
 
             if (villBoard != null) {
                 model.addAttribute("villBoard", villBoard);

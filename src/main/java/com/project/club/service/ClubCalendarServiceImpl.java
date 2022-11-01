@@ -4,6 +4,7 @@ import com.project.club.dao.ClubCalendarDao;
 import com.project.common.Search;
 import com.project.domain.ClubCalendar;
 import com.project.domain.ClubCalendarReview;
+import com.project.domain.Cluber;
 import com.project.domain.Deal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -175,5 +176,20 @@ public class ClubCalendarServiceImpl implements ClubCalendarService {
     }
 
 
-
+    @Override
+    public Map<String ,Object> listClubCalendarReview(Search search, int clubNum, int boardCategory) {
+        Map<String ,Object> map = new HashMap<>();
+        map.put("search",search);
+        map.put("clubNum",clubNum);
+        map.put("boardCategory",boardCategory);
+        int totalCount = clubCalendarDao.getTotalClubCalendarReview(map);
+        List<ClubCalendarReview> list = clubCalendarDao.listClubCalendarReview(map);
+        for (ClubCalendarReview calenderReview : list){
+            calenderReview.setFile(clubCalendarDao.getListFile(calenderReview.getClubCalenderReviewNum(),
+                    calenderReview.getBoardCategory()));
+        }
+        map.put("list",list);
+        map.put("totalCount",totalCount);
+        return map;
+    }
 }

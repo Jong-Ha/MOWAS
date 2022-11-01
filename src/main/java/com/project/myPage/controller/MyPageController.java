@@ -435,10 +435,10 @@ public class MyPageController {
 
         villBoard = commuService.getVillBoard(villBoardNum);
 
-        Map<String, Object> map = commuService.listComment(villBoardNum, boardCategory);
+        //Map<String, Object> map = commuService.listComment(villBoardNum, boardCategory, search);
 
 
-        model.addAttribute("list", map.get("list"));
+        //model.addAttribute("list", map.get("list"));
 
         model.addAttribute("villBoard", villBoard);
 
@@ -507,16 +507,18 @@ public class MyPageController {
                                         @ModelAttribute("Comment") Comment comment,
                                         Model model){
 
+
+
         calendarReview = calenderService.getCalenderReview(clubCalenderReviewNum);
 
-        Map<String, Object> map = communityService.listComment(clubCalenderReviewNum ,boardCategory);
+        //Map<String, Object> map = communityService.listComment(clubCalenderReviewNum ,boardCategory, search);
 
 
 
         model.addAttribute("calenderReview", calendarReview);
-        model.addAttribute("list", map.get("list"));
+        //model.addAttribute("list", map.get("list"));
 
-        System.out.println("list의 정보 : " + map.get("list"));
+        //System.out.println("list의 정보 : " + map.get("list"));
 
         return "/view/community/get/getClubCalenderReview.jsp";
     }
@@ -642,21 +644,37 @@ public class MyPageController {
     }
     //*/
     @RequestMapping(value = "getMyComment", method = RequestMethod.GET)
-    public String getMyComment(@RequestParam(value ="userId")String userId,Model model)throws Exception{
+    public String getMyComment(@RequestParam(value ="userId")String userId,Model model, @ModelAttribute("search") Search search)throws Exception{
         System.out.println("getMyComment 컨트롤러 userId의 값?"+userId);
+        if (search.getCurrentPage() == 0) {
+            search.setCurrentPage(1);
+        }
+        search.setPageSize(pageSize);
 
         Map<String, Object> map = myPageService.getMyComment(userId);
-        System.out.println("getMyComment 컨트롤러 map의 값은?"+map);
+        System.out.println("getMyComment 컨트롤러 map의 값은?"+map);Map<String, Object> mapTotalCount = myPageService.getTotalCmt(search);
+        Page resultPage = new Page( search.getCurrentPage(), ((Integer)mapTotalCount.get("totalCount")).intValue(), pageUnit, pageSize);
+        System.out.println(resultPage);
+
         model.addAttribute("map", map);
+        model.addAttribute("resultPage", resultPage);
         return "forward:/view/myPage/getMyComment.jsp";
     }
     @RequestMapping(value = "getMyRecomment", method = RequestMethod.GET)
-    public String getMyRecomment(@RequestParam(value ="userId")String userId,Model model)throws Exception{
+    public String getMyRecomment(@RequestParam(value ="userId")String userId,Model model, @ModelAttribute("search") Search search)throws Exception{
         System.out.println("getMyRecomment 컨트롤러 userId의 값?"+userId);
+        if (search.getCurrentPage() == 0) {
+            search.setCurrentPage(1);
+        }
+        search.setPageSize(pageSize);
 
         Map<String, Object> map = myPageService.getMyComment(userId);
-        System.out.println("getMyRecomment 컨트롤러 map의 값은?"+map);
+        System.out.println("getMyRecomment 컨트롤러 map의 값은?"+map);Map<String, Object> mapTotalCount = myPageService.getTotalCount(search);
+        Page resultPage = new Page( search.getCurrentPage(), ((Integer)mapTotalCount.get("totalCount")).intValue(), pageUnit, pageSize);
+        System.out.println(resultPage);
+
         model.addAttribute("map", map);
+        model.addAttribute("resultPage", resultPage);
         return "forward:/view/myPage/getMyRecomment.jsp";
     }
 

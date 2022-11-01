@@ -302,6 +302,10 @@
         FROM community_report
     </select>
 
+    <select id="getTotalCmt" parameterType="search" resultType="int" >
+        SELECT count(*)
+        FROM community_report
+    </select>
 
 
     <select id="getMyPpt" parameterType="String" resultMap="CommunityReportSelectMap" >

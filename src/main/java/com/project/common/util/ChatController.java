@@ -54,10 +54,17 @@ public class ChatController {
     public String chatList(@RequestParam(value = "chatCategory", defaultValue = "onebyone") String chatCategory
                             ,Model model, HttpSession session) {
 
-        model.addAttribute("userId",  session.getAttribute("user"));
         model.addAttribute("chatCategory", chatCategory);
 
         System.out.println(chatCategory);
+
+        User user = null;
+
+        if(session.getAttribute("user")!=null){
+            user = (User)session.getAttribute("user");
+
+            user.setUserImage(user.getUserImage().replaceAll("\\\\","/"));
+        }
 
         return "/chat/chatList.jsp";
     }

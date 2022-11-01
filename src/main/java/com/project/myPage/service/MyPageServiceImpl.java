@@ -151,6 +151,18 @@ public class MyPageServiceImpl implements MyPageService {
         return map;
     }
 
+    public Map<String, Object> getTotalCmt(Search search)throws Exception{
+        System.out.println("getTotalCmt 서비스임플 시작이다 ");
+        Map<String, Object> map = new HashMap<String, Object>();
+        int totalCount = myPageDao.getTotalCmt(search);
+
+        System.out.println("int totalCount 값??"+totalCount);
+
+        map.put("totalCount", totalCount);
+        System.out.println("getTotalCmt 서비스임플 종료이다 ");
+        return map;
+    }
+
     public Map<String, Object> getMyPpt(String userId)throws Exception{
         System.out.println("getMyPpt 서비스임플 시작이다 ");
         Map<String, Object> map = new HashMap<String, Object>();
