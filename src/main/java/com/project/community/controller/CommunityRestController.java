@@ -1,6 +1,7 @@
 package com.project.community.controller;
 
 import com.project.club.service.ClubCalendarService;
+import com.project.common.Search;
 import com.project.community.service.CommunityService;
 import com.project.domain.*;
 import org.json.simple.JSONArray;
@@ -9,6 +10,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +31,10 @@ public class CommunityRestController {
     @Autowired
     @Qualifier("clubCalenderServiceImpl")
     private ClubCalendarService calendarService;
+
+    @Value("#{commonProperties['pageSize']}")
+    int pageSize;
+
 
     /* 댓글 대댓글*/
     @RequestMapping(value = "addComment", method = RequestMethod.POST)
@@ -115,13 +121,44 @@ public class CommunityRestController {
     @RequestMapping("getListComment")
     public Map<String, Object> getListComment(@RequestBody Map<String, Object> map) {
 
-        Map<String, Object> map2 =
-                communityService.listComment(Integer.parseInt((String) map.get("boardNum")),
-                        Integer.parseInt((String) map.get("boardCategory")));
+        Search search = new Search();
 
-        System.out.println(map2);
+        if (map.get("currentPage") != null) {
+            int currentPage = Integer.parseInt((String) map.get("currentPage"));
+            search.setCurrentPage(currentPage);
+
+            if (currentPage == 0) {
+                search.setCurrentPage(1);
+            }
+        }
+
+        search.setPageSize(pageSize);
+
+        System.out.println("==============================" + search.getCurrentPage());
+
+        if (search.getCurrentPage() > 1) {
+
+            System.out.println("======================="+"1보다 큼");
+
+            for (int i = 0; i < search.getCurrentPage(); i++) {
+
+                search.setCurrentPage(i);
+
+                Map<String, Object> map2 =
+                        communityService.listComment(Integer.parseInt((String) map.get("boardNum")), Integer.parseInt((String) map.get("boardCategory")), search);
+                //System.out.println(map2);
+
+                return map2;
+            }
+
+        }
+
+        Map<String, Object> map2 =
+                communityService.listComment(Integer.parseInt((String) map.get("boardNum")), Integer.parseInt((String) map.get("boardCategory")), search);
 
         return map2;
+
+
     }
 
     @RequestMapping(value = "viewCount")
@@ -226,9 +263,9 @@ public class CommunityRestController {
     }
 
     @RequestMapping("getVillBoard")
-    public Map<String,Object> getVillBoard(@RequestBody VilBoard villBoard) {
+    public Map<String, Object> getVillBoard(@RequestBody VilBoard villBoard) {
 
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
 
         villBoard = communityService.getVillBoard(villBoard.getVillBoardNum());
 
@@ -246,6 +283,38 @@ public class CommunityRestController {
         communityService.updateVillBoard(vilBoard);
 
         return 0;
+    }
+
+    @RequestMapping("listVillBoard")
+    public Map<String, Object> listVillBoard(@RequestBody Map<String, Object> map,
+                                             HttpSession session) {
+        Search search = new Search();
+
+        if (map.get("currentPage") != null) {
+            int currentPage = Integer.parseInt((String) map.get("currentPage"));
+            search.setCurrentPage(currentPage);
+            if (currentPage == 0) {
+                search.setCurrentPage(1);
+            }
+        }
+
+        if (map.get("searchCondition") != null) {
+            String searchCondition = (String) map.get("searchCondition");
+            search.setSearchCondition(searchCondition);
+        }
+
+        search.setPageSize(pageSize);
+        if (map.get("searchKeyword") != null) {
+            String searchKeyword = (String) map.get("searchKeyword");
+            search.setSearchKeyword(searchKeyword);
+        }
+
+        User user = (User) session.getAttribute("user");
+
+        Map<String, Object> map2 = communityService.listVillBoard(user.getVillCode(), search);
+
+        return map2;
+
     }
 
 

@@ -3,7 +3,6 @@ package com.project.community.controller;
 import com.project.club.service.ClubCalendarService;
 import com.project.common.Search;
 import com.project.community.service.CommunityService;
-import com.project.deal.service.DealService;
 import com.project.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -55,15 +53,15 @@ public class CommunityController {
     //우리동네 게시글
     @RequestMapping(value = "getVillBoard")
     public String getVillBoard(@RequestParam("villBoardNum") int villBoardNum
-            , @RequestParam("boardCategory") int boardCategory
-            , Model model, @ModelAttribute("VillBaord") VilBoard villBoard) {
+                                            , @RequestParam("boardCategory") int boardCategory
+                                            , Model model, @ModelAttribute("VillBaord") VilBoard villBoard) {
 
         villBoard = commuService.getVillBoard(villBoardNum);
 
-        Map<String, Object> map = commuService.listComment(villBoardNum, boardCategory);
+       // Map<String, Object> map = commuService.listComment(villBoardNum, boardCategory, search);
 
 
-        model.addAttribute("list", map.get("list"));
+        //model.addAttribute("list", map.get("list"));
 
         model.addAttribute("villBoard", villBoard);
 
@@ -146,12 +144,13 @@ public class CommunityController {
     @RequestMapping(value = "deleteBoard")
     public String deleteBoard(@RequestParam("boardNum") int boardNum,
                               @RequestParam("boardCategory") int boardCategory
-            , Model model, HttpSession session, HttpServletResponse response) throws UnsupportedEncodingException {
+                            ,Model model, HttpSession session, HttpServletResponse response) throws UnsupportedEncodingException {
 
         //ClubCalendarReview calenderReview = calenderService.getCalenderReview(boardNum);
 
+        Search search = new Search();
 
-        Map<String, Object> map = commuService.listComment(boardNum, boardCategory);
+        Map<String, Object> map = commuService.allListComment(boardNum, boardCategory);
 
         List<Comment> list = (List<Comment>) map.get("list");
 
@@ -179,14 +178,13 @@ public class CommunityController {
 
         String encode = "";
 
-        encode = URLEncoder.encode(villCode, "utf-8");
 
         if (boardCategory == 1) {
             return "redirect:/clubCal/listCalenderReview?boardCategory=" + boardCategory;
         } else if (boardCategory == 2) {
             return "redirect:/clubCal/listCalenderReview?boardCategory=" + boardCategory;
         } else if (boardCategory == 3) {
-            return "redirect:/commu/villBoardList?villCode=" + encode;
+            return "redirect:/commu/villBoardList?villCode=" + villCode;
         }
         return null;
     }

@@ -435,10 +435,10 @@ public class MyPageController {
 
         villBoard = commuService.getVillBoard(villBoardNum);
 
-        Map<String, Object> map = commuService.listComment(villBoardNum, boardCategory);
+        //Map<String, Object> map = commuService.listComment(villBoardNum, boardCategory, search);
 
 
-        model.addAttribute("list", map.get("list"));
+        //model.addAttribute("list", map.get("list"));
 
         model.addAttribute("villBoard", villBoard);
 
@@ -507,16 +507,18 @@ public class MyPageController {
                                         @ModelAttribute("Comment") Comment comment,
                                         Model model){
 
+
+
         calendarReview = calenderService.getCalenderReview(clubCalenderReviewNum);
 
-        Map<String, Object> map = communityService.listComment(clubCalenderReviewNum ,boardCategory);
+        //Map<String, Object> map = communityService.listComment(clubCalenderReviewNum ,boardCategory, search);
 
 
 
         model.addAttribute("calenderReview", calendarReview);
-        model.addAttribute("list", map.get("list"));
+        //model.addAttribute("list", map.get("list"));
 
-        System.out.println("list의 정보 : " + map.get("list"));
+        //System.out.println("list의 정보 : " + map.get("list"));
 
         return "/view/community/get/getClubCalenderReview.jsp";
     }

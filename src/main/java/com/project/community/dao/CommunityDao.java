@@ -20,7 +20,7 @@ public interface CommunityDao {
 
     void updateRecomment(Recomment recomment);
 
-    void deleteRecomment(int recommentNum);
+    void deleteRecomment(int commentNum);
 
     List<Comment> listComment(Map<String, Object> map);
 
@@ -58,4 +58,6 @@ public interface CommunityDao {
     void deleteAllComment(Map<String, Object> map);
 
     void deleteAllLike(Map<String, Object> map);
+
+    List<Comment> allListComment(Map<String, Object> map);
 }
