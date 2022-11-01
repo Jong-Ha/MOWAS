@@ -290,6 +290,7 @@
 <hr/>
 <h4>우리동네 게시글</h4>
 <hr/>
+<div class="container" >
 <c:set var="i" value="0" />
 <c:forEach var="list" items="${map.myVillBoard}">
 
@@ -406,7 +407,7 @@
 
 </div>
 </c:forEach>
-
+</div>
 
 <div id="villBoardUserId" name="villBoardUserId" value="${user.userId}"/>
 

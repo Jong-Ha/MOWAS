@@ -1103,7 +1103,6 @@
 
 </div>
 </div>
-<jsp:include page="/layout/chatIcon.jsp"/>
-<jsp:include page="/layout/footer.jsp"/>
+
 </body>
 </html>
