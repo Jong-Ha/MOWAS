@@ -28,7 +28,7 @@
     </resultMap>
 
 
-    <resultMap id="comemntSelect" type="comment">
+    <resultMap id="commentSelect" type="comment">
         <result property="commentNum"     column="comment_num"     jdbcType="INTEGER"/>
         <result property="userId"         column="user_id"         jdbcType="VARCHAR"/>
         <result property="clubNum"        column="club_num"       jdbcType="INTEGER"/>
@@ -88,36 +88,13 @@
         WHERE vill_board_num = #{villBoardNum}
     </delete>
 
-    <sql id="getVillBoardSql">
-        SELECT vb.* , us.USER_IMAGE
-        FROM VILL_BOARD vb, users us
-        WHERE vb.user_id =  us.USER_ID
-            AND vb.vill_code LIKE '%'||#{villCode}||'%'
+    <select id="getVillBoard" parameterType="int" resultMap="villBoardSelect">
+        SELECT *
+        FROM vill_board
+        WHERE VILL_BOARD_NUM = #{villBoardNum}
+    </select>
 
-
-
-        <if test="search.searchCondition == 1">
-            AND vill_title LIKE '%'||#{search.searchKeyword}||'%'
-            ORDER BY vill_board_num DESC
-        </if>
-        <if test="search.searchCondition == 2">
-            ORDER BY like_count DESC NULLS LAST
-        </if>
-        <if test="search.searchCondition == 3">
-            ORDER BY view_count DESC NULLS LAST
-        </if>
-        <if test="search.searchCondition == 4">
-            AND vill_tag like '%'||#{search.searchKeyword}||'%'
-            ORDER BY vill_board_num DESC
-        </if>
-    </sql>
-
-
-    <select id="getTotalvillBoard" parameterType="map" resultType="int">
-        SELECT COUNT(*) FROM (
-        <include refid="getVillBoardSql"/>
-        )
-    <sql id="getVillBoardSql">
+    <sql id="ListVillBoardSql">
         SELECT vb.* , us.USER_IMAGE
         FROM VILL_BOARD vb, users us
         WHERE vb.user_id =  us.USER_ID
@@ -143,16 +120,16 @@
     </sql>
 
 
-    <select id="getTotalvillBoard" parameterType="map" resultType="int">
+    <select id="getTotalComment" parameterType="map" resultType="int">
         SELECT COUNT(*) FROM (
-        <include refid="getVillBoardSql"/>
+        <include refid="ListVillBoardSql"/>
         )
     </select>
 
     <select id="listVillBoard" parameterType="map" resultMap="villBoardSelect">
         SELECT * FROM (
         SELECT ROWNUM row_num, vt.* FROM (
-        <include refid="getVillBoardSql"/>
+        <include refid="ListVillBoardSql"/>
         ) vt
         <if test="search.currentPage*search.pageSize!=0">
             WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}
@@ -370,13 +347,45 @@
         WHERE comment_num = #{commentNum}
     </update>
 
-    <select id="listComment"  parameterType="map" resultMap="comemntSelect">
+    <sql id="listCommentSql">
         SELECT  cs.* , us.user_image
         FROM comments cs, users us
         WHERE board_num = #{boardNum}
           AND board_category = #{boardCategory}
           AND cs.user_id = us.user_id
+    </sql>
+
+
+    <select id="getTotalvillBoard" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM (
+        <include refid="listCommentSql"/>
+        )
     </select>
+
+    <select id="listComment" parameterType="map" resultMap="commentSelect">
+        SELECT * FROM (
+        SELECT ROWNUM row_num, vt.* FROM (
+        <include refid="listCommentSql"/>
+        ) vt
+        <if test="search.currentPage*search.pageSize!=0">
+            WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}
+        </if>
+        )
+        <where>
+            <if test="search.currentPage*search.pageSize!=0">
+                row_num >= ((#{search.currentPage}-1)*#{search.pageSize}+1)
+            </if>
+        </where>
+    </select>
+
+    <select id="allListComment" parameterType="map" resultMap="commentSelect">
+        SELECT *
+        FROM comments
+        WHERE board_num = #{boardNum}
+         AND board_category = #{boardCategory}
+    </select>
+
+
 
     <delete id="deleteAllComment" parameterType="map">
         DELETE comments
@@ -407,7 +416,7 @@
 
     <delete id="deleteRecomment" parameterType="int">
         DELETE recomment
-        WHERE recomment_num = #{recommentNun}
+        WHERE comment_num = #{commentNum}
     </delete>
 
     <select id="listRecomment" parameterType="map" resultMap="recommentSelect">
