@@ -51,12 +51,13 @@ body::-webkit-scrollbar {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    flex-direction: row;
 }
 
 .cardbox {
     display: block;
     flex-direction: row;
-    margin-bottom: 20px;
+    margin: 0 0 20px;
 }
 
 button.buttonBox {
@@ -159,6 +160,7 @@ tags.tagify{
 }
 
 .wrapper {
+    margin-top: 50px;
     height: 13ch;
     display: grid;
     place-items: center;

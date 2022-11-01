@@ -25,6 +25,8 @@ public interface MyPageService {
 
     public Map<String, Object> getTotalCount(Search search)throws Exception;
 
+    public Map<String, Object> getTotalCmt(Search search)throws Exception;
+
     public Map<String, Object> getMyPpt(String userId)throws Exception;
 
 

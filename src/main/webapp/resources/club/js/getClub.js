@@ -474,10 +474,26 @@ function setGetClubCalendar() {
 
 }
 
+let loadCheck = false
+
 //레이아웃 사이즈 조절
 function clubLayout(){
     $('[alt="모임 대표 이미지"]').parent().height($('[alt="모임 대표 이미지"]').parent().width() *0.55)
-    $('.clubBoarder').height($('.clubBoarder').width() * 0.7)
+    if(loadCheck){
+        // console.log(1)
+        if($('.selectedTab').hasClass('calendarView')){
+            setTimeout(()=>{
+                $('.clubBoarder').height($('#ClubBoard > div').height())
+            },200)
+        }else {
+            $('.clubBoarder').height($('#ClubBoard > div').height()+50)
+        }
+    }else {
+        // console.log(2)
+        setTimeout(()=>{
+            $('.clubBoarder').height($('#ClubBoard > div').height())
+        },100)
+    }
 }
 
 
@@ -492,7 +508,13 @@ $(function () {
     })
 
     clubLayout()
-    $(window).on('resize', clubLayout)
+    function resize(){
+        $(window).off('resize').on('resize', function(){
+            clubLayout()
+            resize()
+        })
+    }
+    resize()
 
     const clubNum = $('.boardNum').val()
     // $(".updateClub").on("click",function(){
@@ -661,18 +683,13 @@ $(function () {
     })
 
 //////////////////////////////// 모임 툴바 ////////////////////////////////
-    let loadCheck = false
     const clubBoard = $("#ClubBoard")
     const clubBoardRest = $("#ClubBoardRest")
 
     function beforeToolbar(tab) {
-        if(loadCheck){
-            $('.clubTab')[0].scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"})
-        }
         if (clubBoardRest.css('display') === 'block' && loadCheck) {
             return true
         }
-        loadCheck = true
         clubBoard.css('display', 'none')
         clubBoard.html('')
         clubBoardRest.css('display', '')
@@ -682,8 +699,28 @@ $(function () {
     }
 
     function afterToolbar() {
-        clubBoard.slideDown('slow');
-        clubBoardRest.slideUp('slow');
+        clubBoardRest.slideUp(50,()=>{
+            if($('.selectedTab').hasClass('calendarView')){
+                setTimeout(()=>{
+                    clubBoardRest.height($('#ClubBoard > div').height())
+                },100)
+            }else {
+                clubBoardRest.height($('#ClubBoard > div').height()+50)
+            }
+        });
+        clubBoard.slideDown(50,()=>{
+            if($('.selectedTab').hasClass('calendarView')){
+                setTimeout(()=>{
+                    clubBoard.height($('#ClubBoard > div').height())
+                },100)
+            }else {
+                clubBoard.height($('#ClubBoard > div').height()+50)
+            }
+            if(loadCheck){
+                $('.clubTab')[0].scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"})
+            }
+            loadCheck = true
+        });
     }
 
     //모임 공지사항
@@ -691,8 +728,7 @@ $(function () {
         if (beforeToolbar($(this))) {
             return false
         }
-        clubBoard.load('/club/listClubMasterBoard/'+clubNum)
-        afterToolbar()
+        clubBoard.load('/club/listClubMasterBoard/'+clubNum,afterToolbar)
     })
 
     //모임 일정
@@ -707,8 +743,8 @@ $(function () {
             setGetClubCalendar()
             setTimeout(upSize, 100)
             setTimeout(upSize, 500)
+            afterToolbar()
         })
-        afterToolbar()
     })
 
     //모임 일정 후기
@@ -716,8 +752,7 @@ $(function () {
         if (beforeToolbar($(this))) {
             return false
         }
-        clubBoard.load('/view/community/calender.jsp', {clubNum: $('.boardNum').val()})
-        afterToolbar()
+        clubBoard.load('/club/listClubCalendarReview/'+clubNum+'/1',afterToolbar)
     })
 
     //모임 일정 쇼츠
@@ -725,8 +760,7 @@ $(function () {
         if (beforeToolbar($(this))) {
             return false
         }
-        clubBoard.load('/view/community/calender.jsp', {clubNum: $('.boardNum').val()})
-        afterToolbar()
+        clubBoard.load('/club/listClubCalendarReview/'+clubNum+'/2',afterToolbar)
     })
 
     $('.calendarView').click()

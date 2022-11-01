@@ -12,6 +12,8 @@
     <title>Bootstrap Example</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 
     <style>
     .wap{ width: 400px; }
@@ -19,6 +21,23 @@
     td { border-bottom:1px solid #CCC; font-size:12px; }
     span { cursor:pointer }
 
+
+    .btn-primary {
+        --bs-btn-color: #000;
+        --bs-btn-bg: #f8cd07b3;
+        --bs-btn-border-color: #f8cd07b3;
+        --bs-btn-hover-color: #000;
+        --bs-btn-hover-bg: #f8cd07;
+        --bs-btn-hover-border-color: #f8cd07;
+        --bs-btn-focus-shadow-rgb: 130, 138, 145;
+        --bs-btn-active-color: #000;
+        --bs-btn-active-bg: #f8cd07;
+        --bs-btn-active-border-color: #f8cd07;
+        --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+        --bs-btn-disabled-color: #fff;
+        --bs-btn-disabled-bg: #6c757d;
+        --bs-btn-disabled-border-color: #6c757d;
+    }
 
     </style>
   <script type="text/javascript">
@@ -70,8 +89,10 @@
             phone : $(".userPhone").val()
           },
           dataType: "json",
-          success : function (){
-            $(".smsYC").css("display",'');
+          success : function (result){
+           if(result){
+               $("#smsYC").css("display",'');
+           };
           }
         });
       });
@@ -79,11 +100,15 @@
       $(".CheckEmailKey2").on("click",function (){
         var CheckEmailKey = $(".CheckEmailKey").val();
          //alert(CheckEmailKey);
-         var emailNo = num;
+         //var emailNo = num;
             // alert("랜덤 이메일 인증번호 :"+emailNo);
         if(CheckEmailKey!=1234){
+            $(".emailYC").css("display", 'none');
+            $(".emailInforYes").css('display','none');
           $('.emailInfor').css('display','');
         }else{
+            $(".emailYC").css("display", 'none');
+            $('.emailInfor').css('display','none');
           $(".emailInforYes").css('display','');
         }
       });
@@ -91,8 +116,12 @@
         var CheckSms = $("#CheckSms").val();
         alert(CheckSms);
         if(CheckSms!=1234){
+            $(".smsYC").css("display",'none');
+            $(".smsYes").css('display','none');
           $('.smsNo').css('display','');
         }else{
+            $(".smsYC").css("display",'none');
+            $('.smsNo').css('display','none');
           $(".smsYes").css('display','');
         }
       });
@@ -136,12 +165,12 @@
 
           */
 
-      $("#userId").on("keyup",function (){
+      $("#addUserId").on("keyup",function (){
           $.ajax({
             url: "/user/json/userId",
             method: "POST",
             data: {
-              userId: $("#userId").val()
+              userId: $("#addUserId").val()
             },
             dataType: "json",
             success: function (result) {
@@ -157,12 +186,12 @@
             }
           });
       })
-        $("#password").on("keyup",function () {
+        $("#addPassword").on("keyup",function () {
           $.ajax({
             url: "/user/json/password",
             method: "POST",
             data: {
-              password : $("#password").val()
+              password : $("#addPassword").val()
             },
             dataType: "json",
             success: function (result) {
@@ -182,7 +211,7 @@
               url: "/user/json/password2",
               method: "POST",
               data: {
-                password : $("#password").val(),
+                password : $("#addPassword").val(),
                 password2: $("#password2").val()
               },
               dataType: "json",
@@ -202,8 +231,8 @@
 
       $("form").on("submit",function (){
 
-        var id=$("input[name='userId']").val();
-        var pw=$("input[name='password']").val();
+        var id=$("#addUserId").val();
+        var pw=$("#addPassword").val();
         var pw2=$("input[name='password2']").val();
         var name=$("input[name='userName']").val();
         var rrd=$("input[name='rrd']").val();
@@ -215,48 +244,77 @@
 
 
         if(id == null || id.length <1){
-          alert("아이디는 반드시 입력하셔야 합니다.");
+          Swal.fire({
+          icon: 'warning',
+              title: "아이디는 반드시 입력하셔야 합니다."
+        })
           return false;//해당 메서드(펑션)을 종료한다
         }
         if(pw == null || pw.length <1){
-          alert("패스워드는  반드시 입력하셔야 합니다.");
+            Swal.fire({
+                icon: 'warning',
+                title: "비밀번호는 반드시 입력하셔야 합니다."
+            })
           return false;
         }
         if(pw2 == null || pw2.length <1){
-          alert("패스워드 확인은  반드시 입력하셔야 합니다.");
+            Swal.fire({
+                icon: 'warning',
+                title: "비밀번호 확인은 반드시 입력하셔야 합니다."
+            })
           return false;
         }
         if(name == null || name.length <1){
-          alert("이름은  반드시 입력하셔야 합니다.");
+            Swal.fire({
+                icon: 'warning',
+                title: "이름은 반드시 입력하셔야 합니다."
+            })
           return false;//해당 메서드(펑션)을 종료한다
         }
 
         if( pw != pw2 ) {
-          alert("비밀번호 확인이 일치하지 않습니다.");
+            Swal.fire({
+                icon: 'warning',
+                title: "비밀번호 확인이 일치하지 않습니다."
+            })
+
           $("input:text[name='password2']").focus();
           return false;
         }
         if(rrd == null || rrd.length <1){
-          alert("주민등록번호는  반드시 입력하셔야 합니다.");
-          return false;
-        }
-/*
-
-
-        if(male.is("checked")==false || female.is("checked")==false){
-          alert("성별은  반드시 입력하셔야 합니다.");
-          return false;
-        }
-        if(email.is("checked")==false || phone.is("checked")==false){
-          alert("이메일 또는 휴대폰번호는 반드시 인증하셔야 합니다.");
-          return false;
-        }
-        if($("#addChk").val()==false){
-          alert("동네인증은 반드시 인증하셔야 합니다.");
+            Swal.fire({
+                icon: 'warning',
+                title: "주민등록번호는  반드시 입력하셔야 합니다."
+            })
           return false;
         }
 
-*/
+
+
+        if(!$("input:checked[id='male']").is(":checked") && !$("input:checked[id='female']").is(":checked")){
+            Swal.fire({
+                icon: 'warning',
+                title: "성별은  반드시 입력하셔야 합니다."
+            })
+          return false;
+        }
+
+          if(!$("input:checked[id='CheckEamil']").is(":checked") && !$("input:checked[id='CheckPhone']").is(":checked")){
+           Swal.fire({
+                  icon: 'warning',
+                  title: "이메일 또는 휴대폰번호는 반드시 인증하셔야 합니다."
+              })
+            return false;
+          }
+          if(!$("input:checked[id='addChk']").is(":checked")){
+          Swal.fire({
+                  icon: 'warning',
+                  title: "동네인증은 반드시 인증하셔야 합니다."
+              })
+            return false;
+          }
+
+
         $("form").attr("method","POST").attr("action","/user/addUser").submit();
 
       });
@@ -469,130 +527,179 @@
  <%--상단 툴바--%>
  <jsp:include page="/layout/toolbar.jsp"/>
 
-<div class="container" style="text-align: -webkit-center;">
+<div class="container shadow-lg" style="text-align: -webkit-center;display: flex;
+    width: 1080px;
+    border: 1px solid;
+
+    flex-direction: column;">
 
 
   <main>
-    <div class="py-5 text-center">
-        <img id="userImage1" src="https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png" class="w-50">
-
-        <h2>회원가입</h2>
-        <p class="lead">MOWAS에 오신걸 환영합니다</p>
-      <p class="lead">계정 정보를 입력해주세요</p>
+    <div class="text-center">
+        <h2 style=" margin-top: 10px; padding: 10px;">회원가입</h2>
     </div>
-
-      <hr>
-
-
+      <hr style="margin: 10px; color: #9e9e9e; opacity: 100%">
     <form class="needs-validation" novalidate enctype="multipart/form-data">
-      <div class="row g-3">
+<div style="display:flex; margin-left: 50px; margin-right: 30px">
 
-        <div class="col-sm">
-            <span><h4><label for="userId" class="form-label" >아이디</label></h4></span>
-          <input type="text" class="form-control" id="userId" name="userId" maxLength="20" required>
-        </div>
+        <div style="display: inline-block; height: 330px; width: 700px; border-right: 1px solid #9e9e9e;  padding-right: 50px; padding-top: 10px;">
+             <div class="col-12" style=" display:flex ">
+                <span style="width: 50%;">아이디</span>
+                 <div class="input-group has-validation">
+                 <input type="text" class="form-control" id="addUserId" name="userId" maxLength="20" style="margin-bottom: 25px;" required>
+                 </div>
+            </div>
 
-        <span id="idChk" style="display: none;">
-                <strong class="text-danger" >이미 가입된 아이디입니다</strong>
-        </span>
-        <div class="col-12">
-          <label for="password" class="form-label" >비밀번호</label>
-            <strong class="text-danger" style="color : red;" >영문,숫자 혼합, 8~16글자로 입력해주세요</strong><br/>
-          <div class="input-group has-validation">
-            <input type="password" class="form-control" id="password" name="password" maxLength="16" required>
+             <span id="idChk" style="display: none;">
+                <strong class="text-danger" style="margin-left: 40px;" >이미 가입된 아이디입니다</strong>
+             </span>
+
+              <div class="col-12"  style="display:flex">
+                  <span style="width: 50%">비밀번호</span>
+                     <div class="input-group has-validation">
+                        <input type="password" class="form-control" id="addPassword" name="password" maxLength="16" placeholder="영문,숫자 혼합, 8~16글자 입력" style="margin-bottom: 25px;"required>
+                     </div>
+              </div>
+
+             <span id="passwordChk" style="display: none;">
+                <strong class="text-danger" style="margin-left: 20px;">영문,숫자 혼합, 8~16글자로 입력해주세요</strong>
+             </span>
+
+             <div class="col-12" style="display:flex">
+               <span style="width: 50%;">비밀번호 확인</span>
+                 <div class="input-group has-validation">
+                  <input type="password" class="form-control" id="password2" name="password2" maxLength="16" style="margin-bottom: 25px;" required>
+                  </div>
+             </div>
+
+            <span id="password2Chk" style="display: none;">
+                <strong class="text-danger"  style="margin-left: 40px;" >비밀번호가 틀렸습니다</strong>
+           </span>
+
+             <div class="col-12" style="display:flex">
+               <span style="width: 50%;">이름</span>
+                     <div class="input-group has-validation">
+                       <input type="text" class="form-control" id="userName" name="userName"  style="margin-bottom: 25px;" required>
+                      </div>
+             </div>
+
+          <div class="col-12" style="display:flex">
+               <span style="width: 50%;">주민등록번호</span>
+                <div class="input-group has-validation">
+                   <input type="text" class="form-control" id="rrd" name="rrd"  style="margin-bottom: 25px;" required>
+                </div>
           </div>
-        </div>
-        <span id="passwordChk" style="display: none;">
-                <strong class="text-danger" >영문,숫자 혼합, 8~16글자로 입력해주세요</strong>
-        </span>
-
-        <div class="col-12">
-          <label for="password2" class="form-label">비밀번호 확인</label>
-          <div class="input-group has-validation">
-            <input type="password" class="form-control" id="password2" name="password2" maxLength="16" required>
-          </div>
-        </div>
-        <span id="password2Chk" style="display: none;">
-                <strong class="text-danger" >비밀번호가 틀렸습니다</strong>
-        </span>
-
-        <div class="col-12">
-          <label for="userName" class="form-label">이름</label>
-          <div class="input-group has-validation">
-            <input type="text" class="form-control" id="userName" name="userName"  required>
-          </div>
-        </div>
-
-        <div class="col-12 ">
-          <label for="rrd" class="form-label">주민등록번호</label>
-          <div class="input-group has-validation">
-            <input type="text" class="form-control" id="rrd" name="rrd"  required>
-          </div>
-            <span id="rrdChk" style="display: none;" >
-              <strong class="text-danger" >이미 가입한 회원입니다</strong>
+             <span id="rrdChk" style="display: none;" >
+                 <strong class="text-danger"  style="margin-left: 40px;">이미 가입한 회원입니다</strong>
               </span>
 
 
-
-
-        <div class="col-12">
-          성별<label for="male" class="form-label">
-          <input type="radio" class="form-check-input" id="male" name="gender" value="남자" required>남자</label>
-          <label for="female" class="form-label">
-            <input type="radio" class="form-check-input" id="female" name="gender" value="여자" required>여자</label>
         </div>
 
-        <h6>이메일 또는 휴대폰번호 인증하기(택1)</h6>
 
 
-        <div class="col-12">
-          <label for="CheckEamil" class="form-label"><input type="radio" class="form-check-input" id="CheckEamil" name="email&phone" required>
+
+
+        <div style="display: inline-block; height: 300px; width: 600px; padding-top: 10px;">
+
+            <div  >
+                <span >성별</span><label for="male" class="form-label">
+                <input type="radio" class="form-check-input" id="male" name="gender" value="남자" style="margin-left: 50px;" required>남자</label>
+                <label for="female" class="form-label">
+                    <input type="radio" class="form-check-input" id="female" name="gender" value="여자" style="margin-left: 60px;" required>여자</label>
+                <span style="margin-right: 200px;"></span>
+            </div>
+
+
+            <h6>이메일 또는 휴대폰번호 인증하기(택1)</h6>
+
+<div>
+        <div class="col-12" style="display:flex; align-items: center;">
+            <div style="width: 130px; float: left;">
+          <label for="CheckEamil" class="form-label"><input type="radio" style="float: left;" class="form-check-input" id="CheckEamil" name="email&phone" required>
             이메일</label>
-          <input type="email" class="form-control userEmail" id="email" name="email" >
-          <input type="text" class="form-control CheckEmailKey" placeholder="인증번호 입력"  >
-          <button type="button" class="btn btn-prm btn-sm emailKey">인증번호 요청</button>
+            </div>
+            <div>
+                <div style="display: flex; ">
+          <input type="email" class="form-control userEmail" id="email" name="email" style="margin-bottom: 25px; width: 250px;" >
+                <button  type="button" class=" btn btn-primary btn-sm emailKey" style="margin-bottom: 25px; width: 130px; margin-left: 10px;">인증번호 요청</button>
+                </div>
+                <span class=" emailYC" style="display: none; margin-right: 192px;">
+                <strong class="text-danger" >인증번호가 발송되었습니다</strong>
+                    </span>
+                <div style="display: flex">
+          <input type="text" class="form-control CheckEmailKey" placeholder="인증번호 입력"  style="margin-bottom: 25px; width: 250px;">
+                <div>
+          <button type="button" class="btn btn-primary btn-sm CheckEmailKey2" style="margin-bottom: 25px; width: 130px; margin-left: 10px;" >인증 확인</button>
+                </div>
 
-          <button type="button" class="btn btn-secondary btn-sm CheckEmailKey2">인증 확인</button>
-          <span class="emailInfor" style="display: none;">
+                </div>
+        </div>
+        </div>
+            <div style="display: flex">
+          <span class="emailInfor" style="display: none; margin-left: 130px;">
                 <strong class="text-danger" >인증번호가 틀렸습니다</strong>
               </span>
-          <span class="emailYC" style="display: none">인증번호가 발송되었습니다</span>
-          <span class="emailInforYes" style="display: none;">
-                인증되었습니다
+
+          <span class="emailInforYes" style="display: none; margin-left: 130px;">
+              <strong class="text-danger" > 인증되었습니다</strong>
               </span>
+            </div>
+
 
             <input type="hidden" id="randomEmail" name="randomEmail" >
-          <div>
+
+    <div>
+            <div style="display: flex; align-items: center;">
+          <div style="width: 130px;">
           <label for="CheckPhone" class="form-label"><input type="radio" class="form-check-input" id="CheckPhone" name="email&phone" required>
             휴대폰번호</label>
           </div>
-          <input type="tel" class="form-control userPhone" name="phone" >
-          <input type="text" class="form-control" id="CheckSms" placeholder="인증번호 입력" >
-          <button type="button" class="btn btn-prm btn-sm smsKey">인증번호 요청</button>
-          <button type="button" class="btn btn-secondary btn-sm CheckSmsKey">인증 확인</button>
-          <span class="smsNo" style="display: none;">
+                <div>
+                <div style="display: flex">
+          <input type="tel" class="form-control userPhone" name="phone" style="margin-bottom: 25px; width: 250px;" >
+                <button type="button" class="btn btn-primary btn-sm smsKey" style="margin-bottom: 25px; width: 130px; margin-left: 10px;">인증번호 요청</button>
+                </div>
+                    <span class="smsYC" id="smsYC" style="display: none; margin-right: 192px;">
+                     <strong class="text-danger" > 인증번호가 발송되었습니다</strong>
+                      </span>
+                <div style="display: flex">
+          <input type="text" class="form-control" id="CheckSms" placeholder="인증번호 입력" style="margin-bottom: 25px; width: 250px;">
+                <div>
+
+          <button type="button" class="btn btn-primary btn-sm CheckSmsKey" style="margin-bottom: 25px; width: 130px; margin-left: 10px;">인증 확인</button>
+                </div>
+                </div>
+          <span class="smsNo" style="display: none; margin-right: 224px;">
               <strong class="text-danger" >인증번호가 틀렸습니다</strong>
               </span>
-          <span class="smsYC" style="display: none">인증번호가 발송되었습니다</span>
-          <span class="smsYes" style="display: none;">
-                인증되었습니다
+
+          <span class="smsYes" style="display: none; margin-right: 274px;">
+               <strong class="text-danger" > 인증되었습니다</strong>
               </span>
+            </div>
+            </div>
+    </div>
       </div>
 
-      <div class="col-12">
+        </div>
+</div>
+
+
+      <div  style="display: inline-block">
         <label for="address" class="form-label">동네인증</label>
-      </div>
 
-      <div class="col-12">
+
+      <div class="col-12"  >
         <input type="hidden" id="currentPage" value="1" style="text-align:center;"/>
         <input type="hidden" id="countPerPage" value="5" style="text-align:center;"/>
         <input type=text id="zipCode" value="" onClick="addressWindowOpen();" placeholder="00000" readOnly />
-        <a class="btn btn-prm btn-sm" href='javascript:void(0);' onclick="addressWindowOpen();">우편번호 찾기</a>
+        <a class="btn btn-primary btn-sm" href='javascript:void(0);' onclick="addressWindowOpen();">우편번호 찾기</a>
         <div id="wrap" style="display: none;">
-          <a class="btn btn-danger" id="closeBtn" href='javascript:void(0);' onclick="addressWindowClose();"><i class="fa fa-remove"></i></a>
+          <a class="btn btn-primary" id="closeBtn" href='javascript:void(0);' onclick="addressWindowClose();"><i class="fa fa-remove"></i></a>
           <div>
             <input type="text" id="searchAddr" value="" onkeydown="enterSearch();" placeholder="도로명주소, 건물명 또는 지번 입력"/>
-            <a class="btn btn-info btn-sm" href='javascript:void(0);' onclick="getAddr();">주소검색</a>
+            <a class="btn btn-primary btn-sm" href='javascript:void(0);' onclick="getAddr();">주소검색</a>
           </div>
           <div>
             <div id="totoalOutcome">검색결과 : <span id="totalCnt">0</span></div>
@@ -608,7 +715,7 @@
 
 <div>
         <input class="form-check-input" type="checkbox"  id="addChk" disabled="disabled" >
-        <button type="button" class="btn btn-prm btn-sm" id="checkAddress" name="checkAddress">동네인증 요청</button>
+        <button type="button" class="btn btn-primary btn-sm" id="checkAddress" name="checkAddress">동네인증 요청</button>
 </div>
         <div class="col-12">
           <input type="hidden" class="form-control" id="addressTrue" value="동네인증 되었습니다" readonly>
@@ -617,6 +724,7 @@
           <input type="hidden" class="form-control" id="addressFalse" value="동네인증 실패. 현재위치를 확인해주세요" readonly>
         </div>
 
+      </div>
       </div>
 
       <div  id="map" style="width:500px;height:400px;"></div>
@@ -671,6 +779,7 @@
                   contentType : "application/json",
                   success : function (result){
                     if(result==true) {
+                        $("#addressFalse").hide();
                       $("#addressTrue").attr("type","text").css("color","red");
                       $("#map").fadeOut();
                       $("#addChk").prop("checked",true);
@@ -731,9 +840,9 @@
 
 
 
-      <div class="col-12">
-        <label for="file" class="form-label">회원 사진 등록 *선택사항*</label>
-        <input type="file" id="file" name="file" >
+      <div class="col-12" style="display:inline-block;">
+        <label for="file" class="form-label">회원 사진 등록 *선택사항*</label><br>
+        <input type="file" style="border: 1px solid;" id="file" name="file" >
       </div>
 
 
@@ -752,27 +861,20 @@
 
 
       <hr>
-            <div class="col-12">
-            <button class="w-100 btn btn-prm btn-lg cancle" type="button"> 취소</button>
-            <button class="w-100 btn btn-prm btn-lg addUser" type="submit"> 관심목록 선택</button>
-          </div>
-        </div>
-      </div>
-    </form>
+            <div class="col-12" >
 
+            <button class=" btn btn-primary addUser" type="submit" style="width: 200px;"> 관심목록 선택 ></button><br>
+                <button class=" btn btn-primary  cancle" type="button" style="width: 200px;"> 취소</button>
+          </div>
+
+    </form>
+<div style="margin-bottom: 100px;"></div>
   </main>
 
-  <footer class="my-5 pt-5 text-muted text-center text-small">
-    <p class="mb-1">&copy; 2017-2022 Company Name</p>
-    <ul class="list-inline">
-      <li class="list-inline-item"><a href="#">Privacy</a></li>
-      <li class="list-inline-item"><a href="#">Terms</a></li>
-      <li class="list-inline-item"><a href="#">Support</a></li>
-    </ul>
-  </footer>
+
 </div>
+ <jsp:include page="/layout/chatIcon.jsp"/>
+ <jsp:include page="/layout/footer.jsp"/>
 
 </body>
-
-
 </html>

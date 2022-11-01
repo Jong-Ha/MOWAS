@@ -643,9 +643,24 @@ public class ClubController {
         return "redirect:/club/getVote/" + voteNum;
     }
 
-    @RequestMapping(value = "/club/listClubCalendarReview")
-    public String listClubCalendarReview(int clubNum){
+    @RequestMapping(value = "listClubCalendarReview/{clubNum}/{boardCategory}")
+    public String listClubCalendarReview(Model model, @PathVariable("clubNum") int clubNum, @ModelAttribute("search") Search search, @PathVariable int boardCategory) {
+        if (search.getCurrentPage() == 0) {
+            search.setCurrentPage(1);
+        }
+        search.setPageSize(pageSize);
 
-        return "/view/club/listClubCalendarReview.jsp";
+        if (search.getSearchCondition() == null){
+            search.setSearchCondition("1");
+        }
+        Map<String, Object> map = clubCalendarService.listClubCalendarReview(search,clubNum,boardCategory);
+        Page resultPage = new Page(search.getCurrentPage(), (Integer) map.get("totalCount"), pageUnit, pageSize);
+        map.put("resultPage", resultPage);
+        model.addAllAttributes(map);
+        if(boardCategory==1){
+            return "/view/club/listClubCalendarReview.jsp";
+        }else {
+            return "/view/club/listClubCalendarReviewShort.jsp";
+        }
     }
 }

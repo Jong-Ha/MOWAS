@@ -4,6 +4,7 @@ import com.project.common.Search;
 import com.project.domain.ClubCalendar;
 import com.project.domain.ClubCalendarReview;
 import com.project.domain.Deal;
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
 
 import java.util.List;
 import java.util.Map;
@@ -38,4 +39,6 @@ public interface ClubCalendarService {
     void deleteClubCalender(int boardNum);
 
     void dealUpdateCalender(Deal deal);
+
+    Map<String ,Object> listClubCalendarReview(Search search, int clubNum, int boardCategory);
 }

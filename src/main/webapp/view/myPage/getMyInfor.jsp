@@ -112,18 +112,18 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="row mt-2 mb-2">
-                                <div class="col-sm-4">
-                                    <p class="mb-0 fw-bold">주민등록번호</p>
-                                </div>
-                                <div class="col-sm-8">
-                                    <p class="text-muted mb-0">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="rrd" name="rrd" value="${map.user.rrd}" disabled="disabled">
-                                    </div>
-                                    </p>
-                                </div>
-                            </div>
+<%--                            <div class="row mt-2 mb-2">--%>
+<%--                                <div class="col-sm-4">--%>
+<%--                                    <p class="mb-0 fw-bold">주민등록번호</p>--%>
+<%--                                </div>--%>
+<%--                                <div class="col-sm-8">--%>
+<%--                                    <p class="text-muted mb-0">--%>
+<%--                                    <div class="form-group">--%>
+<%--                                        <input type="password" class="form-control" id="rrd" name="rrd" value="${map.user.rrd}" disabled="disabled">--%>
+<%--                                    </div>--%>
+<%--                                    </p>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
                             <div class="row mt-2 mb-2">
                             <div class="col-sm-4">
                                 <p class="mb-0 fw-bold">성별</p>
@@ -191,18 +191,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="row mt-2 mb-2">
-                                <div class="col-sm-4">
-                                    <p class="mb-0 fw-bold">마지막 접속 날짜</p>
-                                </div>
-                                <div class="col-sm-8">
-                                    <p class="text-muted mb-0">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="lcd" name="lcd" value="${map.user.lcd}"  disabled="disabled">
-                                    </div>
-                                    </p>
-                                </div>
-                            </div>
+
                             <div class="row mt-2 mb-2">
                                 <div class="col-sm-4">
                                     <p class="mb-0 fw-bold">벌점</p>
@@ -308,5 +297,7 @@
     </div>
 
 </div>
+<jsp:include page="/layout/chatIcon.jsp"/>
+<jsp:include page="/layout/footer.jsp"/>
 </body>
 </html>

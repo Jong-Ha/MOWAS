@@ -76,7 +76,6 @@
     <title>Title</title>
 </head>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -119,7 +118,7 @@
     });
 
 </script>
-<body>
+<body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 <%--상단 툴바--%>
 <jsp:include page="/layout/toolbar.jsp"/>
 
@@ -190,6 +189,7 @@
             </div>
                 <button type="button" class="getMyInfor btn btn-primary" id="getMyInfor">내 정보 보기</button>
             <br>
+        </div>
 
 
         <div class="userCalender shadow-lg" style=" height: 600px; overflow: scroll; padding: 10px;">
@@ -201,5 +201,7 @@
 
 
 </div>
+<jsp:include page="/layout/chatIcon.jsp"/>
+<jsp:include page="/layout/footer.jsp"/>
 </body>
 </html>

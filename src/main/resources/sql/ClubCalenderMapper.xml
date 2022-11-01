@@ -223,27 +223,26 @@
 
 
 
-    <sql id="lisClubCalenderReviewSql">
+    <sql id="listClubCalendarReviewSql">
         SELECT cr.* , us.user_image, cc.location, cc.calendar_title
         FROM club_calendar_review cr , users us, club_calendar cc
         WHERE cr.user_id = us.user_id
         AND cr.club_calendar_num = cc.club_calendar_num
         AND cr.board_category = #{boardCategory}
-        AND cr.review_range = #{reviewRange}
         AND cr.CLUB_NUM = #{clubNum}
     </sql>
 
 
-    <select id="getTotalClub" parameterType="map" resultType="int">
+    <select id="getTotalClubCalendarReview" parameterType="map" resultType="int">
         SELECT COUNT(*) FROM (
-        <include refid="lisClubCalenderReviewSql"/>
+        <include refid="listClubCalendarReviewSql"/>
         )
     </select>
 
-    <select id="lisClubCalenderReview" parameterType="map" resultMap="calenderReviewSelect">
+    <select id="listClubCalendarReview" parameterType="map" resultMap="calenderReviewSelect">
         SELECT * FROM (
         SELECT ROWNUM row_num, vt.* FROM (
-        <include refid="lisClubCalenderReviewSql"/>
+        <include refid="listClubCalendarReviewSql"/>
         ) vt
         <if test="search.currentPage*search.pageSize!=0">
             WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}

@@ -74,7 +74,7 @@
 <h4>모임장 작성글</h4>
 <hr/>
 <c:set var="i" value="0" />
-<c:forEach var="list" items="${map.myclubBoard}"><br/>
+<c:forEach var="list" items="${map.myclubBoard}">
     모임번호${list.clubNum}<br/>
     <a href="/club/getClubMasterBoard/${list.boardNum}">제목 ${list.title}</a><br/>
     회원아이디 ${list.userId}<br/>
@@ -91,6 +91,6 @@
 </label>
 <input type="submit" value="검색">
 
-
+<jsp:include page="/layout/footer.jsp"/>
 </body>
 </html>

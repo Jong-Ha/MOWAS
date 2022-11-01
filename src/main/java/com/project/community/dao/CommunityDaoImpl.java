@@ -62,8 +62,8 @@ public class CommunityDaoImpl implements CommunityDao {
     }
 
     @Override
-    public void deleteRecomment(int recommentNum) {
-        sqlSession.delete("CommunityMapper.deleteRecomment", recommentNum);
+    public void deleteRecomment(int commentNum) {
+        sqlSession.delete("CommunityMapper.deleteRecomment", commentNum);
     }
 
     @Override
@@ -150,6 +150,11 @@ public class CommunityDaoImpl implements CommunityDao {
     @Override
     public void deleteAllLike(Map<String, Object> map) {
         sqlSession.delete("CommunityMapper.deleteAllLike", map);
+    }
+
+    @Override
+    public List<Comment> allListComment(Map<String, Object> map) {
+        return sqlSession.selectList("CommunityMapper.allListComment", map);
     }
 
 

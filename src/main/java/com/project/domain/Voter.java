@@ -15,4 +15,5 @@ public class Voter {
     private int voteNum;
     private String voteItem;
     private String userId;
+    private String userImage;
 }

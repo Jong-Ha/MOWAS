@@ -40,4 +40,8 @@ public interface ClubCalendarDao {
     void deleteClubCalender(int boardNum);
 
     void dealUpdateCalender(Deal deal);
+
+    List<ClubCalendarReview> listClubCalendarReview(Map<String ,Object> map);
+
+    int getTotalClubCalendarReview(Map<String ,Object> map);
 }

@@ -87,6 +87,10 @@ public class MyPageDaoImpl implements MyPageDao{
         return sqlSession.selectOne("MyPageMapper.getTotalCount", search);
     }
 
+    public int getTotalCmt(Search search)throws Exception{
+        return sqlSession.selectOne("MyPageMapper.getTotalCmt", search);
+    }
+
     public List<CommunityReport> getMyPpt(String userId)throws Exception{
         return sqlSession.selectList("MyPageMapper.getMyPpt", userId);
     }

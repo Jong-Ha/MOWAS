@@ -1,5 +1,6 @@
 package com.project.user.service;
 
+import com.project.common.dao.MongoDbDao;
 import com.project.domain.CommunityReport;
 import com.project.domain.User;
 import com.project.domain.UserInterList;
@@ -21,6 +22,10 @@ public class UserServiceImpl implements UserService{
     @Autowired
     @Qualifier("userDaoImpl")
     private UserDao userDao;
+
+    @Autowired
+    @Qualifier("mongoDbDaoImpl")
+    MongoDbDao mongoDbDao;
     public void setUserDao(UserDao userDao){
         this.userDao = userDao;
     }
@@ -80,6 +85,7 @@ public class UserServiceImpl implements UserService{
 
     public void updateUser(User user)throws Exception{
         userDao.updateUser(user);
+        mongoDbDao.updateUser(user.getUserId(),user.getUserImage());
     }
     public void updatePsd(User user)throws Exception{
           userDao.updatePsd(user);

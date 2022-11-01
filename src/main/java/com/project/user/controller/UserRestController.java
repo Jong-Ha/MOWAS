@@ -183,22 +183,26 @@ public class UserRestController {
     }
 
     @RequestMapping(value = "addinterList", method = RequestMethod.POST)
-    public void addinterList(@RequestBody UserInterList interList) throws Exception {
+    public boolean addinterList(@RequestBody UserInterList interList) throws Exception {
         System.out.println("여기는 addinterList 시작이다");
         System.out.println("interList의 값은 ? :" + interList);
 
         userService.addInterList(interList);
+        boolean result=true;
         System.out.println("여기는 addinterList 종료이다");
+        return result;
 
     }
 
         @RequestMapping(value = "deleteInter", method = RequestMethod.POST)
-        public void deleteInter(@RequestBody UserInterList interList) throws Exception {
+        public boolean deleteInter(@RequestBody UserInterList interList) throws Exception {
             System.out.println("여기는 deleteInter 시작이다");
             System.out.println("interList의 값은 ? :" + interList);
 
             userService.deleteInterList(interList);
+            boolean result=true;
             System.out.println("여기는 deleteInter 종료이다");
+            return result;
         }
 
      @RequestMapping(value = "updateSNSUserInfor",method = RequestMethod.POST)
@@ -389,7 +393,7 @@ public class UserRestController {
 */
 
     @RequestMapping(value = "smsSend", method = RequestMethod.POST)
-    public void smsSend(@RequestParam(value = "phone", required = false) String phone) throws Exception {
+    public boolean smsSend(@RequestParam(value = "phone", required = false) String phone) throws Exception {
         System.out.println("여기는 smsSend 컨트롤러 시작이다");
         System.out.println("sms의 값은 ? : " + phone);
 
@@ -412,8 +416,9 @@ public class UserRestController {
             System.out.println(e.getMessage());
             System.out.println(e.getCode());
         }
+        boolean result = true;
         System.out.println("여기는 smsSend 컨트롤러 종료이다");
-
+    return result;
     }
 
     @RequestMapping(value="naverSave", method=RequestMethod.POST)

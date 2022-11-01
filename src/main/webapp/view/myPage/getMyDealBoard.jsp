@@ -90,8 +90,230 @@
     .goods_wrapper .goods_group .goods_item .goods_info > ul > li.goods_name {
         font-weight: bold;
     }
-    </style>
+    .body {
+        text-align: -webkit-center;
+    }
 
+    .wap {
+        margin-top: 70px;
+        font-size: 1em;
+        width: 1030px;
+        padding: 5px 5px;
+        height: 580px;
+        border-radius: 10px;
+    }
+
+
+    .card-title {
+        width: 250px;
+        font-size: 1em;
+    }
+
+    .cardbox {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 30px;
+
+        transition: all 0.2s linear;
+    }
+
+    button.buttonBox {
+        font-size: 0.7em;
+        /* float: left; */
+        /* size: b4; */
+        height: 25px;
+        width: 5px;
+    }
+
+    .col.dealBox {
+        width: 320px;
+        /*margin-right: 30px;*/
+    }
+
+    .like {
+        font-size: 0.1rem;
+        width: 45px;
+        outline: 0;
+        border: none;
+        background-color: #fff;
+    }
+
+    .addBox {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 50px;
+    }
+
+    .add {
+        margin-right: -700px;
+    }
+
+    .update,
+    .delete {
+        font-size: 0.5em;
+    }
+
+    .get {
+        width: 100px;
+        height: 200px;
+        overflow: hidden;
+    }
+
+
+    .carditem {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-title {
+        width: 250px;
+        font-size: 1em;
+    }
+
+    .cardbox {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 40px;
+
+        float: left;
+        transition: all 0.2s linear;
+    }
+
+    .cardbox:hover {
+        transform: scale(1.12);
+    }
+
+    .potoBox {
+        cursor: pointer;
+        padding: 1px;
+        width: 294px;
+        height: 200px;
+        overflow: hidden;
+        border-radius: 0 0 5px 5px;
+        border-bottom: 2px solid #0a090945
+    }
+
+    .text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .allFlex {
+        display: flex;
+    }
+
+    .cartFont {
+        font-size: 0.8em;
+    }
+
+    .wrapper {
+        height: 13ch;
+        display: grid;
+        place-items: center;
+    }
+
+    .typing {
+        width: 9ch;
+        animation: typing 0.9s steps(22), blink .5s step-end infinite alternate;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 3px solid;
+        font-size: 2em;
+        height: 2ch;
+    }
+
+    @keyframes typing {
+        from {
+            width: 0
+        }
+    }
+
+    .btn-primary {
+        --bs-btn-color: #000;
+        --bs-btn-bg: #f8cd07b3;
+        --bs-btn-border-color: #f8cd07b3;
+        --bs-btn-hover-color: #000;
+        --bs-btn-hover-bg: #f8cd07;
+        --bs-btn-hover-border-color: #f8cd07;
+        --bs-btn-focus-shadow-rgb: 130, 138, 145;
+        --bs-btn-active-color: #000;
+        --bs-btn-active-bg: #f8cd07;
+        --bs-btn-active-border-color: #f8cd07;
+        --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+        --bs-btn-disabled-color: #fff;
+        --bs-btn-disabled-bg: #6c757d;
+        --bs-btn-disabled-border-color: #6c757d;
+    }
+
+    /*deallistBox 시작*/
+    .deallistBox {
+        margin-bottom: 50px;
+        justify-content: center;
+    }
+
+
+    a {
+        text-decoration: none;
+    }
+
+    .underline {
+        line-height: 1.2;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+        font-size: 1.5em;
+        font-weight: 700;
+        background-image: linear-gradient(transparent calc(100% - 3px), #000 3px);
+        background-repeat: no-repeat;
+        background-size: 0% 100%;
+        transition: background-size 0.2s;
+        color: #000;
+        cursor: pointer;
+        margin-right: 25px;
+    }
+
+    @media (min-width: 1000px) {
+        .underline {
+            font-size: 1.5em;
+        }
+    }
+
+    .underline.yellow {
+        background-image: linear-gradient(transparent 60%, #F8CD07 40%);
+    }
+
+    .underline:hover {
+        background-size: 100% 100%;
+    }
+
+    .wrapper {
+        height: 13ch;
+        display: grid;
+        place-items: center;
+    }
+
+    .typing {
+        width: 14ch;
+        animation: typing 0.9s steps(22), blink .5s step-end infinite alternate;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 3px solid;
+        font-size: 2em;
+        height: 2ch;
+    }
+
+    @keyframes typing {
+        from {
+            width: 0
+        }
+    }
+
+    @keyframes blink {
+        80% {
+            border-color: transparent
+        }
+    }
+    </style>
 
 <script type="text/javascript">
 
@@ -130,8 +352,6 @@
 <div class="tabBox">
     <span class="tabBtn getMyVillBoard" >우리동네 게시글</span>
     <span>|</span>
-    <span class="tabBtn getMyCbMaster" >모임 공지사항 게시글</span class="tabBtn">
-    <span>|</span>
     <span class="tabBtn getMyCbReviewBoard">모임 일정 후기 게시글</span class="tabBtn">
     <span>|</span>
     <span class="tabBtn getMyDealBoard" >판매/판매요청 게시글</span class="tabBtn">
@@ -143,14 +363,40 @@
 <h4>판매/판매요청 게시글</h4>
 <hr/>
 <c:set var="i" value="0" />
-<c:forEach var="list" items="${map.dealBoard}"><br/>
-    <a href="/deal/getDeal/${list.dealBoardNum}">제목${list.dealTitle}</a><br/>
-    회원아이디 ${list.user.userId}<br/>
-    작성날짜 ${list.dealRegDate}<br/>
-    조회수 ${list.viewCount}<br/>
-    게시글번호 ${list.dealBoardNum}<br/>
-</c:forEach> <br/>
+<c:forEach var="list" items="${map.dealBoard}">
 
 
+<div class="cardbox" style="margin-left: 100px;">
+    <div class="col dealBox">
+        <input type="hidden" name="dealBoardNum" class="dealBoardNum" value="10202">
+        <div class="card h-100 shadow-lg">
+            <div class="card-footer"
+                 style=" border-bottom: 1px solid; display: flex; font-weight: bold">
+                <a href="/deal/getDeal/${list.dealBoardNum}"> ${list.dealTitle}</a>
+                <p class="allFlex " style="position: absolute; right: 10px;">
+                    ${list.dealStatus}
+                </p>
+            </div>
+            <div class="potoBox">
+                <img class="poto" width="100%" height="100%" src="/resources/uploadFiles\dealBoardFiles\7c7df3f2-9517-45bb-afb1-bd38ff69bef6e6e6d1e0-da16-420c-9820-e56f06b27573라이언.jfif"
+                     alt="any">
+            </div>
+            <div class="cardM " style="display: flex; padding: 10px 0 0 10px; height: 120px;; ">
+                <div class="dealinfo cartFont" style="flex: 1; width: 50%;">
+                    <p class="allFlex" style="font-size: 1.3em; font-weight: bold"> ${list.price} 원 </p>
+                    <p class="allFlex" style="font-size: 1.3em; font-weight: bold">${list.villCode}
+                        ∙ ${list.dealRegDate}</p>
+                    <p class="allFlex" style="font-size: 1em"> 좋아요 ${list.likeCount} ∙
+                        조회수 ${list.viewCount} </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</c:forEach>
+<jsp:include page="/layout/chatIcon.jsp"/>
+<jsp:include page="/layout/footer.jsp"/>
 </body>
 </html>
