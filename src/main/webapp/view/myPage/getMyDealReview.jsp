@@ -120,7 +120,7 @@
         <h4>2022.10</h4>
     </div>
 <c:set var="i" value="0" />
-<c:forEach var="list" items="${map.getMyDeal}"><br/>
+<c:forEach var="list" items="${map.getMyDeal}">
     <div class="goods_group">
         <div class="goods_item">
             <div class="goods_info">
@@ -137,10 +137,10 @@
             </div>
         </div>
     </div>
-        </c:forEach> <br/>
+        </c:forEach>
 
 <hr>
-
-
+    <jsp:include page="/layout/chatIcon.jsp"/>
+    <jsp:include page="/layout/footer.jsp"/>
 </body>
 </html>

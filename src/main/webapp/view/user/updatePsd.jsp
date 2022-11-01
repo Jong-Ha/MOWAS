@@ -246,5 +246,7 @@
 <button type="submit" id="listupdatedUser">확인</button>
 <button type="button"><a href="javascript:history.go(-1)">취소</a></button>
 </form>
+<jsp:include page="/layout/chatIcon.jsp"/>
+<jsp:include page="/layout/footer.jsp"/>
 </body>
 </html>

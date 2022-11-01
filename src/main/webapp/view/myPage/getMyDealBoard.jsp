@@ -315,7 +315,6 @@
     }
     </style>
 
-
 <script type="text/javascript">
 
     $(function(){
@@ -353,8 +352,6 @@
 <div class="tabBox">
     <span class="tabBtn getMyVillBoard" >우리동네 게시글</span>
     <span>|</span>
-    <span class="tabBtn getMyCbMaster" >모임 공지사항 게시글</span class="tabBtn">
-    <span>|</span>
     <span class="tabBtn getMyCbReviewBoard">모임 일정 후기 게시글</span class="tabBtn">
     <span>|</span>
     <span class="tabBtn getMyDealBoard" >판매/판매요청 게시글</span class="tabBtn">
@@ -366,25 +363,18 @@
 <h4>판매/판매요청 게시글</h4>
 <hr/>
 <c:set var="i" value="0" />
-<c:forEach var="list" items="${map.dealBoard}"><br/>
-    <a href="/deal/getDeal/${list.dealBoardNum}">제목${list.dealTitle}</a><br/>
-    회원아이디 ${list.user.userId}<br/>
-    작성날짜 ${list.dealRegDate}<br/>
-    조회수 ${list.viewCount}<br/>
-    게시글번호 ${list.dealBoardNum}<br/>
-</c:forEach> <br/>
+<c:forEach var="list" items="${map.dealBoard}">
 
 
-
-<div class="cardbox">
+<div class="cardbox" style="margin-left: 100px;">
     <div class="col dealBox">
         <input type="hidden" name="dealBoardNum" class="dealBoardNum" value="10202">
         <div class="card h-100 shadow-lg">
             <div class="card-footer"
                  style=" border-bottom: 1px solid; display: flex; font-weight: bold">
-                1
+                <a href="/deal/getDeal/${list.dealBoardNum}"> ${list.dealTitle}</a>
                 <p class="allFlex " style="position: absolute; right: 10px;">
-                    거래전
+                    ${list.dealStatus}
                 </p>
             </div>
             <div class="potoBox">
@@ -393,16 +383,20 @@
             </div>
             <div class="cardM " style="display: flex; padding: 10px 0 0 10px; height: 120px;; ">
                 <div class="dealinfo cartFont" style="flex: 1; width: 50%;">
-                    <p class="allFlex" style="font-size: 1.3em; font-weight: bold"> 1 원 </p>
-                    <p class="allFlex" style="font-size: 1.3em; font-weight: bold">역삼동
-                        ∙ 2022-10-28</p>
-                    <p class="allFlex" style="font-size: 1em"> 좋아요 0 ∙
-                        조회수 6 </p>
+                    <p class="allFlex" style="font-size: 1.3em; font-weight: bold"> ${list.price} 원 </p>
+                    <p class="allFlex" style="font-size: 1.3em; font-weight: bold">${list.villCode}
+                        ∙ ${list.dealRegDate}</p>
+                    <p class="allFlex" style="font-size: 1em"> 좋아요 ${list.likeCount} ∙
+                        조회수 ${list.viewCount} </p>
                 </div>
             </div>
 
         </div>
     </div>
 </div>
+
+</c:forEach>
+<jsp:include page="/layout/chatIcon.jsp"/>
+<jsp:include page="/layout/footer.jsp"/>
 </body>
 </html>

@@ -229,7 +229,7 @@
     </select>
 
     <select id="getMydealBoard" parameterType="String" resultMap="dealSelectMap" >
-        SELECT deal_title , deal_reg_date, user_id, view_count, deal_board_num
+        SELECT *
         FROM deal
         WHERE user_id=#{userId}
     </select>
@@ -294,6 +294,10 @@
         FROM community_report
     </select>
 
+    <select id="getTotalCmt" parameterType="search" resultType="int" >
+        SELECT count(*)
+        FROM community_report
+    </select>
 
 
     <select id="getMyPpt" parameterType="String" resultMap="CommunityReportSelectMap" >
