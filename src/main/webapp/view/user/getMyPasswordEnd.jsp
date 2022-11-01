@@ -19,6 +19,7 @@
 <body>
 회원님께서 가입한 비밀번호는
 ${user.password}입니다
-
+<jsp:include page="/layout/chatIcon.jsp"/>
+<jsp:include page="/layout/footer.jsp"/>
 </body>
 </html>

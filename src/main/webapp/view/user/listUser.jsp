@@ -338,6 +338,7 @@
     --%>
 </div>
     <button type="button" id="myPage">마이페이지</button>
-
+<jsp:include page="/layout/chatIcon.jsp"/>
+<jsp:include page="/layout/footer.jsp"/>
 </body>
 </html>

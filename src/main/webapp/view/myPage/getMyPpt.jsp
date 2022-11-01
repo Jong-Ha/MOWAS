@@ -75,7 +75,7 @@
             </thead>
             <tbody>
             <c:set var="i" value="0" />
-            <c:forEach var="list" items="${map.getMyPpt}">
+            <c:forEach var="list" items="${map.getMyPpt}" begin="${(resultPage.currentPage-1)*10}" end="${resultPage.currentPage*10-1}">
                 <c:set var="i" value="${ i+1 }" />
                 <tr class="userTable">
                     <th scope="row">${i}</th>
@@ -107,7 +107,7 @@
                     </li>
                 </c:if>
                 <c:forEach var="i"  begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" step="1">
-                    <li class="page-item active mx-1"><a class="page-link" href="javascript:fncGetMyPpt('${i}');">${i}</a></li>
+                    <li class="page-item active mx-1"><a class="page-link" href="http://192.168.0.235:8080/myPage/getMyPpt?userId=${user.userId}&currentPage=${i}">${i}</a></li>
                 </c:forEach>
 
                 <c:if test="${ resultPage.endUnitPage >= resultPage.maxPage }">
@@ -125,5 +125,7 @@
     </div>
 
 </form>
+<jsp:include page="/layout/chatIcon.jsp"/>
+<jsp:include page="/layout/footer.jsp"/>
 </body>
 </html>

@@ -272,5 +272,7 @@
 <button type="button" class="  ok" style="display: inline-block;" id="ok">확인</button>
 </div>
 </form>
+<jsp:include page="/layout/chatIcon.jsp"/>
+<jsp:include page="/layout/footer.jsp"/>
 </body>
 </html>

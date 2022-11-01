@@ -57,7 +57,7 @@
 <h3>내가 가입신청한 모임</h3>
 <hr/>
 <c:set var="i" value="0" />
-<c:forEach var="list" items="${map.getMyClub}"><br/>
+<c:forEach var="list" items="${map.getMyClub}">
     <%--모임원상태${list.cluberStatus}<br/>--%>
     관심목록 ${list.interList}<br/>
     모임명 ${list.clubName}<br/>
@@ -65,6 +65,8 @@
     모임 이미지 ${list.clubImage}<br/>
     모집여부 ${list.gatherCheck}<br/>
     태그 ${list.tag}<br/>
-</c:forEach> <br/>
+</c:forEach>
 </body>
+<jsp:include page="/layout/chatIcon.jsp"/>
+<jsp:include page="/layout/footer.jsp"/>
 </html>

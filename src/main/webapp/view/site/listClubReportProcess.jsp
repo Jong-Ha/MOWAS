@@ -167,7 +167,7 @@
             //==> 1 과 3 방법 조합 : $("tagName.className:filter함수") 사용함.
 
             //$( "td.ct_btn01:contains('검색')" ).on("click" , function() {
-            $( ".listCrProcess" ).on("click" , function() {
+            $( "button.btn.btn-danger" ).on("click" , function() {
 
                 fncGetList(1);
             });
@@ -247,19 +247,19 @@
                             <div class="form-group">
                                 <label>Search</label>
 
+                                <div class="input-group">
+                                    <select class="form-control" name="searchCondition" >
+                                        <option value="0"${!empty search.searchCondition&&search.searchCondition==0 ? "selected":"" }>번호</option>
+                                        <option value="1"${!empty search.searchCondition&&search.searchCondition==1 ? "selected":"" }>신고한회원</option>
+                                    </select>
+                                </div>
+
                                 <div class="input-group mb-0">
                                     <input type="text" class="form-control" id="searchKeyword" name="searchKeyword" placeholder="Search..." aria-describedby="project-search-addon"
                                            value="${! empty search.searchKeyword ? search.searchKeyword : '' }"/>
                                     <div class="input-group-append">
                                         <button class="btn btn-danger" type="button" id="project-search-addon"><i class="fa fa-search search-icon fa-2x font-12"></i></button>
                                     </div>
-                                </div>
-
-                                <div class="input-group">
-                                    <select class="form-control" name="searchCondition" >
-                                        <option value="0"${!empty search.searchCondition&&search.searchCondition==0 ? "selected":"" }>번호</option>
-                                        <option value="1"${!empty search.searchCondition&&search.searchCondition==1 ? "selected":"" }>신고한회원</option>
-                                    </select>
                                 </div>
 
                             </div>

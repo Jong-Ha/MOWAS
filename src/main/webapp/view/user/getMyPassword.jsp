@@ -105,5 +105,7 @@ $(function () {
 </div>
 <button type="submit" class="btn btn-secondary btn-sm" id="ok">확인</button>
 </form>
+<jsp:include page="/layout/chatIcon.jsp"/>
+<jsp:include page="/layout/footer.jsp"/>
 </body>
 </html>
