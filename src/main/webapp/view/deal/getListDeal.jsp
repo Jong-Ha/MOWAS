@@ -37,10 +37,10 @@
         $(function () {
             // 작성 페이지로 navigation
             $(".dealBox").off('click').on('click', function (e) {
-                if (check) {
+
 
                     location.href = "/deal/getDeal/" + $(this).find('[name="dealBoardNum"]').val();
-                }
+
             })
 
             $('.searchBtn').on('click',function(){
@@ -197,9 +197,11 @@
                                 }
                                 html += '</div>' +
                                     '<div class= "potoBox">'
-                                if (item.files.fileName === undefined) {
+                                if (item.files.fileName === '') {
                                     html += '<img class="poto" width="100%" height="100%"  alt="any">'
-                                } else {
+                                } else if (item.files.fileName === undefined) {
+                                    html += '<img class="poto" width="100%" height="100%"  alt="any">'
+                                }else {
                                     html += '<img class="poto" width="100%" height="100%" src="/resources/' + item.files[0].fileName + '"  alt="any">'
                                 }
 
@@ -294,7 +296,14 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 50px;
+
         }
+        /*.addBox {*/
+        /*    width: 100%;*/
+        /*    display: flex;*/
+        /*    flex-direction: row-reverse;*/
+        /*    margin-bottom: 100px;*/
+        /*}*/
 
         .add {
             margin-right: -700px;
@@ -513,6 +522,9 @@
         /*    -moz-appearance: none;*/
         /*    appearance: none;*/
         /*}*/
+        .searchbox{
+            display: flex;
+        }
     </style>
 </head>
 
@@ -531,8 +543,8 @@
 <%--${user.userId}--%>
 <!-- Example Code -->
 <jsp:include page="/layout/toolbar.jsp"/>
-<jsp:include page="/view/deal/history.jsp"/>
-<img src="/resources/uploadFiles/dealBoardFiles/중고거래.png" style="height: 500px;border-radius: 10px;  width: 1600px;">
+<%--<jsp:include page="/view/deal/history.jsp"/>--%>
+<img src="/resources/uploadFiles/dealBoardFiles/card_923_0.jpg" style="height: 500px;border-radius: 10px;  width: 1600px;">
 <div class="container">
 
     <div class="wrapper">
@@ -646,8 +658,8 @@
             <%--                    </ul>--%>
             <%--                    <input type="text" class="form-control" id="searchKeyword" name="searchKeyword" aria-label="Text input with dropdown button">--%>
             <%--                </div>--%>
-            <div>
-                <div>
+            <div class="searchbox">
+                <div style="width: 100px;">
                     <select name="searchCondition" class="form-select" aria-label="Default select example">
                         <option value="0">선택 하세요</option>
                         <option ${search.searchCondition == '1' ? 'selected' : '' } value="1">제목</option>

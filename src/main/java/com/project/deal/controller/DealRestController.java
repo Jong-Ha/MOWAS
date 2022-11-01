@@ -252,6 +252,7 @@ public class DealRestController {
         List<Deal> list =dealService.getListDeal(search,boardCategory,searchCondition,searchKeyword);
 
         map.put("list", list);
+        System.out.println(list);
         return map;
     }
 }

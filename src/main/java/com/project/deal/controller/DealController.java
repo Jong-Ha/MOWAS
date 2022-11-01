@@ -1,6 +1,5 @@
 package com.project.deal.controller;
 
-import com.project.common.Page;
 import com.project.common.Search;
 import com.project.community.service.CommunityService;
 import com.project.deal.service.DealService;
@@ -17,13 +16,13 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.io.File;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.*;
+
+import static javax.swing.text.html.CSS.getAttribute;
 
 @Controller
 @RequestMapping("/deal/*")
@@ -74,10 +73,11 @@ public DealController(){
         deal.setUser((User) session.getAttribute("user"));
 
         System.out.println("sefdaj'ejw'gkfdsgda dfda"+session.getAttribute("user"));
+        deal.getUser().getUserId();
         String a=deal.getUser().getVillCode();
         System.out.println(a);
         deal.setVillCode(a);
-
+        System.out.println(deal);
         ////파일 업로드
         //파일 추출
         List<MultipartFile> mfs = multi.getFiles("file");
@@ -211,6 +211,10 @@ public DealController(){
 
         int reviewPt=dealService.getReviewPt(deal);
 
+
+
+
+
         System.out.println("리뷰포인트를 얻기위한 노력"+deal);
         System.out.println("likecheck"+likeCheck);
         if(reviewPt==0) {
@@ -222,6 +226,8 @@ public DealController(){
         }
         model.addAttribute("deal", deal);
         model.addAttribute("likeCheck",likeCheck);
+
+
         //쿠키넣기
         Cookie[] cookies = request.getCookies();
 
