@@ -37,7 +37,7 @@ public class SiteServiceTest {
         MasterBoard masterBoard = new MasterBoard();
 
         masterBoard.setAdminId("admin3");
-        masterBoard.setMbCategory('1');
+        masterBoard.setMbCategory("1");
         masterBoard.setMbTitle("공지사항 제목");
         masterBoard.setMbText("공지사항 세부 내역");
 
@@ -81,7 +81,7 @@ public class SiteServiceTest {
         Assert.assertEquals("공지사항 세부 내역",masterBoard.getMbText());
 
         masterBoard.setAdminId("admin4");
-        masterBoard.setMbCategory('3');
+        masterBoard.setMbCategory("3");
         masterBoard.setMbTitle("공지사항 제목 수정");
         masterBoard.setMbText("공지사항 세부 내역 수정 ");
 

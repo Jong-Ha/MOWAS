@@ -21,7 +21,6 @@
   <style>
 
   body{
-
   background:#f3f3f3;
   margin-top:20px;
   color: #616f80;
@@ -115,9 +114,15 @@
     $(function() {
 
       $( ".userMb" ).on("click" , function() {
-
-        $("#currentPage").val(currentPage)
         $("form[id='masterBdTag1']").attr("method" , "POST").attr("action" , "/site/listMasterBoard").submit();
+      });
+
+      $( ".clubMb" ).on("click" , function() {
+        $("form[id='masterBdTag2']").attr("method" , "POST").attr("action" , "/site/listMasterBoard").submit();
+      });
+
+      $( ".reportMb" ).on("click" , function() {
+        $("form[id='masterBdTag3']").attr("method" , "POST").attr("action" , "/site/listMasterBoard").submit();
       });
 
       //$( "td.ct_btn01:contains('검색')" ).on("click" , function() {
@@ -133,9 +138,12 @@
       $(".updateMasterBoard").on("click",function(){
 
         var masterBdNo = $(this).data('masterbdno')
+        var mbCategory = $(this).data('masterbdcate')
+        var mbTitle = $(this).data('masterbdtitle')
+        var mbText = $(this).data('masterbdText')
 
         $("#updateMB .modal-content").load("/view/site/updateMasterBoard.jsp",
-                {masterBoardNo: masterBdNo},
+                {masterBoardNo: masterBdNo, mbCategory: mbCategory, mbTitle: mbTitle, mbText: mbText},
                 function (re) {
 
                   // console.log(re);
@@ -211,35 +219,28 @@
     </div>
     </div>
   </div>
+  <div class="container">
 
   <nav class="navbar navbar-expand-lg mbBox">
     <form id = "masterBdTag1">
-      <div>
-          <div class="underline yellow userMb">
-          <input type="hidden" id="currentPage1" name="currentPage" value=""/>
-          <input type="hidden" name="searchCondition" value="100"/>회원
+       <div class="underline yellow userMb">
+          <input type="hidden" name="searchCondition" value="${search.searchCondition = "100"}"/>회원
         </div>
-      </div>
     </form>
 
     <form id = "masterBdTag2">
-    <div>
-      <input type="hidden" id="currentPage2" name="currentPage" value=""/>
-      <input type="hidden" name="searchCondition" value="200"/>
-      <div class="underline yellow clubMb">모임</div>
-    </div>
+        <div class="underline yellow clubMb">
+          <input type="hidden" name="searchCondition" value="${search.searchCondition = "200"}"/>모임
+        </div>
     </form>
+
     <form id = "masterBdTag3">
-    <div>
-      <input type="hidden" id="currentPage3" name="currentPage" value=""/>
-      <input type="hidden" name="searchCondition" value="300"/>
-      <div class="underline yellow reportMb">신고</div>
-    </div>
+        <div class="underline yellow reportMb">
+          <input type="hidden" name="searchCondition" value="${search.searchCondition = "300"}"/>신고
+      </div>
     </form>
   </nav>
 
-
-<div class="container">
   <hr>
   <div class="row">
     <div class="col-xl-3 col-md-6">
@@ -300,10 +301,22 @@
         </div>
 
   <!-- end row -->
-   </form>
+    </form>
    </div>
   </div>
  </div>
+
+    <div class="col-md-12 mb-3 text-left ">
+      <c:if test="${user.masterCheck eq 2}">
+        <button type="button" class="addMb btn btn-primary" style="background-color: #F8CD07;" data-bs-toggle="modal" data-bs-target="#addMasterBoard">글쓰기</button>
+        <%--<button type="button" class="updateMb btn" style="background-color: #F8CD07;" data-bs-toggle="modal" data-bs-target="#updateMasterBoard">수정</button>--%>
+        <a class="btn btn-secondary" href = "#" role="button">취 소 </a>
+      </c:if>
+      <!--test version
+      <button type="button" class="commReport" >커뮤니티신고</button>
+      <button type="button" class="clubReport" >모임신고</button>
+      <button type="button" class="clubMap" data-bs-toggle="modal" data-bs-target="#addMap">클럽맵 Test</button>-->
+    </div>
 
   <div class="row">
     <div class="col-lg-12">
@@ -316,7 +329,7 @@
                 <th scope="col">번호</th>
                 <th scope="col">제목</th>
                 <th scope="col">작성자</th>
-                <th scope="col">날짜</th>
+                <th scope="col">작성날짜</th>
                 <th scope="col">상세보기</th>
                 <c:if test="${user.masterCheck eq 2}">
                 <th scope="col">Action</th>
@@ -349,7 +362,11 @@
 
                 <c:if test="${user.masterCheck eq 2}">
                 <td>
-                  <button data-masterbdno="${mb.masterBoardNo}" class="btn updateMasterBoard" data-bs-toggle="modal"
+                  <button data-masterbdno="${mb.masterBoardNo}"
+                          data-masterbdcate="${mb.mbCategory}"
+                          data-masterbdtitle="${mb.mbTitle}"
+                          data-masterbdText="${mb.mbText}"
+                          class="btn updateMasterBoard" data-bs-toggle="modal"
                           data-bs-target="#updateMasterBoard">
                     <i class="fa fa-pencil h5 m-0"></i>
                   </button>
@@ -366,21 +383,7 @@
           </div>
 
           <!-- end project-list -->
-          <div class="col-md-12 text-left ">
-        <c:if test="${user.masterCheck eq 2}">
-            <button type="button" class="addMb btn" style="background-color: #F8CD07;" data-bs-toggle="modal" data-bs-target="#addMasterBoard">글쓰기</button>
-          <button type="button" class="updateMb btn" style="background-color: #F8CD07;" data-bs-toggle="modal" data-bs-target="#updateMasterBoard">수정</button>
-
-            <%--<button type="button" class="addMb" data-bs-toggle="modal" data-bs-target="#addMasterBoard">--%>
-            <a class="btn btn-secondary" href = "#" role="button">취 소 </a>
-        </c:if>
-            <!--test version
-            <button type="button" class="commReport" >커뮤니티신고</button>
-            <button type="button" class="clubReport" >모임신고</button>
-            <button type="button" class="clubMap" data-bs-toggle="modal" data-bs-target="#addMap">클럽맵 Test</button>-->
-          </div>
-
-          <div class="pt-3">
+            <div class="pt-3">
             <ul class="pagination justify-content-end mb-0">
               <!--  <<== 좌측 nav -->
             <c:if test="${ resultPage.currentPage <= resultPage.pageUnit }">

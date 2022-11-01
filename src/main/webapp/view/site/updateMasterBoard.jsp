@@ -70,7 +70,7 @@
               <input type="hidden" name="adminId" value="${user.userId}">
 
               <input type="text" class="form-control " id="mbTitle" name="mbTitle" placeholder="제목"
-                     value="${masterBoard.mbTitle}" required>
+                     value="${param.mbTitle}" required>
               <label for="mbTitle">제목</label>
             </div>
           </div>
@@ -90,7 +90,7 @@
           <div class="input-group mb-3 mt-3">
             <div class="form-floating">
               <input type="text" class="form-control" id="mbText" name="mbText" placeholder="상세내용"
-                     required>
+                     value="${param.mbText}" required>
               <label for="mbText">상세내용</label>
             </div>
           </div>
