@@ -382,7 +382,7 @@
                                 '                                    </div>' +
                                 '                                  </div>' +
                                 '                               </div>' +
-                                '                            <div id="'+item.clubCalenderReviewNum+'" class="carousel slide potoBox getPage" data-bs-ride="carousel">'+
+                                '                            <div id="' + item.clubCalenderReviewNum + '" class="carousel slide potoBox getPage" data-bs-ride="carousel">' +
                                 '                               <div class="carousel-inner">'
                             $.each(item.file, function (index, item) {
                                 str +=
@@ -392,7 +392,7 @@
                             })
 
                             str +=
-                                '                                </div>'+
+                                '                                </div>' +
                                 '                              </div>' +
                                 '                               <div class="card-footer">' +
                                 '                                     <div class="card-body carditem" style="padding: 0;">' +
@@ -431,9 +431,9 @@
 
                             $(".ClubCalendarReviewList").append(str);
 
-                            setTimeout( function () {
+                            setTimeout(function () {
 
-                                const carousel = new bootstrap.Carousel($('#'+item.clubCalenderReviewNum), {
+                                const carousel = new bootstrap.Carousel($('#' + item.clubCalenderReviewNum), {
                                     interval: 2000,
                                     wrap: true
                                 })
@@ -444,7 +444,6 @@
 
                         $("#textSerch .currentPage").val(parseInt($("#textSerch .currentPage").val() + 1))
                         lodingListClubCalender()
-
 
 
                         if (JSON.list.length > 0) {
@@ -638,7 +637,7 @@
 <jsp:include page="/layout/toolbar.jsp"/>
 
 
-<img src="${pageContext.request.contextPath}/resources/images/mim.jpeg"
+<img class="shadow-lg" src="${pageContext.request.contextPath}/resources/images/club1.png"
      style="height: 500px;border-radius: 10px;  width: 1600px;">
 
 <div class="container">
@@ -727,12 +726,14 @@
                             </div>
                         </div>
 
-                        <div id="carouselExampleSlidesOnly" class="carousel slide potoBox getPage" data-bs-ride="carousel" >
+                        <div id="carouselExampleSlidesOnly" class="carousel slide potoBox getPage"
+                             data-bs-ride="carousel">
 
                             <div class="carousel-inner">
                                 <c:forEach var="File" items="${ClubCalendarReview.file}">
                                     <div class="carousel-item active get" data-bs-interval="2000">
-                                        <img class="d-block w-100 poto" width="100%" height="100%" src="/resources/${File.fileName}" alt="any">
+                                        <img class="d-block w-100 poto" width="100%" height="100%"
+                                             src="/resources/${File.fileName}" alt="any">
                                     </div>
                                 </c:forEach>
                             </div>
@@ -880,7 +881,8 @@
 
 <jsp:include page="/layout/chatIcon.jsp"/>
 
-<%--<jsp:include page="/layout/footer.jsp"/>--%>
+<jsp:include page="/layout/footer.jsp"/>
+
 </body>
 </html>
 
