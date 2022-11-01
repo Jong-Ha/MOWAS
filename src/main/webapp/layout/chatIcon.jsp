@@ -11,7 +11,7 @@
   $(function () {
 
     $(".chatBox").on("click", ()=> {
-      window.open("/chat/chatList", "chatList")
+      window.open("/chat/chatList",'chatList')
     })
 
   })

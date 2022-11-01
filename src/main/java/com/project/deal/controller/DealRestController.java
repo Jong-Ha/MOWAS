@@ -11,6 +11,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -30,6 +31,8 @@ public class DealRestController {
     @Qualifier("dealServiceImpl")
     private DealService dealService;
 
+    @Value("#{commonProperties['pageSize']}")
+    int pageSize;
     @RequestMapping(value = "dealLike")
     public int dealLike(@RequestBody String Board, HttpSession session) throws ParseException {
 
@@ -225,23 +228,29 @@ public class DealRestController {
                 search.setCurrentPage(1);
             }
         }
+        search.setPageSize(pageSize);
+
         String boardCategory = "";
-        String searchProduct= "";
-        String searchTitle= "";
+         String  searchCondition= "";
+        String searchKeyword= "";
         if(map.get("boardCategory")!=null){
             boardCategory = (String)map.get("boardCategory");
         }
         if(map.get("searchCondition")!=null){
-            searchProduct = (String)map.get("searchCondition");
+            searchCondition = (String)map.get("searchCondition");
+            search.setSearchCondition(searchCondition);
         }
 
         if(map.get("searchKeyword")!=null){
-            searchTitle = (String)map.get("searchKeyword");
-        }
-        List<Deal> list = (List<Deal>) dealService.getListDeal(search,boardCategory);
-        for(Deal deal : list){
+            searchKeyword = (String)map.get("searchKeyword");
+            search.setSearchKeyword(searchKeyword);
+            System.out.println(searchKeyword);
 
         }
+
+        System.out.println("search 확인"+search);
+        List<Deal> list =dealService.getListDeal(search,boardCategory,searchCondition,searchKeyword);
+
         map.put("list", list);
         return map;
     }

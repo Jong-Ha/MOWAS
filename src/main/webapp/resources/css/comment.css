@@ -1,3 +1,9 @@
+ul li {
+    list-style: none;
+    cursor: pointer;
+}
+
+
 .wap {
     margin-top: 70px;
     font-size: 1em;
@@ -7,150 +13,160 @@
     border-radius: 10px;
 }
 
-
-.usedbox {
-    margin-top: 20px;
-    padding: 5px;
-    height: 500px;
+.potos {
+    height: 529px;
 }
 
-.thumbnailBox {
-    padding: 5px;
-    width: 50%;
-    float: left;
+
+.midle {
+    margin-bottom: 50px;
+    margin-top: -3px;
+    width: 100%;
+    overflow: hidden;
+    height: 850px;
+    border-radius: 10px;
+    background-color: #ffff;
 }
 
 .textbox {
-    padding: 5px;
-    height: 500px;
-    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    height: 160px;
+    width: 97%;
     float: right;
     background: #fff;
     border-radius: 10px;
     font-size: 0.7em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .textboxrow {
-margin-top: 20px;
-font-size: 1.6em;
-font-weight: bolder
+    margin-top: 20px;
+    font-size: 1.6em;
+    font-weight: bolder
 }
 
-.likebox {
-height: 75px;
-background: #ffff;
-margin-top: -30px;
-border-radius: 5px;
-}
+
 .body {
-text-align: -webkit-center;
+    text-align: -webkit-center;
 }
 
 .topbar {
-margin-bottom: 70px;
-margin-top: 20px;
-border-radius: 10px;
+    margin-bottom: 70px;
+    margin-top: 20px;
+    border-radius: 10px;
 }
 
 .navbar {
-justify-content: center;
-border-radius: 10px;
+    justify-content: center;
+    border-radius: 10px;
 }
 
 .btnlf {
-margin-left: 20px;
+    margin-left: 20px;
 }
 
 .textint {
-font-size: 0.2em;
-margin-top: -20px;
+    font-size: 0.2em;
+    margin-top: -20px;
 }
 
 .login {
-float: left;
-margin-right: 20px;
+    float: left;
+    margin-right: 20px;
 }
 
 .alrim {
-font-size: 0.1rem;
-width: 45px;
+    font-size: 0.1rem;
+    width: 45px;
 }
 
 .loginbox {
-width: 80px;
-font-size: 0.1rem;
+    width: 80px;
+    font-size: 0.1rem;
 }
 
 .carditem {
-display: flex;
-flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .cardbox {
-display: flex;
-flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 .like {
-font-size: 0.1rem;
-width: 45px;
-outline: 0;
-border: none;
-background-color: #fff;
+    font-size: 0.1rem;
+    width: 45px;
+    outline: 0;
+    border: none;
+    background-color: #fff;
 }
 
 .usedbox {
-margin-top: 20px;
-padding: 5px;
-height: 500px;
+    margin-top: 20px;
+    padding: 5px;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .thumbnailBox {
-padding: 5px;
-width: 50%;
-float: left;
+    width: 90%;
+    padding: 20px;
 }
 
-.textbox {
-padding: 5px;
-height: 500px;
-width: 50%;
-float: right;
-background: #fff;
-border-radius: 10px;
-font-size: 0.7em;
+.user_hidden_manu {
+    width: 174px;
+    height: 75px;
+    position: absolute;
+    z-index: 2;
+    margin-top: -14px;
+    margin-left: 464px;
 }
-.border-reight{
+
+.user_hidden_manu > ul {
+    font-size: 1.2em;
+    width: 168px;
+    border: 1px solid #0000001a;
+    padding: 10px;
+    border-radius: 5px;
+    background: #ffff;
+}
+
+
+
+.border-reight {
     border-right: 1px solid #0000004d;
 }
-.textfloat{
+
+.textfloat {
     display: flex;
 }
 
 .textboxrow {
-margin-top: 20px;
-font-size: 1.6em;
-font-weight: bolder
+    margin-top: 20px;
+    font-size: 1.6em;
+    font-weight: bolder
 }
 
 .likebox {
-height: 75px;
-background: #ffff;
-margin-top: -30px;
-border-radius: 5px;
+    background: #ffff;
+    border-radius: 5px;
+    height: 275px;
 }
 
 /* 댓글 */
 .commentbox {
-    width: 750px;
-    border: 1px solid;
     border-radius: 10px;
     margin-bottom: 50px;
     margin-top: 90px;
     background: #fff;
+    padding: 20px;
+    width: 100%;
 }
 
 .commentadd {
@@ -180,14 +196,16 @@ border-radius: 5px;
     color: rgba(255, 255, 255, 0.85);
     box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
 }
-.allComment{
+
+.allComment {
     margin-left: -40px;
 }
 
 .commentList {
     width: 600px;
 }
-.commentContent{
+
+.commentContent {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -204,7 +222,12 @@ border-radius: 5px;
     font-size: 0.9em;
 
 }
-.hideRecomment{
+
+.recommentplz {
+    margin-left: 195px;
+}
+
+.hideRecomment {
     display: flex;
     margin-bottom: 10px;
     cursor: pointer;
@@ -269,9 +292,45 @@ border-radius: 5px;
     height: 30px;
 }
 
-.delete,
-.update {
-    font-size: 0.5em;
+.userImg {
+    width: 88px;
+    height: 60px;
+    padding: 5px;
+}
+
+.userInfo {
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.ReviewTop {
+    font-weight: bold;
+    border-radius: 10px 10px 0 0;
+    height: 80px;
+    background-color: #FFFFFF;
+    padding: 10px;
+    text-align: left;
+    display: flex;
+    border-bottom: 1px solid #00000047;
+    margin-bottom: 10px;
+}
+
+.reviewTitle2 {
+    font-size: 1.2em;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+}
+
+.user_manu {
+    padding: 14px;
+    display: flex;
+    width: 104%;
+    font-size: 1.9em;
+    flex-direction: row-reverse;
 }
 
 .commentTexts {
@@ -296,18 +355,18 @@ border-radius: 5px;
     font-size: 1.2em;
 }
 
-.buttonMargin{
-margin-right: 2px;
+.buttonMargin {
+    margin-right: 2px;
 }
 
 
 .animation-init {
-opacity: 0;
-padding-top: 1em;
+    opacity: 0;
+    padding-top: 1em;
 }
 
 .animation-fade {
-opacity: 1;
-padding-top: 0;
-transition: all 1s;
+    opacity: 1;
+    padding-top: 0;
+    transition: all 1s;
 }

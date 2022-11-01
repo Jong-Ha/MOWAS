@@ -110,6 +110,7 @@
         <result property="voteNum" column="vote_num" jdbcType="INTEGER"/>
         <result property="voteItem" column="vote_item" jdbcType="VARCHAR"/>
         <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="userImage" column="user_image" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--여기서부터 쿼리 시작-->
@@ -1174,11 +1175,11 @@
     <!--제출 투표 조회-->
     <!--유저 아이디 있으면 수정용으로 내거 조회, 없으면 해당 투표 제출자 조회-->
     <select id="listVoter" parameterType="com.project.domain.Voter" resultMap="VoterResultMap">
-        SELECT voter_num, vote_num, vote_item, user_id
-        FROM voter
-        WHERE vote_num = #{voteNum}
-        <if test="userId==null">AND vote_item = #{voteItem}</if>
-        <if test="userId!=null">AND user_id = #{userId}</if>
+        SELECT v.voter_num, v.vote_num, v.vote_item, v.user_id, u.user_image
+        FROM voter v, users u
+        WHERE v.vote_num = #{voteNum} AND v.user_id = u.user_id
+        <if test="userId==null">AND v.vote_item = #{voteItem}</if>
+        <if test="userId!=null">AND v.user_id = #{userId}</if>
     </select>
 
     <!--clubService.addVoter-->

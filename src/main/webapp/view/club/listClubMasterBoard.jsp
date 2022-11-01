@@ -54,10 +54,10 @@
 <div style="width: 80%; padding-top: 30px;">
     <form>
         <div class="clubMasterBoardBox"
-             style="display: flex;flex-wrap: wrap;justify-content: space-evenly; margin-bottom: 30px;">
+             style="flex-wrap: wrap;display: grid;justify-content: space-evenly;margin-bottom: 30px;grid-template-columns: 1fr 1fr;justify-items: center;">
             <c:forEach items="${list}" var="clubMasterBoard">
                 <div class="card shadow-lg cardBox"
-                     style="width: 40%; min-width: 300px; margin: 10px 0 10px 0; text-align: left">
+                     style="width: 80%; min-width: 300px; margin: 10px 0 10px 0; text-align: left">
                     <input type="hidden" class="boardNum" value="${clubMasterBoard.boardNum}">
                     <div>
                         <div class="card-header" style="display: flex;justify-content: space-between;align-items: center;">

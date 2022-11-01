@@ -24,13 +24,13 @@ public interface CommunityService {
 
     void updateRecomment(Recomment recomment);
 
-    void deleteRecomment(int recommentNum);
+    void deleteRecomment(int commentNum);
 
     Map<String, Object> listVillBoard(String villCode, Search search);
 
     VilBoard getVillBoard(int villBoardNum);
 
-    Map<String, Object> listComment(int villBoardNum, int boardCategory);
+    Map<String, Object> listComment(int villBoardNum, int boardCategory, Search search);
 
     void updateViewCount(int boardNUm,int viewCount, int boardCategory);
 
@@ -58,4 +58,6 @@ public interface CommunityService {
     void deleteAllComment(int boardNum, int boardCategory);
 
     void deleteAllLike(int boardNum, int boardCategory);
+
+    Map<String, Object> allListComment(int boardNum, int boardCategory);
 }

@@ -28,6 +28,20 @@
                 success : function(re){
                     $('#listVote .modal-content').html(re)
                     alert('투표가 등록되었습니다!')
+
+                    let msg ='"'+$('#addVote #addVoteForm #voteTitle').val()+'" 투표가 등록되었습니다!'
+                    if($('#addVote #addVoteForm #endDateCheck').prop('checked')){
+                        msg+='<br>마감기한은 '+$('#addVote #addVoteForm #endDate').val()+'까지 입니다!'
+                    }
+
+                    const data = {
+                        name: '${user.userId}',
+                        msg: msg,
+                        userImage: '${user.userImage}'
+                    }
+                    //Server에 socket.on으로 data정보를 전달
+                    chatSocket.emit("chatting", data)
+
                     $('#addVote').modal('hide')
                     $('#listVote').modal('show')
                 }

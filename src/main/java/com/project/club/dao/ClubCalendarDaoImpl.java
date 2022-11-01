@@ -116,5 +116,13 @@ public class ClubCalendarDaoImpl implements ClubCalendarDao {
     }
 
 
+    @Override
+    public List<ClubCalendarReview> listClubCalendarReview(Map<String, Object> map) {
+        return sqlSession.selectList("ClubCalenderMapper.listClubCalendarReview", map);
+    }
 
+    @Override
+    public int getTotalClubCalendarReview(Map<String, Object> map) {
+        return sqlSession.selectOne("ClubCalenderMapper.getTotalClubCalendarReview", map);
+    }
 }
