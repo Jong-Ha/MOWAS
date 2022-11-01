@@ -58,9 +58,13 @@ public class ChatController {
 
         System.out.println(chatCategory);
 
-        User user = (User)session.getAttribute("user");
+        User user = null;
 
-        user.setUserImage(user.getUserImage().replaceAll("\\\\","/"));
+        if(session.getAttribute("user")!=null){
+            user = (User)session.getAttribute("user");
+
+            user.setUserImage(user.getUserImage().replaceAll("\\\\","/"));
+        }
 
         return "/chat/chatList.jsp";
     }

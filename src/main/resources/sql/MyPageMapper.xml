@@ -190,6 +190,14 @@
         <result property="pptDate" 	column="ppt_date"       jdbcType="DATE"/>
         <result property="processResult" 	column="process_result"       jdbcType="VARCHAR"/>
     </resultMap>
+    <!--현재 파일 조회-->
+    <select id="listDealBoardFile" parameterType="int" resultType="String">
+        SELECT file_name
+        FROM files
+        WHERE board_num = #{boardNum}
+          AND (board_category = '08'
+            OR board_category = '09')
+    </select>
 
     <select id="getMyPage"    parameterType="String" resultMap="userSelectMap">
         SELECT user_id, master_check, user_status, password, user_name, gender, email,

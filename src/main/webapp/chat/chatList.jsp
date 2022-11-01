@@ -4,7 +4,7 @@
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
-    <title>MOWAS</title>
+    <title>MOWAS_CHAT</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.2/socket.io.js"
             integrity="sha512-VJ6+sp2E5rFQk05caiXXzQd1wBABpjEj1r5kMiLmGAAgwPItw1YpqsCCBtq8Yr1x6C49/mTpRdXtq8O2RcZhlQ=="
@@ -13,6 +13,13 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <style href="/resources/css/chat.css" rel="stylesheet"></style>
     <title>Title</title>
+
+    <script>
+        if(${empty user}){
+            opener.location.reload()
+            window.close()
+        }
+    </script>
 
     <style>
         .chatList {

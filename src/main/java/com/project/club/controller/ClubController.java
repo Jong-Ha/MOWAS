@@ -111,7 +111,11 @@ public class ClubController {
         if (user != null) {
             userId = user.getUserId();
             if(searchLocation==null){
-                searchLocation = ((User)session.getAttribute("user")).getVillCode();
+                String vc = ((User)session.getAttribute("user")).getVillCode();
+//                vc = vc.substring(0,vc.indexOf("동 ")+1);
+//                searchLocation = vc.substring(vc.lastIndexOf(" ")+1);
+                searchLocation = vc.split(" ")[2];
+
                 searchInterList = new ArrayList<>();
                 for(UserInterList uil : (List<UserInterList>) myPageService.getMyInfor(userId).get("interList")){
                     String str = null;

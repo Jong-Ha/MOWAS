@@ -428,7 +428,7 @@
                             <a class="nav-link  underline yellow" style="color : #ffffff; font-size: 1.3em;" onclick="location.href='/deal/getListDeal?boardCategory=99'">중고 거래 게시판</a>
                         </li>
 
-                <%--<c:if test="${sessionScope.user.masterCheck eq 2}">--%>
+                <c:if test="${sessionScope.user.masterCheck eq 2}">
                         <li class="nav-item">
                             <div class="dropdown">
                                 <a class="nav-link  underline yellow dropdown-toggle" style="color : #ffffff; font-size: 1.3em;"
@@ -446,7 +446,7 @@
                                 </ul>
                             </div>
                          </li>
-                <%--</c:if>--%>
+                </c:if>
 
                     </ul>
 <c:if test="${sessionScope.user.userId ne null}">

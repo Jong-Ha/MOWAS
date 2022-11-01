@@ -123,6 +123,7 @@
 
   </script>
 </head>
+
 <body>
 
 <jsp:include page="/layout/toolbar.jsp"/>
@@ -224,7 +225,7 @@
                       <c:when test="${! empty communityReport.boardCategory && communityReport.boardCategory eq '3 '}">
                         <i class="bi bi-info-square-fill"></i>
                         <c:if test="${villBoard.villTitle ne null}">
-                          < ${villBoard.villTitle}
+                          ${villBoard.villTitle}
                         </c:if>
                         <c:if test="${villBoard.villTitle == null}">
                            게시글을 찾을 수 없습니다.
@@ -254,6 +255,7 @@
                         <i class="bi bi-info-square-fill"></i> 모임 일정 후기 쇼츠는 동영상 파일입니다.
                       </c:when>
                       <c:when test="${! empty communityReport.boardCategory && communityReport.boardCategory eq '3 '}">
+                        <i class="bi bi-info-square-fill"></i>
                         <c:if test="${villBoard.villText ne null}">
                           ${villBoard.villText}
                         </c:if>

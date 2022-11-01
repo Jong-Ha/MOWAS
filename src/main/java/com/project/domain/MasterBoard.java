@@ -13,7 +13,7 @@ import java.util.List;
 public class MasterBoard {
     private int masterBoardNo;
     private String adminId;
-    private char mbCategory;
+    private String mbCategory;
     private String mbTitle;
     private String mbText;
     private Date mbRegDate;
