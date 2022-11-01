@@ -3,40 +3,67 @@
 <html>
 <head>
     <title>MOWAS</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="resources/css/main.css" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="resources/css/main.css"/>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <noscript><link rel="stylesheet" href="resources/css/noscript.css"/></noscript>
+    <noscript>
+        <link rel="stylesheet" href="resources/css/noscript.css"/>
+    </noscript>
     <script type="text/javascript" src="/resources/OpenSource/js/jquery.cookie.js"></script>
 
 
-
     <script type="text/javascript">
-        $(function (){
+        $(function () {
             $(".commu").on("click",
-                function (){
-                    location.href="/clubCal/listCalenderReview?boardCategory="+1+"&reviewRange=" + 1
+                function () {
+                    location.href = "/clubCal/listCalenderReview?boardCategory=" + 1 + "&reviewRange=" + 1
                 });
 
             $("li > a:contains('모임 관리')").on("click",
-                function (){
-                    location.href='/club/listClub'
+                function () {
+                    location.href = '/club/listClub'
                 });
         });
 
-        $(function (){
-            $(".site").on("click", function (){
+        $(function () {
+            $(".site").on("click", function () {
                 $(self.location).attr("href", "site/listMasterBoard");
-             })
+            })
         })
 
     </script>
+
+    <style>
+        video {
+            width: 100%;
+        }
+
+        .jb-box {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin-top: -85px;
+            position: absolute;
+            opacity : 0.3;
+        }
+        li{
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body class="is-preload">
 
 <!-- Wrapper -->
-<div id="wrapper">
+<div id="wrapper" style="position: absolute;">
+
+    <div class="jb-box">
+
+       <video muted autoplay loop>
+               <source src="/resources/images/프리미어 프로 _ 나이키 광고영상.mp4" type="video/mp4">
+       </video>
+
+    </div>
 
     <!-- Header -->
     <header id="header">
@@ -46,7 +73,7 @@
         <div class="content">
             <div class="inner">
 
-                <h1>MO 이러 WAS</h1>
+                <h1>MOWAS</h1>
                 <p>모이고 싶고 거래 하고 싶다</p>
             </div>
         </div>
@@ -64,13 +91,8 @@
 
     <!-- Footer -->
     <footer id="footer">
-        <p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        <p class="copyright">&copy; Untitled. Made in : <a href="https://www.bitcamp.co.kr/">BITCAMP</a>.</p>
     </footer>
-
-</div>
-
-<!-- BG -->
-<div id="bg">
 
 
 </div>
