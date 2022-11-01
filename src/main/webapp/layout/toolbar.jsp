@@ -87,13 +87,13 @@
         if ($.cookie('keepId') != undefined) {
             $('#keepId').prop('checked', true);
             $('#keepLogin').prop('disabled', !$('#keepId').prop('checked'));
-            $('input[name="userId"]').val($.cookie('keepId'));
-            $('input[name="password"]').focus();
+            $('#userId').val($.cookie('keepId'));
+            $('#password').focus();
         }
         console.log('keepLogin의 값은? : ' + $.cookie('keepLogin'))
         if ($.cookie('keepLogin') != undefined) {
             $('#keepLogin').prop('checked', true);
-            $('input[name="password"]').val($.cookie('keepLogin'));
+            $('#password').val($.cookie('keepLogin'));
         }
         $('#keepId').on('click', function () {
             $('#keepLogin').prop('disabled', !$(this).prop('checked'));

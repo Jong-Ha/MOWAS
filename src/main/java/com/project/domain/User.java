@@ -25,8 +25,7 @@ public class User {
     private String phone;
     private String villCode;
     private String userImage;
-    private String lcd;
-    private String loginCheck;
+
     private String psd;
     private String ped;
     private int ppt;
@@ -127,21 +126,7 @@ public class User {
         this.userImage = userImage;
     }
 
-    public String getLcd() {
-        return lcd;
-    }
 
-    public void setLcd(String lcd) {
-        this.lcd = lcd;
-    }
-
-    public String getLoginCheck() {
-        return loginCheck;
-    }
-
-    public void setLoginCheck(String loginCheck) {
-        this.loginCheck = loginCheck;
-    }
 
     public String getPsd() {
         return psd;
@@ -206,8 +191,6 @@ public class User {
                 ", phone='" + phone + '\'' +
                 ", villCode='" + villCode + '\'' +
                 ", userImage='" + userImage + '\'' +
-                ", lcd='" + lcd + '\'' +
-                ", loginCheck='" + loginCheck + '\'' +
                 ", psd='" + psd + '\'' +
                 ", ped='" + ped + '\'' +
                 ", ppt=" + ppt +

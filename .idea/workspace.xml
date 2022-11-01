@@ -9,10 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="JHK 2022.11.01&#10;&#10;일반 회원가입 완료, 신고,벌점,댓글 페이징 처리">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="JHK 2022.10.31&#10;&#10;회원가입 페이지 디자인 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +35,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="master" />
+    <option name="BRANCH" value="JHK" />
   </component>
   <component name="Git.Settings">
     <option name="PUSH_TAGS">
@@ -442,7 +442,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667196937319</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="JHK 2022.11.01&#10;&#10;디비 초기화 후 커밋">
+      <created>1667298436072</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1667298436072</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -597,7 +604,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDao.java</url>
           <line>33</line>
-          <properties class="com.project.user.dao.UserDao">
+          <properties class="com.project.user.dao.UserDao" method="updateLcd">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
