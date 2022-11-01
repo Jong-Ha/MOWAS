@@ -311,8 +311,8 @@
         </div>
         <div class="input-container">
 
-            <input type="text" class="chatting-input">
-
+            <label for="chatting-input" class="form-label"></label>
+            <textarea class="form-control chatting-input" id="chatting-input" rows="3"></textarea>
 
             <button class="send-button">전송</button>
 
@@ -470,13 +470,12 @@
     var displayContainer = document.querySelector(".display-container");
 
     $(function () {
-        console.log('${chatNameSpace}');
-        console.log('${boardNum}');
+        <%--console.log('${chatNameSpace}');--%>
+        <%--console.log('${boardNum}');--%>
         <%--alert('${roomId}');--%>
         // return false
         //app.js에 있는 io상수를 socket상수에 담는다
-        chatSocket = io("http://localhost:5000/${chatNameSpace}", {
-            /*const chatSocket = io("http://192.168.0.235:5000/${chatNameSpace}", {*/
+        chatSocket = io("http://192.168.0.234:5000/${chatNameSpace}",{
             cors: {origin: '*'},
             query: {
                 roomId: '${roomId}',
@@ -485,287 +484,296 @@
                 boardNum: '${boardNum}',
                 userImage1: '${userImage}',
                 userImage2: '${user.userImage}'
-            }
+            },
+            autoConnect:false,
+            forceNew:true
         })
 
-        // 거래 계시판 번호 얻기
-        chatSocket.emit('getboardNum', () => {
-        })
+        console.log(chatSocket)
 
-        chatSocket.off('postboardNum').on("postboardNum", (date) => {
+        chatSocket.connect()
 
-            console.log(date);
-
-            $(".dealNum").val(date);
-        })
-
-
-        chatSocket.off('json').on("json", (msg) => {
-
-            console.log(msg);
-
-            $(".chatting-list *").remove();
-
-            $.each(msg, (index, item) => {
-
-                const newItem = new LiModel(item.userId[0], item.msg, item.time, item.file, item.imgCheck, item.userImage);
-                console.log(item)
-                //makeLi를 실행한다.
-                newItem.makeLi();
+        chatSocket.on('connect',function(){
+            // 거래 계시판 번호 얻기
+            chatSocket.emit('getboardNum', () => {
             })
-        });
+
+            chatSocket.off('postboardNum').on("postboardNum", (date) => {
+
+                console.log(date);
+
+                $(".dealNum").val(date);
+            })
 
 
-        chatInput.addEventListener("keyup", (e) => {
-            if (e.keyCode === 13) {
+            chatSocket.off('json').on("json", (msg) => {
+
+                console.log(msg);
+
+                $(".chatting-list *").remove();
+
+                $.each(msg, (index, item) => {
+
+                    const newItem = new LiModel(item.userId[0], item.msg, item.time, item.file, item.imgCheck, item.userImage);
+                    console.log(item)
+                    //makeLi를 실행한다.
+                    newItem.makeLi();
+                })
+            });
+
+
+            chatInput.addEventListener("keyup", (e) => {
+                if (e.keyCode === 13) {
+                    sendMessage(chatSocket)
+                }
+
+            });
+            //button클릭시 발생하는 이벤트
+            sendButton.addEventListener("click", () => {
                 sendMessage(chatSocket)
-            }
-
-        });
-        //button클릭시 발생하는 이벤트
-        sendButton.addEventListener("click", () => {
-            sendMessage(chatSocket)
-        })
-
-
-        //server에서 data를 받음
-        chatSocket.off('chatting').on("chatting", (newMsg) => {
-
-            const item = new LiModel(newMsg.userId, newMsg.msg, newMsg.time, newMsg.file, newMsg.imgCheck, newMsg.userImage);
-            console.log(newMsg)
-            item.makeLi();
-
-        })
-
-
-        // 거래 모달창 오픈
-        $(".dealCalender").off('click').on("click", () => {
-
-            const modal = new bootstrap.Modal('#exampleModal', {})
-            modal.show();
-
-        })
-
-        $(".dealUpdateCalender").off('click').on("click", () => {
-
-            var dealBoardNum = $(".dealNum").val();
-
-            alert(dealBoardNum);
-
-            $.ajax({
-                url: "/clubCal/json/getDealCalender",
-                method: "POST",
-                dataType: "json",
-                contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify({
-                    "dealBoardNum": dealBoardNum
-                }),
-                success: function (JSONData, result) {
-
-                    var deal = JSONData.deal
-
-                    console.log("deal : " + deal);
-
-                    var date = new Date(deal.dealDate);
-
-                    const year = date.getFullYear();
-                    const month = ('0' + (date.getMonth() + 1)).slice(-2);
-                    const day = ('0' + date.getDate()).slice(-2);
-                    const dateStr = year + '-' + month + '-' + day;
-
-
-                    $(".dealCalenderTitle2").val(deal.dealCalenderTitle);
-                    $(".dealDate2").val(dateStr);
-                    $(".dealLocation2").val(deal.dealLocation);
-
-                    const modal = new bootstrap.Modal('#exampleModal2', {})
-                    modal.show();
-
-                }
             })
-        })
-
-        $(".dealSubmit").off('click').on("click", function () {
-
-            var dealBoardNum = $(".dealNum").val()
-            var dealCalenderTitle = $(".dealCalenderTitle").val()
-            var dealDate = $(".dealDate").val()
-            var dealLocation = $(".dealLocation").val()
-
-            console.log(dealBoardNum)
-            console.log(dealCalenderTitle)
-            console.log(dealDate)
-            console.log(dealLocation)
-
-            $.ajax({
-                url: "/clubCal/json/updateDealCalender",
-                method: "post",
-                data: JSON.stringify({
-                    "dealBoardNum": dealBoardNum,
-                    "dealCalenderTitle": dealCalenderTitle,
-                    "dealDate": dealDate,
-                    "dealLocation": dealLocation,
-                    "dealId": '${user.userId}'
-
-                }),
-
-                dataType: "json",
-                contentType: "application/json; charset=UTF-8",
-                success: function (JSONData, result) {
-
-                    console.log(result);
-                    // 성공시 해당 창을 닫고 부모창을 reload
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Your work has been saved',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-
-                    setTimeout(function () {
-                        window.open("/view/community/list/dealCalender.jsp", "거래 일정",
-                            "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no")
-                        window.location.reload()
-                    }, 2000);
-                    //error 발생시 그냥 창을 닫음
-                }, error: function () {
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Your work has been saved',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    setTimeout(function () {
-                        window.location.reload()
-                    }, 2000);
-
-                }
-            });
-
-        });
 
 
-        $(".dealUpdateSubmit").off('click').on("click", function () {
+            //server에서 data를 받음
+            chatSocket.off('chatting').on("chatting", (newMsg) => {
 
-            var dealBoardNum = $(".dealNum").val()
-            var dealCalenderTitle = $(".dealCalenderTitle2").val()
-            var dealDate = $(".dealDate2").val()
-            var dealLocation = $(".dealLocation2").val()
-
-            console.log(dealBoardNum)
-            console.log(dealCalenderTitle)
-            console.log(dealDate)
-            console.log(dealLocation)
-
-            $.ajax({
-                url: "/clubCal/json/updateDealCalender",
-                method: "post",
-                data: JSON.stringify({
-                    "dealBoardNum": dealBoardNum,
-                    "dealCalenderTitle": dealCalenderTitle,
-                    "dealDate": dealDate,
-                    "dealLocation": dealLocation,
-
-                }),
-
-                dataType: "json",
-                contentType: "application/json; charset=UTF-8",
-                success: function (JSONData, result) {
-
-                    console.log(result);
-                    // 성공시 해당 창을 닫고 부모창을 reload
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Your work has been saved',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-
-                    setTimeout(function () {
-                        window.open("/view/community/list/dealCalender.jsp", "거래 일정",
-                            "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no")
-                        window.location.reload()
-                    }, 2000);
-                    //error 발생시 그냥 창을 닫음
-                }, error: function () {
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Your work has been saved',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    setTimeout(function () {
-                        window.location.reload()
-                    }, 2000);
-
-                }
-            });
-
-        });
-
-        $(".dealCalenderlist").off('click').on("click", function () {
-            window.open("/view/community/list/dealCalender.jsp", "거래 일정",
-                "left=300, top=200, width=750px, height=500px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no")
-        })
-
-
-        $(".send-file").off('change').on("change", function () {
-
-            //form 테그를 불러와서 form변수에 등록
-            var form = document.querySelector("form");
-            //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
-            var formData = new FormData(form);
-            //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
-            var fileSize = $("#fileForm #file")[0].files;
-
-            console.log(fileSize.length);
-
-            //file길이 만큼 for문으로 formData에 append함
-            for (var i = 0; i < fileSize.length; i++) {
-                formData.append("form", fileSize[i]);
-                //파일이 잘 들어 갔는지 확인
-                console.log(fileSize[i]);
-            }
-
-            //파일은 json형식으로 보낼수 없기 떄문에 contentType, processData, dataType을 false로 지정
-            $.ajax({
-                url: "/chat/json/chatFile",
-                type: "post",
-                processData: false,
-                contentType: false,
-                cache: false,
-                timeout: 600000,
-                data: formData,
-                headers: {'cache-control': 'no-cache', 'pragma': 'no-cache'},
-                enctype: "multipart/form-data",
-                success: function (JSONData, result) {
-
-                    $.each(JSONData.list, function (inedx, item) {
-
-                        console.log(item.fileName);
-
-
-                        const data = {
-                            name: nickname.value,
-                            file: item.fileName,
-                            imgCheck: 2,
-                            userImage: '${user.userImage}'
-                        }
-
-                        chatSocket.emit("chatImg", data);
-                    })
-
-
-                }
+                const item = new LiModel(newMsg.userId, newMsg.msg, newMsg.time, newMsg.file, newMsg.imgCheck, newMsg.userImage);
+                console.log(newMsg)
+                item.makeLi();
 
             })
 
 
+            // 거래 모달창 오픈
+            $(".dealCalender").off('click').on("click", () => {
+
+                const modal = new bootstrap.Modal('#exampleModal', {})
+                modal.show();
+
+            })
+
+            $(".dealUpdateCalender").off('click').on("click", () => {
+
+                var dealBoardNum = $(".dealNum").val();
+
+                alert(dealBoardNum);
+
+                $.ajax({
+                    url: "/clubCal/json/getDealCalender",
+                    method: "POST",
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify({
+                        "dealBoardNum": dealBoardNum
+                    }),
+                    success: function (JSONData, result) {
+
+                        var deal = JSONData.deal
+
+                        console.log("deal : " + deal);
+
+                        var date = new Date(deal.dealDate);
+
+                        const year = date.getFullYear();
+                        const month = ('0' + (date.getMonth() + 1)).slice(-2);
+                        const day = ('0' + date.getDate()).slice(-2);
+                        const dateStr = year + '-' + month + '-' + day;
+
+
+                        $(".dealCalenderTitle2").val(deal.dealCalenderTitle);
+                        $(".dealDate2").val(dateStr);
+                        $(".dealLocation2").val(deal.dealLocation);
+
+                        const modal = new bootstrap.Modal('#exampleModal2', {})
+                        modal.show();
+
+                    }
+                })
+            })
+
+            $(".dealSubmit").off('click').on("click", function () {
+
+                var dealBoardNum = $(".dealNum").val()
+                var dealCalenderTitle = $(".dealCalenderTitle").val()
+                var dealDate = $(".dealDate").val()
+                var dealLocation = $(".dealLocation").val()
+
+                console.log(dealBoardNum)
+                console.log(dealCalenderTitle)
+                console.log(dealDate)
+                console.log(dealLocation)
+
+                $.ajax({
+                    url: "/clubCal/json/updateDealCalender",
+                    method: "post",
+                    data: JSON.stringify({
+                        "dealBoardNum": dealBoardNum,
+                        "dealCalenderTitle": dealCalenderTitle,
+                        "dealDate": dealDate,
+                        "dealLocation": dealLocation,
+                        "dealId": '${user.userId}'
+
+                    }),
+
+                    dataType: "json",
+                    contentType: "application/json; charset=UTF-8",
+                    success: function (JSONData, result) {
+
+                        console.log(result);
+                        // 성공시 해당 창을 닫고 부모창을 reload
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Your work has been saved',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        setTimeout(function () {
+                            window.open("/view/community/list/dealCalender.jsp", "거래 일정",
+                                "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no")
+                            window.location.reload()
+                        }, 2000);
+                        //error 발생시 그냥 창을 닫음
+                    }, error: function () {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Your work has been saved',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        setTimeout(function () {
+                            window.location.reload()
+                        }, 2000);
+
+                    }
+                });
+
+            });
+
+
+            $(".dealUpdateSubmit").off('click').on("click", function () {
+
+                var dealBoardNum = $(".dealNum").val()
+                var dealCalenderTitle = $(".dealCalenderTitle2").val()
+                var dealDate = $(".dealDate2").val()
+                var dealLocation = $(".dealLocation2").val()
+
+                console.log(dealBoardNum)
+                console.log(dealCalenderTitle)
+                console.log(dealDate)
+                console.log(dealLocation)
+
+                $.ajax({
+                    url: "/clubCal/json/updateDealCalender",
+                    method: "post",
+                    data: JSON.stringify({
+                        "dealBoardNum": dealBoardNum,
+                        "dealCalenderTitle": dealCalenderTitle,
+                        "dealDate": dealDate,
+                        "dealLocation": dealLocation,
+
+                    }),
+
+                    dataType: "json",
+                    contentType: "application/json; charset=UTF-8",
+                    success: function (JSONData, result) {
+
+                        console.log(result);
+                        // 성공시 해당 창을 닫고 부모창을 reload
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Your work has been saved',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        setTimeout(function () {
+                            window.open("/view/community/list/dealCalender.jsp", "거래 일정",
+                                "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no")
+                            window.location.reload()
+                        }, 2000);
+                        //error 발생시 그냥 창을 닫음
+                    }, error: function () {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Your work has been saved',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        setTimeout(function () {
+                            window.location.reload()
+                        }, 2000);
+
+                    }
+                });
+
+            });
+
+            $(".dealCalenderlist").off('click').on("click", function () {
+                window.open("/view/community/list/dealCalender.jsp", "거래 일정",
+                    "left=300, top=200, width=750px, height=500px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no")
+            })
+
+
+            $(".send-file").off('change').on("change", function () {
+
+                //form 테그를 불러와서 form변수에 등록
+                var form = document.querySelector("form");
+                //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
+                var formData = new FormData(form);
+                //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
+                var fileSize = $("#fileForm #file")[0].files;
+
+                console.log(fileSize.length);
+
+                //file길이 만큼 for문으로 formData에 append함
+                for (var i = 0; i < fileSize.length; i++) {
+                    formData.append("form", fileSize[i]);
+                    //파일이 잘 들어 갔는지 확인
+                    console.log(fileSize[i]);
+                }
+
+                //파일은 json형식으로 보낼수 없기 떄문에 contentType, processData, dataType을 false로 지정
+                $.ajax({
+                    url: "/chat/json/chatFile",
+                    type: "post",
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    timeout: 600000,
+                    data: formData,
+                    headers: {'cache-control': 'no-cache', 'pragma': 'no-cache'},
+                    enctype: "multipart/form-data",
+                    success: function (JSONData, result) {
+
+                        $.each(JSONData.list, function (inedx, item) {
+
+                            console.log(item.fileName);
+
+
+                            const data = {
+                                name: nickname.value,
+                                file: item.fileName,
+                                imgCheck: 2,
+                                userImage: '${user.userImage}'
+                            }
+
+                            chatSocket.emit("chatImg", data);
+                        })
+
+
+                    }
+
+                })
+
+
+            })
         })
+
     })
 
     function sendMessage(chatSocket) {
@@ -778,7 +786,7 @@
             msg: chatInput.value,
             userImage: '${user.userImage}'
         }
-        //Server에 chatSocket.on으로 data정보를 전달
+        //Server에 socket.on으로 data정보를 전달
         chatSocket.emit("chatting", data)
     }
 
@@ -796,13 +804,13 @@
 
             if (imgCheck === 2) {
                 li.innerHTML +=
-                    '<span class="profile">' +
-                    '<span class="user">' + this.name + '</span>' +
+                    '<div class="profile">' +
+                    '<div class="user">' + this.name + '</div>' +
                     '<img class="userimg" src="/resources/' + this.userImage + '" alt="any">' +
-                    '</span>' +
-                    '<span class="message">' +
-                    '<img src="/resources' + this.file + '" alt="/resources/images/proplePoto.png"></span>' +
-                    '<span class="time">' + this.time + '</span>';
+                    '</div>' +
+                    '<div class="message">' +
+                    '<img src="/resources' + this.file + '" alt="/resources/images/proplePoto.png"></div>' +
+                    '<div class="time">' + this.time + '</div>';
 
                 li.classList.add(nickname.value == this.name ? "sent" : "received")
 
@@ -810,12 +818,12 @@
 
             if (imgCheck !== 2) {
                 li.innerHTML +=
-                    '<span class="profile">' +
-                    '<span class="user">' + this.name + '</span>' +
+                    '<div class="profile">' +
+                    '<div class="user">' + this.name + '</div>' +
                     '<img class="userimg" src="/resources/' + this.userImage + '" alt="any">' +
-                    '</span>' +
-                    '<span class="message">' + this.msg + '</span>' +
-                    '<span class="time">' + this.time + '</span>';
+                    '</div>' +
+                    '<div class="message">' + this.msg + '</div>' +
+                    '<div class="time">' + this.time + '</div>';
 
                 li.classList.add(nickname.value == this.name ? "sent" : "received")
             }
@@ -837,6 +845,8 @@
         max-width: 600px;
         max-height: 300px;
         object-fit: scale-down;
+        background-color: #FFFFFF;
+        border-radius: 10px;
     }
 
     .modal.voteModal .modal-body::-webkit-scrollbar {
@@ -865,6 +875,7 @@
         align-items: baseline;
         background-color: #00000003;
         margin-bottom: 15px;
+        text-align: left;
     }
 </style>
 <style>
@@ -920,10 +931,18 @@
         padding: 0.5rem;
         font-size: 12px;
         margin: 0 5px;
+        text-align: left;
     }
     .chatRoom .time{
         font-size: 10px;
         margin: 0 5px;
+        width: 75px;
+    }
+    .chatRoom .sent .time{
+        text-align: right;
+    }
+    .chatRoom .received .time{
+        text-align: left;
     }
     .chatRoom .sent{
         flex-direction: row-reverse;

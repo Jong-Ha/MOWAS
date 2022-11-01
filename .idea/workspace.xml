@@ -9,413 +9,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="LJH 2022.10.30&#10;&#10;카드사이즈 조절&#10;툴바 로그인 수정&#10;채팅창 이미지 등록 및 회원 이미지 등록">
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="LJH 2022.10.31&#10;&#10;채팅 리스트 + 방 통합&#10;채팅 레이아웃 정리&#10;모든 페이지 로그인  가능">
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/common/dao/MongoDbDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/common/dao/MongoDbDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/common/dao/MongoDbDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/common/dao/MongoDbDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/service/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/activation-1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/aether-api-1.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/aether-impl-1.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/aether-spi-1.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/aether-util-1.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/antlr-2.7.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/aspectjweaver-1.6.8.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/backport-util-concurrent-3.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/bitcamp-4e714-firebase-adminsdk-av6c9-3ef30e89d4.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/byte-buddy-1.8.12.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/classmate-1.4.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/classworlds-1.1-alpha-2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/controller/ClubCalendarController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/controller/ClubCalendarRestController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/controller/ClubController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/controller/ClubRestController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/dao/ClubCalendarDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/dao/ClubCalendarDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/dao/ClubDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/dao/ClubDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/service/ClubCalendarService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/service/ClubCalendarServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/service/ClubService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/service/ClubServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/common/KakaoMapApi.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/common/Page.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/common/Search.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/common/aspect/LogAspectJ.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/common/dao/MongoDbDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/common/dao/MongoDbDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/common/filter/RequestFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/common/util/ChatController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/common/util/chatRestController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/common/web/LoginCheckInterceptor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/community/controller/CommunityController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/community/controller/CommunityRestController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/community/dao/CommunityDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/community/dao/CommunityDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/community/service/CommunityService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/community/service/CommunityServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/deal/controller/DealController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/deal/controller/DealRestController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/deal/dao/DealCalendarDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/deal/dao/DealCalendarDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/deal/dao/DealDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/deal/dao/DealDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/deal/service/DealCalendarService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/deal/service/DealCalendarServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/deal/service/DealService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/deal/service/DealServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/CalendarCluber.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/Chat.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/ChatMessage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/Chatter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/Club.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/ClubBlacklist.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/ClubCalendar.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/ClubCalendarReview.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/ClubMasterBoard.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/ClubReport.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/Cluber.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/Comment.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/CommunityReport.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/Deal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/DealBoard.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/File.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/Like.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/MasterBoard.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/Notice.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/Recomment.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/UserInterList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/VilBoard.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/Vote.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/Voter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/controller/MyPageCalendarController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/controller/MyPageCalendarRestController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/controller/MyPageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/controller/MyPageRestController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/dao/MyPageCalendarDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/dao/MyPageCalendarDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/dao/MyPageDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/dao/MyPageDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/service/MyPageCalendarService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/service/MyPageCalendarServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/service/MyPageService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/service/MyPageServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/notice/controller/NoticeController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/notice/controller/NoticeRestController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/notice/dao/NoticeDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/notice/dao/NoticeDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/notice/service/NoticeService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/notice/service/NoticeServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/site/controller/SiteController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/site/controller/SiteRestController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/site/dao/SiteDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/site/dao/SiteDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/site/service/SiteService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/site/service/SiteServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/user/controller/UserCalenderController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/user/controller/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/user/controller/UserRestController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/user/controller/UserRestController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/user/dao/UserCalenderDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/user/dao/UserCalenderDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/user/dao/UserDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/user/dao/UserDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/user/service/UserCalenderService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/user/service/UserCalenderServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/user/service/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/user/service/UserServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/commons-beanutils-1.7.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/commons-chain-1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/commons-codec-1.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/commons-collections-3.2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/commons-compress-1.10.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/commons-dbcp-1.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/commons-digester-1.8.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/commons-fileupload-1.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/commons-io-2.11.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/commons-lang-2.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/commons-logging-1.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/commons-pool-1.5.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/commons-validator-1.3.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/config/common.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/config/context-aspect.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/config/context-common.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/config/context-mongo.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/config/context-mybatis.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/config/context-transaction.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/config/jdbc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/dom4j-1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/doxia-core-1.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/doxia-decoration-model-1.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/doxia-logging-api-1.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/doxia-module-fml-1.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/doxia-module-xhtml-1.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/doxia-sink-api-1.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/doxia-site-renderer-1.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/gson-2.8.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/guava-20.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/hamcrest-core-1.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/httpclient-4.2.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/httpcore-4.2.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/jackson-annotations-2.9.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/jackson-core-2.9.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/jackson-databind-2.9.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/javaSDK-2.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/javax.mail-api-1.5.5.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/json-simple-1.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/jsp-api-2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/jsr305-2.0.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/jstl-api-1.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/junit-4.13.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/log4j-1.2.14.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/log4j.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/mail-1.4.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/mapstruct-1.2.0.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/maven-aether-provider-3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/maven-archiver-3.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/maven-artifact-3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/maven-artifact-manager-2.2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/maven-common-artifact-filters-1.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/maven-core-3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/maven-gpg-plugin-1.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/maven-invoker-2.0.9.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/maven-javadoc-plugin-2.10.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/maven-model-3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/maven-model-builder-3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/maven-plugin-api-3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/maven-plugin-registry-2.2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/maven-profile-2.2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/maven-project-2.2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/maven-reporting-api-3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/maven-repository-metadata-2.2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/maven-settings-2.2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/maven-settings-builder-3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/maven-shared-utils-3.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/maven-source-plugin-3.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/maven-toolchain-2.2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/mongo-java-driver-3.11.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/mybatis-3.5.11.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/mybatis-spring-2.0.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/ojdbc6-11.2.0.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/ons-11.2.0.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/oraclepki-11.2.0.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/oro-2.0.8.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/osdt_cert-11.2.0.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/osdt_core-11.2.0.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/plexus-archiver-3.0.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/plexus-cipher-1.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/plexus-classworlds-2.2.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/plexus-component-annotations-1.5.5.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/plexus-container-default-1.0-alpha-9.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/plexus-i18n-1.0-beta-7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/plexus-interpolation-1.14.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/plexus-io-2.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/plexus-sec-dispatcher-1.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/plexus-utils-3.0.22.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/plexus-velocity-1.1.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/qdox-1.12.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/reactive-streams-1.0.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/reactor-core-3.3.4.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/servlet-api-2.5.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/simplefan-11.2.0.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sisu-guice-2.1.7-noaop.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sisu-inject-bean-1.4.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sisu-inject-plexus-1.4.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/slf4j-api-1.7.25.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/snappy-0.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/spring-aop-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/spring-beans-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/spring-context-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/spring-core-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/spring-data-commons-2.2.6.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/spring-data-mongodb-2.2.6.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/spring-expression-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/spring-integration-core-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/spring-integration-mongodb-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/spring-jcl-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/spring-jdbc-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/spring-messaging-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/spring-plugin-core-1.2.0.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/spring-plugin-metadata-1.2.0.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/spring-retry-1.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/spring-tx-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/spring-web-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/spring-webmvc-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/spring-websocket-5.0.2.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/springfox-core-2.9.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/springfox-schema-2.9.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/springfox-spi-2.9.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/springfox-spring-web-2.9.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/springfox-swagger-common-2.9.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/springfox-swagger-ui-2.9.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/springfox-swagger2-2.9.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/ClubCalenderMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/ClubMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/CommunityMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/DBtext.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/DealMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/MyPageMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/SiteMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/UserMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/mybatis-config.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sslext-1.2-0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/standard-1.1.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/struts-core-1.3.8.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/struts-taglib-1.3.8.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/struts-tiles-1.3.8.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/swagger-annotations-1.5.20.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/swagger-models-1.5.20.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/ucp-11.2.0.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/velocity-1.5.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/velocity-tools-2.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/wagon-provider-api-1.0-beta-6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/xercesImpl-2.9.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/xml-apis-1.3.04.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/activation-1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/aether-api-1.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/aether-impl-1.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/aether-spi-1.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/aether-util-1.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/antlr-2.7.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/aspectjweaver-1.6.8.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/backport-util-concurrent-3.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/byte-buddy-1.8.12.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/classmate-1.4.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/classworlds-1.1-alpha-2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/commons-beanutils-1.7.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/commons-chain-1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/commons-codec-1.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/commons-collections-3.2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/commons-compress-1.10.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/commons-dbcp-1.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/commons-digester-1.8.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/commons-fileupload-1.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/commons-io-2.11.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/commons-lang-2.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/commons-logging-1.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/commons-pool-1.5.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/commons-validator-1.3.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/dom4j-1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/doxia-core-1.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/doxia-decoration-model-1.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/doxia-logging-api-1.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/doxia-module-fml-1.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/doxia-module-xhtml-1.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/doxia-sink-api-1.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/doxia-site-renderer-1.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/gson-2.8.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/guava-20.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/hamcrest-core-1.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/httpclient-4.2.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/httpcore-4.2.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/jackson-annotations-2.9.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/jackson-core-2.9.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/jackson-databind-2.9.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/javaSDK-2.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/javax.mail-api-1.5.5.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/json-simple-1.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/jsp-api-2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/jsr305-2.0.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/jstl-api-1.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/junit-4.13.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/log4j-1.2.14.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/mail-1.4.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/mapstruct-1.2.0.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/maven-aether-provider-3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/maven-archiver-3.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/maven-artifact-3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/maven-artifact-manager-2.2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/maven-common-artifact-filters-1.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/maven-core-3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/maven-gpg-plugin-1.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/maven-invoker-2.0.9.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/maven-javadoc-plugin-2.10.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/maven-model-3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/maven-model-builder-3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/maven-plugin-api-3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/maven-plugin-registry-2.2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/maven-profile-2.2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/maven-project-2.2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/maven-reporting-api-3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/maven-repository-metadata-2.2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/maven-settings-2.2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/maven-settings-builder-3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/maven-shared-utils-3.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/maven-source-plugin-3.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/maven-toolchain-2.2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/mongo-java-driver-3.11.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/mybatis-3.5.11.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/mybatis-spring-2.0.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/ojdbc6-11.2.0.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/ons-11.2.0.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/oraclepki-11.2.0.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/oro-2.0.8.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/osdt_cert-11.2.0.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/osdt_core-11.2.0.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/plexus-archiver-3.0.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/plexus-cipher-1.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/plexus-classworlds-2.2.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/plexus-component-annotations-1.5.5.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/plexus-container-default-1.0-alpha-9.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/plexus-i18n-1.0-beta-7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/plexus-interpolation-1.14.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/plexus-io-2.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/plexus-sec-dispatcher-1.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/plexus-utils-3.0.22.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/plexus-velocity-1.1.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/qdox-1.12.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/reactive-streams-1.0.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/reactor-core-3.3.4.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/servlet-api-2.5.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/simplefan-11.2.0.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/sisu-guice-2.1.7-noaop.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/sisu-inject-bean-1.4.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/sisu-inject-plexus-1.4.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/slf4j-api-1.7.25.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/snappy-0.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/spring-aop-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/spring-beans-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/spring-context-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/spring-core-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/spring-data-commons-2.2.6.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/spring-data-mongodb-2.2.6.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/spring-expression-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/spring-integration-core-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/spring-integration-mongodb-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/spring-jcl-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/spring-jdbc-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/spring-messaging-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/spring-plugin-core-1.2.0.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/spring-plugin-metadata-1.2.0.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/spring-retry-1.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/spring-tx-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/spring-web-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/spring-webmvc-5.2.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/spring-websocket-5.0.2.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/springfox-core-2.9.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/springfox-schema-2.9.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/springfox-spi-2.9.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/springfox-spring-web-2.9.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/springfox-swagger-common-2.9.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/springfox-swagger-ui-2.9.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/springfox-swagger2-2.9.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/sslext-1.2-0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/standard-1.1.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/struts-core-1.3.8.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/struts-taglib-1.3.8.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/struts-tiles-1.3.8.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/swagger-annotations-1.5.20.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/swagger-models-1.5.20.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/ucp-11.2.0.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/velocity-1.5.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/velocity-tools-2.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/wagon-provider-api-1.0-beta-6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/xercesImpl-2.9.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/xml-apis-1.3.04.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/controller/ClubController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubCalendarDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubCalendarDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubCalendarDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/dao/ClubCalendarDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/club/service/ClubCalendarServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/common/util/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/common/util/ChatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/Voter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/Voter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/ClubCalenderMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/ClubCalenderMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/ClubMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/controller/ClubController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/controller/ClubController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/dao/ClubCalendarDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/dao/ClubCalendarDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/dao/ClubCalendarDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/dao/ClubCalendarDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/dao/ClubDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/dao/ClubDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/service/ClubCalendarService.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/service/ClubCalendarService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/service/ClubCalendarServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/service/ClubCalendarServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/common/dao/MongoDbDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/common/dao/MongoDbDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/common/dao/MongoDbDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/common/dao/MongoDbDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/common/util/ChatController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/common/util/ChatController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/ClubReport.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/ClubReport.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/Voter.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/Voter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/site/controller/SiteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/site/controller/SiteController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/site/service/SiteServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/site/service/SiteServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/user/service/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/user/service/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/ClubCalenderMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/ClubCalenderMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/ClubMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/ClubMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/CommunityMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/CommunityMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/SiteMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/SiteMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/chatList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/chatList.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/getChat.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/getChat.jsp" afterDir="false" />
@@ -1476,20 +1099,27 @@
       <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/websocket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/lib/websocket.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/wrapper.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ws/wrapper.mjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/chatIcon.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/chatIcon.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/chatbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/chatbar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/css/listClub.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/css/listClub.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/js/listClub.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/js/listClub.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/chat.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/chat.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/clubImages/6ae3dea7-b727-4a1e-860f-5d6de786f6b1sunset-gafedb3e5b_1280.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClub.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/club/js/getClub.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/club/js/getClub.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/addVote.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/addVote.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/getVote.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/getVote.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClubMasterBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClubMasterBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/club/listClubReview.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/club/listClubCalendarReview.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/get/getClubCalenderReview.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/get/getClubCalenderReview.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/get/getVillBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/get/getVillBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/deal/getDeal.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/deal/getDeal.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
   </component>
   <component name="CompilerWorkspaceConfiguration">
     <option name="MAKE_PROJECT_ON_SAVE" value="true" />
@@ -1560,7 +1190,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit4&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4&quot;: &quot;&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Project/MOWAS/src/main/webapp/resources/images&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Project/MOWAS/src/main/webapp/view/club&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -1583,8 +1213,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Project\MOWAS\src\main\webapp\resources\images" />
       <recent name="C:\Project\MOWAS\src\main\webapp\view\club" />
+      <recent name="C:\Project\MOWAS\src\main\webapp\resources\images" />
       <recent name="C:\Project\MOWAS\src\main\webapp\view\club\modal수정전" />
       <recent name="C:\Project\MOWAS\src\main\webapp\view\myPage" />
       <recent name="C:\Project\MOWAS\src\main\webapp\view\user" />
@@ -1851,6 +1481,7 @@
       <workItem from="1666589308433" duration="18822000" />
       <workItem from="1667032192116" duration="25976000" />
       <workItem from="1667199618930" duration="14363000" />
+      <workItem from="1667289289730" duration="5243000" />
     </task>
     <task id="LOCAL-00001" summary="설정">
       <created>1664436990723</created>
@@ -1954,7 +1585,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="origin/master" />
                       </list>
                     </value>
                   </entry>
@@ -2024,7 +1655,8 @@
     <MESSAGE value="LJH 2022.10.27&#10;&#10;모임 공지사항 리스트, 수정 완료&#10;공지사항 상세 디자인 필요&#10;클럽 상세 틀 잡음" />
     <MESSAGE value="LJH 2022.10.29&#10;&#10;모임 공지사항 완료&#10;클럽 리스트 무한 스크롤 구현&#10;채팅창 리스트 최근 메시지 순 정렬 완료&#10;클럽채팅 오류 해결&#10;파일 업로드 바로 인식하게 수정&#10;getClub.jsp 스크롤 이벤트 수정" />
     <MESSAGE value="LJH 2022.10.30&#10;&#10;투표 완료&#10;채팅 아이콘 위치 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="LJH 2022.10.30&#10;&#10;투표 완료&#10;채팅 아이콘 위치 수정" />
+    <MESSAGE value="LJH 2022.10.31&#10;&#10;채팅 리스트 + 방 통합&#10;채팅 레이아웃 정리&#10;모든 페이지 로그인  가능" />
+    <option name="LAST_COMMIT_MESSAGE" value="LJH 2022.10.31&#10;&#10;채팅 리스트 + 방 통합&#10;채팅 레이아웃 정리&#10;모든 페이지 로그인  가능" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

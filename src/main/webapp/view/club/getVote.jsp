@@ -2,11 +2,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script>
     $(function () {
+        var dialog = $( "#getVote #listVoter" )
+            dialog.dialog({
+            autoOpen: false
+        });
+
+        $("#getVote .listVoter").off('mouseenter').on("mouseenter", function () {
+        })
+        $("#getVote .listVoter").off('mouseleave').on("mouseleave", function () {
+            dialog.dialog('close')
+        })
+
         //누가 투표를 했는지 보자고
         $("#getVote .listVoter").off('mouseover').on("mouseover", function () {
             // alert($(this).attr("id"))
             const voteItem = $(this).attr("id")
             const voteNum = ${vote.voteNum}
+                const el = $(this)
                 $.ajax({
                     url: "/club/json/listVoter",
                     method: "POST",
@@ -21,6 +33,39 @@
                     },
                     success: function (json) {
                         console.log(json)
+                        let str = ''
+                        let maxLength=0
+                        for(var i=0 ; i < 1; i++){
+                            $.each(json,function(index, item){
+                                str += '<div class="voter"><div class="voterImage"><img src="/resources/'+item.userImage+'" style="width: 40px;height: 40px;border-radius: 5px;object-fit: contain;" alt="img"/></div><div class="voterId">'+item.userId+'</div></div>'
+                                if(maxLength<item.userId.length){
+                                    maxLength = item.userId.length
+                                }
+                            })
+                        }
+
+                        console.log(maxLength)
+
+                        const diaWidth = maxLength*7+80
+
+                        console.log(diaWidth)
+
+                        $('.voters').html(str)
+
+                        dialog.dialog({
+                            autoOpen: false,
+                            position : {
+                                my : "left+50",
+                                of : el
+                            },
+                            width: diaWidth,
+                            minWidth: 100,
+                            minHeight:50
+                        });
+                        if(str!==''){
+                            dialog.dialog('open')
+                        }
+
                     }
                 })
         })
@@ -61,6 +106,17 @@
                     url : "/club/endVote/${voteNum}",
                     success : function(re){
                         alert('투표가 마감되었습니다!')
+
+                        let msg ='"${vote.voteTitle}" 투표가 마감되었습니다!'
+
+                        const data = {
+                            name: '${user.userId}',
+                            msg: msg,
+                            userImage: '${user.userImage}'
+                        }
+                        //Server에 socket.on으로 data정보를 전달
+                        chatSocket.emit("chatting", data)
+
                         $('#getVote .modal-content').html(re)
                     }
                 })
@@ -100,7 +156,16 @@
         $('[name="voteItem"]').prop("disabled", ${vote.voterCheck==1?'true':'false'})
     })
 </script>
+<style>
+    .ui-dialog-titlebar {
+        display: none;
+    }
 
+    .voter{
+        display: flex;
+        align-items: center;
+    }
+</style>
 
 <div class="modal-header">
     <a class="navbar-brand back-btn" data-bs-target="#listVote" data-bs-toggle="modal">
@@ -240,8 +305,32 @@
     </button>
 </div>
 
+<div id="listVoter" title="Basic dialog" class="speech-bubble" style="display: none;z-index: 1500;padding: 10px;">
+    <div class="voters" style="background-color: #FFFFFF;border-radius: 5px;padding-top: 5px;padding-bottom: 5px;"></div>
+</div>
+
 <style>
     #getVote .voteBadge{
         border: 1px solid #FF0000; border-radius: 50%; width: 26px; height: 26px;background-color: #FF0000;cursor: default;color: #FFFFFF;font-weight: bold;
+    }
+
+    .speech-bubble {
+        position: relative;
+        background: #f8cd07;
+        border-radius: .4em;
+    }
+
+    .speech-bubble:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 0;
+        height: 0;
+        border: 20px solid transparent;
+        border-right-color: #f8cd07;
+        border-left: 0;
+        margin-top: -20px;
+        margin-left: -20px;
     }
 </style>

@@ -10,6 +10,7 @@
             integrity="sha512-VJ6+sp2E5rFQk05caiXXzQd1wBABpjEj1r5kMiLmGAAgwPItw1YpqsCCBtq8Yr1x6C49/mTpRdXtq8O2RcZhlQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <style href="/resources/css/chat.css" rel="stylesheet"></style>
     <title>Title</title>
 
@@ -74,31 +75,61 @@
 
 
 <script>
-    let chatSocket
+
+    //소켓 연결
+    let socket = io("http://192.168.0.234:5000/chatlist", {
+        /*const socket = io("http://192.168.0.235:5000/chatlist", {*/
+        cors: {origin: '*'},
+        query: {
+            userId: '${user.userId}',
+            chatCategory: '${chatCategory}'
+        },
+        autoConnect:false
+    })
+
+
+    let chatSocket = io("http://192.168.0.234:5000/${chatNameSpace}",{
+        cors: {origin: '*'},
+        query: {
+            roomId: '${roomId}',
+            userId1: '${userId}',
+            userId2: '${user.userId}',
+            boardNum: '${boardNum}',
+            userImage1: '${userImage}',
+            userImage2: '${user.userImage}'
+        },
+        autoConnect:false,
+        forceNew:true
+    })
+
+    //소켓 연결
+    <%--chatSocket = io("http://192.168.0.234:5000/${chatNameSpace}", {--%>
+    <%--    /*const socket = io("http://192.168.0.235:5000/chatlist", {*/--%>
+    <%--    cors: {origin: '*'},--%>
+    <%--    query: {--%>
+    <%--        roomId: '${roomId}',--%>
+    <%--        userId1: '${userId}',--%>
+    <%--        userId2: '${user.userId}',--%>
+    <%--        boardNum: '${boardNum}',--%>
+    <%--        userImage1: '${userImage}',--%>
+    <%--        userImage2: '${user.userImage}'--%>
+    <%--    },--%>
+    <%--    autoConnect:false--%>
+    <%--})--%>
 
     $(function () {
+        // console.log(socket.io.uri)
+        console.log(socket.io.opts.query.chatCategory)
         // alert('asdf')
         //채팅방 들어가기
         $(".addOneChat").on("click", function () {
             location.href = "/chat/addOneChat/" + $('[name="userId"]').val()
         })
 
-        //소켓 연결
-        const socket = io("http://localhost:5000/chatlist", {
-            /*const socket = io("http://192.168.0.235:5000/chatlist", {*/
-            cors: {origin: '*'},
+        socket.connect()
 
-            query: {
-                userId: '${user.userId}',
-                chatCategory: '${chatCategory}',
-                roomId: 'null',
-                userId1: 'null',
-                userId2: 'null',
-                boardNum: 'null',
-                userImage1: 'null',
-                userImage2: 'null'
-            }
-
+        socket.on('newChat',() =>{
+            socket.emit('newChat')
         })
 
         //채팅창 리스트 받기
@@ -138,7 +169,7 @@
                     '<div class="row g-0" style="width: 100%">' +
                     '<div class="col-md-3 potoBox">' +
                     '<img class="bd-placeholder-img img-fluid rounded-start poto" src="/resources/'+roomImage+'"'+
-                                 ' alt="any" style="width: 100%;object-fit: cover;border-radius: 5px;">' +
+                    ' alt="any" style="width: 100%;object-fit: cover;border-radius: 5px;">' +
                     '</div>' +
                     '<div class="col-md-9 chatText">' +
                     '<div class="card-body " >' +
@@ -180,7 +211,16 @@
                     return false
                 }
                 var card = $(".roomId[value='" + msg[0].roomId + "']").parent()
-                card.find(".lastchatText small").html(msg[0].msg)
+
+                if (msg[0].msg === undefined) {
+                    card.find(".lastchatText small").html('사진<img src="/resources'+msg[0].file+'" alt="사진" style="width: 30px;height: 30px;object-fit: contain;">')
+                }else {
+                    if(msg[0].msg.indexOf('<br>')===-1){
+                        card.find(".lastchatText small").html(msg[0].msg)
+                    }else {
+                        card.find(".lastchatText small").html(msg[0].msg.split('<br>',1))
+                    }
+                }
                 card.find(".chatTime small").html(msg[0].time)
                 card.find(".rTime").val(msg[0].rtime)
                 // alert(msg[0].rtime)
@@ -206,36 +246,20 @@
             // });
             //
             // stylesheet.appendTo("head");
-            let check = false
             $(".chatBox").off('click').on("click", function () {
-                var roomId = $(this).find(".roomId").val()
-                var roomName = $(this).find(".card-title").html()
-                if(check){
+                const roomId = $(this).find(".roomId").val()
+                const roomName = $(this).find(".card-title").html()
+
+                if(chatSocket.connected){
                     chatSocket.disconnect()
-                }else{
-                    chatSocket = io("http://localhost:5000/${chatCategory}", {
-                        /*const socket = io("http://192.168.0.235:5000/${chatCategory}", {*/
-                        cors: {origin: '*'},
-                        query: {
-                            roomId: 'null',
-                            userId1: 'null',
-                            userId2: 'null',
-                            boardNum: 'null',
-                            userImage1: 'null',
-                            userImage2: 'null'
-                        }
-                    })
-                    chatSocket.on('connect',function(){
-                        chatSocket.disconnect().off('connect')
-                    })
                 }
-                check = true
+
                 // alert(roomId)
                 <%--alert("/chat/getChat?roomId=" + roomId + "&chatNameSpace=" + '${chatCategory}')--%>
 
                 <%--location.href = "/chat/getChat?roomId=" + roomId + "&chatNameSpace=" + '${chatCategory}';--%>
                 $.ajax({
-                    url : "/chat/getChat?roomId=" + $(this).find(".roomId").val() + "&chatNameSpace=" + '${chatCategory}',
+                    url : "/chat/getChat?roomId=" + roomId + "&chatNameSpace=" + socket.io.opts.query.chatCategory,
                     data: {
                         'roomName': roomName
                     },
@@ -246,6 +270,7 @@
             })
 
         })
+
     })
 
 

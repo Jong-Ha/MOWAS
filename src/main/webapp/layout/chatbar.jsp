@@ -16,23 +16,40 @@
     <script type="text/javascript">
         $(function () {
 
+            $('.${chatCategory}').addClass('checkedBar')
+
             $(".onebyone").on("click", function () {
-                location.href = "/chat/chatList?chatCategory="+ 'onebyone';
+                // location.href = "/chat/chatList?chatCategory="+ 'onebyone';
+                socket.disconnect()
+                socket.io.opts.query.chatCategory = 'onebyone'
+                socket.connect()
+                $('.chatBar > div').removeClass('checkedBar')
+                $(this).addClass('checkedBar')
             });
 
             $(".dealChat").on("click", function () {
-                location.href = "/chat/chatList?chatCategory="+ 'dealChat';
+                // location.href = "/chat/chatList?chatCategory="+ 'dealChat';
+                socket.disconnect()
+                socket.io.opts.query.chatCategory = 'dealChat'
+                socket.connect()
+                $('.chatBar > div').removeClass('checkedBar')
+                $(this).addClass('checkedBar')
             })
 
             $(".clubChat").on("click", function () {
-                location.href = "/chat/chatList?chatCategory="+ 'clubChat';
+                // location.href = "/chat/chatList?chatCategory="+ 'clubChat';
+                socket.disconnect()
+                socket.io.opts.query.chatCategory = 'clubChat'
+                socket.connect()
+                $('.chatBar > div').removeClass('checkedBar')
+                $(this).addClass('checkedBar')
             });
 
         });
     </script>
 
     <style>
-        .commuBox {
+        .chatBar {
             margin-top: 10px;
             margin-bottom: 10px;
             justify-content: center;
@@ -68,6 +85,10 @@
             background-size: 100% 100%;
         }
 
+        .checkedBar{
+            background-size: 100% 100%;
+        }
+
         .wrapper {
             height: 13ch;
             display: grid;
@@ -100,7 +121,7 @@
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg commuBox" style="display: flex;justify-content: space-between;width: 100%;">
+<nav class="navbar navbar-expand-lg chatBar" style="display: flex;justify-content: space-between;width: 100%;">
 
         <div class="underline yellow onebyone">1대1 채팅</div>
 

@@ -118,29 +118,37 @@ chatlist.on('connection', (socket) => {
 
     // console.log('---' + chatCategory + ' chatList  ---');
 
-    Room.find({'users.userId': userId, chatCategory: chatCategory}, function (error, room) {
+    function findRoom(){
+        Room.find({'users.userId': userId, chatCategory: chatCategory}, function (error, room) {
 
-        if (error) {
-            // console.log(error);
-        } else {
-            chatlist.to(socket.id).emit("list", room);
-            // var rs = []
+            if (error) {
+                // console.log(error);
+            } else {
+                chatlist.to(socket.id).emit("list", room);
+                // var rs = []
 
-            room.forEach(function (el, i) {
-                // console.log(room[i].roomId);
-                Msg.find({'roomId': el.roomId}, function (error, msg) {
-                    // console.log("=====================================================");
-                    // console.log(msg);
+                room.forEach(function (el, i) {
+                    // console.log(room[i].roomId);
+                    Msg.find({'roomId': el.roomId}, function (error, msg) {
+                        // console.log("=====================================================");
+                        // console.log(msg);
 
-                    chatlist.emit("msg", msg);
+                        chatlist.emit("msg", msg);
 
-                }).sort({_id: -1}).limit(1)
+                    }).sort({_id: -1}).limit(1)
 
 
-            })
+                })
 
-        }
+            }
 
+        })
+    }
+
+    findRoom()
+
+    socket.on('newChat',()=>{
+        findRoom()
     })
 
     socket.on('disconnect', () => {
@@ -148,6 +156,7 @@ chatlist.on('connection', (socket) => {
     })
 
     // console.log(socket.id)
+    // console.log(socket.handshake.query)
 
 })
 
@@ -188,7 +197,7 @@ onebyone.on('connection', (socket) => {
                 roomId: roomId, chatCategory: 'onebyone', roomName: roomId, boardNum: 0
             })
             result.save(function (error, result) {
-
+                chatlist.emit('newChat')
             })
         } else {
             roomId = result.roomId;
@@ -378,9 +387,44 @@ clubChat.on('connection', (socket) => {
 
     })
 
-    socket.on('bye', () => {
-        socket.leave(roomId)
-    })
+    socket.on("chatImg", (data)=> {
+        var newMsg = new Msg({
+            userId: data.name,
+            userImage: data.userImage,
+            roomId: roomId,
+            msg: data.msg,
+            file: data.file,
+            time: moment(new Date()).format("h:mm A"),
+            rtime: moment(new Date()),
+            imgCheck : data.imgCheck
+
+        });
+
+        clubChat.to(roomId).emit("chatting", newMsg);
+        chatlist.emit("msg", [newMsg]);
+
+        newMsg.save((error, data, res) => {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log("============="+ data);
+
+                Msg.find({'roomId': roomId}, function (error, msg) {
+                    // console.log(msg);
+                    console.log('--- clubChat ---');
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        clubChat.to(roomId).emit("json", msg);
+
+                        // console.log("내 테이터 가져 오기" + msg);
+                    }
+                })
+                console.log('성공이다!!!!!');
+            }
+        });
+
+    });
 
     socket.on('disconnect', () => {
         //사용자가 퇴장했음을 퇴장자 본인을 제외한 다른 사람들에게 알려준다.
@@ -429,7 +473,7 @@ dealChat.on('connection', (socket) => {
                 roomId: roomId, chatCategory: 'dealChat', roomName: roomId, boardNum: boardNum
             })
             result.save(function (error, result) {
-
+                chatlist.emit('newChat')
             })
         } else {
             roomId = result.roomId;
@@ -455,7 +499,9 @@ dealChat.on('connection', (socket) => {
 
         //클라이언트에게 받은 data를 server에 받음
         socket.on("chatting", (data) => {
+            // console.log(data);
 
+            // test객체를 new로 생성 해서 값을 입력
             var newMsg = new Msg({
                 userId: data.name,
                 userImage: data.userImage,
@@ -463,11 +509,16 @@ dealChat.on('connection', (socket) => {
                 msg: data.msg,
                 file: data.file,
                 time: moment(new Date()).format("h:mm A"),
-                rtime: moment(new Date())
+                rtime: moment(new Date()),
+                imgcheck : data.imgcheck
             });
 
-            dealChat.to(roomId).emit("chatting", [newMsg]);
-            chatlist.emit("msg", newMsg);
+            // console.log(newMsg)
+            // console.log(roomId)
+
+            // 서버가 현재 접속해 있는 모든 클라이언트에게 data를 전달 한다
+            dealChat.to(roomId).emit("chatting", newMsg);
+            chatlist.emit("msg", [newMsg]);
 
             //데이터를 저장
             newMsg.save((error, data, res) => {
@@ -476,20 +527,59 @@ dealChat.on('connection', (socket) => {
                 } else {
                     Msg.find({'roomId': roomId}, function (error, msg) {
                         // console.log(msg);
-                        console.log('--- dealChat ---');
+                        console.log('--- onebyone ---');
                         if (error) {
                             console.log(error);
                         } else {
-                            onebyone.to(roomId).emit("json", msg);
+                            dealChat.to(roomId).emit("json", msg);
 
+                            // console.log("내 테이터 가져 오기" + msg);
                         }
                     })
                     console.log('성공이다!!!!!');
                 }
             });
 
-
         })
+
+        socket.on("chatImg", (data)=> {
+            var newMsg = new Msg({
+                userId: data.name,
+                userImage: data.userImage,
+                roomId: roomId,
+                msg: data.msg,
+                file: data.file,
+                time: moment(new Date()).format("h:mm A"),
+                rtime: moment(new Date()),
+                imgCheck : data.imgCheck
+
+            });
+
+            dealChat.to(roomId).emit("chatting", newMsg);
+            chatlist.emit("msg", [newMsg]);
+
+            newMsg.save((error, data, res) => {
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log("============="+ data);
+
+                    Msg.find({'roomId': roomId}, function (error, msg) {
+                        // console.log(msg);
+                        console.log('--- dealChat ---');
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            dealChat.to(roomId).emit("json", msg);
+
+                            // console.log("내 테이터 가져 오기" + msg);
+                        }
+                    })
+                    console.log('성공이다!!!!!');
+                }
+            });
+
+        });
 
         socket.on("getboardNum", () => {
 
