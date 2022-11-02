@@ -725,22 +725,74 @@ public class MyPageController {
         model.addAttribute("map", map);
         return "forward:/view/myPage/getMyRecommentLike.jsp";
     }
+
     @RequestMapping(value = "getMyClub", method = RequestMethod.GET)
-    public String getMyClub(@RequestParam(value ="userId")String userId,Model model)throws Exception{
+    public String getMyClub(@RequestParam(value ="userId")String userId,Model model, @ModelAttribute(value = "search") Search search)throws Exception{
         System.out.println("getMyClub 컨트롤러 userId의 값?"+userId);
 
-        Map<String, Object> map = myPageService.getMyClub(userId);
+        if(search.getCurrentPage()==0){
+            search.setCurrentPage(1);
+        }
+
+        search.setPageSize(pageSize);
+
+        Map<String, Object> map = myPageService.getMyClub("join",userId,search);
+
+        for(Map<String ,Object> item : (List<Map<String ,Object>>)map.get("list")) {
+            Club club = (Club) item.get("club");
+            club.parseInterList();
+            String gc = "모집완료";
+            if(club.getGatherCheck().equals("1")){
+                gc = "모집중";
+            }
+            club.setGatherCheck(gc);
+        }
+
         System.out.println("getMyClub 컨트롤러 map의 값은?"+map);
-        model.addAttribute("map", map);
+        Page resultPage = new Page(search.getCurrentPage(), (Integer) map.get("totalCount"), pageUnit, pageSize);
+        map.put("resultPage", resultPage);
+        model.addAllAttributes(map);
         return "forward:/view/myPage/getMyClub.jsp";
     }
-    @RequestMapping(value = "getMyClubApply", method = RequestMethod.GET)
-    public String getMyClubApply(@RequestParam(value ="userId")String userId,Model model)throws Exception{
+
+    @RequestMapping(value = "getMyClubApply")
+    public String getMyClubApply(@RequestParam(value ="userId")String userId,Model model, @ModelAttribute(value = "search") Search search)throws Exception{
         System.out.println("getMyClubApply 컨트롤러 userId의 값?"+userId);
 
-        Map<String, Object> map = myPageService.getMyClub(userId);
+        if(search.getCurrentPage()==0){
+            search.setCurrentPage(1);
+        }
+
+        search.setPageSize(pageSize);
+
+        Map<String, Object> map = myPageService.getMyClub("apply",userId,search);
+
+        for(Map<String ,Object> item : (List<Map<String ,Object>>)map.get("list")) {
+            Club club = (Club) item.get("club");
+            Cluber cluber = (Cluber) item.get("cluber");
+            club.parseInterList();
+            String gc = "모집완료";
+            if(club.getGatherCheck().equals("1")){
+                gc = "모집중";
+            }
+            club.setGatherCheck(gc);
+            switch (Integer.parseInt(cluber.getCluberStatus())){
+                case 2:
+                    cluber.setCluberStatus("신청");
+                    break;
+                case 3:
+                    cluber.setCluberStatus("거절");
+                    break;
+                default:
+                    cluber.setCluberStatus("승인");
+                    break;
+            }
+        }
+
         System.out.println("getMyClubApply 컨트롤러 map의 값은?"+map);
-        model.addAttribute("map", map);
+        Page resultPage = new Page(search.getCurrentPage(), (Integer) map.get("totalCount"), pageUnit, pageSize);
+        map.put("resultPage", resultPage);
+        model.addAllAttributes(map);
         return "forward:/view/myPage/getMyClubApply.jsp";
     }
 

@@ -17,7 +17,7 @@ public interface MyPageService {
 
     public Map<String, Object> getMyLike(String userId)throws Exception;
 
-    public Map<String, Object> getMyClub(String userId)throws Exception;
+    public Map<String, Object> getMyClub(String applyCheck, String userId, Search search)throws Exception;
 
     public Map<String, Object> getMyDeal(String userId)throws Exception;
 

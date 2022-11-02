@@ -71,6 +71,10 @@
         transition: all 0.5s;
     }
 
+    .liTag,.sub {
+        text-align: left;
+    }
+
     .liTag:hover:after {
         transition: all 0.5s;
     }
@@ -246,15 +250,6 @@
 </script>
 <body>
 <input type="hidden" class="myPageUserId" id="userId" name="userId" value="${user.userId}">
-<header class="tool-bar con-min-width">
-    <div class="con">
-        <nav class="top-bar__menu-box-1">
-
-        </nav>
-    </div>
-</header>
-
-
 
 <div class="wrapper">
 

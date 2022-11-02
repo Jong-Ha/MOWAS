@@ -475,7 +475,7 @@
         <%--alert('${roomId}');--%>
         // return false
         //app.js에 있는 io상수를 socket상수에 담는다
-        chatSocket = io("http://192.168.0.234:5000/${chatNameSpace}",{
+        chatSocket = io(socketServer+"/${chatNameSpace}",{
             cors: {origin: '*'},
             query: {
                 roomId: '${roomId}',
@@ -932,6 +932,7 @@
         font-size: 12px;
         margin: 0 5px;
         text-align: left;
+        word-break: break-all;
     }
     .chatRoom .time{
         font-size: 10px;

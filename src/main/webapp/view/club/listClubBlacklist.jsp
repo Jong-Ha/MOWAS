@@ -52,7 +52,7 @@
                                     <span class="badge bg-primary text-wrap">${clubBlacklist.blacklistCheck=='1'?'등록':'취소'}</span>
                                 </div>
                                 <div>
-                                    <div class="blacklistText d-inline-block text-truncate" style="max-width: 250px;">
+                                    <div class="blacklistText d-inline-block text-truncate" style="max-width: 250px;text-align: left;">
                                         <small>
                                                 ${clubBlacklist.blacklistText}
                                         </small>
@@ -65,17 +65,33 @@
                 </c:forEach>
             </div>
         </c:if>
-        <label>
             <input type="hidden" id="currentPage" name="currentPage" value="1">
-        </label>
     </form>
 </div>
-    <div class="modal-footer">
-        <div style="margin-left: 335px;">
-            <input type="button" class="updateClubBlacklist btn btn-primary" value="등록">
+    <div class="modal-footer" style="display: block;">
+        <div style="margin-left: 330px;">
+            <input type="button" class="updateClubBlacklist btn btn-primary" value="재등록">
             <input type="button" class="updateClubBlacklist btn btn-primary" value="취소">
         </div>
-        <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" var="i">
-            <span class="paging">${i}</span>
-        </c:forEach>
+
+        <c:if test="${!empty list}">
+            <nav aria-label="Page navigation example" style="display: flex;justify-content: center;">
+                <ul class="pagination">
+                    <li class="page-item pageUnit ${resultPage.beginUnitPage==1?'disabled':''}" value="${resultPage.beginUnitPage-resultPage.pageUnit}">
+                        <a class="page-link" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" var="i">
+                        <li class="page-item ${search.currentPage==i?'active':'paging'}"><a class="page-link">${i}</a></li>
+                    </c:forEach>
+                    <li class="page-item pageUnit ${resultPage.maxPage==resultPage.endUnitPage?'disabled':''}" value="${resultPage.beginUnitPage+resultPage.pageUnit}">
+                        <a class="page-link" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </c:if>
+
     </div>

@@ -90,6 +90,7 @@ function setListCluber() {
                         method: 'post',
                         success: function (re) {
                             $('#listClubBlacklist .modal-content').html(re)
+                            setListCluberBlacklist();
                         }
                     })
                 })
@@ -110,17 +111,36 @@ function setListCluber() {
         })
     })
 
-    //페이징
-    $(".listCluberModal .paging").off('click').on("click", function () {
-        // $("form").attr("action","/club/listCluberOut/"+clubNum).attr("method","post").submit()
+    // paging
+    $("#listCluberOutForm .paging").off('click').on("click", function () {
+        $("#listCluberOutForm #currentPage").val($(this).text())
 
         const data = $('#listCluberOutForm').serialize()
 
         $.ajax({
-            url: "/club/listCluberOut/" + clubNum,
-            method: 'post',
-            'data': data,
-            success: function (re) {
+            url : "/club/listCluberOut/" + clubNum,
+            method : 'post',
+            'data' : data,
+            success : function(re){
+                $('#listCluberOut .modal-content').html(re)
+                setListCluber()
+            }
+        })
+    })
+    $("#listCluberOutForm .pageUnit").off('click').on("click", function () {
+        if($(this).hasClass('disabled')){
+            return false
+        }
+
+        $("#listCluberOutForm #currentPage").val($(this).val())
+
+        const data = $('#listCluberOutForm').serialize()
+
+        $.ajax({
+            url : "/club/listCluberOut/" + clubNum,
+            method : 'post',
+            'data' : data,
+            success : function(re){
                 $('#listCluberOut .modal-content').html(re)
                 setListCluber()
             }
@@ -265,7 +285,7 @@ function setListCluberBlacklist() {
     //상태 변경
     $("#listClubBlacklist .updateClubBlacklist").off('click').on("click", function () {
         let process = "F"
-        if ($(this).val() === '등록') {
+        if ($(this).val() === '재등록') {
             process = "T";
         }
         let check = false;
@@ -335,14 +355,22 @@ function setListCluberBlacklist() {
         fncListClubBlacklist($(this).text())
     })
 
+    $("#listClubMasterBoardForm .pageUnit").off('click').on("click", function () {
+        if($(this).hasClass('disabled')){
+            return false
+        }
+        fncListClubBlacklist($(this).val())
+    })
+
     //리스트 조회 function
     function fncListClubBlacklist(currentPage) {
         if (currentPage === 0) {
             currentPage = 1
         }
-        $("#listClubBlacklist #currentPage").val(currentPage)
 
-        const data = $("#listClubBlacklistForm").serialize()
+        $("#listClubBlacklistForm #currentPage").val(currentPage)
+
+        const data = $('#listClubBlacklistForm').serialize()
 
         $.ajax({
             url: "/club/listClubBlacklist/" + clubNum,
@@ -576,6 +604,19 @@ $(function () {
         items.push($(item).val())
     })
     tagify.addTags(items)
+
+    $('.tagify__input').on('keyup',function(e){
+        // alert(e.keyCode===32)
+        if(e.keyCode===32){
+            // console.log($(this).parents('form').attr('id')==='addClubForm')
+            let tag = $(this).html()
+            if(tag.indexOf('#')!==-1){
+                tag = tag.split('#')[1]
+            }
+            tagify.addTags([tag])
+            $(this).html('')
+        }
+    })
 
     $('#updateClub #clubName').off('keyup').on('keyup',function(){
         if($(this).val().length>13){

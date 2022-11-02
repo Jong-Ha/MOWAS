@@ -32,7 +32,11 @@ public interface MyPageDao {
 
     public List<Deal> getMydealBoardLike(String userId)throws Exception;
 
-    public List<Club> getMyClub(String userId)throws Exception;
+    public Club getMyClub(Map<String, Object> map)throws Exception;
+
+    public List<Cluber> getMyCluber(Map<String, Object> map)throws Exception;
+
+    public int getTotalMyCluber(Map<String, Object> map)throws Exception;
 
     public List<Deal> getMyDeal(String userId)throws Exception;
 
