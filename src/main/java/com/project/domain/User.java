@@ -136,7 +136,7 @@ public class User {
     }
 
     public void setPsd(String psd) {
-        this.psd = psd;
+        this.psd = psd.split(" ")[0];
     }
 
     public String getPed() {
@@ -144,7 +144,7 @@ public class User {
     }
 
     public void setPed(String ped) {
-        this.ped = ped;
+        this.ped = ped.split(" ")[0];
     }
 
     public int getPpt() {

@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: 903-15
@@ -13,7 +14,7 @@
     <title>Title</title>
 </head>
 <style>
-    .btn-prm {
+    .btn-primary {
         --bs-btn-color: #000;
         --bs-btn-bg: #f8cd07b3;
         --bs-btn-border-color: #f8cd07b3;
@@ -40,14 +41,15 @@
 
     $(function (){
         $("#updatePsd").on("click" , function (){
-            var userId = $(".myPageUserId").text();
+            var userId = $("#getUserDerailuserId").val();
             alert('userid는? '+userId);
             self.location ="/user/updatePsd?userId="+userId;
         });
     });
     $(function (){
         $("#kickoutUser").on("click" , function (){
-            var userId = $(".myPageUserId").text();
+            var userId = $("#getUserDerailuserId").val();
+            alert('userid는? '+userId);
             var result =confirm('정말로 강퇴하시겠습니까?');
             if(result) {
                 self.location = "/user/kickoutUser?userId=" + userId;
@@ -57,7 +59,7 @@
     });
     $(function (){
         $("#ok").on("click" , function (){
-            self.location="/user/listUser";
+            self.location="/user/listUsers";
         });
     });
 </script>
@@ -66,8 +68,7 @@
 <%--상단 툴바--%>
 <jsp:include page="/layout/toolbar.jsp"/>
 
-<%--상단 탑바--%>
-<jsp:include page="/view/myPage/myPageTitle.jsp"/>
+
 <div class="container">
     <div class="row g-5">
         <div class="col-md-4 d-flex justify-content-end"><h3 class="fw-bold mt-4">회원 상세 조회</h3></div>
@@ -83,7 +84,8 @@
                                 <div class="col-sm-8">
                                     <p class="text-muted mb-0">
                                     <div class="form-group">
-                                        <input type="text" class="form-control"  id="userId" name="userId" value="${map.userDetail.userId}" disabled="disabled">
+                                        <input type="text" class="form-control"   value="${map.userDetail.userId}" disabled="disabled">
+                                    <input type="hidden" class="form-control"  id="getUserDerailuserId" name="userId" value="${map.userDetail.userId}" >
                                     </div>
                                     </p>
                                 </div>
@@ -154,13 +156,12 @@
                                 </div>
                                 <div class="col-sm-8">
                                     <p class="text-muted mb-0">
-                                    <div class="form-group">
-                                        <select multiple class="form-control" id="attentionList">
+                                    <div class="form-control" disabled="disabled">
 <c:set var="i" value="0" />
-<c:forEach var="list" items="${map.listInterList}">
-    <option>     ${list.interList}</option>
+<c:forEach var="list" items="${map.listInter}">
+       ${list}
     </c:forEach><br/>
-                                        </select>
+
                                 </div>
                                     </p>
                                 </div>
@@ -172,7 +173,7 @@
                                 <div class="col-sm-8">
                                     <p class="text-muted mb-0">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="ppt" name="ppt" value="${map.userDetail.ppt}" disabled="disabled">
+                                        <input type="text" class="form-control" id="ppt" name="ppt"  value="${map.userDetail.ppt}" disabled="disabled">
                                     </div>
                                     </p>
                                 </div>
@@ -198,6 +199,7 @@
                                     <p class="text-muted mb-0">
                                     <div class="form-group">
                                         <input type="text" class="form-control" id="psd" name="psd" value="${map.userDetail.psd}" disabled="disabled">
+
                                     </div>
                                     </p>
                                 </div>
@@ -285,9 +287,9 @@
                 </div>
 <br>
                 <div class="col-lg-8 d-flex justify-content-around mb-3">
-<button type="button" class="listUser btn  btn-prm btn-primary   me-3" id="updatePsd" >수정하기</button>
-<button type="button"  class="listUser btn btn-prm  btn-primary " id="kickoutUser">강퇴하기</button>
-<button type="button"  class="listUser btn btn-prm  btn-primary " id="ok">확인</button>
+<button type="button" class="listUser btn  btn-primary   me-3" id="updatePsd" >수정하기</button>
+<button type="button"  class="listUser btn  btn-primary " id="kickoutUser">강퇴하기</button>
+<button type="button"  class="listUser btn  btn-primary " id="ok">확인</button>
                 </div>
             </form>
         </div>
