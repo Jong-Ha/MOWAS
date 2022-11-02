@@ -239,6 +239,14 @@
                 }
             })
         })
+        $(function(){
+            var address=$('.villCode').val();
+            const myArray = address.split(" ");
+
+            document.getElementById("demo").innerHTML = myArray[2];
+            ('#demo').append("∙" ${deal.dealRegDate});
+
+        })
     </script>
 
 
@@ -684,6 +692,7 @@
                 <div class="cardbox">
                     <div class="col dealBox">
                         <input type="hidden" name="dealBoardNum" class="dealBoardNum" value="${deal.dealBoardNum}">
+                        <input type="hidden" name="villCode" class="villCode" value="${deal.villCode}">
                         <div class="card h-100 shadow-lg">
                             <div class="card-footer"
                                  style=" border-bottom: 1px solid; display: flex; font-weight: bold">
@@ -715,8 +724,9 @@
 
                                 <div class="dealinfo cartFont" style="flex: 1; width: 50%;">
                                     <p class="allFlex" style="font-size: 1.3em; font-weight: bold"> ${deal.price} 원 </p>
-                                    <p class="allFlex" style="font-size: 1.3em; font-weight: bold">${deal.villCode}
-                                        ∙ ${deal.dealRegDate}</p>
+                                        <p class="allFlex" id="demo" style="font-size: 1.3em; font-weight: bold">
+                                        </p>
+
                                     <p class="allFlex" style="font-size: 1em"> 좋아요 ${deal.likeCount} ∙
                                         조회수 ${deal.viewCount} </p>
 

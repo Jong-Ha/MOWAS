@@ -18,8 +18,7 @@
         <result property="phone" column="phone" jdbcType="VARCHAR"/>
         <result property="villCode" column="vill_code" jdbcType="VARCHAR"/>
         <result property="userImage" column="user_Image" jdbcType="VARCHAR"/>
-        <result property="lcd" column="lcd" jdbcType="DATE"/>
-        <result property="loginCheck" column="login_check" jdbcType="CHAR"/>
+
         <result property="psd" column="psd" jdbcType="DATE"/>
         <result property="ped" column="ped" jdbcType="DATE"/>
         <result property="ppt" column="ppt" jdbcType="NUMERIC"/>
@@ -201,13 +200,13 @@
 
     <select id="getMyPage"    parameterType="String" resultMap="userSelectMap">
         SELECT user_id, master_check, user_status, password, user_name, gender, email,
-               phone, vill_code, user_image, lcd, login_check, psd, ped, ppt, review_pt, login_type
+               phone, vill_code, user_image,psd, ped, ppt, review_pt, login_type
         FROM users
         WHERE user_id=#{userId}
     </select>
 
     <select id="getMyInfor" parameterType="String" resultMap="userSelectMap" >
-        SELECT user_id, password, user_name, rrd, gender, email, phone, vill_code, user_image, lcd, psd, ped, ppt, review_pt, login_type
+        SELECT user_id, password, user_name, rrd, gender, email, phone, vill_code, user_image, psd, ped, ppt, review_pt, login_type
         FROM users
         WHERE user_id=#{userId}
     </select>
