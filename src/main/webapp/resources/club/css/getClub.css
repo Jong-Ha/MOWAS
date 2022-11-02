@@ -129,6 +129,10 @@ tags.tagify {
     cursor: pointer;
 }
 
+.listCluberModal .buttonClass {
+    margin-bottom: 16px;
+}
+
 .listCluberModal .cardBox {
     padding: 5px 5px;
     width: 100%;
@@ -266,6 +270,7 @@ tags.tagify {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-align: left;
 }
 
 #getCluber .buttonClass * {
