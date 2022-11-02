@@ -821,8 +821,8 @@
 
 
 </script>
- <body class="bg-light">
-    
+
+<body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 <div class="container" style="text-align: -webkit-center;">
 <div class="wap">
 

@@ -1,10 +1,3 @@
-======================================================
-테이블 삭제
-======================================================
-
-alter table deal drop column chat_num;
-alter table chat drop column deal_board_num;
-
 DROP TABLE voter;
 DROP TABLE vote;
 DROP TABLE chat_message;
@@ -34,9 +27,7 @@ DROP TABLE club_calendar;
 DROP TABLE club;
 DROP TABLE users;
 
-=========================================================
-시퀀스 삭제
-=========================================================
+
 DROP SEQUENCE seq_user_inter_list_num;
 
 DROP SEQUENCE seq_files;
@@ -64,9 +55,6 @@ DROP SEQUENCE seq_master_board;
 DROP SEQUENCE seq_community_report;
 DROP SEQUENCE seq_club_report;
 
-======================================================
-시퀀스 생성
-======================================================
 
 CREATE SEQUENCE seq_user_inter_list_num	INCREMENT BY 1 START WITH 10000;
 
@@ -96,9 +84,7 @@ CREATE SEQUENCE seq_master_board 	INCREMENT BY 1 START WITH 10000;
 CREATE SEQUENCE seq_community_report 	INCREMENT BY 1 START WITH 10000;
 CREATE SEQUENCE seq_club_report 	INCREMENT BY 1 START WITH 10000;
 
-회원
-========================================================
-========================================================
+
 create table users
 (
     user_id      varchar2(20) primary key not null ,
@@ -112,8 +98,6 @@ create table users
     phone        varchar2(20),
     vill_code    varchar2(100),
     user_image   varchar2(100),
-    lcd          date,
-    login_check  char(1),
     psd          date,
     ped          date,
     ppt          number default '0',
@@ -127,15 +111,12 @@ create table user_inter_list(
                                 inter_list char(2)
 );
 
-========================================================
-모임
-========================================================
 
 CREATE TABLE files (
                        file_num 			NUMBER	NOT NULL,
                        board_num		NUMBER		NOT NULL,
                        board_category 		CHAR(2)	NOT NULL,
-                       file_name 			VARCHAR2(150) NOT NULL,
+                       file_name 			VARCHAR2(300) NOT NULL,
                        PRIMARY KEY(file_num)
 );
 
@@ -185,10 +166,6 @@ CREATE TABLE club_master_board(
 );
 
 
-========================================================
-거래
-========================================================
-
 CREATE TABLE deal(
                      deal_board_num		NUMBER NOT NULL primary key,
                      board_category    		CHAR(2) NOT NULL,
@@ -213,10 +190,6 @@ CREATE TABLE deal(
                      like_count NUMBER
 );
 
-
-========================================================
-일정
-========================================================
 
 CREATE TABLE club_calendar
 (
@@ -254,7 +227,7 @@ CREATE TABLE vill_board(
                            view_count NUMBER,
                            like_count NUMBER,
                            board_category CHAR,
-                           files VARCHAR2(150)
+                           files VARCHAR2(300)
 );
 
 CREATE TABLE likes(
@@ -298,11 +271,10 @@ CREATE TABLE club_calendar_review(
                                      like_count NUMBER,
                                      update_date DATE,
                                      board_category CHAR(2),
-                                     files VARCHAR2(150)
+                                     files VARCHAR2(300)
 );
-==========================================================
-알림
-==========================================================
+
+
 CREATE TABLE notice(
                        notice_num      NUMBER NOT NULL primary key ,
                        view_check      CHAR(1) ,
@@ -312,9 +284,7 @@ CREATE TABLE notice(
                        url_link        VARCHAR2(100)
 );
 
-==========================================================
-채팅
-==========================================================
+
 CREATE TABLE chat (
                       chat_num 			NUMBER	NOT NULL,
                       chat_category 			CHAR(1)		NOT NULL,
@@ -342,7 +312,7 @@ CREATE TABLE chat_message (
                               chat_num 			NUMBER		NOT NULL REFERENCES chat(chat_num),
                               user_id 				VARCHAR2(20)		NOT NULL REFERENCES users(user_id),
                               chat_message 			VARCHAR2(1000),
-                              chat_file				VARCHAR2(150),
+                              chat_file				VARCHAR2(300),
                               chat_date 			DATE NOT NULL,
                               PRIMARY KEY(message_num)
 );
@@ -375,9 +345,6 @@ CREATE TABLE voter (
                        PRIMARY KEY(voter_num)
 );
 
-=========================================================
-커뮤니티
-=========================================================
 
 CREATE TABLE master_board
 (
@@ -424,6 +391,4 @@ CREATE TABLE club_report
 );
 
 commit;
-
-
 

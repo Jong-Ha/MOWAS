@@ -1,5 +1,6 @@
 package com.project.user.service;
 
+import com.project.common.Search;
 import com.project.domain.User;
 import com.project.domain.UserInterList;
 
@@ -55,7 +56,7 @@ public interface UserService {
     //회원 주민등록번호 중복 확인
     public boolean checkDupRrd(String rrd)throws Exception;
 
-    public Map<String, Object> listUser(User user)throws Exception;
+    public Map<String, Object> listUsers(Search search)throws Exception;
 
     public Map<String, Object> getUserDetail(String userId)throws Exception;
 
