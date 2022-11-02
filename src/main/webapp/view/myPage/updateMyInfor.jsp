@@ -747,14 +747,13 @@
         <div class="col-xl-4">
             <!-- Profile picture card-->
             <div class="card mb-4 mb-xl-0">
-                <div class="card-header">내 정보 수정하기</div>
+                <div class="card-header" >내 정보 수정하기</div>
                 <div class="card-body text-center">
                     <!-- Profile picture image-->
                     <img class="img-account-profile rounded-circle mb-2" src="/resources/${user.userImage}" alt="">
                     <!-- Profile picture help block-->
-                    <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                    <div class="font-italic text-muted mb-4">Id : ${user.userId}</div>
                     <!-- Profile picture upload button-->
-                    <button class="btn btn-primary" type="button">Upload new image</button>
                 </div>
             </div>
         </div>
@@ -763,68 +762,80 @@
             <div class="card mb-4">
                 <div class="card-header">내 정보 수정하기</div>
                 <div class="card-body">
-                    <form>
+                    <form enctype="multipart/form-data">
                         <!-- Form Group (username)-->
                         <div class="mb-3">
-                            <label class="small mb-1" for="inputUsername">Username (how your name will appear to other users on the site)</label>
-                            <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="username">
+                            <label class="small mb-1 fw-bold" for="password">비밀번호 (영문,숫자 혼합, 8~16글자로 입력해주세요)</label>
+                            <input class="form-control" id="password" type="text" placeholder="password" value="${map.user.password}">
                         </div>
                         <!-- Form Row-->
                         <div class="row gx-3 mb-3">
-                            <!-- Form Group (first name)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="password">비밀번호</label>
-                                <input class="form-control" id="password" name="password" type="text" placeholder="영문,숫자 혼합, 8~16글자로 입력해주세요" value="${map.user.password}">
-                            </div>
-                            <!-- Form Group (last name)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="email">이메일</label>
+                                <div class="col-md-6">
+                                <label class="small mb-1 fw-bold" for="email">이메일</label>
                                 <input class="form-control" id="email" name="email" type="email" placeholder="이메일을 입력하세요" value="${map.user.email}">
                                 <button type="button" class="btn btn-primary btn-sm emailKey">인증번호 요청</button><br/>
                             </div>
+
+                            <div class="col-md-6">
+                                <label class="small mb-1 fw-bold CheckEmailKey">인증번호 입력</label>
+                                <input type="text" class="form-control CheckEmailKey" placeholder="인증번호 입력해주세요" >
+                                <button type="button" class="btn btn-primary btn-sm CheckEmailKey2">인증 확인</button>
+                            </div>
                         </div>
+
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1 fw-bold" for="phone">휴대폰번호</label>
+                                <input type="text" class="form-control" id="phone" name="phone" placeholder="휴대폰 번호를 입력하세요" value="${map.user.phone}" >
+                                <button type="button" class="btn btn-primary btn-sm smsKey">인증번호 요청</button>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="small mb-1 fw-bold CheckSmsKey">인증번호 입력</label>
+                                <input type="text" class="form-control" id="CheckSms" placeholder="인증번호 입력" >
+                                <button type="button" class="btn btn-primary btn-sm CheckSmsKey">인증 확인</button>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="small mb-1 fw-bold" >동네이름</label>
+                            <input type="text" class="form-control" id="villCode" placeholder="동이름을 입력해주세요" name="villCode" value="${map.user.villCode}">
+                            <button type="button" class="btn btn-primary btn-sm">동네인증 요청</button>
+                        </div>
+
                         <!-- Form Row        -->
                         <div class="row gx-3 mb-3">
                             <!-- Form Group (organization name)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputOrgName">Organization name</label>
-                                <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your organization name" value="Start Bootstrap">
+                                <label class="small mb-1 fw-bold">관심 목록</label>
+                                <c:set var="i" value="0" />
+                                <c:forEach var="list" items="${map.interList}">
+                                <input type="text" class="form-control" id="addinterList" placeholder="관심 목록" name="villCode" value="${list}">
+                                </c:forEach>
+
+                                <button type="button" class="btn btn-primary btn-sm interList"  data-bs-toggle="modal"
+                                        data-bs-target="#searchInterListDialog">관심목록 추가/삭제</button>
                             </div>
                             <!-- Form Group (location)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputLocation">Location</label>
-                                <input class="form-control" id="inputLocation" type="text" placeholder="Enter your location" value="San Francisco, CA">
+                                <label class="small mb-1 fw-bold" for="file">새로운 이미지 업로드</label>
+                                <input class="form-control" type="file" id="file" name="file" value="${map.user.userImage}" placeholder="이미지 파일을 올려주세요">
                             </div>
                         </div>
                         <!-- Form Group (email address)-->
-                        <div class="mb-3">
-                            <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                            <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" value="name@example.com">
-                        </div>
+                        <div class="col-mb-3" style=" text-align: center;">
                         <!-- Form Row-->
-                        <div class="row gx-3 mb-3">
-                            <!-- Form Group (phone number)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputPhone">Phone number</label>
-                                <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value="555-123-4567">
-                            </div>
-                            <!-- Form Group (birthday)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputBirthday">Birthday</label>
-                                <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" value="06/10/1988">
-                            </div>
-                        </div>
-
                         <input type="hidden" id="loginType" name="loginType" value="${map.user.loginType}">
                         <!-- Save changes button-->
-                        <button class="btn btn-primary" type="submit" id="updateMyInfor">수정</button>
+                        <button class="btn btn-primary" type="submit" id="updateMyInfor" >수정</button>
+                        <button class="btn btn-secondary" >취소</button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<%--
+ <%--
+
 <div class="container">
     <div class="row g-5">
         <div class="col-md-4 d-flex justify-content-end"><h3 class="fw-bold mt-4">내 정보 수정하기</h3></div>
@@ -948,9 +959,10 @@
 <input type="hidden" id="loginType" name="loginType" value="${map.user.loginType}">
 
 <button type="submit" class="listUser btn btn-primary" id="updateMyInfor">수정하기</button>
-                        </div>
-                    </div>
-                </div>
+
+    </div>
+   </div>
+  </div>
 </form>
         </div>
     </div>
@@ -958,13 +970,11 @@
 --%>
 
 <!--관심목록 모달창 시작-->
-<div class="wap">
-<div class="modal fade" id="searchInterListDialog" tabindex="-1" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
+<div class="modal fade" id="searchInterListDialog" tabindex="-1" aria-labelledby="searchInterListDialogLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="searchInterListDialogLabel" style="margin-left: 120px;">관심목록을
+                <h1 class="modal-title fs-5" id="searchInterListDialogLabel" style="margin-left: 100px;">관심목록을
                     선택해주세요</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -993,8 +1003,6 @@
                     <label>
                         <input type="checkbox" id="list06" name="interList" value="06"> 댄스
                     </label>
-                </div>
-                <div class="interList">
                     <label>
                         <input type="checkbox"  id="list07" name="interList" value="07"> 여행
                     </label>
@@ -1024,10 +1032,6 @@
         </div>
     </div>
 </div>
-</div>
-
-
-
 
 <jsp:include page="/layout/chatIcon.jsp"/>
 <jsp:include page="/layout/footer.jsp"/>

@@ -931,7 +931,7 @@
 
         //상세보기 지도 보기
         $("#location2").on("shown.bs.modal", ()=> {
-            relayout3();
+            getClubLocation();
         })
 
         //일정 수정

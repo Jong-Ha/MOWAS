@@ -9,17 +9,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="LJH 2022.10.31&#10;&#10;채팅 리스트 + 방 통합&#10;채팅 레이아웃 정리&#10;모든 페이지 로그인  가능">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" afterDir="false" />
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/MyPageMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/MyPageMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/footer.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/addCalenderMap.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/addCalenderMap.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/clubMap.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/clubMap.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/common/KakaoMapApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/common/KakaoMapApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/community/calender.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/community/calender.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/updateMyInfor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/updateMyInfor.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/getCalenderMap.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/getCalenderMap.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/updateCalenderMap.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/updateCalenderMap.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/getMasterBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/getMasterBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/listClubReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/listClubReport.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/listClubReportProcess.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/listClubReportProcess.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/listCommunityReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/listCommunityReport.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/listCommunityReportProcess.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/listCommunityReportProcess.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/listMasterBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/listMasterBoard.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,32 +90,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
-    "last_opened_file_path": "C:/Project/MOWAS/src/main/webapp",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "아티팩트",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.32133675",
-    "settings.editor.selected.configurable": "project.propCompiler",
-    "spring.configuration.checksum": "0644e903b0ad21f514b0480754c0a1e2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit4&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4&quot;: &quot;&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Project/MOWAS/src/main/webapp&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;아티팩트&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.32133675&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;0644e903b0ad21f514b0480754c0a1e2&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "oracle"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;oracle&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -151,7 +155,7 @@
   <component name="RunDashboard">
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="Tomcat 서버.Tomcat 9.0.58">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.58">
     <configuration name="ClubServiceTest.updateVoter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MOWAS" />
       <extension name="coverage">
@@ -232,7 +236,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tomcat 9.0.58" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.58" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+    <configuration name="Tomcat 9.0.58" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.58" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="$PROJECT_DIR$/../../Program Files/Java/jre1.8.0_181" nameIsGenerated="true">
       <option name="COMMON_VM_ARGUMENTS" value="-Dfile.encoding=UTF-8" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
@@ -326,7 +330,7 @@
       <item itemvalue="JUnit.MongoDbDaoImplTest.deleteClub" />
       <item itemvalue="JUnit.MongoDbDaoImplTest.deleteCluber" />
       <item itemvalue="JUnit.ClubServiceTest.updateVoter" />
-      <item itemvalue="Tomcat 서버.Tomcat 9.0.58" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.58" />
     </list>
     <recent_temporary>
       <list>
@@ -506,7 +510,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="LJH" />
+                        <option value="KSM" />
                       </list>
                     </value>
                   </entry>
@@ -611,7 +615,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDao.java</url>
           <line>33</line>
-          <properties class="com.project.user.dao.UserDao" method="updateLcd">
+          <properties class="com.project.user.dao.UserDao">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
