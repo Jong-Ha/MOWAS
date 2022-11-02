@@ -1,5 +1,6 @@
 package com.project.user.dao;
 
+import com.project.common.Search;
 import com.project.domain.User;
 //import com.project.domain.UserInterList;
 //import com.project.user.mail.MailApp;
@@ -129,8 +130,13 @@ public class UserDaoImpl implements UserDao{
         return sqlSession.selectOne("UserMapper.checkDupRrd", rrd);
     }
 
-    public List<User> listUser(User user)throws Exception{
-       return sqlSession.selectList("UserMapper.listUser", user);
+    public List<User> listUsers(Search search)throws Exception{
+       return sqlSession.selectList("UserMapper.listUsers", search);
+    }
+
+    // 게시판 Page 처리를 위한 전체 Row(totalCount)  return
+    public int getTotalCount(Search search) throws Exception {
+        return sqlSession.selectOne("UserMapper.getTotalCount", search);
     }
 
     public User getUserDetail(String userId)throws Exception{

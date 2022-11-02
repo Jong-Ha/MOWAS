@@ -73,10 +73,12 @@
                             $(".noticeTime2").val(clubCalendar.noticeTime);
 
 
+
                             //모임 일정 후기 등록 할떄 정보 display
 
                             $(".clubDate4").val(clubCalendar.clubDate);
                             $(".location4").val(clubCalendar.location)
+
 
 
                             $(".clubDate5").val(clubCalendar.clubDate);
@@ -457,6 +459,7 @@
                     console.log(result);
                     // 성공시 해당 창을 닫고 부모창을 reload
                     Swal.fire({
+                        position: 'top-end',
                         icon: 'success',
                         title: 'Your work has been saved',
                         showConfirmButton: false,
@@ -627,6 +630,7 @@
                     //error 발생시 그냥 창을 닫음
                 }, error: function () {
                     Swal.fire({
+                        position: 'top-end',
                         icon: 'success',
                         title: 'Your work has been saved',
                         showConfirmButton: false,
@@ -956,7 +960,7 @@
 
         //상세보기 지도 보기
         $("#location2").on("shown.bs.modal", () => {
-            relayout3();
+            getClubLocation();
         })
 
         //일정 수정

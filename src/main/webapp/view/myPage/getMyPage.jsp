@@ -144,7 +144,7 @@
 
     <div class="myPage-top" style=" display: flex; padding: 10px">
 
-        <div class="userInfo shadow-lg">
+        <div class="userInfo shadow-lg" style="height: 350px;">
 
             <c:if test="${user.loginType=='1'}">
                 <span class="aaa">
@@ -183,6 +183,7 @@
                     ${user.userName}
                 </div>
 
+                <c:if test="${user.email ne null}">
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                          class="bi bi-envelope" viewBox="0 0 16 16">
@@ -190,6 +191,7 @@
                     </svg>
                     ${user.email}
                 </div>
+                </c:if>
 
                 <br>
             </div>

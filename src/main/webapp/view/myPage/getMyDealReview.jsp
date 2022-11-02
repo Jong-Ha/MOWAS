@@ -100,13 +100,13 @@
     }
 </style>
 
-<body>
+<body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 <%--상단 툴바--%>
 <jsp:include page="/layout/toolbar.jsp"/>
 
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
-
+<hr>
 <div class="tabBox">
     <span class="tabBtn" onclick="javascript:location.href='/myPage/getMyDeal?userId=${user.userId}';">완료한 거래 목록</span>
     <span>|</span>
@@ -125,7 +125,7 @@
         <div class="goods_item">
             <div class="goods_info">
                 <ul class="info">
-                    <li class="goods_name"><span">거래물품명 : ${list.productName}</span></li>
+                    <li class="goods_name"><span">거래물품명 : ${list.productName}></span></li>
                     <li><span">거래날짜 : </span>${list.dealEndDate}</li>
                     <li><span">거래자 아이디 : </span>${list.dealId}</li>
                     <li><span">신뢰온도 : </span>${list.reviewPt}</li>

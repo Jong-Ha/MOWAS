@@ -9,7 +9,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
 <style>
     .tabBox {
         display: flex;
@@ -313,10 +313,11 @@
     /*        border-color: transparent*/
     /*    }*/
     /*}*/
-    <style>
-     .body {
-         text-align: -webkit-center;
-     }
+    <
+    style >
+    .body {
+        text-align: -webkit-center;
+    }
 
     .wap {
         margin-top: 70px;
@@ -369,6 +370,7 @@
         margin-bottom: 50px;
 
     }
+
     /*.addBox {*/
     /*    width: 100%;*/
     /*    display: flex;*/
@@ -553,36 +555,36 @@
         align-items: center;
         justify-content: space-around;
     }
-    </style>
+</style>
 
 
 <script type="text/javascript">
 
-    $(function(){
+    $(function () {
         var userId = $(".myPageUserId").val();
-        $(".paging").on("click",function(){
+        $(".paging").on("click", function () {
             $("#currentPage").val($(this).text())
             $("form").submit()
         })
-        $("form").on("submit",function(){
-            $(this).attr("action","/club/listClubMasterBoard/${clubNum}").attr("method","post")
+        $("form").on("submit", function () {
+            $(this).attr("action", "/club/listClubMasterBoard/${clubNum}").attr("method", "post")
         })
-        $(".getMyVillBoard").on("click", function (){
-            self.location="/myPage/getMyBoard?userId="+userId;
+        $(".getMyVillBoard").on("click", function () {
+            self.location = "/myPage/getMyBoard?userId=" + userId;
         })
-        $(".getMyCbMaster").on("click", function (){
-            self.location="/myPage/getMyCbMaster?userId="+userId;
+        $(".getMyCbMaster").on("click", function () {
+            self.location = "/myPage/getMyCbMaster?userId=" + userId;
         })
-        $(".getMyCbReviewBoard").on("click", function (){
-            self.location="/myPage/getMyCbReviewBoard?userId="+userId;
+        $(".getMyCbReviewBoard").on("click", function () {
+            self.location = "/myPage/getMyCbReviewBoard?userId=" + userId;
         })
-        $(".getMyDealBoard").on("click", function (){
-            self.location="/myPage/getMyDealBoard?userId="+userId;
+        $(".getMyDealBoard").on("click", function () {
+            self.location = "/myPage/getMyDealBoard?userId=" + userId;
         })
     })
 
 </script>
-<body>
+<body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 
 <%--상단 툴바--%>
 <jsp:include page="/layout/toolbar.jsp"/>
@@ -591,13 +593,12 @@
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
 
 <div class="tabBox">
-    <span class="tabBtn getMyVillBoard" >우리동네 게시글</span>
+    <span class="tabBtn getMyVillBoard">우리동네 게시글</span>
     <span>|</span>
     <span class="tabBtn getMyCbReviewBoard">모임 일정 후기 게시글</span class="tabBtn">
     <span>|</span>
-    <span class="tabBtn getMyDealBoard" >판매/판매요청 게시글</span class="tabBtn">
+    <span class="tabBtn getMyDealBoard">판매/판매요청 게시글</span class="tabBtn">
 </div>
-
 
 
 <hr/>
@@ -606,82 +607,91 @@
 
 <div class="container">
     <div class="addlistbox">
-<c:set var="i" value="0" />
-<c:forEach var="list" items="${map.dealBoard}"><br/>
-    <div class="cardbox">
-        <div class="col dealBox">
-            <input type="hidden" name="dealBoardNum" class="dealBoardNum" value="${list.dealBoardNum}">
-            <div class="card h-100 shadow-lg">
-                <div class="card-footer"
-                     style=" border-bottom: 1px solid; display: flex; font-weight: bold">
-                        ${list.dealTitle}
-                    <p class="allFlex " style="position: absolute; right: 10px;">
-                        <c:if test="${list.dealStatus == 0}">
-                        거래전
-                    </c:if>
-                        <c:if test="${list.dealStatus ==1}">
-                            거래중
-                        </c:if>
-                        <c:if test="${list.dealStatus ==2}">
-                            거래완료
-                        </c:if></p>
-                </div>
-                    <%--  <div id="carouselExampleSlidesOnly" class="carousel potoBox" data-bs-ride="carousel">--%>
-                <div class="potoBox">
-                        <%--    <div class="carousel-inner">--%>
-                        <%--      <div class="carousel-item active get">--%>
-                    <img class="poto" width="100%" height="100%" src="/resources/${list.files[0].fileName}"
-                         alt="any">
-                        <%--      </div>--%>
-                        <%--    </div>--%>
-                </div>
-                <div class="cardM " style="display: flex; padding: 10px 0 0 10px; height: 120px;; ">
-                        <%--                            <div class="card-text text allFlex" style="width: 50%; ">--%>
-                        <%--                                    ${deal.productName}--%>
-                        <%--                            </div>--%>
+        <c:set var="i" value="0"/>
+        <c:forEach var="list" items="${map.dealBoard}"><br/>
+        <div class="cardbox">
+            <div class="col dealBox">
+                <input type="hidden" name="dealBoardNum" class="dealBoardNum" value="${list.dealBoardNum}">
+                <div class="card h-100 shadow-lg">
+                    <div class="card-footer"
+                         style=" border-bottom: 1px solid; display: flex; font-weight: bold">
+                            ${list.dealTitle}
+                        <p class="allFlex " style="position: absolute; right: 10px;">
+                            <c:if test="${list.dealStatus == 0}">
+                                거래전
+                            </c:if>
+                            <c:if test="${list.dealStatus ==1}">
+                                거래중
+                            </c:if>
+                            <c:if test="${list.dealStatus ==2}">
+                                거래완료
+                            </c:if></p>
+                    </div>
+                        <%--  <div id="carouselExampleSlidesOnly" class="carousel potoBox" data-bs-ride="carousel">--%>
+                    <div class="potoBox">
+                            <%--    <div class="carousel-inner">--%>
+                            <%--      <div class="carousel-item active get">--%>
+                        <img class="poto" width="100%" height="100%" src="/resources/${list.files[0].fileName}"
+                             alt="any">
+                            <%--      </div>--%>
+                            <%--    </div>--%>
+                    </div>
+                    <div class="cardM " style="display: flex; padding: 10px 0 0 10px; height: 120px;; ">
+                            <%--                            <div class="card-text text allFlex" style="width: 50%; ">--%>
+                            <%--                                    ${deal.productName}--%>
+                            <%--                            </div>--%>
 
-                    <div class="dealinfo cartFont" style="flex: 1; width: 50%;">
-                        <p class="allFlex" style="font-size: 1.3em; font-weight: bold"> ${list.price} 원 </p>
-                        <p class="allFlex" style="font-size: 1.3em; font-weight: bold">${list.villCode}∙ ${list.dealRegDate}</p>
-                        <p class="allFlex" style="font-size: 1em"> 좋아요 ${list.likeCount} ∙
-                            조회수 ${list.viewCount} </p>
+                        <div class="dealinfo cartFont" style="flex: 1; width: 50%;">
+                            <p class="allFlex" style="font-size: 1.3em; font-weight: bold"> ${list.price} 원 </p>
+                            <p class="allFlex"
+                               style="font-size: 1.3em; font-weight: bold">${list.villCode}∙ ${list.dealRegDate}</p>
+                            <p class="allFlex" style="font-size: 1em"> 좋아요 ${list.likeCount} ∙
+                                조회수 ${list.viewCount} </p>
 
+                        </div>
                     </div>
                 </div>
-<c:forEach var="list" items="${map.dealBoard}">
+            </div>
+        </div>
+        </c:forEach>
+
+        <c:forEach var="list" items="${map.dealBoard}">
 
 
-<div class="cardbox" style="margin-left: 100px;">
-    <div class="col dealBox">
-        <input type="hidden" name="dealBoardNum" class="dealBoardNum" value="10202">
-        <div class="card h-100 shadow-lg">
-            <div class="card-footer"
-                 style=" border-bottom: 1px solid; display: flex; font-weight: bold">
-                <a href="/deal/getDeal/${list.dealBoardNum}"> ${list.dealTitle}</a>
-                <p class="allFlex " style="position: absolute; right: 10px;">
-                    ${list.dealStatus}
-                </p>
-            </div>
-            <div class="potoBox">
-                <img class="poto" width="100%" height="100%" src="/resources/uploadFiles\dealBoardFiles\7c7df3f2-9517-45bb-afb1-bd38ff69bef6e6e6d1e0-da16-420c-9820-e56f06b27573라이언.jfif"
-                     alt="any">
-            </div>
-            <div class="cardM " style="display: flex; padding: 10px 0 0 10px; height: 120px;; ">
-                <div class="dealinfo cartFont" style="flex: 1; width: 50%;">
-                    <p class="allFlex" style="font-size: 1.3em; font-weight: bold"> ${list.price} 원 </p>
-                    <p class="allFlex" style="font-size: 1.3em; font-weight: bold">${list.villCode}
-                        ∙ ${list.dealRegDate}</p>
-                    <p class="allFlex" style="font-size: 1em"> 좋아요 ${list.likeCount} ∙
-                        조회수 ${list.viewCount} </p>
+        <div class="cardbox" style="margin-left: 100px;">
+            <div class="col dealBox">
+                <input type="hidden" name="dealBoardNum" class="dealBoardNum" value="10202">
+                <div class="card h-100 shadow-lg">
+                    <div class="card-footer"
+                         style=" border-bottom: 1px solid; display: flex; font-weight: bold">
+                        <a href="/deal/getDeal/${list.dealBoardNum}"> ${list.dealTitle}</a>
+                        <p class="allFlex " style="position: absolute; right: 10px;">
+                                ${list.dealStatus}
+                        </p>
+                    </div>
+                    <div class="potoBox">
+                        <img class="poto" width="100%" height="100%"
+                             src="/resources/uploadFiles\dealBoardFiles\7c7df3f2-9517-45bb-afb1-bd38ff69bef6e6e6d1e0-da16-420c-9820-e56f06b27573라이언.jfif"
+                             alt="any">
+                    </div>
+                    <div class="cardM " style="display: flex; padding: 10px 0 0 10px; height: 120px;; ">
+                        <div class="dealinfo cartFont" style="flex: 1; width: 50%;">
+                            <p class="allFlex" style="font-size: 1.3em; font-weight: bold"> ${list.price} 원 </p>
+                            <p class="allFlex" style="font-size: 1.3em; font-weight: bold">${list.villCode}
+                                ∙ ${list.dealRegDate}</p>
+                            <p class="allFlex" style="font-size: 1em"> 좋아요 ${list.likeCount} ∙
+                                조회수 ${list.viewCount} </p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
         </div>
+
+        </c:forEach>
     </div>
 </div>
-
-</c:forEach>
-<jsp:include page="/layout/chatIcon.jsp"/>
-<jsp:include page="/layout/footer.jsp"/>
+        <jsp:include page="/layout/chatIcon.jsp"/>
+        <jsp:include page="/layout/footer.jsp"/>
 </body>
 </html>

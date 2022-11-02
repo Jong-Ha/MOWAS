@@ -1,5 +1,6 @@
 package com.project.user.service;
 
+import com.project.common.Search;
 import com.project.common.dao.MongoDbDao;
 import com.project.domain.CommunityReport;
 import com.project.domain.User;
@@ -125,10 +126,14 @@ public class UserServiceImpl implements UserService{
           return result;
     }
 
-    public Map<String, Object> listUser(User user)throws Exception{
-          List userList = userDao.listUser(user);
+    public Map<String, Object> listUsers(Search search)throws Exception{
+          List<User> list = userDao.listUsers(search);
+        int totalCount = userDao.getTotalCount(search);
+
+
           Map<String, Object> map = new HashMap<String, Object>();
-          map.put("userList",userList);
+          map.put("list",list);
+        map.put("totalCount", new Integer(totalCount));
         return map;
     }
 

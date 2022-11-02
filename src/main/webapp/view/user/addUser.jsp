@@ -41,23 +41,29 @@
 
     </style>
   <script type="text/javascript">
+let num
+let smsNum
 
     $(function () {
-        $(".emailKey").on("click", function () {
-            $.ajax({
-                url: "/user/json/mailSender",
-                method: "POST",
-                data: {
-                    email: $(".userEmail").val()
-                },
-                dataType: "json",
-                success: function (emailNo) {
+        function lodingNum() {
+        $.ajax({
+            url: "/user/json/mailSender",
+            method: "POST",
+            data: {
+                email: $(".userEmail").val()
+            },
+            dataType: "json",
+            success: function (emailNo) {
 
-                    console.log("emailNo"+emailNo)
-                    var num = emailNo;
-                    $(".emailYC").css("display", '');
-                }
-            });
+                console.log("emailNo"+emailNo)
+                num = emailNo;
+                $(".emailYC").css("display", '');
+            }
+        });
+    }
+
+        $(".emailKey").on("click", function () {
+           lodingNum();
         });
 
 
@@ -81,28 +87,40 @@
                 });
             });
 */
-      $(".smsKey").on("click",function (){
-        $.ajax({
-          url : "/user/json/smsSend",
-          method: "POST",
-          data : {
-            phone : $(".userPhone").val()
-          },
-          dataType: "json",
-          success : function (result){
-           if(result){
-               $("#smsYC").css("display",'');
-           };
-          }
-        });
-      });
+
+
+            function fncLodingSmsNum(){
+
+                $.ajax({
+                    url: "/user/json/smsSend",
+                    method: "POST",
+                    data: {
+                        phone: $(".userPhone").val()
+                    },
+                    dataType: "json",
+                    success: function (smsNo) {
+
+                            console.log("smsNo"+smsNo)
+                             smsNum = smsNo;
+                            $("#smsYC").css("display", '');
+                    }
+                });
+            }
+
+             $(".smsKey").on("click",function (){
+                  fncLodingSmsNum();
+              });
 
       $(".CheckEmailKey2").on("click",function (){
+          console.log('asdsad')
+          console.log(num)
+
         var CheckEmailKey = $(".CheckEmailKey").val();
+          console.log(CheckEmailKey)
          //alert(CheckEmailKey);
          //var emailNo = num;
             // alert("랜덤 이메일 인증번호 :"+emailNo);
-        if(CheckEmailKey!=1234){
+        if(parseInt(CheckEmailKey)!=num){
             $(".emailYC").css("display", 'none');
             $(".emailInforYes").css('display','none');
           $('.emailInfor').css('display','');
@@ -114,8 +132,9 @@
       });
       $(".CheckSmsKey").on("click",function (){
         var CheckSms = $("#CheckSms").val();
-        alert(CheckSms);
-        if(CheckSms!=1234){
+        console.log(smsNum);
+        console.log(CheckSms);
+        if(CheckSms!=smsNum){
             $(".smsYC").css("display",'none');
             $(".smsYes").css('display','none');
           $('.smsNo').css('display','');
@@ -522,7 +541,7 @@
 
 </script>
 
- <body class="bg-light">
+<body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 
  <%--상단 툴바--%>
  <jsp:include page="/layout/toolbar.jsp"/>
@@ -586,7 +605,7 @@
           <div class="col-12" style="display:flex">
                <span style="width: 50%;">주민등록번호</span>
                 <div class="input-group has-validation">
-                   <input type="text" class="form-control" id="rrd" name="rrd"  style="margin-bottom: 25px;" required>
+                   <input type="text" class="form-control" id="rrd" name="rrd"  placeholder="'-'포함하여 작성" style="margin-bottom: 25px;" required>
                 </div>
           </div>
              <span id="rrdChk" style="display: none;" >
@@ -657,7 +676,7 @@
           </div>
                 <div>
                 <div style="display: flex">
-          <input type="tel" class="form-control userPhone" name="phone" style="margin-bottom: 25px; width: 250px;" >
+          <input type="tel" class="form-control userPhone" name="phone" placeholder="'-'포함하여 작성" style="margin-bottom: 25px; width: 250px;" >
                 <button type="button" class="btn btn-primary btn-sm smsKey" style="margin-bottom: 25px; width: 130px; margin-left: 10px;">인증번호 요청</button>
                 </div>
                     <span class="smsYC" id="smsYC" style="display: none; margin-right: 192px;">
