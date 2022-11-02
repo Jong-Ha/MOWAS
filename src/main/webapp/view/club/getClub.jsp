@@ -206,7 +206,7 @@
                             <input type="hidden" name="deleteFileName" value="${club.clubImage}" disabled>
                             <div class="input-group mb-3">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="clubName" name="clubName"
+                                    <input type="text" class="form-control" id="clubName" name="clubName" ${currentCluber.cluberStatus=='5'?'disabled':''}
                                            placeholder="모임명"
                                            value="${club.clubName}" required>
                                     <label for="clubName">모임명</label>
@@ -215,7 +215,7 @@
 
                             <div class="input-group mb-3">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="clubText" name="clubText"
+                                    <input type="text" class="form-control" id="clubText" name="clubText" ${currentCluber.cluberStatus=='5'?'disabled':''}
                                            placeholder="모임소개"
                                            value="${club.clubText}" required>
                                     <label for="clubText">모임소개</label>
@@ -224,7 +224,7 @@
 
                             <div class="input-group mb-3">
                                 <div class="form-floating">
-                                    <select class="form-select" id="interList" name="interList" required>
+                                    <select class="form-select" id="interList" name="interList" required ${currentCluber.cluberStatus=='5'?'disabled':''}>
                                         <option value="00">선택하세요</option>
                                         <option value="01" ${club.interList=='독서'?'selected':''}>독서</option>
                                         <option value="02" ${club.interList=='자동차'?'selected':''}>자동차</option>
@@ -246,11 +246,11 @@
 
                             <div class="input-group mb-3">
                                 <button class="btn btn-outline-secondary" type="button" id="updateClubMap"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#searchLocation">주요활동위치
+                                    ${currentCluber.cluberStatus=='5'?'disabled':'data-bs-target="#searchLocation" data-bs-toggle="modal"'}>
+                                    주요활동위치
                                 </button>
                                 <input type="text" class="form-control" placeholder="" readonly name="villCode"
-                                       id="villCode"
+                                       id="villCode" ${currentCluber.cluberStatus=='5'?'disabled':''}
                                        value="${club.villCode}"
                                 >
                             </div>
@@ -261,12 +261,12 @@
                                          style="object-fit: contain; width: 100%; height: 100%" alt="수정전 이미지">
                                 </div>
                                 <label for="file" class="form-label" style="display: none"></label>
-                                <input class="form-control" type="file" id="file" name="file">
+                                <input class="form-control" type="file" ${currentCluber.cluberStatus=='5'?'disabled':''} id="file" name="file">
                             </div>
 
                             <div class="input-group mb-3">
                                 <div class="form-floating">
-                                    <input type="text" class="tagify shadow-lg" id="clubTag" style="border-radius: 7px;"
+                                    <input type="text" class="tagify shadow-lg" id="clubTag" style="border-radius: 7px;" ${currentCluber.cluberStatus=='5'?'disabled':''}
                                            placeholder="태그 : Enter!">
                                     <label for="clubTag" style="display: none">태그 : Enter!</label>
                                     <c:forEach items="${tagList}" var="tag">

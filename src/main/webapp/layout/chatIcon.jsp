@@ -11,6 +11,11 @@
   $(function () {
 
     $(".chatBox").on("click", ()=> {
+      if(${empty user}){
+        alert('로그인 후 이용해주세요')
+        $('#loginModal').modal('show')
+        return false
+      }
       window.open("/chat/chatList",'chatList')
     })
 
@@ -27,7 +32,8 @@
     .chatBox{
       position: fixed;
       background-color: #FFFFFF;
-      border: 2px solid #000000;
+      /*border: 2px solid #f0d662;*/
+      border: 2px solid #baac68;
       cursor: pointer;
       bottom: 50px;
       right: 50px;
@@ -44,15 +50,26 @@
 
     .chatBox:hover{
       transform: scale(1.1);
+      border-color: #f8cd07;
+    }
+
+    .bi-messenger {
+      /*fill: #f0d662;*/
+      fill: #baac68;
+      transition: 0.3s;
+    }
+
+    .chatBox:hover .bi-messenger{
+      fill: #f8cd07;
+      transform: scale(1.3);
     }
   </style>
     <title>Title</title>
 </head>
 <body>
   <div class="chatBox">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-text chat" viewBox="0 0 16 16">
-      <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-      <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-messenger chat" viewBox="0 0 16 16">
+      <path d="M0 7.76C0 3.301 3.493 0 8 0s8 3.301 8 7.76-3.493 7.76-8 7.76c-.81 0-1.586-.107-2.316-.307a.639.639 0 0 0-.427.03l-1.588.702a.64.64 0 0 1-.898-.566l-.044-1.423a.639.639 0 0 0-.215-.456C.956 12.108 0 10.092 0 7.76zm5.546-1.459-2.35 3.728c-.225.358.214.761.551.506l2.525-1.916a.48.48 0 0 1 .578-.002l1.869 1.402a1.2 1.2 0 0 0 1.735-.32l2.35-3.728c.226-.358-.214-.761-.551-.506L9.728 7.381a.48.48 0 0 1-.578.002L7.281 5.98a1.2 1.2 0 0 0-1.735.32z"/>
     </svg>
   </div>
 
