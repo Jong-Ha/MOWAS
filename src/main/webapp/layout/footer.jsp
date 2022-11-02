@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<footer class="footer mt-auto" style="margin-top: 50px;">
+<footer class="footer mt-auto" style="padding-top: 100px;">
   <div class="b-example-divider container"></div>
 
   <div class="bg-dark text-secondary px-4 py-5 text-center" style="height : 220px;">

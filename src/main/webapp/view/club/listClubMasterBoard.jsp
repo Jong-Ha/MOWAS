@@ -3,7 +3,16 @@
 <script>
     $(function () {
 
+        $('#addClubMasterBoard').off('show.bs.modal').on('show.bs.modal',function(){
+            if(${currentCluber.cluberStatus=='4'}){
+                return false
+            }
+        })
+
         $('.addClubMasterBoardView').off('click').on('click', function () {
+            if(${currentCluber.cluberStatus=='4'}){
+                return false
+            }
             $.ajax({
                 url: '/club/addClubMasterBoard/${clubNum}',
                 success: function (re) {
@@ -30,6 +39,13 @@
             clubLayout()
             $('.clubMasterBoardBox .card-header .text-truncate').css('max-width',$('.clubMasterBoardBox .card-header').width()-75)
             $('.clubMasterBoardBox .card-body .text-truncate').css('max-width',$('.clubMasterBoardBox .card-header').width())
+        })
+
+        $('#getClubMasterBoard').off('show.bs.modal').on('show.bs.modal',function(){
+            if(!${currentCluber.cluberStatus==4||currentCluber.cluberStatus==5||currentCluber.cluberStatus==6}){
+                alert('모임원만 조회가 가능합니다')
+                return false
+            }
         })
 
         // paging
@@ -82,17 +98,35 @@
                 </div>
             </c:forEach>
         </div>
-        <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" var="i">
-            <span class="paging">${i}</span>
-        </c:forEach>
+
+        <nav aria-label="Page navigation example" style="display: flex;justify-content: center;">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" var="i">
+                    <li class="page-item ${search.currentPage==i?'active':''}"><a class="paging page-link">${i}</a></li>
+                </c:forEach>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
         <label>
             <input type="hidden" id="currentPage" name="currentPage" value="1">
             <input type="text" name="searchKeyword" value="${search.searchKeyword}">
         </label>
         <input type="submit" value="검색">
+        <c:if test="${currentCluber.cluberStatus=='5'||currentCluber.cluberStatus=='6'}">
         <button class="btn btn-primary addClubMasterBoardView" data-bs-toggle="modal"
                 data-bs-target="#addClubMasterBoard">
             글쓰기
         </button>
+        </c:if>
     </form>
 </div>
