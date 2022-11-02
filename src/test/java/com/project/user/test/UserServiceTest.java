@@ -36,8 +36,7 @@ public class UserServiceTest {
         user.setVillCode("강남8동");
         user.setUserImage("이미지8.jpg");
         //new Date(System.currentTimeMillis());
-        user.setLcd("2022-10-07");
-        user.setLoginCheck("1");
+
         user.setPsd("2022-10-07");
         user.setPed("2022-10-07");
         user.setPpt(30);
@@ -62,8 +61,7 @@ public class UserServiceTest {
         Assert.assertEquals("11122223333", user.getPhone());
         Assert.assertEquals("강남8동", user.getVillCode());
         Assert.assertEquals("이미지8.jpg", user.getUserImage());
-        Assert.assertEquals("2022-10-07", user.getLcd());
-        Assert.assertEquals("1", user.getLoginCheck());
+
         Assert.assertEquals("2022-10-07", user.getPsd());
         Assert.assertEquals("2022-10-07", user.getPed());
         Assert.assertEquals(30, user.getPpt());
@@ -87,7 +85,7 @@ public class UserServiceTest {
         Assert.assertEquals("1112222", user.getPhone());
         Assert.assertEquals("강남4동", user.getVillCode());
         Assert.assertEquals("이미지.jpg", user.getUserImage());
-        Assert.assertEquals("1", user.getLoginCheck());
+
         Assert.assertEquals(30, user.getPpt());
         Assert.assertEquals(70, user.getReviewPt());
     }
@@ -108,7 +106,7 @@ public class UserServiceTest {
         Assert.assertEquals("1112222", user.getPhone());
         Assert.assertEquals("강남4동", user.getVillCode());
         Assert.assertEquals("이미지.jpg", user.getUserImage());
-        Assert.assertEquals("1", user.getLoginCheck());
+
         Assert.assertEquals(30, user.getPpt());
         Assert.assertEquals(70, user.getReviewPt());
 
@@ -134,7 +132,7 @@ public class UserServiceTest {
         Assert.assertEquals("777888", user.getPhone());
         Assert.assertEquals("체인지동", user.getVillCode());
         Assert.assertEquals("change.jpg", user.getUserImage());
-        Assert.assertEquals("1", user.getLoginCheck());
+
         Assert.assertEquals(30, user.getPpt());
         Assert.assertEquals(70, user.getReviewPt());
     }

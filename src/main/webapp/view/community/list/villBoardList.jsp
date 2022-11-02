@@ -111,109 +111,120 @@
         /*modal 창 오픈*/
 
         $(".villBoardSubmit").on("click", function () {
-
-            var villTitle = $(".villTitle1").val()
-            var villText = $(".villText1").val()
+            var userId = '${user.userId}';
 
 
-            var villTag = $("#villTag").val();
-            var villTag2 = JSON.parse(villTag);
+            if (userId === '') {
 
 
-            var str = ''
-            $.each(villTag2, function (index, item) {
-                console.log(item);
-
-                str += "#"
-                str += item.value;
-                str += " "
-            })
-
-            $.ajax({
-                url: "/commu/json/addVillBoard",
-                method: "post",
-                data: JSON.stringify({
-                    "boardCategory": boardCategory,
-                    "villTitle": villTitle,
-                    "villText": villText,
-                    "villTag": str
-
-                }),
-                dataType: "json",
-                contentType: "application/json; charset=UTF-8",
-                success: function (JSONData, result) {
-                    console.log(JSONData);
+                alert("로그인후 사용 할수 있습니다")
+            } else if (userId !== '') {
 
 
-                    var boardNum = JSONData
+                var villTitle = $(".villTitle1").val()
+                var villText = $(".villText1").val()
 
-                    var file = $("#addForm #file1").length
 
-                    if (file > 0) {
+                var villTag = $("#villTag").val();
+                var villTag2 = JSON.parse(villTag);
 
-                        //form 테그를 불러와서 form변수에 등록
-                        var form = document.querySelector("form");
-                        //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
-                        var formData = new FormData(form);
-                        //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
-                        var fileSize = $("#addForm #file1")[0].files;
-                        console.log(fileSize.length);
-                        //formData에 해당 게시글 번호, 게시글 category append
-                        formData.append("boardNum", boardNum);
-                        formData.append("boardCategoru", boardCategory);
 
-                        //file길이 만큼 for문으로 formData에 append함
-                        for (var i = 0; i < fileSize.length; i++) {
-                            formData.append("form", fileSize[i]);
-                            //파일이 잘 들어 갔는지 확인
-                            console.log(fileSize[i]);
-                        }
-                        //formData에 들어 있는 boardNum과 file의 정보를 비동기식으로 보냄
-                        //파일은 json형식으로 보낼수 없기 떄문에 contentType, processData, dataType을 false로 지정
-                        $.ajax({
-                            url: "/clubCal/json/fileUpload",
-                            type: "post",
-                            processData: false,
-                            contentType: false,
-                            cache: false,
-                            timeout: 600000,
-                            data: formData,
-                            headers: {'cache-control': 'no-cache', 'pragma': 'no-cache'},
-                            enctype: "multipart/form-data",
-                            success: function (result) {
+                var str = ''
+                $.each(villTag2, function (index, item) {
+                    console.log(item);
 
-                                console.log(result);
+                    str += "#"
+                    str += item.value;
+                    str += " "
+                })
 
+                $.ajax({
+                    url: "/commu/json/addVillBoard",
+                    method: "post",
+                    data: JSON.stringify({
+                        "boardCategory": boardCategory,
+                        "villTitle": villTitle,
+                        "villText": villText,
+                        "villTag": str
+
+                    }),
+                    dataType: "json",
+                    contentType: "application/json; charset=UTF-8",
+                    success: function (JSONData, result) {
+                        console.log(JSONData);
+
+
+                        var boardNum = JSONData
+
+                        var file = $("#addForm #file1").length
+
+                        if (file > 0) {
+
+                            //form 테그를 불러와서 form변수에 등록
+                            var form = document.querySelector("form");
+                            //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
+                            var formData = new FormData(form);
+                            //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
+                            var fileSize = $("#addForm #file1")[0].files;
+                            console.log(fileSize.length);
+                            //formData에 해당 게시글 번호, 게시글 category append
+                            formData.append("boardNum", boardNum);
+                            formData.append("boardCategoru", boardCategory);
+
+                            //file길이 만큼 for문으로 formData에 append함
+                            for (var i = 0; i < fileSize.length; i++) {
+                                formData.append("form", fileSize[i]);
+                                //파일이 잘 들어 갔는지 확인
+                                console.log(fileSize[i]);
                             }
+                            //formData에 들어 있는 boardNum과 file의 정보를 비동기식으로 보냄
+                            //파일은 json형식으로 보낼수 없기 떄문에 contentType, processData, dataType을 false로 지정
+                            $.ajax({
+                                url: "/clubCal/json/fileUpload",
+                                type: "post",
+                                processData: false,
+                                contentType: false,
+                                cache: false,
+                                timeout: 600000,
+                                data: formData,
+                                headers: {'cache-control': 'no-cache', 'pragma': 'no-cache'},
+                                enctype: "multipart/form-data",
+                                success: function (result) {
 
-                        })
+                                    console.log(result);
+
+                                }
+
+                            })
+                        }
+                        // 성공시 해당 창을 닫고 부모창을 reload
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Your work has been saved',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        setTimeout(function () {
+                            window.location.reload()
+                        }, 2000);
+                        //error 발생시 그냥 창을 닫음
+                    }, error: function () {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Your work has been saved',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        setTimeout(function () {
+                            window.location.reload()
+                        }, 2000);
                     }
-                    // 성공시 해당 창을 닫고 부모창을 reload
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Your work has been saved',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
+                });
+            }
 
-                    setTimeout(function () {
-                        window.location.reload()
-                    }, 2000);
-                    //error 발생시 그냥 창을 닫음
-                }, error: function () {
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Your work has been saved',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    setTimeout(function () {
-                        window.location.reload()
-                    }, 2000);
-                }
-            });
 
         });
 
@@ -492,7 +503,7 @@
                                 '                                    </div>' +
                                 '                                  </div>' +
                                 '                               </div>' +
-                                '                            <div id="'+item.villBoardNum+'" class="carousel slide potoBox getPage" data-bs-ride="carousel">'+
+                                '                            <div id="' + item.villBoardNum + '" class="carousel slide potoBox getPage" data-bs-ride="carousel">' +
                                 '                       <div class="carousel-inner">'
                             $.each(item.file, function (index, item) {
 
@@ -500,10 +511,10 @@
                                     '   <div class="carousel-item active get">' +
                                     '       <img class="poto" width="100%" height="100%" src="/resources/' + item.fileName + '" alt="any">' +
                                     '    </div>'
-                                })
+                            })
 
                             str +=
-                                '                           </div>'+
+                                '                           </div>' +
                                 '                               </div>' +
                                 '                              <div class="card-text text" style="padding: 10px; font-size: 1em; height: 48px;">' + item.villTag + '</div>' +
                                 '                            <div class="card-footer">' +
@@ -541,9 +552,9 @@
                             $(".ListVillBoard").append(str);
 
 
-                            setTimeout( function () {
+                            setTimeout(function () {
 
-                                const carousel = new bootstrap.Carousel($('#'+item.villBoardNum), {
+                                const carousel = new bootstrap.Carousel($('#' + item.villBoardNum), {
                                     interval: 2000,
                                     wrap: true
                                 })
@@ -782,7 +793,7 @@
 
 <jsp:include page="/layout/toolbar.jsp"/>
 
-<img src="${pageContext.request.contextPath}/resources/images/mim.jpeg"
+<img class="shadow-lg" src="${pageContext.request.contextPath}/resources/images/club1.png"
      style="height: 500px;border-radius: 10px;  width: 1600px;">
 
 <!-- Example Code -->
@@ -793,8 +804,7 @@
     <input hidden class="boardCategory" value="3">
 
     <div class="addBox">
-        <button class="btn btn-primary add" data-bs-toggle="modal" data-bs-target="#exampleModal"> 우리 동네 게시글 작성
-        </button>
+        <button class="btn btn-primary add" data-bs-toggle="modal" data-bs-target="#exampleModal"> 우리 동네 게시글 작성</button>
     </div>
     <div class="searchBox">
         <form id="textSearch" class="d-flex" role="search">
@@ -879,7 +889,8 @@
                             <div class="carousel-inner">
                                 <c:forEach var="File" items="${villBoard.file}">
                                     <div class="carousel-item active get" data-bs-interval="2000">
-                                        <img class="d-block w-100  poto" width="100%" height="100%" src="/resources/villBoardFiles${File.fileName }" alt="any">
+                                        <img class="d-block w-100  poto" width="100%" height="100%"
+                                             src="/resources/villBoardFiles${File.fileName }" alt="any">
                                     </div>
                                 </c:forEach>
                             </div>
@@ -1067,7 +1078,7 @@
 
 <jsp:include page="/layout/chatIcon.jsp"/>
 
-<%--<jsp:include page="/layout/footer.jsp"/>--%>
+<jsp:include page="/layout/footer.jsp"/>
 
 </body>
 </html>

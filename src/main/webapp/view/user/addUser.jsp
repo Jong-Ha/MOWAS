@@ -850,7 +850,6 @@
         <input type="hidden" id="interListCheck" value="true">
         <input type="hidden" class="masterCheck" name="masterCheck" value="1">
         <input type="hidden" class="userStatus" name="userStatus" value="1">
-        <input type="hidden" class="lcd" name="lcd" value="2022-10-10">
         <input type="hidden" class="psd" name="psd" value="">
         <input type="hidden" class="ped" name="ped" value="">
         <input type="hidden" class="ppt" name="ppt" value="0">
