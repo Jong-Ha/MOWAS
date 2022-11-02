@@ -393,7 +393,7 @@ public class UserRestController {
 */
 
     @RequestMapping(value = "smsSend", method = RequestMethod.POST)
-    public boolean smsSend(@RequestParam(value = "phone", required = false) String phone) throws Exception {
+    public String smsSend(@RequestParam(value = "phone", required = false) String phone,Model model ) throws Exception {
         System.out.println("여기는 smsSend 컨트롤러 시작이다");
         System.out.println("sms의 값은 ? : " + phone);
 
@@ -401,12 +401,20 @@ public class UserRestController {
         String api_secret = "SDJQN3WYN4QUGY8Q5QFM8MNHC9RQHPWI";
         Message coolsms = new Message(api_key, api_secret);
 
+        Random rand = new Random();
+        String smsNo="";
+        for(int i=0;i<4;i++){
+            String ran = Integer.toString(rand.nextInt(10));
+            smsNo += ran;
+        }
+        System.out.println("smsNo의 값은 ::::: "+smsNo);
+
         // 4 params(to, from, type, text) are mandatory. must be filled
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("to", "01064440516");
         params.put("from", phone);
         params.put("type", "SMS");
-        params.put("text", "MOWAS 문자인증입니다. 인증번호는[1234]입니다.");
+        params.put("text", "MOWAS 문자인증입니다. 인증번호는"+smsNo+"입니다.");
         params.put("app_version", "test app 1.2"); // application name and version
 
         try {
@@ -416,9 +424,11 @@ public class UserRestController {
             System.out.println(e.getMessage());
             System.out.println(e.getCode());
         }
-        boolean result = true;
+
+        System.out.println("smsNo의 값은???????????"+smsNo);
+        model.addAttribute("smsNo", smsNo);
         System.out.println("여기는 smsSend 컨트롤러 종료이다");
-    return result;
+    return smsNo;
     }
 
     @RequestMapping(value="naverSave", method=RequestMethod.POST)

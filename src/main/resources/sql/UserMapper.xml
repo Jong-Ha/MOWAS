@@ -126,13 +126,7 @@
         values(#{userId:VARCHAR}, #{email:VARCHAR}, #{userImage:VARCHAR}, #{gender:VARCHAR}, '2')
     </insert>
 
-    <update id="updateLcd" parameterType="String" >
-        UPDATE users
-        <set>
-            lcd = #{msg}
-        </set>
 
-    </update>
 
     <select id="checkDupRrd" parameterType="String" resultMap="userSelectMap">
         SELECT rrd
