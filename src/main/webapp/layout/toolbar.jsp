@@ -9,7 +9,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script type="text/javascript" src="/resources/OpenSource/js/jquery.cookie.js"></script>
-<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
+        charset="utf-8"></script>
 
 
 <script type="text/javascript">
@@ -102,16 +103,16 @@
         $(".loginStart").on('click', function () {
             fncLogin();
 
-            setTimeout(function(){
+            setTimeout(function () {
                 location.reload();
-            },1000);
+            }, 1000);
         });
         $('input[name="password"]').on('keydown', function (key) {
             if (key.keyCode == 13) {
                 fncLogin();
-                setTimeout(function(){
+                setTimeout(function () {
                     location.reload();
-                },1000);
+                }, 1000);
             }
         })
     });
@@ -138,7 +139,6 @@
     });
 
 
-
     // const { naver } = window as any;
     //
     // function fncLogin(props: any) {
@@ -162,7 +162,6 @@
     // ...
     // )
     // }
-
 
 
     // $(function () {
@@ -415,44 +414,63 @@
                 <div class="collapse navbar-collapse" id="navbarScroll">
                     <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                         <li class="nav-item">
-                            <a class="nav-link active  underline yellow" aria-current="page" onclick="location.href='/site/listMasterBoard'"  style="color : #ffffff; font-size: 1.3em;">공지 사항</a>
+                            <a class="nav-link active  underline yellow" aria-current="page"
+                               onclick="location.href='/site/listMasterBoard'"
+                               style="color : #ffffff; font-size: 1.3em;">공지 사항</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active  underline yellow" aria-current="page" onclick="location.href='/club/listClub'"  style="color : #ffffff; font-size: 1.3em;">모임 게시판</a>
+                            <a class="nav-link active  underline yellow" aria-current="page"
+                               onclick="location.href='/club/listClub'" style="color : #ffffff; font-size: 1.3em;">모임
+                                게시판</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link  underline yellow" href="#" style="color : #ffffff;font-size: 1.3em;" onclick="location.href='/clubCal/listCalenderReview?boardCategory='+1+'&reviewRange='+1">커뮤니티 게시판</a>
+                            <a class="nav-link  underline yellow" href="#" style="color : #ffffff;font-size: 1.3em;"
+                               onclick="location.href='/clubCal/listCalenderReview?boardCategory='+1+'&reviewRange='+1">커뮤니티
+                                게시판</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link  underline yellow" style="color : #ffffff; font-size: 1.3em;" onclick="location.href='/deal/getListDeal?boardCategory=99'">중고 거래 게시판</a>
+                            <a class="nav-link  underline yellow" style="color : #ffffff; font-size: 1.3em;"
+                               onclick="location.href='/deal/getListDeal?boardCategory=99'">중고 거래 게시판</a>
                         </li>
 
-                <c:if test="${sessionScope.user.masterCheck eq 2}">
-                        <li class="nav-item">
-                            <div class="dropdown">
-                                <a class="nav-link  underline yellow dropdown-toggle" style="color : #ffffff; font-size: 1.3em;"
-                                   role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                    관리자 게시판
-                                </a>
+                        <c:if test="${sessionScope.user.masterCheck eq 2}">
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <a class="nav-link  underline yellow dropdown-toggle"
+                                       style="color : #ffffff; font-size: 1.3em;"
+                                       role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                                       aria-expanded="false">
+                                        관리자 게시판
+                                    </a>
 
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <li><a class="dropdown-item" href="/user/listUser">회 원 관 리</a></li>
-                                    <li><a class="dropdown-item" href="/site/listCommunityReport">커뮤니티 신고</a></li>
-                                    <li><a class="dropdown-item" href="/site/listCommunityReportProcess">커뮤니티 신고 처리</a></li>
-                                    <li><a class="dropdown-item" href="/site/listClubReport">모임 신고</a></li>
-                                    <li><a class="dropdown-item" href="/site/listClubReportProcess">모임 신고 처리</a></li>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <li><a class="dropdown-item" href="/user/listUser">회 원 관 리</a></li>
+                                        <li><a class="dropdown-item" href="/site/listCommunityReport">커뮤니티 신고</a></li>
+                                        <li><a class="dropdown-item" href="/site/listCommunityReportProcess">커뮤니티 신고
+                                            처리</a></li>
+                                        <li><a class="dropdown-item" href="/site/listClubReport">모임 신고</a></li>
+                                        <li><a class="dropdown-item" href="/site/listClubReportProcess">모임 신고 처리</a>
+                                        </li>
 
-                                </ul>
-                            </div>
-                         </li>
-                </c:if>
+                                    </ul>
+                                </div>
+                            </li>
+                        </c:if>
 
                     </ul>
-<c:if test="${sessionScope.user.userId ne null}">
+                    <c:if test="${sessionScope.user.userId ne null}">
                     <div class="logitem">
-                        <img src="${pageContext.request.contextPath}/resources/images/proplePoto.png"
+
+                        <img src="/resources/${user.userImage}"
                              style="width: 60px;margin-right: 10px; border-radius: 40px; height: 50px;">
+
+                        <c:if test="${user.userImage eq null}">
+
+                            <img src="${pageContext.request.contextPath}/resources/images/proplePoto.png"
+                                 style="width: 60px;margin-right: 10px; border-radius: 40px; height: 50px;">
+
+                        </c:if>
                         </c:if>
 
                         <div class="login ">
@@ -508,11 +526,14 @@
             <div class="modal-body">
                 <form>
 
-                    <div class="loginbody" style="display: flex; align-items: center;  justify-items: center;  flex-direction: column;">
+                    <div class="loginbody"
+                         style="display: flex; align-items: center;  justify-items: center;  flex-direction: column;">
 
-                        <div class="input-group mb-3 mt-3" style="display: flex;align-items: center; justify-content: center;">
+                        <div class="input-group mb-3 mt-3"
+                             style="display: flex;align-items: center; justify-content: center;">
                             <div class="logo">
-                                <img class="mb-4" src="/resources/images/MOWAS.png" width="160" height="120" style="border-radius: 20px">
+                                <img class="mb-4" src="/resources/images/MOWAS.png" width="160" height="120"
+                                     style="border-radius: 20px">
                             </div>
                         </div>
 
@@ -532,7 +553,8 @@
                         </div>-->
                         <div class="input-group mb-3 mt-3">
                             <div class="form-floating">
-                                <input type="password" class="form-control"  id="password" placeholder="Password" name="password">
+                                <input type="password" class="form-control" id="password" placeholder="Password"
+                                       name="password">
                                 <label for="password">Password</label>
                             </div>
                         </div>
@@ -540,25 +562,31 @@
 
                     <div>
                         <label for="findId">
-                            <div  id="findId" style="font-weight: bold; font-size: 1.2rem; cursor: pointer">아이디 찾기</div>
+                            <div id="findId" style="font-weight: bold; font-size: 1.2rem; cursor: pointer">아이디 찾기</div>
                         </label>
 
                         <label for="findPassword">
-                            <div  id="findPassword"  style=" margin-left: 13px; font-weight: bold; font-size: 1.2rem; cursor: pointer">비밀번호 찾기</div>
+                            <div id="findPassword"
+                                 style=" margin-left: 13px; font-weight: bold; font-size: 1.2rem; cursor: pointer">비밀번호
+                                찾기
+                            </div>
                         </label>
                     </div>
 
-                    <div class="md-3" style=" margin-top: 10px;justify-content: center;display: flex;margin-bottom: 20px;">
+                    <div class="md-3"
+                         style=" margin-top: 10px;justify-content: center;display: flex;margin-bottom: 20px;">
 
                         <div class="form-check">
-                            <input class="form-check-input checkbox" type="checkbox" value="keepId" name="keepId" id="keepId">
+                            <input class="form-check-input checkbox" type="checkbox" value="keepId" name="keepId"
+                                   id="keepId">
                             <label class="form-check-label" for="keepId">
                                 아이디 저장
                             </label>
                         </div>
 
                         <div class="form-check" style="margin-left: 20px;">
-                            <input class="form-check-input checkbox" type="checkbox" disabled="disabled" value="keepLogin" name="keepLogin" id="keepLogin">
+                            <input class="form-check-input checkbox" type="checkbox" disabled="disabled"
+                                   value="keepLogin" name="keepLogin" id="keepLogin">
                             <label class="form-check-label" for="keepLogin">
                                 로그인 저장
                             </label>
@@ -569,11 +597,14 @@
                     <div>
 
                         <button class="btn btn-outline-primary btnlf addUserStart" type="button"> 회원 가입</button>
-                        <button class="btn btn-outline-info btnlf loginStart" style="margin-right: 39px;" type="button">로그인</button>
+                        <button class="btn btn-outline-info btnlf loginStart" style="margin-right: 39px;" type="button">
+                            로그인
+                        </button>
 
                     </div>
 
-                    <div class="snsLogin" style="    display: flex;justify-content: center;align-items: center;flex-direction: column;">
+                    <div class="snsLogin"
+                         style="    display: flex;justify-content: center;align-items: center;flex-direction: column;">
 
                         <!-- 카카오 로그인 -->
                         <a class="p-2"
@@ -581,10 +612,11 @@
                         <!-- REST_API키 및 REDIRECT_URi는 본인걸로 수정하세요 -->
                         <!-- 저는 redirect_uri을 http://localhost:8080/member/kakaoLogin로 했습니다. -->
                         <!-- 본인걸로 수정 시 띄어쓰기 절대 하지 마세요. 오류납니다. -->
-                        <img class="kakaoImage" src="/resources/images/kakao_login_medium_wide.png" style="height:50px; width:255px; cursor:pointer">
+                        <img class="kakaoImage" src="/resources/images/kakao_login_medium_wide.png"
+                             style="height:50px; width:255px; cursor:pointer">
                         <!-- 이미지는 카카오 개발자센터에서 제공하는 login 이미지를 사용했습니다. -->
 
-                       <!--<img class="naverIdLogin" src="/resources/images/naverLogin.png" style="height: 50px;width: 71.2%; margin-top: 10px;cursor:pointer">-->
+                        <!--<img class="naverIdLogin" src="/resources/images/naverLogin.png" style="height: 50px;width: 71.2%; margin-top: 10px;cursor:pointer">-->
 
                         <div id="naverIdLogin"></div>
                     </div>
