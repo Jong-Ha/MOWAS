@@ -84,8 +84,9 @@
 <script>
 
     //소켓 연결
-    let socket = io("http://192.168.0.234:5000/chatlist", {
-        /*const socket = io("http://192.168.0.235:5000/chatlist", {*/
+    let socket = io( "http://http://localhost:8080/chatlist",{
+                    /*"http://192.168.0.234:5000/chatlist", {*/
+                    /*const socket = io("http://192.168.0.235:5000/chatlist", {*/
         cors: {origin: '*'},
         query: {
             userId: '${user.userId}',

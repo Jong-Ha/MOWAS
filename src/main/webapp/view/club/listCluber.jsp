@@ -13,6 +13,7 @@
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 <div class="modal-body">
+    <c:if test="${currentCluber.cluberStatus=='5'||currentCluber.cluberStatus=='6'}">
     <div class="buttonClass">
         <div class="badge bg-primary text-wrap listCluberApply" data-bs-target="#listCluberApply" data-bs-toggle="modal">가입 신청 조회</div>
         <div class="badge bg-primary text-wrap addClubBlacklist" data-bs-target="#addClubBlacklist" data-bs-toggle="modal">블랙리스트 등록</div>
@@ -24,6 +25,7 @@
             <div class="badge bg-primary text-wrap listCluber" data-bs-target="#listCluber" data-bs-toggle="modal">현재 모임원 목록 조회</div>
         </c:if>
     </div>
+    </c:if>
     <div class="card-list">
         <c:if test="${empty list}">
             <div class="card shadow-lg cardBox noHover" style="grid-template-columns: 1fr;">탈퇴한 모임원이 없습니다!</div>
