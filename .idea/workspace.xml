@@ -10,8 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="JHK 2022.10.31&#10;&#10;회원가입 페이지 디자인 수정">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/getMyId.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/getMyId.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/getMyIdEnd.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/getMyIdEnd.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/getMyPassword.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/getMyPassword.jsp" afterDir="false" />
@@ -38,7 +43,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="master" />
+    <option name="BRANCH" value="origin/master" />
   </component>
   <component name="Git.Settings">
     <option name="PUSH_TAGS">
@@ -510,7 +515,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="JHK" />
                       </list>
                     </value>
                   </entry>
@@ -583,7 +588,8 @@
     <MESSAGE value="JHK 2022.10.31&#10;&#10;네이버 로그인 완료" />
     <MESSAGE value="JHK 2022.11.01&#10;&#10;일반 회원가입 완료, 신고,벌점,댓글 페이징 처리" />
     <MESSAGE value="JHK 2022.11.01&#10;&#10;디비 초기화 후 매퍼 수정 커밋" />
-    <option name="LAST_COMMIT_MESSAGE" value="JHK 2022.11.01&#10;&#10;디비 초기화 후 매퍼 수정 커밋" />
+    <MESSAGE value="JHK 2022.11.02&#10;&#10;아이디,비밀번호 찾기창&amp; 아이디,비밀번호 완료 창 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="JHK 2022.11.02&#10;&#10;아이디,비밀번호 찾기창&amp; 아이디,비밀번호 완료 창 수정" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -613,10 +619,15 @@
           <line>37</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/webapp/view/user/getMyIdEnd.jsp</url>
+          <line>42</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDao.java</url>
           <line>33</line>
-          <properties class="com.project.user.dao.UserDao">
+          <properties class="com.project.user.dao.UserDao" method="updateLcd">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>

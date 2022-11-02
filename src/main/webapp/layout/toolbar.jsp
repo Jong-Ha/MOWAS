@@ -83,7 +83,7 @@
     };
 
     $(function () {
-        $('input[name="userId"]').focus();
+        $('#userId').focus();
         console.log('keepId의 값은? : ' + $.cookie('keepId'))
         if ($.cookie('keepId') != undefined) {
             $('#keepId').prop('checked', true);
@@ -107,7 +107,7 @@
                 location.reload();
             }, 1000);
         });
-        $('input[name="password"]').on('keydown', function (key) {
+        $('#password').on('keydown', function (key) {
             if (key.keyCode == 13) {
                 fncLogin();
                 setTimeout(function () {

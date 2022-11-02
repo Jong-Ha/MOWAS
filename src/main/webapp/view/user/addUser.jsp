@@ -64,7 +64,6 @@ let smsNum
 
         $(".emailKey").on("click", function () {
            lodingNum();
-           // alert('emailNum'+num);
         });
 
 

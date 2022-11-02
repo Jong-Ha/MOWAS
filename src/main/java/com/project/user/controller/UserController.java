@@ -146,7 +146,7 @@ public class UserController {
 
             User findUser = userService.getMyId(user);
 
-        model.addAttribute("user", findUser);
+        model.addAttribute("findUser", findUser);
         return "forward:/view/user/getMyIdEnd.jsp";
     }
 
@@ -158,7 +158,7 @@ public class UserController {
 
         User findPwd = userService.getMyPassword(user);
 
-        model.addAttribute("user", findPwd);
+        model.addAttribute("findUser", findPwd);
         return "forward:/view/user/getMyPasswordEnd.jsp";
     }
     @RequestMapping(value="loginNow", method=RequestMethod.GET)
@@ -202,7 +202,7 @@ public class UserController {
         }catch (Exception e){
             System.out.println("로그인 실패");
         }
-        return "forward:/view/user/main.jsp";
+        return "forward:/";
     }
     @RequestMapping(value = "logout", method = RequestMethod.GET)
     public String logout(HttpServletRequest request, HttpSession session, HttpServletResponse response) {

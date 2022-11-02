@@ -114,9 +114,12 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script type="text/javascript">
+    let num
+    let smsNum
     $(function () {
-        $(".emailKey").on("click", function () {
+        function lodingNum() {
             $.ajax({
                 url: "/user/json/mailSender",
                 method: "POST",
@@ -124,54 +127,109 @@
                     email: $(".userEmail").val()
                 },
                 dataType: "json",
-                success: function ({JSONData, status}) {
-                    console.log(status);
+                success: function (emailNo) {
+
+                    console.log("emailNo의 값?"+emailNo)
+                    num = emailNo;
                     $(".emailYC").css("display", '');
                 }
             });
+        }
+
+        $(".emailKey").on("click", function () {
+            lodingNum();
         });
-        $(".smsKey").on("click",function (){
+
+        function fncLodingSmsNum(){
+
             $.ajax({
-                url : "/user/json/smsSend",
+                url: "/user/json/smsSend",
                 method: "POST",
-                data : {
-                    phone : $(".userPhone").val()
+                data: {
+                    phone: $(".userPhone").val()
                 },
                 dataType: "json",
-                success : function (){
-                    $(".smsYC").css("display",'');
+                success: function (smsNo) {
+                    alert('smsNo의값?'+smsNo)
+                    console.log("smsNo의 값은????"+smsNo)
+                    smsNum = smsNo;
+                    alert('smsNum의 값?'+smsNum)
+                    $("#smsYC").css("display", '');
+                },
+                error: function (){
+                    console.log('휴대폰번호 인증번호 요청 실패')
                 }
             });
+        }
+
+        $(".smsKey").on("click",function (){
+            fncLodingSmsNum();
         });
 
         $(".CheckEmailKey2").on("click",function (){
+            console.log('asdsad')
+            console.log('인증번호 확인 클릭시 num의 값???'+num)
+
             var CheckEmailKey = $(".CheckEmailKey").val();
-            alert(CheckEmailKey);
-            var emailNo = ${no.emailNo}
-                alert("랜덤 이메일 인증번호 :"+emailNo);
-            if(CheckEmailKey!=1234){
+            console.log(CheckEmailKey)
+            //alert(CheckEmailKey);
+            //var emailNo = num;
+            // alert("랜덤 이메일 인증번호 :"+emailNo);
+            if(parseInt(CheckEmailKey)!=num){
+                $(".emailYC").css("display", 'none');
+                $(".emailInforYes").css('display','none');
                 $('.emailInfor').css('display','');
             }else{
+                $(".emailYC").css("display", 'none');
+                $('.emailInfor').css('display','none');
                 $(".emailInforYes").css('display','');
             }
         });
         $(".CheckSmsKey").on("click",function (){
             var CheckSms = $("#CheckSms").val();
-            alert(CheckSms);
-            if(CheckSms!=1234){
+            console.log('hhhh')
+            console.log('인증확인 클릭시 smsNum의 값?'+smsNum);
+            console.log('CheckSms의값? '+CheckSms);
+            if(CheckSms!=smsNum){
+                $(".smsYC").css("display",'none');
+                $(".smsYes").css('display','none');
                 $('.smsNo').css('display','');
             }else{
+                $(".smsYC").css("display",'none');
+                $('.smsNo').css('display','none');
                 $(".smsYes").css('display','');
             }
         });
+    });
+    $(function () {
+        let check = true
 
-        var userName = $("#userName").val()
-        var email = $("#email").val()
-        var phone = $("#phone").val()
-        var basic = $("#basic").val()
-        var kakao = $("#kakao").val()
-        var naver = $("#naver").val()
+        $('#asd').on('submit',function(){
+            if(check){
+                return false
+            }
+        })
+
         $("#ok").on("click",function (){
+
+
+            if(!$("input:checked[name='flexRadioDefault']").is(":checked")){
+                Swal.fire({
+                    icon: 'warning',
+                    title: "휴대폰 또는 이메일 인증을 선택해주세요."
+                })
+                return false;
+            }
+
+            if(!$("input:checked[name='loginType']").is(":checked")){
+                Swal.fire({
+                    icon: 'warning',
+                    title: "회원 가입유형을 선택해주세요."
+                })
+                return false;
+            }
+
+            check = false
             $("form").attr("method","POST").attr("action","/user/getMyId").submit();
         });
     });
@@ -179,7 +237,7 @@
 <body>
 <%-- <%--상단 툴바--%>
 <jsp:include page="/layout/toolbar.jsp"/>
-<form>
+<form id="asd">
     <div class="container">
         <div class="row mx-4 my-5">
             <h3>아이디 찾기</h3>
@@ -191,36 +249,37 @@
                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                 <label class="form-check-label" for="flexRadioDefault1">
                     회원정보에 등록한 휴대전화로 인증하기<br>
-                    회원정보에 등록한 휴대전화 번호와 입력한 휴대전화 번호가 같아야, 인증번호를 받을 수 있습니다.
                 </label>
             </div>
 
-
+            <div class="form-check">
             <div class="row mt-2 mb-2">
                 <div class="form-group d-flex align-items-center">
                     <p class="fw-bold text-left mx-3" style="width: 10%;">휴대전화 번호</p>
-                    <input type="tel" class="form-control w-25 userPhone" name="phone"  placeholder="휴대폰 번호 입력">
+                    <input type="tel" class="form-control w-25 userPhone" name="phone"  placeholder="휴대폰번호('-'포함) 입력">
                     <button class="btn btn-primary mx-3 smsKey">인증번호 요청</button>
+                    <span class="smsYC" id="smsYC" style="display: none;  margin-right: 192px;">
+                     <strong class="text-danger" > 인증번호가 발송되었습니다</strong>
+                      </span>
                 </div>
             </div>
             <div class="row mt-2 mb-2">
                 <div class="form-group d-flex align-items-center">
                     <p class="fw-bold text-left mx-3" style="width: 10%;"></p>
-                    <input type="text" class="form-control w-25" placeholder="인증번호 입력">
+                    <input type="text" class="form-control w-25" id="CheckSms" placeholder="인증번호 입력">
                     <button class="btn btn-primary mx-3 CheckSmsKey">인증번호 확인</button>
+                    <span class="smsYes" style="display: none;  margin-right: 274px;">
+               <strong class="text-danger" > 인증되었습니다</strong>
+              </span>
                 </div>
             </div>
-            <span class="smsNo" style="display: none;">
+            <span class="smsNo" style="display: none;  margin-left: 129px;;">
               <strong class="text-danger" >인증번호가 틀렸습니다</strong>
               </span>
-            <span class="smsYC" style="display: none">인증번호가 발송되었습니다</span>
-            <span class="smsYes" style="display: none;">
-                인증되었습니다
-              </span>
-
+            </div>
 
             <div class="form-check mt-5">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
                 <label class="form-check-label" for="flexRadioDefault2">
                     본인확인 메일로 인증하기
                 </label>
@@ -228,28 +287,33 @@
                 <div class="row mt-2 mb-2">
                     <div class="form-group d-flex align-items-center">
                         <p class="fw-bold text-left mx-3" style="width: 10%;">이메일</p>
-                        <input type="email" class="form-control w-25"  id="email" name="email" placeholder="이메일 입력">
+                        <input type="email" class="form-control w-25 userEmail"  id="email" name="email" placeholder="이메일 입력">
                         <button class="btn btn-primary mx-3 emailKey" >인증번호 요청</button>
+                        <span class="emailYC" style="display: none;  margin-right: 192px;">
+                             <strong class="text-danger" >인증번호가 발송되었습니다</strong>
+                        </span>
                     </div>
                 </div>
                 <div class="row mt-2 mb-2">
                     <div class="form-group d-flex align-items-center">
                         <p class="fw-bold text-left mx-3" style="width: 10%;"></p>
-                        <input type="text" class="form-control w-25" placeholder="인증번호 입력">
+                        <input type="text" class="form-control w-25 CheckEmailKey" placeholder="인증번호 입력">
                         <button class="btn btn-primary mx-3 CheckEmailKey2">인증번호 확인</button>
+                        <span class="emailInforYes" style="display: none; ">
+              <strong class="text-danger" > 인증되었습니다</strong>
+              </span>
                     </div>
                 </div>
-                <span class="emailInfor" style="display: none;">
+                <div style="display: flex">
+          <span class="emailInfor" style="display: none;  margin-left: 130px;">
                 <strong class="text-danger" >인증번호가 틀렸습니다</strong>
               </span>
-                <span class="emailYC" style="display: none">인증번호가 발송되었습니다</span>
-                <span class="emailInforYes" style="display: none;">
-                인증되었습니다
-              </span>
+
+                </div>
             </div>
 
             <div class="form-check mt-5">
-                <input class="form-check-input" type="radio" name="type" id="flexRadioDefault3" checked>
+                <input class="form-check-input" type="radio" name="Type" id="flexRadioDefault3" checked>
                 <label class="form-check-label" for="flexRadioDefault2">
                     회원 가입유형 선택
                 </label>
@@ -269,7 +333,7 @@
     </div>
 
 <div style="text-align: center";>
-<button type="button" class="btn btn-primary ok" style="display: inline-block;" id="ok">확인</button>
+<button type="button" class="btn btn-primary ok" style="display: inline-block; width: 200px;" id="ok">확인</button>
 </div>
 </form>
 <jsp:include page="/layout/chatIcon.jsp"/>
