@@ -74,6 +74,7 @@ public DealController(){
 
         System.out.println("sefdaj'ejw'gkfdsgda dfda"+session.getAttribute("user"));
         deal.getUser().getUserId();
+        deal.setDealImage(deal.getUser().getUserImage());
         String a=deal.getUser().getVillCode();
         System.out.println(a);
         deal.setVillCode(a);
@@ -304,6 +305,7 @@ String history="";
                 history = URLDecoder.decode(c.getValue(),"EUC_KR");
             }
         }
+
 
         if(!history.equals("")) {
             List<String> listcook = new ArrayList<String>();
