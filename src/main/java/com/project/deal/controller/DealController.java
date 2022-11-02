@@ -74,7 +74,7 @@ public DealController(){
 
         System.out.println("sefdaj'ejw'gkfdsgda dfda"+session.getAttribute("user"));
         deal.getUser().getUserId();
-        deal.setDealImage(deal.getUser().getUserImage());
+
         String a=deal.getUser().getVillCode();
         System.out.println(a);
         deal.setVillCode(a);
@@ -106,7 +106,7 @@ public DealController(){
             deal.setFiles(files);
         }
 
-        //모임 공지사항 등록
+        //거래 등록
        dealService.addDeal(deal);
 
 
@@ -203,6 +203,19 @@ public DealController(){
 
        //getdeal 기본
         Deal deal = dealService.getDeal(dealBoardNum);
+        deal.getUser().getUserId();
+
+
+
+        String b=userService.getUser(deal.getUser().getUserId()).getUserImage();
+        System.out.println(b);
+        dealService.getImage(b);
+        model.addAttribute("b",b);
+        String vc = deal.getVillCode();
+              vc = vc.substring(0,vc.indexOf("동 ")+1);
+              String villCode= vc.substring(vc.lastIndexOf(" ")+1);
+        villCode = vc.split(" ")[2];
+        model.addAttribute("villCode",villCode);
 
 //Object User=session.getAttribute("userId");
         //String boardCategory = String.valueOf(deal.getBoardCategory());
@@ -286,6 +299,7 @@ String history="";
         search.setCurrentPage(1);
         System.out.println(search.getCurrentPage());
         System.out.println(boardCategory);
+
         if (search.getCurrentPage() == 0) {
             search.setCurrentPage(1);
         }

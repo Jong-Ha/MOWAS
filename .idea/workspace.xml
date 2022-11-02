@@ -9,20 +9,157 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="JHK 2022.10.31&#10;&#10;회원가입 페이지 디자인 수정">
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="ASK 2022.11.02&#10;&#10;&#10; 통합 및 오류 검사 등 등">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/DBtext.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/DBtext.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/deal/controller/DealController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/deal/controller/DealController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/deal/dao/DealDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/deal/dao/DealDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/deal/dao/DealDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/deal/dao/DealDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/deal/service/DealService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/deal/service/DealService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/deal/service/DealServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/deal/service/DealServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/myPage/dao/MyPageDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/myPage/dao/MyPageDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/myPage/dao/MyPageDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/myPage/dao/MyPageDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/DealMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/DealMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/sql/MyPageMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/MyPageMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/controller/ClubController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/common/util/ChatController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/controller/MyPageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/CommunityMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/UserMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/01f5fa4a25863d36f65a603378f68570e059e2bc6c6106e69726f83a6ec703a6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/026b6555-1897-43d9-9025-18abb9729998f715268e-ddf8-4568-ad59-25cebad66533다운로드.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/03e7a952-1f39-4162-a549-0e0844e1518a513243f7-9f7f-464d-8e6f-8a154d661928애플.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/046d4fd3-8c4f-4a3c-a731-dccb7911e60c7a136937-a874-4c58-ab7a-337bcbfbe463작은이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/075029e7-b179-42ed-80c1-84b8aec18ee5f13a0fad-671f-4477-96b2-4246be50be98like1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/08ce6d95-fa79-41cd-a6f0-ba40e9aec97bfc05eced-7b19-44a9-834d-e83f520d229cbit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/09491cec-0609-45e5-b9f8-b81bd8847c9bf13a0fad-671f-4477-96b2-4246be50be98like1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/0d7f8350-669b-4c55-80b1-bbaeb8a35967f13a0fad-671f-4477-96b2-4246be50be98like1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/0d863f06-752d-4ddf-bd5c-3ca10a06108de12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/10ef0cab-ef39-48b0-b871-b1b19c189049e6e6d1e0-da16-420c-9820-e56f06b27573라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/13881c86-7626-48f3-8b41-b5d83f7a1c82e12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/1591db52-b2c3-4029-b82d-0766a713ddf4e6e6d1e0-da16-420c-9820-e56f06b27573라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/16396ffb-1f99-4e06-a64b-65285c5bb69crandy1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/196b066f-4392-4389-b24b-9d3436ba9ce221812e4d-7ea6-4952-9199-58e54c6e509f라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/198ffca1-b66c-44ad-bbde-442ed9ea314ce6e6d1e0-da16-420c-9820-e56f06b27573라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/1a15386a-1ead-4ef3-bfeb-1947b0f28efaf927352e-7650-4ecd-b5ae-cc3734b2e57asunset-gafedb3e5b_1280.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/1a38403b-b4b7-459a-a426-8f5f373096abc322511c-b3db-48eb-a872-26fac2fb744c비트캠프.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/1af95efe-ee6a-4b95-bf87-54740ee93b15f1ffcb33-3f4f-4799-994b-3b2f623766e7작은이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/1c64d4b4-1c51-4b79-a68c-d4d9ba277bd8na1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/234b36bd-92cb-4579-b6f5-8272ba916061e6e6d1e0-da16-420c-9820-e56f06b27573라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/236aa2b4-b5a4-47f7-a949-b626032914c2513243f7-9f7f-464d-8e6f-8a154d661928애플.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/238b7b1d-9c20-47a8-9f7d-a471d2252baee6e6d1e0-da16-420c-9820-e56f06b27573라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/241d711d-1e11-4f76-adfa-dfe06e1840d7e12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/2541624f4bf79c67a848d4db14d1ca53eefc3eb990c480eaf98c4c64146c50f3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/284788f0-90ac-4f7b-842e-17108fcd8d27513243f7-9f7f-464d-8e6f-8a154d661928애플.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/2960df23-7f35-4494-a100-c4672184fb6e.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/29863a3d-0321-4575-9630-4114d727fbe97bfb6cf5-e7b4-4a4d-ace2-e7a2dd045437라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/2b31253a-d66c-4608-9db7-904fdeaa3b27f927352e-7650-4ecd-b5ae-cc3734b2e57asunset-gafedb3e5b_1280.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/2e1e3235-66ac-47f0-9c45-60f312642ac5c322511c-b3db-48eb-a872-26fac2fb744c비트캠프.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/346473b8-dec8-4514-bc84-9955ed1106a3f715268e-ddf8-4568-ad59-25cebad66533다운로드.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/35fa6458-853a-40ac-b435-ae3f096018dde12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/37624.htm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/39b079e7-92a8-45f6-83e9-32d5b935f0647a136937-a874-4c58-ab7a-337bcbfbe463작은이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/3ad6740e-6400-4aa1-9579-0239aa93a307e12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/3dd6e2c1-e07a-4658-a6e2-01ff66041a3a7bfb6cf5-e7b4-4a4d-ace2-e7a2dd045437라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/43f14e97-442e-4ba7-ab87-382aa894b2da513243f7-9f7f-464d-8e6f-8a154d661928애플.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/4532ff48-e6c3-422c-b513-3027611907717bfb6cf5-e7b4-4a4d-ace2-e7a2dd045437라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/45ab1f28-ac56-47d1-adc0-2373b4b1f4d6fc05eced-7b19-44a9-834d-e83f520d229cbit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/49aca1bb-88f2-4e47-a600-06a6102a5d30f927352e-7650-4ecd-b5ae-cc3734b2e57asunset-gafedb3e5b_1280.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/4a9b466d-8d32-484a-b5b0-49697f0e605823b333e5-1c51-4843-8633-73c73864c1de애플.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/4d47b741-ad6d-46a1-98cf-142bec000b79e12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/511d9224-579f-49ae-91f4-a8952c17e313like1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/51c6bd52-5110-42e7-a094-dd97244a8f08790534C91D03286EBA1123F5F7ABC0B5299C14D3056043236446DD6F60B5AACF.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/52f05881-4a14-47dc-b07d-ad6f2cf747a4f715268e-ddf8-4568-ad59-25cebad66533다운로드.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/54bcf1e5-05a2-4508-a099-03278f13c58ce12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/55226391-e585-43cc-8b49-7bf130892ca07bfb6cf5-e7b4-4a4d-ace2-e7a2dd045437라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/55659fbc-2ff7-4e93-b5ae-f36b5a19436bf927352e-7650-4ecd-b5ae-cc3734b2e57asunset-gafedb3e5b_1280.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/57e67021-0908-45de-8597-b0aace7a9bc9e12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/5e44f22d-d4ba-4b08-9bef-4650f476d27be12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/614d561d-6cc0-4dad-86a6-2ccde05b4f7cbcac14bc-77b3-4cd2-9679-84c2ed921a89가로로김.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/62d99989-a45c-4373-8b9b-73a32daac12d7a136937-a874-4c58-ab7a-337bcbfbe463작은이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/62d9a604-9426-4885-8e8d-b6249296ed02f13a0fad-671f-4477-96b2-4246be50be98like1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/663e4a15-9b1e-43e3-8dda-ac6f8711c0df01f5fa4a25863d36f65a603378f68570e059e2bc6c6106e69726f83a6ec703a6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/6d77c15a-5bd5-4536-8538-4067140e9b39f13a0fad-671f-4477-96b2-4246be50be98like1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/7158653a-c0cc-492c-84c9-4278d7e736b4e6e6d1e0-da16-420c-9820-e56f06b27573라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/752511f0-bffe-467c-8115-3c320e27cc35e12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/78758c24-6156-468d-881a-f89e368bb9197bfb6cf5-e7b4-4a4d-ace2-e7a2dd045437라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/7898c5ae-6e0f-4ba2-ac2e-4517d2ff6558e12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/790534C91D03286EBA1123F5F7ABC0B5299C14D3056043236446DD6F60B5AACF.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/7ac78bd2-1687-4b3c-822e-cd95cb4f81e023ecf88e-bb1f-4bab-bde8-80ff2753ec57�ٿ�ε�.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/7adf1d3c-cb7c-4082-9619-ea9c275238e1fc05eced-7b19-44a9-834d-e83f520d229cbit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/7b855a5c-0e5e-4e84-9b5b-2ad3d6837b77e12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/7c7df3f2-9517-45bb-afb1-bd38ff69bef6e6e6d1e0-da16-420c-9820-e56f06b27573라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/7ef16324-ac05-40f8-85fd-1f47cd86d30ef13a0fad-671f-4477-96b2-4246be50be98like1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/8083d268-566a-4299-860e-efd43f751eb2e12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/80841b1b-c310-4c27-b737-790cdf111a4e7bfb6cf5-e7b4-4a4d-ace2-e7a2dd045437라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/8391cfc6-739a-4c90-b517-f319a57e4495f715268e-ddf8-4568-ad59-25cebad66533다운로드.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/850fba30-4306-43e4-a6b6-2af1a0f9cd30f13a0fad-671f-4477-96b2-4246be50be98like1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/87b6c8fa-177c-4cc6-b779-43ffd9cd75837a136937-a874-4c58-ab7a-337bcbfbe463작은이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/8aefe5a6-e256-433b-bb32-65549cc4fd26f927352e-7650-4ecd-b5ae-cc3734b2e57asunset-gafedb3e5b_1280.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/8bf471a5-885b-4f61-be7c-e798c5f40c737bfb6cf5-e7b4-4a4d-ace2-e7a2dd045437라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/8c07d9ef-624c-4fc5-b754-e13a573ae67cf715268e-ddf8-4568-ad59-25cebad66533다운로드.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/8ec5e88f-5569-4ebb-a78f-3848bef9c935e12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/8ee01655-6a23-499f-a197-90865c5f9be07bfb6cf5-e7b4-4a4d-ace2-e7a2dd045437라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/915e4052-5b81-4b3c-94ce-e417734a1927f927352e-7650-4ecd-b5ae-cc3734b2e57asunset-gafedb3e5b_1280.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/91b8fb30-b4e4-49e1-ac87-ea2b8c2913b3e12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/91d1ef60-321f-47c1-b345-fe8d8e256daa7bfb6cf5-e7b4-4a4d-ace2-e7a2dd045437라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/91dd4e89-26d2-410c-ab89-26ffe6f37b1c9d205bfa-8b6a-45b3-97d1-92c746e73bfc51c6bd52-5110-42e7-a094-dd97244a8f08790534C91D03286EBA1123F5F7ABC0B5299C14D3056043236446DD6F60B5AACF.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/92ac975d-6350-424c-9f13-11e1454bcd2fe12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/93ea9077-d46a-44d0-9b79-2a57e7643422e12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/96df62af-b7d6-4984-826b-15043b8f64a6e12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/97432131-5114-4f6d-aada-f66d9d8df4c57bfb6cf5-e7b4-4a4d-ace2-e7a2dd045437라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/98124bb6-56df-4bd2-b613-932ee5ca05a76410023b-9e6a-4a23-8102-3a46a4eab617bit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/9a20209d-89ee-4fa5-b192-2676c5c2e22e7a136937-a874-4c58-ab7a-337bcbfbe463작은이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/9d205bfa-8b6a-45b3-97d1-92c746e73bfc51c6bd52-5110-42e7-a094-dd97244a8f08790534C91D03286EBA1123F5F7ABC0B5299C14D3056043236446DD6F60B5AACF.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/9e323b70-7d0e-4683-8a6d-8dd45f249f4c다운로드 (1).jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/9f4ca4c1-a69d-4e7a-8ce1-c4209a5b9c4b21812e4d-7ea6-4952-9199-58e54c6e509f라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/a0dfe341-7d6e-48d5-b8c5-b6a253ba4f517bfb6cf5-e7b4-4a4d-ace2-e7a2dd045437라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/a10ceb56-19ec-490e-8e28-9a243086c76551eb102a-4ba1-4d41-958c-e59bdac37008�ٿ�ε�.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/a2191626-507b-4390-b64c-029ab77304c74edbf4c0-4c86-4ac1-aead-ba3320e0c4052-1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/a3e4a18a-b15d-453a-b66d-b26d8e7a6701na1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/a54e8f33-e6d1-4550-9449-005dffa8eeb8513243f7-9f7f-464d-8e6f-8a154d661928애플.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/a83d02e6-f6a3-4bf7-bdce-0b7a5e7508dee12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/b193c12c-e4dc-42c8-973b-194d2b9cf9d1f13a0fad-671f-4477-96b2-4246be50be98like1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/b44326f4-fd3c-4697-9c97-0949743996a6f715268e-ddf8-4568-ad59-25cebad66533다운로드.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/b9cb001b-cb2c-43e8-9a99-336b801eded3513243f7-9f7f-464d-8e6f-8a154d661928애플.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/be8fe47b-405f-4b82-8e64-2ab4cad9efe9e12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/bec9e815-c2e0-448f-85dd-07797b7e5608like1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/bed145c4-09f7-486e-848c-5da85bef3b4ce6e6d1e0-da16-420c-9820-e56f06b27573라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/bee264cf-f4a1-4c1a-b1c4-2fbfd386b21ce12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/befb0edb-fd16-469d-8513-7dd981b8f9aae6e6d1e0-da16-420c-9820-e56f06b27573라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/c0c5583e-c718-425f-b8c8-28648f4d3a0623b333e5-1c51-4843-8633-73c73864c1de애플.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/c11d7cc4-6592-488e-9599-09abc9febdfbe12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/c211f2da-d293-46b2-b6f9-055bdf1061e869f67de9-2e42-4ad8-85cf-092257c2c917그냥 삼성.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/c48f8714-be5a-40e3-821c-ffb1e390b933513243f7-9f7f-464d-8e6f-8a154d661928애플.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/c4fa8449-2816-4beb-a1bc-e4f144299210e12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/caec11b8-0da7-444c-b7de-a26ac5f291b67bfb6cf5-e7b4-4a4d-ace2-e7a2dd045437라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/card_923_0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/cbf2f5e0-9c58-46e3-9fe3-8ca37074538dbcac14bc-77b3-4cd2-9679-84c2ed921a89가로로김.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/cc273c88-3597-4db8-9a69-96a991cbfe7af715268e-ddf8-4568-ad59-25cebad66533다운로드.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/cc7a62d9-d585-4b66-bf26-e305ffffd2c0e12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/cdbc7a90-e95d-4b57-ade7-60941b0baed5e12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/ce67f59e-12d1-42df-886f-b384fb955ba4e12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/d01978ed-c3af-4cfe-98a0-5950b7612264f13a0fad-671f-4477-96b2-4246be50be98like1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/d42d7845-b756-4cd8-a206-27d9a70e9e2851c6bd52-5110-42e7-a094-dd97244a8f08790534C91D03286EBA1123F5F7ABC0B5299C14D3056043236446DD6F60B5AACF.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/d5102088-af59-4499-b9d5-8c79086df0e8f13a0fad-671f-4477-96b2-4246be50be98like1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/d72078d7-14df-492c-ba17-5f1099c73fc2e12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/dbdc1078-951e-4b9d-a6bb-0f2ed1a187aana1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/df7f403b-899c-4516-8fb7-a007c9085ce9e12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/dfa16e43-52f5-4658-991d-692272276d43다운로드.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/e3fc9f59-9bc1-411a-ac5d-7e629b4c18b3f927352e-7650-4ecd-b5ae-cc3734b2e57asunset-gafedb3e5b_1280.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/e4421b74-e335-4df5-9d11-31096b7d73c52541624f4bf79c67a848d4db14d1ca53eefc3eb990c480eaf98c4c64146c50f3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/e5117b27-825c-4018-bd68-7833ed05e6b2e12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/e568e9bb-b355-4948-8942-d56c5c7be24fe12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/e7a5aeac-eb89-4faa-8689-c38d7e14d6bec322511c-b3db-48eb-a872-26fac2fb744c비트캠프.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/ea12cb02-6212-4e34-ac7f-71164fb2cc80like1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/ef8ae137-3982-4b58-9e25-367a0b5f8a5ee12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/f1d7fec2-eaed-4526-bba1-b76655a0d66bfc05eced-7b19-44a9-834d-e83f520d229cbit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/f2a7d7d4-791f-40e0-8019-b60dda7d2238e6e6d1e0-da16-420c-9820-e56f06b27573라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/f8b3926d-ecec-4527-8b27-88bdd529db68e6e6d1e0-da16-420c-9820-e56f06b27573라이언.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/fcd934da-34dd-4ef4-8cb8-d68ddcc39148e12002c2-5204-4936-96b7-8f676cf41ef1큰이미지.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/fe90b17d-99a1-4ba9-a60c-3221dea6f05e2960df23-7f35-4494-a100-c4672184fb6e.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/다운로드 (1).jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/다운로드.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/자전거.htm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/중고거래.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/deal/getDeal.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/deal/getDeal.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/deal/getListDeal.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/deal/getListDeal.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyDealBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyDealBoard.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,9 +194,11 @@
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -89,37 +228,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit4&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4&quot;: &quot;&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Project/MOWAS/src/main/webapp/view/myPage&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;라이브러리&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.12528735&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;0644e903b0ad21f514b0480754c0a1e2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
+    "last_opened_file_path": "C:/Project/MOWAS/src/main/webapp",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "아티팩트",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.32133675",
+    "settings.editor.selected.configurable": "project.propCompiler",
+    "spring.configuration.checksum": "0644e903b0ad21f514b0480754c0a1e2"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;oracle&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "oracle"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Project\MOWAS\src\main\webapp\view\club\modal수정전" />
       <recent name="C:\Project\MOWAS\src\main\webapp\view\myPage" />
       <recent name="C:\Project\MOWAS\src\main\webapp\view\user" />
       <recent name="C:\Project\MOWAS\src\main\webapp\resources\images" />
@@ -130,11 +270,11 @@
       <recent name="C:\Project\MOWAS\src\main\webapp\layout" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Project\MOWAS\src\main\webapp\view\myPage" />
       <recent name="C:\Project\MOWAS\src\main\webapp\resources\images" />
       <recent name="C:\Project\MOWAS\src\main\webapp\resources\club" />
       <recent name="C:\Users\903-15\IdeaProjects\MOWAS\src\main\webapp\view\user" />
       <recent name="C:\Devspace\MOWAS\src\main\webapp\resources\OpenSource" />
+      <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community\list" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -152,7 +292,11 @@
     </key>
   </component>
   <component name="RunDashboard">
-    <option name="openRunningConfigInTab" value="true" />
+    <option name="configurationTypes">
+      <set>
+        <option value="TestNG" />
+      </set>
+    </option>
   </component>
   <component name="RunManager" selected="Tomcat 서버.Tomcat 9.0.58">
     <configuration name="ClubServiceTest.updateVoter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -235,7 +379,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tomcat 9.0.58" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.58" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+    <configuration name="Tomcat 9.0.58" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.58" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="$PROJECT_DIR$/../../Program Files/Java/jdk1.8.0_181" nameIsGenerated="true">
       <option name="COMMON_VM_ARGUMENTS" value="-Dfile.encoding=UTF-8" />
       <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
@@ -247,7 +391,8 @@
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="2f911be2-0ce1-4887-877a-030b087824a2" />
+        <option name="BASE_DIRECTORY_NAME" value="e0944415-630b-49a5-af46-6b2de8f9187b" />
+        <option name="DEPLOY_TOMCAT_APPS" value="true" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -255,7 +400,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="50064" />
+        <option name="DEBUG_PORT" value="65206" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -379,9 +524,8 @@
       <workItem from="1666338226193" duration="5083000" />
       <workItem from="1666343876167" duration="55962000" />
       <workItem from="1666589308433" duration="18822000" />
-      <workItem from="1666915748740" duration="65683000" />
-      <workItem from="1667180522531" duration="1123000" />
-      <workItem from="1667270001678" duration="22797000" />
+      <workItem from="1666918953601" duration="11176000" />
+      <workItem from="1667129677599" duration="117481000" />
     </task>
     <task id="LOCAL-00001" summary="설정">
       <created>1664436990723</created>
@@ -432,50 +576,67 @@
       <option name="project" value="LOCAL" />
       <updated>1666620792032</updated>
     </task>
-    <task id="LOCAL-00008" summary="JHK 2022.10.26&#10;&#10;카카오로그인 팝업창 변경, 로그인페이지 모달창 변경">
-      <created>1666747096028</created>
+    <task id="LOCAL-00008" summary="LJH 2022.10.26&#10;&#10;탭바 선택 유지&#10;모임 탭바 레이아웃 조정">
+      <created>1666753497488</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1666747096028</updated>
+      <updated>1666753497488</updated>
     </task>
-    <task id="LOCAL-00009" summary="JHK 2022.10.26&#10;&#10;로그아웃 이전페이지 기능 추가">
-      <created>1666762215049</created>
+    <task id="LOCAL-00009" summary="ASK 2022.10.30&#10;&#10;커밋테스트">
+      <created>1667129805430</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1666762215049</updated>
+      <updated>1667129805430</updated>
     </task>
-    <task id="LOCAL-00010" summary="JHK 2022.10.31&#10;&#10;네이버 로그인 완료">
-      <created>1667196937319</created>
+    <task id="LOCAL-00010" summary="ASK 2022.10.30&#10;&#10;커밋테스트">
+      <created>1667129839564</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
-      <updated>1667196937319</updated>
+      <updated>1667129839564</updated>
     </task>
-    <task id="LOCAL-00011" summary="JHK 2022.11.01&#10;&#10;디비 초기화 후 커밋">
-      <created>1667298436072</created>
+    <task id="LOCAL-00011" summary="ASK 2022.10.31&#10;&#10;&#10;&#10;통합">
+      <created>1667178438666</created>
       <option name="number" value="00011" />
       <option name="presentableId" value="LOCAL-00011" />
       <option name="project" value="LOCAL" />
-      <updated>1667298436072</updated>
+      <updated>1667178438666</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="ASK 2022.10.31&#10;&#10;&#10;&#10;통합">
+      <created>1667178689482</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1667178689482</updated>
+    </task>
+    <task id="LOCAL-00013" summary="ASK 2022.10.31&#10;&#10;&#10;무한스크롤 등 오류 검사 등 등">
+      <created>1667215925910</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1667215925910</updated>
+    </task>
+    <task id="LOCAL-00014" summary="ASK 2022.11.01&#10;&#10;&#10; 상세 jsp 오류 검사 등 등">
+      <created>1667300022251</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1667300022251</updated>
+    </task>
+    <task id="LOCAL-00015" summary="ASK 2022.11.02&#10;&#10;&#10; 통합 및 오류 검사 등 등">
+      <created>1667353264500</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1667353264500</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.History.Properties">
-    <option name="COLUMN_ID_ORDER">
-      <list>
-        <option value="Default.Root" />
-        <option value="Default.Author" />
-        <option value="Default.Date" />
-        <option value="Default.Subject" />
-        <option value="Space.CommitStatus" />
-      </list>
-    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -510,7 +671,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="origin/ASK" />
                       </list>
                     </value>
                   </entry>
@@ -576,14 +737,15 @@
     <MESSAGE value="JHK 2022.10.17&#10;&#10;마이페이지 서비스 커밋" />
     <MESSAGE value="JHK 2022.10.19&#10;&#10;메일인증 수정" />
     <MESSAGE value="JHK 2022.10.24&#10;&#10;마이페이지 JSP 수정" />
-    <MESSAGE value="JHK 2022.10.26&#10;&#10;카카오로그인 팝업창 변경, 로그인페이지 모달창 변경" />
-    <MESSAGE value="JHK 2022.10.26&#10;&#10;로그아웃 이전페이지 기능 추가" />
-    <MESSAGE value="JHK 2022.10.31&#10;&#10;마이페이지 JSP 생성, 탭바 수정" />
-    <MESSAGE value="JHK 2022.10.31&#10;&#10;마이페이지 리스트 유저 커밋" />
-    <MESSAGE value="JHK 2022.10.31&#10;&#10;네이버 로그인 완료" />
-    <MESSAGE value="JHK 2022.11.01&#10;&#10;일반 회원가입 완료, 신고,벌점,댓글 페이징 처리" />
-    <MESSAGE value="JHK 2022.11.01&#10;&#10;디비 초기화 후 매퍼 수정 커밋" />
-    <option name="LAST_COMMIT_MESSAGE" value="JHK 2022.11.01&#10;&#10;디비 초기화 후 매퍼 수정 커밋" />
+    <MESSAGE value="LJH 2022.10.26&#10;&#10;탭바 선택 유지&#10;모임 탭바 레이아웃 조정" />
+    <MESSAGE value="BJW 2022.10.28&#10;&#10;채팅 사진 업로드 구현" />
+    <MESSAGE value="ASK 2022.10.30&#10;&#10;커밋테스트" />
+    <MESSAGE value="ASK 2022.10.31&#10;&#10;&#10;&#10;통합" />
+    <MESSAGE value="ASK 2022.10.31&#10;&#10;&#10;무한스크롤 등 오류 검사 등 등" />
+    <MESSAGE value="ASK 2022.11.01&#10;&#10;&#10; 상세 jsp 오류 검사 등 등" />
+    <MESSAGE value="ASK 2022.11.02&#10;&#10;&#10; 통합 및 오류 검사 등 등" />
+    <option name="LAST_COMMIT_MESSAGE" value="ASK 2022.11.02&#10;&#10;&#10; 통합 및 오류 검사 등 등" />
+    <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -593,34 +755,24 @@
           <line>138</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/webapp/view/myPage/getMyLike.jsp</url>
-          <line>264</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/webapp/view/myPage/getMyEndDeal.jsp</url>
-          <line>70</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/project/myPage/service/MyPageServiceImpl.java</url>
-          <line>168</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/webapp/view/myPage/getMyEndDeal.jsp</url>
-          <line>37</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDao.java</url>
           <line>33</line>
-          <properties class="com.project.user.dao.UserDao">
+          <properties class="com.project.user.dao.UserDao" method="updateLcd">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/main/webapp/resources/club/js/listClub.js</url>
+          <line>355</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/main/webapp/resources/club/js/listClub.js</url>
+          <line>353</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
