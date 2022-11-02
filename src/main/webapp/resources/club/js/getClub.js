@@ -541,6 +541,7 @@ $(function () {
     $(".addCluberApplyView").on("click", function () {
         if ($(".userId").val() === '') {
             alert("로그인이 필요합니다")
+            $('#loginModal').modal('show')
         }
     })
     $(".addCluberApply").on("click", function () {
@@ -586,6 +587,16 @@ $(function () {
     //업데이트
     $(".updateClub").on("click", function () {
         const updateForm = $("#updateClubForm");
+
+        updateForm.find('#clubName').prop('disabled',false)
+
+        updateForm.find('#clubText').prop('disabled',false)
+
+        updateForm.find('#interList').prop('disabled',false)
+
+        updateForm.find('#villCode').prop('disabled',false)
+
+        updateForm.find('#file').prop('disabled',false)
 
         $.each(JSON.parse($("#clubTag").val()), function (index, item) {
             updateForm.append('<input type="hidden" name="clubTags" value="' + item.value + '">')
@@ -637,6 +648,14 @@ $(function () {
                 })
             }
         })
+    })
+
+    $('#addClubReport').off('show.bs.modal').on('show.bs.modal',function(){
+        if($('.userId').val()===''){
+            alert('로그인 후 이용해주세요')
+            $('#loginModal').modal('show')
+            return false
+        }
     })
 
     //모임 신고창
@@ -749,6 +768,11 @@ $(function () {
 
     //모임 일정 후기
     $('.listClubCalendarReviewView').on('click', function () {
+        if(!($('.cluberStatus').val()==='4'||$('.cluberStatus').val()==='5'||$('.cluberStatus').val()==='6')){
+            alert('모임원만 조회가 가능합니다')
+            return false
+        }
+
         if (beforeToolbar($(this))) {
             return false
         }
@@ -757,6 +781,11 @@ $(function () {
 
     //모임 일정 쇼츠
     $('.listClubCalendarShortView').on('click', function () {
+        if(!($('.cluberStatus').val()==='4'||$('.cluberStatus').val()==='5'||$('.cluberStatus').val()==='6')){
+            alert('모임원만 조회가 가능합니다')
+            return false
+        }
+
         if (beforeToolbar($(this))) {
             return false
         }

@@ -34,7 +34,7 @@
 <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bfc3f948468dbd85bd27fc9cd803d68b&libraries=services"></script>
 <script>
-    let mapCheck2 = false;
+    var mapCheck2 = false;
 
     function getClubVilCode2(longitude, latitude) {
         const sendData = "longitude=" + longitude + "&latitude=" + latitude;

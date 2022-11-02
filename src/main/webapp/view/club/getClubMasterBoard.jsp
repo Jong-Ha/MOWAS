@@ -172,9 +172,11 @@
 
 </div>
 <div class="modal-footer" style="display: block">
+    <c:if test="${currentCluber.cluberStatus=='6'||(currentCluber.cluberStatus=='5'&&(user.userId==clubMasterBoard.userId))}">
     <button type="button" class="btn btn-primary updateClubMasterBoard" data-bs-toggle="modal"
             data-bs-target="#updateClubMasterBoard">수정
     </button>
     <button type="button" class="btn btn-primary deleteClubMasterBoard">삭제
     </button>
+    </c:if>
 </div>
