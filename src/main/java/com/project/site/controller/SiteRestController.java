@@ -38,7 +38,10 @@ public class SiteRestController {
     public String clubMap(@RequestParam String longitude, @RequestParam String latitude)  throws Exception {
 
         String vilCode = "";
-        vilCode = coordToRegioncode(longitude, latitude);
+        //리턴값 : 행정동
+        //vilCode = coordToRegioncode(longitude, latitude);
+        //리턴값 : 법정동
+        vilCode = coordToAddress(longitude, latitude, 1);
         return vilCode;
     }
 
