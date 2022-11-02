@@ -276,7 +276,6 @@
         lodingListClubCalendar();
 
 
-
         function getFormJson(select) {
 
             let selForm = document.querySelector(select);
@@ -376,7 +375,7 @@
                                 '                                    </div>' +
                                 '                                  </div>' +
                                 '                               </div>' +
-                                '                             <video id="ShortVideo'+(( $(".currentPage").val() -1) * 10 + parseInt(index+1)) +'" controls class="ShortVideo">' +
+                                '                             <video id="ShortVideo' + (($(".currentPage").val() - 1) * 10 + parseInt(index + 1)) + '" controls class="ShortVideo">' +
                                 '                               <source src="/resources/' + item.file[0].fileName + '" type="video/mp4">' +
                                 '                              </video>' +
                                 '                            <div class="card-footer">' +
@@ -411,13 +410,12 @@
                                 '            </div>'
 
 
-
                             $(".ListClubCaenderReview").append(str);
 
 
                         })
 
-                        $("#textSerch .currentPage").val(parseInt($("#textSerch .currentPage").val())+ 1)
+                        $("#textSerch .currentPage").val(parseInt($("#textSerch .currentPage").val()) + 1)
 
                         lodingListClubCalendar();
 
@@ -426,8 +424,6 @@
                         } else {
                             $(window).off('scroll')
                         }
-
-
 
 
                         $(function () {
@@ -643,7 +639,7 @@
 <!-- Example Code -->
 <jsp:include page="/layout/toolbar.jsp"/>
 
-<img src="${pageContext.request.contextPath}/resources/images/mim.jpeg"
+<img class="shadow-lg" src="${pageContext.request.contextPath}/resources/images/club1.png"
      style="height: 500px;border-radius: 10px;  width: 1600px;">
 
 
@@ -870,7 +866,7 @@
 <jsp:include page="/layout/chatIcon.jsp"/>
 
 
-<%-- <jsp:include page="/layout/footer.jsp"/>--%>
+<jsp:include page="/layout/footer.jsp"/>
 
 
 <script>

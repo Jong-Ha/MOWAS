@@ -199,7 +199,7 @@
 
     <select id="getMyPage"    parameterType="String" resultMap="userSelectMap">
         SELECT user_id, master_check, user_status, password, user_name, gender, email,
-               phone, vill_code, user_image,  psd, ped, ppt, review_pt, login_type
+               phone, vill_code, user_image, psd, ped, ppt, review_pt, login_type
         FROM users
         WHERE user_id=#{userId}
     </select>

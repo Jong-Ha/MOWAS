@@ -750,7 +750,7 @@
                 <div class="card-header">내 정보 수정하기</div>
                 <div class="card-body text-center">
                     <!-- Profile picture image-->
-                    <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                    <img class="img-account-profile rounded-circle mb-2" src="/resources/${user.userImage}" alt="">
                     <!-- Profile picture help block-->
                     <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
                     <!-- Profile picture upload button-->
@@ -774,7 +774,7 @@
                             <!-- Form Group (first name)-->
                             <div class="col-md-6">
                                 <label class="small mb-1" for="password">비밀번호</label>
-                                <input class="form-control" id="password" name="password" type="text" placeholder="영문,숫자 혼합, 8~16글자로 입력해주세요" value="${map.user.password}"">
+                                <input class="form-control" id="password" name="password" type="text" placeholder="영문,숫자 혼합, 8~16글자로 입력해주세요" value="${map.user.password}">
                             </div>
                             <!-- Form Group (last name)-->
                             <div class="col-md-6">

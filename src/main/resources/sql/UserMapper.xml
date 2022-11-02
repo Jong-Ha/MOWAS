@@ -126,8 +126,6 @@
         values(#{userId:VARCHAR}, #{email:VARCHAR}, #{userImage:VARCHAR}, #{gender:VARCHAR}, '2')
     </insert>
 
-
-
     <select id="checkDupRrd" parameterType="String" resultMap="userSelectMap">
         SELECT rrd
         FROM users
