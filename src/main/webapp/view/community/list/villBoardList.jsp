@@ -80,10 +80,15 @@
             console.log(userId);
 
             if (userId === '' || userId === null) {
-                alert("로그인후 사용해주세요");
+
+                Swal.fire({
+                    icon: 'error',
+                    title: '사용할수 없는 기능 입니다',
+                    text: '로그인후 사용해 주세요',
+                    footer: '<a href="">Why do I have this issue?</a>'
+                })
 
             } else if (userId !== '') {
-
 
                 var likeCount = $(this).parents(".cardbox").find(".likeText").html();
                 var boardNum = $(this).parents(".cardbox").find(".villNum").val();
@@ -199,7 +204,6 @@
                         }
                         // 성공시 해당 창을 닫고 부모창을 reload
                         Swal.fire({
-                            position: 'top-end',
                             icon: 'success',
                             title: 'Your work has been saved',
                             showConfirmButton: false,
@@ -212,7 +216,6 @@
                         //error 발생시 그냥 창을 닫음
                     }, error: function () {
                         Swal.fire({
-                            position: 'top-end',
                             icon: 'success',
                             title: 'Your work has been saved',
                             showConfirmButton: false,
@@ -343,7 +346,6 @@
 
                     // 성공시 해당 창을 닫고 부모창을 reload
                     Swal.fire({
-                        position: 'top-end',
                         icon: 'success',
                         title: 'Your work has been saved',
                         showConfirmButton: false,
@@ -356,7 +358,6 @@
                     //error 발생시 그냥 창을 닫음
                 }, error: function () {
                     Swal.fire({
-                        position: 'top-end',
                         icon: 'success',
                         title: 'Your work has been saved',
                         showConfirmButton: false,
@@ -378,19 +379,31 @@
 
 
         $(".report").on("click", function () {
-            var boardNum = $(this).parents(".cardbox").find(".villNum").val()
-            var reportedId = $(this).parents(".cardbox").find(".SUserId").val();
 
+            if (userId === '' || userId === null) {
 
-            $("#commuReport .modal-content").load("/view/site/addCommunityReport.jsp",
-                {boardNum: boardNum, boardCategory: boardCategory, reportedId: reportedId},
-                function (re) {
-
-                    // console.log(re);
-                    $("#commuReport .modal-content").html(re);
-
-                    $("#commuReport").modal("show");
+                Swal.fire({
+                    icon: 'error',
+                    title: '사용할수 없는 기능 입니다',
+                    text: '로그인후 사용해 주세요',
+                    footer: '<a href="">Why do I have this issue?</a>'
                 })
+
+            } else if (userId !== '') {
+                var boardNum = $(this).parents(".cardbox").find(".villNum").val()
+                var reportedId = $(this).parents(".cardbox").find(".SUserId").val();
+
+
+                $("#commuReport .modal-content").load("/view/site/addCommunityReport.jsp",
+                    {boardNum: boardNum, boardCategory: boardCategory, reportedId: reportedId},
+                    function (re) {
+
+                        // console.log(re);
+                        $("#commuReport .modal-content").html(re);
+
+                        $("#commuReport").modal("show");
+                    })
+            }
         })
 
         $(".user_manu").on("click", function () {
@@ -406,7 +419,6 @@
 
 
     $(function () {
-        lodingVillBoard();
 
         /*무한 페이징*/
 
@@ -829,7 +841,7 @@
         </form>
     </div>
 
-    <div class="ListVillBoard">
+    <div class="ListVillBoard" style=" display: flex;  flex-wrap: wrap;  padding-bottom: 140px;">
         <c:set var="i" value="0"/>
         <c:forEach var="villBoard" items="${list}">
             <c:set var="i" value="${i+1}"/>
@@ -956,79 +968,27 @@
         </c:forEach>
 
     </div>
-</div>
 
 
-<%--우리동네 게시글 등록--%>
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-     style="display: none;">
-
-    <input name="clubCalenderReviewNum" class="clubCalenderReviewNum" hidden value="">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel"> 우리 동네 게시글 작성 </h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
+    <div style=" padding-bottom: 900px;"></div>
 
 
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control villTitle1" id="recipient-name" value=""
-                           placeholder="asdasd">
-                    <label for="recipient-name">제 목</label>
+    <%--우리동네 게시글 등록--%>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+         style="display: none;">
+
+        <input name="clubCalenderReviewNum" class="clubCalenderReviewNum" hidden value="">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"> 우리 동네 게시글 작성 </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div class="modal-body">
 
-
-                <div class="form-floating mb-3">
-
-                    <input type="text" class="form-control villText1" id="recipient-text" value=""
-                           placeholder="asdasd">
-                    <label for="recipient-text">내용</label>
-
-
-                </div>
-                <form id="addForm">
-                    <div class="input-group mb-3">
-                        <input type="file" id="file1" class="form-control file" multiple value="파일 첨부">
-                    </div>
-                </form>
-                <div class="mb-3" style="text-align: left;">
-                    <input type="hidden" class="form-control villTag" name="villTag" id="villTag"
-                           placeholder="테그 입력칸입니다">
-                </div>
-
-
-            </div>
-
-            <div class="modal-footer">
-
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                <button type="button" class="btn btn-primary villBoardSubmit">등록</button>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<%--우리동네 게시글 수정--%>
-<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true"
-     style="display: none;">
-
-    <input name="updateVillBoardNum" class="updateVillBoardNum" hidden value="">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel2"> 우리 동네 게시글 작성 </h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-                <form id="updateFile">
 
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control villTitle2" id="recipient-name2" value=""
+                        <input type="text" class="form-control villTitle1" id="recipient-name" value=""
                                placeholder="asdasd">
                         <label for="recipient-name">제 목</label>
                     </div>
@@ -1036,49 +996,104 @@
 
                     <div class="form-floating mb-3">
 
-                        <input type="text" class="form-control villText2" id="recipient-text2" value=""
+                        <input type="text" class="form-control villText1" id="recipient-text" value=""
                                placeholder="asdasd">
                         <label for="recipient-text">내용</label>
 
 
                     </div>
-
-                    <div class="input-group mb-3">
-                        <input type="file" id="file2" class="form-control file" multiple value="파일 첨부">
-                    </div>
-
+                    <form id="addForm">
+                        <div class="input-group mb-3">
+                            <input type="file" id="file1" class="form-control file" multiple value="파일 첨부">
+                        </div>
+                    </form>
                     <div class="mb-3" style="text-align: left;">
-                        <input type="hidden" class="form-control villTag" name="villTag" id="villTag2"
+                        <input type="hidden" class="form-control villTag" name="villTag" id="villTag"
                                placeholder="테그 입력칸입니다">
                     </div>
 
 
-                </form>
+                </div>
 
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-primary villBoardSubmit">등록</button>
+
+                </div>
             </div>
+        </div>
+    </div>
 
-            <div class="modal-footer">
 
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                <button type="button" class="btn btn-primary villBoardUpdateSubmit">수정</button>
+    <%--우리동네 게시글 수정--%>
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true"
+         style="display: none;">
+
+        <input name="updateVillBoardNum" class="updateVillBoardNum" hidden value="">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel2"> 우리 동네 게시글 작성 </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form id="updateFile">
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control villTitle2" id="recipient-name2" value=""
+                                   placeholder="asdasd">
+                            <label for="recipient-name">제 목</label>
+                        </div>
+
+
+                        <div class="form-floating mb-3">
+
+                            <input type="text" class="form-control villText2" id="recipient-text2" value=""
+                                   placeholder="asdasd">
+                            <label for="recipient-text">내용</label>
+
+
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <input type="file" id="file2" class="form-control file" multiple value="파일 첨부">
+                        </div>
+
+                        <div class="mb-3" style="text-align: left;">
+                            <input type="hidden" class="form-control villTag" name="villTag" id="villTag2"
+                                   placeholder="테그 입력칸입니다">
+                        </div>
+
+
+                    </form>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-primary villBoardUpdateSubmit">수정</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="commuReport" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
 
             </div>
         </div>
     </div>
+
+    <jsp:include page="/layout/chatIcon.jsp"/>
+
+    <jsp:include page="/layout/footer.jsp"/>
 </div>
-
-<div class="modal fade" id="commuReport" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-
-
-        </div>
-    </div>
-</div>
-
-<jsp:include page="/layout/chatIcon.jsp"/>
-
-<jsp:include page="/layout/footer.jsp"/>
 
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.project.user.test;
 
+import com.project.common.Search;
 import com.project.domain.User;
 import com.project.domain.UserInterList;
 import com.project.user.service.UserService;
@@ -157,8 +158,8 @@ public class UserServiceTest {
 
     @Test
     public void testListUser() throws Exception{
-        User user = new User();
-        userService.listUser(user);
+        //User user = new User();
+        userService.listUsers(new Search());
 
 
     }

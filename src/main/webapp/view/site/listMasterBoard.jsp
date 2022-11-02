@@ -13,6 +13,7 @@
   <title>List MasterBoard</title>
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -200,7 +201,29 @@
     --%>
       //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
       $("a[href='#' ]").on("click" , function() {
-        $("form")[0].reset();
+        Swal.fire({
+          title: '정말 삭제하시겠습니까?',
+          text: "다시 되돌릴 수 없습니다. 신중하세요.",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: '네, 삭제합니다!',
+          cancelButtonText: '취소합니다'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+            )
+          }
+            var masterBdNo = $(this).data('masterbdno')
+            self.location = "/site/deleteMasterBoard/"+masterBdNo
+        })
+
+
+
       });
     });
 
@@ -371,7 +394,7 @@
                     <i class="fa fa-pencil h5 m-0"></i>
                   </button>
                     <%--<a href="#" class="text-success mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"> <i class="fa fa-pencil h5 m-0"></i></a>--%>
-                    <a href="#" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close"> <i class="fa fa-remove h5 m-0"></i></a>
+                    <a data-masterbdno="${mb.masterBoardNo}" href="#" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close"> <i class="fa fa-remove h5 m-0"></i></a>
                 </td>
                 </c:if>
 
@@ -494,5 +517,7 @@
   </div>
 </div>
 <%--Add Modal 창 시작--%>
-</body>
+    <jsp:include page="/layout/chatIcon.jsp"/>
+    <jsp:include page="/layout/footer.jsp"/>
+  </body>
 </html>

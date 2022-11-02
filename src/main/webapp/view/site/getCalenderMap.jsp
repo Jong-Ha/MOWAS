@@ -16,8 +16,7 @@
 </div>
 <div class="modal-body">
 
-    <div id="map4" style="width:100%;height:350px;"></div>
-    <p><em>지도를 클릭해주세요!</em></p>
+    <div id="map" style="width:100%;height:350px;"></div>
     <div id="clickLatlng3"></div>
 
     <div class="col-md-4 text-center col-md-offset-1">
@@ -32,21 +31,21 @@
 
 
 <script type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bfc3f948468dbd85bd27fc9cd803d68b&libraries=services"></script>
-<script>
-    var mapCheck4 = false;
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fdddcf3f747ce062a0dc0af6d4a8b009&libraries=services"></script>
 
-    function getClubLocarion() {
+<script>
+
+   function getClubLocation() {
         const sendData = "address=" + '${param.location}';
 
-        alert(sendData);
+        //alert(sendData);
 
         $.ajax({
             url: '/site/json/calendarLocation',
             method: 'POST',
             data: sendData,
             success: function (vilCode) {
-                console.log("==========" + vilCode.longitude + "::::" + vilCode.latitude);
+                //console.log("==========" + vilCode.longitude + "::::" + vilCode.latitude);
 
                 relayout3(vilCode.longitude, vilCode.latitude);
             }
@@ -56,80 +55,41 @@
 
 
     function relayout3(longitude, latitude) {
-        if (mapCheck4) {
-            return false;
-        }
-        mapCheck4 = true;
-        var mapContainer = document.getElementById('map4'), // 지도를 표시할 div
-            mapOption = {
-                center: new kakao.maps.LatLng(longitude,latitude
 
-                ), // 지도의 중심좌표
+       var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+            mapOption = {
+                center: new kakao.maps.LatLng(longitude, latitude), // 지도의 중심좌표
                 level: 3 // 지도의 확대 레벨
             };
 
-        var map4 = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-        // 지도를 클릭한 위치에 표출할 마커입니다
+        var markerPosition = new kakao.maps.LatLng(longitude, latitude);
+
+        console.log(">>>>==========" + longitude + "::::" + latitude);
+        // 마커를 생성합니다
         var marker = new kakao.maps.Marker({
-            // 지도 중심좌표에 마커를 생성합니다
-            position: map4.getCenter()
+            position: markerPosition
         });
         // 지도에 마커를 표시합니다
-        marker.setMap(map4);
+        marker.setMap(map);
 
-        // 지도에 클릭 이벤트를 등록합니다
-        // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
-        kakao.maps.event.addListener(map4, 'click', function (mouseEvent) {
-
-            // 클릭한 위도, 경도 정보를 가져옵니다
-            var latlng = mouseEvent.latLng;
-
-            // 마커 위치를 클릭한 위치로 옮깁니다
-            marker.setPosition(latlng);
-
-            // var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
-            // message += '경도는 ' + latlng.getLng() + ' 입니다';
-            //
-            // var resultDiv = document.getElementById('clickLatlng');
-            // resultDiv.innerHTML = message;
-            getClubVilCode3(latlng.getLng(), latlng.getLat());
-            $('.searchLng').val(latlng.getLng())
-            $('.searchLat').val(latlng.getLat())
-
-        });
-
-        getClubVilCode3(${empty param.searchLng?'127.029020621527':param.searchLng}, ${empty param.searchLat?'37.4994558002948':param.searchLat})
-
-        // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
-        // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다
-        // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
-        map4.relayout();
-
-
-
-        $(function () {
-
-            getClubLocarion();
-
-            $('#location2 .back-btn').on('click', function () {
-
-                $('#location2').modal("hide");
-
-                $("#exampleModal").modal("show");
-
-            })
-
-            $('#location2 .getLocation').on('click', function () {
-
-                $('#location2').modal("hide");
-
-                $("#exampleModal").modal("show");
-
-            })
-        })
-
-
-
+        map.relayout();
     }
-</script>
+/*
+    $(function () {
+         getClubLocation();
+
+         $('#location2 .back-btn').on('click', function () {
+         $('#location2').modal("hide");
+         $("#exampleModal").modal("show");
+
+       })
+
+        $('#location2 .getLocation').on('click', function () {
+          $('#location2').modal("hide");
+          $("#exampleModal").modal("show");
+         })
+      })
+*/
+ </script>

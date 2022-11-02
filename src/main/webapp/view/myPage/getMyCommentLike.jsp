@@ -42,18 +42,19 @@
     })
 
 </script>
-<body>
+<body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 <%--상단 툴바--%>
 <jsp:include page="/layout/toolbar.jsp"/>
 
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
-내가 쓴 댓글
-<hr/>
-<div>
-    <h3 class="getMyCommentLike">좋아요한 댓글</h3>
-    <h3 class="getMyRecommentLike">좋아요한 대댓글</h3>
+<div class="tabBox">
+    <span class="tabBtn getMyLike" >좋아요한 우리동네 게시글</span>
+    <span>|</span>
+    <span class="tabBtn getMyCbRvLike">좋아요한 모임 후기 게시글</span class="tabBtn">
 </div>
+<hr/>
+<h3>좋아요한 댓글</h3>
 <hr/>
 <c:set var="i" value="0" />
 <c:forEach var="list" items="${map.myComment}">

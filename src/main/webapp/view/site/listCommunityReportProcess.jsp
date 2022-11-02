@@ -162,7 +162,7 @@
 
 </head>
 
-<body>
+<body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 
 <jsp:include page="/layout/toolbar.jsp"/>
 

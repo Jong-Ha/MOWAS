@@ -143,9 +143,13 @@
 </style>
 
 <script type="text/javascript">
-    $(function (){
-        $(".userTable td:nth-child(2)").css("color" , "red");
-    });
+
+    function fncGetList(currentPage) {
+        $("#currentPage").val(currentPage)
+
+        $("form").attr("method" , "POST").attr("action" , "/user/listUsers").submit();
+    }
+
     $(function (){
         $(".userTable td:nth-child(2)").on("click" , function (){
             var userId = $(this).text().trim();
@@ -154,17 +158,18 @@
         });
     });
     $(function (){
-        $("#myPage").on("click" , function (){
-            self.location = "/view/myPage/getMyPage.jsp"
+        $("#project-search-addon").on("click",function (){
+            fncGetList(1);
         });
     });
+
             //$(".idd").text().trim();
             //self.location ="/user/listUserDetail?userId="+$(".idd");
             //$("form").attr("method" , "POST").attr("action" , "/user/listUserDetail").submit();
 
 </script>
 </head>
-<body>
+<body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 <jsp:include page="/layout/toolbar.jsp"/>
 
 <div class="page-header text-center">
@@ -227,17 +232,10 @@
 
                                 <div class="input-group mb-0">
                                     <input type="text" class="form-control" id="searchKeyword" name="searchKeyword" placeholder="Search..." aria-describedby="project-search-addon"
-                                           value="${! empty search.searchKeyword ? search.searchKeyword : '' }"/>
+                                           value="${! empty search.searchKeyword ? search.searchKeyword : "" }"/>
                                     <div class="input-group-append">
                                         <button class="btn btn-danger" type="button" id="project-search-addon"><i class="fa fa-search search-icon fa-2x font-12"></i></button>
                                     </div>
-                                </div>
-
-                                <div class="input-group">
-                                    <select class="form-control" name="searchCondition" >
-                                        <option value="0"${!empty search.searchCondition&&search.searchCondition==0 ? "selected":"" }>회원</option>
-                                        <option value="1"${!empty search.searchCondition&&search.searchCondition==1 ? "selected":"" }>게시글종류</option>
-                                    </select>
                                 </div>
 
                             </div>
@@ -259,7 +257,6 @@
     <tr>
         <th scope="col">번호</th>
         <th scope="col">회원 아이디</th>
-        <th scope="col">마지막 접속 날짜</th>
         <th scope="col">신뢰온도</th>
         <th scope="col">패널티시작날짜</th>
         <th scope="col">패널티종료날짜</th>
@@ -269,12 +266,11 @@
 
     <tbody>
     <c:set var="i" value="0" />
-    <c:forEach var="user" items="${user.userList}">
+    <c:forEach var="user" items="${list}">
         <c:set var="i" value="${ i+1 }" />
     <tr class="userTable">
         <th scope="row">${ i }</th>
         <td class="ia">${user.userId}</td>
-        <td class="ib">${user.lcd}</td>
         <td class="ic">${user.reviewPt}</td>
         <td class="id">${user.psd}</td>
         <td class="ie">${user.ped}</td>
@@ -337,7 +333,7 @@
     </div>
     --%>
 </div>
-    <button type="button" id="myPage">마이페이지</button>
+
 <jsp:include page="/layout/chatIcon.jsp"/>
 <jsp:include page="/layout/footer.jsp"/>
 </body>

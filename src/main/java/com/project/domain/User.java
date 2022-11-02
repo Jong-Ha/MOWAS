@@ -12,6 +12,9 @@ import java.util.Date;
 
 public class User {
     private String userId;
+
+    private String findPwdUserId;
+
     private String interList;
 
     private String masterCheck;
@@ -176,10 +179,19 @@ public class User {
         this.loginType = loginType;
     }
 
+    public String getFindPwdUserId() {
+        return findPwdUserId;
+    }
+
+    public void setFindPwdUserId(String findPwdUserId) {
+        this.findPwdUserId = findPwdUserId;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "userId='" + userId + '\'' +
+                ", findPwdUserId='" + findPwdUserId + '\'' +
                 ", interList='" + interList + '\'' +
                 ", masterCheck='" + masterCheck + '\'' +
                 ", userStatus='" + userStatus + '\'' +

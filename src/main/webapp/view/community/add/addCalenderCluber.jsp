@@ -41,7 +41,6 @@
     <!--  ///////////////////////// JavaScript ////////////////////////// -->
     <script type="text/javascript">
 
-        //============= 회원정보수정 Event  처리 =============
         $(function () {
 
 
@@ -49,8 +48,6 @@
                 window.close();
             });
 
-            const date = new Date();
-            if ($(".clubDate").val() > date.toString()) ;
 
 
             var str = '';
@@ -67,6 +64,7 @@
                 }
 
             })
+
         });
 
 
@@ -94,7 +92,7 @@
                         <div class="row g-0">
                             <div class="col-md-4 potoBox">
                                 <img class="bd-placeholder-img img-fluid rounded-start poto"
-                                     src="https://placeimg.com/50/50/any" alt="any" >
+                                     src="/resources/${cluber.user.userImage}"alt="any" >
                             </div>
                             <div class="col-md-8 chatText">
                                 <div class="card-body ">
@@ -113,7 +111,6 @@
 
             <div class="row">
                 <div class="col-xs-12 text-center ">
-                    <button type="button" class="btn btn-secondary btn-lg OK">확인</button>
                     <button type="button" class="btn btn-secondary btn-lg close">닫기</button>
                 </div>
             </div>

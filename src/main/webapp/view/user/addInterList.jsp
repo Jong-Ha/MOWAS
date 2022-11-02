@@ -585,7 +585,7 @@
       })
   })
 </script>
-<body>
+<body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 <jsp:include page="/layout/toolbar.jsp"/>
 
 <div class="container" style="text-align: -webkit-center; width: 1080px; height: 800px;">

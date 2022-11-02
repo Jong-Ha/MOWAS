@@ -288,7 +288,7 @@
             ,deal_date = #{dealDate}
             ,deal_location =#{dealLocation}
             ,deal_id = #{dealId}
-            ,deal_mode_check=#{dealModeCheck}
+            ,deal_mode_check = '1'
         </set>
         WHERE deal_board_num = #{dealBoardNum}
     </update>

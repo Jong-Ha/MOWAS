@@ -118,7 +118,13 @@
             console.log("유저의 아이디는 : " + userId);
 
             if (userId === '' || userId === null) {
-                alert("로그인후 사용해 주세요")
+
+                Swal.fire({
+                    icon: 'error',
+                    title: '사용할수 없는 기능 입니다',
+                    text: '로그인후 사용해 주세요',
+                    footer: '<a href="">Why do I have this issue?</a>'
+                })
 
             } else if (userId !== '') {
 
@@ -214,7 +220,6 @@
                         })
                     }
                     Swal.fire({
-                        position: 'top-end',
                         icon: 'success',
                         title: 'Your work has been saved',
                         showConfirmButton: false,
@@ -227,7 +232,6 @@
                     //error 발생시 그냥 창을 닫음
                 }, error: function () {
                     Swal.fire({
-                        position: 'top-end',
                         icon: 'success',
                         title: 'Your work has been saved',
                         showConfirmButton: false,
@@ -244,20 +248,32 @@
 
         $(".report").on("click", function () {
 
-            var boardNum = $(this).parents(".cardbox").find(".CalenderReviewNum").val();
-            var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val()
-            var reportedId = $(this).parents(".cardbox").find(".SUserId").val();
+            if (userId === '' || userId === null) {
 
-
-            $("#commuReport .modal-content").load("/view/site/addCommunityReport.jsp",
-                {boardNum: boardNum, boardCategory: boardCategory, reportedId: reportedId},
-                function (re) {
-
-                    // console.log(re);
-                    $("#commuReport .modal-content").html(re);
-
-                    $("#commuReport").modal("show");
+                Swal.fire({
+                    icon: 'error',
+                    title: '사용할수 없는 기능 입니다',
+                    text: '로그인후 사용해 주세요',
+                    footer: '<a href="">Why do I have this issue?</a>'
                 })
+
+            } else if (userId !== '') {
+
+                var boardNum = $(this).parents(".cardbox").find(".CalenderReviewNum").val();
+                var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val()
+                var reportedId = $(this).parents(".cardbox").find(".SUserId").val();
+
+
+                $("#commuReport .modal-content").load("/view/site/addCommunityReport.jsp",
+                    {boardNum: boardNum, boardCategory: boardCategory, reportedId: reportedId},
+                    function (re) {
+
+                        // console.log(re);
+                        $("#commuReport .modal-content").html(re);
+
+                        $("#commuReport").modal("show");
+                    })
+            }
         })
 
 
@@ -273,15 +289,34 @@
         $(".getClub").on("click", function () {
             var clubNum = $(this).parents(".reviewBox").find(".clubNum").val()
 
-            location.href = "/club/getClub/" + clubNum
+            Swal.fire({
+                title: '해당 모임 페이지로 이동하시겠습니까??',
+                text: "해당 페이지로 이동합니다",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText :"취소",
+                confirmButtonText: '페이지이동'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        '페이지를 이동 합니다',
+                        'success'
+                    )
+
+                    setTimeout(() => {
+                        location.href = "/club/getClub/" + clubNum
+                    }, 1500)
+                }
+            })
+
         })
     }
 
 
     /*무한스크롤*/
     $(function () {
-
-        lodingListClubCalender()
 
 
         function getFormJson(select) {
@@ -443,6 +478,7 @@
                         })
 
                         $("#textSerch .currentPage").val(parseInt($("#textSerch .currentPage").val() + 1))
+
                         lodingListClubCalender()
 
 
@@ -640,14 +676,13 @@
 <img class="shadow-lg" src="${pageContext.request.contextPath}/resources/images/club1.png"
      style="height: 500px;border-radius: 10px;  width: 1600px;">
 
+<jsp:include page="/layout/commubar.jsp"/>
 <div class="container">
-    <jsp:include page="/layout/commubar.jsp"/>
     <input hidden class="boardCategory" value="1">
 
     <%--상단 툴바--%>
 
     <%--게시판 navigation--%>
-
 
     <div class="addBox">
         <form id="textSerch" class="d-flex" role="search">
@@ -672,7 +707,7 @@
     </div>
 
 
-    <div class="ClubCalendarReviewList">
+    <div class="ClubCalendarReviewList" style=" display: flex;  flex-wrap: wrap;  padding-bottom: 140px;">
         <c:set var="i" value="0"/>
         <c:forEach var="ClubCalendarReview" items="${list}">
             <c:set var="i" value="${i+1}"/>
@@ -699,7 +734,8 @@
                             </div>
                             <div style="width: 56%;">
                                 <div class="user_manu">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                         fill="currentColor"
                                          class="bi bi-three-dots" viewBox="0 0 16 16">
                                         <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
                                     </svg>
@@ -712,7 +748,8 @@
                                         </li>
 
                                         <c:if test="${user.userId eq ClubCalendarReview.userId}">
-                                            <li data-bs-toggle="modal" data-bs-target="#exampleModal" class="update">
+                                            <li data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                class="update">
                                                 수정
                                             </li>
                                             <li class="delete">
@@ -798,7 +835,6 @@
         </c:forEach>
     </div>
 
-
 </div>
 
 
@@ -846,7 +882,8 @@
 
                     <div class="form-floating mb-3">
 
-                        <input type="date" class="form-control clubDate" id="date-text" value="" placeholder="asdasd"/>
+                        <input type="date" class="form-control clubDate" id="date-text" value=""
+                               placeholder="asdasd"/>
                         <label for="date-text">모임 일정 날짜</label>
 
                     </div>
@@ -876,8 +913,10 @@
 
 
         </div>
+
     </div>
 </div>
+
 
 <jsp:include page="/layout/chatIcon.jsp"/>
 

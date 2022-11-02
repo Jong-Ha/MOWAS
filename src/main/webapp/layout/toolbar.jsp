@@ -28,8 +28,8 @@
     });
 
     function fncLogin() {
-        var id = $("#loginModal input:text").val();
-        var pw = $("#loginModal input:password").val();
+        var id = $("#loginModal input:text").val().trim();
+        var pw = $("#loginModal input:password").val().trim();
         var keepId = $("#keepId").prop('checked');
         var keepLogin = $("#keepLogin").prop('checked');
         console.log("keepId =>" + keepId);
@@ -83,7 +83,7 @@
     };
 
     $(function () {
-        $('input[name="userId"]').focus();
+        $('#userId').focus();
         console.log('keepId의 값은? : ' + $.cookie('keepId'))
         if ($.cookie('keepId') != undefined) {
             $('#keepId').prop('checked', true);
@@ -107,7 +107,7 @@
                 location.reload();
             }, 1000);
         });
-        $('input[name="password"]').on('keydown', function (key) {
+        $('#password').on('keydown', function (key) {
             if (key.keyCode == 13) {
                 fncLogin();
                 setTimeout(function () {
@@ -445,7 +445,7 @@
                                     </a>
 
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <li><a class="dropdown-item" href="/user/listUser">회 원 관 리</a></li>
+                                        <li><a class="dropdown-item" href="/user/listUsers">회 원 관 리</a></li>
                                         <li><a class="dropdown-item" href="/site/listCommunityReport">커뮤니티 신고</a></li>
                                         <li><a class="dropdown-item" href="/site/listCommunityReportProcess">커뮤니티 신고
                                             처리</a></li>
@@ -477,7 +477,7 @@
                         <div class="login ">
                             <div class="d-grid gap-2">
 
-                                <c:if test="${sessionScope.user.userId eq null}">
+                                <c:if test="${user.userId eq null}">
 
                                     <div class="loginbox login underline yellow" id="login1"
                                          style="font-size: 1.2em; color: #FFFFFF; " data-bs-toggle="modal"

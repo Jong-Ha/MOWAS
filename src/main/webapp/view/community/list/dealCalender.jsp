@@ -61,10 +61,7 @@
 
             eventClick: function (info) {
                 $(function () {
-            /*    window.open(
-                    "/commu/getDealCalender?dealNum=" + info.event.id, "거래 상세 조회",
-                    "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no"
-                )*/
+
 
                     $.ajax({
                         url: "/clubCal/json/getDealCalender",
@@ -164,6 +161,24 @@
 
         })
 
+        $(".location2").on("click", function () {
+            var location = $(".location2").val();
+
+            $("#location2 .modal-content").load("/view/site/getCalenderMap.jsp",
+                {location : location},
+                function (re) {
+
+                    $("#location2 .modal-content").html(re);
+
+                    $("#location2").modal("show")
+                })
+
+        })
+
+        $("#location2").on("shown.bs.modal", ()=> {
+            relayout3();
+        })
+
 
     })
 
@@ -187,54 +202,6 @@
 
 
 
-<%--거래 일정 작섬--%>
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true"
-     style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <input type="hidden" class="dealNum" value="">
-                <h1 class="modal-title fs-5" id="exampleModalLabel4"> 거래 일정 작성</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-                <form id="fileForm4">
-
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control dealCalenderTitle" id="recipient-name" value=""
-                               placeholder="asdasd">
-                        <label for="recipient-name">제 목</label>
-                    </div>
-
-
-                    <div class="form-floating mb-3">
-
-                        <input type="date" class="form-control dealDate" id="date-text" value="" placeholder="asdasd"/>
-                        <label for="date-text">모임 일정 날짜</label>
-
-                    </div>
-
-                    <div class="input-group mb-3">
-
-                        <input type="text" class="form-control dealLocation" value="위치 선택">
-
-                    </div>
-
-                </form>
-
-            </div>
-
-            <div class="modal-footer" style=" justify-content:center;">
-
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                <button type="button" class="btn btn-primary dealSubmit">등록</button>
-
-
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <%--거래 일정 상세 조회--%>
@@ -253,20 +220,20 @@
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control dealCalenderTitle2" value=""
                                placeholder="asdasd">
-                        <label for="recipient-name">제 목</label>
+                        <label>제 목</label>
                     </div>
 
 
                     <div class="form-floating mb-3">
 
                         <input type="date" class="form-control dealDate2"  value="" placeholder="asdasd"/>
-                        <label for="date-text">모임 일정 날짜</label>
+                        <label >모임 일정 날짜</label>
 
                     </div>
 
                     <div class="input-group mb-3">
 
-                        <input type="text" class="form-control dealLocation2" value="위치 선택">
+                        <input type="button" class="form-control dealLocation2 location2"  data-bs-toggle="modal" data-bs-target="#location2" value="위치 보기">
 
                     </div>
 
@@ -276,13 +243,22 @@
             <div class="modal-footer" style=" justify-content:center;">
 
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                <button type="button" class="btn btn-info updateSubmit">수정</button>
-                <button type="button" class="btn btn-secondary getDealPage">게시글 상세 조회</button>
 
             </div>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="location2" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <jsp:include page="/view/site/getCalenderMap.jsp"/>
+
+        </div>
+    </div>
+</div>
+
 
 </body>
 </html>
