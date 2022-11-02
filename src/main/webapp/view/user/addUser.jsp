@@ -541,7 +541,7 @@ let smsNum
 
 </script>
 
- <body class="bg-light">
+<body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 
  <%--상단 툴바--%>
  <jsp:include page="/layout/toolbar.jsp"/>

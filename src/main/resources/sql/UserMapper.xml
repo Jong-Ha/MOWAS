@@ -181,12 +181,31 @@
         WHERE user_id=#{userId:VARCHAR}
     </update>
 
-    <select  id="listUser"  parameterType="user"  resultMap="userSelectMap">
-    SELECT *
-    from users
+    <select  id="listUsers"  parameterType="search"  resultMap="userSelectMap">
+        SELECT *
+        FROM (	SELECT inner_table.* , ROWNUM AS row_seq
+                FROM(	SELECT *
+                         FROM users
+        <if test="(searchKeyword != null and searchKeyword != '')">
+                             <where>
+                                  user_id = #{searchKeyword}
+                             </where>
+                          </if>
+                        ORDER BY user_id ) inner_table
+                WHERE ROWNUM &lt;= #{endRowNum} )
+        WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum}
     </select>
 
-
+    <select  id="getTotalCount"  parameterType="search"	 resultType="int">
+        SELECT COUNT(*)
+        FROM(	SELECT *
+                 FROM users
+                     <if test="(searchKeyword != null and searchKeyword != '')">
+                        <where>
+                            user_id = #{searchKeyword}
+                         </where>
+                    </if> ) countTable
+    </select>
 
 
     <select id="getUserDetail" parameterType="String" resultMap="userSelectMap">

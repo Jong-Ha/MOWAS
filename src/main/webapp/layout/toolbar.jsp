@@ -28,8 +28,8 @@
     });
 
     function fncLogin() {
-        var id = $("#loginModal input:text").val();
-        var pw = $("#loginModal input:password").val();
+        var id = $("#loginModal input:text").val().trim();
+        var pw = $("#loginModal input:password").val().trim();
         var keepId = $("#keepId").prop('checked');
         var keepLogin = $("#keepLogin").prop('checked');
         console.log("keepId =>" + keepId);
@@ -445,7 +445,7 @@
                                     </a>
 
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <li><a class="dropdown-item" href="/user/listUser">회 원 관 리</a></li>
+                                        <li><a class="dropdown-item" href="/user/listUsers">회 원 관 리</a></li>
                                         <li><a class="dropdown-item" href="/site/listCommunityReport">커뮤니티 신고</a></li>
                                         <li><a class="dropdown-item" href="/site/listCommunityReportProcess">커뮤니티 신고
                                             처리</a></li>

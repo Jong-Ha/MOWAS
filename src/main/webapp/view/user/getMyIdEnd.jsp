@@ -41,7 +41,7 @@
     })
 
 </script>
-<body>
+<body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 <%-- <%--상단 툴바--%>
 <jsp:include page="/layout/toolbar.jsp"/>
 <div class="container" style="width: 1080px; height: 700px; text-align: -webkit-center;">
