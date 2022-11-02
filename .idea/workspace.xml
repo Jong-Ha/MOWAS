@@ -10,19 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="JHK 2022.10.31&#10;&#10;회원가입 페이지 디자인 수정">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/MOWAS_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/DBtext.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/DBtext.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/MyPageMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/MyPageMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/controller/ClubController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/common/util/ChatController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/controller/MyPageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/CommunityMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/UserMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/getMyId.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/getMyId.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/getMyIdEnd.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/getMyIdEnd.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/getMyPassword.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/getMyPassword.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/getMyPasswordEnd.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/getMyPasswordEnd.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -460,7 +453,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667298436072</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="JHK 2022.11.02&#10;&#10;회원가입 문자인증번호 수정">
+      <created>1667352977449</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1667352977449</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

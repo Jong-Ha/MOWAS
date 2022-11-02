@@ -269,7 +269,7 @@
     </div>
 
 <div style="text-align: center";>
-<button type="button" class="  ok" style="display: inline-block;" id="ok">확인</button>
+<button type="button" class="btn btn-primary ok" style="display: inline-block;" id="ok">확인</button>
 </div>
 </form>
 <jsp:include page="/layout/chatIcon.jsp"/>
