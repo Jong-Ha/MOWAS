@@ -48,4 +48,6 @@ public interface MyPageDao {
 
     public List<CommunityReport> getMyPpt(String userId)throws Exception;
 
+
+    public List<String> listDealBoardFile(int dealBoardNum);
 }

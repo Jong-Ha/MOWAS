@@ -28,8 +28,8 @@
     });
 
     function fncLogin() {
-        var id = $("#loginModal input:text").val();
-        var pw = $("#loginModal input:password").val();
+        var id = $("#loginModal input:text").val().trim();
+        var pw = $("#loginModal input:password").val().trim();
         var keepId = $("#keepId").prop('checked');
         var keepLogin = $("#keepLogin").prop('checked');
         console.log("keepId =>" + keepId);
@@ -83,7 +83,7 @@
     };
 
     $(function () {
-        $('input[name="userId"]').focus();
+        $('#userId').focus();
         console.log('keepId의 값은? : ' + $.cookie('keepId'))
         if ($.cookie('keepId') != undefined) {
             $('#keepId').prop('checked', true);
@@ -107,7 +107,7 @@
                 location.reload();
             }, 1000);
         });
-        $('input[name="password"]').on('keydown', function (key) {
+        $('#password').on('keydown', function (key) {
             if (key.keyCode == 13) {
                 fncLogin();
                 setTimeout(function () {
@@ -445,7 +445,7 @@
                                     </a>
 
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <li><a class="dropdown-item" href="/user/listUser">회 원 관 리</a></li>
+                                        <li><a class="dropdown-item" href="/user/listUsers">회 원 관 리</a></li>
                                         <li><a class="dropdown-item" href="/site/listCommunityReport">커뮤니티 신고</a></li>
                                         <li><a class="dropdown-item" href="/site/listCommunityReportProcess">커뮤니티 신고
                                             처리</a></li>
@@ -461,13 +461,13 @@
                     </ul>
                     <div class="logitem">
 
-                        <c:if test="${user.userImage ne null}">
+                        <c:if test="${sessionScope.user.userImage ne null}">
 
-                            <img src="/resources/${user.userImage}"
+                            <img src="/resources/${sessionScope.user.userImage}"
                                  style="width: 60px;margin-right: 10px; border-radius: 40px; height: 50px;">
 
                         </c:if>
-                        <c:if test="${user.userImage eq null}">
+                        <c:if test="${sessionScope.user.userImage eq null}">
 
                             <img src="${pageContext.request.contextPath}/resources/images/proplePoto.png"
                                  style="width: 60px;margin-right: 10px; border-radius: 40px; height: 50px;">
@@ -487,7 +487,7 @@
 
                                 </c:if>
 
-                                <c:if test="${user.userId ne null}">
+                                <c:if test="${sessionScope.user.userId ne null}">
 
                                 <div class="loginbox login underline yellow" style="font-size: 1.2em; color: #FFFFFF;"
                                      id="logout">로그아웃

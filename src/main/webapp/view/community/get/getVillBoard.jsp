@@ -503,7 +503,12 @@
 
                             if (userId === '' || userId === null) {
 
-                                alert("로그인후 이용 가능합니다")
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: '사용할수 없는 기능 입니다',
+                                    text: '로그인후 사용해 주세요',
+                                    footer: '<a href="">Why do I have this issue?</a>'
+                                })
 
                             } else if (userId !== '') {
 
@@ -541,7 +546,13 @@
 
                             if (userId === '' || userId === null) {
 
-                                alert("로그인후 이용 가능합니다")
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: '사용할수 없는 기능 입니다',
+                                    text: '로그인후 사용해 주세요',
+                                    footer: '<a href="">Why do I have this issue?</a>'
+                                })
+
                             } else if (userId !== '') {
 
                                 $.ajax({
@@ -675,39 +686,63 @@
 
                         $(".reportComment").on("click", function () {
 
-                            var boardNum = $(this).parents(".commentList").find(".commentNum").val()
-                            var boardCategory = "10";
-                            var reportedId = $(this).parents(".commentList").find(".commentUser").val();
+                            if (userId === '' || userId === null) {
 
-
-                            $("#commuReport .modal-content").load("/view/site/addCommunityReport.jsp",
-                                {boardNum: boardNum, boardCategory: boardCategory, reportedId: reportedId},
-                                function (re) {
-
-                                    // console.log(re);
-                                    $("#commuReport .modal-content").html(re);
-
-                                    $("#commuReport").modal("show");
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: '사용할수 없는 기능 입니다',
+                                    text: '로그인후 사용해 주세요',
+                                    footer: '<a href="">Why do I have this issue?</a>'
                                 })
+
+                            } else if (userId !== '') {
+
+                                var boardNum = $(this).parents(".commentList").find(".commentNum").val()
+                                var boardCategory = "10";
+                                var reportedId = $(this).parents(".commentList").find(".commentUser").val();
+
+
+                                $("#commuReport .modal-content").load("/view/site/addCommunityReport.jsp",
+                                    {boardNum: boardNum, boardCategory: boardCategory, reportedId: reportedId},
+                                    function (re) {
+
+                                        // console.log(re);
+                                        $("#commuReport .modal-content").html(re);
+
+                                        $("#commuReport").modal("show");
+                                    })
+                            }
                         })
 
 
                         $(".reportRecomment").on("click", function () {
 
-                            var boardNum = $(this).parents(".RecommentList").find(".recommentNum").val();
-                            var boardCategory = "11";
-                            var reportedId = $(this).parents(".RecommentList").find(".recommentUser").val();
+                            if (userId === '' || userId === null) {
 
-
-                            $("#commuReport .modal-content").load("/view/site/addCommunityReport.jsp",
-                                {boardNum: boardNum, boardCategory: boardCategory, reportedId: reportedId},
-                                function (re) {
-
-                                    // console.log(re);
-                                    $("#commuReport .modal-content").html(re);
-
-                                    $("#commuReport").modal("show");
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: '사용할수 없는 기능 입니다',
+                                    text: '로그인후 사용해 주세요',
+                                    footer: '<a href="">Why do I have this issue?</a>'
                                 })
+
+                            } else if (userId !== '') {
+
+                                var boardNum = $(this).parents(".RecommentList").find(".recommentNum").val();
+                                var boardCategory = "11";
+                                var reportedId = $(this).parents(".RecommentList").find(".recommentUser").val();
+
+
+                                $("#commuReport .modal-content").load("/view/site/addCommunityReport.jsp",
+                                    {boardNum: boardNum, boardCategory: boardCategory, reportedId: reportedId},
+                                    function (re) {
+
+                                        // console.log(re);
+                                        $("#commuReport .modal-content").html(re);
+
+                                        $("#commuReport").modal("show");
+                                    })
+                            }
                         })
 
                     }
@@ -751,26 +786,38 @@
             /*좋아요 버튼*/
             $(".boardlikeButton").on("click", function () {
 
-                var likeCount = $(".boardlikeText").html();
-                var boardNum = $(".boardNum").val();
-                var boardCategory = $(".boardCategory").val()
+                if (userId === '' || userId === null) {
 
-                $.ajax({
-                    url: "/commu/json/addLike",
-                    type: "POST",
-                    data: JSON.stringify({
-                        "likeCount": likeCount,
-                        "boardNum": boardNum,
-                        "boardCategory": boardCategory
-                    }),
-                    dataType: "JSON",
-                    contentType: 'application/json; charset=UTF-8',
-                    success: function (JSONData, result) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '사용할수 없는 기능 입니다',
+                        text: '로그인후 사용해 주세요',
+                        footer: '<a href="">Why do I have this issue?</a>'
+                    })
+
+                } else if (userId !== '') {
+
+                    var likeCount = $(".boardlikeText").html();
+                    var boardNum = $(".boardNum").val();
+                    var boardCategory = $(".boardCategory").val()
+
+                    $.ajax({
+                        url: "/commu/json/addLike",
+                        type: "POST",
+                        data: JSON.stringify({
+                            "likeCount": likeCount,
+                            "boardNum": boardNum,
+                            "boardCategory": boardCategory
+                        }),
+                        dataType: "JSON",
+                        contentType: 'application/json; charset=UTF-8',
+                        success: function (JSONData, result) {
 
 
-                        $(".boardlikeText").html(JSONData);
-                    }
-                })
+                            $(".boardlikeText").html(JSONData);
+                        }
+                    })
+                }
 
             })
         })
@@ -1009,19 +1056,31 @@
 
             $(".report").on("click", function () {
 
-                var boardNum = $(".boardNum").val()
-                var boardCategory = $(".boardCategory").val()
-                var reportedId = $(".SUserId").val()
+                if (userId === '' || userId === null) {
 
-                $("#commuReport .modal-content").load("/view/site/addCommunityReport.jsp",
-                    {boardNum: boardNum, boardCategory: boardCategory, reportedId: reportedId},
-                    function (re) {
-
-                        // console.log(re);
-                        $("#commuReport .modal-content").html(re);
-
-                        $("#commuReport").modal("show");
+                    Swal.fire({
+                        icon: 'error',
+                        title: '사용할수 없는 기능 입니다',
+                        text: '로그인후 사용해 주세요',
+                        footer: '<a href="">Why do I have this issue?</a>'
                     })
+
+                } else if (userId !== '') {
+
+                    var boardNum = $(".boardNum").val()
+                    var boardCategory = $(".boardCategory").val()
+                    var reportedId = $(".SUserId").val()
+
+                    $("#commuReport .modal-content").load("/view/site/addCommunityReport.jsp",
+                        {boardNum: boardNum, boardCategory: boardCategory, reportedId: reportedId},
+                        function (re) {
+
+                            // console.log(re);
+                            $("#commuReport .modal-content").html(re);
+
+                            $("#commuReport").modal("show");
+                        })
+                }
 
             })
 
@@ -1029,8 +1088,15 @@
 
                 var SUserId = $(".SUserId").val();
 
-                if (userId === '') {
-                    alert("로그인후 이용 가능 합니다")
+                if (userId === '' || userId === null) {
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: '사용할수 없는 기능 입니다',
+                        text: '로그인후 사용해 주세요',
+                        footer: '<a href="">Why do I have this issue?</a>'
+                    })
+
                 } else {
 
                     if (userId === SUserId) {
@@ -1058,26 +1124,26 @@
                                 swalWithBootstrapButtons.fire(
                                     SUserId + ' 님이 초대 되었습니다',
                                     'success',
-                                ).then(()=>{
-                                    var openWin = window.open("/chat/chatList?chatCategory=onebyone",'chatList')
+                                ).then(() => {
+                                    var openWin = window.open("/chat/chatList?chatCategory=onebyone", 'chatList')
                                     $.ajax({
-                                        url : "/chat/addOneChat",
-                                        data : {
-                                            'userId' : SUserId,
-                                            'chatNameSpace' : 'onebyone',
-                                            'roomName' : SUserId
+                                        url: "/chat/addOneChat",
+                                        data: {
+                                            'userId': SUserId,
+                                            'chatNameSpace': 'onebyone',
+                                            'roomName': SUserId
                                         },
-                                        success : function(re){
+                                        success: function (re) {
                                             // console.log(re)
                                             let loadCheck = true
-                                            setInterval(function(){
-                                                if(loadCheck){
-                                                    if($(openWin.document).find('.chatRoom').html()!==undefined){
+                                            setInterval(function () {
+                                                if (loadCheck) {
+                                                    if ($(openWin.document).find('.chatRoom').html() !== undefined) {
                                                         $(openWin.document).find('.chatRoom').html(re)
                                                         loadCheck = false
                                                     }
                                                 }
-                                            },100)
+                                            }, 100)
                                         }
                                     })
                                 })
@@ -1162,7 +1228,7 @@
                                 ${villBoard.userId}
                             </div>
                             <div style="font-size: 0.7em; margin-top: 5px;  text-align: left;  width: 150px;">
-                               <%-- ${villBoard.location}--%>
+                                <%-- ${villBoard.location}--%>
                             </div>
                         </div>
                         <div class="reviewTitle2">
@@ -1202,7 +1268,8 @@
                             <c:forEach var="File" items="${villBoard.file}">
                                 <c:set var="i" value="${i+1}"/>
 
-                                <div class="carousel-item active" data-bs-interval="3000" style=" background-color: #FFFFFF;">
+                                <div class="carousel-item active" data-bs-interval="3000"
+                                     style=" background-color: #FFFFFF;">
                                     <img class="potos" src="/resources${File.fileName}">
                                 </div>
 
@@ -1281,7 +1348,8 @@
                                 <div class="btn btn-danger buttonBox report">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                                          fill="currentColor"
-                                         class="bi bi-hand-thumbs-down-fill" viewBox="0 0 16 16" style="font-size: 1.7em;">
+                                         class="bi bi-hand-thumbs-down-fill" viewBox="0 0 16 16"
+                                         style="font-size: 1.7em;">
                                         <path d="M6.956 14.534c.065.936.952 1.659 1.908 1.42l.261-.065a1.378 1.378 0 0 0 1.012-.965c.22-.816.533-2.512.062-4.51.136.02.285.037.443.051.713.065 1.669.071 2.516-.211.518-.173.994-.68 1.2-1.272a1.896 1.896 0 0 0-.234-1.734c.058-.118.103-.242.138-.362.077-.27.113-.568.113-.856 0-.29-.036-.586-.113-.857a2.094 2.094 0 0 0-.16-.403c.169-.387.107-.82-.003-1.149a3.162 3.162 0 0 0-.488-.9c.054-.153.076-.313.076-.465a1.86 1.86 0 0 0-.253-.912C13.1.757 12.437.28 11.5.28H8c-.605 0-1.07.08-1.466.217a4.823 4.823 0 0 0-.97.485l-.048.029c-.504.308-.999.61-2.068.723C2.682 1.815 2 2.434 2 3.279v4c0 .851.685 1.433 1.357 1.616.849.232 1.574.787 2.132 1.41.56.626.914 1.28 1.039 1.638.199.575.356 1.54.428 2.591z"/>
                                     </svg>
                                 </div>

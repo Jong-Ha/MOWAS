@@ -29,6 +29,8 @@
         cursor: pointer;
     }
 
+
+
     /*.searchBox {*/
     /*    margin: 20px;*/
     /*}*/
@@ -561,6 +563,7 @@
 <script type="text/javascript">
 
     $(function () {
+
         var userId = $(".myPageUserId").val();
         $(".paging").on("click", function () {
             $("#currentPage").val($(this).text())
@@ -581,10 +584,26 @@
         $(".getMyDealBoard").on("click", function () {
             self.location = "/myPage/getMyDealBoard?userId=" + userId;
         })
+
+
+        $('.cardbox').each(function (index,item) {
+            var address = $(item).find('.villCode').val();
+            const myArray = address.split(" ");
+            console.log(index)
+            console.log(item)
+            $(item).find('#demo').html(myArray[2]);
+
+        })
+        $(".dealBox").off('click').on('click', function (e) {
+
+
+            location.href = "/deal/getDeal/" + $(this).find('[name="dealBoardNum"]').val();
+
+        })
     })
 
 </script>
-<body>
+<body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 
 <%--상단 툴바--%>
 <jsp:include page="/layout/toolbar.jsp"/>
@@ -595,9 +614,9 @@
 <div class="tabBox">
     <span class="tabBtn getMyVillBoard">우리동네 게시글</span>
     <span>|</span>
-    <span class="tabBtn getMyCbReviewBoard">모임 일정 후기 게시글</span class="tabBtn">
+    <span class="tabBtn getMyCbReviewBoard">모임 일정 후기 게시글</span>
     <span>|</span>
-    <span class="tabBtn getMyDealBoard">판매/판매요청 게시글</span class="tabBtn">
+    <span class="tabBtn getMyDealBoard">판매/판매요청 게시글</span>
 </div>
 
 
@@ -612,6 +631,7 @@
         <div class="cardbox">
             <div class="col dealBox">
                 <input type="hidden" name="dealBoardNum" class="dealBoardNum" value="${list.dealBoardNum}">
+                <input type="hidden" name="villCode" class="villCode" value="${list.villCode}">
                 <div class="card h-100 shadow-lg">
                     <div class="card-footer"
                          style=" border-bottom: 1px solid; display: flex; font-weight: bold">
@@ -643,8 +663,8 @@
 
                         <div class="dealinfo cartFont" style="flex: 1; width: 50%;">
                             <p class="allFlex" style="font-size: 1.3em; font-weight: bold"> ${list.price} 원 </p>
-                            <p class="allFlex"
-                               style="font-size: 1.3em; font-weight: bold">${list.villCode}∙ ${list.dealRegDate}</p>
+                            <p class="allFlex" id="demo"
+                               style="font-size: 1.3em; font-weight: bold"></p>
                             <p class="allFlex" style="font-size: 1em"> 좋아요 ${list.likeCount} ∙
                                 조회수 ${list.viewCount} </p>
 
@@ -655,40 +675,40 @@
         </div>
         </c:forEach>
 
-        <c:forEach var="list" items="${map.dealBoard}">
+<%--        <c:forEach var="list" items="${map.dealBoard}">--%>
 
 
-        <div class="cardbox" style="margin-left: 100px;">
-            <div class="col dealBox">
-                <input type="hidden" name="dealBoardNum" class="dealBoardNum" value="10202">
-                <div class="card h-100 shadow-lg">
-                    <div class="card-footer"
-                         style=" border-bottom: 1px solid; display: flex; font-weight: bold">
-                        <a href="/deal/getDeal/${list.dealBoardNum}"> ${list.dealTitle}</a>
-                        <p class="allFlex " style="position: absolute; right: 10px;">
-                                ${list.dealStatus}
-                        </p>
-                    </div>
-                    <div class="potoBox">
-                        <img class="poto" width="100%" height="100%"
-                             src="/resources/uploadFiles\dealBoardFiles\7c7df3f2-9517-45bb-afb1-bd38ff69bef6e6e6d1e0-da16-420c-9820-e56f06b27573라이언.jfif"
-                             alt="any">
-                    </div>
-                    <div class="cardM " style="display: flex; padding: 10px 0 0 10px; height: 120px;; ">
-                        <div class="dealinfo cartFont" style="flex: 1; width: 50%;">
-                            <p class="allFlex" style="font-size: 1.3em; font-weight: bold"> ${list.price} 원 </p>
-                            <p class="allFlex" style="font-size: 1.3em; font-weight: bold">${list.villCode}
-                                ∙ ${list.dealRegDate}</p>
-                            <p class="allFlex" style="font-size: 1em"> 좋아요 ${list.likeCount} ∙
-                                조회수 ${list.viewCount} </p>
-                        </div>
-                    </div>
+<%--        <div class="cardbox" style="margin-left: 100px;">--%>
+<%--            <div class="col dealBox">--%>
+<%--                <input type="hidden" name="dealBoardNum" class="dealBoardNum" value="10202">--%>
+<%--                <div class="card h-100 shadow-lg">--%>
+<%--                    <div class="card-footer"--%>
+<%--                         style=" border-bottom: 1px solid; display: flex; font-weight: bold">--%>
+<%--                        <a href="/deal/getDeal/${list.dealBoardNum}"> ${list.dealTitle}</a>--%>
+<%--                        <p class="allFlex " style="position: absolute; right: 10px;">--%>
+<%--                                ${list.dealStatus}--%>
+<%--                        </p>--%>
+<%--                    </div>--%>
+<%--                    <div class="potoBox">--%>
+<%--                        <img class="poto" width="100%" height="100%"--%>
+<%--                             src="/resources/uploadFiles\dealBoardFiles\7c7df3f2-9517-45bb-afb1-bd38ff69bef6e6e6d1e0-da16-420c-9820-e56f06b27573라이언.jfif"--%>
+<%--                             alt="any">--%>
+<%--                    </div>--%>
+<%--                    <div class="cardM " style="display: flex; padding: 10px 0 0 10px; height: 120px;; ">--%>
+<%--                        <div class="dealinfo cartFont" style="flex: 1; width: 50%;">--%>
+<%--                            <p class="allFlex" style="font-size: 1.3em; font-weight: bold"> ${list.price} 원 </p>--%>
+<%--                            <p class="allFlex" style="font-size: 1.3em; font-weight: bold">${list.villCode}--%>
+<%--                                ∙ ${list.dealRegDate}</p>--%>
+<%--                            <p class="allFlex" style="font-size: 1em"> 좋아요 ${list.likeCount} ∙--%>
+<%--                                조회수 ${list.viewCount} </p>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
 
-                </div>
-            </div>
-        </div>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
 
-        </c:forEach>
+<%--        </c:forEach>--%>
     </div>
 </div>
         <jsp:include page="/layout/chatIcon.jsp"/>

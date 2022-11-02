@@ -18,7 +18,6 @@
         <result property="phone" column="phone" jdbcType="VARCHAR"/>
         <result property="villCode" column="vill_code" jdbcType="VARCHAR"/>
         <result property="userImage" column="user_Image" jdbcType="VARCHAR"/>
-
         <result property="psd" column="psd" jdbcType="DATE"/>
         <result property="ped" column="ped" jdbcType="DATE"/>
         <result property="ppt" column="ppt" jdbcType="NUMERIC"/>
@@ -205,6 +204,16 @@
         <result property="pptDate" 	column="ppt_date"       jdbcType="DATE"/>
         <result property="processResult" 	column="process_result"       jdbcType="VARCHAR"/>
     </resultMap>
+
+    <select id="getDealBoardFiles" resultMap="FileResultMap">
+        SELECT *
+        FROM files
+        WHERE board_num = #{boardNum}
+          AND (board_category = '08'
+            OR board_category = '09')
+        ORDER BY file_num DESC
+    </select>
+
     <!--현재 파일 조회-->
     <select id="listDealBoardFile" parameterType="int" resultType="String">
         SELECT file_name

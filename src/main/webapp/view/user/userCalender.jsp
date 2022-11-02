@@ -84,6 +84,7 @@
                                 $(".calenderText2").val(clubCalendar.calenderText);
                                 $(".clubDate2").val(clubCalendar.clubDate);
                                 $(".noticeTime2").val(clubCalendar.noticeTime);
+                                $(".location2").val(clubCalendar.location);
 
 
                                 if (clubCalendar.noticeCheck === '2') {
@@ -143,7 +144,7 @@
 
                                 var deal = JSONData.deal
 
-                                console.log("deal : "+ deal.dealCalenderTitle);
+                                console.log("deal : " + deal.dealCalenderTitle);
 
                                 var date = new Date(deal.dealDate);
 
@@ -258,15 +259,33 @@
 
     $(function () {
 
-        $(".getDealPage").on("click", ()=>{
+        $(".getDealPage").on("click", () => {
 
             var boardNum = $(".boardNum").val()
 
-            location.href = "/deal/getDeal/"+boardNum;
+            location.href = "/deal/getDeal/" + boardNum;
 
 
+        })
 
 
+        $(".location2").on("click", function () {
+            var location = $(".location2").val();
+
+            $("#location2 .modal-content").load("/view/site/getCalenderMap.jsp",
+                {location : location},
+                function (re) {
+
+                    $("#location2 .modal-content").html(re);
+
+                    $("#location2").modal("show")
+                })
+
+        })
+
+        //상세보기 지도 보기
+        $("#location2").on("shown.bs.modal", ()=> {
+            relayout3();
         })
     })
 
@@ -331,7 +350,8 @@
 
                 <div class="input-group mb-3">
 
-                    <input type="button" class="form-control" value="위치 선택">
+                    <input type="button" class="form-control location2" data-bs-toggle="modal"
+                           data-bs-target="#location2" value="위치 보기">
 
                 </div>
 
@@ -416,8 +436,6 @@
 </div>
 
 
-
-
 <%--거래 일정 상세 조회--%>
 <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true"
      style="display: none;">
@@ -441,7 +459,7 @@
 
                 <div class="form-floating mb-3">
 
-                    <input type="date" class="form-control dealDate2"  value="" placeholder="asdasd"/>
+                    <input type="date" class="form-control dealDate2" value="" placeholder="asdasd"/>
                     <label for="date-text">모임 일정 날짜</label>
 
                 </div>
@@ -464,7 +482,17 @@
         </div>
     </div>
 
+</div>
 
+<%--상세조회 지도--%>
+<div class="modal fade" id="location2" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <jsp:include page="/view/site/getCalenderMap.jsp"/>
+
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

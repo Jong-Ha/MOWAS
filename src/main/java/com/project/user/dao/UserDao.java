@@ -1,5 +1,6 @@
 package com.project.user.dao;
 
+import com.project.common.Search;
 import com.project.domain.User;
 import com.project.domain.UserInterList;
 
@@ -47,7 +48,9 @@ public interface UserDao {
 
     public void updatePed(User user)throws Exception;
 
-    public List<User> listUser(User user)throws Exception;
+    public List<User> listUsers(Search search)throws Exception;
+
+    public int getTotalCount(Search search)throws Exception;
 
     public User getUserDetail(String userId)throws Exception;
 

@@ -15,16 +15,6 @@
     });
 </script>
 
-<style>
-
-</style>
-
-<body>
-<%--상단 툴바--%>
-<jsp:include page="/layout/toolbar.jsp"/>
-
-<%--상단 탑바--%>
-<jsp:include page="/view/myPage/myPageTitle.jsp"/>
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
@@ -109,6 +99,14 @@
         font-weight: bold;
     }
 </style>
+
+<body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
+<%--상단 툴바--%>
+<jsp:include page="/layout/toolbar.jsp"/>
+
+<%--상단 탑바--%>
+<jsp:include page="/view/myPage/myPageTitle.jsp"/>
+<hr>
 <div class="tabBox">
     <span class="tabBtn" onclick="javascript:location.href='/myPage/getMyDeal?userId=${user.userId}';">완료한 거래 목록</span>
     <span>|</span>

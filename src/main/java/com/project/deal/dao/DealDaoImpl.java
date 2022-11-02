@@ -97,5 +97,10 @@ sqlSession.delete("DealMapper.deleteDeal", dealBoardNum);
         sqlSession.update("DealMapper.updateViewCount", map);
     }
 
+    @Override
+    public String getImage(String userId) {
+       return sqlSession.selectOne("DealMapper.getImage",userId);
+    }
+
 
 }

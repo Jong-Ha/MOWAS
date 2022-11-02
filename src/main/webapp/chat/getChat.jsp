@@ -11,13 +11,8 @@
 
         $(function () {
 
-            $('#hamburger-line-wrapper').click(function () {
+            $('.listDrop').click(function () {
 
-                /* 추가된 부분 */
-                $('.line').removeClass('init');
-                $('#line-top').toggleClass('line-top').toggleClass('top-reverse');
-                $('#line-mid').toggleClass('line-mid').toggleClass('mid-reverse');
-                $('#line-bot').toggleClass('line-bot').toggleClass('bot-reverse');
 
                 $(".dropdown-box").slideToggle();
             })
@@ -27,6 +22,7 @@
             $('.listVoteView').on('click', function () {
                 $('#listVote .modal-content').load('/club/listVote/${roomId}')
             })
+
 
         })
 
@@ -224,82 +220,90 @@
             }
         }
 
+        .dropdown-box {
+            display: none;
+            position: absolute;
+            background: rgb(249 249 249);
+            z-index: 2;
+            width: 160px;
+            height: 242px;
+            margin-top: 37px;
+            margin-left: 475px;
+            border-radius: 10px;
+        }
+        .dropdown-box > ul > li > a{
+            font-size: 0.9rem;
+            color: black;
+        }
+
     </style>
 </head>
 <body>
 <div class="wrapper">
-    <div class="user-container" style="display: flex;justify-content: space-between;width: 100%;border-bottom: 1px solid;padding : 10px;">
+    <div class="user-container"
+         style="display: flex;justify-content: space-between;width: 100%;border-bottom: 1px solid;padding : 10px;">
 
         <label for="nickname"></label>
 
         <input type="text" class="form-control-plaintext" readonly value="${param.roomName}" id="nickname">
-<input type="hidden" id="chatterId" value="${user.userId}">
-        <c:if test="${chatNameSpace == 'dealChat'}">
+        <input type="hidden" id="chatterId" value="${user.userId}">
 
-            <div class="hamburger">
-                <div id="hamburger-wrapper">
-                    <div id="hamburger-line-wrapper">
-                        <!-- 추가된 부분 -->
-                        <div id="line-top" class=" line init top-reverse"></div>
-                        <div id="line-mid" class=" line init mid-reverse"></div>
-                        <div id="line-bot" class=" line init bot-reverse"></div>
-                    </div>
-                </div>
+
+        <div class="dropContainer" style=" width: 100%;display: flex;flex-direction: row-reverse;">
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-three-dots listDrop" viewBox="0 0 16 16" style="font-size: 3rem;">
+                <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+            </svg>
+
+            <div class="dropdown-box shadow-lg">
+
+                <ul>
+                    <c:if test="${chatNameSpace == 'dealChat'}">
+
+                        <li>
+                            <a class="dealList dealCalender">일정 등록 하기</a>
+                        </li>
+
+                        <li>
+                            <a class="dealList dealUpdateCalender">일정 수정 하기</a>
+                        </li>
+
+                        <li>
+                            <a class="dealList dealCalenderlist">내 거래 일정 보기</a>
+                        </li>
+
+                        <li>
+                            <a class="dealList addReview">거래 확정</a>
+                        </li>
+
+                    </c:if>
+
+                    <li>
+                        <label for="file">파일 업로드 </label>
+                    </li>
+
+
+                    <c:if test="${chatNameSpace=='clubChat'}">
+
+                        <li>
+                            <div type="text" class="listVoteView" data-bs-target="#listVote"
+                                 data-bs-toggle="modal">투표
+                            </div>
+                        </li>
+
+                    </c:if>
+
+                </ul>
             </div>
 
-        </c:if>
-
-
-        <div style=" width: 100%;display: flex;flex-direction: row-reverse;">
-
-            <label for="file">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                     class="bi bi-paperclip" viewBox="0 0 16 16" style="font-size: 3em">
-                    <path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z"/>
-                </svg>
-            </label>
 
             <form id="fileForm">
                 <input id="file" type="file" multiple class="send-file" value="파일 전송" style="display: none"/>
             </form>
 
-            <c:if test="${chatNameSpace=='clubChat'}">
-                <button type="button" class="btn btn-primary listVoteView" data-bs-target="#listVote"
-                        data-bs-toggle="modal">투표
-                </button>
-            </c:if>
-
         </div>
 
-
-    </div>
-
-    <div class="dropdown-box" style="display: none;    position: absolute;
-    background: rgba(249, 249, 249, 0.75);
-    z-index: 2;
-    width: 200px;
-    height: 190px;
-    margin-top: 67px;
-    margin-left: 475px;">
-
-        <ul class="">
-            <li>
-                <a class="dealList dealCalender">일정 등록 하기</a>
-            </li>
-
-            <li>
-                <a class="dealList dealUpdateCalender">일정 수정 하기</a>
-            </li>
-
-            <li>
-                <a class="dealList dealCalenderlist">내 거래 일정 보기</a>
-            </li>
-
-            <li>
-                <a class="dealList addReview">거래 확정</a>
-            </li>
-
-        </ul>
     </div>
 
 
@@ -351,7 +355,15 @@
 
                 <div class="input-group mb-3">
 
-                    <input type="text" class="form-control dealLocation" value="위치 선택">
+                    <input type="button" class="form-control" data-bs-toggle="modal" data-bs-target="#location1"
+                           value="위치 선택">
+
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">위치 정보</span>
+                        <input type="text" id="dealLocation" class="form-control dealLocation" aria-label="위치 정보"
+                               aria-describedby="inputGroup-sizing-sm">
+                    </div>
+
 
                 </div>
 
@@ -414,6 +426,7 @@
     </div>
 </div>
 
+
 <div class="container">
 
     <%--listVote 모달창 시작--%>
@@ -452,6 +465,7 @@
     </div>
     <%--updateVote 모달창 끝--%>
 
+
 </div>
 
 
@@ -485,15 +499,15 @@
                 userImage1: '${userImage}',
                 userImage2: '${user.userImage}'
             },
-            autoConnect:false,
-            forceNew:true
+            autoConnect: false,
+            forceNew: true
         })
 
         console.log(chatSocket)
 
         chatSocket.connect()
 
-        chatSocket.on('connect',function(){
+        chatSocket.on('connect', function () {
             // 거래 계시판 번호 얻기
             chatSocket.emit('getboardNum', () => {
             })
@@ -591,12 +605,20 @@
                 })
             })
 
+            /*지도 출력*/
+            $("#location1").on("shown.bs.modal", function () {
+                relayout8();
+            })
+
             $(".dealSubmit").off('click').on("click", function () {
 
                 var dealBoardNum = $(".dealNum").val()
                 var dealCalenderTitle = $(".dealCalenderTitle").val()
                 var dealDate = $(".dealDate").val()
                 var dealLocation = $(".dealLocation").val()
+                var userId = '${user.userId}';
+
+                alert(userId);
 
                 console.log(dealBoardNum)
                 console.log(dealCalenderTitle)
@@ -604,14 +626,14 @@
                 console.log(dealLocation)
 
                 $.ajax({
-                    url: "/clubCal/json/updateDealCalender",
+                    url: "/clubCal/json/addDealCalender",
                     method: "post",
                     data: JSON.stringify({
                         "dealBoardNum": dealBoardNum,
                         "dealCalenderTitle": dealCalenderTitle,
                         "dealDate": dealDate,
                         "dealLocation": dealLocation,
-                        "dealId": '${user.userId}'
+                        "dealId": userId
 
                     }),
 
@@ -774,6 +796,7 @@
             })
         })
 
+
     })
 
     function sendMessage(chatSocket) {
@@ -908,17 +931,20 @@
         height: 100%;
         border-radius: 3px 3px 5px 3px;
     }
-    .chatRoom .profile{
+
+    .chatRoom .profile {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
     }
-    .chatRoom .profile .user{
+
+    .chatRoom .profile .user {
         font-size: 10px;
         margin-bottom: 0.3rem;
     }
-    .chatRoom .profile .userimg{
+
+    .chatRoom .profile .userimg {
         border-radius: 50%;
         object-fit: contain;
         width: 50px;
@@ -926,7 +952,7 @@
         background-color: #FFFFFF;
     }
 
-    .chatRoom .message{
+    .chatRoom .message {
         border-radius: 5px;
         padding: 0.5rem;
         font-size: 12px;
@@ -934,54 +960,58 @@
         text-align: left;
         word-break: break-all;
     }
-    .chatRoom .time{
+
+    .chatRoom .time {
         font-size: 10px;
         margin: 0 5px;
         width: 75px;
     }
-    .chatRoom .sent .time{
+
+    .chatRoom .sent .time {
         text-align: right;
     }
-    .chatRoom .received .time{
+
+    .chatRoom .received .time {
         text-align: left;
     }
-    .chatRoom .sent{
+
+    .chatRoom .sent {
         flex-direction: row-reverse;
         float: right;
     }
 
 
-    .chatRoom .sent .message{
+    .chatRoom .sent .message {
         background: #ffeb33;
     }
 
-    .chatRoom .received .message{
+    .chatRoom .received .message {
         background: #ffffff;
     }
 
 
-    .chatRoom .Imgsent{
+    .chatRoom .Imgsent {
         flex-direction: row-reverse;
         float: right;
-        width : 38%
+        width: 38%
     }
 
-    .chatRoom .Imgreceived{
+    .chatRoom .Imgreceived {
         width: 38%;
         text-align: right;
     }
 
 
-    .chatRoom .Imgsent .message{
+    .chatRoom .Imgsent .message {
         background: #ffeb33;
     }
 
-    .chatRoom .Imgreceived .message{
+    .chatRoom .Imgreceived .message {
         width: 150px;
         background: #ffffff;
     }
 
-    .sent{
+    .sent {
         float: left;
     }
 

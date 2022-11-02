@@ -98,8 +98,7 @@
 
     </style>
 
-</head>
-<body>
+
 <div class="wrapper">
     <div class="typing">
         <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
@@ -126,5 +125,4 @@
 
 </nav>
 <hr>
-</body>
-</html>
+

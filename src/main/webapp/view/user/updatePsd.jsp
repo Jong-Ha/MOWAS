@@ -212,7 +212,7 @@
 */
 </script>
 
-<body>
+<body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 <form>
 회원 상세 조회
 <div><input  id="userId" name=userId value="${map.userDetail.userId}" readonly>

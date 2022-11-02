@@ -106,7 +106,10 @@ public class MyPageDaoImpl implements MyPageDao{
         return sqlSession.selectList("MyPageMapper.getMyPpt", userId);
     }
 
-
+    @Override
+    public List<String> listDealBoardFile(int dealBoardNum) {
+        return sqlSession.selectList("DealMapper.listDealBoardFile", dealBoardNum);
+    }
 
 
 

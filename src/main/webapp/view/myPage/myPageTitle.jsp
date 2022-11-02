@@ -240,15 +240,8 @@
     });
 
 
-    $(function () {
-        $("#mainPage").on("click", function () {
-            self.location = "/view/user/main.jsp";
-        });
-
-    });
-
 </script>
-<body>
+<body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 <input type="hidden" class="myPageUserId" id="userId" name="userId" value="${user.userId}">
 
 <div class="wrapper">
@@ -277,6 +270,7 @@
             </div>
         </div>
 
+        <div class="abc"></div>
 
         <div class="underline yellow MyClub">모임
             <div class=" myPageTogle2">

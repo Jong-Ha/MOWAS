@@ -34,6 +34,7 @@ public int getReviewPt(Deal deal);
     int getViewCount(Map<String, Object> map);
 
     void updateViewCount(Map<String,Object> map);
+    String getImage(String userId);
     //--------------------------------------------------------------------
 //    public void addClubMasterBoard(ClubMasterBoard clubMasterBoard);
 //    public void updateClubMasterBoard(ClubMasterBoard clubMasterBoard);

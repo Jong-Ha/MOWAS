@@ -1,5 +1,6 @@
 package com.project.user.controller;
 
+import com.project.common.Page;
 import com.project.common.Search;
 import com.project.domain.User;
 import com.project.domain.UserInterList;
@@ -146,7 +147,7 @@ public class UserController {
 
             User findUser = userService.getMyId(user);
 
-        model.addAttribute("user", findUser);
+        model.addAttribute("findUser", findUser);
         return "forward:/view/user/getMyIdEnd.jsp";
     }
 
@@ -158,7 +159,7 @@ public class UserController {
 
         User findPwd = userService.getMyPassword(user);
 
-        model.addAttribute("user", findPwd);
+        model.addAttribute("findUser", findPwd);
         return "forward:/view/user/getMyPasswordEnd.jsp";
     }
     @RequestMapping(value="loginNow", method=RequestMethod.GET)
@@ -202,7 +203,7 @@ public class UserController {
         }catch (Exception e){
             System.out.println("로그인 실패");
         }
-        return "forward:/view/user/main.jsp";
+        return "forward:/";
     }
     @RequestMapping(value = "logout", method = RequestMethod.GET)
     public String logout(HttpServletRequest request, HttpSession session, HttpServletResponse response) {
@@ -265,14 +266,30 @@ public class UserController {
         return "forward:/main.jsp";
     }
 */
-    @RequestMapping(value="listUser", method = RequestMethod.GET)
-    public String listUser(@ModelAttribute("user")User user, Model model)throws Exception{
-        System.out.println("여기는 lisrUser 컨트롤러 시작이다");
-        System.out.println("user의 값은? : "+user);
+    @RequestMapping(value="listUsers")
+    public String listUsers(Model model,@ModelAttribute("search") Search search)throws Exception{
+        System.out.println("여기는 lisrUsers 컨트롤러 시작이다");
+        System.out.println("컨트롤러 search의 값???"+search);
 
-        Map<String, Object> userList = userService.listUser(user);
-        System.out.println("userList의 값 ???: "+userList);
-        model.addAttribute("user",userList);
+        if (search.getCurrentPage() == 0) {
+            search.setCurrentPage(1);
+        }
+        if (search.getPageSize() == 0) {
+            search.setPageSize(pageSize);
+        }
+        if (search.getSearchKeyword() == null) {
+            search.setSearchKeyword("");
+        }
+        System.out.println("컨트롤러 search 2 의 값???"+search);
+
+        Map<String , Object> map=userService.listUsers(search);
+        Page resultPage = new Page(search.getCurrentPage(), (Integer) map.get("totalCount"), pageUnit, pageSize);
+        System.out.println("resultPage의 값은???"+resultPage);
+
+        model.addAttribute("list", map.get("list"));
+        model.addAttribute("resultPage", resultPage);
+        model.addAttribute("search", search);
+
         return "forward:/view/user/listUser.jsp";
     }
 

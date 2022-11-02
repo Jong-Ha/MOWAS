@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="UserMapper">
+
+    <resultMap id="userSelectMap" type="user">
+        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="masterCheck" column="master_check" jdbcType="CHAR"/>
+        <result property="userStatus" column="user_status" jdbcType="CHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+        <result property="rrd" column="rrd" jdbcType="VARCHAR"/>
+        <result property="gender" column="gender" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="villCode" column="vill_code" jdbcType="VARCHAR"/>
+        <result property="userImage" column="user_Image" jdbcType="VARCHAR"/>
+        <result property="psd" column="psd" jdbcType="DATE"/>
+        <result property="ped" column="ped" jdbcType="DATE"/>
+        <result property="ppt" column="ppt" jdbcType="NUMERIC"/>
+        <result property="reviewPt" column="review_pt" jdbcType="NUMERIC"/>
+        <result property="loginType" column="login_type" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="interListSelectMap" type="interList">
+        <result property="userInterListNum" column="user_inter_list_num" jdbcType="NUMERIC"/>
+        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="interList" column="inter_list" jdbcType="CHAR"/>
+    </resultMap>
+
+
+
+    <insert      id="addUser"     parameterType="user" >
+        INSERT INTO users(user_id, master_check, user_status, password, user_name, rrd, gender, email,
+                          phone, vill_code, user_image,  psd, ped, ppt, review_pt, LOGIN_TYPE)
+        values(#{userId:VARCHAR}, #{masterCheck:CHAR}, #{userStatus:CHAR}, #{password:VARCHAR}, #{userName:VARCHAR}, #{rrd:VARCHAR},
+               #{gender:VARCHAR}, #{email:VARCHAR}, #{phone:VARCHAR}, #{villCode:VARCHAR}, #{userImage:VARCHAR},
+               #{psd,jdbcType=DATE}, #{ped,jdbcType=DATE}, #{ppt:NUMERIC}, #{reviewPt:NUMERIC}, #{loginType:VARCHAR})
+    </insert>
+
+
+    <update id="updateSNSUserInfor" parameterType="user" >
+        UPDATE users
+        <set>
+            user_name = #{userName:VARCHAR},
+            rrd = #{rrd:VARCHAR},
+            vill_code = #{villCode:VARCHAR}
+        </set>
+        WHERE user_id=#{userId:VARCHAR}
+    </update>
+
+
+    <insert      id="addInterList"     parameterType="com.project.domain.UserInterList" >
+        INSERT INTO user_inter_list(user_inter_list_num, user_id, inter_list)
+        values(seq_user_inter_list_num.nextval, #{userId}, #{interList})
+    </insert>
+
+    <delete id="deleteInterList" parameterType="com.project.domain.UserInterList">
+        delete from user_inter_list
+        where user_id=#{userId} and inter_list=#{interList}
+    </delete>
+
+    <select id="getUser"    parameterType="String" resultMap="userSelectMap">
+        SELECT user_id, master_check, user_status, password, rrd, user_name, gender, email,
+               phone, vill_code, user_image,  psd, ped, ppt, review_pt, login_type
+        FROM users
+        WHERE user_id=#{userId}
+    </select>
+
+    <select id="getUser2"    parameterType="String" resultMap="userSelectMap">
+        SELECT user_id, master_check, user_status, password, user_name, gender, email,
+               phone, vill_code, user_image, psd, ped, ppt, review_pt, login_type
+        FROM users
+        WHERE email=#{email} and LOGIN_TYPE='3'
+    </select>
+
+    <select id="getMyIdEmail"    parameterType="user" resultMap="userSelectMap">
+        SELECT user_id
+        FROM users
+        WHERE user_name=#{userName} and email=#{email} and LOGIN_TYPE=#{loginType}
+    </select>
+
+    <select id="getMyIdPhone"    parameterType="user" resultMap="userSelectMap">
+        SELECT user_id
+        FROM users
+        WHERE  user_name=#{userName} and phone=#{phone} and LOGIN_TYPE=#{loginType}
+    </select>
+
+    <select id="getMyPasswordEmail"    parameterType="user" resultMap="userSelectMap">
+        SELECT password
+        FROM users
+        WHERE user_id=#{userId} and email=#{email}
+    </select>
+
+    <select id="getMyPasswordPhone"    parameterType="user" resultMap="userSelectMap">
+        SELECT password
+        FROM users
+        WHERE user_id=#{userId} and phone=#{phone}
+    </select>
+
+    <select id="getMyPassword"    parameterType="user" resultMap="userSelectMap">
+        SELECT user_id, master_check, user_status, password, user_name, gender, email,
+               phone, vill_code, user_image, psd, ped, ppt, review_pt, login_type
+        FROM users
+        WHERE email=#{email} and LOGIN_TYPE='3'
+    </select>
+
+    <select id="getUserEmail"    parameterType="String" resultMap="userSelectMap">
+        SELECT email
+        FROM users
+        WHERE email=#{email} and LOGIN_TYPE='3'
+    </select>
+
+    <select id="getUserEmailKakao" parameterType="user" resultMap="userSelectMap">
+        SELECT user_id, email, user_image, gender, login_type
+        FROM users
+        WHERE email=#{email} and LOGIN_TYPE='2'
+    </select>
+
+
+    <insert id="addKakaoUser" parameterType="user">
+        insert into users(user_id, email, user_image, gender, LOGIN_TYPE)
+        values(#{userId:VARCHAR}, #{email:VARCHAR}, #{userImage:VARCHAR}, #{gender:VARCHAR}, '2')
+    </insert>
+
+    <select id="checkDupRrd" parameterType="String" resultMap="userSelectMap">
+        SELECT rrd
+        FROM users
+        WHERE rrd=#{rrd}
+    </select>
+
+    <update id="updateUser" parameterType="user">
+        UPDATE users
+        <set>
+            password = #{password:VARCHAR},
+            email = #{email:VARCHAR},
+            phone = #{phone:VARCHAR},
+            vill_code = #{villCode:VARCHAR},
+            user_image = #{userImage:VARCHAR}
+        </set>
+        WHERE user_id=#{userId:VARCHAR}
+    </update>
+
+    <update id="updateClubUser" parameterType="user">
+        UPDATE club_user
+        <set>
+            user_image = #{userImage:VARCHAR}
+        </set>
+        WHERE user_id=#{userId:VARCHAR}
+    </update>
+
+    <update id="updateClubCalendarApply" parameterType="user">
+        UPDATE club_calendar_apply
+        <set>
+            user_image = #{userImage:VARCHAR}
+        </set>
+        WHERE user_id=#{userId:VARCHAR}
+    </update>
+
+    <update id="updateKakaoUser" parameterType="user">
+        UPDATE users
+        <set>
+            user_name = #{userName:VARCHAR},
+            rrd = #{rrd:VARCHAR},
+            vill_code = #{villCode:VARCHAR},
+            user_image = #{userImage:VARCHAR}
+        </set>
+        WHERE user_id=#{userId:VARCHAR}
+    </update>
+
+    <update id="updateNaverUser" parameterType="user">
+        UPDATE users
+        <set>
+            rrd = #{rrd:VARCHAR},
+            vill_code = #{villCode:VARCHAR},
+            user_image = #{userImage:VARCHAR}
+        </set>
+        WHERE user_id=#{userId:VARCHAR}
+    </update>
+
+    <select  id="listUser"  parameterType="user"  resultMap="userSelectMap">
+    SELECT *
+    from users
+    </select>
+
+
+
+
+    <select id="getUserDetail" parameterType="String" resultMap="userSelectMap">
+        SELECT user_id, user_status, user_name, gender, email, phone, vill_code, user_image,  psd, ped, ppt, review_pt, login_type
+        FROM users
+        WHERE user_id=#{userId}
+    </select>
+
+    <select id="listInterList" parameterType="String" resultMap="interListSelectMap">
+        SELECT inter_list
+        FROM user_inter_list
+        WHERE user_id=#{userId}
+    </select>
+
+
+
+    <insert id="addNaverUser" parameterType="user" >
+        INSERT INTO users (user_id, user_name, email, user_image, gender, login_type)
+        values (#{userId:VARCHAR}, #{userName:VARCHAR}, #{email:VARCHAR}, #{userImage:VARCHAR}, #{gender:VARCHAR}, #{loginType:VARCHAR})
+    </insert>
+
+
+
+    <update id="updatePsd" parameterType="user"  >
+        UPDATE users
+         <set>
+             psd=#{psd}
+         </set>
+         WHERE user_id=#{userId}
+    </update>
+
+    <update id="updatePed" parameterType="user" >
+        UPDATE users
+        <set>
+            ped=#{ped}
+        </set>
+        WHERE user_id=#{userId}
+    </update>
+
+    <update id="updateUserStatus" parameterType="String" >
+        UPDATE users
+        <set>
+            user_status='4'
+        </set>
+        WHERE user_id=#{userId}
+    </update>
+
+
+
+</mapper>

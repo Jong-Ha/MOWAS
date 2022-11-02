@@ -81,6 +81,17 @@
 </div>
 
 
+<%--거래 일정 등록  지도--%>
+<div class="modal fade" id="location1" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <jsp:include page="/view/site/addDealrMap.jsp"/>
+
+        </div>
+    </div>
+</div>
+
 <script>
 
     const socketServer = 'http://192.168.0.234:5000'
