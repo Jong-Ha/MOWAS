@@ -252,9 +252,9 @@ public class ClubCalendarRestController<list> {
     @RequestMapping(value = "addDealCalender", method = RequestMethod.POST)
     public int addDealCalender(@RequestBody Deal deal) {
 
-        System.out.println("일정 정보 : " + deal);
-
         deal.setDealModeCheck(1);
+
+        System.out.println("일정 정보 : " + deal);
 
         calenderService.addDealCalender(deal);
 
@@ -264,9 +264,12 @@ public class ClubCalendarRestController<list> {
     @RequestMapping("updateDealCalender")
     public String dealUpdateCalender(@RequestBody Deal deal) {
 
+
+
         System.out.println("일정 정보 : " + deal);
 
         calenderService.dealUpdateCalender(deal);
+
 
         return null;
     }
@@ -415,6 +418,21 @@ public class ClubCalendarRestController<list> {
 
         return 0;
 
+    }
+
+    @RequestMapping("addCalenderCluber")
+    public Map<String,Object> addCalenderCluber(@RequestBody Map<String,Object>map){
+
+        System.out.println("진입 : " + map.get("clubNum"));
+
+        Search search = new Search();
+
+        search.setSearchCondition("0");
+
+        String SclubNum = (String) map.get("clubNum");
+
+
+        return clubService.listCluber(search, Integer.parseInt(SclubNum));
     }
 
 

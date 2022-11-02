@@ -461,16 +461,9 @@
                     </ul>
                     <div class="logitem">
 
-                        <c:if test="${user.userImage ne null}">
+                        <c:if test="${user.userId ne null}">
 
-                            <img src="/resources/${user.userImage}"
-                                 style="width: 60px;margin-right: 10px; border-radius: 40px; height: 50px;">
-
-                        </c:if>
-                        <c:if test="${user.userImage eq null}">
-
-                            <img src="${pageContext.request.contextPath}/resources/images/proplePoto.png"
-                                 style="width: 60px;margin-right: 10px; border-radius: 40px; height: 50px;">
+                                <img src="/resources/${user.userImage}" style="width: 60px;margin-right: 10px; border-radius: 40px; height: 50px;">
 
                         </c:if>
 
