@@ -8,6 +8,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <style>
+    .body {
+        text-align: -webkit-center;
+    }
+
+    .wap {
+        margin-top: 70px;
+        font-size: 1em;
+        width: 1030px;
+        padding: 5px 5px;
+        height: 580px;
+        border-radius: 10px;
+    }
+
     ul li {
         list-style: none;
     }
@@ -153,7 +166,7 @@
 
 
     .typing {
-        width: 9ch;
+        width: 11ch;
         animation: typing 0.9s steps(22), blink .5s step-end infinite alternate;
         white-space: nowrap;
         overflow: hidden;
@@ -167,6 +180,13 @@
             width: 0
         }
     }
+    @keyframes blink {
+        80% {
+            border-color: transparent
+        }
+
+    }
+
 </style>
 
 <head>
@@ -246,14 +266,14 @@
 
 <div class="wrapper">
 
-    <div class="typing" id="myPageMain" style="cursor: pointer; margin-top: 100px">
+    <div class="typing" id="myPageMain" style="cursor: pointer; ">
 
-        <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
+        <h4 style="font-weight: bolder;  font-size: 2rem;
                     background-image: linear-gradient(transparent 60%, #F8CD07 40%);">
             마이페이지</h4>
     </div>
 
-    <nav class="navbar navbar-expand-lg myPageBox">
+    <nav class="navbar navbar-expand-lg myPageBox" style="margin-top: -8px;">
 
         <div class="myBoard">
             <div class="underline yellow">

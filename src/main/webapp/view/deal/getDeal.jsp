@@ -327,9 +327,9 @@ Product vo=(Product)request.getAttribute("vo");
 
     </script>
     <style type="text/css">
-        /*body {*/
-        /*  padding-top: 50px;*/
-        /*}*/
+        body {
+            text-align: -webkit-center;
+        }
 
         .wap {
             width: 1400px;
@@ -685,7 +685,7 @@ Product vo=(Product)request.getAttribute("vo");
 
 <div class="container" style="text-align: -webkit-center;">
 
-    <div class="container shadow-lg">
+    <div class="container shadow-lg" style="margin-top: 50px;">
 
         <div class="usedbox">
             <div class="thumbnailBox">
@@ -693,18 +693,18 @@ Product vo=(Product)request.getAttribute("vo");
                      style="margin-bottom: 50px; margin-top: -3px; width: 700px; overflow: hidden; height: 500px;">
                     <div id="carouselExampleDark" class="  carousel carousel-dark slide"
                          data-bs-ride="carousel">
+                        <div class="carousel-inner">
                         <c:set var="i" value="0"/>
-                        <c:forEach var="File" items="${deal.files}">
+                        <c:forEach var="File" items="${deal.files}" varStatus="st">
                             <c:set var="i" value="${i+1}"/>
-                            <div class="carousel-inner">
-                                <div class="carousel-item active" data-bs-interval="10000">
+                                <div class="carousel-item ${st.index==0?'active':''}" data-bs-interval="10000">
                                     <div type=hidden class="file" value="${File.fileName}"><img
                                             src="/resources/${File.fileName}" width="700px" height="500px"
                                             style="margin-top: 20px">
                                     </div>
                                 </div>
-                            </div>
                         </c:forEach>
+                        </div>
                         <c:if test="${deal.files[1] != null}">
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
                                     data-bs-slide="prev">
@@ -875,7 +875,7 @@ Product vo=(Product)request.getAttribute("vo");
 
     </div>
     <div>
-        <button class="btn btn-primary btn-lg list" style="margin-left: 1200px;
+        <button class="btn btn-primary btn-lg list" style="margin-left: 1150px; margin-top: 10px;
     width: 80px;">목록
         </button>
     </div>

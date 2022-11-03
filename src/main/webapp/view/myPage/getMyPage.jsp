@@ -144,7 +144,7 @@
 
     <div class="myPage-top" style=" display: flex; padding: 10px">
 
-        <div class="userInfo shadow-lg" style="height: 350px;">
+        <div class="userInfo shadow-lg" style="height: 385px;">
 
             <c:if test="${user.loginType=='1'}">
                 <span class="aaa">
