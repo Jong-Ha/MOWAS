@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository("myPageDaoImpl")
 public class MyPageDaoImpl implements MyPageDao{
@@ -71,8 +72,18 @@ public class MyPageDaoImpl implements MyPageDao{
         return sqlSession.selectList("MyPageMapper.getMydealBoardLike", userId);
     }
 
-    public List<Club> getMyClub(String userId)throws Exception{
-        return sqlSession.selectList("MyPageMapper.getMyClub", userId);
+    public Club getMyClub(Map<String, Object> map)throws Exception{
+        return sqlSession.selectOne("MyPageMapper.getMyClub", map);
+    }
+
+    @Override
+    public List<Cluber> getMyCluber(Map<String, Object> map) throws Exception {
+        return sqlSession.selectList("MyPageMapper.getMyCluber", map);
+    }
+
+    @Override
+    public int getTotalMyCluber(Map<String, Object> map) throws Exception {
+        return sqlSession.selectOne("MyPageMapper.getTotalMyCluber", map);
     }
 
     public List<Deal> getMyDeal(String userId)throws Exception{

@@ -86,6 +86,12 @@
     box-shadow: 0 1rem 3rem rgba(132,138,163,0.1) !important;
     }
 
+    .wrapper {
+        height: 13ch;
+        display: grid;
+        place-items: center;
+    }
+
     .typing {
         width: 20ch;
         animation: typing 0.9s steps(22), blink .5s step-end infinite alternate;
@@ -147,7 +153,7 @@
         <div class="typing">
             <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
                     background-image: linear-gradient(transparent 60%, #F8CD07 40%);">
-                공 지 사 항 상 세 보 기</h4>
+                공지 사항 상세 보기</h4>
         </div>
     </div>
 </div>
@@ -196,35 +202,37 @@
 
                 <div class="col-lg-7 contact-form__wrapper p-5 order-lg-1">
                         <div class="row">
-                            <form class="form-horizontal" name="detailForm">
-                            <div class="col-sm-12 mb-3">
-
-                                <div class="form-group">
-                                    <label class="required-field" for="title">제  목</label>
-                                    <input type="text" class="form-control" id="title" name="title" rows="4" placeholder="${masterBoard.mbTitle}">
-                                </div>
+                            <div class="col-sm-6 mb-3">
+                               <h4><label class="required-field">제  목</label></h4>
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <p class="mb-3 font-13 border-danger">${masterBoard.mbTitle}</p>
                             </div>
 
-                            <div class="col-sm-12 mb-3">
-                                <div class="form-group">
-                                    <label class="required-field" for="text">내  용</label>
-                                    <input type="text" class="form-control" id="text" name="text" rows="4" placeholder="${masterBoard.mbText}">
-                                </div>
+                            <div class="col-sm-6 mb-3">
+                                <h4><label class="required-field">내  용</label></h4>
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <p class="mb-3 font-13 border-danger">${masterBoard.mbText}</p>
                             </div>
 
-                            <div class="col-sm-12 mb-3">
-                                <div class="form-group">
-                                    <label class="required-field" for="date">날  짜</label>
-                                    <input type="text" class="form-control" id="date" name="date" rows="4" placeholder="${masterBoard.mbRegDate}">
-                                </div>
+                            <div class="col-sm-6 mb-3">
+                                <h4><label class="required-field" >날  짜</label></h4>
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <p class="mb-3 font-13 board-danger">${masterBoard.mbRegDate}</p>
+                            </div>
+
+                            <div class="container-fluid py-3" style="text-align: center; width: 70%;">
+                                <img src="/resources/${masterBoard.files[0].fileName}" alt="이미지"
+                                     style="object-fit: cover; width: 100%; height: 100%">
                             </div>
 
                             <div class="col-sm-12 mb-3">
                                 <button type="button" class="btn btn-primary">확인</button>
                                 <button type="button" class="btn btn-primary">삭제</button>
                             </div>
-                            </form>
-                        </div>
+                         </div>
 
                 </div>
                 <!--End Contact Form Wrapper -->

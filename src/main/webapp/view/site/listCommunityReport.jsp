@@ -24,7 +24,13 @@
         body{
             background:#f3f3f3;
             margin-top:20px;
-            color: #616f80;
+        }
+
+        .card {
+            border: none;
+            margin-bottom: 24px;
+            -webkit-box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
+            box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
         }
 
         <%--.container {
@@ -81,12 +87,7 @@
             30% {color: yellow;}
             100% {color:red; font-weight: bold;} */
         }
-        .card {
-            border: none;
-            margin-bottom: 24px;
-            -webkit-box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
-            box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
-        }
+
 
         .wrapper {
             height: 13ch;
@@ -95,7 +96,7 @@
         }
 
         .typing {
-            width: 15ch;
+            width: 13ch;
             animation: typing 0.9s steps(22), blink .5s step-end infinite alternate;
             white-space: nowrap;
             overflow: hidden;

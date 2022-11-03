@@ -100,14 +100,30 @@ public class MyPageServiceImpl implements MyPageService {
         return map;
     }
 
-    public Map<String, Object> getMyClub(String userId)throws Exception{
+    public Map<String, Object> getMyClub(String applyCheck, String userId, Search search)throws Exception{
         System.out.println("getMyClub 서비스임플 시작이다 ");
         Map<String, Object> map = new HashMap<String, Object>();
-        List<Club> getMyClub = myPageDao.getMyClub(userId);
+        map.put("applyCheck",applyCheck);
+        map.put("userId",userId);
+        map.put("search",search);
+        List<Cluber> getMyClub = myPageDao.getMyCluber(map);
+        int totalCount = myPageDao.getTotalMyCluber(map);
 
         System.out.println("getMyClub 값??"+getMyClub);
 
-        map.put("getMyClub", getMyClub);
+        List<Map<String ,Object>> list = new ArrayList<>();
+
+        for(Cluber cluber : getMyClub){
+            map.put("cluber",cluber);
+            Club club = myPageDao.getMyClub(map);
+            Map<String,Object> item = new HashMap<>();
+            item.put("club",club);
+            item.put("cluber",cluber);
+            list.add(item);
+        }
+
+        map.put("list", list);
+        map.put("totalCount", totalCount);
 
         System.out.println("getMyClub 서비스임플 종료이다 ");
         return map;

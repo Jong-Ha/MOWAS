@@ -25,6 +25,27 @@
         height: 24px;
         padding: 14px;
     }
+    .abcd{
+        display:none;
+    }
+    .form-check-label{
+        display:flex; align-items:center; margin-left:33px;
+    }
+    input[type="checkbox"] + label span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin: -2px 10px 0 0;
+        vertical-align: middle;
+        background: url(/resources/uploadFiles/userImages/buttonIcon.png) left top no-repeat;
+        cursor: pointer;
+        background-size: cover;
+    }
+
+    input[type="checkbox"]:checked + label span {
+        background:url(/resources/uploadFiles/userImages/buttonIcon.png)  -26px top no-repeat;
+        background-size: cover;
+    }
 </style>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -589,96 +610,98 @@
 <jsp:include page="/layout/toolbar.jsp"/>
 
 <div class="container" style="text-align: -webkit-center; width: 1080px; height: 800px;">
-<div class="shadow-lg" style="background-color:#ffee58; border: 1px solid #ffee58; border-radius: 10px; width: 600px; height: 760px;">
-    <div style="background-color: #c9bc1f; border-color: #c9bc1f; height: 30px; width: 600px; border-radius: 10px 10px 0px 0px;"></div>
-    <div style="border: 1px solid; border-color: #ffee58 ">
-    <h2 style="margin: 40px;">관심목록 선택</h2>
-    </div>
-    <hr>
+<div class="shadow-lg" style="border: 1px solid black; width: 600px; height: 760px;">
+    <div style=" height: 40px; width: 600px;"></div>
+
   <div style="border: 1px solid #aeaeae; border-radius: 10px; width: 490px; height: 438px; background-color: white; border-color: white">
-<span  id="checkItem">
-          <span class="form-check" style="margin-top: 10px;">
-            <input class="form-check-input" type="checkbox" value="01" id="list01" name="interList" >
-            <label class="form-check-label" for="list01">
-              독서
+<div  id="checkItem" style="border: 3px solid;
+    border-color: #f8cd07;
+    height: 510px; width: 488px;">
+    <h2 style="font-size: 30px;margin-left: 10px;    margin-top: 25px;">관심목록 선택</h2>
+          <span class="form-check" style="margin-top:15px;" >
+            <input class="form-check-input abcd" type="checkbox" value="01" id="list01" name="interList" >
+            <label class="form-check-label" for="list01" >
+              <span></span>독서
             </label>
           </span>
+
+
           <span class="form-check">
-            <input class="form-check-input" type="checkbox" value="02" id="list02" name="interList" >
+            <input class="form-check-input abcd" type="checkbox" value="02" id="list02" name="interList" >
             <label class="form-check-label" for="list02">
-              자동차
+                <span></span>자동차
             </label>
           </span>
           <span class="form-check">
-            <input class="form-check-input" type="checkbox" value="03" id="list03" name="interList" >
+            <input class="form-check-input abcd" type="checkbox" value="03" id="list03" name="interList" >
             <label class="form-check-label" for="list03">
-              반려동물
+              <span ></span>반려동물
             </label>
           </span>
             <span class="form-check">
-            <input class="form-check-input" type="checkbox" value="04" id="list04" name="interList" >
+            <input class="form-check-input abcd" type="checkbox" value="04" id="list04" name="interList" >
             <label class="form-check-label" for="list04">
-              공예
+              <span ></span>공예
             </label>
           </span>
             <span class="form-check">
-            <input class="form-check-input" type="checkbox" value="05" id="list05" name="interList" >
+            <input class="form-check-input abcd" type="checkbox" value="05" id="list05" name="interList" >
             <label class="form-check-label" for="list05">
-              스포츠
+              <span ></span>스포츠
             </label>
           </span>
             <span class="form-check">
-            <input class="form-check-input" type="checkbox" value="06" id="list06" name="interList" >
+            <input class="form-check-input abcd" type="checkbox" value="06" id="list06" name="interList" >
             <label class="form-check-label" for="list06">
-              댄스
+              <span ></span>댄스
             </label>
           </span>
             <span class="form-check">
-            <input class="form-check-input" type="checkbox" value="07" id="list07" name="interList" >
+            <input class="form-check-input abcd" type="checkbox" value="07" id="list07" name="interList" >
             <label class="form-check-label" for="list07">
-              여행
+              <span ></span>여행
             </label>
           </span>
             <span class="form-check">
-            <input class="form-check-input" type="checkbox" value="08" id="list08" name="interList" >
+            <input class="form-check-input abcd" type="checkbox" value="08" id="list08" name="interList" >
             <label class="form-check-label" for="list08">
-              사진
+              <span ></span>사진
             </label>
           </span>
             <span class="form-check">
-            <input class="form-check-input" type="checkbox" value="09" id="list09" name="interList" >
+            <input class="form-check-input abcd" type="checkbox" value="09" id="list09" name="interList" >
             <label class="form-check-label" for="list09">
-              육아
+              <span ></span>육아
             </label>
           </span>
             <span class="form-check">
-            <input class="form-check-input" type="checkbox" value="10" id="list10" name="interList" >
+            <input class="form-check-input abcd" type="checkbox" value="10" id="list10" name="interList" >
             <label class="form-check-label" for="list10">
-              공연
+              <span ></span>공연
             </label>
           </span>
             <span class="form-check">
-            <input class="form-check-input" type="checkbox" value="11" id="list11" name="interList" >
+            <input class="form-check-input abcd" type="checkbox" value="11" id="list11" name="interList" >
             <label class="form-check-label" for="list11">
-              음악
+              <span ></span>음악
             </label>
           </span>
             <span class="form-check">
-            <input class="form-check-input" type="checkbox" value="12" id="list12" name="interList" >
+            <input class="form-check-input abcd" type="checkbox" value="12" id="list12" name="interList" >
             <label class="form-check-label" for="list12">
-              게임
+              <span ></span>게임
             </label>
           </span>
             <span class="form-check" style="margin-bottom: 10px;">
-            <input class="form-check-input" type="checkbox" value="13" id="list13" name="interList" >
+            <input class="form-check-input abcd" type="checkbox" value="13" id="list13" name="interList" >
             <label class="form-check-label" for="list13">
-              그외
+              <span ></span>그외
             </label>
           </span>
-            </span>
+            </div>
   </div>
-<hr>
-        <button class="btn btn-primary checkEnd"  style="width: 200px; margin: 10px; margin-left: 10px;" type="button" > 선택 완료</button>
+
+        <button class="btn btn-primary checkEnd"  style="width: 185px; margin: 10px; margin-top: 100px; background-color: #f8cd07;" type="button" > 선택 완료</button>
 
 
       <input type="hidden" id="addUserId" name="userId" value="${user.userId}">

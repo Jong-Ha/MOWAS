@@ -94,9 +94,10 @@
 
 <script>
 
+    const socketServer = 'http://192.168.0.234:5000'
+
     //소켓 연결
-    let socket = io( "http://localhost:5000/chatlist",{
-                    /*"http://192.168.0.234:5000/chatlist", {*/
+    let socket = io(socketServer+"/chatlist", {
         cors: {origin: '*'},
         query: {
             userId: '${user.userId}',
@@ -105,8 +106,7 @@
         autoConnect:false
     })
 
-
-    let chatSocket = io("http://localhost:5000/${chatNameSpace}",{
+    let chatSocket = io(socketServer+"/${chatNameSpace}",{
         cors: {origin: '*'},
         query: {
             roomId: '${roomId}',
@@ -119,21 +119,6 @@
         autoConnect:false,
         forceNew:true
     })
-
-    //소켓 연결
-    <%--chatSocket = io("http://192.168.0.234:5000/${chatNameSpace}", {--%>
-    <%--    /*const socket = io("http://192.168.0.235:5000/chatlist", {*/--%>
-    <%--    cors: {origin: '*'},--%>
-    <%--    query: {--%>
-    <%--        roomId: '${roomId}',--%>
-    <%--        userId1: '${userId}',--%>
-    <%--        userId2: '${user.userId}',--%>
-    <%--        boardNum: '${boardNum}',--%>
-    <%--        userImage1: '${userImage}',--%>
-    <%--        userImage2: '${user.userImage}'--%>
-    <%--    },--%>
-    <%--    autoConnect:false--%>
-    <%--})--%>
 
     $(function () {
         // console.log(socket.io.uri)

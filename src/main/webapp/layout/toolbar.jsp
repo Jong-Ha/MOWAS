@@ -477,7 +477,7 @@
                         <div class="login ">
                             <div class="d-grid gap-2">
 
-                                <c:if test="${user.userId eq null}">
+                                <c:if test="${sessionScope.user.userId eq null}">
 
                                     <div class="loginbox login underline yellow" id="login1"
                                          style="font-size: 1.2em; color: #FFFFFF; " data-bs-toggle="modal"
