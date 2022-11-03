@@ -623,7 +623,7 @@
 <hr/>
 <h4>판매/판매요청 게시글</h4>
 <hr/>
-
+${map.dealBoard}
 <div class="container">
     <div class="addlistbox">
         <c:set var="i" value="0"/>
