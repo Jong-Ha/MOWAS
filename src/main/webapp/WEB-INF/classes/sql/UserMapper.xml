@@ -80,25 +80,25 @@
     <select id="getMyIdEmail"    parameterType="user" resultMap="userSelectMap">
         SELECT user_id
         FROM users
-        WHERE user_name=#{userName} and email=#{email} and LOGIN_TYPE=#{loginType}
+        WHERE email=#{email} and LOGIN_TYPE=#{loginType}
     </select>
 
     <select id="getMyIdPhone"    parameterType="user" resultMap="userSelectMap">
         SELECT user_id
         FROM users
-        WHERE  user_name=#{userName} and phone=#{phone} and LOGIN_TYPE=#{loginType}
+        WHERE  phone=#{phone} and LOGIN_TYPE=#{loginType}
     </select>
 
     <select id="getMyPasswordEmail"    parameterType="user" resultMap="userSelectMap">
         SELECT password
         FROM users
-        WHERE user_id=#{userId} and email=#{email}
+        WHERE user_id=#{findPwdUserId} and email=#{email}
     </select>
 
     <select id="getMyPasswordPhone"    parameterType="user" resultMap="userSelectMap">
         SELECT password
         FROM users
-        WHERE user_id=#{userId} and phone=#{phone}
+        WHERE user_id=#{findPwdUserId} and phone=#{phone}
     </select>
 
     <select id="getMyPassword"    parameterType="user" resultMap="userSelectMap">
@@ -181,12 +181,31 @@
         WHERE user_id=#{userId:VARCHAR}
     </update>
 
-    <select  id="listUser"  parameterType="user"  resultMap="userSelectMap">
-    SELECT *
-    from users
+    <select  id="listUsers"  parameterType="search"  resultMap="userSelectMap">
+        SELECT *
+        FROM (	SELECT inner_table.* , ROWNUM AS row_seq
+                FROM(	SELECT *
+                         FROM users
+        <if test="(searchKeyword != null and searchKeyword != '')">
+                             <where>
+                                  user_id = #{searchKeyword}
+                             </where>
+                          </if>
+                        ORDER BY user_id ) inner_table
+                WHERE ROWNUM &lt;= #{endRowNum} )
+        WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum}
     </select>
 
-
+    <select  id="getTotalCount"  parameterType="search"	 resultType="int">
+        SELECT COUNT(*)
+        FROM(	SELECT *
+                 FROM users
+                     <if test="(searchKeyword != null and searchKeyword != '')">
+                        <where>
+                            user_id = #{searchKeyword}
+                         </where>
+                    </if> ) countTable
+    </select>
 
 
     <select id="getUserDetail" parameterType="String" resultMap="userSelectMap">

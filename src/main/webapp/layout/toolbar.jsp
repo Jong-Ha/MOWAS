@@ -533,8 +533,8 @@
                         <div class="input-group mb-3 mt-3"
                              style="display: flex;align-items: center; justify-content: center;">
                             <div class="logo">
-                                <img class="mb-4" src="/resources/images/MOWAS.png" width="160" height="120"
-                                     style="border-radius: 20px">
+                                <img class="mb-4" src="/resources/images/MOWAS_W.png" width="160" height="120"
+                                     style="border-radius: 20px; height: 124px; object-fit: contain;">
                             </div>
                         </div>
 
