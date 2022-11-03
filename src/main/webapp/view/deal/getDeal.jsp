@@ -75,6 +75,7 @@ Product vo=(Product)request.getAttribute("vo");
 
             })
 
+
             //파일 갯수 체크
             $("#updateDealForm input:file").on("change", function () {
                 if ($(this)[0].files.length > 10 - $('#fileSize').val()) {
@@ -141,27 +142,27 @@ Product vo=(Product)request.getAttribute("vo");
                                 swalWithBootstrapButtons.fire(
                                     dealUserId + ' 님이 초대 되었습니다',
                                     'success',
-                                ).then(()=>{
-                                    var openWin = window.open("/chat/chatList?chatCategory="+chatNameSpace,'chatList')
+                                ).then(() => {
+                                    var openWin = window.open("/chat/chatList?chatCategory=" + chatNameSpace, 'chatList')
                                     $.ajax({
-                                        url : "/chat/addOneChat",
-                                        data : {
-                                            'userId' : dealUserId,
-                                            'chatNameSpace' : chatNameSpace,
-                                            'roomName' : dealUserId,
-                                            'boardNum' : dealBoardNum
+                                        url: "/chat/addOneChat",
+                                        data: {
+                                            'userId': dealUserId,
+                                            'chatNameSpace': chatNameSpace,
+                                            'roomName': dealUserId,
+                                            'boardNum': dealBoardNum
                                         },
-                                        success : function(re){
+                                        success: function (re) {
                                             // console.log(re)
                                             let loadCheck = true
-                                            setInterval(function(){
-                                                if(loadCheck){
-                                                    if($(openWin.document).find('.chatRoom').html()!==undefined){
+                                            setInterval(function () {
+                                                if (loadCheck) {
+                                                    if ($(openWin.document).find('.chatRoom').html() !== undefined) {
                                                         $(openWin.document).find('.chatRoom').html(re)
                                                         loadCheck = false
                                                     }
                                                 }
-                                            },100)
+                                            }, 100)
                                         }
                                     })
                                 })
@@ -263,46 +264,67 @@ Product vo=(Product)request.getAttribute("vo");
 //             //     location.href="/club/updateClub/"+$(".boardNum").val()
 //             // })
             $(".delete").on("click", function () {
-                var check = confirm("진짜 삭제?");
-                if (check === true) {
-                    location.href = "/deal/deleteDeal/" + $(".dealBoardNum").val()
-                }
+
+
+                location.href = "/deal/deleteDeal/" + $(".dealBoardNum").val()
             })
-//         //업데이트
-//         var dealTag = document.querySelector("#dealTag")
-//         var tagify = new Tagify(dealTag, {
-//             dropdown: {
-//                 position: "input",
-//                 enabled: 0 // always opens dropdown when input gets focus
-//             }
-//         })
-//         $("#updateDeal").find(".newDeal").on("click", function () {
-//             if ($("#dealTitle").val() === '') {
-//                 alert("제목은 필수입니다")
-//                 return;
-//             }
-//             if ($("#dealProduct").val() === '') {
-//                 alert("제품명은 필수입니다")
-//                 return;
-//             }
-//             if ($("#price").val() === '') {
-//                 alert("가격은 필수입니다")
-//                 return;
-//             }
-//             let updateForm = $("#updateDealForm");
-//             $.each(JSON.parse($("#dealTag").val()), function (index, item) {
-//                 updateForm.append('<input type="hidden" name="dealTags" value="' + item.value + '">')
-//             })
-//             updateForm.attr("method", "post").attr("action", "/deal/updateDeal").submit();
-//         })
         })
+        //         //업데이트
+        //         var dealTag = document.querySelector("#dealTag")
+        //         var tagify = new Tagify(dealTag, {
+        //             dropdown: {
+        //                 position: "input",
+        //                 enabled: 0 // always opens dropdown when input gets focus
+        //             }
+        // //         })
+        //         $("#updateDeal").find(".newDeal").on("click", function () {
+        //             if ($("#dealTitle").val() === '') {
+        //                 alert("제목은 필수입니다")
+        //                 return;
+        //             }
+        //             if ($("#dealProduct").val() === '') {
+        //                 alert("제품명은 필수입니다")
+        //                 return;
+        //             }
+        //             if ($("#price").val() === '') {
+        //                 alert("가격은 필수입니다")
+        //                 return;
+        //             }
+        //             let updateForm = $("#updateDealForm");
+        //             // $.each(JSON.parse($("#dealTag").val()), function (index, item) {
+        //             //     updateForm.append('<input type="hidden" name="dealTags" value="' + item.value + '">')
+        //             // })
+        //             updateForm.attr("method", "post").attr("action", "/deal/updateDeal").submit();
+        //         })
+
         //최근 본 상품
         $(function () {
             $(".list").on("click", function () {
                 window.location.assign('/deal/getListDeal')
 
             })
+            $('#updateDeal #dealTitle').on('keyup',function(){
+                if($(this).val().length>15){
+                    alert('거래명은 최대 15글자입니다')
+                    $(this).val($(this).val().substring(0, 15));
+                }
+            })
+            $('#updateDeal #productName').on('keyup',function(){
+                if($(this).val().length>30){
+                    alert('상품명은 최대 30글자입니다')
+                    $(this).val($(this).val().substring(0, 30));
+                }
+            })
+            $('#updateDeal #dealText').on('keyup',function(){
+                if($(this).val().length>300){
+                    alert('상품설명은 최대 300글자입니다')
+                    $(this).val($(this).val().substring(0, 300));
+                }
+            })
         })
+
+
+
     </script>
     <style type="text/css">
         /*body {*/
@@ -451,7 +473,6 @@ Product vo=(Product)request.getAttribute("vo");
             display: flex;
             flex-wrap: nowrap;
             justify-content: space-around;
-
             overflow: hidden;
         }
     </style>
@@ -464,7 +485,11 @@ Product vo=(Product)request.getAttribute("vo");
 <input hidden class="userId" value="${user.userId}"></h2>
 <input hidden name="dealBoardNum" value="${deal.dealBoardNum}" class="dealBoardNum">
 <input hidden name="boardCategory" value="${deal.boardCategory}" class="boardCategory">
+
 <input hidden class="dealUserId" value="${deal.user.userId}">
+<input hidden class="villCode" value="${villCode}">
+<input hidden class="dealImage" value="${deal.dealImage}">
+
 <jsp:include page="/layout/toolbar.jsp"/>
 <%--<jsp:include page="/view/deal/history.jsp"/>--%>
 <%--&lt;%&ndash; toolbar 종료&ndash;%&gt;--%>
@@ -660,7 +685,7 @@ Product vo=(Product)request.getAttribute("vo");
 
 <div class="container" style="text-align: -webkit-center;">
 
-    <div class="wap shadow-lg">
+    <div class="container shadow-lg">
 
         <div class="usedbox">
             <div class="thumbnailBox">
@@ -674,7 +699,8 @@ Product vo=(Product)request.getAttribute("vo");
                             <div class="carousel-inner">
                                 <div class="carousel-item active" data-bs-interval="10000">
                                     <div type=hidden class="file" value="${File.fileName}"><img
-                                            src="/resources/${File.fileName}" width="700px" height="500px" style="margin-top: 20px">
+                                            src="/resources/${File.fileName}" width="700px" height="500px"
+                                            style="margin-top: 20px">
                                     </div>
                                 </div>
                             </div>
@@ -703,11 +729,24 @@ Product vo=(Product)request.getAttribute("vo");
                                      justify-content: space-between; padding-left: 300px ">
                             <div id="article-profile-image"
                                  style="width: 50px;margin-right: 5px; border-radius: 30%; height: 55px;">
-                                <img src="/resources/${deal.user.userImage}" alt="test중입니다." style="width: 50px">
+                                <c:if test="${b ne null}">
+
+                                    <img src="/resources/${b}"
+                                         style="width: 60px;  height: 50px;">
+
+                                </c:if>
+                                <%--                                <c:if test="${user.userImage eq null}">--%>
+
+                                <%--                                    <img src="/resources/images/proplePoto.png"--%>
+                                <%--                                         style="width: 60px;  height: 50px;">--%>
+
+                                <%--                                </c:if>--%>
+                                <%--                                <img src="/resources/${deal.user.userImage}" alt="test중입니다." style="width: 50px">--%>
                             </div>
+
                             <div id="article-profile-left">
                                 <div id="nickname" style="    display: flex;">${deal.user.userId}</div>
-                                <div id="region-name">${deal.villCode}</div>
+                                <div id="demo">${villCode}</div>
                             </div>
                         </div>
                         <div id="article-profile-right" style="    padding-right: 310px;
@@ -836,7 +875,7 @@ Product vo=(Product)request.getAttribute("vo");
 
     </div>
     <div>
-        <button class="btn btn-primary btn-lg list" style="margin-left: 1250px;
+        <button class="btn btn-primary btn-lg list" style="margin-left: 1200px;
     width: 80px;">목록
         </button>
     </div>
@@ -956,8 +995,7 @@ Product vo=(Product)request.getAttribute("vo");
             <div class="modal-body">
                 <form id="updateDealForm" enctype="multipart/form-data" method="post">
                     <input hidden name="dealBoardNum" value="${deal.dealBoardNum}" class="dealBoardNum">
-                    <input hidden name="boardCategory" value="${deal.boardCategory}" class="boardCategory">
-                    <%--                                <input type="hidden" name="deleteFileName" value="${deal.clubImage}" disabled>--%>
+
                     <div class="input-group mb-3">
                         <div class="form-floating">
                             <input type="text" class="form-control" id="dealTitle" name="dealTitle" placeholder="거래명"
@@ -983,10 +1021,10 @@ Product vo=(Product)request.getAttribute("vo");
                     </div>
 
                     <div class="input-group mb-3 form-floating">
-                        <select class="form-select" id="boardCategory" required>
+                        <select class="form-select" id="boardCategory" name="boardCategory" required>
                             <option selected>판매 구분을 선택 하세요</option>
-                            <option value="1" ${deal.boardCategory == "08"? 'selected':''}>판매</option>
-                            <option value="2" ${deal.boardCategory == "09"? 'selected':''}>판매요청</option>
+                            <option value="08" ${deal.boardCategory == "08"? 'selected':''}>판매</option>
+                            <option value="09" ${deal.boardCategory == "09"? 'selected':''}>판매요청</option>
                         </select>
 
                         <label for="boardCategory">판매 구분</label>
@@ -995,7 +1033,7 @@ Product vo=(Product)request.getAttribute("vo");
                     </div>
 
                     <div class="input-group mb-3 form-floating">
-                        <select class="form-select" id="dealStatus" required>
+                        <select class="form-select" id="dealStatus" name="dealStatus" required>
                             <option value="0" ${deal.dealStatus == 0? 'selected':''}>거래전</option>
                             <option value="1" ${deal.dealStatus== 1? 'selected':''}>거래중</option>
                             <option value="2" ${deal.dealStatus == 2? 'selected':''}>거래완료</option>
@@ -1175,7 +1213,10 @@ Product vo=(Product)request.getAttribute("vo");
 </div>
 </div>
 <%--모임 수정 모달창 끝--%>
-
+<%--채팅아이콘--%>
+<jsp:include page="/layout/chatIcon.jsp"/>
+<%--하단바--%>
+<jsp:include page="/layout/footer.jsp"/>
 
 </body>
 </html>

@@ -201,7 +201,7 @@
                 <div class="col clubBox" style="cursor: pointer">
                     <input type="hidden" name="clubNum" value="${club.clubNum}">
                     <div class="card h-100 shadow-lg clubCard">
-                        <div class="card-img-top">
+                        <div class="card-img-top" style="background-color: #f0f0f0">
                             <img src="/resources/${club.clubImage}" alt="모임이미지">
                         </div>
 
@@ -247,7 +247,6 @@
     </div>
 
     <%--모임 만들기 모달창 시작--%>
-    <c:if test="${!empty user}">
         <div class="modal fade" id="addClub" tabindex="-1" aria-labelledby="addClubLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -322,7 +321,6 @@
                 </div>
             </div>
         </div>
-    </c:if>
     <%--모임 만들기 모달창 끝--%>
 
     <%--searchLocation 모달창 시작--%>

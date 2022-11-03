@@ -279,20 +279,6 @@ public class ClubCalendarController {
 
     }
 
-    @RequestMapping("addCalenderCluber")
-    public String addCalenderCluber(@RequestParam("clubNum") int clubNum
-            , @ModelAttribute("search") Search search
-            , Model model) {
-
-        search.setSearchCondition("0");
-
-        Map<String, Object> map = clubService.listCluber(search, clubNum);
-
-        model.addAttribute("list", map.get("list"));
-
-        return "/view/community/add/addCalenderCluber.jsp";
-    }
-
 
 
 }

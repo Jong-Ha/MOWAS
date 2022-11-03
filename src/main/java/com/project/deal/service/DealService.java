@@ -23,7 +23,7 @@ public interface DealService {
     int getViewCount(int dealBoardNum, String boardCategory);
     void updateViewCount(int dealBoardNum,int viewCount, String boardCategory);
 
-
+    String getImage(String userId);
 //    public int addReview(Deal deal) throws Exception;
     //   public List<String> deleteReview(int dealBoardNum) throws Exception;
     //   public Map<String, Object> getListReview(Search search, String boardCategory) throws Exception ;

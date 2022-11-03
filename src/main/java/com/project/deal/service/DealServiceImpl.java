@@ -191,4 +191,9 @@ public class DealServiceImpl implements DealService {
         dealDao.updateViewCount(map);
     }
 
+    @Override
+    public String getImage(String userId) {
+        return dealDao.getImage(userId);
+    }
+
 }

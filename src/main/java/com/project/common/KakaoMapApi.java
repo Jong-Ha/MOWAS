@@ -221,8 +221,8 @@ public class KakaoMapApi {
         if(size > 0) {
             JSONObject jsonX = (JSONObject)data.get(0);
 
-            mapInfo.put("latitude", jsonX.get("y").toString()) ;
-            mapInfo.put("longitude", jsonX.get("x").toString());
+            mapInfo.put("longitude", jsonX.get("y").toString()) ;
+            mapInfo.put("latitude", jsonX.get("x").toString());
 
             //System.out.println(jsonX.get("x").toString());
             //System.out.println(jsonX.get("y").toString());
