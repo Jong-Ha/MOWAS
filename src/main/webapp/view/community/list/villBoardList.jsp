@@ -22,6 +22,7 @@
 <script type="text/javascript">
 
     function lodingVillBoard() {
+
         var boardCategory = $(".boardCategory").val()
 
         $(".get").on("click", function () {
@@ -894,10 +895,6 @@
 
                                 <div class="user_hidden_manu" style="display: none">
                                     <ul class=" shadow-lg">
-                                        <li class="getClub">
-                                            모임 방문하기
-                                        </li>
-
                                         <c:if test="${user.userId eq villBoard.userId}">
                                             <li data-bs-toggle="modal" data-bs-target="#exampleModal" class="update">
                                                 수정
@@ -916,9 +913,9 @@
                         <div id="carouselExampleSlidesOnly " class="carousel slide potoBox get" data-bs-ride="carousel"
                              style="cursor: pointer">
 
-                            <div class="carousel-inner">
+                            <div class="carousel-inner get">
                                 <c:forEach var="File" items="${villBoard.file}">
-                                    <div class="carousel-item active get" data-bs-interval="2000">
+                                    <div class="carousel-item active" data-bs-interval="2000">
                                         <img class="d-block w-100  poto" width="100%" height="100%"
                                              src="/resources/villBoardFiles${File.fileName }" alt="any">
                                     </div>
@@ -988,7 +985,6 @@
     </div>
 
 
-    <div style=" padding-bottom: 900px;"></div>
 
 
     <%--우리동네 게시글 등록--%>

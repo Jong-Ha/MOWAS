@@ -79,9 +79,9 @@
             <div class="form-floating">
               <select class="form-select" id="mbCategory" name="mbCategory" required>
                 <option value="0" selected>선택하세요</option>
-                <option value="1" ${masterBoard.mbCategory=='회원'?'selected':''}>회원</option>
-                <option value="2" ${masterBoard.mbCategory=='모임'?'selected':''}>모임</option>
-                <option value="3" ${masterBoard.mbCategory=='신고'?'selected':''}>신고</option>
+                <option value="1" ${param.mbCategory==1?'selected':''}>회원</option>
+                <option value="2" ${param.mbCategory==2?'selected':''}>모임</option>
+                <option value="3" ${param.mbCategory==3?'selected':''}>신고</option>
               </select>
               <label for="mbCategory">카테고리</label>
             </div>

@@ -416,7 +416,7 @@
     <nav class="shadow-lg navbar navbar-expand-lg " style=" background: #333333;;  border-radius: 5px;padding: 0;">
         <div class="navCenter">
 
-            <a class="navbar-brand " href="#" style="color : #ffffff; font-size: 2em">
+            <a class="navbar-brand " href="/index.jsp" style="color : #ffffff; font-size: 2em">
                 <img src="/resources/images/MOWAS_T_2.png" alt="MOWAS" style="height: 100px;width: 100px;object-fit: cover;">
             </a>
 
@@ -482,8 +482,7 @@
                         </c:if>
                         <c:if test="${sessionScope.user.userImage eq null}">
 
-                            <img src="${pageContext.request.contextPath}/resources/images/proplePoto.png"
-                                 style="width: 50px;margin-right: 10px; border-radius: 40px; height: 50px;background-color: #FFFFFF;object-fit: contain;">
+
 
                         </c:if>
 
