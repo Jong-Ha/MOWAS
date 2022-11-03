@@ -10,7 +10,8 @@
 
 <html>
 <head>
-  <title>List MasterBoard</title>
+  <title>MOWAS</title>
+
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -241,6 +242,7 @@
     </div>
     </div>
   </div>
+
   <div class="container">
 
   <nav class="navbar navbar-expand-lg mbBox">
@@ -454,7 +456,7 @@
     </div>
   </div>
   <%-- end row --%>
-
+  </div>
 </div>
 
 

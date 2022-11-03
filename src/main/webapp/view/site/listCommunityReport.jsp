@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>List Community Report</title>
+    <title>MOWAS</title>
     <!-- Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -32,12 +32,6 @@
             -webkit-box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
             box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
         }
-
-        <%--.container {
-            width: 70%;
-            margin: 0 auto;			/* 가로로 중앙에 배치 */
-            padding-top: 10%;		/* 테두리와 내용 사이의 패딩 여백 */
-        }--%>
 
         #list {
             text-align: center;
@@ -334,14 +328,14 @@
          <li class="page-item">
         </c:if>
          <a class="page-link" href="javascript:fncGetList('${ resultPage.currentPage-1}')" aria-disabled="true" aria-label="Previous">
-           <span aria-hidden="true">Previous</span></a>
+           <span aria-hidden="true"><<</span></a>
          </li>
 
          <!--  중앙  -->
          <c:forEach var="i"  begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" step="1">
          <c:if test="${ resultPage.currentPage == i }">
            <li class="page-item active">
-             <a class="page-link" href="javascript:fncGetList('${ i }');">${ i }<span class="sr-only">(current)</span></a>
+             <a class="page-link" href="javascript:fncGetList('${ i }');">${ i }<span class="sr-only"></span></a>
            </li>
          </c:if>
 
@@ -359,7 +353,7 @@
            <li class= "page-item">
           </c:if>
            <a class="page-link" href="javascript:fncGetList('${resultPage.endUnitPage+1}')" aria-disabled="true" aria-label="Next">
-            <span aria-hidden="true">Next</span></a>
+            <span aria-hidden="true">>></span></a>
            </li>
 
           </ul>
