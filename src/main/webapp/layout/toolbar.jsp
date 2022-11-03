@@ -461,16 +461,23 @@
                     </ul>
                     <div class="logitem">
 
-                        <c:if test="${user.userId ne null}">
+                        <c:if test="${sessionScope.user.userImage ne null}">
 
-                                <img src="/resources/${user.userImage}" style="width: 60px;margin-right: 10px; border-radius: 40px; height: 50px;">
+                            <img src="/resources/${sessionScope.user.userImage}"
+                                 style="width: 60px;margin-right: 10px; border-radius: 40px; height: 50px;">
+
+                        </c:if>
+                        <c:if test="${sessionScope.user.userImage eq null}">
+
+                            <img src="${pageContext.request.contextPath}/resources/images/proplePoto.png"
+                                 style="width: 60px;margin-right: 10px; border-radius: 40px; height: 50px;">
 
                         </c:if>
 
                         <div class="login ">
                             <div class="d-grid gap-2">
 
-                                <c:if test="${user.userId eq null}">
+                                <c:if test="${sessionScope.user.userId eq null}">
 
                                     <div class="loginbox login underline yellow" id="login1"
                                          style="font-size: 1.2em; color: #FFFFFF; " data-bs-toggle="modal"
@@ -480,7 +487,7 @@
 
                                 </c:if>
 
-                                <c:if test="${user.userId ne null}">
+                                <c:if test="${sessionScope.user.userId ne null}">
 
                                 <div class="loginbox login underline yellow" style="font-size: 1.2em; color: #FFFFFF;"
                                      id="logout">로그아웃

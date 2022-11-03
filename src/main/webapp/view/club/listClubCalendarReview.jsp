@@ -17,6 +17,45 @@
                 carousel.next()
             })
         },3000)
+
+        // paging
+        $("#listClubCalendarReviewForm .paging").off('click').on("click", function () {
+            $("#listClubCalendarReviewForm #currentPage").val($(this).text())
+
+            const data = $('#listClubCalendarReviewForm').serialize()
+
+            $.ajax({
+                url : "/club/listClubCalendarReview/${clubNum}/1",
+                method : 'post',
+                'data' : data,
+                success : function(re){
+                    $("#ClubBoard").html(re)
+                    clubLayout()
+                    $('#ClubBoard')[0].scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
+                }
+            })
+        })
+        $("#listClubCalendarReviewForm .pageUnit").off('click').on("click", function () {
+            if($(this).hasClass('disabled')){
+                return false
+            }
+
+            $("#listClubCalendarReviewForm #currentPage").val($(this).val())
+
+            const data = $('#listClubCalendarReviewForm').serialize()
+
+            $.ajax({
+                url : "/club/listClubCalendarReview/${clubNum}/1",
+                method : 'post',
+                'data' : data,
+                success : function(re){
+                    $("#ClubBoard").html(re)
+                    clubLayout()
+                    $('#ClubBoard')[0].scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
+                }
+            })
+        })
+
     })
 </script>
 <style>
@@ -181,9 +220,17 @@
     }
 </style>
 <div style="width: 80%; padding-top: 30px;">
-    <form>
+    <form id="listClubCalendarReviewForm">
 
 
+        <c:if test="${empty list}">
+            <div class="bg-light rounded-3" style="width: 70%; margin-bottom: 30px;">
+                <div class="container-fluid" style="padding: 16px;">
+                    <h3 class="fw-bold" style="margin-top: 16px;margin-bottom: 16px;">등록된 후기가 없습니다</h3>
+                </div>
+            </div>
+        </c:if>
+        <c:if test="${!empty list}">
         <div class="ClubCalendarReviewList"
              style="display: grid; grid-template-columns: 1fr 1fr;margin-bottom: 20px;justify-items: center;">
             <c:forEach var="ClubCalendarReview" items="${list}">
@@ -290,11 +337,11 @@
                                             </div>
                                         </div>
 
-                                        <div class="reviewTitle">
+                                        <div class="reviewTitle text-truncate" style="max-width: 320px;">
                                                 ${ClubCalendarReview.reviewTitle}
                                         </div>
 
-                                        <div class="reviewText">
+                                        <div class="reviewText text-truncate" style="max-width: 320px;">
                                                 ${ClubCalendarReview.reviewText}
                                         </div>
                                     </div>
@@ -308,18 +355,45 @@
 
             </c:forEach>
         </div>
+        </c:if>
 
-        <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" var="i">
-            <span class="paging">${i}</span>
-        </c:forEach>
-        <label>
-            <input type="hidden" id="currentPage" name="currentPage" value="1">
-            <input type="text" name="searchKeyword" value="${search.searchKeyword}">
-        </label>
-        <input type="submit" value="검색">
-        <button class="btn btn-primary addClubMasterBoardView" data-bs-toggle="modal"
-                data-bs-target="#addClubMasterBoard">
-            글쓰기
-        </button>
+        <div style="display: flex;justify-content: space-between;flex-direction: row-reverse;width: 90%;align-items: center;margin-bottom: 24px;">
+            <div style="display: flex;align-items: center;min-width: 250px;justify-content: space-between;">
+                <label>
+                    <input type="hidden" id="currentPage" name="currentPage" value="1">
+                    <input type="text" name="searchKeyword" value="${search.searchKeyword}">
+                </label>
+                <button class="btn btn-primary">
+                    검색
+                </button>
+            </div>
+
+            <c:if test="${currentCluber.cluberStatus=='5'||currentCluber.cluberStatus=='6'}">
+                <button class="btn btn-primary addClubMasterBoardView" data-bs-toggle="modal"
+                        data-bs-target="#addClubMasterBoard">
+                    작성
+                </button>
+            </c:if>
+        </div>
+
+        <c:if test="${!empty list}">
+            <nav aria-label="Page navigation example" style="display: flex;justify-content: center;">
+                <ul class="pagination">
+                    <li class="page-item pageUnit ${resultPage.beginUnitPage==1?'disabled':''}" value="${resultPage.beginUnitPage-resultPage.pageUnit}">
+                        <a class="page-link" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" var="i">
+                        <li class="page-item ${search.currentPage==i?'active':'paging'}"><a class="page-link">${i}</a></li>
+                    </c:forEach>
+                    <li class="page-item pageUnit ${resultPage.maxPage==resultPage.endUnitPage?'disabled':''}" value="${resultPage.beginUnitPage+resultPage.pageUnit}">
+                        <a class="page-link" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </c:if>
     </form>
 </div>

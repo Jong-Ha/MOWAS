@@ -24,7 +24,6 @@
   body{
   background:#f3f3f3;
   margin-top:20px;
-  color: #616f80;
   }
   .card {
   border: none;
@@ -40,7 +39,7 @@
   }
 
   .typing {
-    width: 14ch;
+    width: 11ch;
     animation: typing 0.9s steps(22), blink .5s step-end infinite alternate;
     white-space: nowrap;
     overflow: hidden;
@@ -49,7 +48,7 @@
     height: 2ch;
   }
   .mbBox {
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     justify-content: center;
   }
   .underline {
@@ -200,7 +199,7 @@
       });
     --%>
       //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-      $("a[href='#' ]").on("click" , function() {
+      $("a.deleteMb").on("click" , function() {
         Swal.fire({
           title: '정말 삭제하시겠습니까?',
           text: "다시 되돌릴 수 없습니다. 신중하세요.",
@@ -329,17 +328,7 @@
   </div>
  </div>
 
-    <div class="col-md-12 mb-3 text-left ">
-      <c:if test="${user.masterCheck eq 2}">
-        <button type="button" class="addMb btn btn-primary" style="background-color: #F8CD07;" data-bs-toggle="modal" data-bs-target="#addMasterBoard">글쓰기</button>
-        <%--<button type="button" class="updateMb btn" style="background-color: #F8CD07;" data-bs-toggle="modal" data-bs-target="#updateMasterBoard">수정</button>--%>
-        <a class="btn btn-secondary" href = "#" role="button">취 소 </a>
-      </c:if>
-      <!--test version
-      <button type="button" class="commReport" >커뮤니티신고</button>
-      <button type="button" class="clubReport" >모임신고</button>
-      <button type="button" class="clubMap" data-bs-toggle="modal" data-bs-target="#addMap">클럽맵 Test</button>-->
-    </div>
+
 
   <div class="row">
     <div class="col-lg-12">
@@ -364,7 +353,8 @@
                 <c:forEach var="mb" items="${list}">
                 <c:set var="i" value="${ i+1 }" />
               <tr>
-                  <td>${ i }</td>
+                  <td><a href="/site/getMasterBoard/${mb.masterBoardNo}">${ i }
+                    <input id="crNo" type="hidden" value="${mb.masterBoardNo }"/></td>
                   <td>${mb.mbTitle}
                     <span id = "${mb.masterBoardNo}"></span>
                     <input class="masterBdNo" name="masterBdNo" type="hidden" value="${mb.masterBoardNo}">
@@ -394,7 +384,7 @@
                     <i class="fa fa-pencil h5 m-0"></i>
                   </button>
                     <%--<a href="#" class="text-success mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"> <i class="fa fa-pencil h5 m-0"></i></a>--%>
-                    <a data-masterbdno="${mb.masterBoardNo}" href="#" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close"> <i class="fa fa-remove h5 m-0"></i></a>
+                    <a data-masterbdno="${mb.masterBoardNo}" class="text-danger deleteMb" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close"> <i class="fa fa-remove h5 m-0"></i></a>
                 </td>
                 </c:if>
 
@@ -407,6 +397,18 @@
 
           <!-- end project-list -->
             <div class="pt-3">
+              <div class="mb-3 text-left">
+                <c:if test="${user.masterCheck eq 2}">
+                  <button type="button" class="addMb btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMasterBoard">글쓰기</button>
+                  <%--<button type="button" class="updateMb btn" style="background-color: #F8CD07;" data-bs-toggle="modal" data-bs-target="#updateMasterBoard">수정</button>--%>
+
+                </c:if>
+                <!--test version
+                <button type="button" class="commReport" >커뮤니티신고</button>
+                <button type="button" class="clubReport" >모임신고</button>
+                <button type="button" class="clubMap" data-bs-toggle="modal" data-bs-target="#addMap">클럽맵 Test</button>-->
+              </div>
+
             <ul class="pagination justify-content-end mb-0">
               <!--  <<== 좌측 nav -->
             <c:if test="${ resultPage.currentPage <= resultPage.pageUnit }">
@@ -416,14 +418,14 @@
               <li class="page-item">
             </c:if>
                 <a class="page-link" href="javascript:fncGetList('${ resultPage.currentPage-1}')" aria-disabled="true" aria-label="Previous">
-                  <span aria-hidden="true">Previous</span></a>
+                  <span aria-hidden="true"><<</span></a>
               </li>
 
           <!--  중앙  -->
           <c:forEach var="i"  begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" step="1">
             <c:if test="${ resultPage.currentPage == i }">
               <li class="page-item active">
-                <a class="page-link" href="javascript:fncGetList('${ i }');">${ i }<span class="sr-only">(current)</span></a>
+                <a class="page-link" href="javascript:fncGetList('${ i }');">${ i }<span class="sr-only"></span></a>
               </li>
             </c:if>
 
@@ -441,7 +443,7 @@
                 <li class= "page-item">
               </c:if>
                 <a class="page-link" href="javascript:fncGetList('${resultPage.endUnitPage+1}')" aria-disabled="true" aria-label="Next">
-                  <span aria-hidden="true">Next</span></a>
+                  <span aria-hidden="true">>></span></a>
               </li>
 
             </ul>
@@ -452,6 +454,7 @@
     </div>
   </div>
   <%-- end row --%>
+
 </div>
 
 

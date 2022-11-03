@@ -36,12 +36,12 @@ function setListClub(){
             success: function () {
                 // alert("ajax")
                 // alert(button.children('svg').attr("class"))
-                if (button.children('svg').attr("class") === 'bi bi-heart') {
+                if (button.children('svg').hasClass('bi-heart')) {
                     // alert("누름")
-                    button.html('<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ff0000" class="bi bi-heart-fill" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/> </svg>');
+                    button.html('<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ff0000" class="bi bi-heart-fill likeCheck" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/> </svg>');
                 } else {
                     // alert("뺌")
-                    button.html('<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16"> <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/> </svg>');
+                    button.html('<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-heart likeCheck" viewBox="0 0 16 16"> <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/> </svg>');
                 }
                 check = true;
             }
@@ -74,13 +74,14 @@ $(function () {
     })
 
     //모임 만들기
-    $(".addClub").on("click", function () {
+    $("#addClub").off('show.bs.modal').on("show.bs.modal", function () {
         // location.href = "/club/addClub"
         // window.open("/club/addClub", "모임 만들기",
         //     "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
         if ($('.userId').val() === '') {
             alert('로그인이 필요합니다')
             $('#loginModal').modal('show')
+            return false
         }
     })
     //위치 검색
@@ -151,7 +152,7 @@ $(function () {
     var input = document.querySelector("[name='searchTagInput']")
 
     // init Tagify script on the above inputs
-    var tagify = new Tagify(input, {
+    let searchTagify = new Tagify(input, {
         dropdown: {
             position: "input",
             enabled: 0 // always opens dropdown when input gets focus
@@ -164,7 +165,7 @@ $(function () {
         // alert($(item).val())
         items.push($(item).val())
     })
-    tagify.addTags(items)
+    searchTagify.addTags(items)
 
     $('.modal.fade .modal-footer button').on("click", function () {
         // alert($(".tagify__tag").attr('value'))
@@ -174,9 +175,6 @@ $(function () {
         })
     })
 
-})
-
-$(function () {
     $('#addClub #clubName').on('keyup',function(){
         if($(this).val().length>13){
             alert('모임명은 최대 13글자입니다')
@@ -185,10 +183,27 @@ $(function () {
     })
 
     var clubTag = document.querySelector("#clubTag")
-    var tagify = new Tagify(clubTag, {
+    var clubTagify = new Tagify(clubTag, {
         dropdown: {
             position: "input",
             enabled: 0 // always opens dropdown when input gets focus
+        }
+    })
+
+    $('.tagify__input').on('keyup',function(e){
+        // alert(e.keyCode===32)
+        if(e.keyCode===32){
+            // console.log($(this).parents('form').attr('id')==='addClubForm')
+            let tagify = searchTagify
+            if($(this).parents('form').attr('id')==='addClubForm'){
+                tagify = clubTagify
+            }
+            let tag = $(this).html()
+            if(tag.indexOf('#')!==-1){
+                tag = tag.split('#')[1]
+            }
+            tagify.addTags([tag])
+            $(this).html('')
         }
     })
 
@@ -280,7 +295,7 @@ $(function () {
     let loadCheck = false
     $(window).on('scroll', function () {
         console.log($(window).scrollTop())
-        // console.log($(this).height())
+        // console.log($(window).height())
         // console.log($(document).height())
         console.log($(document).height() - $(window).height())
         if ($(document).height() - $(window).height() - $(window).scrollTop() < 1300) {

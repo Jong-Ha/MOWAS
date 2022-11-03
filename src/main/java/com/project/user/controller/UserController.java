@@ -286,6 +286,12 @@ public class UserController {
         Page resultPage = new Page(search.getCurrentPage(), (Integer) map.get("totalCount"), pageUnit, pageSize);
         System.out.println("resultPage의 값은???"+resultPage);
 
+        List<User> listUser = (List<User>)map.get("list");
+        System.out.println("listUser의 값"+listUser);
+        for(User user: listUser){
+            user.loginStatusChk();
+        }
+
         model.addAttribute("list", map.get("list"));
         model.addAttribute("resultPage", resultPage);
         model.addAttribute("search", search);
@@ -300,6 +306,73 @@ public class UserController {
 
         Map<String, Object> map =userService.getUserDetail(userId);
         System.out.println("유저 컨트롤러 map 값은? :"+map);
+        List<UserInterList> abcd = (List<UserInterList>)map.get("listInterList");
+        String interList = "";
+        String listInter = "";
+        for(int i=0; i<abcd.size();i++) {
+            switch (Integer.parseInt(abcd.get(i).getInterList())){
+                case 1:
+                    interList = "독서";
+
+                    break;
+                case 2:
+                    interList = "자동차";
+
+                    break;
+                case 3:
+                    interList = "반려동물";
+
+                    break;
+                case 4:
+                    interList = "공예";
+
+                    break;
+                case 5:
+                    interList = "스포츠";
+
+                    break;
+                case 6:
+                    interList = "댄스";
+
+                    break;
+                case 7:
+                    interList = "여행";
+
+                    break;
+                case 8:
+                    interList = "사진";
+
+                    break;
+                case 9:
+                    interList = "육아";
+
+                    break;
+                case 10:
+                    interList = "공연";
+
+                    break;
+                case 11:
+                    interList = "음악";
+
+                    break;
+                case 12:
+                    interList = "게임";
+
+                    break;
+                case 13:
+                    interList = "그외";
+
+                    break;
+            }
+            listInter += interList+" ";
+            System.out.println("lisInter의값..."+listInter);
+            map.put("listInter",listInter);
+        }
+        User userDetail = (User)map.get("userDetail");
+        userDetail.loginStatusChk();
+        userDetail.loginTypeChk();
+
+        System.out.println("모델넘기기전 마지막 map의값"+map);
         model.addAttribute("map", map);
         return "forward:/view/user/getUserDetail.jsp";
     }
@@ -311,6 +384,68 @@ public class UserController {
 
         Map<String, Object> map =userService.getUserDetail(userId);
         System.out.println("유저 updatePsd 컨트롤러 map 값은? :"+map);
+        List<UserInterList> abcd = (List<UserInterList>)map.get("listInterList");
+        String interList = "";
+        String listInter = "";
+        for(int i=0; i<abcd.size();i++) {
+            switch (Integer.parseInt(abcd.get(i).getInterList())){
+                case 1:
+                    interList = "독서";
+
+                    break;
+                case 2:
+                    interList = "자동차";
+
+                    break;
+                case 3:
+                    interList = "반려동물";
+
+                    break;
+                case 4:
+                    interList = "공예";
+
+                    break;
+                case 5:
+                    interList = "스포츠";
+
+                    break;
+                case 6:
+                    interList = "댄스";
+
+                    break;
+                case 7:
+                    interList = "여행";
+
+                    break;
+                case 8:
+                    interList = "사진";
+
+                    break;
+                case 9:
+                    interList = "육아";
+
+                    break;
+                case 10:
+                    interList = "공연";
+
+                    break;
+                case 11:
+                    interList = "음악";
+
+                    break;
+                case 12:
+                    interList = "게임";
+
+                    break;
+                case 13:
+                    interList = "그외";
+
+                    break;
+            }
+            listInter += interList+"\n\r";
+            System.out.println("lisInter의값..."+listInter);
+            map.put("listInter",listInter);
+        }
         model.addAttribute("map", map);
         System.out.println("여기는 updatePsd 컨트롤러 종료이다");
         return "forward:/view/user/updatePsd.jsp";
@@ -318,7 +453,8 @@ public class UserController {
 
     @RequestMapping(value = "listupdatedUser", method = RequestMethod.POST)
     public String listupdatedUser(@ModelAttribute User user, UserInterList interList, Model model)throws Exception{
-        System.out.println("user"+user);
+        System.out.println("listupdatedUser의 컨트롤러 시작~~~~");
+        System.out.println("user의 값!!"+user);
         System.out.println("interlis 의 값"+interList);
         //System.out.println("userId"+userId);
 

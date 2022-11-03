@@ -106,7 +106,7 @@
 
     });
 
-    getClubVilCode(${empty param.searchLng?'127.029020621527':param.searchLng}, ${empty param.searchLat?'37.4994558002948':param.searchLat})
+    getClubVilCode(${empty param.searchLng?empty longitude?'127.029020621527':longitude:param.searchLng}, ${empty param.searchLat?empty latitude?'37.4994558002948':latitude:param.searchLat})
 
     // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
     // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다
