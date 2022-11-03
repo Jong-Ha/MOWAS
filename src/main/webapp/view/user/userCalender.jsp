@@ -266,28 +266,82 @@
 
             location.href = "/deal/getDeal/" + boardNum;
 
+        })
 
+        $(".getClub").on("click" , ()=>{
+
+            var clubCalendar = $(".clubCalnderNum").val()
+
+            alert(clubCalendar);
+
+            $.ajax({
+
+            })
+
+
+           /* location.href ="/club/getClub/"+clubNum*/
         })
 
 
         $(".location2").on("click", function () {
             var location = $(".location2").val();
 
+            alert(location);
+
             $("#location2 .modal-content").load("/view/site/getCalenderMap.jsp",
-                {location : location},
+                {location: location},
                 function (re) {
 
                     $("#location2 .modal-content").html(re);
 
-                    $("#location2").modal("show")
-                })
+
+                    $("#exampleModal1").modal("hide");
+                    $("#location2").modal("show");
+                    $("#location2 .getLocation").off("click").on("click", function () {
+
+                        $("#location2").modal("hide");
+                        $("#exampleModal1").modal("show");
+
+                    })
+                }
+            );
+        })
+
+
+        $("#exampleModal3 .dealLocation2").on("click", function () {
+
+
+            var location = $(".dealLocation2").val()
+
+            alert(location)
+
+             $("#location2 .modal-content").load("/view/site/getCalenderMap.jsp",
+                 {location: location},
+                 function (re) {
+
+                     $("#location2 .modal-content").html(re);
+
+
+                     $("#exampleModal3").modal("hide");
+                     $("#location2").modal("show");
+
+                     $("#location2 .getLocation").off("click").on("click", function () {
+
+                         $("#location2").modal("hide");
+                         $("#exampleModal3").modal("show");
+
+                     })
+                 }
+             )
 
         })
 
         //상세보기 지도 보기
-        $("#location2").on("shown.bs.modal", ()=> {
-            relayout3();
+        $("#location2").on("shown.bs.modal", () => {
+            getClubLocation()
         })
+
+
     })
 
 // review add
@@ -347,6 +401,29 @@
             })
         })
     })
+
+    $(function(){
+
+        $('.calenderCluber2').off('click').on('click',function(){
+
+            $.ajax({
+                url : '/club/listCalendarCluber/'+$('#exampleModal1 .clubCalnderNum').val(),
+                success : function(re){
+                    $('#listCalendarCluber .modal-content').html(re)
+                    $('#listCalendarCluber .listClubCalendarApply').css('display','none')
+                    $('#exampleModal1').modal('hide')
+                    $('#listCalendarCluber').modal('show')
+                    $('#listCalendarCluber .back-btn').off('click').on('click',function(){
+                        $('#listCalendarCluber').modal('hide')
+                        $('#exampleModal1').modal('show')
+                    })
+                }
+            })
+        })
+
+    })
+
+
 </script>
 
 <style>
@@ -445,14 +522,12 @@
 
                 <div class="input-group mb-3">
 
-                    <input type="button" class="form-control location2" data-bs-toggle="modal"
-                           data-bs-target="#location2" value="위치 보기">
+                    <input type="button" class="form-control location2" value="위치 보기">
 
                 </div>
 
                 <div class="input-group mb-3 fileBox">
-                    <div class="shadow-lg midle"
-                         style="margin-bottom: 50px; margin-top: -3px; width: 490px; overflow: hidden; height: 400px;">
+                    <div class="shadow-lg midle" style="margin-bottom: 50px; margin-top: -3px; overflow: hidden;">
                         <div id="carouselExampleDark" class=" shadow-lg carousel carousel-dark slide"
                              data-bs-ride="carousel">
 
@@ -522,10 +597,18 @@
             </div>
 
             <div class="modal-footer">
-
+                <button type="button" class="btn btn-primary getClub">모임페이지로 이동</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 
             </div>
+        </div>
+    </div>
+</div>
+
+<%--모임 일정 참여자 조회--%>
+<div class="modal fade" id="listCalendarCluber" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
         </div>
     </div>
 </div>
@@ -561,7 +644,7 @@
 
                 <div class="input-group mb-3">
 
-                    <input type="text" class="form-control dealLocation2" value="위치 선택">
+                    <input type="button" class="form-control dealLocation2" value="위치 선택">
 
                 </div>
 
@@ -643,7 +726,8 @@
 <div class="modal fade" id="location2" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-        <jsp:include page="/view/site/getCalenderMap.jsp"/>
+
+            <jsp:include page="/view/site/getCalenderMap.jsp"/>
 
         </div>
     </div>

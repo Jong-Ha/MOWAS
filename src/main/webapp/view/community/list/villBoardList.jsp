@@ -412,6 +412,8 @@
 
         $(".searchBtn").on("click", function () {
 
+            $(".currentPage").val(1);
+
             $("#textSerch").attr("method", "get").attr("action", "villBoardList")
         })
 
@@ -690,6 +692,8 @@
 
     .addBox {
         margin-bottom: 50px;
+        display: flex;
+        align-items: flex-start;
     }
 
     .add {
@@ -730,6 +734,7 @@
         display: flex;
         flex-direction: row-reverse;
         margin-bottom: 100px;
+        margin-top: -83px;
     }
 
     .userImg {
@@ -768,7 +773,7 @@
         border: 1px solid #0000001a;
         padding: 10px;
         border-radius: 5px;
-        margin-left: 51px;
+        margin-left: -30px;
         background: #ffff;
     }
 
@@ -808,10 +813,11 @@
 <img class="shadow-lg" src="${pageContext.request.contextPath}/resources/images/club1.png"
      style="height: 500px;border-radius: 10px;  width: 1600px;">
 
+<jsp:include page="/layout/commubar.jsp"/>
+
 <!-- Example Code -->
 <div class="container">
 
-    <jsp:include page="/layout/commubar.jsp"/>
 
     <input hidden class="boardCategory" value="3">
 
@@ -840,6 +846,7 @@
             <button class="btn btn-primary searchBtn" type="submit">검색</button>
         </form>
     </div>
+
 
     <div class="ListVillBoard" style=" display: flex;  flex-wrap: wrap;  padding-bottom: 140px;">
         <c:set var="i" value="0"/>

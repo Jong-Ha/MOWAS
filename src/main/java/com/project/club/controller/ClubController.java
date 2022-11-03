@@ -130,7 +130,7 @@ public class ClubController {
             }
         }else {
             if(searchLocation==null){
-                searchLocation="역삼1동";
+                searchLocation="역삼동";
             }
         }
         List<Club> list = clubService.listClub(userId,search,searchLocation,searchInterList,searchTag);
