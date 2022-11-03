@@ -128,7 +128,7 @@
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
 <hr>
-</div>
+<div class="container">
 <div class="myPageButton" style="display: flex; align-items: center; justify-content: center; margin-top: 50px;">
     <c:if test="${user.userId=='admin'}">
         <button type="button" class="listUser" id="listUser">회원목록조회</button>
@@ -144,7 +144,7 @@
 
     <div class="myPage-top" style=" display: flex; padding: 10px">
 
-        <div class="userInfo shadow-lg" style="height: 350px;">
+        <div class="userInfo shadow-lg" style="height: 385px;">
 
             <c:if test="${user.loginType=='1'}">
                 <span class="aaa">
@@ -209,7 +209,6 @@
 </div>
 
 
-</div>
 <jsp:include page="/layout/chatIcon.jsp"/>
 
 

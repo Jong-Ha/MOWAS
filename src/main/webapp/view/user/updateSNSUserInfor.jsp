@@ -8,6 +8,7 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 </head>
+
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
@@ -20,6 +21,23 @@
     tr { height:40px; }
     td { border-bottom:1px solid #CCC; font-size:12px; }
     span { cursor:pointer }
+
+     .btn-primary {
+       --bs-btn-color: #000;
+       --bs-btn-bg: #f8cd07b3;
+       --bs-btn-border-color: #f8cd07b3;
+       --bs-btn-hover-color: #000;
+       --bs-btn-hover-bg: #f8cd07;
+       --bs-btn-hover-border-color: #f8cd07;
+       --bs-btn-focus-shadow-rgb: 130, 138, 145;
+       --bs-btn-active-color: #000;
+       --bs-btn-active-bg: #f8cd07;
+       --bs-btn-active-border-color: #f8cd07;
+       --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+       --bs-btn-disabled-color: #fff;
+       --bs-btn-disabled-bg: #6c757d;
+       --bs-btn-disabled-border-color: #6c757d;
+     }
     </style>
   <script type="text/javascript">
 
@@ -823,16 +841,14 @@
 </script>
 
 <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
-<div class="container" style="text-align: -webkit-center;">
-<div class="wap">
+<div class="container" style="text-align: -webkit-center; width: 450px; height: 1200px;">
 
+<div style="width: 400px;  border: 3px solid; border-color: #f8cd07; padding: 20px;">
   <main>
-
-
 
     <form class="needs-validation" novalidate enctype="multipart/form-data">
       <div class="row g-3">
-
+<div style="width: 400px; height: 40px; font-size: 30px; margin-top: 30px; ">회원정보 입력</div>
 
         <div class="col-12">
           <label for="userName" class="form-label">이름</label>
@@ -843,24 +859,24 @@
 
         <div class="col-12 ">
           <label for="rrd" class="form-label">주민등록번호</label>
-            <input type="text" class="form-control" id="rrd" name="rrd"  required>
+            <input type="text" class="form-control" id="rrd" name="rrd" placeholder="'-'포함 입력" required>
           </div>
 
 
       <div class="col-12">
-        <label for="address" class="form-label">동네인증</label>
+        <label for="address" class="form-label">주소</label>
       </div>
 
       <div class="col-12">
         <input type="hidden" id="currentPage" value="1" style="text-align:center;"/>
         <input type="hidden" id="countPerPage" value="5" style="text-align:center;"/>
         <input type=text id="zipCode" value="" onClick="addressWindowOpen();" placeholder="00000" readOnly />
-        <a class="btn btn-info btn-sm" href='javascript:void(0);' onclick="addressWindowOpen();">우편번호 찾기</a>
+        <a class="btn btn-primary btn-sm" href='javascript:void(0);' onclick="addressWindowOpen();">우편번호 찾기</a>
         <div id="wrap" style="display: none;">
-          <a class="btn btn-danger" id="closeBtn" href='javascript:void(0);' onclick="addressWindowClose();"><i class="fa fa-remove"></i></a>
+          <a class="btn btn-primary" id="closeBtn" href='javascript:void(0);' onclick="addressWindowClose();"><i class="fa fa-remove"></i></a>
           <div>
             <input type="text" id="searchAddr" value="" onkeydown="enterSearch();" placeholder="도로명주소, 건물명 또는 지번 입력"/>
-            <a class="btn btn-info btn-sm" href='javascript:void(0);' onclick="getAddr();">주소검색</a>
+            <a class="btn btn-primary btn-sm" href='javascript:void(0);' onclick="getAddr();">주소검색</a>
           </div>
           <div>
             <div id="totoalOutcome">검색결과 : <span id="totalCnt">0</span></div>
@@ -874,140 +890,18 @@
         <div style="height:5px;"></div>
 
 
-<div>
-        <input class="form-check-input" type="checkbox"  id="addChk" disabled="disabled" >
-        <button type="button" class="btn btn-primary btn-sm" id="checkAddress" name="checkAddress">동네인증 요청</button>
-</div>
-        <div class="col-12">
-          <input type="hidden" class="form-control" id="addressTrue" value="동네인증 되었습니다" readonly>
-        </div>
-        <div class="col-12">
-          <input type="hidden" class="form-control" id="addressFalse" value="동네인증 실패. 현재위치를 확인해주세요" readonly>
-        </div>
-
-      </div>
-
-      <div  id="map" style="width:500px;height:400px;"></div>
-
-        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=064b845197ba0a5631091cfb59197ad2&libraries=services"></script>
-        <script>
-          var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-                  mapOption = {
-                    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-                    level: 3 // 지도의 확대 레벨
-                  };
-
-          var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-          // 마커가 표시될 위치입니다
-          var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667);
-
-          // 마커를 생성합니다
-          var marker = new kakao.maps.Marker({
-            position: markerPosition
-          });
-
-          // 마커가 지도 위에 표시되도록 설정합니다
-          marker.setMap(map);
 
 
-          if (navigator.geolocation) {
-
-            // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-            navigator.geolocation.getCurrentPosition(function(position) {
-
-              var lat = position.coords.latitude, // 위도
-                      lon = position.coords.longitude; // 경도
-
-            $(function (){
-
-
-              $("#checkAddress").on("click", function (){
-                console.log($("#address").val())
-                // console.log(window['lat'])
-                // console.log(window['lon'])
-                $.ajax({
-                  url : "/user/json/checkAddress",
-                  method : "POST",
-                  data : JSON.stringify({
-                    villCode : $("#address").val(),
-                    lat : position.coords.latitude,
-                    lon : position.coords.longitude
-                  }),
-                  dataType : "JSON",
-                  processData : true,
-                  contentType : "application/json",
-                  success : function (result){
-                    if(result==true) {
-                      $("#addressTrue").attr("type","text").css("color","red");
-                      $("#map").fadeOut();
-                      $("#addChk").prop("checked",true);
-                    }else {
-                      $("#addressFalse").attr("type","text").css("color","red");
-                    }
-                  },
-                  error : function (){
-                    alert('지도 인증 실패');
-                  }
-                })
-              })
-            })
-
-
-              var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-                      message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
-
-              // 마커와 인포윈도우를 표시합니다
-              displayMarker(locPosition, message);
-
-              // self.location = "/map/json/myLocation?longitude=" + lon + "&latitude=" + lat;
-
-            });
-
-          } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-
-            var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
-                    message = 'geolocation을 사용할수 없어요..'
-
-            displayMarker(locPosition, message);
-          }
-
-          function displayMarker(locPosition, message) {
-
-            // 마커를 생성합니다
-            var marker = new kakao.maps.Marker({
-              map: map,
-              position: locPosition
-            });
-
-            var iwContent = message, // 인포윈도우에 표시할 내용
-                    iwRemoveable = true;
-
-            // 인포윈도우를 생성합니다
-            var infowindow = new kakao.maps.InfoWindow({
-              content : iwContent,
-              removable : iwRemoveable
-            });
-
-            // 인포윈도우를 마커위에 표시합니다
-            infowindow.open(map, marker);
-
-            // 지도 중심좌표를 접속위치로 변경합니다
-            map.setCenter(locPosition);
-          }
-        </script>
-
-      <input type="hidden" id="userId" name="userId" value="${user.userId}">${user.userId},로그인타입${user.loginType}
+      <input type="hidden" id="userId" name="userId" value="${user.userId}">${user.userId}
         <c:if test="${user.loginType=='2'}">
       <input type="hidden" id="loginType" name="loginType" value="${user.loginType}">${user.loginType}
         </c:if>
         <c:if test="${user.loginType=='3'}">
       <input type="hidden" id="loginType" name="loginType" value="${user.loginType}">${user.loginType}
         </c:if>
-
-
-
-
+        <div class="col-12">
+          <label for="address" class="form-label">관심목록 선택</label>
+        </div>
             <span id="checkItem">
           <span class="form-check">
             <input class="form-check-input" type="checkbox" value="01" id="list01" name="interList" >
@@ -1091,12 +985,12 @@
 
         <div class="col-12">
 
-            <input class="w-100 btn btn-primary btn-lg " id="updateSNSUserInfor" type="button" value="확인">
+            <input class="w-100 btn btn-primary btn-lg " style="margin-top: 15px;" id="updateSNSUserInfor" type="button" value="확인">
         </div>
 
     </form>
 
-      <hr>
+
 
   </main>
 

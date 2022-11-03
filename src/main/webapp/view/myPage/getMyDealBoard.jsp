@@ -315,8 +315,7 @@
     /*        border-color: transparent*/
     /*    }*/
     /*}*/
-    <
-    style >
+
     .body {
         text-align: -webkit-center;
     }
@@ -557,6 +556,43 @@
         align-items: center;
         justify-content: space-around;
     }
+    .pagination li{
+        cursor: default;
+    }
+
+    .pagination .paging{
+        cursor: pointer;
+    }
+
+    .card-body .row {
+        display: flex;
+        align-items: center;
+    }
+
+    .listDeal td{
+        cursor: pointer;
+        vertical-align: middle;
+    }
+    /* Bootstrap 수정 */
+    .table > thead {
+        background-color: #b3c6ff;
+    }
+    .table > thead > tr > th {
+        text-align: center;
+    }
+    .table-hover > tbody > tr:hover {
+        background-color: #e6ecff;
+    }
+    .table > tbody > tr > td {
+        text-align: center;
+    }
+    .table > tbody > tr > #title {
+        text-align: left;
+    }
+
+    div > #paging {
+        text-align: center;
+    }
 </style>
 
 
@@ -600,8 +636,15 @@
             location.href = "/deal/getDeal/" + $(this).find('[name="dealBoardNum"]').val();
 
         })
-    })
 
+    let check = true;
+    //각 모임으로 이동
+    $(".dealBox").on('click', function (e) {
+        if (check) {
+            location.href = "/deal/getDeal/" + $(this).find('[name="dealBoardNum"]').val()
+        }
+    })
+    })
 </script>
 <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 
@@ -623,57 +666,130 @@
 <hr/>
 <h4>판매/판매요청 게시글</h4>
 <hr/>
-${map.dealBoard}
-<div class="container">
-    <div class="addlistbox">
-        <c:set var="i" value="0"/>
-        <c:forEach var="list" items="${map.dealBoard}"><br/>
-        <div class="cardbox">
-            <div class="col dealBox">
-                <input type="hidden" name="dealBoardNum" class="dealBoardNum" value="${list.dealBoardNum}">
-                <input type="hidden" name="villCode" class="villCode" value="${list.villCode}">
-                <div class="card h-100 shadow-lg">
-                    <div class="card-footer"
-                         style=" border-bottom: 1px solid; display: flex; font-weight: bold">
-                            ${list.dealTitle}
-                        <p class="allFlex " style="position: absolute; right: 10px;">
-                            <c:if test="${list.dealStatus == 0}">
-                                거래전
-                            </c:if>
-                            <c:if test="${list.dealStatus ==1}">
-                                거래중
-                            </c:if>
-                            <c:if test="${list.dealStatus ==2}">
-                                거래완료
-                            </c:if></p>
-                    </div>
-                        <%--  <div id="carouselExampleSlidesOnly" class="carousel potoBox" data-bs-ride="carousel">--%>
-                    <div class="potoBox">
-                            <%--    <div class="carousel-inner">--%>
-                            <%--      <div class="carousel-item active get">--%>
-                        <img class="poto" width="100%" height="100%" src="/resources/${list.files[0].fileName}"
-                             alt="any">
-                            <%--      </div>--%>
-                            <%--    </div>--%>
-                    </div>
-                    <div class="cardM " style="display: flex; padding: 10px 0 0 10px; height: 120px;; ">
-                            <%--                            <div class="card-text text allFlex" style="width: 50%; ">--%>
-                            <%--                                    ${deal.productName}--%>
-                            <%--                            </div>--%>
 
-                        <div class="dealinfo cartFont" style="flex: 1; width: 50%;">
-                            <p class="allFlex" style="font-size: 1.3em; font-weight: bold"> ${list.price} 원 </p>
-                            <p class="allFlex" id="demo"
-                               style="font-size: 1.3em; font-weight: bold"></p>
-                            <p class="allFlex" style="font-size: 1em"> 좋아요 ${list.likeCount} ∙
-                                조회수 ${list.viewCount} </p>
+<div class="listDeal">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive project-list" style="border-radius: 5px;">
+                        <table class="table project-table table-centered table-nowrap table-hover table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col" style="width: 20%;">거래명</th>
+                                <th scope="col" style="width: 10%;">상품명</th>
+                                <th scope="col" style="width: 10%">가격</th>
+                                <th scope="col" style="width: 20%">상품설명</th>
+                                <th scope="col" style="width: 10%">판매구분</th>
+                                <th scope="col" style="width: 10%;">작성일</th>
+                                <th scope="col" style="width: 10%;">거래상태</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:set var="i" value="0"/>
+                                    <c:forEach var="list" items="${map.dealBoard}">
+                                    <tr class="dealBox">
+                                        <input type="hidden" name="dealBoardNum" class="dealBoardNum" value="${list.dealBoardNum}">
+                                                            <input type="hidden" name="villCode" class="villCode" value="${list.villCode}">
+                                        <td>${list.dealTitle}</td>
+                                        <td>${list.productName}</td>
+                                        <td>${list.price}</td>
+                                        <td>${list.dealText}</td>
 
-                        </div>
+                                        <td>${list.boardCategory=='08'?'판매':'판매요청'}</td>
+                                        <td>${list.dealRegDate}</td>
+                                        <c:if test="${list.dealStatus=='0'}">
+                                            <td>거래전</td>
+                                        </c:if>
+                                        <c:if test="${list.dealStatus!='0'}">
+                                            <td>${list.dealStatus=='1'?'거래중':'거래완료'}</td>
+                                        </c:if>
+
+
+                                    </tr>
+                                </c:forEach>
+
+                            </tbody>
+                        </table>
                     </div>
+                    <!--  table End /////////////////////////////////////-->
+
+                    <c:if test="${!empty list}">
+                        <nav aria-label="Page navigation example" style="display: flex;justify-content: center;">
+                            <ul class="pagination">
+                                <li class="page-item pageUnit ${resultPage.beginUnitPage==1?'disabled':''}" value="${resultPage.beginUnitPage-resultPage.pageUnit}">
+                                    <a class="page-link" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" var="i">
+                                    <li class="page-item ${search.currentPage==i?'active':'paging'}"><a class="page-link">${i}</a></li>
+                                </c:forEach>
+                                <li class="page-item pageUnit ${resultPage.maxPage==resultPage.endUnitPage?'disabled':''}" value="${resultPage.beginUnitPage+resultPage.pageUnit}">
+                                    <a class="page-link" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </c:if>
+
                 </div>
             </div>
         </div>
-        </c:forEach>
+    </div>
+</div>
+</div>
+<%--<div class="container">--%>
+<%--    <div class="addlistbox">--%>
+<%--        <c:set var="i" value="0"/>--%>
+<%--        <c:forEach var="list" items="${map.dealBoard}"><br/>--%>
+<%--        <div class="cardbox">--%>
+<%--            <div class="col dealBox">--%>
+<%--                <input type="hidden" name="dealBoardNum" class="dealBoardNum" value="${list.dealBoardNum}">--%>
+<%--                <input type="hidden" name="villCode" class="villCode" value="${list.villCode}">--%>
+<%--                <div class="card h-100 shadow-lg">--%>
+<%--                    <div class="card-footer"--%>
+<%--                         style=" border-bottom: 1px solid; display: flex; font-weight: bold">--%>
+<%--                            ${list.dealTitle}--%>
+<%--                        <p class="allFlex " style="position: absolute; right: 10px;">--%>
+<%--                            <c:if test="${list.dealStatus == 0}">--%>
+<%--                                거래전--%>
+<%--                            </c:if>--%>
+<%--                            <c:if test="${list.dealStatus ==1}">--%>
+<%--                                거래중--%>
+<%--                            </c:if>--%>
+<%--                            <c:if test="${list.dealStatus ==2}">--%>
+<%--                                거래완료--%>
+<%--                            </c:if></p>--%>
+<%--                    </div>--%>
+<%--                        &lt;%&ndash;  <div id="carouselExampleSlidesOnly" class="carousel potoBox" data-bs-ride="carousel">&ndash;%&gt;--%>
+<%--                    <div class="potoBox">--%>
+<%--                            &lt;%&ndash;    <div class="carousel-inner">&ndash;%&gt;--%>
+<%--                            &lt;%&ndash;      <div class="carousel-item active get">&ndash;%&gt;--%>
+<%--                        <img class="poto" width="100%" height="100%" src="/resources/${list.files[0].fileName}"--%>
+<%--                             alt="any">--%>
+<%--                            &lt;%&ndash;      </div>&ndash;%&gt;--%>
+<%--                            &lt;%&ndash;    </div>&ndash;%&gt;--%>
+<%--                    </div>--%>
+<%--                    <div class="cardM " style="display: flex; padding: 10px 0 0 10px; height: 120px;; ">--%>
+<%--                            &lt;%&ndash;                            <div class="card-text text allFlex" style="width: 50%; ">&ndash;%&gt;--%>
+<%--                            &lt;%&ndash;                                    ${deal.productName}&ndash;%&gt;--%>
+<%--                            &lt;%&ndash;                            </div>&ndash;%&gt;--%>
+
+<%--                        <div class="dealinfo cartFont" style="flex: 1; width: 50%;">--%>
+<%--                            <p class="allFlex" style="font-size: 1.3em; font-weight: bold"> ${list.price} 원 </p>--%>
+<%--                            <p class="allFlex" id="demo"--%>
+<%--                               style="font-size: 1.3em; font-weight: bold"></p>--%>
+<%--                            <p class="allFlex" style="font-size: 1em"> 좋아요 ${list.likeCount} ∙--%>
+<%--                                조회수 ${list.viewCount} </p>--%>
+
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--        </c:forEach>--%>
 
 <%--        <c:forEach var="list" items="${map.dealBoard}">--%>
 
@@ -709,8 +825,8 @@ ${map.dealBoard}
 <%--        </div>--%>
 
 <%--        </c:forEach>--%>
-    </div>
-</div>
+<%--    </div>--%>
+<%--</div>--%>
         <jsp:include page="/layout/chatIcon.jsp"/>
         <jsp:include page="/layout/footer.jsp"/>
 </body>

@@ -293,13 +293,13 @@
                                 <li class="page-item">
                                     </c:if>
                                     <a class="page-link" href="javascript:fncGetList('${ resultPage.currentPage-1}')" aria-disabled="true" aria-label="Previous">
-                                        <span aria-hidden="true">Previous</span></a>
+                                        <span aria-hidden="true"> << </span></a>
                                 </li>
                                 <!--  중앙  -->
                                 <c:forEach var="i"  begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" step="1">
                                     <c:if test="${ resultPage.currentPage == i }">
                                         <li class="page-item active">
-                                            <a class="page-link" href="javascript:fncGetList('${ i }');">${ i }<span class="sr-only">(current)</span></a>
+                                            <a class="page-link" href="javascript:fncGetList('${ i }');">${ i }</a>
                                         </li>
                                     </c:if>
                                     <c:if test="${resultPage.currentPage != i}">
@@ -316,7 +316,7 @@
                                 <li class= "page-item">
                                     </c:if>
                                     <a class="page-link" href="javascript:fncGetList('${resultPage.endUnitPage+1}')" aria-disabled="true" aria-label="Next">
-                                        <span aria-hidden="true">Next</span></a>
+                                        <span aria-hidden="true"> >> </span></a>
                                 </li>
 
                             </ul>
