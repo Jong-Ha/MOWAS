@@ -14,7 +14,7 @@
 
 
 <style>
-    .btn-prm {
+    .btn-primary {
         --bs-btn-color: #000;
         --bs-btn-bg: #f8cd07b3;
         --bs-btn-border-color: #f8cd07b3;
