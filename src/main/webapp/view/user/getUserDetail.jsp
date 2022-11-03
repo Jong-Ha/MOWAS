@@ -73,10 +73,10 @@
     <div class="row g-5">
         <div class="col-md-4 d-flex justify-content-end"><h3 class="fw-bold mt-4">회원 상세 조회</h3></div>
         <div class="col-md-8 d-flex justify-content-center flex-column align-items-start">
-            <form action="">
+
                 <div class="col-lg-8">
                     <div class="card mb-4 border-0">
-                        <div class="card-body">
+                        <div class="card-body" style="width: 500px;">
                             <div class="row mt-2 mb-2">
                                 <div class="col-sm-4">
                                     <p class="mb-0 fw-bold">회원아이디</p>
@@ -286,12 +286,12 @@
                     </div>
                 </div>
 <br>
-                <div class="col-lg-8 d-flex justify-content-around mb-3">
+                <div class="col-lg-8 d-flex justify-content-around mb-3" style="width: 500px;">
 <button type="button" class="listUser btn  btn-primary   me-3" id="updatePsd" >수정하기</button>
 <button type="button"  class="listUser btn  btn-primary " id="kickoutUser">강퇴하기</button>
-<button type="button"  class="listUser btn  btn-primary " id="ok">확인</button>
+<button type="button"  class="listUser btn  btn-primary" style="width: 90px;" id="ok">확인</button>
                 </div>
-            </form>
+
         </div>
 
     </div>

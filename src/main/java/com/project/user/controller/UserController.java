@@ -286,6 +286,12 @@ public class UserController {
         Page resultPage = new Page(search.getCurrentPage(), (Integer) map.get("totalCount"), pageUnit, pageSize);
         System.out.println("resultPage의 값은???"+resultPage);
 
+        List<User> listUser = (List<User>)map.get("list");
+        System.out.println("listUser의 값"+listUser);
+        for(User user: listUser){
+            user.loginStatusChk();
+        }
+
         model.addAttribute("list", map.get("list"));
         model.addAttribute("resultPage", resultPage);
         model.addAttribute("search", search);
@@ -362,6 +368,10 @@ public class UserController {
             System.out.println("lisInter의값..."+listInter);
             map.put("listInter",listInter);
         }
+        User userDetail = (User)map.get("userDetail");
+        userDetail.loginStatusChk();
+        userDetail.loginTypeChk();
+
         System.out.println("모델넘기기전 마지막 map의값"+map);
         model.addAttribute("map", map);
         return "forward:/view/user/getUserDetail.jsp";
