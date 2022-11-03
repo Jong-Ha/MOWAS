@@ -1300,7 +1300,7 @@
                                 <label for="exampleFormControlTextarea1" class="form-label"></label>
                                 <textarea class="form-control" id="exampleFormControlTextarea1"
                                           rows="3"
-                                          style="  margin-left: 10px; width: 1080px; height: 100px; margin-top: -20px;"
+                                          style="  margin-left: 10px; width: 1080px; height: 100px; margin-top: -20px;" readonly
                                           placeholder="${villBoard.villText}"></textarea>
                             </div>
                         </div>

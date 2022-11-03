@@ -68,7 +68,8 @@
     <!-- Header -->
     <header id="header">
         <div class="logo">
-            <span class="icon fa-gem"></span>
+                 <img src="/resources/images/MOWAS_main_2.png" style="width: 100%;">
+
         </div>
         <div class="content">
             <div class="inner">
