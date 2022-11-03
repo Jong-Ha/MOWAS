@@ -841,14 +841,14 @@
 </script>
 
 <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
-<div class="container" style="text-align: -webkit-center; width: 600px; height: 1200px;">
+<div class="container" style="text-align: -webkit-center; width: 450px; height: 1200px;">
 
-<div style="width: 400px; height: 1000px;">
+<div style="width: 400px;  border: 3px solid; border-color: #f8cd07; padding: 20px;">
   <main>
 
     <form class="needs-validation" novalidate enctype="multipart/form-data">
       <div class="row g-3">
-
+<div style="width: 400px; height: 40px; font-size: 30px; margin-top: 30px; ">회원정보 입력</div>
 
         <div class="col-12">
           <label for="userName" class="form-label">이름</label>
@@ -859,12 +859,12 @@
 
         <div class="col-12 ">
           <label for="rrd" class="form-label">주민등록번호</label>
-            <input type="text" class="form-control" id="rrd" name="rrd"  required>
+            <input type="text" class="form-control" id="rrd" name="rrd" placeholder="'-'포함 입력" required>
           </div>
 
 
       <div class="col-12">
-        <label for="address" class="form-label">동네인증</label>
+        <label for="address" class="form-label">주소</label>
       </div>
 
       <div class="col-12">
@@ -890,18 +890,7 @@
         <div style="height:5px;"></div>
 
 
-<div>
-        <input class="form-check-input" type="checkbox"  id="addChk" disabled="disabled" >
-        <button type="button" class="btn btn-primary btn-sm" id="checkAddress" name="checkAddress">동네인증 요청</button>
-</div>
-        <div class="col-12">
-          <input type="hidden" class="form-control" id="addressTrue" value="동네인증 되었습니다" readonly>
-        </div>
-        <div class="col-12">
-          <input type="hidden" class="form-control" id="addressFalse" value="동네인증 실패. 현재위치를 확인해주세요" readonly>
-        </div>
 
-      </div>
 
       <input type="hidden" id="userId" name="userId" value="${user.userId}">${user.userId}
         <c:if test="${user.loginType=='2'}">
@@ -910,7 +899,9 @@
         <c:if test="${user.loginType=='3'}">
       <input type="hidden" id="loginType" name="loginType" value="${user.loginType}">${user.loginType}
         </c:if>
-
+        <div class="col-12">
+          <label for="address" class="form-label">관심목록 선택</label>
+        </div>
             <span id="checkItem">
           <span class="form-check">
             <input class="form-check-input" type="checkbox" value="01" id="list01" name="interList" >
@@ -994,12 +985,12 @@
 
         <div class="col-12">
 
-            <input class="w-100 btn btn-primary btn-lg " id="updateSNSUserInfor" type="button" value="확인">
+            <input class="w-100 btn btn-primary btn-lg " style="margin-top: 15px;" id="updateSNSUserInfor" type="button" value="확인">
         </div>
 
     </form>
 
-      <hr>
+
 
   </main>
 
