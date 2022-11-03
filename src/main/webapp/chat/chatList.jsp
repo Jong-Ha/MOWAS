@@ -81,12 +81,23 @@
 </div>
 
 
+<%--거래 일정 등록  지도--%>
+<div class="modal fade" id="location1" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <jsp:include page="/view/site/addDealrMap.jsp"/>
+
+        </div>
+    </div>
+</div>
+
 <script>
 
+    const socketServer = 'http://192.168.0.234:5000'
+
     //소켓 연결
-    let socket = io( "http://http://localhost:8080/chatlist",{
-                    /*"http://192.168.0.234:5000/chatlist", {*/
-                    /*const socket = io("http://192.168.0.235:5000/chatlist", {*/
+    let socket = io(socketServer+"/chatlist", {
         cors: {origin: '*'},
         query: {
             userId: '${user.userId}',
@@ -95,8 +106,7 @@
         autoConnect:false
     })
 
-
-    let chatSocket = io("http://192.168.0.234:5000/${chatNameSpace}",{
+    let chatSocket = io(socketServer+"/${chatNameSpace}",{
         cors: {origin: '*'},
         query: {
             roomId: '${roomId}',
@@ -109,21 +119,6 @@
         autoConnect:false,
         forceNew:true
     })
-
-    //소켓 연결
-    <%--chatSocket = io("http://192.168.0.234:5000/${chatNameSpace}", {--%>
-    <%--    /*const socket = io("http://192.168.0.235:5000/chatlist", {*/--%>
-    <%--    cors: {origin: '*'},--%>
-    <%--    query: {--%>
-    <%--        roomId: '${roomId}',--%>
-    <%--        userId1: '${userId}',--%>
-    <%--        userId2: '${user.userId}',--%>
-    <%--        boardNum: '${boardNum}',--%>
-    <%--        userImage1: '${userImage}',--%>
-    <%--        userImage2: '${user.userImage}'--%>
-    <%--    },--%>
-    <%--    autoConnect:false--%>
-    <%--})--%>
 
     $(function () {
         // console.log(socket.io.uri)

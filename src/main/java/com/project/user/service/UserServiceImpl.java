@@ -145,9 +145,9 @@ public class UserServiceImpl implements UserService{
           Map<String, Object> map = new HashMap<String, Object>();
           System.out.println("유저임플 userDetail값 : "+userDetail);
           System.out.println("유저임플 listInterList값 : "+listInterList);
+
         map.put("userDetail", userDetail);
           map.put("listInterList", listInterList);
-
           return map;
     }
 

@@ -36,7 +36,36 @@ public class User {
 
     private String loginType;
 
+    public void loginStatusChk(){
+        switch (Integer.parseInt(this.userStatus)){
+            case 1:
+                this.userStatus = "활동";
+                break;
+            case 2:
+                this.userStatus = "활동정지";
+                break;
+            case 3:
+                this.userStatus = "탈퇴";
+                break;
+            case 4:
+                this.userStatus = "강퇴";
+                break;
+        }
+    }
 
+    public void loginTypeChk(){
+        switch (Integer.parseInt(this.loginType)){
+            case 1:
+                this.loginType = "기본 회원가입";
+                break;
+            case 2:
+                this.loginType = "카카오 로그인";
+                break;
+            case 3:
+                this.loginType = "네이버 로그인";
+                break;
+        }
+    }
 
     public User() {
     }
@@ -136,7 +165,7 @@ public class User {
     }
 
     public void setPsd(String psd) {
-        this.psd = psd;
+        this.psd = psd.split(" ")[0];
     }
 
     public String getPed() {
@@ -144,7 +173,7 @@ public class User {
     }
 
     public void setPed(String ped) {
-        this.ped = ped;
+        this.ped = ped.split(" ")[0];
     }
 
     public int getPpt() {

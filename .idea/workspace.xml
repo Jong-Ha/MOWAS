@@ -9,47 +9,340 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="JHK 2022.10.31&#10;&#10;회원가입 페이지 디자인 수정">
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="JHK 2022.11.03&#10;&#10;관심목록 선택창 완료">
+      <change afterPath="$PROJECT_DIR$/node_modules/.bin/loose-envify" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/.bin/loose-envify.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/.bin/loose-envify.ps1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/js-tokens/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/js-tokens/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/js-tokens/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/js-tokens/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/js-tokens/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/loose-envify/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/loose-envify/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/loose-envify/cli.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/loose-envify/custom.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/loose-envify/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/loose-envify/loose-envify.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/loose-envify/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/loose-envify/replace.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/object-assign/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/object-assign/license" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/object-assign/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/object-assign/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/checkPropTypes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/factory.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/factoryWithThrowingShims.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/factoryWithTypeCheckers.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/lib/ReactPropTypesSecret.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/lib/has.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/prop-types.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/prop-types.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/react-is/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/react-is/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/react-is/build-info.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/react-is/cjs/react-is.development.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/react-is/cjs/react-is.production.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/react-is/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/react-is/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/react-is/umd/react-is.development.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/react-is/umd/react-is.production.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/.bin/mkdirp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/.bin/mkdirp.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/.bin/mkdirp.ps1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/append-field/.npmignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/append-field/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/append-field/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/append-field/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/append-field/lib/parse-path.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/append-field/lib/set-value.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/append-field/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/append-field/test/forms.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/bson/lib/bson.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/buffer-from/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/buffer-from/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/buffer-from/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/buffer-from/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/busboy/.eslintrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/busboy/.github/workflows/ci.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/busboy/.github/workflows/lint.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/busboy/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/busboy/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/busboy/bench/bench-multipart-fields-100mb-big.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/busboy/bench/bench-multipart-fields-100mb-small.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/busboy/bench/bench-multipart-files-100mb-big.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/busboy/bench/bench-multipart-files-100mb-small.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/busboy/bench/bench-urlencoded-fields-100pairs-small.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/busboy/bench/bench-urlencoded-fields-900pairs-small-alt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/busboy/lib/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/busboy/lib/types/multipart.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/busboy/lib/types/urlencoded.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/busboy/lib/utils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/busboy/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/busboy/test/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/busboy/test/test-types-multipart-charsets.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/busboy/test/test-types-multipart-stream-pause.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/busboy/test/test-types-multipart.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/busboy/test/test-types-urlencoded.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/busboy/test/test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/concat-stream/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/concat-stream/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/concat-stream/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/concat-stream/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/core-util-is/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/core-util-is/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/core-util-is/lib/util.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/core-util-is/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ip/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ip/lib/ip.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/ip/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/isarray/.npmignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/isarray/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/isarray/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/isarray/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/isarray/component.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/isarray/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/isarray/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/isarray/test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/kareem/.eslintrc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/kareem/.github/workflows/test.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/kareem/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/kareem/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/kareem/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/kareem/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/kareem/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/kareem/docs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/kareem/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/kareem/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/kareem/test/examples.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/kareem/test/misc.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/kareem/test/post.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/kareem/test/pre.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/kareem/test/wrap.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/memory-pager/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/memory-pager/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/memory-pager/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/memory-pager/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/memory-pager/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/memory-pager/test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/minimist/.eslintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/minimist/.github/FUNDING.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/minimist/.nycrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/minimist/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/minimist/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/minimist/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/minimist/example/parse.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/minimist/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/minimist/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/minimist/test/all_bool.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/minimist/test/bool.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/minimist/test/dash.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/minimist/test/default_bool.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/minimist/test/dotted.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/minimist/test/kv_short.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/minimist/test/long.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/minimist/test/num.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/minimist/test/parse.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/minimist/test/parse_modified.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/minimist/test/proto.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/minimist/test/short.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/minimist/test/stop_early.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/minimist/test/unknown.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/minimist/test/whitespace.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mkdirp/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mkdirp/bin/cmd.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mkdirp/bin/usage.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mkdirp/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mkdirp/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mkdirp/readme.markdown" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mongoose/node_modules/ms/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mongoose/node_modules/ms/license.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mongoose/node_modules/ms/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mongoose/node_modules/ms/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mpath/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mpath/History.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mpath/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mpath/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mpath/SECURITY.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mpath/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mpath/lib/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mpath/lib/stringToParts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mpath/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mpath/test/.eslintrc.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mpath/test/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mpath/test/stringToParts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/.eslintignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/.eslintrc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/History.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/SECURITY.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/lib/collection/collection.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/lib/collection/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/lib/collection/node.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/lib/env.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/lib/mquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/lib/permissions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/lib/utils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/node_modules/debug/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/node_modules/debug/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/node_modules/debug/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/node_modules/debug/src/browser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/node_modules/debug/src/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/node_modules/debug/src/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/node_modules/debug/src/node.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/node_modules/ms/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/node_modules/ms/license.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/node_modules/ms/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/node_modules/ms/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/test/.eslintrc.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/test/collection/browser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/test/collection/mongo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/test/collection/node.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/test/env.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/test/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/test/utils.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/process-nextick-args/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/process-nextick-args/license.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/process-nextick-args/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/process-nextick-args/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/punycode/LICENSE-MIT.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/punycode/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/punycode/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/punycode/punycode.es6.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/punycode/punycode.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/CONTRIBUTING.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/GOVERNANCE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/doc/wg-meetings/2015-01-30.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/duplex-browser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/duplex.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/lib/_stream_duplex.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/lib/_stream_passthrough.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/lib/_stream_readable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/lib/_stream_transform.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/lib/_stream_writable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/lib/internal/streams/BufferList.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/lib/internal/streams/destroy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/lib/internal/streams/stream-browser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/lib/internal/streams/stream.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/node_modules/safe-buffer/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/node_modules/safe-buffer/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/node_modules/safe-buffer/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/node_modules/safe-buffer/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/node_modules/safe-buffer/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/passthrough.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/readable-browser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/readable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/transform.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/writable-browser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/readable-stream/writable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/saslprep/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/saslprep/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/saslprep/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/saslprep/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/saslprep/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/saslprep/code-points.mem" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/saslprep/generate-code-points.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/saslprep/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/saslprep/lib/code-points.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/saslprep/lib/memory-code-points.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/saslprep/lib/util.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/saslprep/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/saslprep/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/saslprep/test/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/saslprep/test/util.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/sift/es/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/sift/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/sparse-bitfield/.npmignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/sparse-bitfield/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/sparse-bitfield/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/sparse-bitfield/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/sparse-bitfield/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/sparse-bitfield/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/sparse-bitfield/test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/streamsearch/.eslintrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/streamsearch/.github/workflows/ci.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/streamsearch/.github/workflows/lint.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/streamsearch/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/streamsearch/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/streamsearch/lib/sbmh.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/streamsearch/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/streamsearch/test/test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/string_decoder/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/string_decoder/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/string_decoder/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/string_decoder/lib/string_decoder.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/string_decoder/node_modules/safe-buffer/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/string_decoder/node_modules/safe-buffer/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/string_decoder/node_modules/safe-buffer/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/string_decoder/node_modules/safe-buffer/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/string_decoder/node_modules/safe-buffer/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/string_decoder/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/tr46/LICENSE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/tr46/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/tr46/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/tr46/lib/mappingTable.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/tr46/lib/regexes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/tr46/lib/statusMapping.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/tr46/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/typedarray/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/typedarray/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/typedarray/example/tarray.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/typedarray/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/typedarray/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/typedarray/readme.markdown" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/typedarray/test/server/undef_globals.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/typedarray/test/tarray.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/util-deprecate/History.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/util-deprecate/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/util-deprecate/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/util-deprecate/browser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/util-deprecate/node.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/util-deprecate/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/webidl-conversions/LICENSE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/webidl-conversions/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/webidl-conversions/lib/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/webidl-conversions/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/whatwg-url/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/whatwg-url/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/whatwg-url/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/whatwg-url/lib/Function.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/whatwg-url/lib/URL-impl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/whatwg-url/lib/URL.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/whatwg-url/lib/URLSearchParams-impl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/whatwg-url/lib/URLSearchParams.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/whatwg-url/lib/VoidFunction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/whatwg-url/lib/encoding.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/whatwg-url/lib/infra.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/whatwg-url/lib/percent-encoding.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/whatwg-url/lib/url-state-machine.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/whatwg-url/lib/urlencoded.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/whatwg-url/lib/utils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/whatwg-url/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/whatwg-url/webidl2js-wrapper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/xtend/.jshintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/xtend/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/xtend/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/xtend/immutable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/xtend/mutable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/xtend/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/xtend/test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/domain/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/user/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/user/service/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/MyPageMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/MyPageMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/toolbar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyCbReviewBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyCbReviewBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyCbRvLike.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyCbRvLike.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyClub.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyClubApply.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyClubApply.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyComment.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyComment.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyCommentLike.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyCommentLike.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyDealBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyDealBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyDealLike.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyDealLike.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyDealReview.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyDealReview.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyEndDeal.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyEndDeal.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyInfor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyInfor.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyLike.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyLike.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyPage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyPage.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyPpt.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyPpt.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyRecomment.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyRecomment.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyRecommentLike.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyRecommentLike.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyReport.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/myPageTitle.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/myPageTitle.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/updateMyInfor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/updateMyInfor.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/addInterList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/addInterList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/addUser.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/getMyId.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/getMyId.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/getMyIdEnd.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/getMyIdEnd.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/getMyPassword.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/getMyPassword.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/getMyPasswordEnd.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/getMyPasswordEnd.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/getUserDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/getUserDetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/listUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/listUser.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/updatePsd.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/updatePsd.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/updateSNSUserInfor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/updateSNSUserInfor.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/project/user/test/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/project/user/test/UserServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,11 +450,11 @@
       <recent name="C:\Project\MOWAS\src\main\webapp\layout" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Project\MOWAS\src\main\webapp\resources\uploadFiles\userImages" />
       <recent name="C:\Project\MOWAS\src\main\webapp\view\myPage" />
       <recent name="C:\Project\MOWAS\src\main\webapp\resources\images" />
       <recent name="C:\Project\MOWAS\src\main\webapp\resources\club" />
       <recent name="C:\Users\903-15\IdeaProjects\MOWAS\src\main\webapp\view\user" />
-      <recent name="C:\Devspace\MOWAS\src\main\webapp\resources\OpenSource" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -170,10 +463,10 @@
       <recent name="com.project.common.dao" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.project.user.controller" />
       <recent name="com.project.myPage.service" />
       <recent name="com.project.user.service" />
       <recent name="com.project.user.dao" />
-      <recent name="com.project.user.controller" />
       <recent name="com.project.notice.dao" />
       <recent name="com.project.notice.service" />
     </key>
@@ -409,6 +702,8 @@
       <workItem from="1666915748740" duration="65683000" />
       <workItem from="1667180522531" duration="1123000" />
       <workItem from="1667270001678" duration="22797000" />
+      <workItem from="1667421975525" duration="303000" />
+      <workItem from="1667430186750" duration="5291000" />
     </task>
     <task id="LOCAL-00001" summary="설정">
       <created>1664436990723</created>
@@ -501,7 +796,21 @@
       <option name="project" value="LOCAL" />
       <updated>1667369370564</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="JHK 2022.11.02&#10;&#10;회원 관심목록, 날짜 포맷 변경">
+      <created>1667404158421</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1667404158421</updated>
+    </task>
+    <task id="LOCAL-00015" summary="JHK 2022.11.03&#10;&#10;관심목록 선택창 완료">
+      <created>1667438953375</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1667438953375</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -601,7 +910,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="설정" />
     <MESSAGE value="BJW 2022.09.30&#10;&#10;mian.jsp / js파일/ css파일 추가" />
     <MESSAGE value="BJW 2022.10.01&#10;&#10;커뮤니티 jsp 완성, navigation 경로 완성" />
     <MESSAGE value="BJW 2022.10.03&#10;&#10;댓글,대댓글,조회수 json으로 처리 calender add성공 pom.xml에 jdbc드라이버 dependency 관개 맷음,&#10;spring-mybatis mybatise 버전 충돌 해결" />
@@ -625,16 +933,13 @@
     <MESSAGE value="JHK 2022.11.01&#10;&#10;일반 회원가입 완료, 신고,벌점,댓글 페이징 처리" />
     <MESSAGE value="JHK 2022.11.01&#10;&#10;디비 초기화 후 매퍼 수정 커밋" />
     <MESSAGE value="JHK 2022.11.02&#10;&#10;아이디,비밀번호 찾기창&amp; 아이디,비밀번호 완료 창 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="JHK 2022.11.02&#10;&#10;아이디,비밀번호 찾기창&amp; 아이디,비밀번호 완료 창 수정" />
+    <MESSAGE value="JHK 2022.11.02&#10;&#10;바디 태그 수정, 회원목록 페이징&amp; 검색 처리함" />
+    <MESSAGE value="JHK 2022.11.03&#10;&#10;관심목록 선택창 완료" />
+    <option name="LAST_COMMIT_MESSAGE" value="JHK 2022.11.03&#10;&#10;관심목록 선택창 완료" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/project/user/controller/UserController.java</url>
-          <line>139</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/webapp/view/myPage/getMyLike.jsp</url>
           <line>264</line>

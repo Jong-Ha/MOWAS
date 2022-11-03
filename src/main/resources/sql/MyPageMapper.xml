@@ -25,6 +25,22 @@
         <result property="loginType" column="login_type" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <resultMap type="com.project.domain.Cluber" id="CluberResultMap">
+        <result property="clubUserNum" column="club_user_num" jdbcType="INTEGER"/>
+        <result property="user.userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="user.userImage" column="user_image" jdbcType="VARCHAR"/>
+        <result property="clubNum" column="club_num" jdbcType="INTEGER"/>
+        <result property="cluberStatus" column="cluber_status" jdbcType="CHAR"/>
+        <result property="clubRegDate" column="club_reg_date" jdbcType="DATE"/>
+        <result property="clubApplyDate" column="club_apply_date" jdbcType="DATE"/>
+        <result property="cluberText" column="cluber_text" jdbcType="VARCHAR"/>
+        <result property="clubOutText" column="club_out_text" jdbcType="VARCHAR"/>
+        <result property="clubOutDate" column="club_out_date" jdbcType="DATE"/>
+        <result property="blacklistDate" column="blacklist_date" jdbcType="DATE"/>
+        <result property="blacklistText" column="blacklist_text" jdbcType="VARCHAR"/>
+        <result property="blacklistCheck" column="blacklist_check" jdbcType="CHAR"/>
+    </resultMap>
+
     <resultMap id="interListSelectMap" type="interList">
         <result property="userInterListNum" column="user_inter_list_num" jdbcType="NUMERIC"/>
         <result property="userId" column="user_id" jdbcType="VARCHAR"/>
@@ -188,6 +204,16 @@
         <result property="pptDate" 	column="ppt_date"       jdbcType="DATE"/>
         <result property="processResult" 	column="process_result"       jdbcType="VARCHAR"/>
     </resultMap>
+
+    <select id="getDealBoardFiles" resultMap="FileResultMap">
+        SELECT *
+        FROM files
+        WHERE board_num = #{boardNum}
+          AND (board_category = '08'
+            OR board_category = '09')
+        ORDER BY file_num DESC
+    </select>
+
     <!--현재 파일 조회-->
     <select id="listDealBoardFile" parameterType="int" resultType="String">
         SELECT file_name
@@ -277,11 +303,52 @@
     </select>
 
     <!--가입한 모임 조회-->
-    <select id="getMyClub" parameterType="String" resultMap="ClubResultMap" >
-        SELECT a.*, b.*
+    <sql id="getMyCluberSql">
+        SELECT a.*
         FROM club_user a, club b
         WHERE a.club_num = b.club_num and a.user_id=#{userId}
+        <if test="applyCheck=='join'">
+            and a.cluber_status IN ('4','5','6')
+        </if>
+        <if test="applyCheck=='apply'">
+            and a.cluber_status IN ('2','3','4','5','6','7','8')
+        </if>
+        ORDER BY a.club_apply_date DESC
+    </sql>
+    <select id="getTotalMyCluber" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM (
+        <include refid="getMyCluberSql"/>
+        )
     </select>
+    <select id="getMyCluber" parameterType="map" resultMap="CluberResultMap">
+        SELECT * FROM (
+        SELECT ROWNUM row_num, vt.* FROM (
+        <include refid="getMyCluberSql"/>
+        ) vt
+        <if test="search.currentPage*search.pageSize!=0">
+            WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}
+        </if>
+        )
+        <where>
+            <if test="search.currentPage*search.pageSize!=0">
+                row_num >= ((#{search.currentPage}-1)*#{search.pageSize}+1)
+            </if>
+        </where>
+    </select>
+    <select id="getMyClub" parameterType="map" resultMap="ClubResultMap">
+        SELECT c.*, l.like_check
+FROM club c,
+     (SELECT board_num,
+             like_check
+      FROM likes
+      WHERE board_category = '12'
+        AND user_id = #{userId}) l
+        WHERE c.club_delete_check = '0'
+AND club_num = ${cluber.clubNum}
+          AND c.club_num = l.board_num(+)
+    </select>
+
+
 
     <select id="getMyDeal" parameterType="String" resultMap="dealSelectMap" >
         SELECT *

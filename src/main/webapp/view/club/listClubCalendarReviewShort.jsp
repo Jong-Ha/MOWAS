@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script>
-    $(function(){
+    $(function () {
         $(".ListClubCaenderReview .ShortVideo").off('play').on("play", function () {
             var boardNum = $(this).parents(".cardbox").find(".boardNum").val()
             var viewCount = $(this).parents(".cardbox").find(".viewText");
@@ -29,6 +29,45 @@
             $('html').animate({scrollTop: offset.top - 160}, 0);
 
         })
+
+        // paging
+        $("#listClubCalendarReviewShortForm .paging").off('click').on("click", function () {
+            $("#listClubCalendarReviewShortForm #currentPage").val($(this).text())
+
+            const data = $('#listClubCalendarReviewShortForm').serialize()
+
+            $.ajax({
+                url : "/club/listClubCalendarReview/${clubNum}/2",
+                method : 'post',
+                'data' : data,
+                success : function(re){
+                    $("#ClubBoard").html(re)
+                    clubLayout()
+                    $('#ClubBoard')[0].scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
+                }
+            })
+        })
+        $("#listClubCalendarReviewShortForm .pageUnit").off('click').on("click", function () {
+            if($(this).hasClass('disabled')){
+                return false
+            }
+
+            $("#listClubCalendarReviewShortForm #currentPage").val($(this).val())
+
+            const data = $('#listClubCalendarReviewShortForm').serialize()
+
+            $.ajax({
+                url : "/club/listClubCalendarReview/${clubNum}/2",
+                method : 'post',
+                'data' : data,
+                success : function(re){
+                    $("#ClubBoard").html(re)
+                    clubLayout()
+                    $('#ClubBoard')[0].scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
+                }
+            })
+        })
+
     })
 </script>
 <style>
@@ -172,7 +211,15 @@
     }
 </style>
 <div style="width: 80%; padding-top: 30px;">
-    <form>
+    <form id="listClubCalendarReviewShortForm">
+        <c:if test="${empty list}">
+            <div class="bg-light rounded-3" style="width: 70%; margin-bottom: 30px;">
+                <div class="container-fluid" style="padding: 16px;">
+                    <h3 class="fw-bold" style="margin-top: 16px;margin-bottom: 16px;">등록된 쇼츠가 없습니다</h3>
+                </div>
+            </div>
+        </c:if>
+        <c:if test="${!empty list}">
         <div class="ListClubCaenderReview">
             <c:forEach var="ClubCalendarReview" items="${list}">
                 <div class="cardbox">
@@ -196,33 +243,35 @@
                                         </div>
                                     </div>
                                 </div>
-                                    <div class="user_manu">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                             class="bi bi-three-dots" viewBox="0 0 16 16">
-                                            <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
-                                        </svg>
-                                        <div class="user_hidden_manu" style="display: none">
-                                            <ul class=" shadow-lg">
-                                                <li class="getClub">
-                                                    모임 방문하기
+                                <div class="user_manu">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-three-dots" viewBox="0 0 16 16">
+                                        <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                                    </svg>
+                                    <div class="user_hidden_manu" style="display: none">
+                                        <ul class=" shadow-lg">
+                                            <li class="getClub">
+                                                모임 방문하기
+                                            </li>
+
+                                            <c:if test="${user.userId eq ClubCalendarReview.userId}">
+                                                <li data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                    class="update">
+                                                    수정
                                                 </li>
+                                                <li class="delete">
+                                                    삭제
+                                                </li>
+                                            </c:if>
 
-                                                <c:if test="${user.userId eq ClubCalendarReview.userId}">
-                                                    <li data-bs-toggle="modal" data-bs-target="#exampleModal" class="update">
-                                                        수정
-                                                    </li>
-                                                    <li class="delete">
-                                                        삭제
-                                                    </li>
-                                                </c:if>
-
-                                            </ul>
-                                        </div>
+                                        </ul>
+                                    </div>
 
 
                                 </div>
                             </div>
-                            <video id="ShortVideo${i}" controls class="ShortVideo" style="height: 572px;background-color: #000;">
+                            <video id="ShortVideo${i}" controls class="ShortVideo"
+                                   style="height: 572px;background-color: #000;">
                                 <source src="/resources/${ClubCalendarReview.file[0].fileName}" type="video/mp4">
                             </video>
 
@@ -279,17 +328,46 @@
                 </div>
             </c:forEach>
         </div>
-        <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" var="i">
-            <span class="paging">${i}</span>
-        </c:forEach>
-        <label>
-            <input type="hidden" id="currentPage" name="currentPage" value="1">
-            <input type="text" name="searchKeyword" value="${search.searchKeyword}">
-        </label>
-        <input type="submit" value="검색">
-        <button class="btn btn-primary addClubMasterBoardView" data-bs-toggle="modal"
-                data-bs-target="#addClubMasterBoard">
-            글쓰기
-        </button>
+        </c:if>
+
+        <div style="display: flex;justify-content: space-between;flex-direction: row-reverse;width: 90%;align-items: center;margin-bottom: 24px;${!empty list?'margin-top: -50px;':''}">
+            <div style="display: flex;align-items: center;min-width: 250px;justify-content: space-between;">
+                <label>
+                    <input type="hidden" id="currentPage" name="currentPage" value="1">
+                    <input type="text" name="searchKeyword" value="${search.searchKeyword}">
+                </label>
+                <button class="btn btn-primary">
+                    검색
+                </button>
+            </div>
+
+            <c:if test="${currentCluber.cluberStatus=='5'||currentCluber.cluberStatus=='6'}">
+                <button class="btn btn-primary addClubMasterBoardView" data-bs-toggle="modal"
+                        data-bs-target="#addClubMasterBoard">
+                    작성
+                </button>
+            </c:if>
+        </div>
+
+        <c:if test="${!empty list}">
+            <nav aria-label="Page navigation example" style="display: flex;justify-content: center;">
+                <ul class="pagination">
+                    <li class="page-item pageUnit ${resultPage.beginUnitPage==1?'disabled':''}" value="${resultPage.beginUnitPage-resultPage.pageUnit}">
+                        <a class="page-link" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" var="i">
+                        <li class="page-item ${search.currentPage==i?'active':'paging'}"><a class="page-link">${i}</a></li>
+                    </c:forEach>
+                    <li class="page-item pageUnit ${resultPage.maxPage==resultPage.endUnitPage?'disabled':''}" value="${resultPage.beginUnitPage+resultPage.pageUnit}">
+                        <a class="page-link" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </c:if>
+
     </form>
 </div>

@@ -85,25 +85,25 @@
                             $(".location5").val(clubCalendar.location)
 
                             $.ajax({
-                                url : '/club/json/getCalendarCluberCondition',
-                                data : JSON.stringify({
-                                    clubCalendarNum : clubCalendar.clubCalenderNum,
-                                    userId : '${user.userId}'
+                                url: '/club/json/getCalendarCluberCondition',
+                                data: JSON.stringify({
+                                    clubCalendarNum: clubCalendar.clubCalenderNum,
+                                    userId: '${user.userId}'
                                 }),
-                                method : 'post',
+                                method: 'post',
                                 contentType: 'application/json; charset=utf-8',
-                                success : function(re){
+                                success: function (re) {
 
                                     const applyCondition = re.condition
 
-                                    if(applyCondition==='0'){
+                                    if (applyCondition === '0') {
 
-                                        $('#exampleModal2 .deleteClubCalendarApply').css('display','')
+                                        $('#exampleModal2 .deleteClubCalendarApply').css('display', '')
 
-                                    }else if(applyCondition==='1'){
+                                    } else if (applyCondition === '1') {
 
-                                    }else {
-                                        $('#exampleModal2 .addClubCalendarApply').css('display','')
+                                    } else {
+                                        $('#exampleModal2 .addClubCalendarApply').css('display', '')
                                     }
                                 }
                             })
@@ -129,7 +129,9 @@
                             var str = ''
 
                             $.each(clubCalendar.file, function (index, item) {
-                                console.log(item.fileName)
+
+                                console.log("====================" + item.fileName);
+
 
                                 str +=
 
@@ -163,14 +165,16 @@
 
                             if (date3 > date2) {
 
-                                button = '<button class="btn btn-primary update" data-bs-toggle="modal" data-bs-target="#exampleModal3">' +
+                                button =
+                                    '<button class="btn btn-primary update" data-bs-toggle="modal" data-bs-target="#exampleModal3">' +
                                     '수정' +
                                     '</button>' +
-                                    '<button class="btn btn-primary delete">' +
+                                    '<button class="btn btn-danger delete">' +
                                     '삭제' +
                                     '</button>'
 
                                 $(".addBox").html('');
+                                $(".addBox2").html('');
 
                                 $(".addBox").append(button);
                             }
@@ -185,8 +189,9 @@
                                     '</button>'
 
                                 $(".addBox").html('');
+                                $(".addBox2").html('');
 
-                                $(".addBox").append(button);
+                                $(".addBox2").append(button);
                             }
 
 
@@ -194,7 +199,6 @@
 
                             //수정 modal 오픈
                             $(".update").on("click", function () {
-
 
 
                                 $.ajax({
@@ -260,7 +264,6 @@
 
                                         // 성공시 해당 창을 닫고 부모창을 reload
                                         Swal.fire({
-                                            position: 'top-end',
                                             icon: 'success',
                                             title: 'Your work has been saved',
                                             showConfirmButton: false,
@@ -296,7 +299,7 @@
 
     }
 
-    function upSize(){
+    function upSize() {
         calendar.updateSize()
     }
 
@@ -337,8 +340,6 @@
     }
 
 
-
-
     $(function () {
 
         calenderInfo()
@@ -358,7 +359,6 @@
             var calendarApplyCheck = $(".calendarApplyCheck").prop("checked")
             var applyAutoCheck = $(".applyAutoCheck").prop("checked")
             var boardCategory = '05';
-
 
 
             var clubers = $(".clubers")
@@ -477,7 +477,6 @@
                     //error 발생시 그냥 창을 닫음
                 }, error: function () {
                     Swal.fire({
-                        position: 'top-end',
                         icon: 'success',
                         title: 'Your work has been saved',
                         showConfirmButton: false,
@@ -530,7 +529,7 @@
                 url: "/clubCal/json/updateClubCalender",
                 method: "post",
                 data: JSON.stringify({
-                    "clubCalenderNum" : clubCalenderNum,
+                    "clubCalenderNum": clubCalenderNum,
                     "calenderTitle": calenderTitle,
                     "calenderText": calenderText,
                     "clubDate": clubDate,
@@ -615,7 +614,6 @@
                     console.log(result);
                     // 성공시 해당 창을 닫고 부모창을 reload
                     Swal.fire({
-                        position: 'top-end',
                         icon: 'success',
                         title: 'Your work has been saved',
                         showConfirmButton: false,
@@ -653,7 +651,7 @@
 
 
         $(".file3").on("change", function () {
-            if ($(this)[0].files.length > 10){
+            if ($(this)[0].files.length > 10) {
                 alert("파일의 갯수가 초과 했습니다");
                 $(this).val('');
             }
@@ -675,8 +673,8 @@
                 url: "/clubCal/json/addClubCalenderReview",
                 method: "post",
                 data: JSON.stringify({
-                    "clubCalenderNum" : clubCalender,
-                    "clubNum" : clubNum,
+                    "clubCalenderNum": clubCalender,
+                    "clubNum": clubNum,
                     "boardCategory": boardCategory,
                     "reviewTitle": reviewTitle,
                     "reviewText": reviewText,
@@ -734,7 +732,6 @@
                     }
                     // 성공시 해당 창을 닫고 부모창을 reload
                     Swal.fire({
-                        position: 'top-end',
                         icon: 'success',
                         title: 'Your work has been saved',
                         showConfirmButton: false,
@@ -751,7 +748,6 @@
                     //error 발생시 그냥 창을 닫음
                 }, error: function () {
                     Swal.fire({
-                        position: 'top-end',
                         icon: 'success',
                         title: 'Your work has been saved',
                         showConfirmButton: false,
@@ -769,9 +765,6 @@
             });
 
         });
-
-
-
 
 
         /*      $(".file4").on("change", function () {
@@ -851,7 +844,6 @@
 
                         // 성공시 해당 창을 닫고 부모창을 reload
                         Swal.fire({
-                            position: 'top-end',
                             icon: 'success',
                             title: 'Your work has been saved',
                             showConfirmButton: false,
@@ -871,7 +863,6 @@
                     //error 발생시 그냥 창을 닫음
                 }, error: function () {
                     Swal.fire({
-                        position: 'top-end',
                         icon: 'success',
                         title: 'Your work has been saved',
                         showConfirmButton: false,
@@ -892,19 +883,59 @@
         });
 
 
-        $(".close").on("click", function () {
-            window.close();
-        });
-
-
-
-
         $(".calenderCluber").on("click", function () {
-            window.open(
-                "/clubCal/addCalenderCluber?clubNum=${param.clubNum}", '_blnk'
-                , "top=200, width=200px, height=700px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no")
 
-        });
+            var clubNum = '${param.clubNum}'
+
+
+            $.ajax({
+                url: "/clubCal/json/addCalenderCluber",
+                method: "post",
+                dataType: "json",
+                contentType: 'application/json; charset=UTF-8',
+                data: JSON.stringify({
+                    clubNum : clubNum
+                }),
+                success: function (json) {
+                    console.log(json)
+
+                    var str = ' ';
+
+                    $.each(json.list , function (index,item) {
+
+                    str +=
+                        '<div class="cluberList"  style= " margin-bottom: 20px; display: flex; justify-content: center; align-items: center; align-content: center;">'+
+                        '      <div class="shadow-lg"  style=" height: 89px; border-radius: 10px; display: flex; flex-direction: row; width: 80%;">'+
+                        '           <div class="userPoto" style=" height: 86px; padding: 6px; width: 42%; overflow: hidden;  align-items: center;  justify-content: center;">'+
+                        '               <img src="/resources/'+item.user.userImage+'" style=" width: 100%;">'+
+                        '           </div>'+
+                        '           <div class="userId" style=" height: 100%; width: 80%;">'+item.user.userId+'</div>'+
+                        '           <input hidden class="inputUser" value="'+item.user.userId+'">'+
+                        '       </div>'+
+                        '       <input type="checkbox" class="btn btn-primary btn-lg add" style="width: 30px;height: 30px; margin-left: 10px; display: flex;"/>'+
+                        '</div>'
+
+                    })
+
+                    $(".cluberListBox").html(str);
+
+                    $(".add").on("click", function () {
+                       var userId = $(this).parents(".cluberList").find(".inputUser").val()
+
+                            $(document).find("#fileForm").append($("<input type='hidden' class='clubers' value='"+userId+"'/>"));
+
+
+                    });
+                }
+            })
+
+            $(".close").on("click", function () {
+
+                $("#calenderCluber").modal("hide")
+                $("#exampleModal").modal("show");
+
+            });
+        })
 
 
         //일정 등록
@@ -913,24 +944,22 @@
         })
 
 
-
         $(".location2").on("click", function () {
             var location = $(".location2").val();
 
-            alert(location)
             $("#location2 .modal-content").load("/view/site/getCalenderMap.jsp",
-                {location : location},
+                {location: location},
                 function (re) {
 
-                $("#location2 .modal-content").html(re);
+                    $("#location2 .modal-content").html(re);
 
-                $("#location2").modal("show")
+                    $("#location2").modal("show")
                 })
 
         })
 
         //상세보기 지도 보기
-        $("#location2").on("shown.bs.modal", ()=> {
+        $("#location2").on("shown.bs.modal", () => {
             getClubLocation();
         })
 
@@ -962,9 +991,10 @@
             모임 일정
         </div>
         <div id='calendar' style="padding-top: 30px;"></div>
-<c:if test="${param.cluberStatus=='5'||param.cluberStatus=='6'}">
-        <input type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="addCalender" value="모임 일정 작성">
-</c:if>
+        <c:if test="${param.cluberStatus=='5'||param.cluberStatus=='6'}">
+            <input type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                   class="btn btn-primary addCalender" value="모임 일정 작성">
+        </c:if>
     </div>
 </div>
 
@@ -1005,11 +1035,13 @@
 
                     <div class="input-group mb-3">
 
-                        <input type="button" class="form-control" data-bs-toggle="modal" data-bs-target="#location1"  value="위치 선택">
+                        <input type="button" class="form-control" data-bs-toggle="modal" data-bs-target="#location1"
+                               value="위치 선택">
 
                         <div class="input-group input-group-sm mb-3">
                             <span class="input-group-text" id="inputGroup-sizing-sm">위치 정보</span>
-                            <input type="text" class="form-control location" aria-label="위치 정보" aria-describedby="inputGroup-sizing-sm">
+                            <input type="text" class="form-control location" aria-label="위치 정보"
+                                   aria-describedby="inputGroup-sizing-sm">
                         </div>
 
                     </div>
@@ -1019,7 +1051,8 @@
                     </div>
 
                     <div class="input-group mb-3">
-                        <input type="button" class="form-control calenderCluber" multiple value="모임 인원 추가 하기">
+                        <input type="button" class="form-control calenderCluber" data-bs-toggle="modal"
+                               data-bs-target="#calenderCluber" value="모임 인원 추가 하기">
 
                     </div>
 
@@ -1087,12 +1120,7 @@
                 <h1 class="modal-title fs-5" id="exampleModalLabe3"> 모임 일정</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
-                <div class="borderBox">
 
-                    <div class="addBox" style=" float: right; display: flex; flex-direction: column;">
-
-                    </div>
-                </div>
             </div>
             <div class="modal-body">
 
@@ -1118,13 +1146,14 @@
 
                 <div class="input-group mb-3">
 
-                    <input type="button" class="form-control location2"  data-bs-toggle="modal" data-bs-target="#location2" value="위치 보기">
+                    <input type="button" class="form-control location2" data-bs-toggle="modal"
+                           data-bs-target="#location2" value="위치 보기">
 
                 </div>
 
                 <div class="input-group mb-3 fileBox">
                     <div class="shadow-lg midle"
-                         style="margin-bottom: 50px; margin-top: -3px; width: 490px; overflow: hidden; height: 400px;">
+                         style="margin-bottom: 50px; margin-top: -3px; overflow: hidden;">
                         <div id="carouselExampleDark" class=" shadow-lg carousel carousel-dark slide"
                              data-bs-ride="carousel">
 
@@ -1206,7 +1235,15 @@
 
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3" style="    display: flex; align-items: center;    justify-content: center;">
+                <c:if test="${param.cluberStatus=='5'||param.cluberStatus=='6'}">
+                <div class="addBox"
+                     style="    display: flex;  flex-direction: column;      margin-right: 202px;    margin-left: -35px;"></div>
+                </c:if>
+
+                <div class="addBox2"
+                     style=" display: flex;  flex-direction: column;  margin-right: 142px; margin-left: -69px;"></div>
+
 
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 
@@ -1220,7 +1257,7 @@
      aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
-            <input hidden class="clubCalenderNum3"  value="">
+            <input hidden class="clubCalenderNum3" value="">
             <div class="modal-header">
                 <h1 class="modal-title fs-5"> 모임 일정</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -1231,29 +1268,34 @@
                 <form id="fileForm2">
 
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control calenderTitle3" id="recipient-name3" value="" placeholder="asdasd">
+                        <input type="text" class="form-control calenderTitle3" id="recipient-name3" value=""
+                               placeholder="asdasd">
                         <label for="recipient-name3">제 목</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control calenderText3" id="message-text3" value="" placeholder="asdasd"/>
+                        <input type="text" class="form-control calenderText3" id="message-text3" value=""
+                               placeholder="asdasd"/>
                         <label for="message-text3">일정 내용</label>
                     </div>
 
                     <div class="form-floating mb-3">
 
-                        <input type="date" class="form-control clubDate3" id="date-text3" value="" placeholder="asdasd"/>
+                        <input type="date" class="form-control clubDate3" id="date-text3" value=""
+                               placeholder="asdasd"/>
                         <label for="date-text3">모임 일정 날짜</label>
 
                     </div>
 
                     <div class="input-group mb-3">
 
-                        <input type="button" class="form-control" data-bs-toggle="modal" data-bs-target="#location3" value="위치 선택">
+                        <input type="button" class="form-control" data-bs-toggle="modal" data-bs-target="#location3"
+                               value="위치 선택">
 
                         <div class="input-group input-group-sm mb-3">
-                            <span class="input-group-text" >위치 정보</span>
-                            <input type="text" class="form-control location3" aria-label="위치 정보" aria-describedby="inputGroup-sizing-sm">
+                            <span class="input-group-text">위치 정보</span>
+                            <input type="text" class="form-control location3" aria-label="위치 정보"
+                                   aria-describedby="inputGroup-sizing-sm">
                         </div>
 
                     </div>
@@ -1271,7 +1313,8 @@
 
                     <div class=" mb-3 form-check form-switch">
                         알림 설정 여부
-                        <input class="form-check-input check noticeCheck3" name="noticeCheck" type="checkbox" role="switch">
+                        <input class="form-check-input check noticeCheck3" name="noticeCheck" type="checkbox"
+                               role="switch">
                     </div>
 
                     <hr>
@@ -1287,7 +1330,8 @@
 
                     <div class=" mb-3 form-check form-switch">
                         추가 참여 여부
-                        <input class="form-check-input check calendarApplyCheck3" name="calendarApplyCheck" type="checkbox" role="switch">
+                        <input class="form-check-input check calendarApplyCheck3" name="calendarApplyCheck"
+                               type="checkbox" role="switch">
 
                     </div>
 
@@ -1295,7 +1339,8 @@
 
                     <div class=" mb-3 form-check form-switch">
                         자동 참여 가능
-                        <input class="form-check-input check applyAutoCheck3" name="applyAutoCheck" type="checkbox" role="switch">
+                        <input class="form-check-input check applyAutoCheck3" name="applyAutoCheck" type="checkbox"
+                               role="switch">
 
                     </div>
 
@@ -1317,11 +1362,9 @@
 </div>
 
 
-
-
-
 <%--모임 일정 후기글 등록--%>
-<div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true" style="display: none;">
+<div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true"
+     style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -1333,12 +1376,14 @@
                 <form id="fileForm3">
 
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control reviewTitle1" id="recipient-name4" value="" placeholder="asdasd">
-                        <label for="recipient-name" >제 목</label>
+                        <input type="text" class="form-control reviewTitle1" id="recipient-name4" value=""
+                               placeholder="asdasd">
+                        <label for="recipient-name">제 목</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control reviewText1" id="message-text4" value="" placeholder="asdasd"/>
+                        <textarea type="text" class="form-control reviewText1" id="message-text4" value=""
+                                  placeholder="asdasd" style="height: 150px"></textarea>
                         <label for="message-text">내용</label>
                     </div>
 
@@ -1356,19 +1401,21 @@
                     </div>
 
                     <div class="input-group mb-3">
-                        <input type="file" id="file3" class="form-control file3" multiple  value="파일 첨부">
+                        <input type="file" id="file3" class="form-control file3" multiple value="파일 첨부">
                     </div>
 
                     <div class="form-floating mb-3">
 
-                        <input type="date" class="form-control clubDate4" id="date-text4" value="" placeholder="asdasd"/>
+                        <input type="date" class="form-control clubDate4" id="date-text4" value=""
+                               placeholder="asdasd"/>
                         <label for="date-text">모임 일정 날짜</label>
 
                     </div>
 
                     <div class="input-group mb-3">
 
-                        <input type="button" class="form-control location4"  data-bs-toggle="modal" data-bs-target="#location2" value="위치 보기">
+                        <input type="button" class="form-control location4" data-bs-toggle="modal"
+                               data-bs-target="#location2" value="위치 보기">
 
                     </div>
 
@@ -1388,7 +1435,8 @@
 
 
 <%--모임 일정 후기 쇼츠--%>
-<div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true" style="display: none;">
+<div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true"
+     style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -1400,8 +1448,9 @@
                 <form id="fileForm4">
 
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control reviewTitle2" id="recipient-name5" value="" placeholder="asdasd">
-                        <label for="recipient-name" >제 목</label>
+                        <input type="text" class="form-control reviewTitle2" id="recipient-name5" value=""
+                               placeholder="asdasd">
+                        <label for="recipient-name">제 목</label>
                     </div>
 
                     <div class="form-floating mb-3">
@@ -1418,19 +1467,21 @@
                     </div>
 
                     <div class="input-group mb-3">
-                        <input type="file" id="file4" class="form-control file4" multiple  value="파일 첨부">
+                        <input type="file" id="file4" class="form-control file4" multiple value="파일 첨부">
                     </div>
 
                     <div class="form-floating mb-3">
 
-                        <input type="date" class="form-control clubDate5" id="date-text5" value="" placeholder="asdasd"/>
+                        <input type="date" class="form-control clubDate5" id="date-text5" value=""
+                               placeholder="asdasd"/>
                         <label for="date-text">모임 일정 날짜</label>
 
                     </div>
 
                     <div class="input-group mb-3">
 
-                        <input type="button" class="form-control location5"  data-bs-toggle="modal" data-bs-target="#location2" value="위치 보기">
+                        <input type="button" class="form-control location5" data-bs-toggle="modal"
+                               data-bs-target="#location2" value="위치 보기">
 
                     </div>
 
@@ -1450,6 +1501,34 @@
 </div>
 
 
+<%--모임원 상세 조회--%>
+<div class="modal fade" id="calenderCluber" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <input name="clubCalenderReviewNum" class="clubCalenderReviewNum" hidden value="">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5"> 모임 인원 추가 하기 </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body cluberListBox" style="display: flex;flex-direction: column;flex-wrap: wrap;align-content: center;">
+
+
+            </div>
+
+
+            <div class="mb-3">
+
+                <button type="button" class="btn btn-secondary close">닫기</button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
 <%--등록 지도--%>
 <div class="modal fade" id="location1" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -1460,7 +1539,6 @@
         </div>
     </div>
 </div>
-
 
 
 <%--상세조회 지도--%>
@@ -1484,12 +1562,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
 
 
 </body>

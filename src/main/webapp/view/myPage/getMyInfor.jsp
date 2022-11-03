@@ -180,13 +180,12 @@
                                 </div>
                                 <div class="col-sm-8">
                                     <p class="text-muted mb-0">
-                                    <div class="form-group">
-                                        <select multiple class="form-control" id="attentionList">
+                                    <div class="form-control" disabled="disabled">
                         <c:set var="i" value="0" />
                 <c:forEach var="list" items="${map.interList}">
-                                            <option>    ${list}</option>
-                </c:forEach> <br/>
-                                        </select>
+                                               ${list}
+                </c:forEach>
+
                                     </div>
                                     </p>
                                 </div>

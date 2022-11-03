@@ -109,7 +109,13 @@
 
 
             if (userId === '' || userId === null) {
-                alert("로그인후 사용해 주세요")
+
+                Swal.fire({
+                    icon: 'error',
+                    title: '사용할수 없는 기능 입니다',
+                    text: '로그인후 사용해 주세요',
+                    footer: '<a href="">Why do I have this issue?</a>'
+                })
 
             } else if (userId !== '') {
                 var likeCount = $(this).parents(".cardbox").find(".likeText").html();
@@ -206,7 +212,6 @@
                     }
                     // 성공시 해당 창을 닫고 부모창을 reload
                     Swal.fire({
-                        position: 'top-end',
                         icon: 'success',
                         title: 'Your work has been saved',
                         showConfirmButton: false,
@@ -219,7 +224,6 @@
                     //error 발생시 그냥 창을 닫음
                 }, error: function () {
                     Swal.fire({
-                        position: 'top-end',
                         icon: 'success',
                         title: 'Your work has been saved',
                         showConfirmButton: false,
@@ -236,20 +240,32 @@
 
         $(".report").on("click", function () {
 
+            if (userId === '' || userId === null) {
 
-            var boardNum = $(this).parents(".cardbox").find(".boardNum").val();
-            var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val()
-            var reportedId = $(this).parents(".cardbox").find(".SUserId").val();
-
-            $("#commuReport .modal-content").load("/view/site/addCommunityReport.jsp",
-                {boardNum: boardNum, boardCategory: boardCategory, reportedId: reportedId},
-                function (re) {
-
-                    // console.log(re);
-                    $("#commuReport .modal-content").html(re);
-
-                    $("#commuReport").modal("show");
+                Swal.fire({
+                    icon: 'error',
+                    title: '사용할수 없는 기능 입니다',
+                    text: '로그인후 사용해 주세요',
+                    footer: '<a href="">Why do I have this issue?</a>'
                 })
+
+            } else if (userId !== '') {
+
+
+                var boardNum = $(this).parents(".cardbox").find(".boardNum").val();
+                var boardCategory = $(this).parents(".cardbox").find(".boardCategory").val()
+                var reportedId = $(this).parents(".cardbox").find(".SUserId").val();
+
+                $("#commuReport .modal-content").load("/view/site/addCommunityReport.jsp",
+                    {boardNum: boardNum, boardCategory: boardCategory, reportedId: reportedId},
+                    function (re) {
+
+                        // console.log(re);
+                        $("#commuReport .modal-content").html(re);
+
+                        $("#commuReport").modal("show");
+                    })
+            }
 
 
         })
@@ -272,8 +288,6 @@
 
     /*무한 스크롤*/
     $(function () {
-
-        lodingListClubCalendar();
 
 
         function getFormJson(select) {
@@ -675,7 +689,7 @@
 
     </div>
 
-    <div class="ListClubCaenderReview">
+    <div class="ListClubCaenderReview" style=" display: flex;  flex-wrap: wrap;  padding-bottom: 140px;">
         <c:set var="i" value="0"/>
         <c:forEach var="ClubCalendarReview" items="${list}">
             <c:set var="i" value="${i+1}"/>
@@ -787,6 +801,8 @@
         </c:forEach>
     </div>
 </div>
+
+<div style=" padding-bottom: 900px;"></div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
      style="display: none;">

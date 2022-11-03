@@ -165,9 +165,10 @@
     </update>
 
     <select id="getCalenderReview" parameterType="map"  resultMap="calenderReviewSelect">
-        SELECT *
-        FROM club_calendar_review
+        SELECT cr.*, us.user_image
+        FROM club_calendar_review cr , users us
         WHERE club_calendar_review_num = #{clubCalenderReviewNum}
+        AND cr.user_id = us.user_id
     </select>
 
 
