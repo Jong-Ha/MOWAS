@@ -135,7 +135,10 @@
                     title: '사용할수 없는 기능 입니다',
                     text: '로그인후 사용해 주세요',
                     footer: '<a href="">Why do I have this issue?</a>'
-                })
+                }).then(()=>{
+                        $("#loginModal").modal("show")
+                    }
+                )
 
             } else if (userId !== '') {
 
@@ -267,12 +270,16 @@
 
             if (userId === '' || userId === null) {
 
+
                 Swal.fire({
                     icon: 'error',
                     title: '사용할수 없는 기능 입니다',
                     text: '로그인후 사용해 주세요',
                     footer: '<a href="">Why do I have this issue?</a>'
-                })
+                }).then(()=>{
+                        $("#loginModal").modal("show")
+                    }
+                )
 
             } else if (userId !== '') {
 
@@ -670,6 +677,7 @@
         width: 100%;
         text-align: left;
         font-size: 0.1em;
+        text-overflow: ellipsis;
     }
 
     .card-top {
