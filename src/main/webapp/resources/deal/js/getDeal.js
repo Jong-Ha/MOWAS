@@ -412,7 +412,11 @@ $(function () {
 
                 if (userId === '' || userId === null) {
 
-                    alert("로그인후 이용 가능합니다")
+
+                        alert('로그인 후 이용해주세요')
+                        $('#loginModal').modal('show')
+                        return false
+
                 }else if (userId !== '') {
 
                     var likeCount = $(".likeText").html();

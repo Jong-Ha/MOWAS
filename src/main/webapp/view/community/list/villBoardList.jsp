@@ -86,7 +86,10 @@
                     title: '사용할수 없는 기능 입니다',
                     text: '로그인후 사용해 주세요',
                     footer: '<a href="">Why do I have this issue?</a>'
-                })
+                }).then(()=>{
+                        $("#loginModal").modal("show")
+                    }
+                )
 
             } else if (userId !== '') {
 
@@ -122,7 +125,10 @@
             if (userId === '') {
 
 
-                alert("로그인후 사용 할수 있습니다")
+                setTimeout(()=>{
+                    $("#loginModal").modal("show")
+                },1500)
+
             } else if (userId !== '') {
 
 
@@ -382,12 +388,16 @@
 
             if (userId === '' || userId === null) {
 
+
                 Swal.fire({
                     icon: 'error',
                     title: '사용할수 없는 기능 입니다',
                     text: '로그인후 사용해 주세요',
                     footer: '<a href="">Why do I have this issue?</a>'
-                })
+                }).then(()=>{
+                        $("#loginModal").modal("show")
+                    }
+                )
 
             } else if (userId !== '') {
                 var boardNum = $(this).parents(".cardbox").find(".villNum").val()
@@ -411,6 +421,8 @@
         })
 
         $(".searchBtn").on("click", function () {
+
+            $(".currentPage").val(1);
 
             $("#textSerch").attr("method", "get").attr("action", "villBoardList")
         })
@@ -690,6 +702,8 @@
 
     .addBox {
         margin-bottom: 50px;
+        display: flex;
+        align-items: flex-start;
     }
 
     .add {
@@ -730,6 +744,7 @@
         display: flex;
         flex-direction: row-reverse;
         margin-bottom: 100px;
+        margin-top: -83px;
     }
 
     .userImg {
@@ -768,7 +783,7 @@
         border: 1px solid #0000001a;
         padding: 10px;
         border-radius: 5px;
-        margin-left: 51px;
+        margin-left: -30px;
         background: #ffff;
     }
 
@@ -783,6 +798,7 @@
         width: 100%;
         text-align: left;
         font-size: 0.1em;
+        text-overflow: ellipsis;
     }
 
     .card-top {
@@ -808,10 +824,11 @@
 <img class="shadow-lg" src="${pageContext.request.contextPath}/resources/images/club1.png"
      style="height: 500px;border-radius: 10px;  width: 1600px;">
 
+<jsp:include page="/layout/commubar.jsp"/>
+
 <!-- Example Code -->
 <div class="container">
 
-    <jsp:include page="/layout/commubar.jsp"/>
 
     <input hidden class="boardCategory" value="3">
 
@@ -840,6 +857,7 @@
             <button class="btn btn-primary searchBtn" type="submit">검색</button>
         </form>
     </div>
+
 
     <div class="ListVillBoard" style=" display: flex;  flex-wrap: wrap;  padding-bottom: 140px;">
         <c:set var="i" value="0"/>

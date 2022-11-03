@@ -57,11 +57,22 @@
                 success: function (JSONData, result) {
 
                     var clubCalender = JSONData.clubCalender;
+
                     $(".clubCalenderReviewNum").val(clubCalender.clubCalenderReviewNum);
-                    $(".reviewTitle").val(clubCalender.reviewTitle);
-                    $(".reviewText").val(clubCalender.reviewText);
-                    $(".reviewRange").val(clubCalender.reviewRange);
-                    $(".clubDate").val(clubCalender.clubDate);
+                    $(".reviewTitle2").val(clubCalender.reviewTitle);
+                    $(".reviewText2").val(clubCalender.reviewText);
+                    $(".reviewRange2").val(clubCalender.reviewRange);
+
+
+                    var date = new Date(clubCalender.clubDate);
+
+                    const year = date.getFullYear();
+                    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+                    const day = ('0' + date.getDate()).slice(-2);
+                    const dateStr = year + '-' + month + '-' + day;
+
+
+                    $(".clubDate2").val(dateStr);
 
 
                 }
@@ -124,7 +135,10 @@
                     title: '사용할수 없는 기능 입니다',
                     text: '로그인후 사용해 주세요',
                     footer: '<a href="">Why do I have this issue?</a>'
-                })
+                }).then(()=>{
+                        $("#loginModal").modal("show")
+                    }
+                )
 
             } else if (userId !== '') {
 
@@ -152,10 +166,15 @@
 
         $(".submit").on("click", function () {
             var clubCalenderReviewNum = $(".clubCalenderReviewNum").val();
-            var reviewTitle = $(".reviewTitle").val();
-            var reviewText = $(".reviewText").val();
-            var reviewRange = $(".reviewRange").val();
+            var reviewTitle = $(".reviewTitle2").val();
+            var reviewText = $(".reviewText2").val();
+            var reviewRange = $(".reviewRange2").val();
             var location = $(".location").val()
+
+            alert(reviewTitle)
+            alert(reviewText)
+            alert(reviewRange)
+
 
 
             $.ajax({
@@ -229,6 +248,7 @@
                     setTimeout(function () {
                         //window.location.reload()
                     }, 2000);
+
                     //error 발생시 그냥 창을 닫음
                 }, error: function () {
                     Swal.fire({
@@ -250,12 +270,16 @@
 
             if (userId === '' || userId === null) {
 
+
                 Swal.fire({
                     icon: 'error',
                     title: '사용할수 없는 기능 입니다',
                     text: '로그인후 사용해 주세요',
                     footer: '<a href="">Why do I have this issue?</a>'
-                })
+                }).then(()=>{
+                        $("#loginModal").modal("show")
+                    }
+                )
 
             } else if (userId !== '') {
 
@@ -282,6 +306,8 @@
         })
 
         $(".searchBtn").on("click", function () {
+
+            $(".currentPage").val(1);
 
             $("#textSerch").attr("method", "get").attr("action", "listCalenderReview")
         })
@@ -477,7 +503,7 @@
 
                         })
 
-                        $("#textSerch .currentPage").val(parseInt($("#textSerch .currentPage").val() + 1))
+                        $("#textSerch .currentPage").val(parseInt($("#textSerch .currentPage").val()) + 1)
 
                         lodingListClubCalender()
 
@@ -651,6 +677,7 @@
         width: 100%;
         text-align: left;
         font-size: 0.1em;
+        text-overflow: ellipsis;
     }
 
     .card-top {
@@ -688,8 +715,6 @@
         <form id="textSerch" class="d-flex" role="search">
             <input type="hidden" class="boardCategory" name="boardCategory" value="1">
             <input type="hidden" class="reviewRange" name="reviewRange" value="1">
-            <input type="hidden" class="searchLat" name="searchLat" value="">
-            <input type="hidden" class="searchLng" name="searchLng" value="">
             <input type="hidden" class="currentPage" name="currentPage" value="2">
 
             <div>
@@ -736,7 +761,7 @@
                                 <div class="user_manu">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                          fill="currentColor"
-                                         class="bi bi-three-dots" viewBox="0 0 16 16">
+                                         class="bi bi-three-dots " viewBox="0 0 16 16">
                                         <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
                                     </svg>
 
@@ -852,20 +877,19 @@
                 <form id="updateform">
 
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control reviewTitle" id="recipient-name" value=""
-                               placeholder="asdasd">
+                        <input type="text" class="form-control reviewTitle2" id="recipient-name" value="" placeholder="asdasd">
                         <label for="recipient-name">제 목</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control reviewText" id="message-text" value=""
+                        <input type="text" class="form-control reviewText2" id="message-text" value=""
                                placeholder="asdasd"/>
                         <label for="message-text">내용</label>
                     </div>
 
                     <div class="form-floating mb-3">
 
-                        <select class="form-select reviewRange" name="reviewRange" id="floatingSelect">
+                        <select class="form-select reviewRange2" name="reviewRange2" id="floatingSelect">
                             <option selected>공개 여부를 선택 하세요</option>
                             <option value="1">전체 공개</option>
                             <option value="2">모임 공개</option>
@@ -882,7 +906,7 @@
 
                     <div class="form-floating mb-3">
 
-                        <input type="date" class="form-control clubDate" id="date-text" value=""
+                        <input type="date" class="form-control clubDate2" id="date-text" value=""
                                placeholder="asdasd"/>
                         <label for="date-text">모임 일정 날짜</label>
 
@@ -907,6 +931,7 @@
         </div>
     </div>
 </div>
+
 <div class="modal fade" id="commuReport" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">

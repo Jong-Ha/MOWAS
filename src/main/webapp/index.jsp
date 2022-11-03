@@ -60,7 +60,7 @@
     <div class="jb-box">
 
        <video muted autoplay loop>
-               <source src="/resources/images/프리미어 프로 _ 나이키 광고영상.mp4" type="video/mp4">
+               <source src="/resources/images/main_video.mp4" type="video/mp4">
        </video>
 
     </div>
@@ -68,7 +68,8 @@
     <!-- Header -->
     <header id="header">
         <div class="logo">
-            <span class="icon fa-gem"></span>
+                 <img src="/resources/images/MOWAS_main_2.png" style="width: 100%;">
+
         </div>
         <div class="content">
             <div class="inner">

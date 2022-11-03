@@ -65,7 +65,11 @@
                 // alert(userId)
                 // alert($(".userId").val())
                 if (userId === '' || userId === null) {
-                    alert("로그인후 사용해 주세요")
+
+                        alert('로그인 후 이용해주세요')
+                        $('#loginModal').modal('show')
+                        return false
+
 
                 } else if (userId !== '') {
 
@@ -270,14 +274,16 @@
 
 
             })
+            let checkprice = /^[0-9]+$/;
             $('#addDeal #dealTitle').on('keyup',function(){
-                if($(this).val().length>15){
-                    alert('거래명은 최대 15글자입니다')
-                    $(this).val($(this).val().substring(0, 15));
+                if($(this).val().length>30){
+                    alert('거래명은 최대 20글자입니다')
+                    $(this).val($(this).val().substring(0, 30));
                 }
             })
             $('#addDeal #productName').on('keyup',function(){
                 if($(this).val().length>30){
+
                     alert('상품명은 최대 30글자입니다')
                     $(this).val($(this).val().substring(0, 30));
                 }
@@ -288,6 +294,12 @@
                     $(this).val($(this).val().substring(0, 300));
                 }
             })
+            $('#addDeal #price').on('keyup',function(){
+                if(!checkprice.test($(this).val())){
+                    alert('숫자만 입력가능합니다.')
+                }
+            })
+
         })
     </script>
 
@@ -504,15 +516,15 @@
             place-items: center;
         }
 
-        .typing {
-            width: 14ch;
-            animation: typing 0.9s steps(22), blink .5s step-end infinite alternate;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 3px solid;
-            font-size: 2em;
-            height: 2ch;
-        }
+        /*.typing {*/
+        /*    width: 14ch;*/
+        /*    animation: typing 0.9s steps(22), blink .5s step-end infinite alternate;*/
+        /*    white-space: nowrap;*/
+        /*    overflow: hidden;*/
+        /*    border-right: 3px solid;*/
+        /*    font-size: 2em;*/
+        /*    height: 2ch;*/
+        /*}*/
 
         @keyframes typing {
             from {
@@ -738,11 +750,13 @@
                         <input type="hidden" name="dealBoardNum" class="dealBoardNum" value="${deal.dealBoardNum}">
                         <input type="hidden" name="villCode" class="villCode" value="${deal.villCode}">
                         <div class="card h-100 shadow-lg">
-                            <div class="card-footer"
-                                 style=" border-bottom: 1px solid; display: flex; font-weight: bold">
-                                    ${deal.dealTitle}
-                                <p class="allFlex " style="position: absolute; right: 10px;"><c:if
-                                        test="${deal.dealStatus == 0}">
+                            <div class="card-footer "
+                                 style=" border-bottom: 1px solid; display: flex; font-weight: bold;  ">
+                                    <div class="text-truncate" style="width:280px;text-align: left">
+                                            ${deal.dealTitle}
+                                    </div>
+                                <p class="allFlex " style="position: absolute; right: 10px;">
+                                    <c:if test="${deal.dealStatus == 0}">
                                     거래전
                                 </c:if>
                                     <c:if test="${deal.dealStatus ==1}">

@@ -36,25 +36,37 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script type="text/javascript">
 
 
     $(function (){
         $("#updatePsd").on("click" , function (){
             var userId = $("#getUserDerailuserId").val();
-            alert('userid는? '+userId);
+
             self.location ="/user/updatePsd?userId="+userId;
         });
     });
     $(function (){
         $("#kickoutUser").on("click" , function (){
             var userId = $("#getUserDerailuserId").val();
-            alert('userid는? '+userId);
-            var result =confirm('정말로 강퇴하시겠습니까?');
-            if(result) {
-                self.location = "/user/kickoutUser?userId=" + userId;
-                alert('강퇴되었습니다');
-            }
+            Swal.fire({
+                title: '정말로 강퇴하시겠습니까?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '확인',
+                cancelButtonText: '취소'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        '강퇴되었습니다.',
+                        'success'
+                    )
+                    setTimeout(function() { self.location = "/user/kickoutUser?userId="+userId }, 2000);
+                }
+            })
         });
     });
     $(function (){

@@ -110,12 +110,16 @@
 
             if (userId === '' || userId === null) {
 
+
                 Swal.fire({
                     icon: 'error',
                     title: '사용할수 없는 기능 입니다',
                     text: '로그인후 사용해 주세요',
                     footer: '<a href="">Why do I have this issue?</a>'
-                })
+                }).then(() => {
+                        $("#loginModal").modal("show")
+                    }
+                )
 
             } else if (userId !== '') {
                 var likeCount = $(this).parents(".cardbox").find(".likeText").html();
@@ -242,12 +246,16 @@
 
             if (userId === '' || userId === null) {
 
+
                 Swal.fire({
                     icon: 'error',
                     title: '사용할수 없는 기능 입니다',
                     text: '로그인후 사용해 주세요',
                     footer: '<a href="">Why do I have this issue?</a>'
-                })
+                }).then(() => {
+                        $("#loginModal").modal("show")
+                    }
+                )
 
             } else if (userId !== '') {
 
@@ -270,11 +278,14 @@
 
         })
 
-        $(".user_manu").on("click", function () {
+        $(".user_manu_click").on("click", function () {
+
+            alert(123)
             $(this).parents(".card").find(".user_hidden_manu").slideToggle();
         })
 
         $(".searchBtn").on("click", function () {
+            $(".currentPage").val(1);
 
             $("#textSerch").attr("method", "get").attr("action", "listCalenderReview")
         })
@@ -578,6 +589,7 @@
 
     .ShortVideo {
         padding: 5px;
+        height: 500px;
     }
 
     .addBox {
@@ -604,20 +616,24 @@
     .user_manu {
         padding: 14px;
         display: flex;
-        width: 146%;;
-        font-size: 1.9em;
+        width: 136%;
+        font-size: 2em;
         flex-direction: row-reverse;
     }
 
+    .user_manu_click {
+        cursor: pointer;
+    }
+
     .user_hidden_manu {
-        width: 100px;
+        width: 92px;
         height: 75px;
         position: absolute;
         z-index: 2;
         margin-top: -14px;
-        margin-left: 705px;
-
+        margin-left: 647px;
     }
+
 
     .user_hidden_manu > ul {
         width: 125px;
@@ -657,10 +673,9 @@
      style="height: 500px;border-radius: 10px;  width: 1600px;">
 
 
+<jsp:include page="/layout/commubar.jsp"/>
+
 <div class="container" style="align-items: center;  justify-content: center;  display: flex;  flex-direction: column;">
-
-
-    <jsp:include page="/layout/commubar.jsp"/>
 
 
     <div class="addBox">
@@ -718,7 +733,7 @@
                             <div style="width: 56%;">
                                 <div class="user_manu">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                         class="bi bi-three-dots" viewBox="0 0 16 16">
+                                         class="bi bi-three-dots user_manu_click" viewBox="0 0 16 16">
                                         <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
                                     </svg>
 

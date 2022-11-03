@@ -610,7 +610,7 @@
 <jsp:include page="/layout/toolbar.jsp"/>
 
 <div class="container" style="text-align: -webkit-center; width: 1080px; height: 800px;">
-<div class="shadow-lg" style="border: 1px solid black; width: 600px; height: 760px;">
+<div  >
     <div style=" height: 40px; width: 600px;"></div>
 
   <div style="border: 1px solid #aeaeae; border-radius: 10px; width: 490px; height: 438px; background-color: white; border-color: white">

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
          pageEncoding="EUC-KR" %>
 
@@ -265,28 +266,161 @@
 
             location.href = "/deal/getDeal/" + boardNum;
 
+        })
 
+        $(".getClub").on("click" , ()=>{
+
+            var clubCalendar = $(".clubCalnderNum").val()
+
+            alert(clubCalendar);
+
+            $.ajax({
+
+            })
+
+
+           /* location.href ="/club/getClub/"+clubNum*/
         })
 
 
         $(".location2").on("click", function () {
             var location = $(".location2").val();
 
+            alert(location);
+
             $("#location2 .modal-content").load("/view/site/getCalenderMap.jsp",
-                {location : location},
+                {location: location},
                 function (re) {
 
                     $("#location2 .modal-content").html(re);
 
-                    $("#location2").modal("show")
-                })
+
+                    $("#exampleModal1").modal("hide");
+                    $("#location2").modal("show");
+                    $("#location2 .getLocation").off("click").on("click", function () {
+
+                        $("#location2").modal("hide");
+                        $("#exampleModal1").modal("show");
+
+                    })
+                }
+            );
+        })
+
+
+        $("#exampleModal3 .dealLocation2").on("click", function () {
+
+
+            var location = $(".dealLocation2").val()
+
+            alert(location)
+
+             $("#location2 .modal-content").load("/view/site/getCalenderMap.jsp",
+                 {location: location},
+                 function (re) {
+
+                     $("#location2 .modal-content").html(re);
+
+
+                     $("#exampleModal3").modal("hide");
+                     $("#location2").modal("show");
+
+                     $("#location2 .getLocation").off("click").on("click", function () {
+
+                         $("#location2").modal("hide");
+                         $("#exampleModal3").modal("show");
+
+                     })
+                 }
+             )
 
         })
 
         //상세보기 지도 보기
-        $("#location2").on("shown.bs.modal", ()=> {
-            relayout3();
+        $("#location2").on("shown.bs.modal", () => {
+            getClubLocation()
         })
+
+
+    })
+
+// review add
+    $(function () {
+        $(".submit").on("click", function () {
+            var rating = $(".rating").val()
+            var content = $(".content").val();
+            var dealBoardNum = $(".dealBoardNum").val();
+
+            $.ajax({
+                url: "/deal/json/addReview",
+                method: "post",
+                data: JSON.stringify({
+                    "reviewPt": rating,
+                    "review": content,
+                    "dealBoardNum": dealBoardNum
+                }),
+                dataType: "json",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json; charset=UTF-8"
+                },
+                success: function (JSONData, result) {
+                    console.log(JSONData);
+                    alert(result);
+                    alert(JSONData);
+                    alert(rating)
+                    alert(content)
+
+                    // 성공시 해당 창을 닫고 부모창을 reload
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Your work has been saved',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    setTimeout(function () {
+                        // opener.location.reload();
+                        //window.close();
+                    }, 2000);
+                    //error 발생시 그냥 창을 닫음
+
+                }, error: function () {
+                    Swal.fire({
+                        //  position: 'top-end',
+                        //icon: 'success',
+                        //title: 'Your work has been saved',
+                        //showConfirmButton: false,
+                        //timer: 1500
+                    });
+                    setTimeout(function () {
+                        window.close();
+                    }, 2000);
+                }
+            })
+        })
+    })
+
+    $(function(){
+
+        $('.calenderCluber2').off('click').on('click',function(){
+
+            $.ajax({
+                url : '/club/listCalendarCluber/'+$('#exampleModal1 .clubCalnderNum').val(),
+                success : function(re){
+                    $('#listCalendarCluber .modal-content').html(re)
+                    $('#listCalendarCluber .listClubCalendarApply').css('display','none')
+                    $('#exampleModal1').modal('hide')
+                    $('#listCalendarCluber').modal('show')
+                    $('#listCalendarCluber .back-btn').off('click').on('click',function(){
+                        $('#listCalendarCluber').modal('hide')
+                        $('#exampleModal1').modal('show')
+                    })
+                }
+            })
+        })
+
     })
 
 
@@ -297,6 +431,44 @@
         margin-top: 5px;
         cursor: pointer;
     }
+    /* 평점 영역 */
+    .rating_div {
+        padding-top: 10px;
+    }
+
+    .rating_div h4 {
+        margin: 0;
+    }
+
+    select {
+        margin: 15px;
+        width: 100px;
+        height: 40px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    /* 리뷰 작성 영역 */
+    .content_div {
+        padding-top: 10px;
+    }
+
+    .content_div h4 {
+        margin: 0;
+    }
+
+    textarea {
+        width: 100%;
+        height: 100px;
+        border: 1px solid #dadada;
+        padding: 12px 8px 12px 8px;
+        font-size: 15px;
+        color: #a9a9a9;
+        resize: none;
+        margin-top: 10px;
+    }
+
 </style>
 
 <body>
@@ -350,14 +522,12 @@
 
                 <div class="input-group mb-3">
 
-                    <input type="button" class="form-control location2" data-bs-toggle="modal"
-                           data-bs-target="#location2" value="위치 보기">
+                    <input type="button" class="form-control location2" value="위치 보기">
 
                 </div>
 
                 <div class="input-group mb-3 fileBox">
-                    <div class="shadow-lg midle"
-                         style="margin-bottom: 50px; margin-top: -3px; width: 490px; overflow: hidden; height: 400px;">
+                    <div class="shadow-lg midle" style="margin-bottom: 50px; margin-top: -3px; overflow: hidden;">
                         <div id="carouselExampleDark" class=" shadow-lg carousel carousel-dark slide"
                              data-bs-ride="carousel">
 
@@ -427,10 +597,18 @@
             </div>
 
             <div class="modal-footer">
-
+                <button type="button" class="btn btn-primary getClub">모임페이지로 이동</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 
             </div>
+        </div>
+    </div>
+</div>
+
+<%--모임 일정 참여자 조회--%>
+<div class="modal fade" id="listCalendarCluber" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
         </div>
     </div>
 </div>
@@ -466,7 +644,7 @@
 
                 <div class="input-group mb-3">
 
-                    <input type="text" class="form-control dealLocation2" value="위치 선택">
+                    <input type="button" class="form-control dealLocation2" value="위치 선택">
 
                 </div>
 
@@ -477,6 +655,7 @@
 
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
                 <button type="button" class="btn btn-secondary getDealPage">게시글 상세 조회</button>
+                <button type="button" class="btn btn-primary addReview" data-bs-toggle="modal" data-bs-target="#addReview">리뷰작성</button>
 
             </div>
         </div>
@@ -484,11 +663,71 @@
 
 </div>
 
+<%-- 리뷰 모달창 만들기 헤헷--%>
+
+<div class="modal fade" id="addReview" tabindex="-1" aria-labelledby="addReviewLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addReviewlLabel">리뷰 작성</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addReviewForm" enctype="multipart/form-data">
+                    <input hidden name="dealBoardNum" value="${deal.dealBoardNum}" class="dealBoardNum">
+                    <%--                                <input type="hidden" name="deleteFileName" value="${deal.clubImage}" disabled>--%>
+                    <div class="input-group mb-3">
+                        <div class="form-floating">
+                            ${deal.dealTitle}
+                        </div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="form-floating">
+                            <div class="rating_div">
+                                <h4>평점</h4>
+
+                                <select name="rating" class="rating">
+                                    <c:forEach var="i" begin="0" end="100">
+                                        <option value="${i}">${i}</option>
+                                    </c:forEach>
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="form-floating">
+                            <div class="content_div">
+                                <h4>리뷰</h4>
+                                <textarea name="content" class="content" value=""></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-12 text-center ">
+                    <button type="button" class="btn btn-primary btn-lg submit">확인</button>
+
+                </div>
+            </div>
+        </div>
+        <input type="hidden" value="${deal}">
+        </form>
+    </div>
+
+
+</div>
+</div>
+</div>
 <%--상세조회 지도--%>
 <div class="modal fade" id="location2" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-        <jsp:include page="/view/site/getCalenderMap.jsp"/>
+
+            <jsp:include page="/view/site/getCalenderMap.jsp"/>
 
         </div>
     </div>

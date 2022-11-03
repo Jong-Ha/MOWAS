@@ -954,7 +954,17 @@
                     $("#location2 .modal-content").html(re);
 
                     $("#location2").modal("show")
+
+                    $(".getLocation").on("click", function () {
+
+                        $("#location2").modal("hide")
+                        $("#exampleModal2").modal("show");
+                    })
+
                 })
+
+
+
 
         })
 
@@ -993,7 +1003,7 @@
         <div id='calendar' style="padding-top: 30px;"></div>
         <c:if test="${param.cluberStatus=='5'||param.cluberStatus=='6'}">
             <input type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                   class="btn btn-primary addCalender" value="모임 일정 작성">
+                   class="btn btn-primary addCalender" value="모임 일정 작성" style=" font-size: 2em; margin-top: 30px">
         </c:if>
     </div>
 </div>
