@@ -1,6 +1,5 @@
 package com.project.myPage.service;
 
-import com.project.common.Page;
 import com.project.common.Search;
 import com.project.domain.*;
 import com.project.myPage.dao.MyPageDao;
@@ -42,13 +41,22 @@ public class MyPageServiceImpl implements MyPageService {
         return map;
     }
 
-    public Map<String, Object> getMyBoard(String userId)throws Exception{
+    public Map<String, Object> getMyBoard(String userId, Search search)throws Exception{
 
         System.out.println("getMyBoard 서비스임플 시작이다 ");
         Map<String, Object> map = new HashMap<String, Object>();
+
         List<VilBoard> villBoard = myPageDao.getMyVillBoard(userId);
+
         List<ClubMasterBoard> clubBoard = myPageDao.getMyClubBoard(userId);
-        List<ClubCalendarReview> clubCalendarReview = myPageDao.getMyClubCalendarReview(userId);
+
+
+        Map<String,Object> map2 = new HashMap<>();
+
+        map2.put("userId", userId);
+        map2.put("search", search);
+        List<ClubCalendarReview> clubCalendarReview = myPageDao.getMyClubCalendarReview(map2);
+
         List<Deal> dealBoard = myPageDao.getMydealBoard(userId);
 
         System.out.println("villBoard 값??"+villBoard);

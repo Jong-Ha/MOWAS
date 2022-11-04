@@ -18,7 +18,7 @@ public interface MyPageDao {
 
     public List<ClubMasterBoard> getMyClubBoard(String userId)throws Exception;
 
-    public List<ClubCalendarReview> getMyClubCalendarReview(String userId)throws Exception;
+    public List<ClubCalendarReview> getMyClubCalendarReview(Map<String,Object> map)throws Exception;
 
     public List<Deal> getMydealBoard(String userId)throws Exception;
 

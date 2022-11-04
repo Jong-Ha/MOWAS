@@ -44,8 +44,8 @@ public class MyPageDaoImpl implements MyPageDao{
         return sqlSession.selectList("MyPageMapper.getMyClubBoard", userId);
     }
 
-    public List<ClubCalendarReview> getMyClubCalendarReview(String userId)throws Exception{
-        return sqlSession.selectList("MyPageMapper.getMyClubCalendarReview", userId);
+    public List<ClubCalendarReview> getMyClubCalendarReview(Map<String,Object> map)throws Exception{
+        return sqlSession.selectList("MyPageMapper.getMyClubCalendarReview", map);
     }
 
     public List<Deal> getMydealBoard(String userId)throws Exception{
