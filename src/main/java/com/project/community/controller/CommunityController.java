@@ -71,7 +71,7 @@ public class CommunityController {
     @RequestMapping(value = "villBoardList")
     public String villBoardList(@RequestParam("villCode") String villCode
                                 ,@ModelAttribute("search") Search search
-                                ,Model model) {
+                                ,HttpSession session ,Model model) {
 
 
         if (search.getCurrentPage() == 0) {
@@ -84,10 +84,21 @@ public class CommunityController {
             search.setSearchCondition("1");
         }
 
+        String date = "";
+
+        date += villCode.split(" ")[0];
+        date += " ";
+        date += villCode.split(" ")[1];
+        date += " ";
+        date += villCode.split(" ")[2];
+
+        session.setAttribute("villCode", date);
+
+
         System.out.println("search의 정보 : " + search);
 
 
-        Map<String, Object> map = commuService.listVillBoard(villCode, search);
+        Map<String, Object> map = commuService.listVillBoard((String) session.getAttribute("villCode"), search);
 
 
         model.addAttribute("search", search);
@@ -170,13 +181,12 @@ public class CommunityController {
         commuService.deleteBoard(boardNum,boardCategory);
 
 
-        User user = (User) session.getAttribute("user");
 
 
+        String villCode = (String)session.getAttribute("villCode");
 
-        String villCode = user.getVillCode();
+        String encode = URLEncoder.encode(villCode);
 
-        String encode = "";
 
 
         if (boardCategory == 1) {
@@ -184,7 +194,24 @@ public class CommunityController {
         } else if (boardCategory == 2) {
             return "redirect:/clubCal/listCalenderReview?boardCategory=" + boardCategory;
         } else if (boardCategory == 3) {
-            return "redirect:/commu/villBoardList?villCode=" + villCode;
+
+            search.setCurrentPage(1);
+            search.setPageSize(pageSize);
+
+            search.setSearchCondition("1");
+
+
+            Map<String, Object> map2 = commuService.listVillBoard((String) session.getAttribute("villCode"), search);
+
+
+            model.addAttribute("search", search);
+            model.addAttribute("list", map2.get("list"));
+
+            return "/view/community/list/villBoardList.jsp";
+
+
+
+
         }
         return null;
     }

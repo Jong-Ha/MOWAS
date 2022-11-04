@@ -11,7 +11,7 @@ public interface MyPageService {
 
     public Map<String, Object> getMyInfor(String userId)throws Exception;
 
-    public Map<String, Object> getMyBoard(String userId)throws Exception;
+    public Map<String, Object> getMyBoard(String userId, Search search)throws Exception;
 
     public Map<String, Object> getMyComment(String userId)throws Exception;
 

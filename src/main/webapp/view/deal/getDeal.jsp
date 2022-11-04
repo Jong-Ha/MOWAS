@@ -871,11 +871,11 @@ Product vo=(Product)request.getAttribute("vo");
 
 
     </div>
-    <div style="margin-left: 1030px; margin-top: 10px;margin-bottom: 10px; width: 100px;display: flex;
+    <div style="margin-left: 1000px; margin-top: 10px;margin-bottom: 10px; width: 100px;display: flex;
     flex-wrap: nowrap;">
-        <input type="button" class="btn btn-primary btn-lg dealChat" value="채팅하기">
-        <button class="btn btn-primary btn-lg list" >목록
-        </button>
+        <input type="button" class="btn btn-primary btn-lg dealChat" value="채팅하기" style="margin-right: 10px">
+        <input  type="button" class="btn btn-primary btn-lg list"  value="목록">
+
     </div>
 </div>
 

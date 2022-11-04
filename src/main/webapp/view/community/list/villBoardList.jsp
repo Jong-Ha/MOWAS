@@ -749,12 +749,13 @@
     }
 
     .userImg {
-        width: 60px;
+        width: 108px;
         height: 60px;
         padding: 5px;
     }
 
     .userInfo {
+        width: 100%;
         padding: 6px;
         display: flex;
         flex-direction: column;
@@ -838,7 +839,7 @@
     </div>
     <div class="searchBox">
         <form id="textSearch" class="d-flex" role="search">
-            <input type="hidden" class="villCode" name="villCode" value="${user.villCode}">
+            <input type="hidden" class="villCode" name="villCode" value="${villCode}">
             <input type="hidden" class="currentPage" name="currentPage" value="2">
             <input type="hidden" class="searchLat" name="searchLat" value="">
             <input type="hidden" class="searchLng" name="searchLng" value="">
@@ -1103,11 +1104,12 @@
             </div>
         </div>
     </div>
+</div>
 
     <jsp:include page="/layout/chatIcon.jsp"/>
 
     <jsp:include page="/layout/footer.jsp"/>
-</div>
+
 
 </body>
 </html>

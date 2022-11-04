@@ -24,11 +24,27 @@
             })
 
             $(".villBoard").on("click", function () {
+
                 var villCode = '${user.villCode}'
+
+                alert(villCode);
+
                 var userId = '${user.userId}'
-                if(userId != null){
+
+                if(userId !== ''){
+
                     location.href = "/commu/villBoardList?villCode=" + villCode + "&boardCategory=" + 3;
 
+                }else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: '사용할수 없는 기능 입니다',
+                        text: '로그인후 사용해 주세요',
+                        footer: '<a href="">Why do I have this issue?</a>'
+                    }).then(()=>{
+                            $("#loginModal").modal("show")
+                        }
+                    )
                 }
             });
 
