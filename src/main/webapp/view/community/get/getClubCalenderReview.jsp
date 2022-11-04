@@ -316,7 +316,11 @@
 
                             } else if (userId !== commentUser) {
 
-                                alert("작성자가 아니면 이용 할수 없습니다");
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: '작성자만 수정 할수 있습니다',
+                                    footer: '<a href="">Why do I have this issue?</a>'
+                                })
                             }
 
                         })
@@ -374,7 +378,11 @@
 
                                 })
                             } else if (userId !== commentUser) {
-                                alert("작성자가 아니면 이용 할수 없습니다")
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: '작성자만 삭제 할수 있습니다',
+                                    footer: '<a href="">Why do I have this issue?</a>'
+                                })
                             }
 
                         })
@@ -463,7 +471,11 @@
 
                             if (userId !== recommentUser) {
 
-                                alert("작성자가 아니면 수정 할수 없습니다")
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: '작성자만 수정 할수 있습니다',
+                                    footer: '<a href="">Why do I have this issue?</a>'
+                                })
 
                             } else if (userId === recommentUser) {
 
@@ -521,7 +533,11 @@
                                     }
                                 })
                             } else if (recommentUser !== userId) {
-                                alert("작성자가 아니면 삭제 할수 없습니다")
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: '작성자가 아니면 삭제 할수 없습니다',
+                                    footer: '<a href="">Why do I have this issue?</a>'
+                                })
                             }
                         })
 
@@ -1331,7 +1347,7 @@
                         <div class="reviewTitle2">
                             ${calenderReview.reviewTitle}
                         </div>
-                        <div style="width: 56%;">
+                        <div>
 
                             <div class="user_manu">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

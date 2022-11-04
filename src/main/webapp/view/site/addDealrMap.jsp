@@ -47,7 +47,7 @@
                 //$(".searchLocation").html(vilCode);
                 //alert(vilCode);
                 $("#location1 .villCode1").val(vilCode)
-                $(".location").val(vilCode);
+                $("#exampleModal .dealLocation").val(vilCode);
             }
         })
     }

@@ -748,12 +748,13 @@
     }
 
     .userImg {
-        width: 60px;
+        width: 108px;
         height: 60px;
         padding: 5px;
     }
 
     .userInfo {
+        width: 100%;
         padding: 6px;
         display: flex;
         flex-direction: column;
@@ -774,7 +775,6 @@
         position: absolute;
         z-index: 2;
         margin-top: -14px;
-        margin-left: 25px;
 
     }
 
@@ -829,7 +829,6 @@
 <!-- Example Code -->
 <div class="container">
 
-
     <input hidden class="boardCategory" value="3">
 
     <div class="addBox">
@@ -837,7 +836,7 @@
     </div>
     <div class="searchBox">
         <form id="textSearch" class="d-flex" role="search">
-            <input type="hidden" class="villCode" name="villCode" value="${user.villCode}">
+            <input type="hidden" class="villCode" name="villCode" value="${villCode}">
             <input type="hidden" class="currentPage" name="currentPage" value="2">
             <input type="hidden" class="searchLat" name="searchLat" value="">
             <input type="hidden" class="searchLng" name="searchLng" value="">
@@ -879,7 +878,7 @@
                                 <div>
                                         ${villBoard.userId}
                                 </div>
-                                <div style="font-size: 0.7em; margin-top: 5px">
+                                <div style="font-size: 0.7em;margin-top: 5px;text-overflow: ellipsis;">
                                         ${villBoard.villCode}
                                 </div>
                             </div>
@@ -920,7 +919,7 @@
                                 <c:forEach var="File" items="${villBoard.file}">
                                     <div class="carousel-item active get" data-bs-interval="2000">
                                         <img class="d-block w-100  poto" width="100%" height="100%"
-                                             src="/resources/villBoardFiles${File.fileName }" alt="any">
+                                             src="/resources/${File.fileName }" alt="any">
                                     </div>
                                 </c:forEach>
                             </div>
@@ -986,9 +985,6 @@
         </c:forEach>
 
     </div>
-
-
-    <div style=" padding-bottom: 900px;"></div>
 
 
     <%--우리동네 게시글 등록--%>
@@ -1107,11 +1103,12 @@
             </div>
         </div>
     </div>
+</div>
 
     <jsp:include page="/layout/chatIcon.jsp"/>
 
     <jsp:include page="/layout/footer.jsp"/>
-</div>
+
 
 </body>
 </html>

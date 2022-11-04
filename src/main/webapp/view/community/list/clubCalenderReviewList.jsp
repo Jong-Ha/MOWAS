@@ -165,16 +165,12 @@
         })
 
         $(".submit").on("click", function () {
+
             var clubCalenderReviewNum = $(".clubCalenderReviewNum").val();
             var reviewTitle = $(".reviewTitle2").val();
             var reviewText = $(".reviewText2").val();
             var reviewRange = $(".reviewRange2").val();
             var location = $(".location").val()
-
-            alert(reviewTitle)
-            alert(reviewText)
-            alert(reviewRange)
-
 
 
             $.ajax({
@@ -246,7 +242,7 @@
                     });
 
                     setTimeout(function () {
-                        //window.location.reload()
+                        window.location.reload()
                     }, 2000);
 
                     //error 발생시 그냥 창을 닫음
@@ -258,7 +254,7 @@
                         timer: 1500
                     });
                     setTimeout(function () {
-                        //window.location.reload()
+                        window.location.reload()
                     }, 2000);
 
                 }
@@ -632,6 +628,7 @@
     }
 
     .userInfo {
+        width: 100%;
         padding: 6px;
         display: flex;
         flex-direction: column;
@@ -653,7 +650,7 @@
         position: absolute;
         z-index: 2;
         margin-top: -14px;
-        margin-left: -10px;
+        margin-left: -62px;
 
 
     }
@@ -753,11 +750,11 @@
                                 <div>
                                         ${ClubCalendarReview.userId}
                                 </div>
-                                <div style="font-size: 0.7em; margin-top: 5px;  text-align: left;  width: 150px;">
+                                <div style="font-size: 0.7em;margin-top: 5px;text-align: left;text-overflow: ellipsis;">
                                         ${ClubCalendarReview.location}
                                 </div>
                             </div>
-                            <div style="width: 56%;">
+                            <div>
                                 <div class="user_manu">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                          fill="currentColor"

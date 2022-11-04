@@ -216,7 +216,7 @@ ul li {
 .commentText {
     background: #eaebe5e0;;
     border-radius: 10px;
-    height: 104px;
+    height: 116px;
     width: 700px;
     margin-bottom: 20px;
     font-size: 0.9em;
@@ -293,8 +293,8 @@ ul li {
 }
 
 .userImg {
-    width: 88px;
-    height: 60px;
+    width: 135px;
+    height: 65px;
     padding: 5px;
 }
 
@@ -318,6 +318,7 @@ ul li {
 }
 
 .reviewTitle2 {
+    width: 100%;
     font-size: 1.2em;
     justify-content: center;
     align-items: center;

@@ -108,7 +108,7 @@
         <result property="clubCalenderReviewNum"    column="club_calendar_review_num"    jdbcType="INTEGER"/>
         <result property="clubCalenderNum"          column="club_calendar_num"           jdbcType="INTEGER"/>
         <result property="clubNum"                  column="club_num"                    jdbcType="INTEGER"/>
-        <result property="userId"            column="user_id"                     jdbcType="VARCHAR"/>
+        <result property="userId"               column="user_id"                     jdbcType="VARCHAR"/>
         <result property="reviewRange"              column="review_range"                jdbcType="VARCHAR"/>
         <result property="reviewTitle"              column="review_title"                jdbcType="VARCHAR"/>
         <result property="reviewText"               column="review_text"                 jdbcType="VARCHAR"/>
@@ -254,11 +254,41 @@
         WHERE user_id=#{userId}
     </select>
 
-    <select id="getMyClubCalendarReview" parameterType="String" resultMap="calenderReviewSelect" >
-        SELECT *
-        FROM club_calendar_review
-        WHERE user_id=#{userId}
+    <sql id="getMyClubCalendarReviewSQL">
+        select cr.* , fs.FILE_NAME
+        from  CLUB_CALENDAR_REVIEW cr , files fs
+        where cr.USER_ID = #{userId}
+          and cr.CLUB_CALENDAR_REVIEW_NUM = fs.BOARD_NUM
+          and cr.BOARD_CATEGORY = fs.BOARD_CATEGORY
+    </sql>
+
+    <select id="getMyPageTotal">
+        SELECT * FROM COUNT(
+        <include refid="getMyClubCalendarReviewSQL"/>
     </select>
+
+    <select id="getMyClubCalendarReview" parameterType="map" resultType="calenderReview">
+
+        SELECT * FROM (
+        SELECT ROWNUM row_num, vt.* FROM (
+        <include refid="getMyClubCalendarReviewSQL"/>
+        ) vt
+        <if test="search.currentPage*search.pageSize!=0">
+            WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}
+        </if>
+        )
+        <where>
+            <if test="search.currentPage*search.pageSize!=0">
+                row_num >= ((#{search.currentPage}-1)*#{search.pageSize}+1)
+            </if>
+        </where>
+
+    </select>
+
+
+
+
+
 
     <select id="getMydealBoard" parameterType="String" resultMap="dealSelectMap" >
         SELECT *
