@@ -293,16 +293,26 @@
     </form>
 </div>
 <div class="modal-footer" style="display: block; text-align: center">
-    <button type="button" class="btn btn-primary updateVoter" ${vote.voterCheck==1?'style="display : none"':''}>투표하기
-    </button>
+    <c:if test="${vote.endCheck=='0'}">
+        <button type="button" class="btn btn-primary updateVoter" ${vote.voterCheck==1?'style="display : none"':''}>투표하기
+        </button>
+    </c:if>
+<c:if test="${vote.endCheck=='0'}">
     <button type="button" class="btn btn-primary updateVoterCheck" ${vote.voterCheck==1?'':'style="display : none"'}>다시 투표하기
     </button>
+</c:if>
+<c:if test="${vote.voteMasterId==user.userId&&vote.endCheck=='0'}">
     <button type="button" class="btn btn-primary updateVote" data-bs-target="#updateVote" data-bs-toggle="modal">투표 수정
     </button>
+</c:if>
+    <c:if test="${vote.voteMasterId==user.userId&&vote.endCheck=='0'}">
     <button type="button" class="btn btn-primary endVote">투표 마감
     </button>
+    </c:if>
+    <c:if test="${vote.voteMasterId==user.userId}">
     <button type="button" class="btn btn-primary deleteVote">투표 삭제
     </button>
+    </c:if>
 </div>
 
 <div id="listVoter" title="Basic dialog" class="speech-bubble" style="display: none;z-index: 1500;padding: 10px;">

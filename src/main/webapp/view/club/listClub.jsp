@@ -302,8 +302,11 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="file" class="form-label" style="display: none"></label>
-                                <input class="form-control" type="file" id="file" name="file">
+                                <label for="file" class="form-label" style="margin: 0; width: 100%;">
+                                    <img id="preview" src="/resources/images/clubImage.png"
+                                         style="object-fit: cover; width: 100%; height: 100%; border: 1px solid #ced4da;border-radius: 5px;" alt="clubImage">
+                                </label>
+                                <input class="form-control" type="file" id="file" name="file" style="display: none;">
                             </div>
 
                             <div class="input-group mb-3">

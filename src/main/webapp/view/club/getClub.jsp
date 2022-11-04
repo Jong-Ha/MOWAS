@@ -256,12 +256,11 @@
                             </div>
 
                             <div class="mb-3">
-                                <div style="width: 466px;height: 233px; text-align: center;">
-                                    <img src="/resources/${club.clubImage}"
-                                         style="object-fit: contain; width: 100%; height: 100%" alt="수정전 이미지">
-                                </div>
-                                <label for="file" class="form-label" style="display: none"></label>
-                                <input class="form-control" type="file" ${currentCluber.cluberStatus=='5'?'disabled':''} id="file" name="file">
+                                <label for="clubImage" class="form-label" style="margin: 0; width: 100%;">
+                                    <img id="preview" src="/resources/${club.clubImage}"
+                                         style="object-fit: cover; width: 100%; height: 100%; border: 1px solid #ced4da;border-radius: 5px;" alt="clubImage">
+                                </label>
+                                <input class="form-control" style="display: none;" type="file" ${currentCluber.cluberStatus=='5'?'disabled':''} id="clubImage" name="file">
                             </div>
 
                             <div class="input-group mb-3">

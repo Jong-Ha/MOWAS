@@ -44,7 +44,25 @@
 let num
 let smsNum
 
+function readURL(inputSelector, outputSelector) {
+    const input = $(inputSelector)[0]
+    const output = $(outputSelector)[0]
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            output.src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        output.src = "/resources/images/proplePoto.png";
+    }
+}
+
     $(function () {
+        $('.needs-validation #file').on('change',function(){
+            readURL('.needs-validation #file','.needs-validation #preview')
+        })
+
         function lodingNum() {
         $.ajax({
             url: "/user/json/mailSender",
@@ -860,8 +878,8 @@ let smsNum
 
 
       <div class="col-12" style="display:inline-block;">
-        <label for="file" class="form-label">회원 사진 등록 *선택사항*</label><br>
-        <input type="file" style="border: 1px solid;" id="file" name="file" >
+        <br><label for="file" class="form-label"><img id="preview" src="/resources/images/proplePoto.png" alt="userImage" style="height: 100px;width: 100px;border-radius: 50%;object-fit: cover"></label><br>
+        <input type="file" style="border: 1px solid;" id="file" name="file">
       </div>
 
 

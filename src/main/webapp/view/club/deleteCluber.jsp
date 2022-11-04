@@ -9,7 +9,6 @@
                         <input type="hidden" name="kickoutCheck" value="${kickoutCheck}">
                         <input type="hidden" name="clubUserNum" value="${cluber.clubUserNum}">
                         <input type="hidden" id="clubNum" name="clubNum" value="${cluber.clubNum}">
-                        <input type="hidden" name="userId" value="${cluber.user.userId}">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="userId" placeholder="userId" name="userId" readonly value="${cluber.user.userId}">
                             <label for="userId">아이디</label>

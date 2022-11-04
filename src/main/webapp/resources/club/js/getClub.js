@@ -1,4 +1,20 @@
+
 /////////////////////////////// 함수 설정 ///////////////////////////////
+//이미지 미리보기
+function readURL(inputSelector, outputSelector) {
+    const input = $(inputSelector)[0]
+    const output = $(outputSelector)[0]
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            output.src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        output.src = "/resources/images/clubImage.png";
+    }
+}
+
 //listCluber 모달창 로드 시 이벤트 걸어주기
 function setListCluber() {
 
@@ -530,6 +546,7 @@ $(function () {
 
     $('.modal').off('show.bs.modal').on('show.bs.modal',function(){
         $('body').addClass('stop-scrolling')
+        $('#preview').height(466*0.55)
     })
     $('.modal').off('hide.bs.modal').on('hide.bs.modal',function(){
         $('body').removeClass('stop-scrolling')
@@ -625,6 +642,11 @@ $(function () {
         }
     })
 
+    $('#updateClubForm #clubImage').off('change').on('change',function(){
+        readURL('#updateClubForm #clubImage','#updateClubForm #preview')
+        $('#updateClubForm input[name="deleteFileName"]').attr("disabled", false)
+    })
+
     //업데이트
     $(".updateClub").on("click", function () {
         const updateForm = $("#updateClubForm");
@@ -643,9 +665,6 @@ $(function () {
             updateForm.append('<input type="hidden" name="clubTags" value="' + item.value + '">')
         })
         updateForm.attr("method", "post").attr("action", "/club/updateClub").submit();
-    })
-    $('input[name="file"]').on("change", function () {
-        $('input[name="deleteFileName"]').attr("disabled", false)
     })
 
     $("#cluberApplyForm #cluberText").on('keyup', function () {
@@ -724,7 +743,7 @@ $(function () {
         })
     })
 
-    //모임 생성시 지도 부르기
+    //모임 수정시 지도 부르기
     $("#updateClubMap").on("click", function () {
         $('#searchLocation .back-btn').css('display', 'block').off('click').on('click', function () {
             $('.updateClubView').click()

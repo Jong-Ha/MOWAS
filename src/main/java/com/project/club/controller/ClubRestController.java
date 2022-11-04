@@ -45,7 +45,7 @@ public class ClubRestController {
     private MyPageService myPageService;
 
     @Value("#{commonProperties['pageSize']}")
-    int pageSize;
+    private int pageSize;
 
     @RequestMapping(value = "clubLike")
     public int clubLike(@RequestBody String Board, HttpSession session) throws ParseException {

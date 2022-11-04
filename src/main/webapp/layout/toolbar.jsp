@@ -196,6 +196,14 @@
         });
     });
 
+    $(function(){
+        $('.modal').on('show.bs.modal',function(){
+            $('body').addClass('stop-scrolling')
+        })
+        $('.modal').on('hide.bs.modal', function () {
+            $('body').removeClass('stop-scrolling')
+        })
+    })
 
 </script>
 <html>
@@ -204,6 +212,18 @@
     <title>Title</title>
 
     <style>
+        body {
+            overflow-y:scroll;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        .stop-scrolling {
+            height: 100%;
+            overflow: hidden;
+        }
         /*.modal{*/
         /*    position: absolute;*/
         /*    width: 100%; height: 100%;*/
@@ -477,13 +497,10 @@
                         <c:if test="${sessionScope.user.userImage ne null}">
 
                             <img src="/resources/${sessionScope.user.userImage}"
-                                 style="width: 50px;margin-right: 10px; border-radius: 40px; height: 50px;background-color: #FFFFFF;object-fit: contain;">
+                                 style="width: 50px;margin-right: 10px; border-radius: 40px; height: 50px;background-color: #FFFFFF;object-fit: cover;">
 
                         </c:if>
                         <c:if test="${sessionScope.user.userImage eq null}">
-
-                            <img src="${pageContext.request.contextPath}/resources/images/proplePoto.png"
-                                 style="width: 50px;margin-right: 10px; border-radius: 40px; height: 50px;background-color: #FFFFFF;object-fit: contain;">
 
                         </c:if>
 

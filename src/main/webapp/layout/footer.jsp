@@ -13,7 +13,7 @@
             <div style="padding-left: 50px;">
                 <h1 class="display-5 fw-bold text-white">MOWAS</h1>
                 <h5 class="text-white">@ 2022 Projected BY MOWAS</h5>
-                <div class="text-white"><span style="font-size: 20px;color: #333333;">@ </span>Project period : 10/03 ~ 11/10</div>
+                <div class="text-white"><span style="font-size: 20px;color: #333333;">@ </span>Project period : 10/03 ~ 11/11</div>
             </div>
             <div>
                 <img src="/resources/images/MOWAS_T_2.png" style="height: 200px;width: 200px; object-fit: cover" alt="LOGO">
