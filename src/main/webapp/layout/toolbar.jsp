@@ -36,12 +36,20 @@
         console.log("keepLogin =>" + keepLogin);
 
         if (id == null || id.length < 1) {
-            alert('ID를 입력하지 않으셨습니다');
+
+            Swal.fire(
+                "ID를 입력하지 않으셨습니다.",
+                "warning",
+            );
+
             $("input:text").focus();
             return;
         }
         if (pw == null || pw.length < 1) {
-            alert('패스워드를 입력하지 않으셨습니다');
+            Swal.fire(
+                "패스워드를 입력하지 않으셨습니다.",
+                "warning",
+            );
             $("input:password").focus();
             return;
         }
@@ -73,11 +81,18 @@
                     }
                     $(self.location).attr("href", map.uri)
                 } else {
-                    alert('아이디, 비밀번호를 확인하세요')
+                    Swal.fire(
+                        "아이디, 비밀번호를 확인하세요",
+                        "warning",
+                    );
                 }
             },
             error: function () {
-                alert("로그인 실패");
+                Swal.fire(
+                    "로그인 실패",
+                    "error",
+                );
+
             }
         });
     };
@@ -461,12 +476,16 @@
                     </ul>
                     <div class="logitem">
 
-                        <c:if test="${sessionScope.user.userImage ne null}">
-
-                            <img src="/resources/${sessionScope.user.userImage}"
-                                 style="width: 60px;margin-right: 10px; border-radius: 40px; height: 50px;">
-
+                        <c:if test="${sessionScope.user.loginType eq 1}">
+                            <img  src="/resources/${sessionScope.user.userImage}" style="width: 60px;margin-right: 10px; border-radius: 40px; height: 50px;">
                         </c:if>
+                        <c:if test="${sessionScope.user.loginType eq 2}">
+                            <img  src="${sessionScope.user.userImage}" style="width: 60px;margin-right: 10px; border-radius: 40px; height: 50px;">
+                        </c:if>
+                        <c:if test="${sessionScope.user.loginType eq 3}">
+                            <img  src="${sessionScope.user.userImage}" style="width: 60px;margin-right: 10px; border-radius: 40px; height: 50px;">
+                        </c:if>
+
                         <c:if test="${sessionScope.user.userImage eq null}">
 
                             <img src="${pageContext.request.contextPath}/resources/images/proplePoto.png"
@@ -626,7 +645,7 @@
                         var naverLogin = new naver.LoginWithNaverId(
                             {
                                 clientId: "LVp6wWTSWO4roaPEeGxT",
-                                callbackUrl: "http://192.168.0.235:8080//view/user/callBack.jsp",
+                                callbackUrl: "http://192.168.0.235:8080/view/user/callBack.jsp",
                                 isPopup: true, /* 팝업을 통한 연동처리 여부 */
                                 loginButton: {color: "green", type: 3, height: 55} /* 로그인 버튼의 타입을 지정 */
                             }
