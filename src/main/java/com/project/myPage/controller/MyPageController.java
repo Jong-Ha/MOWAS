@@ -851,5 +851,17 @@ public class MyPageController {
         model.addAttribute("resultPage", resultPage);
         return "forward:/view/myPage/getMyPpt.jsp";
     }
+
+    @RequestMapping(value="userOut", method = RequestMethod.GET)
+    public String userOut(@RequestParam(value = "userId") String userId,Model model)throws Exception{
+        System.out.println("여기는 userOut 컨트롤러 시작이다");
+        System.out.println("userId의값은?"+userId);
+
+        userService.userOut(userId);
+
+
+        return "forward:/";
+    }
+
     //*/
 }

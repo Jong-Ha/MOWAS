@@ -154,4 +154,8 @@ public class UserDaoImpl implements UserDao{
         sqlSession.insert("UserMapper.addNaverUser", user);
     }
 
+    public void userOut(String userId)throws Exception{
+        sqlSession.update("UserMapper.userOut", userId);
+    }
+
 }

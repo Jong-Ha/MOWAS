@@ -45,11 +45,13 @@
     });
     $(function (){
         $("#userOut").on("click" , function (){
-            var userId = $("#userId").val();
+            var userId = $(".myPageUserId").val();
+            alert('유저아이디'+userId);
             var result =confirm('정말로 탈퇴하시겠습니까?');
             if(result) {
-                self.location = "/myPage/userOut?userId=" + userId;
                 alert('회원 탈퇴 되었습니다');
+                self.location = "/myPage/userOut?userId="+userId;
+
             }
         });
         // $(".bbb").on("click",function (){
