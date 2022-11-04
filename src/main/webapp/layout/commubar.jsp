@@ -25,7 +25,11 @@
 
             $(".villBoard").on("click", function () {
                 var villCode = '${user.villCode}'
-                location.href = "/commu/villBoardList?villCode=" + villCode + "&boardCategory=" + 3;
+                var userId = '${user.userId}'
+                if(userId != null){
+                    location.href = "/commu/villBoardList?villCode=" + villCode + "&boardCategory=" + 3;
+
+                }
             });
 
 

@@ -9,71 +9,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="JHK 2022.11.03&#10;&#10;sns 로그인 유저 정보입력창 수정">
-      <change afterPath="$PROJECT_DIR$/node_modules/.bin/loose-envify" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/.bin/loose-envify.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/.bin/loose-envify.ps1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/js-tokens/CHANGELOG.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/js-tokens/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/js-tokens/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/js-tokens/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/js-tokens/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/loose-envify/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/loose-envify/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/loose-envify/cli.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/loose-envify/custom.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/loose-envify/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/loose-envify/loose-envify.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/loose-envify/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/loose-envify/replace.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/object-assign/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/object-assign/license" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/object-assign/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/object-assign/readme.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/checkPropTypes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/factory.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/factoryWithThrowingShims.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/factoryWithTypeCheckers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/lib/ReactPropTypesSecret.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/lib/has.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/prop-types.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/prop-types.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-is/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-is/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-is/build-info.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-is/cjs/react-is.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-is/cjs/react-is.production.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-is/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-is/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-is/umd/react-is.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-is/umd/react-is.production.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mongoose/node_modules/ms/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mongoose/node_modules/ms/license.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mongoose/node_modules/ms/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mongoose/node_modules/ms/readme.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/node_modules/ms/license.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/node_modules/ms/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/node_modules/ms/readme.md" afterDir="false" />
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="KSM 2022.11.03&#10;&#10;화면 jsp update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/myPageTitle.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/myPageTitle.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/getUserDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/getUserDetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/listUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/listUser.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/updateSNSUserInfor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/updateSNSUserInfor.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat/chatList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/chat/chatList.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/addMasterBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/addMasterBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/getClubReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/getClubReport.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/getCommunityReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/getCommunityReport.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/getMasterBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/getMasterBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/listClubReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/listClubReport.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/listClubReportProcess.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/listClubReportProcess.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/listCommunityReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/listCommunityReport.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/listCommunityReportProcess.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/listCommunityReportProcess.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/listMasterBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/listMasterBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/updateClubReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/updateClubReport.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/updateClubRereport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/updateClubRereport.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/site/updateCommunityReport.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/site/updateCommunityReport.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="ChangesViewManager">
-    <option name="groupingKeys">
-      <option value="directory" />
-    </option>
   </component>
   <component name="CompilerWorkspaceConfiguration">
     <option name="MAKE_PROJECT_ON_SAVE" value="true" />
@@ -91,7 +47,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/master" />
+    <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
     <option name="PUSH_TAGS">
@@ -200,7 +156,7 @@
   <component name="RunDashboard">
     <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="Tomcat 서버.Tomcat 9.0.58">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.58">
     <configuration name="ClubServiceTest.updateVoter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MOWAS" />
       <extension name="coverage">
@@ -281,7 +237,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tomcat 9.0.58" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.58" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+    <configuration name="Tomcat 9.0.58" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.58" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="$PROJECT_DIR$/../../Program Files/Java/jre1.8.0_181" nameIsGenerated="true">
       <option name="COMMON_VM_ARGUMENTS" value="-Dfile.encoding=UTF-8" />
       <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
@@ -376,7 +332,7 @@
       <item itemvalue="JUnit.MongoDbDaoImplTest.deleteClub" />
       <item itemvalue="JUnit.MongoDbDaoImplTest.deleteCluber" />
       <item itemvalue="JUnit.ClubServiceTest.updateVoter" />
-      <item itemvalue="Tomcat 서버.Tomcat 9.0.58" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.58" />
     </list>
     <recent_temporary>
       <list>
@@ -430,6 +386,7 @@
       <workItem from="1667270001678" duration="22797000" />
       <workItem from="1667421975525" duration="303000" />
       <workItem from="1667430186750" duration="5291000" />
+      <workItem from="1667440701526" duration="7073000" />
     </task>
     <task id="LOCAL-00001" summary="설정">
       <created>1664436990723</created>
@@ -536,14 +493,7 @@
       <option name="project" value="LOCAL" />
       <updated>1667438953375</updated>
     </task>
-    <task id="LOCAL-00016" summary="JHK 2022.11.03&#10;&#10;sns 로그인 유저 정보입력창 수정">
-      <created>1667440719177</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1667440719177</updated>
-    </task>
-    <option name="localTasksCounter" value="17" />
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -643,6 +593,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="BJW 2022.09.30&#10;&#10;mian.jsp / js파일/ css파일 추가" />
     <MESSAGE value="BJW 2022.10.01&#10;&#10;커뮤니티 jsp 완성, navigation 경로 완성" />
     <MESSAGE value="BJW 2022.10.03&#10;&#10;댓글,대댓글,조회수 json으로 처리 calender add성공 pom.xml에 jdbc드라이버 dependency 관개 맷음,&#10;spring-mybatis mybatise 버전 충돌 해결" />
     <MESSAGE value="LJH 2022.10.06&#10;&#10;컨트롤러 =&gt; jsp 연결 완료&#10;모임, 가입, 모임원, 블랙리스트, 공지사항 컨트롤러 완성&#10;RestController 작업 필요" />
@@ -667,8 +618,7 @@
     <MESSAGE value="JHK 2022.11.02&#10;&#10;아이디,비밀번호 찾기창&amp; 아이디,비밀번호 완료 창 수정" />
     <MESSAGE value="JHK 2022.11.02&#10;&#10;바디 태그 수정, 회원목록 페이징&amp; 검색 처리함" />
     <MESSAGE value="JHK 2022.11.03&#10;&#10;관심목록 선택창 완료" />
-    <MESSAGE value="JHK 2022.11.03&#10;&#10;sns 로그인 유저 정보입력창 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="JHK 2022.11.03&#10;&#10;sns 로그인 유저 정보입력창 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="JHK 2022.11.03&#10;&#10;관심목록 선택창 완료" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -685,7 +635,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/project/myPage/service/MyPageServiceImpl.java</url>
-          <line>184</line>
+          <line>168</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -706,7 +656,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDao.java</url>
           <line>34</line>
-          <properties class="com.project.user.dao.UserDao" method="updateLcd">
+          <properties class="com.project.user.dao.UserDao">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>

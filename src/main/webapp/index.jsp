@@ -60,7 +60,7 @@
     <div class="jb-box">
 
        <video muted autoplay loop>
-               <source src="/resources/images/프리미어 프로 _ 나이키 광고영상.mp4" type="video/mp4">
+               <source src="/resources/images/main_video.mp4" type="video/mp4">
        </video>
 
     </div>

@@ -292,6 +292,11 @@
                             </div>
                         </li>
 
+                        <li>
+                            <div type="text" class="getClub">모임으로
+                            </div>
+                        </li>
+
                     </c:if>
 
                 </ul>
@@ -557,6 +562,19 @@
 
             })
 
+            //clubNum 받기
+            chatSocket.off('clubNum').on("clubNum", (clubNum) => {
+                $('.chatRoom .getClub').off('click').on('click',function(){
+                    // 원래창 이동 후 채팅창 닫기
+                    opener.location.href = '/club/getClub/'+clubNum
+                    self.close()
+
+                    // 새창 열기
+                    // window.open('/club/getClub/'+clubNum)
+                })
+
+            })
+
 
             // 거래 모달창 오픈
             $(".dealCalender").off('click').on("click", () => {
@@ -811,6 +829,7 @@
         }
         //Server에 socket.on으로 data정보를 전달
         chatSocket.emit("chatting", data)
+        $('#chatting-input').val('')
     }
 
     function LiModel(name, msg, time, file, imgCheck, userImage) {

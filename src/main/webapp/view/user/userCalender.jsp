@@ -401,6 +401,29 @@
             })
         })
     })
+
+    $(function(){
+
+        $('.calenderCluber2').off('click').on('click',function(){
+
+            $.ajax({
+                url : '/club/listCalendarCluber/'+$('#exampleModal1 .clubCalnderNum').val(),
+                success : function(re){
+                    $('#listCalendarCluber .modal-content').html(re)
+                    $('#listCalendarCluber .listClubCalendarApply').css('display','none')
+                    $('#exampleModal1').modal('hide')
+                    $('#listCalendarCluber').modal('show')
+                    $('#listCalendarCluber .back-btn').off('click').on('click',function(){
+                        $('#listCalendarCluber').modal('hide')
+                        $('#exampleModal1').modal('show')
+                    })
+                }
+            })
+        })
+
+    })
+
+
 </script>
 
 <style>
@@ -578,6 +601,14 @@
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 
             </div>
+        </div>
+    </div>
+</div>
+
+<%--모임 일정 참여자 조회--%>
+<div class="modal fade" id="listCalendarCluber" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
         </div>
     </div>
 </div>

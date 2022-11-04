@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -44,6 +45,7 @@
         }
 
         .chatBox {
+            cursor: pointer;
             padding: 5px 5px;
             width: 100%;
             display: flex;
@@ -82,15 +84,15 @@
 
 
 <%--거래 일정 등록  지도--%>
-<div class="modal fade" id="location1" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
+<%--<div class="modal fade" id="location1" tabindex="-1" aria-hidden="true">--%>
+<%--    <div class="modal-dialog modal-dialog-centered">--%>
+<%--        <div class="modal-content">--%>
 
-            <jsp:include page="/view/site/addDealrMap.jsp"/>
+<%--            <jsp:include page="/view/site/addDealrMap.jsp"/>--%>
 
-        </div>
-    </div>
-</div>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
 
 <script>
 

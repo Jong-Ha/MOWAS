@@ -273,7 +273,6 @@
         }
 
         .logitem {
-            margin-top: -20px;
             display: flex;
         }
 
@@ -352,8 +351,20 @@
         }
 
         .logitem {
-            margin-top: -20px;
             display: flex;
+        }
+
+        .nav-link.underline.yellow.toolbar_nav{
+            margin-right: 25px;
+            color : #ffffff;
+            font-size: 20px;
+        }
+
+        @font-face {
+            font-family: 'MaplestoryOTFBold';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
         }
 
         .underline {
@@ -417,11 +428,15 @@
 <body>
 
 <div class="topbar">
-    <nav class="shadow-lg navbar navbar-expand-lg " style=" background: #000000c7;;  border-radius: 5px;">
+    <nav class="shadow-lg navbar navbar-expand-lg " style=" background: #333333;;  border-radius: 5px;padding: 0;">
         <div class="navCenter">
+
+            <a class="navbar-brand " href="/index.jsp" style="color : #ffffff; font-size: 2em">
+                <img src="/resources/images/MOWAS_T_2.png" alt="MOWAS" style="height: 100px;width: 100px;object-fit: cover;">
+            </a>
+
             <div class="container-fluid">
 
-                <a class="navbar-brand " href="#" style="color : #ffffff; font-size: 2em">MOWAS</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                         aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -429,31 +444,29 @@
                 <div class="collapse navbar-collapse" id="navbarScroll">
                     <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                         <li class="nav-item">
-                            <a class="nav-link active  underline yellow" aria-current="page"
-                               onclick="location.href='/site/listMasterBoard'"
-                               style="color : #ffffff; font-size: 1.3em;">공지 사항</a>
+                            <a class="nav-link active  underline yellow toolbar_nav" aria-current="page"
+                               onclick="location.href='/site/listMasterBoard'">공지 사항</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active  underline yellow" aria-current="page"
-                               onclick="location.href='/club/listClub'" style="color : #ffffff; font-size: 1.3em;">모임
+                            <a class="nav-link active  underline yellow toolbar_nav" aria-current="page"
+                               onclick="location.href='/club/listClub'">모임
                                 게시판</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link  underline yellow" href="#" style="color : #ffffff;font-size: 1.3em;"
+                            <a class="nav-link  underline yellow toolbar_nav" href="#"
                                onclick="location.href='/clubCal/listCalenderReview?boardCategory='+1+'&reviewRange='+1">커뮤니티
                                 게시판</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link  underline yellow" style="color : #ffffff; font-size: 1.3em;"
+                            <a class="nav-link  underline yellow toolbar_nav"
                                onclick="location.href='/deal/getListDeal?boardCategory=99'">중고 거래 게시판</a>
                         </li>
 
                         <c:if test="${sessionScope.user.masterCheck eq 2}">
                             <li class="nav-item">
                                 <div class="dropdown">
-                                    <a class="nav-link  underline yellow dropdown-toggle"
-                                       style="color : #ffffff; font-size: 1.3em;"
+                                    <a class="nav-link  underline yellow dropdown-toggle toolbar_nav"
                                        role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
                                        aria-expanded="false">
                                         관리자 게시판
@@ -474,7 +487,7 @@
                         </c:if>
 
                     </ul>
-                    <div class="logitem">
+                    <div class="logitem" style="align-items: center;">
 
                         <c:if test="${sessionScope.user.loginType eq 1}">
                             <img  src="/resources/${sessionScope.user.userImage}" style="width: 60px;margin-right: 10px; border-radius: 40px; height: 50px;">
@@ -488,8 +501,7 @@
 
                         <c:if test="${sessionScope.user.userImage eq null}">
 
-                            <img src="${pageContext.request.contextPath}/resources/images/proplePoto.png"
-                                 style="width: 60px;margin-right: 10px; border-radius: 40px; height: 50px;">
+
 
                         </c:if>
 
@@ -515,9 +527,9 @@
                                 <div class=" loginbox login underline yellow" style="font-size: 1.2em; color: #FFFFFF;"
                                      id="myPage" type="button">마이페이지
                                 </div>
-                            </div>
 
                             </c:if>
+                            </div>
 
                         </div>
                     </div>

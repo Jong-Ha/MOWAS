@@ -110,12 +110,16 @@
 
             if (userId === '' || userId === null) {
 
+
                 Swal.fire({
                     icon: 'error',
                     title: '사용할수 없는 기능 입니다',
                     text: '로그인후 사용해 주세요',
                     footer: '<a href="">Why do I have this issue?</a>'
-                })
+                }).then(() => {
+                        $("#loginModal").modal("show")
+                    }
+                )
 
             } else if (userId !== '') {
                 var likeCount = $(this).parents(".cardbox").find(".likeText").html();
@@ -242,12 +246,16 @@
 
             if (userId === '' || userId === null) {
 
+
                 Swal.fire({
                     icon: 'error',
                     title: '사용할수 없는 기능 입니다',
                     text: '로그인후 사용해 주세요',
                     footer: '<a href="">Why do I have this issue?</a>'
-                })
+                }).then(() => {
+                        $("#loginModal").modal("show")
+                    }
+                )
 
             } else if (userId !== '') {
 
@@ -613,7 +621,7 @@
         flex-direction: row-reverse;
     }
 
-    .user_manu_click{
+    .user_manu_click {
         cursor: pointer;
     }
 
@@ -626,7 +634,6 @@
         margin-left: 647px;
     }
 
-    }
 
     .user_hidden_manu > ul {
         width: 125px;
@@ -669,8 +676,6 @@
 <jsp:include page="/layout/commubar.jsp"/>
 
 <div class="container" style="align-items: center;  justify-content: center;  display: flex;  flex-direction: column;">
-
-
 
 
     <div class="addBox">
@@ -812,7 +817,6 @@
     </div>
 </div>
 
-<div style=" padding-bottom: 900px;"></div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
      style="display: none;">

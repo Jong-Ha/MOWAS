@@ -331,6 +331,9 @@ clubChat.on('connection', (socket) => {
 
     // console.log("roomId club : " + roomId);
 
+    Room.find({'roomId':roomId, 'chatCategory':'clubChat'},function(error, result){
+        clubChat.to(roomId).emit("clubNum", result[0].boardNum);
+    })
 
     Msg.find({'roomId': roomId}, function (error, msg) {
         // console.log(msg);
