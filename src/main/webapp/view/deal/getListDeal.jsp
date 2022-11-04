@@ -76,7 +76,7 @@
                     $("#addDeal").find(".newDeal").on('click', function () {
 
                         if ($("#dealTitle").val() === '') {
-                            alert("제목은 필수입니다")
+                            alert("거래명은 필수입니다")
                             return;
                         }
                         if ($("#dealProduct").val() === '') {
@@ -119,12 +119,11 @@
             });
         })
 
+        function numberWithCommas(x) {
 
-//
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-
-
-
+        }
 
 
         //무한스크롤
@@ -299,6 +298,8 @@
                     alert('숫자만 입력가능합니다.')
                 }
             })
+            //가격 콤마찍기
+            $('#dealPrice')
 
         })
     </script>
@@ -781,7 +782,7 @@
                                     <%--                            </div>--%>
 
                                 <div class="dealinfo cartFont" style="flex: 1; width: 50%;">
-                                    <p class="allFlex" style="font-size: 1.3em; font-weight: bold"> ${deal.price} 원 </p>
+                                    <p class="allFlex" id="dealPrice"style="font-size: 1.3em; font-weight: bold"> ${deal.price} 원 </p>
                                     <p class="allFlex" id="demo"
                                        style="font-size: 1.3em; font-weight: bold">&nbsp;&nbsp;
                                     </p>

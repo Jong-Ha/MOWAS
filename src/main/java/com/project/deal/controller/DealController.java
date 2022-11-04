@@ -387,6 +387,7 @@ String history="";
 //            System.out.println(map.get("list"));
 //            model.addAttribute("list", (List<Deal>)map.get("list"));
             model.addAttribute("list",list);
+
             //model.addAttribute("resultPage", resultPage);
             model.addAttribute("search", search);
             model.addAttribute("boardCategory",boardCategory);
