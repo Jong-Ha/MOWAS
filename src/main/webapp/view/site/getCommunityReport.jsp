@@ -10,7 +10,7 @@
 <html>
 
 <head>
-  <title>Get Community Report</title>
+  <title>MOWAS</title>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">

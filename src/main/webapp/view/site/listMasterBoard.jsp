@@ -10,7 +10,8 @@
 
 <html>
 <head>
-  <title>List MasterBoard</title>
+  <title>MOWAS</title>
+
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -140,7 +141,7 @@
         var masterBdNo = $(this).data('masterbdno')
         var mbCategory = $(this).data('masterbdcate')
         var mbTitle = $(this).data('masterbdtitle')
-        var mbText = $(this).data('masterbdText')
+        var mbText = $(this).data('masterbdtext')
 
         $("#updateMB .modal-content").load("/view/site/updateMasterBoard.jsp",
                 {masterBoardNo: masterBdNo, mbCategory: mbCategory, mbTitle: mbTitle, mbText: mbText},
@@ -214,11 +215,12 @@
             Swal.fire(
                     'Deleted!',
                     'Your file has been deleted.',
-                    'success'
+                    'success',
+                    {timer:1500}
             )
-          }
             var masterBdNo = $(this).data('masterbdno')
-            self.location = "/site/deleteMasterBoard/"+masterBdNo
+            self.location = "/site/deleteMasterBoard/" + masterBdNo
+          }
         })
 
 
@@ -241,6 +243,7 @@
     </div>
     </div>
   </div>
+
   <div class="container">
 
   <nav class="navbar navbar-expand-lg mbBox">
@@ -369,7 +372,7 @@
 
                 </td>
                 <td data-masterbdno="${mb.masterBoardNo}" class="masterBdNo">
-                  <span class="text-success mr-4 getMb" data-toggle="tooltip" data-placement="center" title="" data-original-title="NewMb">
+                  <span class="text-success mr-4 getMb" data-toggle="tooltip" data-placement="center" title="modify" data-original-title="NewMb">
                   <i class="fa fa-file-text h5 m-0"></i></span>
                 </td>
 
@@ -378,7 +381,7 @@
                   <button data-masterbdno="${mb.masterBoardNo}"
                           data-masterbdcate="${mb.mbCategory}"
                           data-masterbdtitle="${mb.mbTitle}"
-                          data-masterbdText="${mb.mbText}"
+                          data-masterbdtext="${mb.mbText}"
                           class="btn updateMasterBoard" data-bs-toggle="modal"
                           data-bs-target="#updateMasterBoard">
                     <i class="fa fa-pencil h5 m-0"></i>
@@ -454,7 +457,7 @@
     </div>
   </div>
   <%-- end row --%>
-
+  </div>
 </div>
 
 

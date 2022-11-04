@@ -9,24 +9,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="ASK 2022.11.03 11:18&#10;&#10;&#10; 통합 및 오류 검사 등 등">
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="ASK 2022.11.03 12:46&#10;&#10;&#10; 통합 및 오류 검사 등 등">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/2dc9c73c-85f8-40b3-aac0-f5855f83c5e5문상훈.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/49a5cfb8-d40f-4a79-b7b4-13e90ec1d5b9천향 낚시대.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/4b4c8ce3-8997-4c5e-ba46-caabe4d177bc나이키리바이스.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/55acd25a-8599-41a9-ab3c-291660566673방탄 맨투맨.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/566554b2-3e31-457b-8fe7-e4cb69a35469범고래.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/5dmark4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/6d7da1bb-aa2b-4e28-bdc5-478e89e3e11e아이폰판매2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/6dd35816-929c-4f16-b2dc-9bead66f4a03빠더너스 굿즈.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/70829a48-1a83-4fe7-af34-45e9d0e95da2오막포2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/907a36f0-f4be-444b-ab50-926748f85d2d스타벅스2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/e0765e04-a0c2-480c-a44d-cf15329d8866아이폰 판매.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/eafadf6b-623c-4107-8ed5-438f4e075a60아이폰 4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/나이키리바이스.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/문상훈.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/방탄 맨투맨.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/범고래.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/빠더너스 굿즈.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/스타벅스 1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/스타벅스2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/아이폰 4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/아이폰 판매.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/아이폰판매2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/오막포.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/오막포2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/천향 낚시대.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/UserInterList.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/domain/UserInterList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/controller/MyPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/controller/MyPageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/controller/MyPageRestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/controller/MyPageRestController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/dao/MyPageDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/dao/MyPageDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/dao/MyPageDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/dao/MyPageDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/service/MyPageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/service/MyPageService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/service/MyPageServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/myPage/service/MyPageServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/user/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/user/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/user/service/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/user/service/UserServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/config/common.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/config/common.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/MyPageMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/MyPageMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/deal/controller/DealController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/deal/controller/DealController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/controller/ClubController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/controller/ClubController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/deal/controller/DealController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/deal/controller/DealController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/ClubCalenderMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/ClubCalenderMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/deal/addDeal.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/deal/addDeal.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/deal/getDeal.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/deal/getDeal.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/view/deal/getListDeal.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/deal/getListDeal.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyDealBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/getMyDealBoard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/userCalender.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/userCalender.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -392,7 +409,7 @@
       <workItem from="1666343876167" duration="55962000" />
       <workItem from="1666589308433" duration="18822000" />
       <workItem from="1666918953601" duration="11176000" />
-      <workItem from="1667129677599" duration="127601000" />
+      <workItem from="1667129677599" duration="136599000" />
     </task>
     <task id="LOCAL-00001" summary="설정">
       <created>1664436990723</created>
@@ -513,7 +530,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667441942671</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="ASK 2022.11.03 12:46&#10;&#10;&#10; 통합 및 오류 검사 등 등">
+      <created>1667447218770</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1667447218770</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -602,7 +626,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="설정" />
     <MESSAGE value="BJW 2022.09.30&#10;&#10;mian.jsp / js파일/ css파일 추가" />
     <MESSAGE value="BJW 2022.10.01&#10;&#10;커뮤니티 jsp 완성, navigation 경로 완성" />
     <MESSAGE value="BJW 2022.10.03&#10;&#10;댓글,대댓글,조회수 json으로 처리 calender add성공 pom.xml에 jdbc드라이버 dependency 관개 맷음,&#10;spring-mybatis mybatise 버전 충돌 해결" />
@@ -627,7 +650,8 @@
     <MESSAGE value="ASK 2022.11.02&#10;&#10;&#10; 통합 및 오류 검사 등 등" />
     <MESSAGE value="ASK 2022.11.02 20:52&#10;&#10;&#10; 통합 및 오류 검사 등 등" />
     <MESSAGE value="ASK 2022.11.03 11:18&#10;&#10;&#10; 통합 및 오류 검사 등 등" />
-    <option name="LAST_COMMIT_MESSAGE" value="ASK 2022.11.03 11:18&#10;&#10;&#10; 통합 및 오류 검사 등 등" />
+    <MESSAGE value="ASK 2022.11.03 12:46&#10;&#10;&#10; 통합 및 오류 검사 등 등" />
+    <option name="LAST_COMMIT_MESSAGE" value="ASK 2022.11.03 12:46&#10;&#10;&#10; 통합 및 오류 검사 등 등" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="XDebuggerManager">

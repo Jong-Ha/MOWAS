@@ -16,11 +16,12 @@ import org.springframework.web.bind.annotation.*;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
-import javax.activation.DataHandler;
+import javax.activation.*;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.mail.*;
 import javax.mail.internet.*;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -300,7 +301,8 @@ public class UserRestController {
         String recipient = email;    //받는 사람의 메일주소를 입력해주세요.
         String subject = "MOWAS 이메일 인증코드입니다";      //메일 제목 입력해주세요.
         String body = "MOWAS님으로 부터 메일을 받았습니다. " +
-                "인증번호는 ["+emailNo+"]입니다"; //메일 내용 입력해주세요.
+                "인증번호는 ["+emailNo+"]입니다";
+                 //메일 내용 입력해주세요.
 
         Properties props = System.getProperties(); // 정보를 담기 위한 객체 생성
 
@@ -338,8 +340,50 @@ public class UserRestController {
         return emailNo;
     }
 
+    @RequestMapping(value = "mailImage",method = RequestMethod.POST)
+    public void mailImage(HttpServletRequest request, ModelMap mo,@RequestParam(value="email", required = false)String email) throws Exception,AddressException, MessagingException {
+        System.out.println("여기는 mailImage 컨트롤러 시작이다");
 
-    /*
+        System.out.println("Sending mail...");
+        Properties props = new Properties();
+        props.setProperty("mail.transport.protocol", "465");
+        props.setProperty("mail.host", "smtp.gmail.com");
+        props.setProperty("mail.user", "mowas1226");
+        props.setProperty("mail.password", "pfhcwivcgyxjrpro");
+
+        Session mailSession = Session.getDefaultInstance(props, null);
+        mailSession.setDebug(true);
+        Transport transport = mailSession.getTransport();
+
+        Random rand = new Random();
+        String emailNo="";
+        for(int i=0;i<4;i++){
+            String ran = Integer.toString(rand.nextInt(10));
+            emailNo += ran;
+        }
+        System.out.println("emailNo의 값은 ::::: "+emailNo);
+
+        StringBuffer sb = new StringBuffer();
+        sb.append("<html><body>");
+        sb.append("<meta http-equiv='Content-Type' content='text/html; charset=euc-kr'>");
+        sb.append("<h4> MOWAS ");
+
+        MimeMessage message = new MimeMessage(mailSession);
+        message.setSubject("[MOWAS] 이메일 인증 안내");
+        message.setFrom(new InternetAddress("mowas1226@gmail.com"));
+        message.setContent("<h1>MOWAS</h1><br>MOWAS님으로 부터 메일을 받았습니다.<br>인증번호는 ["+emailNo+"]입니다<br><img src=\\\"/resources/images/MOWAS_T_2.png\\\">", "text/html; charset=UTF-8");
+        message.addRecipient(javax.mail.Message.RecipientType.TO,
+                new InternetAddress(email));
+
+        transport.connect();
+        transport.sendMessage(message,
+                message.getRecipients(javax.mail.Message.RecipientType.TO));
+        transport.close();
+
+
+        System.out.println("여기는 mailSender 컨트롤러 종료이다");
+    }
+/*
     @RequestMapping(value = "mailImage",method = RequestMethod.POST)
     public void mailImage(HttpServletRequest request, ModelMap mo,@RequestParam(value="email", required = false)String email) throws AddressException, MessagingException {
 
@@ -389,8 +433,8 @@ public class UserRestController {
 
         System.out.println("여기는 mailSender 컨트롤러 종료이다");
     }
-
 */
+
 
     @RequestMapping(value = "smsSend", method = RequestMethod.POST)
     public String smsSend(@RequestParam(value = "phone", required = false) String phone,Model model ) throws Exception {
