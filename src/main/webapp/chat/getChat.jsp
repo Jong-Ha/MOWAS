@@ -829,6 +829,7 @@
         }
         //Server에 socket.on으로 data정보를 전달
         chatSocket.emit("chatting", data)
+        $('#chatting-input').val('')
     }
 
     function LiModel(name, msg, time, file, imgCheck, userImage) {

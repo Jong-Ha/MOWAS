@@ -23,7 +23,7 @@
   var naverLogin = new naver.LoginWithNaverId(
           {
             clientId: "LVp6wWTSWO4roaPEeGxT",
-            callbackUrl: "http://192.168.0.235:8080//view/user/callBack.jsp",
+            callbackUrl: "http://192.168.0.235:8080/view/user/callBack.jsp",
             isPopup: true,
             callbackHandle: true
             /* callback 페이지가 분리되었을 경우에 callback 페이지에서는 callback처리를 해줄수 있도록 설정합니다. */

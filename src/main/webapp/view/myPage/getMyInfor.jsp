@@ -73,7 +73,7 @@
             <form action="">
                 <div class="col-lg-8">
                     <div class="card mb-4 border-0">
-                        <div class="card-body">
+                        <div class="card-body" style="width: 400px; ">
                             <div class="row mt-2 mb-2">
                                 <div class="col-sm-4">
                                     <p class="mb-0 fw-bold">회원아이디</p>
@@ -248,7 +248,7 @@
                                 </div>
                                 <div class="col-sm-8">
                                         <span class="aaa">
-                                            <img id="userImage1"  src="/resources/${map.user.userImage}" class="w-50">
+                                            <img id="userImage1"  src="/resources/${map.user.userImage}" class="w-75">
                                             <input type="hidden" class="userPhoto" value="${map.user.userImage}">
                                         </span>
                                 </div>
@@ -261,7 +261,7 @@
                                 </div>
                                 <div class="col-sm-8">
                                         <span class="aaa">
-                                            <img id="userImage2"   src="${map.user.userImage}" class="w-50">
+                                            <img id="userImage2"   src="${map.user.userImage}" class="w-75">
                                             <input type="hidden" class="userPhoto" value="${map.user.userImage}">
                                         </span>
                                 </div>
@@ -274,7 +274,7 @@
                                 </div>
                                 <div class="col-sm-8">
                                         <span class="aaa">
-                                            <img id="userImage3"  src="${map.user.userImage}" class="w-50">
+                                            <img id="userImage3"  src="${map.user.userImage}" class="w-75">
                                             <input type="hidden" class="userPhoto" value="${map.user.userImage}">
                                         </span>
                                 </div>

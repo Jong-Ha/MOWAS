@@ -21,6 +21,7 @@
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="/resources/OpenSource/js/jquery.cookie.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <style>
     .wap {
@@ -147,7 +148,7 @@
          {
             clientId: "LVp6wWTSWO4roaPEeGxT",
             // 본인의 Client ID로 수정, 띄어쓰기는 사용하지 마세요.
-            callbackUrl: "http://localhost:8080/user/callBack",
+            callbackUrl: "http://192.168.0.235:8080/user/callBack",
             // 본인의 callBack url로 수정하세요.
             isPopup: false,// 팝업창으로 로그인을 진행할 것인지?
             loginButton: {color: "green", type: 3, height: 70}
@@ -222,10 +223,10 @@
                     <div id="naver_id_login"></div>
                     <!-- //네이버 로그인 버튼 노출 영역 -->
                     <script type="text/javascript">
-                        var naver_id_login =  new window.naver_id_login("LVp6wWTSWO4roaPEeGxT", "http://localhost:8080/user/callBack");
+                        var naver_id_login =  new window.naver_id_login("LVp6wWTSWO4roaPEeGxT", "http://192.168.0.235:8080/user/callBack");
                         var state = naver_id_login.getUniqState();
                         naver_id_login.setButton("white", 2,40);
-                        naver_id_login.setDomain("http://localhost:8080/");
+                        naver_id_login.setDomain("http://192.168.0.235:8080/");
                         naver_id_login.setState(state);
                         naver_id_login.setPopup(false);
                         naver_id_login.init_naver_id_login();
