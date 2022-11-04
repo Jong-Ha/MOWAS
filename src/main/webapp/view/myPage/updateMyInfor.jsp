@@ -101,6 +101,9 @@
 
 
     <script type="text/javascript">
+        let num
+        let smsNum
+
         $(function () {
             $("form").on("submit", function () {
                 var userId = $(".myPageUserId").val();
@@ -110,61 +113,89 @@
             //인증,비번,관심목록 수정해야함
         });
         $(function () {
-            $(".emailKey").on("click", function () {
-
+            function lodingNum() {
                 $.ajax({
                     url: "/user/json/mailSender",
                     method: "POST",
                     data: {
-                        email: $("#email").val()
+                        email: $(".userEmail").val()
                     },
                     dataType: "json",
-                    success: function ({JSONData, status}) {
-                        console.log(status);
+                    success: function (emailNo) {
+
+                        console.log("emailNo"+emailNo)
+                        num = emailNo;
                         $(".emailYC").css("display", '');
                     }
                 });
+            }
+
+            $(".emailKey").on("click", function () {
+                lodingNum();
             });
-            $(".smsKey").on("click", function () {
+
+            function fncLodingSmsNum(){
+
                 $.ajax({
                     url: "/user/json/smsSend",
                     method: "POST",
                     data: {
-                        phone: $("#phone").val()
+                        phone: $(".userPhone").val()
                     },
                     dataType: "json",
-                    success: function () {
-                        $(".smsYC").css("display", '');
+                    success: function (smsNo) {
+
+                        console.log("smsNo"+smsNo)
+                        smsNum = smsNo;
+                        $("#smsYC").css("display", '');
                     }
                 });
+            }
+
+            $(".smsKey").on("click",function (){
+                fncLodingSmsNum();
             });
 
-            $(".CheckEmailKey2").on("click", function () {
+            $(".CheckEmailKey2").on("click",function (){
+                console.log('asdsad')
+                console.log(num)
+
                 var CheckEmailKey = $(".CheckEmailKey").val();
-                alert(CheckEmailKey);
-                var emailNo = ${no.emailNo}
-                    alert("랜덤 이메일 인증번호 :" + emailNo);
-                if (CheckEmailKey != 1234) {
-                    $('.emailInfor').css('display', '');
-                } else {
-                    $(".emailInforYes").css('display', '');
+                console.log(CheckEmailKey)
+                //alert(CheckEmailKey);
+                //var emailNo = num;
+                // alert("랜덤 이메일 인증번호 :"+emailNo);
+                if(parseInt(CheckEmailKey)!=num){
+                    $(".emailYC").css("display", 'none');
+                    $(".emailInforYes").css('display','none');
+                    $('.emailInfor').css('display','');
+                }else{
+                    $(".emailYC").css("display", 'none');
+                    $('.emailInfor').css('display','none');
+                    $(".emailInforYes").css('display','');
                 }
             });
-            $(".CheckSmsKey").on("click", function () {
+            $(".CheckSmsKey").on("click",function (){
                 var CheckSms = $("#CheckSms").val();
-                alert(CheckSms);
-                if (CheckSms != 1234) {
-                    $('.smsNo').css('display', '');
-                } else {
-                    $(".smsYes").css('display', '');
+                console.log(smsNum);
+                console.log(CheckSms);
+                if(CheckSms!=smsNum){
+                    $(".smsYC").css("display",'none');
+                    $(".smsYes").css('display','none');
+                    $('.smsNo').css('display','');
+                }else{
+                    $(".smsYC").css("display",'none');
+                    $('.smsNo').css('display','none');
+                    $(".smsYes").css('display','');
                 }
             });
-            $("#password").on("keyup", function () {
+
+            $("#updatePassword").on("keyup",function () {
                 $.ajax({
                     url: "/user/json/password",
                     method: "POST",
                     data: {
-                        password: $("#password").val()
+                        password : $("#updatePassword").val()
                     },
                     dataType: "json",
                     success: function (result) {
@@ -756,9 +787,18 @@
                 <div class="card-header">내 정보 수정하기</div>
                 <div class="card-body text-center">
                     <!-- Profile picture image-->
+                    
+                    <c:if test="${user.loginType eq 1}">
                     <img class="img-account-profile rounded-circle mb-2" src="/resources/${user.userImage}" alt="">
+                    </c:if>
+                    <c:if test="${user.loginType eq 2}">
+                        <img class="img-account-profile rounded-circle mb-2" src="${user.userImage}" alt="">
+                    </c:if>
+                    <c:if test="${user.loginType eq 3}">
+                        <img class="img-account-profile rounded-circle mb-2" src="${user.userImage}" alt="">
+                    </c:if>
                     <!-- Profile picture help block-->
-                    <div class="font-italic text-muted mb-4">Id : ${user.userId}</div>
+                    <div class="font-italic text-muted mb-4">ID : ${user.userId}</div>
                     <!-- Profile picture upload button-->
                 </div>
             </div>
@@ -771,8 +811,8 @@
                     <form enctype="multipart/form-data">
                         <!-- Form Group (username)-->
                         <div class="mb-3">
-                            <label class="small mb-1 fw-bold" for="password">비밀번호 (영문,숫자 혼합, 8~16글자로 입력해주세요)</label>
-                            <input class="form-control" id="password" type="text" placeholder="password"
+                            <label class="small mb-1 fw-bold" for="updatePassword">비밀번호 (영문,숫자 혼합, 8~16글자로 입력해주세요)</label>
+                            <input class="form-control" id="updatePassword" type="text" maxLength="16"  placeholder="password"
                                    value="${map.user.password}">
                         </div>
                         <!-- Form Row-->
@@ -782,7 +822,9 @@
                                 <input class="form-control" id="email" name="email" type="email"
                                        placeholder="이메일을 입력하세요" value="${map.user.email}">
                                 <button type="button" class="btn btn-primary btn-sm emailKey">인증번호 요청</button>
-                                <br/>
+                                <span class=" emailYC" style="display: none; margin-right: 192px;">
+                <strong class="text-danger" >인증번호가 발송되었습니다</strong>
+                    </span>
                             </div>
 
                             <div class="col-md-6">
@@ -791,6 +833,15 @@
                                 <button type="button" class="btn btn-primary btn-sm CheckEmailKey2">인증 확인</button>
                             </div>
                         </div>
+                        <div style="display: flex">
+          <span class="emailInfor" style="display: none; margin-left: 130px;">
+                <strong class="text-danger" >인증번호가 틀렸습니다</strong>
+              </span>
+
+                            <span class="emailInforYes" style="display: none; margin-left: 130px;">
+              <strong class="text-danger" > 인증되었습니다</strong>
+              </span>
+                        </div>
 
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
@@ -798,20 +849,30 @@
                                 <input type="text" class="form-control" id="phone" name="phone"
                                        placeholder="휴대폰 번호를 입력하세요" value="${map.user.phone}">
                                 <button type="button" class="btn btn-primary btn-sm smsKey">인증번호 요청</button>
+                                <span class="smsYC" id="smsYC" style="display: none; margin-right: 192px;">
+                     <strong class="text-danger" > 인증번호가 발송되었습니다</strong>
+                      </span>
                             </div>
 
                             <div class="col-md-6">
                                 <label class="small mb-1 fw-bold CheckSmsKey">인증번호 입력</label>
                                 <input type="text" class="form-control" id="CheckSms" placeholder="인증번호 입력">
                                 <button type="button" class="btn btn-primary btn-sm CheckSmsKey">인증 확인</button>
+                                <span class="smsNo" style="display: none; margin-right: 224px;">
+              <strong class="text-danger" >인증번호가 틀렸습니다</strong>
+              </span>
+
+                                <span class="smsYes" style="display: none; margin-right: 274px;">
+               <strong class="text-danger" > 인증되었습니다</strong>
+              </span>
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <label class="small mb-1 fw-bold">동네이름</label>
+                            <label class="small mb-1 fw-bold">주소</label>
                             <input type="text" class="form-control" id="villCode" placeholder="동이름을 입력해주세요"
                                    name="villCode" value="${map.user.villCode}">
-                            <button type="button" class="btn btn-primary btn-sm">동네인증 요청</button>
+
                         </div>
 
                         <!-- Form Row        -->
@@ -996,11 +1057,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div>
-                        <label>
-                            <input type="checkbox" class="totalInterList"> 전체선택
-                        </label>
-                    </div>
+
                     <div class="interList">
                         <label>
                             <input type="checkbox" id="list01" name="interList" value="01"> 독서

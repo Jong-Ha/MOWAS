@@ -58,6 +58,6 @@ public interface UserDao {
 
     public void addNaverUser(User user)throws Exception;
 
-
+    public void userOut(String userId)throws Exception;
 
 }

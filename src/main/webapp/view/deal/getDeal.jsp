@@ -112,7 +112,7 @@ Product vo=(Product)request.getAttribute("vo");
                 var dealBoardNum = $(".dealBoardNum").val()
                 var chatNameSpace = "dealChat"
 
-                alert(dealBoardNum)
+
 
                 if (userId === '' || userId === null) {
 
@@ -319,6 +319,12 @@ Product vo=(Product)request.getAttribute("vo");
                 if($(this).val().length>300){
                     alert('상품설명은 최대 300글자입니다')
                     $(this).val($(this).val().substring(0, 300));
+                }
+            })
+            let checkprice = /^[0-9]+$/;
+            $('#updateDeal #price').on('keyup',function(){
+                if(!checkprice.test($(this).val())){
+                    alert('숫자만 입력가능합니다.')
                 }
             })
         })
@@ -794,16 +800,7 @@ Product vo=(Product)request.getAttribute("vo");
                                     style="z-index: 1; font-size: 0.5em;">${deal.viewCount}</span>
                         </button>
 
-                        <button type="button" class="btn btn-outline-primary itembutton">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                 fill="currentColor" class="bi bi-chat-left-quote itmesize"
-                                 viewBox="0 0 16 16">
-                                <path
-                                        d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                                <path
-                                        d="M7.066 4.76A1.665 1.665 0 0 0 4 5.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 1 0 .6.58c1.486-1.54 1.293-3.214.682-4.112zm4 0A1.665 1.665 0 0 0 8 5.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 1 0 .6.58c1.486-1.54 1.293-3.214.682-4.112z"/>
-                            </svg>
-                        </button>
+
 
 
                         <c:if test="${user.userId == deal.user.userId}">
@@ -874,10 +871,11 @@ Product vo=(Product)request.getAttribute("vo");
 
 
     </div>
-    <div>
-        <button class="btn btn-primary btn-lg list" style="margin-left: 1150px; margin-top: 10px;
-    width: 80px;">목록
-        </button>
+    <div style="margin-left: 1000px; margin-top: 10px;margin-bottom: 10px; width: 100px;display: flex;
+    flex-wrap: nowrap;">
+        <input type="button" class="btn btn-primary btn-lg dealChat" value="채팅하기" style="margin-right: 10px">
+        <input  type="button" class="btn btn-primary btn-lg list"  value="목록">
+
     </div>
 </div>
 
@@ -1147,11 +1145,10 @@ Product vo=(Product)request.getAttribute("vo");
     </div>
 </div>
 <%--모임 수정 모달창 끝--%>
-<input type="button" class="dealChat" value="채팅하기">
-<a class="dealList dealCalender">직거래 일정 등록 하기</a>
 
 
-<button type="button" class="addReview" data-bs-toggle="modal" data-bs-target="#addReview">리뷰작성</button>
+
+
 
 <%-- 리뷰 모달창 만들기 헤헷--%>
 

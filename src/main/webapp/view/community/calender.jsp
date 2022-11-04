@@ -954,7 +954,17 @@
                     $("#location2 .modal-content").html(re);
 
                     $("#location2").modal("show")
+
+                    $(".getLocation").on("click", function () {
+
+                        $("#location2").modal("hide")
+                        $("#exampleModal2").modal("show");
+                    })
+
                 })
+
+
+
 
         })
 

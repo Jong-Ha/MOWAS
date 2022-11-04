@@ -266,7 +266,7 @@
 
 <div class="wrapper">
 
-    <div class="typing" id="myPageMain" style="cursor: pointer; ">
+    <div class="typing mb-5" id="myPageMain" style="cursor: pointer; ">
 
         <h4 style="font-weight: bolder;  font-size: 2rem;
                     background-image: linear-gradient(transparent 60%, #F8CD07 40%);">

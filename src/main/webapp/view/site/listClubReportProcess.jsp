@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>List Community Report Process</title>
+    <title>MOWAS</title>
     <!-- Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -154,9 +154,9 @@
         function fncGetList(currentPage) {
             /* 	document.getElementById("currentPage").value = currentPage;
                    document.detailForm.submit();	 */
-            var clubNum = $(this).data('param1');
+            var clubNum = $(this).data('clubnum');
             $("#currentPage").val(currentPage)
-            $("form").attr("method" , "POST").attr("action" , "/site/listClubReportProcess?clubNum="+clubNum).submit();
+            $("form").attr("method" , "POST").attr("action" , "/site/listClubReportProcess").submit();
         }
 
 
@@ -243,7 +243,7 @@
             <div class="col-xl-3 col-md-6 text-right">
                 <div class="card">
                     <div class="card-body">
-                        <form id="clubReport">
+                        <form>
                             <div class="form-group">
                                 <label>Search</label>
 
@@ -299,7 +299,7 @@
                         <input id="crNo" type="hidden" value="${cr.clubReportNo }"/>
                      </td>
                     <td>${cr.clubNum}
-                        <input id="clubNo" type="hidden" data-param1="${cr.clubNum}"/>
+                        <input id="clubNo" type="hidden" data-clubnum="${cr.clubNum}"/>
                     </td>
                     <td>${cr.club.clubName}</td>
                     <td>${cr.club.clubMasterId}</td>

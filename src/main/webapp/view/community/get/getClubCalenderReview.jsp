@@ -316,7 +316,11 @@
 
                             } else if (userId !== commentUser) {
 
-                                alert("작성자가 아니면 이용 할수 없습니다");
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: '작성자만 수정 할수 있습니다',
+                                    footer: '<a href="">Why do I have this issue?</a>'
+                                })
                             }
 
                         })
@@ -374,7 +378,11 @@
 
                                 })
                             } else if (userId !== commentUser) {
-                                alert("작성자가 아니면 이용 할수 없습니다")
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: '작성자만 삭제 할수 있습니다',
+                                    footer: '<a href="">Why do I have this issue?</a>'
+                                })
                             }
 
                         })
@@ -387,7 +395,17 @@
 
                             } else if (userId === '' || userId === null) {
 
-                                alert("로그인후 이용 해주세요");
+
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: '사용할수 없는 기능 입니다',
+                                    text: '로그인후 사용해 주세요',
+                                    footer: '<a href="">Why do I have this issue?</a>'
+                                }).then(()=>{
+                                        $("#loginModal").modal("show")
+                                    }
+                                )
+
                             }
 
 
@@ -401,8 +419,19 @@
 
                             } else if (userId === '' || userId === null) {
 
-                                alert("로그인후 이용 해주세요");
+
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: '사용할수 없는 기능 입니다',
+                                    text: '로그인후 사용해 주세요',
+                                    footer: '<a href="">Why do I have this issue?</a>'
+                                }).then(()=>{
+                                        $("#loginModal").modal("show")
+                                    }
+                                )
                             }
+
+
 
 
                         })
@@ -442,7 +471,11 @@
 
                             if (userId !== recommentUser) {
 
-                                alert("작성자가 아니면 수정 할수 없습니다")
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: '작성자만 수정 할수 있습니다',
+                                    footer: '<a href="">Why do I have this issue?</a>'
+                                })
 
                             } else if (userId === recommentUser) {
 
@@ -500,7 +533,11 @@
                                     }
                                 })
                             } else if (recommentUser !== userId) {
-                                alert("작성자가 아니면 삭제 할수 없습니다")
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: '작성자가 아니면 삭제 할수 없습니다',
+                                    footer: '<a href="">Why do I have this issue?</a>'
+                                })
                             }
                         })
 
@@ -514,7 +551,10 @@
                                     title: '사용할수 없는 기능 입니다',
                                     text: '로그인후 사용해 주세요',
                                     footer: '<a href="">Why do I have this issue?</a>'
-                                })
+                                }).then(()=>{
+                                        $("#loginModal").modal("show")
+                                    }
+                                )
 
                             } else if (userId !== '') {
 
@@ -557,7 +597,10 @@
                                     title: '사용할수 없는 기능 입니다',
                                     text: '로그인후 사용해 주세요',
                                     footer: '<a href="">Why do I have this issue?</a>'
-                                })
+                                }).then(()=>{
+                                        $("#loginModal").modal("show")
+                                    }
+                                )
 
                             } else if (userId !== '') {
 
@@ -586,12 +629,16 @@
 
                             if (userId === '' || userId === null) {
 
+
                                 Swal.fire({
                                     icon: 'error',
                                     title: '사용할수 없는 기능 입니다',
                                     text: '로그인후 사용해 주세요',
                                     footer: '<a href="">Why do I have this issue?</a>'
-                                })
+                                }).then(()=>{
+                                        $("#loginModal").modal("show")
+                                    }
+                                )
 
                             } else {
 
@@ -649,12 +696,16 @@
 
                             if (userId === '' || userId === null) {
 
+
                                 Swal.fire({
                                     icon: 'error',
                                     title: '사용할수 없는 기능 입니다',
                                     text: '로그인후 사용해 주세요',
                                     footer: '<a href="">Why do I have this issue?</a>'
-                                })
+                                }).then(()=>{
+                                        $("#loginModal").modal("show")
+                                    }
+                                )
 
 
                             } else if (userId !== recommentUser) {
@@ -713,12 +764,16 @@
 
                             if (userId === '' || userId === null) {
 
+
                                 Swal.fire({
                                     icon: 'error',
                                     title: '사용할수 없는 기능 입니다',
                                     text: '로그인후 사용해 주세요',
                                     footer: '<a href="">Why do I have this issue?</a>'
-                                })
+                                }).then(()=>{
+                                        $("#loginModal").modal("show")
+                                    }
+                                )
 
                             } else if (userId !== '') {
 
@@ -744,12 +799,16 @@
 
                             if (userId === '' || userId === null) {
 
+
                                 Swal.fire({
                                     icon: 'error',
                                     title: '사용할수 없는 기능 입니다',
                                     text: '로그인후 사용해 주세요',
                                     footer: '<a href="">Why do I have this issue?</a>'
-                                })
+                                }).then(()=>{
+                                        $("#loginModal").modal("show")
+                                    }
+                                )
 
                             } else if (userId !== '') {
 
@@ -992,7 +1051,10 @@
                             title: '사용할수 없는 기능 입니다',
                             text: '로그인후 사용해 주세요',
                             footer: '<a href="">Why do I have this issue?</a>'
-                        })
+                        }).then(()=>{
+                                $("#loginModal").modal("show")
+                            }
+                        )
 
                     } else if (userId !== '') {
                         var likeCount = $(".boardLikeText").html();
@@ -1026,12 +1088,16 @@
 
                     if (userId === '' || userId === null) {
 
+
                         Swal.fire({
                             icon: 'error',
                             title: '사용할수 없는 기능 입니다',
                             text: '로그인후 사용해 주세요',
                             footer: '<a href="">Why do I have this issue?</a>'
-                        })
+                        }).then(()=>{
+                                $("#loginModal").modal("show")
+                            }
+                        )
 
                     } else {
 
@@ -1070,12 +1136,17 @@
                 var boardUserId = $(".boardUserId").val();
 
                 if (userId === '') {
+
                     Swal.fire({
                         icon: 'error',
                         title: '사용할수 없는 기능 입니다',
                         text: '로그인후 사용해 주세요',
                         footer: '<a href="">Why do I have this issue?</a>'
-                    })
+                    }).then(()=>{
+                            $("#loginModal").modal("show")
+                        }
+                    )
+
                 } else {
 
                     if (userId === boardUserId) {
@@ -1153,7 +1224,10 @@
                         title: '사용할수 없는 기능 입니다',
                         text: '로그인후 사용해 주세요',
                         footer: '<a href="">Why do I have this issue?</a>'
-                    })
+                    }).then(()=>{
+                            $("#loginModal").modal("show")
+                        }
+                    )
 
                 } else if (userId !== '') {
 
@@ -1198,10 +1272,8 @@
             $(".user_manu").on("click", function () {
                 $(".user_hidden_manu").slideToggle();
             })
-            
-            
-            
-            
+
+
             $(".getClub").on("click", function () {
 
                 var clubNum = $(".clubNum").val();
@@ -1213,7 +1285,7 @@
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    cancelButtonText :"취소",
+                    cancelButtonText: "취소",
                     confirmButtonText: '페이지이동'
                 }).then((result) => {
                     if (result.isConfirmed) {
@@ -1222,13 +1294,11 @@
                             'success'
                         )
 
-                        setTimeout(()=>{
-                            location.href = "/club/getClub/"+clubNum
-                        },1500)
+                        setTimeout(() => {
+                            location.href = "/club/getClub/" + clubNum
+                        }, 1500)
                     }
                 })
-
-
 
 
             })
@@ -1277,7 +1347,7 @@
                         <div class="reviewTitle2">
                             ${calenderReview.reviewTitle}
                         </div>
-                        <div style="width: 56%;">
+                        <div>
 
                             <div class="user_manu">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -1339,7 +1409,8 @@
                                 <label for="exampleFormControlTextarea1" class="form-label"></label>
                                 <textarea class="form-control" id="exampleFormControlTextarea1"
                                           rows="3"
-                                          style="  margin-left: 10px; width: 1080px; height: 100px; margin-top: -20px;" readonly
+                                          style="  margin-left: 10px; width: 1080px; height: 100px; margin-top: -20px;"
+                                          readonly
                                           placeholder="${calenderReview.reviewText}"></textarea>
                             </div>
                         </div>

@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Update Community Report</title>
+    <title>MOWAS</title>
 
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -194,7 +194,13 @@
         <p class="text-danger mt-2 mb-3"><i class="bi bi-info-square-fill"></i> ${communityReport.reportText}</p>
 
         <h7 class="h5 mb-3">벌점 부여</h7>
-        <input type="number" class="form-control mt-2 mb-3" name="ppt" value="${communityReport.ppt}">
+        <select class="form-select form-select-m mb-3" name="ppt">
+            <option selected>부여할 벌점을 선택하세요</option>
+            <option value="5"${!empty communityReport.ppt&&communityReport.ppt==5 ? "selected":"" }>5점</option>
+            <option value="10"${!empty communityReport.ppt&&communityReport.ppt==10 ? "selected":"" }>10점</option>
+        </select>
+
+        <%--<input type="number" class="form-control mt-2 mb-3" name="ppt" value="${communityReport.ppt}">--%>
         <button type="button" class="btn" style="background-color: #F8CD07;">확인</button>
         <button type="button" class="btn btn-secondary">취소</button>
     </form>

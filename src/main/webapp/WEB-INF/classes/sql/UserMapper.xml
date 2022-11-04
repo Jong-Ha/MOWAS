@@ -184,7 +184,7 @@
     <select  id="listUsers"  parameterType="search"  resultMap="userSelectMap">
         SELECT *
         FROM (	SELECT inner_table.* , ROWNUM AS row_seq
-                FROM(	SELECT *
+                FROM(	SELECT user_id, review_pt, psd, ped, user_status
                          FROM users
         <if test="(searchKeyword != null and searchKeyword != '')">
                              <where>
@@ -253,6 +253,13 @@
         WHERE user_id=#{userId}
     </update>
 
+    <update id="userOut" parameterType="String" >
+        UPDATE users
+        <set>
+            user_status='3'
+        </set>
+        WHERE user_id=#{userId}
+    </update>
 
 
 </mapper>

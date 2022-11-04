@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>List Club Report</title>
+    <title>MOWAS</title>
     <!-- Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -28,12 +28,6 @@
             margin-top:20px;
             color: #616f80;
         }
-        <%--
-        .container {
-            width: 70%;
-            margin: 0 auto;			/* 가로로 중앙에 배치 */
-            padding-top: 10%;		/* 테두리와 내용 사이의 패딩 여백 */
-        }--%>
 
         #list {
             text-align: center;
@@ -91,7 +85,7 @@
         }
 
         .typing {
-            width: 14ch;
+            width: 11ch;
             animation: typing 0.9s steps(22), blink .5s step-end infinite alternate;
             white-space: nowrap;
             overflow: hidden;

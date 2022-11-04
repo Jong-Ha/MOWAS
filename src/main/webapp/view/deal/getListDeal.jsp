@@ -76,7 +76,7 @@
                     $("#addDeal").find(".newDeal").on('click', function () {
 
                         if ($("#dealTitle").val() === '') {
-                            alert("제목은 필수입니다")
+                            alert("거래명은 필수입니다")
                             return;
                         }
                         if ($("#dealProduct").val() === '') {
@@ -119,12 +119,11 @@
             });
         })
 
+        function numberWithCommas(x) {
 
-//
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-
-
-
+        }
 
 
         //무한스크롤
@@ -274,6 +273,7 @@
 
 
             })
+            let checkprice = /^[0-9]+$/;
             $('#addDeal #dealTitle').on('keyup',function(){
                 if($(this).val().length>30){
                     alert('거래명은 최대 20글자입니다')
@@ -282,6 +282,7 @@
             })
             $('#addDeal #productName').on('keyup',function(){
                 if($(this).val().length>30){
+
                     alert('상품명은 최대 30글자입니다')
                     $(this).val($(this).val().substring(0, 30));
                 }
@@ -292,6 +293,14 @@
                     $(this).val($(this).val().substring(0, 300));
                 }
             })
+            $('#addDeal #price').on('keyup',function(){
+                if(!checkprice.test($(this).val())){
+                    alert('숫자만 입력가능합니다.')
+                }
+            })
+            //가격 콤마찍기
+            $('#dealPrice')
+
         })
     </script>
 
@@ -508,15 +517,15 @@
             place-items: center;
         }
 
-        .typing {
-            width: 14ch;
-            animation: typing 0.9s steps(22), blink .5s step-end infinite alternate;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 3px solid;
-            font-size: 2em;
-            height: 2ch;
-        }
+        /*.typing {*/
+        /*    width: 14ch;*/
+        /*    animation: typing 0.9s steps(22), blink .5s step-end infinite alternate;*/
+        /*    white-space: nowrap;*/
+        /*    overflow: hidden;*/
+        /*    border-right: 3px solid;*/
+        /*    font-size: 2em;*/
+        /*    height: 2ch;*/
+        /*}*/
 
         @keyframes typing {
             from {
@@ -773,7 +782,7 @@
                                     <%--                            </div>--%>
 
                                 <div class="dealinfo cartFont" style="flex: 1; width: 50%;">
-                                    <p class="allFlex" style="font-size: 1.3em; font-weight: bold"> ${deal.price} 원 </p>
+                                    <p class="allFlex" id="dealPrice"style="font-size: 1.3em; font-weight: bold"> ${deal.price} 원 </p>
                                     <p class="allFlex" id="demo"
                                        style="font-size: 1.3em; font-weight: bold">&nbsp;&nbsp;
                                     </p>

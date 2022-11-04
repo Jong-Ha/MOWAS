@@ -22,6 +22,7 @@
 <script type="text/javascript">
 
     function lodingVillBoard() {
+
         var boardCategory = $(".boardCategory").val()
 
         $(".get").on("click", function () {
@@ -86,7 +87,10 @@
                     title: '사용할수 없는 기능 입니다',
                     text: '로그인후 사용해 주세요',
                     footer: '<a href="">Why do I have this issue?</a>'
-                })
+                }).then(()=>{
+                        $("#loginModal").modal("show")
+                    }
+                )
 
             } else if (userId !== '') {
 
@@ -122,7 +126,10 @@
             if (userId === '') {
 
 
-                alert("로그인후 사용 할수 있습니다")
+                setTimeout(()=>{
+                    $("#loginModal").modal("show")
+                },1500)
+
             } else if (userId !== '') {
 
 
@@ -382,12 +389,16 @@
 
             if (userId === '' || userId === null) {
 
+
                 Swal.fire({
                     icon: 'error',
                     title: '사용할수 없는 기능 입니다',
                     text: '로그인후 사용해 주세요',
                     footer: '<a href="">Why do I have this issue?</a>'
-                })
+                }).then(()=>{
+                        $("#loginModal").modal("show")
+                    }
+                )
 
             } else if (userId !== '') {
                 var boardNum = $(this).parents(".cardbox").find(".villNum").val()
@@ -738,12 +749,13 @@
     }
 
     .userImg {
-        width: 60px;
+        width: 108px;
         height: 60px;
         padding: 5px;
     }
 
     .userInfo {
+        width: 100%;
         padding: 6px;
         display: flex;
         flex-direction: column;
@@ -788,6 +800,7 @@
         width: 100%;
         text-align: left;
         font-size: 0.1em;
+        text-overflow: ellipsis;
     }
 
     .card-top {
@@ -826,7 +839,7 @@
     </div>
     <div class="searchBox">
         <form id="textSearch" class="d-flex" role="search">
-            <input type="hidden" class="villCode" name="villCode" value="${user.villCode}">
+            <input type="hidden" class="villCode" name="villCode" value="${villCode}">
             <input type="hidden" class="currentPage" name="currentPage" value="2">
             <input type="hidden" class="searchLat" name="searchLat" value="">
             <input type="hidden" class="searchLng" name="searchLng" value="">
@@ -883,10 +896,6 @@
 
                                 <div class="user_hidden_manu" style="display: none">
                                     <ul class=" shadow-lg">
-                                        <li class="getClub">
-                                            모임 방문하기
-                                        </li>
-
                                         <c:if test="${user.userId eq villBoard.userId}">
                                             <li data-bs-toggle="modal" data-bs-target="#exampleModal" class="update">
                                                 수정
@@ -905,9 +914,9 @@
                         <div id="carouselExampleSlidesOnly " class="carousel slide potoBox get" data-bs-ride="carousel"
                              style="cursor: pointer">
 
-                            <div class="carousel-inner">
+                            <div class="carousel-inner get">
                                 <c:forEach var="File" items="${villBoard.file}">
-                                    <div class="carousel-item active get" data-bs-interval="2000">
+                                    <div class="carousel-item active" data-bs-interval="2000">
                                         <img class="d-block w-100  poto" width="100%" height="100%"
                                              src="/resources/villBoardFiles${File.fileName }" alt="any">
                                     </div>
@@ -977,7 +986,6 @@
     </div>
 
 
-    <div style=" padding-bottom: 900px;"></div>
 
 
     <%--우리동네 게시글 등록--%>
@@ -1096,11 +1104,12 @@
             </div>
         </div>
     </div>
+</div>
 
     <jsp:include page="/layout/chatIcon.jsp"/>
 
     <jsp:include page="/layout/footer.jsp"/>
-</div>
+
 
 </body>
 </html>

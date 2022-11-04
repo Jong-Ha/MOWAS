@@ -589,7 +589,8 @@ public class MyPageController {
                             )throws Exception{
         System.out.println("getMyBoard컨트롤러 userId의 값?"+userId);
 
-        Map<String, Object> map = myPageService.getMyBoard(userId);
+        Search search = new Search();
+        Map<String, Object> map = myPageService.getMyBoard(userId, search);
         System.out.println("getMyBoard 컨트롤러 map의 값은?"+map);
         model.addAttribute("map", map);
         return "forward:/view/myPage/getMyBoard.jsp";
@@ -599,17 +600,30 @@ public class MyPageController {
     )throws Exception{
         System.out.println("getMyCbMaster컨트롤러 userId의 값?"+userId);
 
-        Map<String, Object> map = myPageService.getMyBoard(userId);
+        Search search = new Search();
+        Map<String, Object> map = myPageService.getMyBoard(userId, search);
         System.out.println("getMyCbMaster 컨트롤러 map의 값은?"+map);
         model.addAttribute("map", map);
         return "forward:/view/myPage/getMyCbMaster.jsp";
     }
     @RequestMapping(value = "getMyCbReviewBoard", method = RequestMethod.GET)
-    public String getMyCbReviewBoard(@RequestParam(value ="userId")String userId,Model model
-    )throws Exception{
+    public String getMyCbReviewBoard(@RequestParam(value ="userId")String userId,
+                                     @ModelAttribute("search") Search search,
+                                     Model model)throws Exception{
+
+
+        if (search.getCurrentPage() == 0) {
+            search.setCurrentPage(1);
+        }
+
+        search.setPageSize(pageSize);
+
+        System.out.println("search의 정보 : " + search);
+
+
         System.out.println("getMyCbReviewBoard컨트롤러 userId의 값?"+userId);
 
-        Map<String, Object> map = myPageService.getMyBoard(userId);
+        Map<String, Object> map = myPageService.getMyBoard(userId, search);
         System.out.println("getMyCbReviewBoard 컨트롤러 map의 값은?"+map);
         model.addAttribute("map", map);
         return "forward:/view/myPage/getMyCbReviewBoard.jsp";
@@ -619,7 +633,10 @@ public class MyPageController {
     )throws Exception{
         System.out.println("getMyDealBoard컨트롤러 userId의 값?"+userId);
 
-        Map<String, Object> map = myPageService.getMyBoard(userId);
+        Search search = new Search();
+
+
+        Map<String, Object> map = myPageService.getMyBoard(userId, search);
         System.out.println("getMyDealBoard 컨트롤러 map의 값은?"+map);
         model.addAttribute("map", map);
         return "forward:/view/myPage/getMyDealBoard.jsp";
@@ -851,5 +868,17 @@ public class MyPageController {
         model.addAttribute("resultPage", resultPage);
         return "forward:/view/myPage/getMyPpt.jsp";
     }
+
+    @RequestMapping(value="userOut", method = RequestMethod.GET)
+    public String userOut(@RequestParam(value = "userId") String userId,Model model)throws Exception{
+        System.out.println("여기는 userOut 컨트롤러 시작이다");
+        System.out.println("userId의값은?"+userId);
+
+        userService.userOut(userId);
+
+
+        return "forward:/";
+    }
+
     //*/
 }

@@ -293,6 +293,10 @@ public class UserServiceImpl implements UserService{
 
     }
 
+    public void userOut(String userId)throws Exception{
+        userDao.userOut(userId);
+    }
+
 
 
 }

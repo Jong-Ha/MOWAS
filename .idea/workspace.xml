@@ -9,71 +9,46 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="JHK 2022.11.03&#10;&#10;sns 로그인 유저 정보입력창 수정">
-      <change afterPath="$PROJECT_DIR$/node_modules/.bin/loose-envify" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/.bin/loose-envify.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/.bin/loose-envify.ps1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/js-tokens/CHANGELOG.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/js-tokens/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/js-tokens/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/js-tokens/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/js-tokens/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/loose-envify/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/loose-envify/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/loose-envify/cli.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/loose-envify/custom.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/loose-envify/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/loose-envify/loose-envify.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/loose-envify/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/loose-envify/replace.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/object-assign/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/object-assign/license" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/object-assign/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/object-assign/readme.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/checkPropTypes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/factory.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/factoryWithThrowingShims.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/factoryWithTypeCheckers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/lib/ReactPropTypesSecret.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/lib/has.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/prop-types.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/prop-types/prop-types.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-is/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-is/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-is/build-info.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-is/cjs/react-is.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-is/cjs/react-is.production.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-is/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-is/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-is/umd/react-is.development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/react-is/umd/react-is.production.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mongoose/node_modules/ms/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mongoose/node_modules/ms/license.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mongoose/node_modules/ms/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mongoose/node_modules/ms/readme.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/node_modules/ms/license.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/node_modules/ms/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/chat/node_modules/mquery/node_modules/ms/readme.md" afterDir="false" />
+    <list default="true" id="2d844204-c2da-48e9-9e06-0da9e78715b6" name="Changes" comment="ASK 2022.11.03 12:46&#10;&#10;&#10; 통합 및 오류 검사 등 등">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/2dc9c73c-85f8-40b3-aac0-f5855f83c5e5문상훈.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/49a5cfb8-d40f-4a79-b7b4-13e90ec1d5b9천향 낚시대.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/4b4c8ce3-8997-4c5e-ba46-caabe4d177bc나이키리바이스.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/55acd25a-8599-41a9-ab3c-291660566673방탄 맨투맨.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/566554b2-3e31-457b-8fe7-e4cb69a35469범고래.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/5dmark4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/6d7da1bb-aa2b-4e28-bdc5-478e89e3e11e아이폰판매2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/6dd35816-929c-4f16-b2dc-9bead66f4a03빠더너스 굿즈.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/70829a48-1a83-4fe7-af34-45e9d0e95da2오막포2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/907a36f0-f4be-444b-ab50-926748f85d2d스타벅스2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/e0765e04-a0c2-480c-a44d-cf15329d8866아이폰 판매.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/eafadf6b-623c-4107-8ed5-438f4e075a60아이폰 4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/나이키리바이스.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/문상훈.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/방탄 맨투맨.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/범고래.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/빠더너스 굿즈.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/스타벅스 1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/스타벅스2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/아이폰 4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/아이폰 판매.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/아이폰판매2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/오막포.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/오막포2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/uploadFiles/dealBoardFiles/천향 낚시대.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/myPage/myPageTitle.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/myPage/myPageTitle.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/getUserDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/getUserDetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/listUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/listUser.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/updateSNSUserInfor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/updateSNSUserInfor.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/deal/controller/DealController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/deal/controller/DealController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/controller/ClubController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/club/controller/ClubController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/deal/controller/DealController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/com/project/deal/controller/DealController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/ClubCalenderMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/sql/ClubCalenderMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/deal/addDeal.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/deal/addDeal.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/deal/getDeal.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/deal/getDeal.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/deal/getListDeal.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/deal/getListDeal.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/view/user/userCalender.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/view/user/userCalender.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="ChangesViewManager">
-    <option name="groupingKeys">
-      <option value="directory" />
-    </option>
   </component>
   <component name="CompilerWorkspaceConfiguration">
     <option name="MAKE_PROJECT_ON_SAVE" value="true" />
@@ -91,7 +66,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/master" />
+    <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
     <option name="PUSH_TAGS">
@@ -103,9 +78,11 @@
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -135,37 +112,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit4&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4&quot;: &quot;&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Project/MOWAS/src/main/webapp/view/myPage&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;라이브러리&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.12528735&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;0644e903b0ad21f514b0480754c0a1e2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
+    "last_opened_file_path": "C:/Project/MOWAS/src/main/webapp",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "아티팩트",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.32133675",
+    "settings.editor.selected.configurable": "project.propCompiler",
+    "spring.configuration.checksum": "0644e903b0ad21f514b0480754c0a1e2"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;oracle&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "oracle"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Project\MOWAS\src\main\webapp\view\club\modal수정전" />
       <recent name="C:\Project\MOWAS\src\main\webapp\view\myPage" />
       <recent name="C:\Project\MOWAS\src\main\webapp\view\user" />
       <recent name="C:\Project\MOWAS\src\main\webapp\resources\images" />
@@ -176,11 +154,11 @@
       <recent name="C:\Project\MOWAS\src\main\webapp\layout" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Project\MOWAS\src\main\webapp\resources\uploadFiles\userImages" />
-      <recent name="C:\Project\MOWAS\src\main\webapp\view\myPage" />
       <recent name="C:\Project\MOWAS\src\main\webapp\resources\images" />
       <recent name="C:\Project\MOWAS\src\main\webapp\resources\club" />
       <recent name="C:\Users\903-15\IdeaProjects\MOWAS\src\main\webapp\view\user" />
+      <recent name="C:\Devspace\MOWAS\src\main\webapp\resources\OpenSource" />
+      <recent name="C:\Devspace\MOWAS\src\main\webapp\view\community\list" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -189,16 +167,20 @@
       <recent name="com.project.common.dao" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.project.user.controller" />
       <recent name="com.project.myPage.service" />
       <recent name="com.project.user.service" />
       <recent name="com.project.user.dao" />
+      <recent name="com.project.user.controller" />
       <recent name="com.project.notice.dao" />
       <recent name="com.project.notice.service" />
     </key>
   </component>
   <component name="RunDashboard">
-    <option name="openRunningConfigInTab" value="true" />
+    <option name="configurationTypes">
+      <set>
+        <option value="TestNG" />
+      </set>
+    </option>
   </component>
   <component name="RunManager" selected="Tomcat 서버.Tomcat 9.0.58">
     <configuration name="ClubServiceTest.updateVoter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -281,7 +263,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tomcat 9.0.58" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.58" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+    <configuration name="Tomcat 9.0.58" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.58" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="$PROJECT_DIR$/../../Program Files/Java/jdk1.8.0_181" nameIsGenerated="true">
       <option name="COMMON_VM_ARGUMENTS" value="-Dfile.encoding=UTF-8" />
       <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
@@ -293,7 +275,8 @@
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="2f911be2-0ce1-4887-877a-030b087824a2" />
+        <option name="BASE_DIRECTORY_NAME" value="e0944415-630b-49a5-af46-6b2de8f9187b" />
+        <option name="DEPLOY_TOMCAT_APPS" value="true" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -301,7 +284,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="50064" />
+        <option name="DEBUG_PORT" value="65206" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -425,11 +408,8 @@
       <workItem from="1666338226193" duration="5083000" />
       <workItem from="1666343876167" duration="55962000" />
       <workItem from="1666589308433" duration="18822000" />
-      <workItem from="1666915748740" duration="65683000" />
-      <workItem from="1667180522531" duration="1123000" />
-      <workItem from="1667270001678" duration="22797000" />
-      <workItem from="1667421975525" duration="303000" />
-      <workItem from="1667430186750" duration="5291000" />
+      <workItem from="1666918953601" duration="11176000" />
+      <workItem from="1667129677599" duration="136599000" />
     </task>
     <task id="LOCAL-00001" summary="설정">
       <created>1664436990723</created>
@@ -480,85 +460,88 @@
       <option name="project" value="LOCAL" />
       <updated>1666620792032</updated>
     </task>
-    <task id="LOCAL-00008" summary="JHK 2022.10.26&#10;&#10;카카오로그인 팝업창 변경, 로그인페이지 모달창 변경">
-      <created>1666747096028</created>
+    <task id="LOCAL-00008" summary="LJH 2022.10.26&#10;&#10;탭바 선택 유지&#10;모임 탭바 레이아웃 조정">
+      <created>1666753497488</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1666747096028</updated>
+      <updated>1666753497488</updated>
     </task>
-    <task id="LOCAL-00009" summary="JHK 2022.10.26&#10;&#10;로그아웃 이전페이지 기능 추가">
-      <created>1666762215049</created>
+    <task id="LOCAL-00009" summary="ASK 2022.10.30&#10;&#10;커밋테스트">
+      <created>1667129805430</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1666762215049</updated>
+      <updated>1667129805430</updated>
     </task>
-    <task id="LOCAL-00010" summary="JHK 2022.10.31&#10;&#10;네이버 로그인 완료">
-      <created>1667196937319</created>
+    <task id="LOCAL-00010" summary="ASK 2022.10.30&#10;&#10;커밋테스트">
+      <created>1667129839564</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
-      <updated>1667196937319</updated>
+      <updated>1667129839564</updated>
     </task>
-    <task id="LOCAL-00011" summary="JHK 2022.11.01&#10;&#10;디비 초기화 후 커밋">
-      <created>1667298436072</created>
+    <task id="LOCAL-00011" summary="ASK 2022.10.31&#10;&#10;&#10;&#10;통합">
+      <created>1667178438666</created>
       <option name="number" value="00011" />
       <option name="presentableId" value="LOCAL-00011" />
       <option name="project" value="LOCAL" />
-      <updated>1667298436072</updated>
+      <updated>1667178438666</updated>
     </task>
-    <task id="LOCAL-00012" summary="JHK 2022.11.02&#10;&#10;회원가입 문자인증번호 수정">
-      <created>1667352977449</created>
+    <task id="LOCAL-00012" summary="ASK 2022.10.31&#10;&#10;&#10;&#10;통합">
+      <created>1667178689482</created>
       <option name="number" value="00012" />
       <option name="presentableId" value="LOCAL-00012" />
       <option name="project" value="LOCAL" />
-      <updated>1667352977449</updated>
+      <updated>1667178689482</updated>
     </task>
-    <task id="LOCAL-00013" summary="JHK 2022.11.02&#10;&#10;아이디,비밀번호 찾기창&amp; 아이디,비밀번호 완료 창 작성완료">
-      <created>1667369370564</created>
+    <task id="LOCAL-00013" summary="ASK 2022.10.31&#10;&#10;&#10;무한스크롤 등 오류 검사 등 등">
+      <created>1667215925910</created>
       <option name="number" value="00013" />
       <option name="presentableId" value="LOCAL-00013" />
       <option name="project" value="LOCAL" />
-      <updated>1667369370564</updated>
+      <updated>1667215925910</updated>
     </task>
-    <task id="LOCAL-00014" summary="JHK 2022.11.02&#10;&#10;회원 관심목록, 날짜 포맷 변경">
-      <created>1667404158421</created>
+    <task id="LOCAL-00014" summary="ASK 2022.11.01&#10;&#10;&#10; 상세 jsp 오류 검사 등 등">
+      <created>1667300022251</created>
       <option name="number" value="00014" />
       <option name="presentableId" value="LOCAL-00014" />
       <option name="project" value="LOCAL" />
-      <updated>1667404158421</updated>
+      <updated>1667300022251</updated>
     </task>
-    <task id="LOCAL-00015" summary="JHK 2022.11.03&#10;&#10;관심목록 선택창 완료">
-      <created>1667438953375</created>
+    <task id="LOCAL-00015" summary="ASK 2022.11.02&#10;&#10;&#10; 통합 및 오류 검사 등 등">
+      <created>1667353264500</created>
       <option name="number" value="00015" />
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
-      <updated>1667438953375</updated>
+      <updated>1667353264500</updated>
     </task>
-    <task id="LOCAL-00016" summary="JHK 2022.11.03&#10;&#10;sns 로그인 유저 정보입력창 수정">
-      <created>1667440719177</created>
+    <task id="LOCAL-00016" summary="ASK 2022.11.02 20:52&#10;&#10;&#10; 통합 및 오류 검사 등 등">
+      <created>1667389983717</created>
       <option name="number" value="00016" />
       <option name="presentableId" value="LOCAL-00016" />
       <option name="project" value="LOCAL" />
-      <updated>1667440719177</updated>
+      <updated>1667389983717</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="ASK 2022.11.03 11:18&#10;&#10;&#10; 통합 및 오류 검사 등 등">
+      <created>1667441942671</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1667441942671</updated>
+    </task>
+    <task id="LOCAL-00018" summary="ASK 2022.11.03 12:46&#10;&#10;&#10; 통합 및 오류 검사 등 등">
+      <created>1667447218770</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1667447218770</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.History.Properties">
-    <option name="COLUMN_ID_ORDER">
-      <list>
-        <option value="Default.Root" />
-        <option value="Default.Author" />
-        <option value="Default.Date" />
-        <option value="Default.Subject" />
-        <option value="Space.CommitStatus" />
-      </list>
-    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -593,7 +576,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>
@@ -643,6 +626,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="BJW 2022.09.30&#10;&#10;mian.jsp / js파일/ css파일 추가" />
     <MESSAGE value="BJW 2022.10.01&#10;&#10;커뮤니티 jsp 완성, navigation 경로 완성" />
     <MESSAGE value="BJW 2022.10.03&#10;&#10;댓글,대댓글,조회수 json으로 처리 calender add성공 pom.xml에 jdbc드라이버 dependency 관개 맷음,&#10;spring-mybatis mybatise 버전 충돌 해결" />
     <MESSAGE value="LJH 2022.10.06&#10;&#10;컨트롤러 =&gt; jsp 연결 완료&#10;모임, 가입, 모임원, 블랙리스트, 공지사항 컨트롤러 완성&#10;RestController 작업 필요" />
@@ -657,60 +641,45 @@
     <MESSAGE value="JHK 2022.10.17&#10;&#10;마이페이지 서비스 커밋" />
     <MESSAGE value="JHK 2022.10.19&#10;&#10;메일인증 수정" />
     <MESSAGE value="JHK 2022.10.24&#10;&#10;마이페이지 JSP 수정" />
-    <MESSAGE value="JHK 2022.10.26&#10;&#10;카카오로그인 팝업창 변경, 로그인페이지 모달창 변경" />
-    <MESSAGE value="JHK 2022.10.26&#10;&#10;로그아웃 이전페이지 기능 추가" />
-    <MESSAGE value="JHK 2022.10.31&#10;&#10;마이페이지 JSP 생성, 탭바 수정" />
-    <MESSAGE value="JHK 2022.10.31&#10;&#10;마이페이지 리스트 유저 커밋" />
-    <MESSAGE value="JHK 2022.10.31&#10;&#10;네이버 로그인 완료" />
-    <MESSAGE value="JHK 2022.11.01&#10;&#10;일반 회원가입 완료, 신고,벌점,댓글 페이징 처리" />
-    <MESSAGE value="JHK 2022.11.01&#10;&#10;디비 초기화 후 매퍼 수정 커밋" />
-    <MESSAGE value="JHK 2022.11.02&#10;&#10;아이디,비밀번호 찾기창&amp; 아이디,비밀번호 완료 창 수정" />
-    <MESSAGE value="JHK 2022.11.02&#10;&#10;바디 태그 수정, 회원목록 페이징&amp; 검색 처리함" />
-    <MESSAGE value="JHK 2022.11.03&#10;&#10;관심목록 선택창 완료" />
-    <MESSAGE value="JHK 2022.11.03&#10;&#10;sns 로그인 유저 정보입력창 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="JHK 2022.11.03&#10;&#10;sns 로그인 유저 정보입력창 수정" />
+    <MESSAGE value="LJH 2022.10.26&#10;&#10;탭바 선택 유지&#10;모임 탭바 레이아웃 조정" />
+    <MESSAGE value="BJW 2022.10.28&#10;&#10;채팅 사진 업로드 구현" />
+    <MESSAGE value="ASK 2022.10.30&#10;&#10;커밋테스트" />
+    <MESSAGE value="ASK 2022.10.31&#10;&#10;&#10;&#10;통합" />
+    <MESSAGE value="ASK 2022.10.31&#10;&#10;&#10;무한스크롤 등 오류 검사 등 등" />
+    <MESSAGE value="ASK 2022.11.01&#10;&#10;&#10; 상세 jsp 오류 검사 등 등" />
+    <MESSAGE value="ASK 2022.11.02&#10;&#10;&#10; 통합 및 오류 검사 등 등" />
+    <MESSAGE value="ASK 2022.11.02 20:52&#10;&#10;&#10; 통합 및 오류 검사 등 등" />
+    <MESSAGE value="ASK 2022.11.03 11:18&#10;&#10;&#10; 통합 및 오류 검사 등 등" />
+    <MESSAGE value="ASK 2022.11.03 12:46&#10;&#10;&#10; 통합 및 오류 검사 등 등" />
+    <option name="LAST_COMMIT_MESSAGE" value="ASK 2022.11.03 12:46&#10;&#10;&#10; 통합 및 오류 검사 등 등" />
+    <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/webapp/view/myPage/getMyLike.jsp</url>
-          <line>264</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/webapp/view/myPage/getMyEndDeal.jsp</url>
-          <line>60</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/project/myPage/service/MyPageServiceImpl.java</url>
-          <line>184</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/webapp/view/myPage/getMyEndDeal.jsp</url>
-          <line>27</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/webapp/view/user/getMyIdEnd.jsp</url>
-          <line>42</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDaoImpl.java</url>
-          <line>156</line>
-          <option name="timeStamp" value="13" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/project/user/controller/UserController.java</url>
+          <line>138</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/project/user/dao/UserDao.java</url>
-          <line>34</line>
-          <properties class="com.project.user.dao.UserDao" method="updateLcd">
+          <line>33</line>
+          <properties class="com.project.user.dao.UserDao">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/main/webapp/resources/club/js/listClub.js</url>
+          <line>370</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/main/webapp/resources/club/js/listClub.js</url>
+          <line>368</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
