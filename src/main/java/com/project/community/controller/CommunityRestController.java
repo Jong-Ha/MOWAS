@@ -254,8 +254,10 @@ public class CommunityRestController {
 
         User user = (User) session.getAttribute("user");
 
+        String villCode =  (String)session.getAttribute("villCode");
+
         villBoard.setUserId(user.getUserId());
-        villBoard.setVillCode(user.getVillCode());
+        villBoard.setVillCode(villCode);
 
         communityService.addVillBoard(villBoard);
 
@@ -290,6 +292,8 @@ public class CommunityRestController {
                                              HttpSession session) {
         Search search = new Search();
 
+        System.out.println(map);
+
         if (map.get("currentPage") != null) {
             int currentPage = Integer.parseInt((String) map.get("currentPage"));
             search.setCurrentPage(currentPage);
@@ -309,9 +313,9 @@ public class CommunityRestController {
             search.setSearchKeyword(searchKeyword);
         }
 
-        User user = (User) session.getAttribute("user");
+        String villCode =  (String)session.getAttribute("villCode");
 
-        Map<String, Object> map2 = communityService.listVillBoard(user.getVillCode(), search);
+        Map<String, Object> map2 = communityService.listVillBoard(villCode, search);
 
         return map2;
 

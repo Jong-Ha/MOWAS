@@ -360,13 +360,11 @@
 
                 <div class="input-group mb-3">
 
-                    <input type="button" class="form-control" data-bs-toggle="modal" data-bs-target="#location1"
-                           value="위치 선택">
+                    <input type="button" class="form-control" data-bs-toggle="modal" data-bs-target="#location1" value="위치 선택">
 
                     <div class="input-group input-group-sm mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-sm">위치 정보</span>
-                        <input type="text" id="dealLocation" class="form-control dealLocation" aria-label="위치 정보"
-                               aria-describedby="inputGroup-sizing-sm">
+                        <input type="text" id="dealLocation" class="form-control dealLocation" aria-label="위치 정보" aria-describedby="inputGroup-sizing-sm">
                     </div>
 
 
@@ -625,7 +623,9 @@
 
             /*지도 출력*/
             $("#location1").on("shown.bs.modal", function () {
+
                 relayout8();
+
             })
 
             $(".dealSubmit").off('click').on("click", function () {
