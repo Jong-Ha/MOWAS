@@ -262,6 +262,8 @@
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
 
+<hr>
+<div class="container">
 <div class="tabBox">
     <span class="tabBtn getMyVillBoard">우리동네 게시글</span>
     <span>|</span>
@@ -269,6 +271,7 @@
     <span>|</span>
     <span class="tabBtn getMyDealBoard">판매/판매요청 게시글</span>
 </div>
+
 
 <hr/>
 <h4>모임 후기글</h4>
@@ -342,7 +345,6 @@
     </div>
     </div>
     </div>
-
     <jsp:include page="/layout/chatIcon.jsp"/>
     <jsp:include page="/layout/footer.jsp"/>
     </body>

@@ -79,7 +79,6 @@
     }
 
     .wrapper {
-        height: 13ch;
         display: grid;
         place-items: center;
     }
@@ -140,7 +139,7 @@
             self.location="/myPage/getMyComment?userId="+userId;
         })
         $(".getMyRecomment").on("click", function (){
-            self.location="/myPage/getMyRecommentLike?userId="+userId;
+            self.location="/myPage/getMyRecomment?userId="+userId;
         })
     })
 
@@ -151,6 +150,10 @@
 
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
+<hr>
+<div class="container">
+
+
 <div class="tabBox">
     <span class="tabBtn getMyComment" >댓글</span>
     <span>|</span>
@@ -225,6 +228,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 </div>
 <jsp:include page="/layout/chatIcon.jsp"/>

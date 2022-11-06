@@ -44,7 +44,7 @@
         <div class="typing">
             <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
                     background-image: linear-gradient(transparent 60%, #F8CD07 40%);">
-                모임 찾기</h4>
+                모임 게시판</h4>
         </div>
     </div>
 
@@ -304,7 +304,7 @@
                             <div class="mb-3">
                                 <label for="file" class="form-label" style="margin: 0; width: 100%;">
                                     <img id="preview" src="/resources/images/clubImage.png"
-                                         style="object-fit: cover; width: 100%; height: 100%; border: 1px solid #ced4da;border-radius: 5px;" alt="clubImage">
+                                         style="object-fit: cover; width: 100%; aspect-ratio: 1/0.55; border: 1px solid #ced4da;border-radius: 5px;" alt="clubImage">
                                 </label>
                                 <input class="form-control" type="file" id="file" name="file" style="display: none;">
                             </div>

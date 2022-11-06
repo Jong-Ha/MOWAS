@@ -25,7 +25,7 @@
         list-style: none;
     }
 
-    li {
+    .myPageBox li {
         margin-bottom: 10px;
         cursor: pointer;
     }
@@ -35,6 +35,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        margin-top: 50px;
     }
 
     .navbar {
@@ -187,6 +188,9 @@
 
     }
 
+    .shadow-lg.sub {
+        height: fit-content;
+    }
 </style>
 
 <head>
@@ -197,7 +201,7 @@
 <script type="text/javascript">
 
     $(function () {
-        var userId = $(".myPageUserId").val();
+        var userId = '${sessionScope.user.userId}';
 
         $("#listUser").on("click", function () {
             self.location = "/user/listUser";
@@ -208,12 +212,12 @@
         });
 
         $(".getMyBoard").on("click", function () {
-            alert('userId' + userId);
+            // alert('userId' + userId);
             self.location = "/myPage/getMyBoard?userId=" + userId;
         });
 
         $(".getMyComment").on("click", function () {
-            alert('1234');
+            // alert('1234');
             self.location = "/myPage/getMyComment?userId=" + userId;
         });
 
@@ -222,9 +226,9 @@
         });
 
 
-        $(".getMyCommentLike").on("click", function () {
-            self.location = "/myPage/getMyCommentLike?userId=" + userId;
-        });
+        // $(".getMyCommentLike").on("click", function () {
+        //     self.location = "/myPage/getMyCommentLike?userId=" + userId;
+        // });
 
         $(".getMyClub").on("click", function () {
             self.location = "/myPage/getMyClub?userId=" + userId;
@@ -284,7 +288,7 @@
                     <li class="getMyBoard liTag">내가 작성한 게시글</li>
                     <li class="getMyComment liTag">내가 작성한 댓글</li>
                     <li class="getMyBoardLike liTag">좋아요한 게시글</li>
-                    <li class="getMyCommentLike liTag">좋아요한 댓글</li>
+<%--                    <li class="getMyCommentLike liTag">좋아요한 댓글</li>--%>
 
                 </ul>
             </div>

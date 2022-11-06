@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <footer class="footer">
-    <div class="p-5" style="border-radius: 5px;text-align: center; background-color: #333333;display: flex;justify-content: center;">
+    <div class="p-5" style="border-radius: 5px;text-align: center; background-color: #333333;display: flex;justify-content: center;margin-top: 100px;">
         <div style="width: 90%;display: flex; justify-content: space-between;align-items: center;text-align: left">
             <div style="padding-left: 50px;">
                 <h1 class="display-5 fw-bold text-white">MOWAS</h1>

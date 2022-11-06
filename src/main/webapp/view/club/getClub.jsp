@@ -49,7 +49,7 @@
         </div>
         <div class="container-fluid py-3" style="text-align: center; width: 70%;">
             <img src="/resources/${club.clubImage}" alt="모임 대표 이미지"
-                 style="object-fit: cover; width: 100%; height: 100%">
+                 style="object-fit: cover; width: 100%; aspect-ratio: 1/0.55">
         </div>
 
         <h5 style="width: 70%">${club.clubText}</h5>
@@ -258,7 +258,7 @@
                             <div class="mb-3">
                                 <label for="clubImage" class="form-label" style="margin: 0; width: 100%;">
                                     <img id="preview" src="/resources/${club.clubImage}"
-                                         style="object-fit: cover; width: 100%; height: 100%; border: 1px solid #ced4da;border-radius: 5px;" alt="clubImage">
+                                         style="object-fit: cover; width: 100%; aspect-ratio: 1/0.55; border: 1px solid #ced4da;border-radius: 5px;" alt="clubImage">
                                 </label>
                                 <input class="form-control" style="display: none;" type="file" ${currentCluber.cluberStatus=='5'?'disabled':''} id="clubImage" name="file">
                             </div>
@@ -340,8 +340,7 @@
                     </div>
                     <div class="modal-footer">
                         <c:if test="${currentCluber.cluberStatus!='2'}">
-                            <button type="button" class="btn btn-primary addCluberApply" style="margin-right: 185px">모임
-                                가입
+                            <button type="button" class="btn btn-primary addCluberApply" style="margin-right: 185px">가입
                                 신청
                             </button>
                         </c:if>

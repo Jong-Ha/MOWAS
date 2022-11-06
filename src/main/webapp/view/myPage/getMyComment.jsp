@@ -91,7 +91,6 @@
     }
 
     .wrapper {
-        height: 13ch;
         display: grid;
         place-items: center;
     }
@@ -157,8 +156,8 @@
     })
 
     $(".getMyRecomment").on("click", function (){
-        alert('adsfadsf');
-        alert(userId);
+        // alert('adsfadsf');
+        // alert(userId);
         location.href="getMyRecomment?userId="+userId;
     })
     })
@@ -170,6 +169,8 @@
 
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
+<hr>
+<div class="container">
 <div class="tabBox">
     <span class="tabBtn getMyComment" >댓글</span>
     <span>|</span>
@@ -254,6 +255,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 </div>
 <jsp:include page="/layout/chatIcon.jsp"/>

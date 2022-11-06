@@ -12,7 +12,7 @@
 </div>
 <div class="modal-body">
     <form id="addClubBlacklistForm">
-        <input type="hidden" name="clubNum" value="${clubNum}">
+        <input type="hidden" id="clubNum" name="clubNum" value="${clubNum}">
         <div class="form-floating mb-3">
             <input type="text" class="form-control" id="userId" placeholder="userId" name="userId" value="${cluber.user.userId}">
             <label for="userId">아이디</label>
@@ -25,5 +25,5 @@
     </form>
 </div>
 <div class="modal-footer" style="display: block">
-    <input type="button" class="addClubBlacklist btn btn-primary" value="등록" data-bs-target="#listClubBlacklist" data-bs-toggle="modal">
+    <input type="button" class="addClubBlacklist btn btn-primary" value="등록">
 </div>

@@ -199,6 +199,13 @@ onebyone.on('connection', (socket) => {
             result.save(function (error, result) {
                 chatlist.emit('newChat')
             })
+            new Msg({
+                roomId: roomId,
+                msg: '새로운 채팅방입니다!',
+                time: moment(new Date()).format("h:mm A"),
+                rtime: moment(new Date()),
+                imgCheck : 9
+            }).save()
         } else {
             roomId = result.roomId;
         }
@@ -448,6 +455,7 @@ dealChat.on('connection', (socket) => {
     const userId1 = socket.handshake.query.userId1
     const userId2 = socket.handshake.query.userId2
     const boardNum = socket.handshake.query.boardNum
+    const roomName = socket.handshake.query.roomName
     const userImage1 = socket.handshake.query.userImage1
     const userImage2 = socket.handshake.query.userImage2
 
@@ -473,11 +481,18 @@ dealChat.on('connection', (socket) => {
                     userId: userId2,
                     regDate: moment(new Date()),userImage:userImage2
                 }],
-                roomId: roomId, chatCategory: 'dealChat', roomName: roomId, boardNum: boardNum
+                roomId: roomId, chatCategory: 'dealChat', roomName: roomName, boardNum: boardNum
             })
             result.save(function (error, result) {
                 chatlist.emit('newChat')
             })
+            new Msg({
+                roomId: roomId,
+                msg: '새로운 채팅방입니다!',
+                time: moment(new Date()).format("h:mm A"),
+                rtime: moment(new Date()),
+                imgCheck : 9
+            }).save()
         } else {
             roomId = result.roomId;
         }
@@ -497,6 +512,15 @@ dealChat.on('connection', (socket) => {
                 dealChat.to(roomId).emit("json", msg);
 
             }
+        })
+        socket.on("deleteChat", (data) => {
+            console.log(data.roomId)
+            Room.deleteMany({roomId : data.roomId},function(){
+                Msg.deleteMany({roomId : data.roomId}, function(){
+                    chatlist.emit('newChat')
+                    dealChat.to(roomId).emit("deleteChat");
+                })
+            })
         })
 
 

@@ -668,12 +668,29 @@
                                             swalWithBootstrapButtons.fire(
                                                 commentUser + ' 님이 초대 되었습니다',
                                                 'success',
-                                            )
-                                            setTimeout(() => (
-                                                window.open("/chat/addOneChat?userId=" + commentUser + "&chatNameSpace=onebyone", "채팅방",
-                                                    "left=500, top=100, width=500px, height=500px, marginwidth=0, marginheight=0,")
-
-                                            ), 2500)
+                                            ).then(()=>{
+                                                var openWin = window.open("/chat/chatList?chatCategory=onebyone", 'chatList')
+                                                $.ajax({
+                                                    url: "/chat/addOneChat",
+                                                    data: {
+                                                        'userId': commentUser,
+                                                        'chatNameSpace': 'onebyone',
+                                                        'roomName': commentUser
+                                                    },
+                                                    success: function (re) {
+                                                        // console.log(re)
+                                                        let loadCheck = true
+                                                        setInterval(function () {
+                                                            if (loadCheck) {
+                                                                if ($(openWin.document).find('.chatRoom').html() !== undefined) {
+                                                                    $(openWin.document).find('.chatRoom').html(re)
+                                                                    loadCheck = false
+                                                                }
+                                                            }
+                                                        }, 100)
+                                                    }
+                                                })
+                                            })
                                         } else if (
                                             /* Read more about handling dismissals below */
                                             result.dismiss === Swal.DismissReason.cancel

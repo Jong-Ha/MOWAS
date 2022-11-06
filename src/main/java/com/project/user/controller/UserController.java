@@ -248,7 +248,7 @@ public class UserController {
 
         }
         */
-        return "redirect:"+logoutNow;
+        return "redirect:/";
     }
 
     /*

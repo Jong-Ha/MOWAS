@@ -46,8 +46,7 @@
         display: flex;
         flex-direction: row;
         margin-bottom: 30px;
-        float: left;
-        width: 442px;
+        width: 360px;
         transition: all 0.1s linear;
     }
 
@@ -214,7 +213,6 @@
     }
 
     .wrapper {
-        height: 13ch;
         display: grid;
         place-items: center;
     }
@@ -278,44 +276,47 @@
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
 
-<div class="tabBox">
-    <span class="tabBtn getMyVillBoard" >우리동네 게시글</span>
-    <span>|</span>
-    <span class="tabBtn getMyCbReviewBoard">모임 일정 후기 게시글</span class="tabBtn">
-    <span>|</span>
-    <span class="tabBtn getMyDealBoard" >판매/판매요청 게시글</span class="tabBtn">
-</div>
+<hr>
 
-
+<div class="container">
+    <div class="tabBox">
+        <span class="tabBtn getMyVillBoard" >우리동네 게시글</span>
+        <span>|</span>
+        <span class="tabBtn getMyCbReviewBoard">모임 일정 후기 게시글</span>
+        <span>|</span>
+        <span class="tabBtn getMyDealBoard" >판매/판매요청 게시글</span>
+    </div>
 <hr/>
 <h4>우리동네 게시글</h4>
 <hr/>
-<div class="container" >
+<div style="display: flex;justify-content: space-between;">
 <c:set var="i" value="0" />
 <c:forEach var="list" items="${map.myVillBoard}">
 
 
-<div class="cardbox" style="margin-left: 100px;">
+<div class="cardbox">
     <input hidden class="villNum" value="10067">
     <input hidden class="SUserId" value="user01">
     <div class="col villBox">
 
         <div class="card h-100 shadow-lg">
 
-            <div class="card-top" style=" border-bottom: 1px solid; display: flex; font-weight: bold">
-                <div class="userImg">
-                    <img src="/resources/uploadFiles\userImages\37b973dd.jpg" alt=""
-                         style="border-radius: 10px; width: 100%; height: 100%;">
-                </div>
-                <div class="userInfo">
-                    <div>
-                        ${list.userId}
+            <div class="card-top" style=" border-bottom: 1px solid; display: flex; font-weight: bold;justify-content: space-between;">
+                <div style="display: flex">
+                    <div class="userImg">
+                        <img src="/resources/uploadFiles\userImages\37b973dd.jpg" alt=""
+                             style="border-radius: 10px; width: 100%; height: 100%;">
                     </div>
-                    <div style="font-size: 0.7em; margin-top: 5px">
-                        ${list.villCode}
+                    <div class="userInfo">
+                        <div>
+                                ${list.userId}
+                        </div>
+                        <div style="font-size: 0.7em; margin-top: 5px">
+                                ${list.villCode}
+                        </div>
                     </div>
                 </div>
-                <div style="width: 56%;">
+                <div>
                     <div class="user_manu">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-three-dots" viewBox="0 0 16 16">
@@ -408,8 +409,9 @@
 </div>
 </c:forEach>
 </div>
+</div>
 
-<div id="villBoardUserId" name="villBoardUserId" value="${user.userId}"/>
+<input type="hidden" id="villBoardUserId" name="villBoardUserId" value="${user.userId}"/>
 
 <jsp:include page="/layout/chatIcon.jsp"/>
 <jsp:include page="/layout/footer.jsp"/>

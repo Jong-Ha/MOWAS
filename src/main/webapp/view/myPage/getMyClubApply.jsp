@@ -32,7 +32,21 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
+
     $(function () {
+        // const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        // const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+        // $('tbody tr').on('mouseover',function(){
+        //     bootstrap.Tooltip.getOrCreateInstance($(this).find('span')[0]).toggle()
+        // })
+        $('tbody tr').on('mouseenter',function(){
+            bootstrap.Tooltip.getOrCreateInstance($(this).find('span')[0]).show()
+        })
+        $('tbody tr').on('mouseleave',function(){
+            bootstrap.Tooltip.getOrCreateInstance($(this).find('span')[0]).dispose()
+        })
+
         var userId = $(".myPageUserId").val();
 
         $(".getMyClub1").on("click", function () {
@@ -43,15 +57,15 @@
         });
     })
 
-    function imgResize(){
-        $('.clubImage').height($('.clubImage').width())
-    }
+    // function imgResize(){
+    //     $('.clubImage').height($('.clubImage').width())
+    // }
 
     $(function(){
-        imgResize()
-        $(window).on('resize',function(){
-            imgResize()
-        })
+        // imgResize()
+        // $(window).on('resize',function(){
+        //     imgResize()
+        // })
 
         $('.listClubApply td').on('click',function(){
             location.href = '/club/getClub/'+$(this).parents('tr').find('.clubNum').val()
@@ -299,7 +313,7 @@
 <hr>
 <div class="container">
 <form id="getMyClubApplyForm">
-    <input type="hidden" id="userId" name="userId" value="${user.userId}">
+    <input type="hidden" name="userId" value="${user.userId}">
     <input type="hidden" id="currentPage" name="currentPage" value="${resultPage.currentPage}">
 </form>
 
@@ -313,7 +327,6 @@
     <hr>
     <h3>가입 신청한 모임</h3>
     <hr/>
-
 
     <!--  table Start /////////////////////////////////////-->
     <div class="listClubApply">
@@ -338,12 +351,12 @@
                                     <c:forEach begin="1" end="1">
                                     <tr>
                                         <input type="hidden" class="clubNum" value="${item.club.clubNum}"/>
-                                        <td><img class="clubImage" src="/resources/${item.club.clubImage}" alt="모임이미지" style="width: 100%;height: 100%;object-fit: cover;"></td>
+                                        <td><img class="clubImage" src="/resources/${item.club.clubImage}" alt="모임이미지" style="width: 100%;aspect-ratio: 1/0.8;object-fit: cover;"></td>
                                         <td>${item.club.clubName}</td>
                                         <td>${item.club.villCode}</td>
                                         <td>${item.club.interList}</td>
                                         <td style="word-break: keep-all">${item.club.tag}</td>
-                                        <td>${item.cluber.cluberStatus}</td>
+                                        <td><span data-bs-toggle="tooltip" data-bs-placement="top" title="${item.cluber.cluberStatus} : ${item.cluber.cluberStatus=='신청'?item.cluber.clubApplyDate:item.cluber.clubRegDate}">${item.cluber.cluberStatus}</span></td>
                                     </tr>
                                 </c:forEach>
                                 </c:forEach>
@@ -351,7 +364,6 @@
                             </table>
                         </div>
                         <!--  table End /////////////////////////////////////-->
-
                         <c:if test="${!empty list}">
                             <nav aria-label="Page navigation example" style="display: flex;justify-content: center;">
                                 <ul class="pagination">

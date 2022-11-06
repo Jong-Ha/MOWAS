@@ -82,7 +82,7 @@ $(function () {
 
     $('.modal').on('show.bs.modal', function () {
         $('body').addClass('stop-scrolling')
-        $('#preview').height(466*0.55)
+        // $('#preview').height(466*0.55)
     })
     $('.modal').on('hide.bs.modal', function () {
         $('body').removeClass('stop-scrolling')

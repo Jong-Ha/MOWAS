@@ -247,6 +247,18 @@ public class ClubRestController {
         map.put("list", list);
         return map;
     }
+
+    @RequestMapping(value = "getCluberStatus/{clubNum}/{userId}")
+    public String getCluberStatus(@PathVariable String clubNum, @PathVariable String userId){
+        User user = new User();
+        user.setUserId(userId);
+        Cluber cluber = clubService.getCluberCondition(user, Integer.parseInt(clubNum));
+        if(cluber!=null){
+            return cluber.getCluberStatus();
+        }else{
+            return "0";
+        }
+    }
 //    @RequestMapping(value = "updateVoter", method = RequestMethod.POST)
 //    public boolean updateVoter(@RequestBody Map<String, Object> map) {
 //        List<String> voterItems = (List<String>) map.get("voterItems");
