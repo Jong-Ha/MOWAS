@@ -221,7 +221,7 @@ public class UserController {
         System.out.println("keepLogin 쿠키의 벨류 값"+cookie.getValue());
         response.addCookie(cookie);
 
-/*
+
  //로그아웃시 현재 페이지 URL 구해서 거기로 보내기
         String referer = request.getHeader("referer");
         System.out.println("로그아웃 referer 의 값?"+referer);
@@ -230,7 +230,7 @@ public class UserController {
         System.out.println("인트a의 값? : "+a);
         String logoutNow= referer.substring(a, referer.length());
         System.out.println("logoutNow의 값...."+logoutNow);
-*/
+
 
 
         ///*/
@@ -249,7 +249,11 @@ public class UserController {
 
         }
         */
-        return "redirect:/";
+        if(!logoutNow.contains("chat")){
+            return "redirect:/";
+        }else {
+            return "redirect:/chat/chatList";
+        }
     }
 
     /*

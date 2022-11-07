@@ -80,8 +80,12 @@
                 'data' : data,
                 method : 'post',
                 success : function(re){
-                    alert('투표가 제출되었습니다!')
-                    $('#getVote .modal-content').html(re)
+                    Swal.fire('투표가 제출되었습니다!').then(()=>{
+                        $('#getVote .modal-content').html(re)
+                    })
+                },
+                error : function(){
+                    Swal.fire('항목 선택 후 제출해주세요!')
                 }
             })
         })
@@ -105,7 +109,7 @@
                 $.ajax({
                     url : "/club/endVote/${voteNum}",
                     success : function(re){
-                        alert('투표가 마감되었습니다!')
+                        Swal.fire('투표가 마감되었습니다!')
 
                         let msg ='"${vote.voteTitle}" 투표가 마감되었습니다!'
 
@@ -141,10 +145,12 @@
                 $.ajax({
                     url : "/club/deleteVote/${vote.roomId}/${voteNum}",
                     success : function(re){
-                        alert('투표가 삭제되었습니다!')
-                        $('#listVote .modal-content').html(re)
-                        $('#getVote').modal('hide')
-                        $('#listVote').modal('show')
+                        Swal.fire('투표가 삭제되었습니다!').then(()=>{
+                            $('#listVote .modal-content').html(re)
+                            $('#getVote').modal('hide')
+                            $('#listVote').modal('show')
+                        })
+
                     }
                 })
             }
@@ -301,7 +307,7 @@
     <button type="button" class="btn btn-primary updateVoterCheck" ${vote.voterCheck==1?'':'style="display : none"'}>다시 투표하기
     </button>
 </c:if>
-<c:if test="${vote.voteMasterId==user.userId&&vote.endCheck=='0'}">
+<c:if test="${vote.voteMasterId==user.userId&&vote.endCheck=='0'&&vote.totalVoter==0}">
     <button type="button" class="btn btn-primary updateVote" data-bs-target="#updateVote" data-bs-toggle="modal">투표 수정
     </button>
 </c:if>

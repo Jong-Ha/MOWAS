@@ -151,7 +151,9 @@ public class MyPageServiceImpl implements MyPageService {
 
         int clubCalenderReviewTotal = myPageDao.getTotalClubCalender(map);
 
-        List<Deal> dealBoardLike = myPageDao.getMydealBoardLike(userId);
+        List<Deal> dealBoardLike = myPageDao.getMydealBoardLike(map);
+
+        int dealBoardLikeTotal = myPageDao.getTotalDealBoardTotal(map);
 
         System.out.println("villBoardLike 값??"+villBoardLike);
         System.out.println("clubCalendarReviewLike 값??"+clubCalendarReviewLike);
@@ -162,6 +164,7 @@ public class MyPageServiceImpl implements MyPageService {
         map.put("clubCalendarReviewLike", clubCalendarReviewLike);
         map.put("clubCalenderReviewTotal", clubCalenderReviewTotal);
         map.put("dealBoardLike", dealBoardLike);
+        map.put("dealBoardLikeTotal", dealBoardLikeTotal);
 
         System.out.println("getMyLike 서비스임플 종료이다 ");
         return map;
@@ -196,6 +199,19 @@ public class MyPageServiceImpl implements MyPageService {
         map.put("totalCount", totalCount);
 
         System.out.println("getMyClub 서비스임플 종료이다 ");
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> getMyClubLike(String userId, Search search) throws Exception {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("userId",userId);
+        map.put("search",search);
+        List<Club> list = myPageDao.getMyClubLike(map);
+        int totalCount = myPageDao.getTotalMyClubLike(map);
+
+        map.put("list", list);
+        map.put("totalCount", totalCount);
         return map;
     }
 

@@ -21,6 +21,12 @@
         color: #616f80;
     }
 
+    .card-body{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
     #list {
         text-align: center;
     }
@@ -187,14 +193,13 @@
 <div class="container">
 
     <!-- table 위쪽 검색 Start /////////////////////////////////////-->
-    <div class="row">
 
         <div class="row">
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-pattern">
                     <div class="card-body">
                         <div class="float-right">
-                            <i class="fa fa-archive text-primary h4 ml-3"></i>
+                            <i class="fa fa-archive text-primary h4 ml-3" style="font-size: 1.5rem;"></i>
                         </div>
                         <h5 class="font-size-20 mt-0 pt-1">${resultPage.totalCount }</h5>
                         <p class="text-muted mb-0">Total Counts</p>
@@ -205,7 +210,7 @@
                 <div class="card bg-pattern">
                     <div class="card-body">
                         <div class="float-right">
-                            <i class="fa fa-th text-primary h4 ml-3"></i>
+                            <i class="fa fa-th text-primary h4 ml-3" style="font-size: 1.5rem;"></i>
                         </div>
                         <h5 class="font-size-20 mt-0 pt-1">${resultPage.currentPage}</h5>
                         <p class="text-muted mb-0">Current Page</p>
@@ -216,7 +221,7 @@
                 <div class="card bg-pattern">
                     <div class="card-body">
                         <div class="float-right">
-                            <i class="fa fa-file text-primary h4 ml-3"></i>
+                            <i class="fa fa-file text-primary h4 ml-3" style="font-size: 1.5rem;"></i>
                         </div>
                         <h5 class="font-size-20 mt-0 pt-1">${resultPage.maxPage}</h5>
                         <p class="text-muted mb-0">Max Page</p>
@@ -284,44 +289,25 @@
 </table>
                         </div>
                         <!--  table End /////////////////////////////////////-->
-                        <div class="pt-3">
-                            <ul class="pagination justify-content-center mb-0">
-                                <!--  <<== 좌측 nav -->
-                                <c:if test="${ resultPage.currentPage <= resultPage.pageUnit }">
-                                <li class="page-item disabled">
-                                    </c:if>
-                                    <c:if test="${ resultPage.currentPage > resultPage.pageUnit }">
-                                <li class="page-item">
-                                    </c:if>
-                                    <a class="page-link" href="javascript:fncGetList('${ resultPage.currentPage-1}')" aria-disabled="true" aria-label="Previous">
-                                        <span aria-hidden="true"> << </span></a>
+
+                        <nav aria-label="Page navigation example" style="display: flex;justify-content: center;">
+                            <ul class="pagination">
+                                <li class="page-item pageUnit ${resultPage.beginUnitPage==1?'disabled':''}" value="${resultPage.beginUnitPage-resultPage.pageUnit}">
+                                    <a class="page-link" href="javascript:fncGetList('${ resultPage.currentPage-1}')" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
                                 </li>
-                                <!--  중앙  -->
-                                <c:forEach var="i"  begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" step="1">
-                                    <c:if test="${ resultPage.currentPage == i }">
-                                        <li class="page-item active">
-                                            <a class="page-link" href="javascript:fncGetList('${ i }');">${ i }</a>
-                                        </li>
-                                    </c:if>
-                                    <c:if test="${resultPage.currentPage != i}">
-                                        <li class="page-item">
-                                            <a class="page-link" href="javascript:fncGetList('${ i }');">${ i }</a>
-                                        </li>
-                                    </c:if>
+                                <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" var="i">
+                                    <li class="page-item ${search.currentPage==i?'active':'paging'}"><a class="page-link" href="javascript:fncGetList('${ i }');">${i}</a></li>
                                 </c:forEach>
-
-                                <c:if test="${ resultPage.endUnitPage >= resultPage.maxPage }">
-                                <li class= "page-item disabled">
-                                    </c:if>
-                                    <c:if test="${ resultPage.endUnitPage < resultPage.maxPage }">
-                                <li class= "page-item">
-                                    </c:if>
-                                    <a class="page-link" href="javascript:fncGetList('${resultPage.endUnitPage+1}')" aria-disabled="true" aria-label="Next">
-                                        <span aria-hidden="true"> >> </span></a>
+                                <li class="page-item pageUnit ${resultPage.maxPage==resultPage.endUnitPage?'disabled':''}" value="${resultPage.beginUnitPage+resultPage.pageUnit}">
+                                    <a class="page-link" href="javascript:fncGetList('${resultPage.endUnitPage+1}')" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
                                 </li>
-
                             </ul>
-                        </div>
+                        </nav>
+
                     </div>
                 </div>
             </div>
@@ -333,9 +319,7 @@
         <a class="btn btn-default btn" href = "#" role="button">취 소 </a>
     </div>
     --%>
-</div>
-<div style="margin-bottom: 100px;">
-</div>
+
 <jsp:include page="/layout/chatIcon.jsp"/>
 <jsp:include page="/layout/footer.jsp"/>
 </body>

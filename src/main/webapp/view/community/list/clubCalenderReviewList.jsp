@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Insert title here</title>
+    <title>MOWAS</title>
 </head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -64,7 +64,6 @@
                     const month = ('0' + (date.getMonth() + 1)).slice(-2);
                     const day = ('0' + date.getDate()).slice(-2);
                     const dateStr = year + '-' + month + '-' + day;
-                    alert(date);
 
 
                     $(".clubDate2").val(dateStr);
@@ -231,7 +230,7 @@
                     }
                     Swal.fire({
                         icon: 'success',
-                        title: 'Your work has been saved',
+                        title: '수정 되었습니다',
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -309,7 +308,7 @@
             Swal.fire({
                 title: '해당 모임 페이지로 이동하시겠습니까??',
                 text: "해당 페이지로 이동합니다",
-                icon: 'warning',
+                icon: 'success',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
@@ -441,7 +440,7 @@
                             $.each(item.file, function (index, item) {
                                 str +=
                                     '               <div class="carousel-item active get">' +
-                                    '                   <img class="poto" width="100%" height="100%" src="/resources/' + item.fileName + '" alt="any">' +
+                                    '                   <img class="poto" width="100%" height="100%" src="/resources' + item.fileName + '" alt="any">' +
                                     '               </div>'
                             })
 
@@ -575,7 +574,7 @@
         margin-left: 10px;
         cursor: pointer;
         height: 28px;
-        width: 39px;
+        width: 44px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -697,13 +696,13 @@
 
 <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 <jsp:include page="/layout/toolbar.jsp"/>
-
-
-<img class="shadow-lg" src="${pageContext.request.contextPath}/resources/images/club1.png"
-     style="height: 500px;border-radius: 10px;  width: 1600px;">
-
+<div class="container">
+    <img class="shadow-lg" src="/resources/images/커뮤8.jpg"
+         style="border-radius: 10px;object-fit: cover;aspect-ratio: 12/5;width: 100%;object-fit: cover;">
+</div>
 <jsp:include page="/layout/commubar.jsp"/>
 <div class="container">
+
     <input hidden class="boardCategory" value="1">
 
     <%--상단 툴바--%>
@@ -793,8 +792,8 @@
                             <div class="carousel-inner">
                                 <c:forEach var="File" items="${ClubCalendarReview.file}">
                                     <div class="carousel-item active get" data-bs-interval="2000">
-                                        <img class="d-block w-100 poto" width="100%" height="100%"
-                                             src="/resources/${File.fileName}" alt="any">
+                                        <img class="d-block w-100 poto" width="100%" height="100%" style="object-fit: cover;"
+                                             src="/resources${File.fileName}" alt="any">
                                     </div>
                                 </c:forEach>
                             </div>
@@ -831,7 +830,7 @@
                                         </div>
 
                                         <div class="btn btn-danger buttonBox report">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-lg" style="font-size: 1.7em" viewBox="0 0 16 16">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-lg" style="font-size: 1.2em" viewBox="0 0 16 16">
                                                 <path d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0L7.005 3.1ZM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"/>
                                             </svg>
                                         </div>

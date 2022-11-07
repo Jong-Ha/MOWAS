@@ -326,4 +326,9 @@ public class ClubDaoImpl implements ClubDao {
     public List<CalendarCluber> getListCluber(String userId) {
         return sqlSession.selectList("ClubMapper.getListClubCluber", userId);
     }
+
+    @Override
+    public void deleteClubCluber(int boardNum) {
+        sqlSession.delete("ClubMapper.deleteClubCluber", boardNum);
+    }
 }

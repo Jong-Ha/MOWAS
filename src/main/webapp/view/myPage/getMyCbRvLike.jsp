@@ -235,6 +235,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
 
+
     function pagingSubmit() {
         $("#clubCalenderLike").attr('action', '/myPage/getMyCbRvLike').attr('method', 'post').submit()
 
@@ -263,9 +264,7 @@
         })
 
 
-
         $(".getMyLike").on("click", function () {
-            alert('user' + userId)
             self.location = "/myPage/getMyVillBoardLike?userId=" + userId;
         })
         $(".getMyCbRvLike").on("click", function () {
@@ -287,10 +286,13 @@
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
 
+<hr>
+<div class="container">
+
 <div class="tabBox">
     <span class="tabBtn getMyLike">좋아요한 우리동네 게시글</span>
     <span>|</span>
-    <span class="tabBtn getMyCbRvLike">좋아요한 모임 후기 게시글</span>
+    <span class="tabBtn getMyCbRvLike">좋아요한 모임 후기글 게시글</span>
     <span>|</span>
     <span class="tabBtn getMyDealLike">좋아요한 판매/판매요청 게시글</span>
 </div>
@@ -298,6 +300,8 @@
 <hr/>
 <h3>좋아요한 모임 후기글</h3>
 <hr/>
+
+
 <div class="container">
     <form id="clubCalenderLike">
 
@@ -310,7 +314,8 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive project-list">
-                            <table class="table project-table table-centered table-nowrap table-hover table-striped" style="table-layout: fixed;">
+                            <table class="table project-table table-centered table-nowrap table-hover table-striped"
+                                   style="table-layout: fixed;">
                                 <thead>
                                 <tr>
                                     <th scope="col">제목</th>
@@ -368,7 +373,8 @@
                         </div>
                         <!--  table End /////////////////////////////////////-->
                         <c:if test="${!empty resultPage}">
-                            <nav aria-label="Page navigation example" style="display: flex;justify-content: center;">
+                            <nav aria-label="Page navigation example"
+                                 style="display: flex;justify-content: center;">
                                 <ul class="pagination">
                                     <li class="page-item pageUnit ${resultPage.beginUnitPage == 1?'disabled':''}"
                                         value="${resultPage.beginUnitPage - resultPage.pageUnit}">
@@ -401,6 +407,10 @@
     </form>
 </div>
 
+
+<div style="margin-bottom: 100px;">
+</div>
+</div>
 <jsp:include page="/layout/chatIcon.jsp"/>
 <jsp:include page="/layout/footer.jsp"/>
 </body>

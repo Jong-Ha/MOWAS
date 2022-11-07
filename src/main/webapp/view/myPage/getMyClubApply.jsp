@@ -55,6 +55,9 @@
         $(".getMyClubApply1").on("click", function () {
             self.location = "/myPage/getMyClubApply?userId=" + userId;
         });
+        $(".getMyClubLike1").on("click", function () {
+            self.location = "/myPage/getMyClubLike?userId=" + userId;
+        });
     })
 
     // function imgResize(){
@@ -298,6 +301,8 @@
         <span class="tabBtn getMyClub1">가입한 모임</span>
         <span>|</span>
         <span class="tabBtn getMyClubApply1">가입 신청한 모임</span>
+        <span>|</span>
+        <span class="tabBtn getMyClubLike1">내가 찜한 모임</span>
     </div>
 
 

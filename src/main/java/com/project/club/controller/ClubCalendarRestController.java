@@ -100,8 +100,10 @@ public class ClubCalendarRestController<list> {
 
         clubService.addCalendarCluber((Integer) map.get("clubCalenderNum"), list);
 
+
         return 0;
     }
+
 
     /*모임 ajax 처리*/
     @RequestMapping("addClubCalenderReview")
@@ -162,7 +164,7 @@ public class ClubCalendarRestController<list> {
     @RequestMapping("updateClubCalender")
     public int updateClubCalender(@RequestBody ClubCalendar clubCalendar) {
 
-
+        System.out.println(clubCalendar);
         if (clubCalendar.getApplyAutoCheck().equals("true")) {
             clubCalendar.setApplyAutoCheck("1");
         } else {
@@ -175,12 +177,6 @@ public class ClubCalendarRestController<list> {
             clubCalendar.setCalendarApplyCheck("2");
         }
 
-        /*알림 설정*/
-        if (clubCalendar.getNoticeCheck().equals("true")) {
-            clubCalendar.setNoticeCheck("1");
-        } else {
-            clubCalendar.setNoticeCheck("2");
-        }
 
         System.out.println("updateClubCalender 진입 " + clubCalendar);
 
@@ -244,7 +240,8 @@ public class ClubCalendarRestController<list> {
         System.out.println("==============="+ deal);
 
         map.put("deal", deal);
-
+        System.out.println(deal.getDealId());
+        System.out.println("deaojfa;e"+map);
         return map;
 
     }

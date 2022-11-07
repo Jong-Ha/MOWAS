@@ -69,9 +69,11 @@ function setListCluber() {
                         success: function () {
                             // alert("ajax")
                             if (result === 'accept') {
-                                alert('승인되었습니다!')
+                                // alert('승인되었습니다!')
+                                Swal.fire('승인되었습니다!').then()
                             } else {
-                                alert('거절되었습니다!')
+                                // alert('거절되었습니다!')
+                                Swal.fire('거절되었습니다!').then()
                             }
 
                             div.remove()
@@ -81,7 +83,12 @@ function setListCluber() {
                             }
                         },
                         error: function () {
-                            alert('다시 시도해 주세요')
+                            // alert('다시 시도해 주세요')
+                            Swal.fire({
+                                icon: 'error',
+                                title: '오류가 발생했습니다',
+                                text: '다시 시도해 주세요!'
+                            })
                         }
                     })
                 })
@@ -119,20 +126,41 @@ function setListCluber() {
                                     'data': data,
                                     method: 'post',
                                     success: function (re) {
-                                        $('#addClubBlacklist').modal('hide')
-                                        $('#listClubBlacklist').modal('show')
-                                        $('#listClubBlacklist .modal-content').html(re)
-                                        setListCluberBlacklist();
+                                        Swal.fire(
+                                            '등록 성공!',
+                                            '블랙리스트로 등록하였습니다',
+                                            'success'
+                                        ).then(()=>{
+                                            $('#addClubBlacklist').modal('hide')
+                                            $('#listClubBlacklist').modal('show')
+                                            $('#listClubBlacklist .modal-content').html(re)
+                                            setListCluberBlacklist();
+                                        })
                                     }
                                 })
                             }else if(re===9){
-                                alert('이미 블랙리스트로 등록된 회원입니다')
+                                // alert('이미 블랙리스트로 등록된 회원입니다')
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: '등록 실패!',
+                                    text: '이미 블랙리스트로 등록된 회원입니다'
+                                })
                                 return false
                             }else if(re===2){
-                                alert('모임 가입 신청을 처리하고 진행해주세요')
+                                // alert('모임 가입 신청을 처리하고 진행해주세요')
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: '등록 실패!',
+                                    text: '모임 가입 신청을 처리하고 진행해주세요'
+                                })
                                 return false
                             }else{
-                                alert('모임원은 블랙리스트로 등록할 수 없습니다')
+                                // alert('모임원은 블랙리스트로 등록할 수 없습니다')
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: '등록 실패!',
+                                    text: '모임원은 블랙리스트로 등록할 수 없습니다'
+                                })
                                 return false
                             }
 
@@ -298,19 +326,30 @@ function setGetCluber() {
                         method: 'post',
                         'data': data,
                         success: function () {
-                            let check = confirm('블랙리스트로 등록하시겠습니까?')
-                            if (check) {
-                                //블랙리스트 등록 창
-                                $('#listCluber .addClubBlacklist').click()
-                                $('#addClubBlacklist').on('shown.bs.modal', function () {
-                                    $('#addClubBlacklistForm #userId').val($('#deleteCluberForm #userId').val())
-                                    $('#addClubBlacklistForm #blacklistText').val($('#deleteCluberForm #clubOutText').val())
-                                    $('#addClubBlacklist').off('shown.bs.modal')
-                                })
-                            } else {
-                                //탈퇴 유저 정보창
-                                $('#listCluber .clubUserNum[value="' + clubUserNum + '"]').click()
-                            }
+                            // let check = confirm('블랙리스트로 등록하시겠습니까?')
+                            Swal.fire({
+                                title: '강퇴하였습니다!',
+                                text: "해당 회원을 블랙리스트로 등록하시겠습니까?",
+                                icon: 'success',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: '예',
+                                cancelButtonText: '아니요'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    //블랙리스트 등록 창
+                                    $('#listCluber .addClubBlacklist').click()
+                                    $('#addClubBlacklist').on('shown.bs.modal', function () {
+                                        $('#addClubBlacklistForm #userId').val($('#deleteCluberForm #userId').val())
+                                        $('#addClubBlacklistForm #blacklistText').val($('#deleteCluberForm #clubOutText').val())
+                                        $('#addClubBlacklist').off('shown.bs.modal')
+                                    })
+                                }else {
+                                    //탈퇴 유저 정보창
+                                    $('#listCluber .clubUserNum[value="' + clubUserNum + '"]').click()
+                                }
+                            })
                         }
                     })
                     // $('.listCluberModal .listCluberOut').click()
@@ -452,9 +491,11 @@ function setGetClubCalendar() {
                 "Content-Type": "application/json; charset=UTF-8"
             },
             success: function () {
-                alert('참여 신청 되었습니다.')
-                $("#exampleModal2 .addClubCalendarApply").toggle()
-                $("#exampleModal2 .deleteClubCalendarApply").toggle()
+                // alert('참여 신청 되었습니다.')
+                Swal.fire('참여 신청 되었습니다.').then(()=>{
+                    $("#exampleModal2 .addClubCalendarApply").toggle()
+                    $("#exampleModal2 .deleteClubCalendarApply").toggle()
+                })
             }
         })
     })
@@ -474,9 +515,11 @@ function setGetClubCalendar() {
                 "Content-Type": "application/json; charset=UTF-8"
             },
             success: function () {
-                alert('참여 신청이 취소되었습니다.')
-                $("#exampleModal2 .addClubCalendarApply").toggle()
-                $("#exampleModal2 .deleteClubCalendarApply").toggle()
+                // alert('참여 신청이 취소되었습니다.')
+                Swal.fire('참여 신청이 취소되었습니다.').then(()=>{
+                    $("#exampleModal2 .addClubCalendarApply").toggle()
+                    $("#exampleModal2 .deleteClubCalendarApply").toggle()
+                })
             }
         })
     })
@@ -522,9 +565,11 @@ function setGetClubCalendar() {
                                     success: function () {
                                         // alert("ajax")
                                         if (result === 'accept') {
-                                            alert('승인되었습니다!')
+                                            // alert('승인되었습니다!')
+                                            Swal.fire('승인되었습니다!').then()
                                         } else {
-                                            alert('거절되었습니다!')
+                                            // alert('거절되었습니다!')
+                                            Swal.fire('거절되었습니다!').then()
                                         }
 
                                         div.remove()
@@ -534,7 +579,12 @@ function setGetClubCalendar() {
                                         }
                                     },
                                     error: function () {
-                                        alert('다시 시도해 주세요')
+                                        // alert('다시 시도해 주세요')
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: '오류가 발생했습니다',
+                                            text: '다시 시도해 주세요!'
+                                        })
                                     }
                                 })
                             })
@@ -595,16 +645,27 @@ $(function () {
     //     location.href="/club/updateClub/"+$(".boardNum").val()
     // })
     $(".deleteClub").on("click", function () {
-        let check = confirm("진짜 삭제?");
-        if (check === true) {
-            location.href = "/club/deleteClub/" + $(".boardNum").val()
-        }
+        Swal.fire({
+            title: '모임을 삭제하시겠습니까?',
+            text: "다시는 복구할 수 없습니다",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '네, 삭제합니다',
+            cancelButtonText: '아니요'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                location.href = "/club/deleteClub/" + $(".boardNum").val()
+            }
+        })
     })
 
     //모임 탈퇴
     $(".deleteCluberView").on("click", function () {
         if ($('.cluberStatus').val() === '6') {
-            alert('모임장은 탈퇴할 수 없습니다')
+            // alert('모임장은 탈퇴할 수 없습니다')
+            Swal.fire('모임장은 탈퇴할 수 없습니다')
         }
     })
 
@@ -614,8 +675,15 @@ $(function () {
     // })
     $(".addCluberApplyView").on("click", function () {
         if ($(".userId").val() === '') {
-            alert("로그인이 필요합니다")
-            $('#loginModal').modal('show')
+            // alert("로그인이 필요합니다")
+            Swal.fire({
+                icon: 'error',
+                title: '로그인이 필요합니다',
+                text: '로그인을 먼저 진행해주세요'
+            }).then(()=>{
+                $('#loginModal').modal('show')
+            })
+            // $('#loginModal').modal('show')
         }
     })
     $(".addCluberApply").on("click", function () {
@@ -660,7 +728,8 @@ $(function () {
 
     $('#updateClub #clubName').off('keyup').on('keyup',function(){
         if($(this).val().length>13){
-            alert('모임명은 최대 13글자입니다')
+            // alert('모임명은 최대 13글자입니다')
+            Swal.fire('모임명은 최대 13글자입니다')
             $(this).val($(this).val().substring(0, 13));
         }
     })
@@ -692,7 +761,8 @@ $(function () {
 
     $("#cluberApplyForm #cluberText").on('keyup', function () {
         if ($(this).val().length > 100) {
-            alert('최대 100자 제한!')
+            // alert('최대 100자 제한!')
+            Swal.fire('자기소개는 100자 이내로 입력해주세요')
             $(this).val($(this).val().substring(0, 100));
         }
     })
@@ -730,8 +800,15 @@ $(function () {
 
     $('#addClubReport').off('show.bs.modal').on('show.bs.modal',function(){
         if($('.userId').val()===''){
-            alert('로그인 후 이용해주세요')
-            $('#loginModal').modal('show')
+            // alert('로그인 후 이용해주세요')
+            Swal.fire({
+                icon: 'error',
+                title: '로그인이 필요합니다',
+                text: '로그인을 먼저 진행해주세요'
+            }).then(()=>{
+                $('#loginModal').modal('show')
+            })
+            // $('#loginModal').modal('show')
             return false
         }
     })
@@ -754,7 +831,8 @@ $(function () {
                     contentType: false,
                     'data': data,
                     success: function () {
-                        alert('신고가 접수되었습니다!')
+                        Swal.fire('신고가 접수되었습니다!')
+
                     }
                 })
             })
@@ -847,7 +925,13 @@ $(function () {
     //모임 일정 후기
     $('.listClubCalendarReviewView').on('click', function () {
         if(!($('.cluberStatus').val()==='4'||$('.cluberStatus').val()==='5'||$('.cluberStatus').val()==='6')){
-            alert('모임원만 조회가 가능합니다')
+            // alert('모임원만 조회가 가능합니다')
+
+            Swal.fire({
+                icon: 'error',
+                title: '모임원만 조회가 가능합니다',
+                text: '모임에 먼저 가입해주시기 바랍니다'
+            })
             return false
         }
 
@@ -860,7 +944,12 @@ $(function () {
     //모임 일정 쇼츠
     $('.listClubCalendarShortView').on('click', function () {
         if(!($('.cluberStatus').val()==='4'||$('.cluberStatus').val()==='5'||$('.cluberStatus').val()==='6')){
-            alert('모임원만 조회가 가능합니다')
+            // alert('모임원만 조회가 가능합니다')
+            Swal.fire({
+                icon: 'error',
+                title: '모임원만 조회가 가능합니다',
+                text: '모임에 먼저 가입해주시기 바랍니다'
+            })
             return false
         }
 

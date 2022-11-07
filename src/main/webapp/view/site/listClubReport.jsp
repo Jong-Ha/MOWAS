@@ -127,6 +127,16 @@
                 border-color: transparent
             }
         }
+
+        .card {
+            border: 0;
+        }
+
+        .card-body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
     </style>
 
     <!--  ///////////////////////// JavaScript ////////////////////////// -->
@@ -174,7 +184,7 @@
      <div class="wrapper">
       <div class="typing">
          <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
-                    background-image: linear-gradient(transparent 60%, #F8CD07 40%);">
+                    background-image: linear-gradient(transparent 60%, #F8CD07 40%);color: #000000;">
         모  임   신  고 </h4>
     </div>
     </div>
@@ -183,12 +193,12 @@
     <hr>
     <!-- table 위쪽 검색 Start /////////////////////////////////////-->
     <div class="container">
-        <div class="row">
+        <div class="row" style="margin-bottom: 24px;">
             <div class="col-xl-3 col-md-6">
-                <div class="card bg-pattern">
+                <div class="card bg-pattern" style="height: 100%;">
                     <div class="card-body">
                         <div class="float-right">
-                            <i class="fa fa-archive text-primary h4 ml-3"></i>
+                            <i class="fa fa-archive text-primary h4 ml-3" style="font-size: 1.5rem;"></i>
                         </div>
                         <h5 class="font-size-20 mt-0 pt-1">${resultPage.totalCount }</h5>
                         <p class="text-muted mb-0">Total Counts</p>
@@ -196,10 +206,10 @@
                 </div>
             </div>
             <div class="col-xl-3 col-md-6">
-                <div class="card bg-pattern">
+                <div class="card bg-pattern" style="height: 100%;">
                     <div class="card-body">
                         <div class="float-right">
-                            <i class="fa fa-th text-primary h4 ml-3"></i>
+                            <i class="fa fa-th text-primary h4 ml-3" style="font-size: 1.5rem;"></i>
                         </div>
                         <h5 class="font-size-20 mt-0 pt-1">${resultPage.currentPage}</h5>
                         <p class="text-muted mb-0">Current Page</p>
@@ -207,10 +217,10 @@
                 </div>
             </div>
             <div class="col-xl-3 col-md-6">
-                <div class="card bg-pattern">
+                <div class="card bg-pattern" style="height: 100%;">
                     <div class="card-body">
                         <div class="float-right">
-                            <i class="fa fa-file text-primary h4 ml-3"></i>
+                            <i class="fa fa-file text-primary h4 ml-3" style="font-size: 1.5rem;"></i>
                         </div>
                         <h5 class="font-size-20 mt-0 pt-1">${resultPage.maxPage}</h5>
                         <p class="text-muted mb-0">Max Page</p>
@@ -219,7 +229,7 @@
             </div>
 
             <div class="col-xl-3 col-md-6 text-right">
-                <div class="card">
+                <div class="card" style="height: 100%;">
                     <div class="card-body">
                         <form id="clubReport">
                             <div class="form-group">
@@ -309,46 +319,24 @@
   </div>
     <!--  table End /////////////////////////////////////-->
 
-   <div class="pt-3">
-     <ul class="pagination justify-content-end mb-0">
-      <!--  <<== 좌측 nav -->
-       <c:if test="${ resultPage.currentPage <= resultPage.pageUnit }">
-         <li class="page-item disabled">
-       </c:if>
-       <c:if test="${ resultPage.currentPage > resultPage.pageUnit }">
-         <li class="page-item">
-       </c:if>
-         <a class="page-link" href="javascript:fncGetList('${ resultPage.currentPage-1}')" aria-disabled="true" aria-label="Previous">
-         <span aria-hidden="true"><<</span></a>
-         </li>
+             <nav aria-label="Page navigation example" style="display: flex;justify-content: center;">
+                 <ul class="pagination">
+                     <li class="page-item pageUnit ${resultPage.beginUnitPage==1?'disabled':''}" value="${resultPage.beginUnitPage-resultPage.pageUnit}">
+                         <a class="page-link" href="javascript:fncGetList('${ resultPage.currentPage-1}')" aria-label="Previous">
+                             <span aria-hidden="true">&laquo;</span>
+                         </a>
+                     </li>
+                     <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" var="i">
+                         <li class="page-item ${search.currentPage==i?'active':'paging'}"><a class="page-link" href="javascript:fncGetList('${ i }');">${i}</a></li>
+                     </c:forEach>
+                     <li class="page-item pageUnit ${resultPage.maxPage==resultPage.endUnitPage?'disabled':''}" value="${resultPage.beginUnitPage+resultPage.pageUnit}">
+                         <a class="page-link" href="javascript:fncGetList('${resultPage.endUnitPage+1}')" aria-label="Next">
+                             <span aria-hidden="true">&raquo;</span>
+                         </a>
+                     </li>
+                 </ul>
+             </nav>
 
-       <!--  중앙  -->
-       <c:forEach var="i"  begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" step="1">
-        <c:if test="${ resultPage.currentPage == i }">
-          <li class="page-item active">
-              <a class="page-link" href="javascript:fncGetList('${ i }');">${ i }<span class="sr-only"></span></a>
-          </li>
-          </c:if>
-
-        <c:if test="${resultPage.currentPage != i}">
-          <li class="page-item">
-              <a class="page-link" href="javascript:fncGetList('${ i }');">${ i }</a>
-          </li>
-        </c:if>
-        </c:forEach>
-
-        <c:if test="${ resultPage.endUnitPage >= resultPage.maxPage }">
-          <li class= "page-item disabled">
-        </c:if>
-        <c:if test="${ resultPage.endUnitPage < resultPage.maxPage }">
-          <li class= "page-item">
-        </c:if>
-           <a class="page-link" href="javascript:fncGetList('${resultPage.endUnitPage+1}')" aria-disabled="true" aria-label="Next">
-           <span aria-hidden="true">>></span></a>
-         </li>
-
-         </ul>
-        </div>
        </div>
      </div>
     </div>
@@ -413,5 +401,6 @@
     </div>
 </div>
 <%-- 모달창 끝--%>
+<jsp:include page="/layout/footer.jsp"/>
 </body>
 </html>

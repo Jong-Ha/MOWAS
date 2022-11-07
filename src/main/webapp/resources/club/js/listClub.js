@@ -29,7 +29,14 @@ function setListClub(){
     //좋아요 기능
     $(".likeToggle").off('click').on("click", function () {
         if($('.userId').val()===''){
-            alert('로그인이 필요합니다')
+            // alert('로그인이 필요합니다')
+            Swal.fire({
+                icon: 'error',
+                title: '로그인이 필요합니다',
+                text: '로그인을 먼저 진행해주세요'
+            }).then(()=>{
+                $('#loginModal').modal('show')
+            })
             return false
         }
         check = false;
@@ -99,8 +106,15 @@ $(function () {
         // window.open("/club/addClub", "모임 만들기",
         //     "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
         if ($('.userId').val() === '') {
-            alert('로그인이 필요합니다')
-            $('#loginModal').modal('show')
+            // alert('로그인이 필요합니다')
+            Swal.fire({
+                icon: 'error',
+                title: '로그인이 필요합니다',
+                text: '로그인을 먼저 진행해주세요'
+            }).then(()=>{
+                $('#loginModal').modal('show')
+            })
+            // $('#loginModal').modal('show')
             return false
         }
     })
@@ -197,7 +211,8 @@ $(function () {
 
     $('#addClub #clubName').on('keyup',function(){
         if($(this).val().length>13){
-            alert('모임명은 최대 13글자입니다')
+            // alert('모임명은 최대 13글자입니다')
+            Swal.fire('모임명은 최대 13글자입니다')
             $(this).val($(this).val().substring(0, 13));
         }
     })
@@ -229,27 +244,57 @@ $(function () {
 
     $("#addClub").find(".newClub").on('click', function () {
         if ($("#addClub #clubName").val() === '') {
-            alert("모임명은 필수입니다")
+            // alert("모임명은 필수입니다")
+            Swal.fire({
+                icon: 'error',
+                title: '모임 만들기에 실패하였습니다',
+                text: '모임명을 입력해주세요'
+            })
             return;
         }
         if ($("#addClub #clubText").val() === '') {
-            alert("모임소개는 필수입니다")
+            // alert("모임소개는 필수입니다")
+            Swal.fire({
+                icon: 'error',
+                title: '모임 만들기에 실패하였습니다',
+                text: '모임소개를 입력해주세요'
+            })
             return;
         }
         if ($("#addClub #interList").val() === '00') {
-            alert("관심목록은 필수입니다")
+            // alert("관심목록은 필수입니다")
+            Swal.fire({
+                icon: 'error',
+                title: '모임 만들기에 실패하였습니다',
+                text: '관심목록을 선택해주세요'
+            })
             return;
         }
         if ($("#addClub #villCode").val() === '') {
-            alert("주요활동위치는 필수입니다")
+            // alert("주요활동위치는 필수입니다")
+            Swal.fire({
+                icon: 'error',
+                title: '모임 만들기에 실패하였습니다',
+                text: '주요활동위치를 선택해주세요'
+            })
             return;
         }
         if ($("#addClub #file")[0].files.length==0) {
-            alert("모임이미지는 필수입니다")
+            // alert("모임이미지는 필수입니다")
+            Swal.fire({
+                icon: 'error',
+                title: '모임 만들기에 실패하였습니다',
+                text: '모임 이미지를 등록해주세요'
+            })
             return;
         }
         if ($("#addClub #clubTag").val() === '') {
-            alert("하나 이상의 태그를 입력해주세요")
+            // alert("하나 이상의 태그를 입력해주세요")
+            Swal.fire({
+                icon: 'error',
+                title: '모임 만들기에 실패하였습니다',
+                text: '하나 이상의 태그를 입력해주세요'
+            })
             return;
         }
         // alert(JSON.parse($("#clubTag").val()))

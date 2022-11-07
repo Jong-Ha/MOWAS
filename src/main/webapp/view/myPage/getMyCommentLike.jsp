@@ -249,7 +249,7 @@
         })
 
         $(".pageUnit").off('click').on("click", function () {
-            if ($(this).hasClass('disabled')) {
+             if ($(this).hasClass('disabled')) {
                 return false
             }
 
@@ -275,6 +275,8 @@
 
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
+<hr>
+<div class="container">
 <div class="tabBox">
     <span class="tabBtn getMyLikeComment">좋아요한 댓글</span>
     <span>|</span>
@@ -374,6 +376,9 @@
             </div>
         </div>
     </form>
+</div>
+<div style="margin-bottom: 100px;">
+</div>
 </div>
 <jsp:include page="/layout/chatIcon.jsp"/>
 <jsp:include page="/layout/footer.jsp"/>

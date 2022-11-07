@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<div class="modal-header">
     <script>
         $(function(){
             $("#addClubMasterBoard .addClubMasterBoard").on("click",function(){
@@ -13,24 +14,25 @@
                     contentType: false,
                     'data': data,
                     success: function (re) {
-                        alert('공지사항이 등록되었습니다')
-                        // $('#addClubMasterBoard .btn-close').click()
-                        $('.listClubMasterBoardView').click()
-                        $('#getClubMasterBoard .modal-content').html(re)
-                        $('.getClubMasterBoard').click()
+                        Swal.fire('공지사항이 등록되었습니다').then(()=>{
+                            // $('#addClubMasterBoard .btn-close').click()
+                            $('.listClubMasterBoardView').click()
+                            $('#getClubMasterBoard .modal-content').html(re)
+                            $('.getClubMasterBoard').click()
+                        })
+
                     }
                 })
             })
 
             $("#addClubMasterBoard input:file").on("change",function(){
                 if($(this)[0].files.length>10){
-                    alert('파일 갯수를 초과하였습니다.');
+                    Swal.fire('파일 갯수를 초과하였습니다.');
                     $(this).val('');
                 }
             })
         })
     </script>
-<div class="modal-header">
     <h1 class="modal-title fs-5">모임 공지사항 작성</h1>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>

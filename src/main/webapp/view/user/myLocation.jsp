@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>나의 위치</title>
+<title>MOWAS</title>
 
 <meta charset="EUC-KR">
 	

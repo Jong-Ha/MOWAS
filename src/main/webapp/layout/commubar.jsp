@@ -9,9 +9,6 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<html>
-<head>
-
     <script type="text/javascript">
         $(function () {
 
@@ -27,8 +24,6 @@
 
                 var villCode = '${user.villCode}'
 
-                alert(villCode);
-
                 var userId = '${user.userId}'
 
                 if(userId !== ''){
@@ -42,7 +37,9 @@
                         text: '로그인후 사용해 주세요',
                         footer: '<a href="">Why do I have this issue?</a>'
                     }).then(()=>{
+
                             $("#loginModal").modal("show")
+
                         }
                     )
                 }
@@ -118,7 +115,6 @@
 
     </style>
 
-
 <div class="wrapper">
     <div class="typing">
         <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
@@ -144,5 +140,7 @@
 
 
 </nav>
-<hr>
 
+<div class="container">
+    <hr>
+</div>

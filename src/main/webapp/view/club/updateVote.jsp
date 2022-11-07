@@ -27,9 +27,10 @@
                 method : 'post',
                 success : function(re){
                     $('#getVote .modal-content').html(re)
-                    alert('투표가 수정되었습니다!')
-                    $('#updateVote').modal('hide')
-                    $('#getVote').modal('show')
+                    Swal.fire('투표가 수정되었습니다!').then(()=>{
+                        $('#updateVote').modal('hide')
+                        $('#getVote').modal('show')
+                    })
                 }
             })
         })

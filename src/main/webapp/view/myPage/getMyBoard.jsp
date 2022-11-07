@@ -45,8 +45,7 @@
         display: flex;
         flex-direction: row;
         margin-bottom: 30px;
-        float: left;
-        width: 442px;
+        width: 360px;
         transition: all 0.1s linear;
     }
 
@@ -159,6 +158,36 @@
         margin: 5px;
         font-weight: bolder;
         cursor: pointer;
+        margin-right: 25px;
+    }
+
+    @media (min-width: 1000px) {
+        .underline {
+            font-size: 1.5em;
+        }
+    }
+
+    .underline.yellow {
+        background-image: linear-gradient(transparent 60%, #F8CD07 40%);
+    }
+
+    .underline:hover {
+        background-size: 100% 100%;
+    }
+
+    .wrapper {
+        display: grid;
+        place-items: center;
+    }
+
+    .typing {
+        width: 14ch;
+        animation: typing 0.9s steps(22), blink .5s step-end infinite alternate;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 3px solid;
+        font-size: 2em;
+        height: 2ch;
     }
 
     @keyframes typing {
@@ -285,126 +314,132 @@
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
 
-<div class="tabBox">
-    <span class="tabBtn getMyVillBoard">우리동네 게시글</span>
-    <span>|</span>
-    <span class="tabBtn getMyCbReviewBoard">모임 일정 후기 게시글</span>
-    <span>|</span>
-    <span class="tabBtn getMyDealBoard">판매/판매요청 게시글</span>
-</div>
 
 
-<hr/>
-<h4>우리동네 게시글</h4>
-<hr/>
-
-
+<hr>
 
 <div class="container">
 
+    <div class="tabBox">
+        <span class="tabBtn getMyVillBoard">우리동네 게시글</span>
+        <span>|</span>
+        <span class="tabBtn getMyCbReviewBoard">모임 일정 후기 게시글</span>
+        <span>|</span>
+        <span class="tabBtn getMyDealBoard">판매/판매요청 게시글</span>
+    </div>
+    <hr/>
+    <h4>우리동네 게시글</h4>
+    <hr/>
 
-    <form id="villBoardForm">
-        <input hidden class="userId" name="userId" value="${user.userId}">
 
-        <input type="hidden" id="currentPage" name="currentPage" value="${resultPage.currentPage}">
+    <div class="container">
 
-        <!--  table Start /////////////////////////////////////-->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="table-responsive project-list">
-                            <table class="table project-table table-centered table-nowrap table-hover table-striped">
-                                <thead>
-                                <tr>
-                                    <th scope="col">제목</th>
-                                    <th scope="col">작성날짜</th>
-                                    <th scope="col">동네 코드</th>
-                                    <th scope="col">내용</th>
-                                    <th scope="col">좋아요수</th>
-                                    <th scope="col">조회수</th>
-                                </tr>
-                                </thead>
-                                <tbody>
 
-                                <c:set var="i" value="0"/>
-                                <c:forEach var="VilBoard" items="${map}">
-                                    <c:set var="i" value="${ i+1 }"/>
+        <form id="villBoardForm">
+            <input hidden class="userId" name="userId" value="${user.userId}">
+
+            <input type="hidden" id="currentPage" name="currentPage" value="${resultPage.currentPage}">
+
+            <!--  table Start /////////////////////////////////////-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive project-list">
+                                <table class="table project-table table-centered table-nowrap table-hover table-striped" style="table-layout: fixed;">
+                                    <thead>
                                     <tr>
-                                        <td>
-                                            <div>
-                                                    ${VilBoard.villTitle}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                    ${VilBoard.regDate}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                    ${VilBoard.villCode}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                    ${VilBoard.villText}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                    ${VilBoard.likeCount}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                    ${VilBoard.viewCount}
-                                            </div>
-                                        </td>
-
+                                        <th scope="col">제목</th>
+                                        <th scope="col">작성날짜</th>
+                                        <th scope="col">동네 코드</th>
+                                        <th scope="col">내용</th>
+                                        <th scope="col">좋아요수</th>
+                                        <th scope="col">조회수</th>
                                     </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!--  table End /////////////////////////////////////-->
-                        <c:if test="${!empty resultPage}">
-                            <nav aria-label="Page navigation example"
-                                 style="display: flex;justify-content: center;">
-                                <ul class="pagination">
-                                    <li class="page-item pageUnit ${resultPage.beginUnitPage == 1?'disabled':''}"
-                                        value="${resultPage.beginUnitPage - resultPage.pageUnit}">
-                                        <a class="page-link" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                        </a>
-                                    </li>
+                                    </thead>
+                                    <tbody>
 
-                                    <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}"
-                                               var="i">
-                                        <li class="page-item ${search.currentPage == i?'active':'paging'}"><a
-                                                class="page-link">${i}</a></li>
+                                    <c:set var="i" value="0"/>
+                                    <c:forEach var="VilBoard" items="${map}">
+                                        <c:set var="i" value="${ i+1 }"/>
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                        ${VilBoard.villTitle}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                        ${VilBoard.regDate}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                        ${VilBoard.villCode}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                        ${VilBoard.villText}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                        ${VilBoard.likeCount}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                        ${VilBoard.viewCount}
+                                                </div>
+                                            </td>
+
+                                        </tr>
                                     </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--  table End /////////////////////////////////////-->
+                            <c:if test="${!empty resultPage}">
+                                <nav aria-label="Page navigation example"
+                                     style="display: flex;justify-content: center;">
+                                    <ul class="pagination">
+                                        <li class="page-item pageUnit ${resultPage.beginUnitPage == 1?'disabled':''}"
+                                            value="${resultPage.beginUnitPage - resultPage.pageUnit}">
+                                            <a class="page-link" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
 
-                                    <li class="page-item pageUnit ${resultPage.maxPage==resultPage.endUnitPage?'disabled':''}"
-                                        value="${resultPage.beginUnitPage+resultPage.pageUnit}">
-                                        <a class="page-link" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </c:if>
+                                        <c:forEach begin="${resultPage.beginUnitPage}"
+                                                   end="${resultPage.endUnitPage}"
+                                                   var="i">
+                                            <li class="page-item ${search.currentPage == i?'active':'paging'}">
+                                                <a
+                                                        class="page-link">${i}</a></li>
+                                        </c:forEach>
+
+                                        <li class="page-item pageUnit ${resultPage.maxPage==resultPage.endUnitPage?'disabled':''}"
+                                            value="${resultPage.beginUnitPage+resultPage.pageUnit}">
+                                            <a class="page-link" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </c:if>
 
 
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
 
-                    <jsp:include page="/layout/chatIcon.jsp"/>
-                    <jsp:include page="/layout/footer.jsp"/>
+
+    <jsp:include page="/layout/chatIcon.jsp"/>
+    <jsp:include page="/layout/footer.jsp"/>
 </body>
 
 </html>

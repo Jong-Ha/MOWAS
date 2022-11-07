@@ -70,4 +70,36 @@ public class MyPageRestController {
         return map;
     }
 
+    @RequestMapping(value = "getMyClubLike", method = RequestMethod.POST)
+    public Map<String, Object> getMyClubLike(@RequestBody Map<String ,Object> data)throws Exception{
+
+        Search search = new Search();
+
+        if(data.get("currentPage")!=null){
+            int currentPage = Integer.parseInt((String)data.get("currentPage"));
+            search.setCurrentPage(currentPage);
+            if (currentPage == 0) {
+                search.setCurrentPage(1);
+            }
+        }
+
+        search.setPageSize(pageSize);
+        String userId = (String)data.get("userId");
+
+        Map<String, Object> map = myPageService.getMyClubLike(userId,search);
+
+        for(Club club : (List<Club>)map.get("list")) {
+            club.parseInterList();
+            String gc = "모집완료";
+            if(club.getGatherCheck().equals("1")){
+                gc = "모집중";
+            }
+            club.setGatherCheck(gc);
+        }
+
+        Page resultPage = new Page(search.getCurrentPage(), (Integer) map.get("totalCount"), pageUnit, pageSize);
+        map.put("resultPage", resultPage);
+        return map;
+    }
+
 }

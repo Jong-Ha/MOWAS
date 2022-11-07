@@ -338,13 +338,6 @@
         // alert(userId);
         location.href="getMyRecomment?userId="+userId;
     })
-        $(".getMyRecomment").on("click", function () {
-
-            alert(userId);
-
-            location.href = "getMyRecomment?userId=" + userId;
-
-        })
     })
 
 </script>

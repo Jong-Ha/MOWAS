@@ -14,10 +14,11 @@
                 contentType: false,
                 'data': data,
                 success: function (re) {
-                    alert('공지사항이 수정되었습니다')
-                    $('#getClubMasterBoard .modal-content').html(re)
-                    $('.getClubMasterBoard').click()
-                    $('.listClubMasterBoardView').click()
+                    Swal.fire('공지사항이 수정되었습니다').then(()=>{
+                        $('#getClubMasterBoard .modal-content').html(re)
+                        $('.getClubMasterBoard').click()
+                        $('.listClubMasterBoardView').click()
+                    })
                 }
             })
 
@@ -26,9 +27,10 @@
         //파일 갯수 체크
         $("#updateClubMasterBoardForm input:file").on("change", function () {
             if ($(this)[0].files.length > 10 - $('#fileSize').val()) {
-                alert('파일 갯수를 초과하였습니다.');
+                Swal.fire('파일 갯수를 초과하였습니다.').then(()=>{
+                    $(this).val('');
+                })
                 // alert(10-$('#fileSize').val());
-                $(this).val('');
             }
         })
 

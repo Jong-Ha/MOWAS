@@ -299,7 +299,7 @@ public class MyPageController {
                 System.out.println("getMyInfor 컨트롤러 map1의 값은?" + map);
                 model.addAttribute("map", map);
 
-                session.setAttribute("user", user);
+                session.setAttribute("user", userService.getUser(user.getUserId()));
             }
             User userImg = userService.getUser(user.getUserId());
             user.setUserImage(userImg.getUserImage());
@@ -309,7 +309,7 @@ public class MyPageController {
             System.out.println("getMyInfor 컨트롤러 map1===1의 값은?" + map);
             model.addAttribute("map", map);
 
-            session.setAttribute("user", user);
+            session.setAttribute("user", userService.getUser(user.getUserId()));
 
 
         } else if (user.getLoginType().equals("2")) {
@@ -354,7 +354,7 @@ public class MyPageController {
                 System.out.println("getMyInfor 컨트롤러 map2의 값은?" + map);
                 model.addAttribute("map", map);
 
-                session.setAttribute("user", user);
+                session.setAttribute("user", userService.getUser(user.getUserId()));
 
             }
 
@@ -366,7 +366,7 @@ public class MyPageController {
             System.out.println("getMyInfor 컨트롤러 map2===2의 값은?" + map);
             model.addAttribute("map", map);
 
-            session.setAttribute("user", user);
+            session.setAttribute("user", userService.getUser(user.getUserId()));
 
         } else {
 
@@ -410,7 +410,7 @@ public class MyPageController {
                 System.out.println("getMyInfor 컨트롤러 map3의 값은?" + map);
                 model.addAttribute("map", map);
 
-                session.setAttribute("user", user);
+                session.setAttribute("user", userService.getUser(user.getUserId()));
 
             }
 
@@ -422,7 +422,7 @@ public class MyPageController {
             System.out.println("getMyInfor 컨트롤러 map3===3의 값은?" + map);
             model.addAttribute("map", map);
 
-            session.setAttribute("user", user);
+            session.setAttribute("user", userService.getUser(user.getUserId()));
         }
         ;
 
@@ -839,14 +839,29 @@ public class MyPageController {
     }
 
     @RequestMapping(value = "getMyDealLike", method = RequestMethod.GET)
-    public String getMyDealLike(@RequestParam(value = "userId") String userId, Model model) throws Exception {
+    public String getMyDealLike(@RequestParam(value = "userId") String userId,
+                                Model model
+                                ,@ModelAttribute("search")Search search) throws Exception {
         System.out.println("getMyDealLike 컨트롤러 userId의 값?" + userId);
 
-        Search search = new Search();
+        if (search.getCurrentPage() == 0) {
+            search.setCurrentPage(1);
+        }
+        search.setPageSize(pageSize);
+
 
         Map<String, Object> map = myPageService.getMyLike(userId, search);
+
+
+      Page resultPage = new Page(search.getCurrentPage(), ((Integer) map.get("dealBoardLikeTotal")).intValue(), pageUnit, pageSize);
+
+
         System.out.println("getMyDealLike 컨트롤러 map의 값은?" + map);
-        model.addAttribute("map", map);
+
+
+        model.addAttribute("map", map.get("dealBoardLike"));
+        model.addAttribute("resultPage", resultPage);
+
         return "forward:/view/myPage/getMyDealLike.jsp";
     }
 
@@ -879,6 +894,33 @@ public class MyPageController {
         map.put("resultPage", resultPage);
         model.addAllAttributes(map);
         return "forward:/view/myPage/getMyClub.jsp";
+    }
+
+    @RequestMapping(value = "getMyClubLike", method = RequestMethod.GET)
+    public String getMyClubLike(@RequestParam(value = "userId") String userId, Model model, @ModelAttribute(value = "search") Search search) throws Exception {
+
+        if (search.getCurrentPage() == 0) {
+            search.setCurrentPage(1);
+        }
+
+        search.setPageSize(pageSize);
+
+        Map<String, Object> map = myPageService.getMyClubLike(userId, search);
+
+        for (Club club : (List<Club>)map.get("list")) {
+            club.parseInterList();
+            String gc = "모집완료";
+            if (club.getGatherCheck().equals("1")) {
+                gc = "모집중";
+            }
+            club.setGatherCheck(gc);
+        }
+
+        Page resultPage = new Page(search.getCurrentPage(), (Integer) map.get("totalCount"), pageUnit, pageSize);
+        map.put("resultPage", resultPage);
+        model.addAllAttributes(map);
+
+        return "forward:/view/myPage/getMyClubLike.jsp";
     }
 
     @RequestMapping(value = "getMyClubApply")
