@@ -1,3 +1,17 @@
+function readURL(inputSelector, outputSelector) {
+    const input = $(inputSelector)[0]
+    const output = $(outputSelector)[0]
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            output.src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        output.src = "/resources/images/clubImage.png";
+    }
+}
+
 function setListClub(){
 
     //각 모임으로 이동
@@ -66,15 +80,21 @@ $(function () {
 
     setListClub()
 
-    $('.modal').off('show.bs.modal').on('show.bs.modal', function () {
+    $('.modal').on('show.bs.modal', function () {
         $('body').addClass('stop-scrolling')
+        // $('#preview').height(466*0.55)
     })
-    $('.modal').off('hide.bs.modal').on('hide.bs.modal', function () {
+    $('.modal').on('hide.bs.modal', function () {
         $('body').removeClass('stop-scrolling')
     })
 
+    //이미지 미리보기
+    $('#addClub #file').on('change',function(){
+        readURL('#addClub #file','#addClub #preview')
+    })
+
     //모임 만들기
-    $("#addClub").off('show.bs.modal').on("show.bs.modal", function () {
+    $("#addClub").on("show.bs.modal", function () {
         // location.href = "/club/addClub"
         // window.open("/club/addClub", "모임 만들기",
         //     "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
@@ -222,6 +242,10 @@ $(function () {
         }
         if ($("#addClub #villCode").val() === '') {
             alert("주요활동위치는 필수입니다")
+            return;
+        }
+        if ($("#addClub #file")[0].files.length==0) {
+            alert("모임이미지는 필수입니다")
             return;
         }
         if ($("#addClub #clubTag").val() === '') {

@@ -22,5 +22,6 @@ public class Comment {
     private List<Recomment> recommentList;
     private int likeCount;
     private String userImg;
+    private String likeCheck;
 
 }

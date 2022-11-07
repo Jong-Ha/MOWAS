@@ -1,4 +1,20 @@
+
 /////////////////////////////// 함수 설정 ///////////////////////////////
+//이미지 미리보기
+function readURL(inputSelector, outputSelector) {
+    const input = $(inputSelector)[0]
+    const output = $(outputSelector)[0]
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            output.src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        output.src = "/resources/images/clubImage.png";
+    }
+}
+
 //listCluber 모달창 로드 시 이벤트 걸어주기
 function setListCluber() {
 
@@ -82,15 +98,44 @@ function setListCluber() {
                 $('#addClubBlacklist .modal-content').html(re)
                 //블랙리스트 등록
                 $("#addClubBlacklist .addClubBlacklist").on("click", function () {
-                    // $("#addClubBlacklistForm").attr("action","/club/addClubBlacklist").attr("method","post").submit();
-                    const data = $('#addClubBlacklistForm').serialize()
+                    // alert($('#addClubBlacklistForm #clubNum').val())
+                    // alert($('#addClubBlacklistForm #userId').val())
+
                     $.ajax({
-                        url: "/club/addClubBlacklist",
-                        'data': data,
-                        method: 'post',
-                        success: function (re) {
-                            $('#listClubBlacklist .modal-content').html(re)
-                            setListCluberBlacklist();
+                        url : "/club/json/getCluberStatus/"+$('#addClubBlacklistForm #clubNum').val()+"/"+$('#addClubBlacklistForm #userId').val(),
+                        dataType : 'json',
+                        headers: {
+                            "Accept": "application/json",
+                            "Content-Type": "application/json; charset=UTF-8"
+                        },
+                        success : function(re){
+                            // alert(re)
+                            if(re===0){
+                                // alert(0)
+                                // $("#addClubBlacklistForm").attr("action","/club/addClubBlacklist").attr("method","post").submit();
+                                const data = $('#addClubBlacklistForm').serialize()
+                                $.ajax({
+                                    url: "/club/addClubBlacklist",
+                                    'data': data,
+                                    method: 'post',
+                                    success: function (re) {
+                                        $('#addClubBlacklist').modal('hide')
+                                        $('#listClubBlacklist').modal('show')
+                                        $('#listClubBlacklist .modal-content').html(re)
+                                        setListCluberBlacklist();
+                                    }
+                                })
+                            }else if(re===9){
+                                alert('이미 블랙리스트로 등록된 회원입니다')
+                                return false
+                            }else if(re===2){
+                                alert('모임 가입 신청을 처리하고 진행해주세요')
+                                return false
+                            }else{
+                                alert('모임원은 블랙리스트로 등록할 수 없습니다')
+                                return false
+                            }
+
                         }
                     })
                 })
@@ -506,7 +551,7 @@ let loadCheck = false
 
 //레이아웃 사이즈 조절
 function clubLayout(){
-    $('[alt="모임 대표 이미지"]').parent().height($('[alt="모임 대표 이미지"]').parent().width() *0.55)
+    // $('[alt="모임 대표 이미지"]').parent().height($('[alt="모임 대표 이미지"]').parent().width() *0.55)
     if(loadCheck){
         // console.log(1)
         if($('.selectedTab').hasClass('calendarView')){
@@ -530,6 +575,7 @@ $(function () {
 
     $('.modal').off('show.bs.modal').on('show.bs.modal',function(){
         $('body').addClass('stop-scrolling')
+        // $('#preview').height(466*0.55)
     })
     $('.modal').off('hide.bs.modal').on('hide.bs.modal',function(){
         $('body').removeClass('stop-scrolling')
@@ -581,12 +627,6 @@ $(function () {
     $(".deleteCluberApply").on("click", function () {
         $("#cluberApplyForm").attr("action", "/club/deleteCluberApply").attr("method", "post").submit();
     })
-    $(".addClubMasterBoard").on("click", function () {
-        location.href = "/club/addClubMasterBoard/" + $(".boardNum").val()
-    })
-    $(".listVote").on("click", function () {
-        location.href = "/club/listVote/" + $(".boardNum").val()
-    })
 
     //업데이트 tagify
     const clubTag = document.querySelector("#clubTag")
@@ -625,6 +665,11 @@ $(function () {
         }
     })
 
+    $('#updateClubForm #clubImage').off('change').on('change',function(){
+        readURL('#updateClubForm #clubImage','#updateClubForm #preview')
+        $('#updateClubForm input[name="deleteFileName"]').attr("disabled", false)
+    })
+
     //업데이트
     $(".updateClub").on("click", function () {
         const updateForm = $("#updateClubForm");
@@ -644,20 +689,12 @@ $(function () {
         })
         updateForm.attr("method", "post").attr("action", "/club/updateClub").submit();
     })
-    $('input[name="file"]').on("change", function () {
-        $('input[name="deleteFileName"]').attr("disabled", false)
-    })
 
     $("#cluberApplyForm #cluberText").on('keyup', function () {
         if ($(this).val().length > 100) {
             alert('최대 100자 제한!')
             $(this).val($(this).val().substring(0, 100));
         }
-    })
-
-    // 확인용
-    $(".listClubMasterBoard").on("click", function () {
-        location.href = "/club/listClubMasterBoard/" + $(".boardNum").val()
     })
 
 //모임원 목록 조회
@@ -724,7 +761,7 @@ $(function () {
         })
     })
 
-    //모임 생성시 지도 부르기
+    //모임 수정시 지도 부르기
     $("#updateClubMap").on("click", function () {
         $('#searchLocation .back-btn').css('display', 'block').off('click').on('click', function () {
             $('.updateClubView').click()

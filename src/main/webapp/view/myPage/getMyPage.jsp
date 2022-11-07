@@ -9,28 +9,18 @@
         }
 
 
-        #userImage1 {
+        .userImage {
             border-radius: 50%;
             width: 60%;
+            aspect-ratio: 1;
+            object-fit: cover;
             border: 1px solid #00000024;
-        }
-
-        #userImage2 {
-            border-radius: 50%;
-            width: 60%;
-            border: 1px solid #00000024;
-        }
-
-        #userImage3 {
-            border-radius: 50%;
-            width: 60%;
-            border: 1px solid #00000024;
+            margin: 30px;
         }
 
         .userInfo {
             text-align: center;
             width: 20%;
-            height: 352px;
             padding: 10px;
             margin-right: 30px;
             margin-left: 30px;
@@ -41,7 +31,6 @@
         .userText {
             height: 36%;
             text-align: left;
-            margin-top: 37px;
             font-size: 1.2em;
         }
 
@@ -141,26 +130,26 @@
 <input type="hidden" id="userId" name="userId" value="${user.userId}">
 
 
-<div class="container" style="padding-bottom: 250px">
+<div class="container">
 
     <div class="myPage-top" style=" display: flex; padding: 10px">
 
-        <div class="userInfo shadow-lg" style="height: 385px;">
+        <div class="userInfo shadow-lg" style="height: fit-content;">
 
             <c:if test="${user.loginType=='1'}">
                 <span class="aaa">
-                <img id="userImage1" class="userImgae1" src="/resources/${user.userImage}">
+                <img class="userImage" src="/resources/${user.userImage}">
                 <input type="hidden" class="userPhoto1" value="${user.userImage}">
                 </span>
             </c:if>
 
             <c:if test="${user.loginType=='2'}">
-                <img id="userImage2" style="width : 60%;" src="${user.userImage}">
+                <img class="userImage" src="${user.userImage}">
                 <input type="hidden" class="userPhoto2" value="${user.userImage}">
             </c:if>
 
             <c:if test="${user.loginType=='3'}">
-                <img id="userImage3" style="width : 60%;" src="${user.userImage}">
+                <img class="userImage" src="${user.userImage}">
                 <input type="hidden" class="userPhoto3" value="${user.userImage}">
             </c:if>
 
@@ -202,7 +191,7 @@
         </div>
 
 
-        <div class="userCalender shadow-lg" style=" height: 600px; overflow: scroll; padding: 10px;">
+        <div class="userCalender shadow-lg" style=" height: fit-content; padding: 40px 30px;">
             <jsp:include page="/view/user/userCalender.jsp"/>
         </div>
     </div>

@@ -56,7 +56,8 @@
 
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
-
+<hr>
+    <div class="container">
 
 
 
@@ -132,7 +133,7 @@
         </ul>
     </nav>
 </div>
-
+    </div>
 </form>
 <jsp:include page="/layout/chatIcon.jsp"/>
 <jsp:include page="/layout/footer.jsp"/>

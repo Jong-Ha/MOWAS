@@ -24,11 +24,27 @@
             })
 
             $(".villBoard").on("click", function () {
+
                 var villCode = '${user.villCode}'
+
+                alert(villCode);
+
                 var userId = '${user.userId}'
-                if(userId != null){
+
+                if(userId !== ''){
+
                     location.href = "/commu/villBoardList?villCode=" + villCode + "&boardCategory=" + 3;
 
+                }else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: '사용할수 없는 기능 입니다',
+                        text: '로그인후 사용해 주세요',
+                        footer: '<a href="">Why do I have this issue?</a>'
+                    }).then(()=>{
+                            $("#loginModal").modal("show")
+                        }
+                    )
                 }
             });
 
@@ -107,7 +123,7 @@
     <div class="typing">
         <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
                     background-image: linear-gradient(transparent 60%, #F8CD07 40%);">
-            커뮤니티 페이지</h4>
+            커뮤니티 게시판</h4>
     </div>
 </div>
 

@@ -20,7 +20,7 @@
                     location.href = "/clubCal/listCalenderReview?boardCategory=" + 1 + "&reviewRange=" + 1
                 });
 
-            $("li > a:contains('모임 관리')").on("click",
+            $(".clubToolBar").on("click",
                 function () {
                     location.href = '/club/listClub'
                 });
@@ -80,10 +80,10 @@
         </div>
         <nav>
             <ul>
-                <li><a>모임 관리</a></li>
+                <li><a class="clubToolBar">모임 게시판</a></li>
                 <li><a class="commu">커뮤니티</a></li>
-                <li><a href="/deal/getListDeal?boardCategory=99">중고 거래</a></li>
-                <li><a class="site">공지 사항</a></li>
+                <li><a href="/deal/getListDeal?boardCategory=99">중고거래</a></li>
+                <li><a class="site">공지사항</a></li>
                 <!--<li><a href="#elements">Elements</a></li>-->
             </ul>
         </nav>

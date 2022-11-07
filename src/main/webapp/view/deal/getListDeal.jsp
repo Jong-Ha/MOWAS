@@ -367,6 +367,7 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 50px;
+            margin-top: 20px;
 
         }
 
@@ -448,7 +449,7 @@
         }
 
         .typing {
-            width: 9ch;
+            width: 14ch;
             animation: typing 0.9s steps(22), blink .5s step-end infinite alternate;
             white-space: nowrap;
             overflow: hidden;
@@ -597,6 +598,12 @@
         .searchbox {
             display: flex;
         }
+
+        .dealTab{
+            margin: 0 25px;
+            width: 110px;
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -616,7 +623,7 @@
 <!-- Example Code -->
 <jsp:include page="/layout/toolbar.jsp"/>
 <%--<jsp:include page="/view/deal/history.jsp"/>--%>
-<img src="/resources/uploadFiles/dealBoardFiles/중고거래.jpg"
+<img class="shadow-lg" src="/resources/uploadFiles/dealBoardFiles/중고거래.jpg"
      style="height: 500px;border-radius: 10px;  width: 1600px;">
 <div class="container">
 
@@ -624,7 +631,7 @@
         <div class="typing">
             <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
                     background-image: linear-gradient(transparent 60%, #F8CD07 40%);">
-                중고 거래</h4>
+                중고거래 게시판</h4>
         </div>
     </div>
 
@@ -639,15 +646,15 @@
         <nav class="navbar navbar-expand-lg deallistBox">
 
             <div>
-                <div class="underline yellow allList">전체</div>
+                <div class="underline yellow allList dealTab">전체</div>
             </div>
 
             <div>
-                <div class="underline yellow deallist">판매</div>
+                <div class="underline yellow deallist dealTab">판매</div>
             </div>
 
             <div>
-                <div class="underline yellow dealrequestlist">판매 요청</div>
+                <div class="underline yellow dealrequestlist dealTab">판매 요청</div>
             </div>
 
         </nav>

@@ -118,9 +118,9 @@
         $(".loginStart").on('click', function () {
             fncLogin();
 
-            setTimeout(function () {
-                location.reload();
-            }, 1000);
+            // setTimeout(function () {
+            //     location.reload();
+            // }, 1000);
         });
         $('#password').on('keydown', function (key) {
             if (key.keyCode == 13) {
@@ -211,6 +211,14 @@
         });
     });
 
+    $(function(){
+        $('.modal').on('show.bs.modal',function(){
+            $('body').addClass('stop-scrolling')
+        })
+        $('.modal').on('hide.bs.modal', function () {
+            $('body').removeClass('stop-scrolling')
+        })
+    })
 
 </script>
 <html>
@@ -219,6 +227,25 @@
     <title>Title</title>
 
     <style>
+        #naverIdLogin img{
+            border-radius: 50%;
+        }
+        body {
+            overflow-y:scroll;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        img {
+            -webkit-user-drag: none;
+        }
+
+        .stop-scrolling {
+            height: 100%;
+            overflow: hidden;
+        }
         /*.modal{*/
         /*    position: absolute;*/
         /*    width: 100%; height: 100%;*/
@@ -445,12 +472,8 @@
                     <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                         <li class="nav-item">
                             <a class="nav-link active  underline yellow toolbar_nav" aria-current="page"
-                               onclick="location.href='/site/listMasterBoard'">공지 사항</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active  underline yellow toolbar_nav" aria-current="page"
-                               onclick="location.href='/club/listClub'">모임
-                                게시판</a>
+                               onclick="location.href='/club/listClub'">모임 게시판
+                                </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link  underline yellow toolbar_nav" href="#"
@@ -460,7 +483,11 @@
 
                         <li class="nav-item">
                             <a class="nav-link  underline yellow toolbar_nav"
-                               onclick="location.href='/deal/getListDeal?boardCategory=99'">중고 거래 게시판</a>
+                               onclick="location.href='/deal/getListDeal?boardCategory=99'">중고거래 게시판</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active  underline yellow toolbar_nav" aria-current="page"
+                               onclick="location.href='/site/listMasterBoard'">공지사항</a>
                         </li>
 
                         <c:if test="${sessionScope.user.masterCheck eq 2}">
@@ -490,18 +517,16 @@
                     <div class="logitem" style="align-items: center;">
 
                         <c:if test="${sessionScope.user.loginType eq 1}">
-                            <img  src="/resources/${sessionScope.user.userImage}" style="width: 60px;margin-right: 10px; border-radius: 40px; height: 50px;">
+                            <img  src="/resources/${sessionScope.user.userImage}" style="width: 50px;margin-right: 10px; border-radius: 40px; height: 50px;background-color: #FFFFFF;object-fit: cover;">
                         </c:if>
                         <c:if test="${sessionScope.user.loginType eq 2}">
-                            <img  src="${sessionScope.user.userImage}" style="width: 60px;margin-right: 10px; border-radius: 40px; height: 50px;">
+                            <img  src="${sessionScope.user.userImage}" style="width: 50px;margin-right: 10px; border-radius: 40px; height: 50px;background-color: #FFFFFF;object-fit: cover;">
                         </c:if>
                         <c:if test="${sessionScope.user.loginType eq 3}">
-                            <img  src="${sessionScope.user.userImage}" style="width: 60px;margin-right: 10px; border-radius: 40px; height: 50px;">
+                            <img  src="${sessionScope.user.userImage}" style="width: 50px;margin-right: 10px; border-radius: 40px; height: 50px;background-color: #FFFFFF;object-fit: cover;">
                         </c:if>
 
                         <c:if test="${sessionScope.user.userImage eq null}">
-
-
 
                         </c:if>
 
@@ -564,8 +589,8 @@
                         <div class="input-group mb-3 mt-3"
                              style="display: flex;align-items: center; justify-content: center;">
                             <div class="logo">
-                                <img class="mb-4" src="/resources/images/MOWAS_W.png" width="160" height="120"
-                                     style="border-radius: 20px; height: 124px; object-fit: contain;">
+                                <img src="/resources/images/MOWAS_W.png"
+                                     style="border-radius: 20px; width: 70%;height: auto; object-fit: contain;">
                             </div>
                         </div>
 
@@ -636,21 +661,20 @@
                     </div>
 
                     <div class="snsLogin"
-                         style="    display: flex;justify-content: center;align-items: center;flex-direction: column;">
+                         style="    display: flex;justify-content: center;align-items: center;">
 
                         <!-- 카카오 로그인 -->
-                        <a class="p-2"
-                           href="https://kauth.kakao.com/oauth/authorize?client_id=6230abede953ee2dbfed27975e15f04a&redirect_uri=http://192.168.0.235:8080/user/kakaoLogin&response_type=code"> </a>
+                        <a style="display: none;" href="https://kauth.kakao.com/oauth/authorize?client_id=6230abede953ee2dbfed27975e15f04a&redirect_uri=http://192.168.0.235:8080/user/kakaoLogin&response_type=code"> </a>
                         <!-- REST_API키 및 REDIRECT_URi는 본인걸로 수정하세요 -->
                         <!-- 저는 redirect_uri을 http://localhost:8080/member/kakaoLogin로 했습니다. -->
                         <!-- 본인걸로 수정 시 띄어쓰기 절대 하지 마세요. 오류납니다. -->
-                        <img class="kakaoImage" src="/resources/images/kakao_login_medium_wide.png"
-                             style="height:50px; width:255px; cursor:pointer">
+                        <img class="kakaoImage m-3" src="/resources/images/kakao.png"
+                             style="height:55px; aspect-ratio: 1; cursor:pointer;border-radius: 50%">
                         <!-- 이미지는 카카오 개발자센터에서 제공하는 login 이미지를 사용했습니다. -->
 
                         <!--<img class="naverIdLogin" src="/resources/images/naverLogin.png" style="height: 50px;width: 71.2%; margin-top: 10px;cursor:pointer">-->
 
-                        <div id="naverIdLogin"></div>
+                        <div id="naverIdLogin" class="m-3"></div>
                     </div>
 
                     <script type="text/javascript">
@@ -659,7 +683,7 @@
                                 clientId: "LVp6wWTSWO4roaPEeGxT",
                                 callbackUrl: "http://192.168.0.235:8080/view/user/callBack.jsp",
                                 isPopup: true, /* 팝업을 통한 연동처리 여부 */
-                                loginButton: {color: "green", type: 3, height: 55} /* 로그인 버튼의 타입을 지정 */
+                                loginButton: {color: "green", type: 1, height: 55} /* 로그인 버튼의 타입을 지정 */
                             }
                         );
 

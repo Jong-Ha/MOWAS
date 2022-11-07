@@ -65,6 +65,8 @@ public interface UserService {
     public User getUserInfo(String access_Token)throws Exception;
 
     public void addNaverUser(User user)throws Exception;
+
+    public void userOut(String userId)throws Exception;
 /*
 
     //로그아웃

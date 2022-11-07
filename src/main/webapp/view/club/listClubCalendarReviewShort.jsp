@@ -330,6 +330,7 @@
         </div>
         </c:if>
 
+        <%--
         <div style="display: flex;justify-content: space-between;flex-direction: row-reverse;width: 90%;align-items: center;margin-bottom: 24px;${!empty list?'margin-top: -50px;':''}">
             <div style="display: flex;align-items: center;min-width: 250px;justify-content: space-between;">
                 <label>
@@ -340,14 +341,8 @@
                     검색
                 </button>
             </div>
-
-            <c:if test="${currentCluber.cluberStatus=='5'||currentCluber.cluberStatus=='6'}">
-                <button class="btn btn-primary addClubMasterBoardView" data-bs-toggle="modal"
-                        data-bs-target="#addClubMasterBoard">
-                    작성
-                </button>
-            </c:if>
         </div>
+        --%>
 
         <c:if test="${!empty list}">
             <nav aria-label="Page navigation example" style="display: flex;justify-content: center;">

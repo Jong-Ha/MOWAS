@@ -144,7 +144,7 @@
 
                             })
 
-                            $(".slide").append(str);
+                            $(".slide").html(str);
 
                             const modal = new bootstrap.Modal('#exampleModal2', {})
                             modal.show();

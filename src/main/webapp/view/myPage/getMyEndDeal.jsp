@@ -107,6 +107,8 @@
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
 <hr>
+<div class="container">
+
 <div class="tabBox">
     <span class="tabBtn" onclick="javascript:location.href='/myPage/getMyDeal?userId=${user.userId}';">완료한 거래 목록</span>
     <span>|</span>
@@ -136,10 +138,10 @@
                 <img src="https://phinf.pstatic.net/checkout/20181005_67/pEBjoin_1538725581806UviEL_PNG/60x60.png">
                 <div class="goods_info">
                     <ul class="info">
-                        <li class="goods_name"">거래물품명 : <span>${list.productName}</span></li>
-                        <li><span">거래날짜 : </span> ${list.dealEndDate}</li>
-                        <li><span">가격 : </span>${list.price}원</li>
-                        <li><span">거래자 아이디 : </span>${list.dealId}</li>
+                        <li class="goods_name">거래물품명 : <span>${list.productName}</span></li>
+                        <li><span>거래날짜 : </span> ${list.dealEndDate}</li>
+                        <li><span>가격 : </span>${list.price}원</li>
+                        <li><span>거래자 아이디 : </span>${list.dealId}</li>
                     </ul>
                 </div>
             </div>

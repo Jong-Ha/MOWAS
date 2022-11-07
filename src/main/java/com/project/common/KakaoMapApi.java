@@ -227,6 +227,7 @@ public class KakaoMapApi {
             //System.out.println(jsonX.get("x").toString());
             //System.out.println(jsonX.get("y").toString());
         }
+        System.out.println(mapInfo);
         return mapInfo;
     }
 }

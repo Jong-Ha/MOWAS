@@ -11,11 +11,11 @@ public interface MyPageService {
 
     public Map<String, Object> getMyInfor(String userId)throws Exception;
 
-    public Map<String, Object> getMyBoard(String userId)throws Exception;
+    public Map<String, Object> getMyBoard(String userId, Search search)throws Exception;
 
-    public Map<String, Object> getMyComment(String userId)throws Exception;
+    public Map<String, Object> getMyComment(String userId, Search search)throws Exception;
 
-    public Map<String, Object> getMyLike(String userId)throws Exception;
+    public Map<String, Object> getMyLike(String userId, Search search)throws Exception;
 
     public Map<String, Object> getMyClub(String applyCheck, String userId, Search search)throws Exception;
 
@@ -29,6 +29,9 @@ public interface MyPageService {
 
     public Map<String, Object> getMyPpt(String userId)throws Exception;
 
+    Map<String, Object> getMyCommentLike(String userId, Search search);
 
+    Map<String, Object> getMyRecomment(String userId, Search search);
 
+    Map<String, Object> getMyRecommentLike(String userId, Search search);
 }

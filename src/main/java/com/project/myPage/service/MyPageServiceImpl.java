@@ -1,6 +1,6 @@
 package com.project.myPage.service;
 
-import com.project.common.Page;
+import com.project.club.dao.ClubCalendarDao;
 import com.project.common.Search;
 import com.project.domain.*;
 import com.project.myPage.dao.MyPageDao;
@@ -19,9 +19,24 @@ public class MyPageServiceImpl implements MyPageService {
     @Autowired
     @Qualifier("myPageDaoImpl")
     private MyPageDao myPageDao;
+
+
     public void setMyPageDao(MyPageDao myPageDao){
         this.myPageDao = myPageDao;
     }
+
+    @Autowired
+    @Qualifier("clubCalenderDaoImpl")
+
+    private ClubCalendarDao clubCalendarDao;
+
+    public void setClubCalenderDaoImpl(ClubCalendarDao clubCalendarDao){
+        this.clubCalendarDao = clubCalendarDao;
+    }
+
+
+
+
     public MyPageServiceImpl() {
         System.out.println(this.getClass());
     }
@@ -42,38 +57,78 @@ public class MyPageServiceImpl implements MyPageService {
         return map;
     }
 
-    public Map<String, Object> getMyBoard(String userId)throws Exception{
+    public Map<String, Object> getMyBoard(String userId, Search search)throws Exception{
 
         System.out.println("getMyBoard 서비스임플 시작이다 ");
+
+
         Map<String, Object> map = new HashMap<String, Object>();
-        List<VilBoard> villBoard = myPageDao.getMyVillBoard(userId);
+
         List<ClubMasterBoard> clubBoard = myPageDao.getMyClubBoard(userId);
-        List<ClubCalendarReview> clubCalendarReview = myPageDao.getMyClubCalendarReview(userId);
+
+        Map<String,Object> map2 = new HashMap<>();
+
+        map2.put("userId", userId);
+        map2.put("search", search);
+
+        List<VilBoard> villBoard = myPageDao.getMyVillBoard(map2);
+
+        System.out.println("==================================================================villBoard 값??"+villBoard);
+
+        int villBoardTotal = myPageDao.getTotalVillBoard(map2);
+
+        List<ClubCalendarReview> clubCalendarReview = myPageDao.getMyClubCalendarReview(map2);
+        int clubCalenderTotle = myPageDao.clubCalenderTitle(map2);
+
+        int i = 0;
+        for (ClubCalendarReview calenderReview : clubCalendarReview){
+
+            calenderReview.setFile(clubCalendarDao.getListFile(clubCalendarReview.get(i).getClubCalenderReviewNum(),
+                    clubCalendarReview.get(i).getBoardCategory()));
+
+            System.out.println("/n 캘린더 넘버의 정보 " + clubCalendarReview.get(i).getClubCalenderReviewNum());
+            i += 1;
+        }
+
         List<Deal> dealBoard = myPageDao.getMydealBoard(userId);
 
-        System.out.println("villBoard 값??"+villBoard);
-        System.out.println("clubBoard 값??"+clubBoard);
-        System.out.println("clubCalendarReview 값??"+clubCalendarReview);
-        System.out.println("dealBoard 값??"+dealBoard);
 
-        map.put("myVillBoard", villBoard);
+    /*    System.out.println("clubBoard 값??"+clubBoard);
+        System.out.println("clubCalendarReview 값??"+clubCalendarReview);
+        System.out.println("dealBoard 값??"+dealBoard);*/
+
+        map.put("villBoard", villBoard);
+        map.put("villBoardTotal",villBoardTotal);
         map.put("myclubBoard", clubBoard);
         map.put("clubCalendarReview", clubCalendarReview);
+        map.put("clubCalenderTotle",clubCalenderTotle);
         map.put("dealBoard", dealBoard);
 
         System.out.println("getMyBoard 서비스임플 종료이다 ");
         return map;
     }
 
-    public Map<String, Object> getMyComment(String userId)throws Exception{
+    public Map<String, Object> getMyComment(String userId, Search search)throws Exception{
         System.out.println("getMyComment 서비스임플 시작이다 ");
         Map<String, Object> map = new HashMap<String, Object>();
-        List<Comment> comment = myPageDao.getMyComment(userId);
-        List<Recomment> recomment = myPageDao.getMyRecomment(userId);
+
+        map.put("userId", userId);
+        map.put("search", search);
+
+        List<Comment> comment = myPageDao.getMyComment(map);
+        int commentTotal = myPageDao.getTotalComment(map);
+
+
+        List<Recomment> recomment = myPageDao.getMyRecomment(map);
+        int recommentTotal = myPageDao.getTotalRecomment(map);
+
 
         System.out.println("comment 값??"+comment);
         System.out.println("Recomment 값??"+recomment);
 
+
+        map.put("commentTotal", commentTotal);
+        map.put("recommentTotal",recommentTotal);
         map.put("myComment", comment);
         map.put("myRecomment", recomment);
 
@@ -81,11 +136,21 @@ public class MyPageServiceImpl implements MyPageService {
         return map;
     }
 
-    public Map<String, Object> getMyLike(String userId)throws Exception{
+    public Map<String, Object> getMyLike(String userId, Search search)throws Exception{
         System.out.println("getMyLike 서비스임플 시작이다 ");
         Map<String, Object> map = new HashMap<String, Object>();
-        List<VilBoard> villBoardLike = myPageDao.getMyvillBoardLike(userId);
-        List<ClubCalendarReview> clubCalendarReviewLike = myPageDao.getMyclubCalendarReviewLike(userId);
+
+        map.put("userId", userId);
+        map.put("search", search);
+
+        List<VilBoard> villBoardLike = myPageDao.getMyvillBoardLike(map);
+
+        int villBoardTotal = myPageDao.getTotalVillBoard(map);
+
+        List<ClubCalendarReview> clubCalendarReviewLike = myPageDao.getMyclubCalendarReviewLike(map);
+
+        int clubCalenderReviewTotal = myPageDao.getTotalClubCalender(map);
+
         List<Deal> dealBoardLike = myPageDao.getMydealBoardLike(userId);
 
         System.out.println("villBoardLike 값??"+villBoardLike);
@@ -93,12 +158,17 @@ public class MyPageServiceImpl implements MyPageService {
         System.out.println("dealBoardLike 값??"+dealBoardLike);
 
         map.put("villBoardLike", villBoardLike);
+        map.put("villBoardTotal", villBoardTotal);
         map.put("clubCalendarReviewLike", clubCalendarReviewLike);
+        map.put("clubCalenderReviewTotal", clubCalenderReviewTotal);
         map.put("dealBoardLike", dealBoardLike);
 
         System.out.println("getMyLike 서비스임플 종료이다 ");
         return map;
     }
+
+
+
 
     public Map<String, Object> getMyClub(String applyCheck, String userId, Search search)throws Exception{
         System.out.println("getMyClub 서비스임플 시작이다 ");
@@ -189,6 +259,58 @@ public class MyPageServiceImpl implements MyPageService {
         map.put("getMyPpt", getMyPpt);
 
         System.out.println("getMyPpt 서비스임플 종료이다 ");
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> getMyCommentLike(String userId, Search search) {
+        Map<String,Object>map = new HashMap<>();
+
+        map.put("userId",userId);
+        map.put("search",search);
+
+        List<Comment>list = myPageDao.getMyCommentLike(map);
+
+        int commentLikeTotal = myPageDao.getTotalLikeComment(map);
+
+        map.put("list", list);
+        map.put("commentLikeTotal",commentLikeTotal);
+
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> getMyRecomment(String userId, Search search) {
+
+        Map<String,Object>map = new HashMap<>();
+
+        map.put("userId",userId);
+        map.put("search",search);
+
+        List<Recomment> list = myPageDao.getMyRecommentList(map);
+
+        int recommentTotal = myPageDao.getTotalRecomment(map);
+
+        map.put("list",list);
+        map.put("recommentTotal", recommentTotal);
+
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> getMyRecommentLike(String userId, Search search) {
+        Map<String,Object>map = new HashMap<>();
+
+        map.put("userId",userId);
+        map.put("search",search);
+
+        List<Recomment> list = myPageDao.getMyLikeRecommentlist(map);
+
+        int recommentLikeTotal = myPageDao.getTotalLikeRecomment(map);
+
+
+        map.put("list", list);
+        map.put("recommentLikeTotal",recommentLikeTotal);
         return map;
     }
 

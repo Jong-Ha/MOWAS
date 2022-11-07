@@ -39,7 +39,7 @@
         })
 
         $('#updateClubMasterBoard').off('shown.bs.modal').on('shown.bs.modal', function () {
-            $('#updateClubMasterBoard .updateImgBox').height($('#updateClubMasterBoard .updateImgBox').width())
+            // $('#updateClubMasterBoard .updateImgBox').height($('#updateClubMasterBoard .updateImgBox').width())
         })
 
         $(".deleteClubMasterBoard").off('click').on("click", function () {
@@ -74,6 +74,7 @@
 
     #getClubMasterBoard .carousel-item img {
         object-fit: contain;
+        aspect-ratio: 1;
     }
 
     #getClubMasterBoard .carousel-nav svg {

@@ -48,75 +48,82 @@
     </resultMap>
 
     <resultMap id="villBoardSelect" type="villBoard">
-        <result property="villBoardNum"     column="vill_board_num"     jdbcType="INTEGER"/>
-        <result property="userId"    column="user_id"            jdbcType="VARCHAR"/>
-        <result property="villCode"         column="vill_code"          jdbcType="VARCHAR"/>
-        <result property="villTitle"        column="vill_title"         jdbcType="VARCHAR"/>
-        <result property="villText"         column="vill_text"          jdbcType="VARCHAR"/>
-        <result property="villTag"          column="vill_tag"           jdbcType="VARCHAR"/>
-        <result property="regDate"          column="reg_date"           jdbcType="DATE"/>
-        <result property="viewCount"        column="view_count"         jdbcType="INTEGER"/>
-        <result property="likeCount"        column="like_count"         jdbcType="INTEGER"/>
-        <result property="boardCategory"    column="board_category"     jdbcType="INTEGER"/>
+        <result property="villBoardNum" column="vill_board_num" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="villCode" column="vill_code" jdbcType="VARCHAR"/>
+        <result property="villTitle" column="vill_title" jdbcType="VARCHAR"/>
+        <result property="villText" column="vill_text" jdbcType="VARCHAR"/>
+        <result property="villTag" column="vill_tag" jdbcType="VARCHAR"/>
+        <result property="regDate" column="reg_date" jdbcType="DATE"/>
+        <result property="viewCount" column="view_count" jdbcType="INTEGER"/>
+        <result property="likeCount" column="like_count" jdbcType="INTEGER"/>
+        <result property="boardCategory" column="board_category" jdbcType="INTEGER"/>
+        <result property="likeCheck" column="LIKE_CHECK" jdbcType="CHAR"/>
     </resultMap>
 
 
     <resultMap id="liikeSelect" type="like">
-        <result property="likeNum"          column="like_num"           jdbcType="INTEGER"/>
-        <result property="userId"           column="user_id"            jdbcType="VARCHAR"/>
-        <result property="boardCategory"    column="board_category"     jdbcType="VARCHAR"/>
-        <result property="boardNum"         column="board_num"          jdbcType="VARCHAR"/>
-        <result property="likeCheck"        column="like_check"         jdbcType="VARCHAR"/>
+        <result property="likeNum" column="like_num" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="boardCategory" column="board_category" jdbcType="VARCHAR"/>
+        <result property="boardNum" column="board_num" jdbcType="VARCHAR"/>
+        <result property="likeCheck" column="like_check" jdbcType="CHAR"/>
     </resultMap>
 
 
-    <resultMap id="comemntSelect" type="comment">
-        <result property="commentNum"     column="comment_num"     jdbcType="INTEGER"/>
-        <result property="userId"  column="user_id"         jdbcType="VARCHAR"/>
-        <result property="clubNum"        column="club_num"       jdbcType="INTEGER"/>
-        <result property="boardNum"       column="board_Num"       jdbcType="INTEGER"/>
-        <result property="boardCategory"  column="board_category"  jdbcType="VARCHAR"/>
-        <result property="commentCheck"   column="comment_check"   jdbcType="VARCHAR"/>
-        <result property="commentText"   column="comment_text"   jdbcType="VARCHAR"/>
-        <result property="regDate"        column="reg_date"        jdbcType="DATE"/>
+    <resultMap id="commentSelect" type="comment">
+        <result property="commentNum" column="comment_num" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="clubNum" column="club_num" jdbcType="INTEGER"/>
+        <result property="boardNum" column="board_Num" jdbcType="INTEGER"/>
+        <result property="boardCategory" column="board_category" jdbcType="VARCHAR"/>
+        <result property="commentCheck" column="comment_check" jdbcType="VARCHAR"/>
+        <result property="commentText" column="comment_text" jdbcType="VARCHAR"/>
+        <result property="regDate" column="reg_date" jdbcType="DATE"/>
+        <result property="likeCheck" column="LIKE_CHECK" jdbcType="CHAR"/>
     </resultMap>
 
     <resultMap id="recommentSelect" type="recomment">
-        <result property="recommentNum"     column="recomment_num"     jdbcType="INTEGER"/>
-        <result property="commentNum"       column="comment_num"       jdbcType="INTEGER"/>
-        <result property="userId"           column="user_id"           jdbcType="VARCHAR"/>
-        <result property="boardCategory"    column="board_category"    jdbcType="VARCHAR"/>
-        <result property="recommentText"    column="recomment_text"    jdbcType="VARCHAR"/>
-        <result property="regDate"          column="reg_date"          jdbcType="DATE"/>
+        <result property="recommentNum" column="recomment_num" jdbcType="INTEGER"/>
+        <result property="commentNum" column="comment_num" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="boardCategory" column="board_category" jdbcType="VARCHAR"/>
+        <result property="recommentText" column="recomment_text" jdbcType="VARCHAR"/>
+        <result property="regDate" column="reg_date" jdbcType="DATE"/>
+        <result property="CboardCategory" column="c_board_category" jdbcType="VARCHAR"/>
+        <result property="CboardNum" column="board_num" jdbcType="INTEGER"/>
+        <result property="likeCheck" column="LIKE_CHECK" jdbcType="CHAR"/>
     </resultMap>
 
     <resultMap id="clubCalenderSelect" type="clubCalender">
-        <result property="clubCalenderNum"    column="club_calendar_num"    jdbcType="INTEGER"/>
-        <result property="clubNum"            column="club_num"             jdbcType="INTEGER"/>
-        <result property="regDate"            column="reg_date"              jdbcType="DATE"/>
-        <result property="calenderTitle"      column="calendar_title"       jdbcType="VARCHAR"/>
-        <result property="calenderText"       column="calendar_text"        jdbcType="VARCHAR"/>
-        <result property="clubDate"           column="club_date"            jdbcType="DATE"/>
-        <result property="location"           column="location"             jdbcType="VARCHAR"/>
-        <result property="noticeCheck"        column="notice_check"         jdbcType="VARCHAR"/>
-        <result property="noticeTime"         column="notice_time"          jdbcType="VARCHAR"/>
+        <result property="clubCalenderNum" column="club_calendar_num" jdbcType="INTEGER"/>
+        <result property="clubNum" column="club_num" jdbcType="INTEGER"/>
+        <result property="regDate" column="reg_date" jdbcType="DATE"/>
+        <result property="calenderTitle" column="calendar_title" jdbcType="VARCHAR"/>
+        <result property="calenderText" column="calendar_text" jdbcType="VARCHAR"/>
+        <result property="clubDate" column="club_date" jdbcType="DATE"/>
+        <result property="location" column="location" jdbcType="VARCHAR"/>
+        <result property="noticeCheck" column="notice_check" jdbcType="VARCHAR"/>
+        <result property="noticeTime" column="notice_time" jdbcType="VARCHAR"/>
         <result property="calendarApplyCheck" column="calendar_apply_check" jdbcType="VARCHAR"/>
-        <result property="applyAutoCheck"     column="apply_auto_check"     jdbcType="VARCHAR"/>
+        <result property="applyAutoCheck" column="apply_auto_check" jdbcType="VARCHAR"/>
+
     </resultMap>
 
     <resultMap id="calenderReviewSelect" type="calenderReview">
-        <result property="clubCalenderReviewNum"    column="club_calendar_review_num"    jdbcType="INTEGER"/>
-        <result property="clubCalenderNum"          column="club_calendar_num"           jdbcType="INTEGER"/>
-        <result property="clubNum"                  column="club_num"                    jdbcType="INTEGER"/>
-        <result property="userId"            column="user_id"                     jdbcType="VARCHAR"/>
-        <result property="reviewRange"              column="review_range"                jdbcType="VARCHAR"/>
-        <result property="reviewTitle"              column="review_title"                jdbcType="VARCHAR"/>
-        <result property="reviewText"               column="review_text"                 jdbcType="VARCHAR"/>
-        <result property="regDate"                  column="reg_date"                    jdbcType="DATE"/>
-        <result property="viewCount"                column="view_count"                  jdbcType="INTEGER"/>
-        <result property="likeConunt"               column="like_count"                  jdbcType="INTEGER"/>
-        <result property="updateDate"               column="update_date"                 jdbcType="DATE"/>
-        <result property="boardCategory"            column="board_category"              jdbcType="INTEGER"/>
+        <result property="clubCalenderReviewNum" column="club_calendar_review_num" jdbcType="INTEGER"/>
+        <result property="clubCalenderNum" column="club_calendar_num" jdbcType="INTEGER"/>
+        <result property="clubNum" column="club_num" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="reviewRange" column="review_range" jdbcType="VARCHAR"/>
+        <result property="reviewTitle" column="review_title" jdbcType="VARCHAR"/>
+        <result property="reviewText" column="review_text" jdbcType="VARCHAR"/>
+        <result property="regDate" column="reg_date" jdbcType="DATE"/>
+        <result property="viewCount" column="view_count" jdbcType="INTEGER"/>
+        <result property="likeConunt" column="like_count" jdbcType="INTEGER"/>
+        <result property="updateDate" column="update_date" jdbcType="DATE"/>
+        <result property="boardCategory" column="board_category" jdbcType="INTEGER"/>
+        <result property="likeCheck" column="LIKE_CHECK" jdbcType="CHAR"/>
     </resultMap>
 
     <resultMap type="com.project.domain.Club" id="ClubResultMap">
@@ -151,7 +158,7 @@
         <result property="dealBoardNum" column="deal_board_num" jdbcType="INTEGER"/>
         <result property="boardCategory" column="board_category" jdbcType="CHAR"/>
         <result property="dealStatus" column="deal_status" jdbcType="CHAR"/>
-        <result property="user.userId"		    column="user_id"		            jdbcType="VARCHAR"/>
+        <result property="user.userId" column="user_id" jdbcType="VARCHAR"/>
         <result property="dealTitle" column="deal_title" jdbcType="VARCHAR"/>
         <result property="dealText" column="deal_text" jdbcType="VARCHAR"/>
         <result property="dealRegDate" column="deal_reg_date" jdbcType="DATE"/>
@@ -180,29 +187,29 @@
     </resultMap>
 
     <resultMap id="MasterBoardSelectMap" type="masterBoard">
-        <result property="masterBoardNo" 	column="master_board_num"   jdbcType="INTEGER"/>
-        <result property="adminId"	column="admin_id" 		 jdbcType="VARCHAR"/>
-        <result property="mbCategory" column="mb_category" 	 jdbcType="CHAR"/>
-        <result property="mbTitle" column="mb_title"         jdbcType="VARCHAR"/>
-        <result property="mbText" 	column="mb_text" 		jdbcType="VARCHAR"/>
-        <result property="mbRegDate" 	column="reg_date"       jdbcType="DATE"/>
+        <result property="masterBoardNo" column="master_board_num" jdbcType="INTEGER"/>
+        <result property="adminId" column="admin_id" jdbcType="VARCHAR"/>
+        <result property="mbCategory" column="mb_category" jdbcType="CHAR"/>
+        <result property="mbTitle" column="mb_title" jdbcType="VARCHAR"/>
+        <result property="mbText" column="mb_text" jdbcType="VARCHAR"/>
+        <result property="mbRegDate" column="reg_date" jdbcType="DATE"/>
         <collection property="files" column="master_board_num" ofType="com.project.domain.File"
                     select="getMasterBoardFiles"/>
     </resultMap>
 
     <resultMap id="CommunityReportSelectMap" type="communityReport">
-        <result property="reportNo" 	column="report_num"   jdbcType="INTEGER"/>
-        <result property="boardNo"	column="board_num" 		 jdbcType="INTEGER"/>
-        <result property="boardCategory" column="board_category" 	 jdbcType="CHAR"/>
-        <result property="reportId" column="report_id"         jdbcType="VARCHAR"/>
-        <result property="reportedId" column="reported_id"         jdbcType="VARCHAR"/>
-        <result property="adminId" 	column="admin_id" 		jdbcType="VARCHAR"/>
-        <result property="reportBasis" column="report_basis"         jdbcType="CHAR"/>
-        <result property="reportDate" 	column="report_date"       jdbcType="DATE"/>
-        <result property="reportText" 	column="report_text"       jdbcType="VARCHAR"/>
-        <result property="ppt" 	column="ppt"       jdbcType="INTEGER"/>
-        <result property="pptDate" 	column="ppt_date"       jdbcType="DATE"/>
-        <result property="processResult" 	column="process_result"       jdbcType="VARCHAR"/>
+        <result property="reportNo" column="report_num" jdbcType="INTEGER"/>
+        <result property="boardNo" column="board_num" jdbcType="INTEGER"/>
+        <result property="boardCategory" column="board_category" jdbcType="CHAR"/>
+        <result property="reportId" column="report_id" jdbcType="VARCHAR"/>
+        <result property="reportedId" column="reported_id" jdbcType="VARCHAR"/>
+        <result property="adminId" column="admin_id" jdbcType="VARCHAR"/>
+        <result property="reportBasis" column="report_basis" jdbcType="CHAR"/>
+        <result property="reportDate" column="report_date" jdbcType="DATE"/>
+        <result property="reportText" column="report_text" jdbcType="VARCHAR"/>
+        <result property="ppt" column="ppt" jdbcType="INTEGER"/>
+        <result property="pptDate" column="ppt_date" jdbcType="DATE"/>
+        <result property="processResult" column="process_result" jdbcType="VARCHAR"/>
     </resultMap>
 
     <select id="getDealBoardFiles" resultMap="FileResultMap">
@@ -223,84 +230,335 @@
             OR board_category = '09')
     </select>
 
-    <select id="getMyPage"    parameterType="String" resultMap="userSelectMap">
-        SELECT user_id, master_check, user_status, password, user_name, gender, email,
-               phone, vill_code, user_image,psd, ped, ppt, review_pt, login_type
+    <select id="getMyPage" parameterType="String" resultMap="userSelectMap">
+        SELECT user_id,
+               master_check,
+               user_status,
+               password,
+               user_name,
+               gender,
+               email,
+               phone,
+               vill_code,
+               user_image,
+               psd,
+               ped,
+               ppt,
+               review_pt,
+               login_type
         FROM users
-        WHERE user_id=#{userId}
+        WHERE user_id = #{userId}
     </select>
 
-    <select id="getMyInfor" parameterType="String" resultMap="userSelectMap" >
-        SELECT user_id, password, user_name, rrd, gender, email, phone, vill_code, user_image, psd, ped, ppt, review_pt, login_type
+    <select id="getMyInfor" parameterType="String" resultMap="userSelectMap">
+        SELECT user_id,
+               password,
+               user_name,
+               rrd,
+               gender,
+               email,
+               phone,
+               vill_code,
+               user_image,
+               psd,
+               ped,
+               ppt,
+               review_pt,
+               login_type
         FROM users
-        WHERE user_id=#{userId}
+        WHERE user_id = #{userId}
     </select>
 
-    <select id="getMyInforInterList" parameterType="String" resultMap="interListSelectMap" >
+    <select id="getMyInforInterList" parameterType="String" resultMap="interListSelectMap">
         SELECT inter_list
         FROM user_inter_list
-        WHERE user_id=#{userId}
+        WHERE user_id = #{userId}
     </select>
 
-    <select id="getMyVillBoard" parameterType="String" resultMap="villBoardSelect" >
-        SELECT *
-        FROM vill_board
-        WHERE user_id=#{userId}
-    </select>
 
-    <select id="getMyClubBoard" parameterType="String" resultMap="ClubMasterBoardResultMap" >
+    <select id="getMyClubBoard" parameterType="String" resultMap="ClubMasterBoardResultMap">
         SELECT *
         FROM club_master_board
-        WHERE user_id=#{userId}
+        WHERE user_id = #{userId}
     </select>
 
-    <select id="getMyClubCalendarReview" parameterType="String" resultMap="calenderReviewSelect" >
+
+    <sql id="getMyClubCalendarReviewSQL">
+        select *
+        from CLUB_CALENDAR_REVIEW
+        where USER_ID = #{userId}
+    </sql>
+
+    <select id="getClubCalenderReviewTotal" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM(
+        <include refid="getMyClubCalendarReviewSQL"/>
+        )
+    </select>
+
+    <select id="getMyClubCalendarReview" parameterType="map" resultMap="calenderReviewSelect">
+
+        SELECT * FROM (
+        SELECT ROWNUM row_num, vt.* FROM (
+        <include refid="getMyClubCalendarReviewSQL"/>
+        ) vt
+        <if test="search.currentPage*search.pageSize!=0">
+            WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}
+        </if>
+        )
+        <where>
+            <if test="search.currentPage*search.pageSize!=0">
+                row_num >= ((#{search.currentPage}-1)*#{search.pageSize}+1)
+            </if>
+        </where>
+
+    </select>
+
+
+    <sql id="getMyclubCalendarReviewLikeSql">
+        select ls.LIKE_CHECK, cr.*
+        from likes ls,
+             CLUB_CALENDAR_REVIEW cr
+        where ls.user_id = #{userId}
+          and ls.board_num = cr.club_calendar_review_num
+          and ls.board_category = cr.board_category
+          and ls.LIKE_CHECK = 'y'
+    </sql>
+
+    <select id="getMyclubCalendarReviewLikeTotal" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM(
+        <include refid="getMyclubCalendarReviewLikeSql"/>
+        )
+    </select>
+
+    <select id="getMyclubCalendarReviewLike" parameterType="map" resultMap="calenderReviewSelect">
+
+        SELECT * FROM (
+        SELECT ROWNUM row_num, vt.* FROM (
+        <include refid="getMyclubCalendarReviewLikeSql"/>
+        ) vt
+        <if test="search.currentPage*search.pageSize!=0">
+            WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}
+        </if>
+        )
+        <where>
+            <if test="search.currentPage*search.pageSize!=0">
+                row_num >= ((#{search.currentPage}-1)*#{search.pageSize}+1)
+            </if>
+        </where>
+
+    </select>
+
+
+    <sql id="getMyVillBoardSql">
         SELECT *
-        FROM club_calendar_review
-        WHERE user_id=#{userId}
+        FROM vill_board
+        WHERE user_id = #{userId}
+    </sql>
+
+    <select id="getMyVillBoardTotal" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM(
+        <include refid="getMyVillBoardSql"/>
+        )
     </select>
 
-    <select id="getMydealBoard" parameterType="String" resultMap="dealSelectMap" >
-        SELECT *
-        FROM deal
-        WHERE user_id=#{userId}
+    <select id="getMyVillBoard" parameterType="map" resultMap="villBoardSelect">
+
+        SELECT * FROM (
+        SELECT ROWNUM row_num, vt.* FROM (
+        <include refid="getMyVillBoardSql"/>
+        ) vt
+        <if test="search.currentPage*search.pageSize!=0">
+            WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}
+        </if>
+        )
+        <where>
+            <if test="search.currentPage*search.pageSize!=0">
+                row_num >= ((#{search.currentPage}-1)*#{search.pageSize}+1)
+            </if>
+        </where>
+
     </select>
 
-    <select id="getMyComment" parameterType="String" resultMap="comemntSelect" >
+
+    <sql id="getMyVillBoardLikeSql">
+        select ls.like_check, vb.*
+        from LIKES ls,
+             vill_board vb
+        where ls.user_id = #{userId}
+          and ls.board_num = vb.VILL_BOARD_NUM
+          and ls.board_category = vb.board_category
+          and ls.LIKE_CHECK = 'y'
+    </sql>
+
+    <select id="getMyVillBoardLikeTotal" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM(
+        <include refid="getMyVillBoardLikeSql"/>
+        )
+    </select>
+
+    <select id="getMyVillBoardLike" parameterType="map" resultMap="villBoardSelect">
+
+        SELECT * FROM (
+        SELECT ROWNUM row_num, vt.* FROM (
+        <include refid="getMyVillBoardLikeSql"/>
+        ) vt
+        <if test="search.currentPage*search.pageSize!=0">
+            WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}
+        </if>
+        )
+        <where>
+            <if test="search.currentPage*search.pageSize!=0">
+                row_num >= ((#{search.currentPage}-1)*#{search.pageSize}+1)
+            </if>
+        </where>
+
+    </select>
+
+
+    <sql id="getMyCommentSql">
         SELECT *
         FROM comments
-        WHERE user_id=#{userId}
+        WHERE user_id = #{userId}
+    </sql>
+
+    <select id="getMyCommentTotal" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM(
+        <include refid="getMyCommentSql"/>
+        )
     </select>
 
-    <select id="getMyRecomment" parameterType="String" resultMap="recommentSelect" >
-        SELECT *
-        FROM recomment
-        WHERE user_id=#{userId}
+    <select id="getMyComment" parameterType="map" resultMap="commentSelect">
+
+        SELECT * FROM (
+        SELECT ROWNUM row_num, vt.* FROM (
+        <include refid="getMyCommentSql"/>
+        ) vt
+        <if test="search.currentPage*search.pageSize!=0">
+            WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}
+        </if>
+        )
+        <where>
+            <if test="search.currentPage*search.pageSize!=0">
+                row_num >= ((#{search.currentPage}-1)*#{search.pageSize}+1)
+            </if>
+        </where>
+
     </select>
 
-    <select id="getMyvillBoardLike" parameterType="String" resultMap="villBoardSelect" >
-        SELECT *
-        FROM likes a, vill_board b
-        WHERE a.board_category = b.board_category and a.user_id=#{userId}
+    <sql id="getMyRecommentSql">
+        select rt.*, cs.board_category AS c_board_category, cs.board_num
+        from recomment rt,
+             COMMENTS cs
+        where rt.user_id = #{userId}
+          and rt.comment_num = cs.comment_num(+)
+    </sql>
+
+    <select id="getMyRecommentTotal" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM(
+        <include refid="getMyRecommentSql"/>
+        )
     </select>
 
-    <select id="getMyclubCalendarReviewLike" parameterType="String" resultMap="calenderReviewSelect" >
-        SELECT *
-        FROM likes a, club_calendar_review b
-        WHERE a.board_category = b.board_category and a.user_id=#{userId}
+    <select id="getMyRecommentlist" parameterType="map" resultMap="recommentSelect">
+
+        SELECT * FROM (
+        SELECT ROWNUM row_num, vt.* FROM (
+        <include refid="getMyRecommentSql"/>
+        ) vt
+        <if test="search.currentPage*search.pageSize!=0">
+            WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}
+        </if>
+        )
+        <where>
+            <if test="search.currentPage*search.pageSize!=0">
+                row_num >= ((#{search.currentPage}-1)*#{search.pageSize}+1)
+            </if>
+        </where>
+
     </select>
 
-    <select id="getMydealBoardLike" parameterType="String" resultMap="dealSelectMap" >
-        SELECT *
-        FROM likes a, deal b
-        WHERE a.board_category = b.board_category and a.user_id=#{userId}
-    </select>
+
     <!--좋아요한 댓글 조호-->
-    <select id="getMyCommentLike" parameterType="String" resultMap="comemntSelect" >
-        SELECT *
-        FROM likes a, comments b
-        WHERE a.board_category = b.board_category and a.user_id=#{userId}
+    <sql id="getMyCommentLikeSQL">
+        select ls.like_check, cs.*
+        from LIKES ls,
+             comments cs
+        where ls.user_id = #{userId}
+          and ls.board_num = cs.comment_num(+)
+          and ls.board_category = '10'
+          and ls.LIKE_CHECK = 'y'
+    </sql>
+
+    <select id="getMyCommentLikeTotal" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM(
+        <include refid="getMyCommentLikeSQL"/>
+        )
     </select>
+
+    <select id="getMyCommentLike" parameterType="map" resultMap="commentSelect">
+
+        SELECT * FROM (
+        SELECT ROWNUM row_num, vt.* FROM (
+        <include refid="getMyCommentLikeSQL"/>
+        ) vt
+        <if test="search.currentPage*search.pageSize!=0">
+            WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}
+        </if>
+        )
+        <where>
+            <if test="search.currentPage*search.pageSize!=0">
+                row_num >= ((#{search.currentPage}-1)*#{search.pageSize}+1)
+            </if>
+        </where>
+
+    </select>
+
+    <sql id="getMyRecommentLikeSql">
+        select ls.like_check, rs.*
+        from LIKES ls,
+             recomment rs
+        where ls.user_id = #{userId}
+          and ls.board_num = rs.recomment_num
+          and ls.board_category = rs.board_category
+          and ls.LIKE_CHECK = 'y'
+    </sql>
+
+    <select id="getMyRecommentLikeTotal" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM(
+        <include refid="getMyRecommentLikeSql"/>
+        )
+    </select>
+
+    <select id="getMyRecommentLike" parameterType="map" resultMap="recommentSelect">
+
+        SELECT * FROM (
+        SELECT ROWNUM row_num, vt.* FROM (
+        <include refid="getMyRecommentLikeSql"/>
+        ) vt
+        <if test="search.currentPage*search.pageSize!=0">
+            WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}
+        </if>
+        )
+        <where>
+            <if test="search.currentPage*search.pageSize!=0">
+                row_num >= ((#{search.currentPage}-1)*#{search.pageSize}+1)
+            </if>
+        </where>
+
+    </select>
+
+
+
+
+
+    <select id="getMydealBoardLike" parameterType="String" resultMap="dealSelectMap">
+        SELECT *
+        FROM likes a,
+             deal b
+        WHERE a.board_category = b.board_category
+          and a.user_id = #{userId}
+    </select>
+
 
     <!--가입한 모임 조회-->
     <sql id="getMyCluberSql">
@@ -337,46 +595,52 @@
     </select>
     <select id="getMyClub" parameterType="map" resultMap="ClubResultMap">
         SELECT c.*, l.like_check
-FROM club c,
-     (SELECT board_num,
-             like_check
-      FROM likes
-      WHERE board_category = '12'
-        AND user_id = #{userId}) l
+        FROM club c,
+             (SELECT board_num,
+                     like_check
+              FROM likes
+              WHERE board_category = '12'
+                AND user_id = #{userId}) l
         WHERE c.club_delete_check = '0'
-AND club_num = ${cluber.clubNum}
+          AND club_num = ${cluber.clubNum}
           AND c.club_num = l.board_num(+)
     </select>
 
 
-
-    <select id="getMyDeal" parameterType="String" resultMap="dealSelectMap" >
+    <select id="getMyDeal" parameterType="String" resultMap="dealSelectMap">
         SELECT *
         FROM deal
-        WHERE user_id=#{userId} and deal_status='3'
+        WHERE user_id = #{userId}
+          and deal_status = '3'
     </select>
 
-    <select id="getMyReport" parameterType="String" resultMap="CommunityReportSelectMap" >
+    <select id="getMyReport" parameterType="String" resultMap="CommunityReportSelectMap">
         SELECT *
         FROM community_report
-        WHERE report_id=#{userId}
+        WHERE report_id = #{userId}
     </select>
 
-    <select id="getTotalCount" parameterType="search" resultType="int" >
+    <select id="getTotalCount" parameterType="search" resultType="int">
         SELECT count(*)
         FROM community_report
     </select>
 
-    <select id="getTotalCmt" parameterType="search" resultType="int" >
+    <select id="getTotalCmt" parameterType="search" resultType="int">
         SELECT count(*)
         FROM community_report
     </select>
 
 
-    <select id="getMyPpt" parameterType="String" resultMap="CommunityReportSelectMap" >
+    <select id="getMyPpt" parameterType="String" resultMap="CommunityReportSelectMap">
         SELECT *
         FROM community_report
-        WHERE reported_id=#{userId}
+        WHERE reported_id = #{userId}
+    </select>
+
+    <select id="getMydealBoard" parameterType="String" resultMap="dealSelectMap">
+        select *
+        from DEAL
+        where USER_ID = #{userId}
     </select>
 
 
