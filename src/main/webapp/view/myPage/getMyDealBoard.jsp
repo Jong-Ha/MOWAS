@@ -656,21 +656,19 @@
 
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
-<hr>
+<div class="tabBox">
+    <span class="tabBtn getMyVillBoard">우리동네 게시글</span>
+    <span>|</span>
+    <span class="tabBtn getMyCbReviewBoard">모임 일정 후기 게시글</span>
+    <span>|</span>
+    <span class="tabBtn getMyDealBoard">판매/판매요청 게시글</span>
+</div>
+
+
+<hr/>
+<h4>판매/판매요청 게시글</h4>
+<hr/>
 <div class="container">
-    <div class="tabBox">
-        <span class="tabBtn getMyVillBoard">우리동네 게시글</span>
-        <span>|</span>
-        <span class="tabBtn getMyCbReviewBoard">모임 일정 후기 게시글</span>
-        <span>|</span>
-        <span class="tabBtn getMyDealBoard">판매/판매요청 게시글</span>
-    </div>
-
-
-    <hr/>
-    <h4>판매/판매요청 게시글</h4>
-    <hr/>
-
     <div class="listDeal">
         <div class="row">
             <div class="col-lg-12">
@@ -840,7 +838,7 @@
 </div>
 <div style="margin-bottom: 100px;">
 </div>
-        <jsp:include page="/layout/chatIcon.jsp"/>
-        <jsp:include page="/layout/footer.jsp"/>
+<jsp:include page="/layout/chatIcon.jsp"/>
+<jsp:include page="/layout/footer.jsp"/>
 </body>
 </html>

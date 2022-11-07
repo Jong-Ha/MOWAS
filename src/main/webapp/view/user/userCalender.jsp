@@ -81,6 +81,7 @@
                                 var clubCalendar = JSONData.clubCalendar;
 
                                 $(".clubCalnderNum").val(clubCalendar.clubCalenderNum);
+                                $(".clubNum").val(clubCalendar.clubNum);
                                 $(".calenderTitle2").val(clubCalendar.calenderTitle);
                                 $(".calenderText2").val(clubCalendar.calenderText);
                                 $(".clubDate2").val(clubCalendar.clubDate);
@@ -279,27 +280,52 @@
 
             var boardNum = $(".boardNum").val()
 
-            location.href = "/deal/getDeal/" + boardNum;
 
+            Swal.fire({
+                icon: 'success',
+                title: '해당 페이지로 이동 하시겠습니까?',
+                text: '로그인후 사용해 주세요',
+                confirmButtonText: '이동',
+                showCancelButton: true,
+                CancelButtonText: '취소',
+                footer: '<a href="">Why do I have this issue?</a>'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.href = "/deal/getDeal/" + boardNum;
+
+                }
+            })
         })
+
 
         $(".getClub").on("click", () => {
 
-            var clubCalendar = $(".clubCalnderNum").val()
+            var clubNum = $(".clubNum").val()
 
-            alert(clubCalendar);
+            Swal.fire({
+                icon: 'success',
+                title: '해당 페이지로 이동 하시겠습니까?',
+                text: '로그인후 사용해 주세요',
+                confirmButtonText: '이동',
+                showCancelButton: true,
+                CancelButtonText: '취소',
+                footer: '<a href="">Why do I have this issue?</a>'
+            }).then((result) => {
+                if (result.isConfirmed) {
 
-            $.ajax({})
+                    location.href = "/club/getClub/" + clubNum
+
+                }
 
 
-            /* location.href ="/club/getClub/"+clubNum*/
+            })
+
         })
 
 
         $(".location2").on("click", function () {
             var location = $(".location2").val();
 
-            alert(location);
 
             $("#location2 .modal-content").load("/view/site/getCalenderMap.jsp",
                 {location: location},
@@ -326,7 +352,6 @@
 
             var location = $(".dealLocation2").val()
 
-            alert(location)
 
             $("#location2 .modal-content").load("/view/site/getCalenderMap.jsp",
                 {location: location},
@@ -381,10 +406,6 @@
                 },
                 success: function (JSONData, result) {
                     console.log(JSONData);
-                    alert(result);
-                    alert(JSONData);
-                    alert(rating)
-                    alert(content)
 
                     // 성공시 해당 창을 닫고 부모창을 reload
                     Swal.fire({
@@ -575,20 +596,6 @@
                 </div>
 
 
-                <div class=" mb-3 form-check form-switch">
-                    알림 설정 여부
-                    <input class="form-check-input check noticeCheck2" name="noticeCheck" type="checkbox" role="switch"
-                           id="flexSwitchCheckDefault4">
-                </div>
-
-                <hr>
-
-
-                <div class="input-group mb-3">
-                    알림 시간 설정
-                    <input type="time" class="noticeTime2" name="noticeTime">
-                </div>
-
                 <hr>
 
 
@@ -637,8 +644,6 @@
      style="display: none;">
     <div class="modal-dialog">
         <input hidden class="boardNum" value="">
-        <input hidden class="dealId" value="">
-
         <div class="modal-content">
             <div class="modal-header">
                 <input type="hidden" class="dealNum" value="">
@@ -674,15 +679,18 @@
             <div class="modal-footer" style=" justify-content:center;">
                 <input hidden name="dealBoardNum" value="${map.dealBoardNum}" class="dealBoardNum">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                <button type="button" class="btn btn-secondary getDealPage">게시글 상세 조회</button>
+                <%--                <c:if test="${deal.boardCategory=='08'}">--%>
+                <%--                <c:if test="${deal.dealId==sessionScope.user.userId}">--%>
                 <button type="button" class="btn btn-secondary getDealPage">게시글 상세 조회${deal.dealId}</button>
 <%--                <c:if test="${deal.boardCategory=='08'}">--%>
 <%--                <c:if test="${deal.dealId==sessionScope.user.userId}">--%>
                 <button type="button" class="btn btn-primary addReview" data-bs-toggle="modal"
                         data-bs-target="#addReview">리뷰작성${deal.dealId}
                 </button>
-<%--                </c:if>--%>
-<%--                </c:if>--%>
-<%--<c:if test="${deal.dealBoard=='09'}">--%>
+                <%--                </c:if>--%>
+                <%--                </c:if>--%>
+                <%--<c:if test="${deal.dealBoard=='09'}">--%>
 
             </div>
         </div>
@@ -692,6 +700,22 @@
 
 <%-- 리뷰 모달창 만들기 헤헷--%>
 
+<div class="modal fade" id="addReview" tabindex="-1" aria-labelledby="addReviewLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addReviewlLabel">리뷰 작성</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addReviewForm" enctype="multipart/form-data">
+                    <input hidden name="dealBoardNum" value="${deal.dealBoardNum}" class="dealBoardNum">
+                    <%--                                <input type="hidden" name="deleteFileName" value="${deal.clubImage}" disabled>--%>
+                    <div class="input-group mb-3">
+                        <div class="form-floating">
+                            ${deal.dealTitle}
+                        </div>
+                    </div>
         <div class="modal fade" id="addReview" tabindex="-1" aria-labelledby="addReviewLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -710,46 +734,46 @@
                                 </div>
                             </div>
 
-                            <div class="input-group mb-3">
-                                <div class="form-floating">
-                                    <div class="rating_div">
-                                        <h4>평점</h4>
+                    <div class="input-group mb-3">
+                        <div class="form-floating">
+                            <div class="rating_div">
+                                <h4>평점</h4>
 
-                                        <select name="rating" class="rating">
-                                            <c:forEach var="i" begin="0" end="100">
-                                                <option value="${i}">${i}</option>
-                                            </c:forEach>
-                                        </select>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="input-group mb-3">
-                                <div class="form-floating">
-                                    <div class="content_div">
-                                        <h4>리뷰</h4>
-                                        <textarea name="content" class="content" value=""></textarea>
-                                    </div>
-                                </div>
+                                <select name="rating" class="rating">
+                                    <c:forEach var="i" begin="0" end="100">
+                                        <option value="${i}">${i}</option>
+                                    </c:forEach>
+                                </select>
 
                             </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 text-center ">
-                            <button type="button" class="btn btn-primary btn-lg submit">확인</button>
-
                         </div>
                     </div>
-                </div>
-                <input type="hidden" value="${deal}">
-                </form>
+                    <div class="input-group mb-3">
+                        <div class="form-floating">
+                            <div class="content_div">
+                                <h4>리뷰</h4>
+                                <textarea name="content" class="content" value=""></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+
             </div>
+            <div class="row">
+                <div class="col-xs-12 text-center ">
+                    <button type="button" class="btn btn-primary btn-lg submit">확인</button>
+
+                </div>
+            </div>
+        </div>
+        <input type="hidden" value="${deal}">
+        </form>
+    </div>
 
 
-        </div>
-        </div>
-        </div>
+</div>
+</div>
+</div>
 
 <%--상세조회 지도--%>
 <div class="modal fade" id="location2" tabindex="-1" aria-hidden="true">

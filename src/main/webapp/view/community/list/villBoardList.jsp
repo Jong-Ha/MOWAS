@@ -212,7 +212,7 @@
                         // 성공시 해당 창을 닫고 부모창을 reload
                         Swal.fire({
                             icon: 'success',
-                            title: 'Your work has been saved',
+                            title: '수정 되었습니다',
                             showConfirmButton: false,
                             timer: 1500
                         });
@@ -287,8 +287,6 @@
                 str += " "
             })
 
-            alert("dddd" + updateVillBoardNum);
-
             $.ajax({
                 url: "/commu/json/updateVillBoard",
                 method: "post",
@@ -304,13 +302,11 @@
 
                 success: function (JSONData, result) {
 
-                    alert(result);
 
                     var file = $("#updateFile #file2").length
 
                     if (file > 0) {
 
-                        alert("gkgk");
 
                         //form 테그를 불러와서 form변수에 등록
                         var form = document.querySelector("form");
@@ -562,8 +558,8 @@
                                 '                                                   <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger viewText"style="z-index: 1; font-size: 0.5em;">' + item.viewCount + '</span>' +
                                 '                                               </div>' +
                                 '                                               <div class="btn btn-danger buttonBox report">' +
-                                '                                                   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"  fill="currentColor" class="bi bi-hand-thumbs-down-fill" viewBox="0 0 16 16"  style="font-size: 1.7em">' +
-                                '                                                       <path d="M6.956 14.534c.065.936.952 1.659 1.908 1.42l.261-.065a1.378 1.378 0 0 0 1.012-.965c.22-.816.533-2.512.062-4.51.136.02.285.037.443.051.713.065 1.669.071 2.516-.211.518-.173.994-.68 1.2-1.272a1.896 1.896 0 0 0-.234-1.734c.058-.118.103-.242.138-.362.077-.27.113-.568.113-.856 0-.29-.036-.586-.113-.857a2.094 2.094 0 0 0-.16-.403c.169-.387.107-.82-.003-1.149a3.162 3.162 0 0 0-.488-.9c.054-.153.076-.313.076-.465a1.86 1.86 0 0 0-.253-.912C13.1.757 12.437.28 11.5.28H8c-.605 0-1.07.08-1.466.217a4.823 4.823 0 0 0-.97.485l-.048.029c-.504.308-.999.61-2.068.723C2.682 1.815 2 2.434 2 3.279v4c0 .851.685 1.433 1.357 1.616.849.232 1.574.787 2.132 1.41.56.626.914 1.28 1.039 1.638.199.575.356 1.54.428 2.591z"/>' +
+                                '                                                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-lg" style="font-size: 1.2em;" viewBox="0 0 16 16">' +
+                                '                                                       <path d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0L7.005 3.1ZM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"/>'+
                                 '                                                   </svg>' +
                                 '                                                </div>' +
                                 '                                         </div>' +
@@ -676,6 +672,7 @@
     .cardbox {
         display: flex;
         flex-direction: row;
+        margin-left: 60px;
         margin-bottom: 30px;
         float: left;
         width: 360px;
@@ -691,7 +688,6 @@
         margin-left: 10px;
         cursor: pointer;
         height: 28px;
-        width: 39px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -783,7 +779,7 @@
     }
 
     .user_hidden_manu > ul {
-        width: 125px;
+        width: 76px;
         border: 1px solid #0000001a;
         padding: 10px;
         border-radius: 5px;
@@ -960,11 +956,9 @@
                                                   style="z-index: 1; font-size: 0.5em;">${villBoard.viewCount} </span>
                                         </div>
 
-                                        <div type="button" class="btn btn-danger buttonBox report">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                 fill="currentColor"
-                                                 class="bi bi-hand-thumbs-down-fill" viewBox="0 0 16 16">
-                                                <path d="M6.956 14.534c.065.936.952 1.659 1.908 1.42l.261-.065a1.378 1.378 0 0 0 1.012-.965c.22-.816.533-2.512.062-4.51.136.02.285.037.443.051.713.065 1.669.071 2.516-.211.518-.173.994-.68 1.2-1.272a1.896 1.896 0 0 0-.234-1.734c.058-.118.103-.242.138-.362.077-.27.113-.568.113-.856 0-.29-.036-.586-.113-.857a2.094 2.094 0 0 0-.16-.403c.169-.387.107-.82-.003-1.149a3.162 3.162 0 0 0-.488-.9c.054-.153.076-.313.076-.465a1.86 1.86 0 0 0-.253-.912C13.1.757 12.437.28 11.5.28H8c-.605 0-1.07.08-1.466.217a4.823 4.823 0 0 0-.97.485l-.048.029c-.504.308-.999.61-2.068.723C2.682 1.815 2 2.434 2 3.279v4c0 .851.685 1.433 1.357 1.616.849.232 1.574.787 2.132 1.41.56.626.914 1.28 1.039 1.638.199.575.356 1.54.428 2.591z"/>
+                                        <div class="btn btn-danger buttonBox report">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-lg" style="font-size: 1.2em;" viewBox="0 0 16 16">
+                                                <path d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0L7.005 3.1ZM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"/>
                                             </svg>
                                         </div>
                                     </div>
