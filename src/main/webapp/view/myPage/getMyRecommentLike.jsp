@@ -233,10 +233,36 @@
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
+
+    function pagingSubmit() {
+        $("#recommentForm").attr('action', '/myPage/getMyCommentLike').attr('method', 'post').submit()
+
+    }
+
     $(function () {
+
+        $(".paging").off("click").on("click", function () {
+
+            $("#recommentForm #currentPage").val($(this).text())
+
+            pagingSubmit()
+        })
+
+        $(".pageUnit").off('click').on("click", function () {
+            if ($(this).hasClass('disabled')) {
+                return false
+            }
+
+            $("#recommentForm #currentPage").val($(this).val())
+
+            pagingSubmit()
+        })
+
+
         var userId = $(".myPageUserId").val();
 
         $(".getMyCommentLike").on("click", function () {
+
             self.location = "/myPage/getMyCommentLike?userId=" + userId;
         })
 
@@ -254,9 +280,9 @@
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
 
 <div class="tabBox">
-    <span class="tabBtn getMyLikeComment">좋아요한 댓글</span>
+    <span class="tabBtn getMyCommentLike">좋아요한 댓글</span>
     <span>|</span>
-    <span class="tabBtn getMyCbRvLikeRecomment">좋아요한 대댓글</span>
+    <span class="tabBtn getMyRecommentLike">좋아요한 대댓글</span>
 </div>
 
 <hr/>

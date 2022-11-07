@@ -226,9 +226,9 @@
         });
 
 
-        // $(".getMyCommentLike").on("click", function () {
-        //     self.location = "/myPage/getMyCommentLike?userId=" + userId;
-        // });
+        $(".getMyCommentLike").on("click", function () {
+            self.location = "/myPage/getMyCommentLike?userId=" + userId;
+        });
 
         $(".getMyClub").on("click", function () {
             self.location = "/myPage/getMyClub?userId=" + userId;
@@ -288,7 +288,7 @@
                     <li class="getMyBoard liTag">내가 작성한 게시글</li>
                     <li class="getMyComment liTag">내가 작성한 댓글</li>
                     <li class="getMyBoardLike liTag">좋아요한 게시글</li>
-<%--                    <li class="getMyCommentLike liTag">좋아요한 댓글</li>--%>
+                    <li class="getMyCommentLike liTag">좋아요한 댓글</li>
 
                 </ul>
             </div>

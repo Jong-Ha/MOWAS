@@ -234,11 +234,7 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
-    $(function(){
-        var userId = $(".myPageUserId").val();
-        $(".getMyLike").on("click", function (){
-            // alert('user'+userId)
-            self.location="/myPage/getMyLike?userId="+userId;
+
 
     function pagingSubmit() {
         $("#clubCalenderLike").attr('action', '/myPage/getMyCbRvLike').attr('method', 'post').submit()
@@ -248,25 +244,24 @@
     $(function () {
 
 
-            var userId = '${user.userId}'
+        var userId = '${user.userId}'
 
-            $(".paging").off("click").on("click", function () {
+        $(".paging").off("click").on("click", function () {
 
-                $("#clubCalenderLike #currentPage").val($(this).text())
+            $("#clubCalenderLike #currentPage").val($(this).text())
 
-                pagingSubmit()
-            })
+            pagingSubmit()
+        })
 
-            $(".pageUnit").off('click').on("click", function () {
-                if ($(this).hasClass('disabled')) {
-                    return false
-                }
+        $(".pageUnit").off('click').on("click", function () {
+            if ($(this).hasClass('disabled')) {
+                return false
+            }
 
-                $("#clubCalenderLike #currentPage").val($(this).val())
+            $("#clubCalenderLike #currentPage").val($(this).val())
 
-                pagingSubmit()
-            })
-
+            pagingSubmit()
+        })
 
 
         $(".getMyLike").on("click", function () {
@@ -292,131 +287,122 @@
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
 
-<hr>
-<div class="container">
-
 <div class="tabBox">
-    <span class="tabBtn getMyLike" >좋아요한 우리동네 게시글</span>
+    <span class="tabBtn getMyLike">좋아요한 우리동네 게시글</span>
     <span>|</span>
-    <span class="tabBtn getMyCbRvLike">좋아요한 모임 후기 게시글</span class="tabBtn">
+    <span class="tabBtn getMyCbRvLike">좋아요한 모임 후기글 게시글</span>
     <span>|</span>
-    <span class="tabBtn getMyDealLike" >좋아요한 판매/판매요청 게시글</span class="tabBtn">
+    <span class="tabBtn getMyDealLike">좋아요한 판매/판매요청 게시글</span>
 </div>
 
 <hr/>
 <h3>좋아요한 모임 후기글</h3>
 <hr/>
-<c:set var="i" value="0" />
-<c:forEach var="list" items="${map.clubCalendarReviewLike}">
-    게시판 카테고리  ${list.boardCategory}<br/>
-    <a href="/clubCal/listCalenderReview?boardCategory=${list.boardCategory}"> 좋아요한 모임 후기글 제목 ${list.reviewTitle}</a><br/>
-    작성날짜 ${list.regDate}<br/>
-    조회수 ${list.viewCount}<br/>
-    좋아요수 ${list.likeConunt}<br/>
-    게시글번호 ${list.clubCalenderReviewNum}<br/>
-</c:forEach>
-</div>
+
+
 <div class="container">
-<form id="clubCalenderLike">
+    <form id="clubCalenderLike">
 
-    <input hidden class="userId" name="userId" value="${user.userId}">
-    <input hidden id="currentPage" name="currentPage" value="${resultPage.currentPage}">
+        <input hidden class="userId" name="userId" value="${user.userId}">
+        <input hidden id="currentPage" name="currentPage" value="${resultPage.currentPage}">
 
-    <!--  table Start /////////////////////////////////////-->
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="table-responsive project-list">
-                        <table class="table project-table table-centered table-nowrap table-hover table-striped" style="table-layout: fixed;">
-                            <thead>
-                            <tr>
-                                <th scope="col">제목</th>
-                                <th scope="col">작성날짜</th>
-                                <th scope="col">동네 코드</th>
-                                <th scope="col">내용</th>
-                                <th scope="col">좋아요수</th>
-                                <th scope="col">조회수</th>
-                            </tr>
-                            </thead>
-                            <tbody>
+        <!--  table Start /////////////////////////////////////-->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive project-list">
+                            <table class="table project-table table-centered table-nowrap table-hover table-striped"
+                                   style="table-layout: fixed;">
+                                <thead>
+                                <tr>
+                                    <th scope="col">제목</th>
+                                    <th scope="col">작성날짜</th>
+                                    <th scope="col">동네 코드</th>
+                                    <th scope="col">내용</th>
+                                    <th scope="col">좋아요수</th>
+                                    <th scope="col">조회수</th>
+                                </tr>
+                                </thead>
+                                <tbody>
 
 
-                            <c:set var="i" value="0"/>
-                            <c:forEach var="list" items="${map.clubCalendarReviewLike}">
-                                <c:set var="i" value="${ i+1 }"/>
-                                <c:if test="${list.likeCheck == 'y'}">
-                                    <tr>
-                                        <td>
-                                            <div>
-                                                    ${list.reviewTitle}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                    ${list.regDate}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                    ${list.boardCategory == '1' ? '후기글'  : '후기쇼츠'}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                    ${list.reviewText}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                    ${list.likeConunt}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                    ${list.viewCount}
-                                            </div>
-                                        </td>
+                                <c:set var="i" value="0"/>
+                                <c:forEach var="list" items="${map.clubCalendarReviewLike}">
+                                    <c:set var="i" value="${ i+1 }"/>
+                                    <c:if test="${list.likeCheck == 'y'}">
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                        ${list.reviewTitle}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                        ${list.regDate}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                        ${list.boardCategory == '1' ? '후기글'  : '후기쇼츠'}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                        ${list.reviewText}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                        ${list.likeConunt}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                        ${list.viewCount}
+                                                </div>
+                                            </td>
 
-                                    </tr>
-                                </c:if>
-                            </c:forEach>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!--  table End /////////////////////////////////////-->
-                    <c:if test="${!empty resultPage}">
-                        <nav aria-label="Page navigation example" style="display: flex;justify-content: center;">
-                            <ul class="pagination">
-                                <li class="page-item pageUnit ${resultPage.beginUnitPage == 1?'disabled':''}"
-                                    value="${resultPage.beginUnitPage - resultPage.pageUnit}">
-                                    <a class="page-link" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-
-                                <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}"
-                                           var="i">
-                                    <li class="page-item ${search.currentPage == i?'active':'paging'}"><a
-                                            class="page-link">${i}</a></li>
+                                        </tr>
+                                    </c:if>
                                 </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--  table End /////////////////////////////////////-->
+                        <c:if test="${!empty resultPage}">
+                            <nav aria-label="Page navigation example"
+                                 style="display: flex;justify-content: center;">
+                                <ul class="pagination">
+                                    <li class="page-item pageUnit ${resultPage.beginUnitPage == 1?'disabled':''}"
+                                        value="${resultPage.beginUnitPage - resultPage.pageUnit}">
+                                        <a class="page-link" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
 
-                                <li class="page-item pageUnit ${resultPage.maxPage==resultPage.endUnitPage?'disabled':''}"
-                                    value="${resultPage.beginUnitPage+resultPage.pageUnit}">
-                                    <a class="page-link" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </c:if>
+                                    <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}"
+                                               var="i">
+                                        <li class="page-item ${search.currentPage == i?'active':'paging'}"><a
+                                                class="page-link">${i}</a></li>
+                                    </c:forEach>
+
+                                    <li class="page-item pageUnit ${resultPage.maxPage==resultPage.endUnitPage?'disabled':''}"
+                                        value="${resultPage.beginUnitPage+resultPage.pageUnit}">
+                                        <a class="page-link" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </c:if>
 
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
 </div>
 
 
