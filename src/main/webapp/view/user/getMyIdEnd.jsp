@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title>MOWAS</title>
 </head>
 <style>
     .btn-primary {
@@ -62,6 +62,8 @@
         </div>
         <button style="margin-top: 50px;" type="button" class="btn btn-primary ok" >확인</button>
     </div>
+</div>
+<div style="margin-bottom: 100px;">
 </div>
 <jsp:include page="/layout/chatIcon.jsp"/>
 <jsp:include page="/layout/footer.jsp"/>

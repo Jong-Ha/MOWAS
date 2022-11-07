@@ -175,8 +175,8 @@
         <result property="dealEndDate" column="deal_end_date" jdbcType="DATE"/>
         <result property="dealDate" column="deal_date" jdbcType="DATE"/>
         <result property="dealLocation" column="deal_location" jdbcType="VARCHAR"/>
-        <!--<collection property="files" column="deal_board_num" ofType="com.project.domain.File"
-                    select="getDealBoardFiles"/>-->
+        <collection property="files" column="deal_board_num" ofType="com.project.domain.File"
+                    select="getDealBoardFiles"/>
     </resultMap>
 
     <resultMap type="com.project.domain.File" id="FileResultMap">
@@ -610,8 +610,7 @@
     <select id="getMyDeal" parameterType="String" resultMap="dealSelectMap">
         SELECT *
         FROM deal
-        WHERE user_id = #{userId}
-          and deal_status = '3'
+        WHERE deal_status='3' and (deal_id=#{userId} or USER_ID=#{userId})
     </select>
 
     <select id="getMyReport" parameterType="String" resultMap="CommunityReportSelectMap">

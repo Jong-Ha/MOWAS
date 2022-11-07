@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>MOWAS</title>
 </head>
  <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

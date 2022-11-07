@@ -195,7 +195,7 @@
 
 <head>
 
-    <title>Title</title>
+    <title>MOWAS</title>
 </head>
 
 <script type="text/javascript">

@@ -9,7 +9,7 @@
 <html>
 <head>
   <jsp:forward page="/index.jsp"></jsp:forward>
-    <title>Title</title>
+    <title>MOWAS</title>
 </head>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <body>
