@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Insert title here</title>
+    <title>MOWAS</title>
 </head>
 <meta charset="utf-8">
 
@@ -917,9 +917,9 @@
                              style="cursor: pointer">
 
                             <div class="carousel-inner get" >
-                                <c:forEach var="File" items="${villBoard.file}">
-                                    <div class="carousel-item active" data-bs-interval="2000" style="height: 100%;">
-                                        <img class="d-block w-100  poto" width="100%" height="100%"
+                                <c:forEach var="File" items="${villBoard.file}" varStatus="st">
+                                    <div class="carousel-item ${st.first?'active':''}" data-bs-interval="2000" style="height: 100%;">
+                                        <img class="d-block w-100  poto" width="100%" height="100%" style="object-fit: cover;"
                                              src="/resources/${File.fileName }" alt="any">
                                     </div>
                                 </c:forEach>

@@ -314,19 +314,19 @@
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
 
-<div class="tabBox">
-    <span class="tabBtn getMyVillBoard">우리동네 게시글</span>
-    <span>|</span>
-    <span class="tabBtn getMyCbReviewBoard">모임 일정 후기 게시글</span>
-    <span>|</span>
-    <span class="tabBtn getMyDealBoard">판매/판매요청 게시글</span>
-</div>
 
 
 <hr>
 
 <div class="container">
 
+    <div class="tabBox">
+        <span class="tabBtn getMyVillBoard">우리동네 게시글</span>
+        <span>|</span>
+        <span class="tabBtn getMyCbReviewBoard">모임 일정 후기 게시글</span>
+        <span>|</span>
+        <span class="tabBtn getMyDealBoard">판매/판매요청 게시글</span>
+    </div>
     <hr/>
     <h4>우리동네 게시글</h4>
     <hr/>

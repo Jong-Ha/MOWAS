@@ -35,11 +35,12 @@
 <%--    <img src="/resources/images/club6.png" alt="대문사진" style="width: 1600px;height: 500px;object-fit: contain;border-radius: 10px;">--%>
 <%--</div>--%>
 
-<img class="shadow-lg" src="/resources/images/모임대표8.jpg" alt="대문사진" style="width: 1600px;height: 500px;object-fit: cover;border-radius: 10px;">
 
 <!-- Example Code -->
 <div class="container">
 
+    <img class="shadow-lg" src="/resources/images/모임대표9.jpg" alt="대문사진" style="aspect-ratio: 12/5;width: 100%;object-fit: cover;border-radius: 10px;">
+<%--    <img class="shadow-lg" src="/resources/images/모임대표8.jpg" alt="대문사진" style="aspect-ratio: 12/5;width: 100%;object-fit: cover;border-radius: 10px;">--%>
     <div class="wrapper">
         <div class="typing">
             <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;

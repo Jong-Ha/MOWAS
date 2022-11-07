@@ -138,10 +138,11 @@ public class MongoDbDaoImpl implements MongoDbDao{
 
         //채팅방
         Query query = new Query(new Criteria().andOperator(
-                Criteria.where("users.userId").is("userId")
+                Criteria.where("users.userId").is(userId)
         ));
         List<Map> mapList = mongoTemplate.find(query, Map.class, "rooms");
-        if(mapList!=null){
+        System.out.println(mapList);
+        if(mapList!=null&&mapList.size()!=0){
             Map<String, Object> map = mapList.get(0);
             List<Map<String, Object>> users = (List<Map<String, Object>>) map.get("users");
             for (int i = 0; i < users.size(); i++) {

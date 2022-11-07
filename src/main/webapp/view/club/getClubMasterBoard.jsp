@@ -129,7 +129,7 @@
     </div>
 
     <div class="modal-text">
-        <div><pre style='font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";'>${clubMasterBoard.text}</pre></div>
+        <div><pre style='font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";white-space: pre-wrap;'>${clubMasterBoard.text}</pre></div>
     </div>
 
 <c:if test="${!empty clubMasterBoard.files}">

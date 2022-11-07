@@ -654,7 +654,7 @@
             chatSocket.off('deleteChat').on('deleteChat', ()=>{
                 Swal.fire({
                     title : '상대방이 채팅방을 나갔습니다',
-                    icon : 'success'
+                    icon : 'warning'
                 }).then(()=>{
                     $('.chatRoom').load('/chat/chatList.jsp .chatRoom')
                     chatSocket.disconnect()

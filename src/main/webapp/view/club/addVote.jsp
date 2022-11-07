@@ -27,7 +27,10 @@
                 method : 'post',
                 success : function(re){
                     $('#listVote .modal-content').html(re)
-                    alert('투표가 등록되었습니다!')
+                    Swal.fire('투표가 등록되었습니다!').then(()=>{
+                        $('#addVote').modal('hide')
+                        $('#listVote').modal('show')
+                    })
 
                     let msg ='"'+$('#addVote #addVoteForm #voteTitle').val()+'" 투표가 등록되었습니다!'
                     if($('#addVote #addVoteForm #endDateCheck').prop('checked')){
@@ -42,8 +45,6 @@
                     //Server에 socket.on으로 data정보를 전달
                     chatSocket.emit("chatting", data)
 
-                    $('#addVote').modal('hide')
-                    $('#listVote').modal('show')
                 }
             })
         })

@@ -281,6 +281,8 @@
 
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
+<hr>
+<div class="container">
 <div class="tabBox">
     <span class="tabBtn getMyLike" >좋아요한 우리동네 게시글</span>
     <span>|</span>
@@ -398,6 +400,7 @@
             </div>
         </div>
     </form>
+</div>
 </div>
 <jsp:include page="/layout/chatIcon.jsp"/>
 <jsp:include page="/layout/footer.jsp"/>

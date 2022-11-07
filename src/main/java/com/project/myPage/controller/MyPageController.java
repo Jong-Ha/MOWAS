@@ -299,7 +299,7 @@ public class MyPageController {
                 System.out.println("getMyInfor 컨트롤러 map1의 값은?" + map);
                 model.addAttribute("map", map);
 
-                session.setAttribute("user", user);
+                session.setAttribute("user", userService.getUser(user.getUserId()));
             }
             User userImg = userService.getUser(user.getUserId());
             user.setUserImage(userImg.getUserImage());
@@ -309,7 +309,7 @@ public class MyPageController {
             System.out.println("getMyInfor 컨트롤러 map1===1의 값은?" + map);
             model.addAttribute("map", map);
 
-            session.setAttribute("user", user);
+            session.setAttribute("user", userService.getUser(user.getUserId()));
 
 
         } else if (user.getLoginType().equals("2")) {
@@ -354,7 +354,7 @@ public class MyPageController {
                 System.out.println("getMyInfor 컨트롤러 map2의 값은?" + map);
                 model.addAttribute("map", map);
 
-                session.setAttribute("user", user);
+                session.setAttribute("user", userService.getUser(user.getUserId()));
 
             }
 
@@ -366,7 +366,7 @@ public class MyPageController {
             System.out.println("getMyInfor 컨트롤러 map2===2의 값은?" + map);
             model.addAttribute("map", map);
 
-            session.setAttribute("user", user);
+            session.setAttribute("user", userService.getUser(user.getUserId()));
 
         } else {
 
@@ -410,7 +410,7 @@ public class MyPageController {
                 System.out.println("getMyInfor 컨트롤러 map3의 값은?" + map);
                 model.addAttribute("map", map);
 
-                session.setAttribute("user", user);
+                session.setAttribute("user", userService.getUser(user.getUserId()));
 
             }
 
@@ -422,7 +422,7 @@ public class MyPageController {
             System.out.println("getMyInfor 컨트롤러 map3===3의 값은?" + map);
             model.addAttribute("map", map);
 
-            session.setAttribute("user", user);
+            session.setAttribute("user", userService.getUser(user.getUserId()));
         }
         ;
 

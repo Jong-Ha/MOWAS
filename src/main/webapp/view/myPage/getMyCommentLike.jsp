@@ -275,6 +275,8 @@
 
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
+<hr>
+<div class="container">
 <div class="tabBox">
     <span class="tabBtn getMyLikeComment">좋아요한 댓글</span>
     <span>|</span>
@@ -376,6 +378,7 @@
     </form>
 </div>
 <div style="margin-bottom: 100px;">
+</div>
 </div>
 <jsp:include page="/layout/chatIcon.jsp"/>
 <jsp:include page="/layout/footer.jsp"/>

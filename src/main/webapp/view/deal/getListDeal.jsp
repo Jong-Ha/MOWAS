@@ -427,6 +427,10 @@
             border-bottom: 2px solid #0a090945
         }
 
+        .potoBox .poto {
+            object-fit: cover;
+        }
+
         .text {
             white-space: nowrap;
             overflow: hidden;
@@ -622,9 +626,10 @@
 <!-- Example Code -->
 <jsp:include page="/layout/toolbar.jsp"/>
 <%--<jsp:include page="/view/deal/history.jsp"/>--%>
-<img class="shadow-lg"  src="/resources/images/거래대표7.jpg"
-     style="height: 500px;border-radius: 10px;  width: 1600px;object-fit: cover;">
 <div class="container">
+
+    <img class="shadow-lg"  src="/resources/images/거래대표14.png"
+         style="aspect-ratio: 12/5;border-radius: 10px;  width: 100%;object-fit: cover;">
 
     <div class="wrapper">
         <div class="typing">

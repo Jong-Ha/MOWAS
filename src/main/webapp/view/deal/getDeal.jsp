@@ -17,7 +17,7 @@ Product vo=(Product)request.getAttribute("vo");
 <html>
 <head>
 
-    <title>상품 목록조회</title>
+    <title>MOWAS</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -482,6 +482,10 @@ Product vo=(Product)request.getAttribute("vo");
             justify-content: space-around;
             overflow: hidden;
         }
+
+        #article-profile-image img {
+            object-fit: cover;
+        }
     </style>
 
 </head>
@@ -707,7 +711,7 @@ Product vo=(Product)request.getAttribute("vo");
                                 <div class="carousel-item ${st.index==0?'active':''}" data-bs-interval="10000">
                                     <div type=hidden class="file" value="${File.fileName}"><img
                                             src="/resources/${File.fileName}" width="700px" height="500px"
-                                            style="margin-top: 20px">
+                                            style="margin-top: 20px; object-fit: contain">
                                     </div>
                                 </div>
                         </c:forEach>

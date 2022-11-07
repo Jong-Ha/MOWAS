@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Insert title here</title>
+    <title>MOWAS</title>
 </head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -697,13 +697,13 @@
 
 <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 <jsp:include page="/layout/toolbar.jsp"/>
-
-
-<img class="shadow-lg" src="${pageContext.request.contextPath}/resources/images/club1.png"
-     style="height: 500px;border-radius: 10px;  width: 1600px;">
-
+<div class="container">
+    <img class="shadow-lg" src="/resources/images/커뮤8.jpg"
+         style="border-radius: 10px;object-fit: cover;aspect-ratio: 12/5;width: 100%;object-fit: cover;">
+</div>
 <jsp:include page="/layout/commubar.jsp"/>
 <div class="container">
+
     <input hidden class="boardCategory" value="1">
 
     <%--상단 툴바--%>
@@ -793,7 +793,7 @@
                             <div class="carousel-inner">
                                 <c:forEach var="File" items="${ClubCalendarReview.file}">
                                     <div class="carousel-item active get" data-bs-interval="2000">
-                                        <img class="d-block w-100 poto" width="100%" height="100%"
+                                        <img class="d-block w-100 poto" width="100%" height="100%" style="object-fit: cover;"
                                              src="/resources${File.fileName}" alt="any">
                                     </div>
                                 </c:forEach>

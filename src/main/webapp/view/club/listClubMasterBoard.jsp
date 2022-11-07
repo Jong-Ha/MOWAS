@@ -43,7 +43,12 @@
 
         $('#getClubMasterBoard').off('show.bs.modal').on('show.bs.modal',function(){
             if(!${currentCluber.cluberStatus==4||currentCluber.cluberStatus==5||currentCluber.cluberStatus==6}){
-                alert('모임원만 조회가 가능합니다')
+                // alert('모임원만 조회가 가능합니다')
+                Swal.fire({
+                    icon: 'error',
+                    title: '모임원만 조회가 가능합니다',
+                    text: '모임에 먼저 가입해주시기 바랍니다'
+                })
                 return false
             }
         })
@@ -124,7 +129,7 @@
                                 <h4 class="card-title text-truncate">
                                         ${clubMasterBoard.title}
                                 </h4>
-                                <div style="width: 70px">
+                                <div style="width: fit-content">
                                     <small class="text-right" style="font-size: 20px;">
                                             ${clubMasterBoard.userId}
                                     </small><br>

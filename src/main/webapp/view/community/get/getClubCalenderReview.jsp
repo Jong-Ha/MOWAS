@@ -18,7 +18,7 @@
     <link href="/resources/css/comment.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <title>Bootstrap Example</title>
+    <title>MOWAS</title>
 
     <script type="text/javascript">
 

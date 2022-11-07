@@ -1241,6 +1241,7 @@
 
 
     </script>
+    <title>MOWAS</title>
 
 
 <body class="bg-light p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
