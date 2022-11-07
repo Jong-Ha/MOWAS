@@ -23,14 +23,8 @@
         var userId = $(".userId").val();
         var boardCatagory = $(".boardCategory").val()
 
-        // 작성 페이지로 navigation
-        $(".add").on("click", function () {
-            window.open("/view/community/add/addClubCalenderReview.jsp", "모임 일정 후기글 작성",
-                "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
-        });
-
         //상세 조회
-        $(".getPage").on("click", function () {
+        $(".getPage").off("click").on("click", function () {
             var boardNum = $(this).parents(".cardbox").find(".CalenderReviewNum").val();
 
             console.log(boardNum);
@@ -40,7 +34,7 @@
 
 
         // 수정 모달 창 오픈
-        $(".update").on("click", function () {
+        $(".update").off("click").on("click", function () {
             var boardNum = $(this).parents(".cardbox").find(".CalenderReviewNum").val();
 
             console.log(boardNum);
@@ -70,6 +64,7 @@
                     const month = ('0' + (date.getMonth() + 1)).slice(-2);
                     const day = ('0' + date.getDate()).slice(-2);
                     const dateStr = year + '-' + month + '-' + day;
+                    alert(date);
 
 
                     $(".clubDate2").val(dateStr);
@@ -81,7 +76,7 @@
 
         });
 
-        $(".delete").on("click", function () {
+        $(".delete").off("click").on("click", function () {
 
             var boardNum = $(this).parents(".cardbox").find(".CalenderReviewNum").val();
 
@@ -123,7 +118,7 @@
         });
 
 
-        $(".likeButton").on("click", function () {
+        $(".likeButton").off("click").on("click", function () {
 
 
             console.log("유저의 아이디는 : " + userId);
@@ -164,7 +159,7 @@
             }
         })
 
-        $(".submit").on("click", function () {
+        $(".submit").off("click").on("click", function () {
 
             var clubCalenderReviewNum = $(".clubCalenderReviewNum").val();
             var reviewTitle = $(".reviewTitle2").val();
@@ -262,7 +257,7 @@
 
         });
 
-        $(".report").on("click", function () {
+        $(".report").off("click").on("click", function () {
 
             if (userId === '' || userId === null) {
 
@@ -297,18 +292,18 @@
         })
 
 
-        $(".user_manu").on("click", function () {
+        $(".user_manu").off("click").on("click", function () {
             $(this).parents(".card").find(".user_hidden_manu").slideToggle();
         })
 
-        $(".searchBtn").on("click", function () {
+        $(".searchBtn").off("click").on("click", function () {
 
             $(".currentPage").val(1);
 
             $("#textSerch").attr("method", "get").attr("action", "listCalenderReview")
         })
 
-        $(".getClub").on("click", function () {
+        $(".getClub").off("click").on("click", function () {
             var clubNum = $(this).parents(".reviewBox").find(".clubNum").val()
 
             Swal.fire({
@@ -339,6 +334,8 @@
 
     /*무한스크롤*/
     $(function () {
+
+        lodingListClubCalender()
 
 
         function getFormJson(select) {
@@ -469,16 +466,14 @@
                                 '                                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="z-index: 1; font-size: 0.5em;">' + item.viewCount + '</span>' +
                                 '                                                </div>' +
                                 '                                                <div class="btn btn-danger buttonBox report">' +
-                                '                                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"  class="bi bi-hand-thumbs-down-fill" viewBox="0 0 16 16"   style="font-size: 1.7em">' +
-                                '                                                       <path d="M6.956 14.534c.065.936.952 1.659 1.908 1.42l.261-.065a1.378 1.378 0 0 0 1.012-.965c.22-.816.533-2.512.062-4.51.136.02.285.037.443.051.713.065 1.669.071 2.516-.211.518-.173.994-.68 1.2-1.272a1.896 1.896 0 0 0-.234-1.734c.058-.118.103-.242.138-.362.077-.27.113-.568.113-.856 0-.29-.036-.586-.113-.857a2.094 2.094 0 0 0-.16-.403c.169-.387.107-.82-.003-1.149a3.162 3.162 0 0 0-.488-.9c.054-.153.076-.313.076-.465a1.86 1.86 0 0 0-.253-.912C13.1.757 12.437.28 11.5.28H8c-.605 0-1.07.08-1.466.217a4.823 4.823 0 0 0-.97.485l-.048.029c-.504.308-.999.61-2.068.723C2.682 1.815 2 2.434 2 3.279v4c0 .851.685 1.433 1.357 1.616.849.232 1.574.787 2.132 1.41.56.626.914 1.28 1.039 1.638.199.575.356 1.54.428 2.591z"/>' +
+                                '                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-lg" style="font-size: 1.7em" viewBox="0 0 16 16">' +
+                                '                                                         <path d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0L7.005 3.1ZM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"/>'+
                                 '                                                    </svg>' +
                                 '                                                </div>' +
                                 '                                          </div>' +
-                                '                                   </div>' +
-                                '                                   <div class="reviewTitle">' +
                                 '                                        <div class="reviewTitle">' + item.reviewTitle + '</div>' +
                                 '                                        <div class="reviewText">' + item.reviewText + '<div>' +
-                                '                                    </div>' +
+                                '                                   </div>' +
                                 '                                </div>' +
                                 '                              </div>' +
                                 '                            </div>' +
@@ -562,8 +557,8 @@
     .itemBox {
         display: flex;
         align-items: center;
-        justify-content: center;
         flex-direction: column;
+        width: 297px;
     }
 
     .clickBox {
@@ -665,9 +660,13 @@
 
     .reviewTitle {
         text-align: left;
+        text-overflow: ellipsis;
+        height: 27px;
         width: 100%;
         margin-bottom: 20px;
         font-size: 1.3em;
+        white-space: nowrap;
+        overflow: hidden;
     }
 
     .reviewText {
@@ -675,7 +674,10 @@
         text-align: left;
         font-size: 0.1em;
         text-overflow: ellipsis;
+        overflow: hidden;
+        height: 76px;
     }
+
 
     .card-top {
         border-bottom: 1px solid;
@@ -829,11 +831,8 @@
                                         </div>
 
                                         <div class="btn btn-danger buttonBox report">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-                                                 fill="currentColor"
-                                                 class="bi bi-hand-thumbs-down-fill" viewBox="0 0 16 16"
-                                                 style="font-size: 1.7em">
-                                                <path d="M6.956 14.534c.065.936.952 1.659 1.908 1.42l.261-.065a1.378 1.378 0 0 0 1.012-.965c.22-.816.533-2.512.062-4.51.136.02.285.037.443.051.713.065 1.669.071 2.516-.211.518-.173.994-.68 1.2-1.272a1.896 1.896 0 0 0-.234-1.734c.058-.118.103-.242.138-.362.077-.27.113-.568.113-.856 0-.29-.036-.586-.113-.857a2.094 2.094 0 0 0-.16-.403c.169-.387.107-.82-.003-1.149a3.162 3.162 0 0 0-.488-.9c.054-.153.076-.313.076-.465a1.86 1.86 0 0 0-.253-.912C13.1.757 12.437.28 11.5.28H8c-.605 0-1.07.08-1.466.217a4.823 4.823 0 0 0-.97.485l-.048.029c-.504.308-.999.61-2.068.723C2.682 1.815 2 2.434 2 3.279v4c0 .851.685 1.433 1.357 1.616.849.232 1.574.787 2.132 1.41.56.626.914 1.28 1.039 1.638.199.575.356 1.54.428 2.591z"/>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-lg" style="font-size: 1.7em" viewBox="0 0 16 16">
+                                                <path d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0L7.005 3.1ZM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"/>
                                             </svg>
                                         </div>
                                     </div>
@@ -879,8 +878,8 @@
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control reviewText2" id="message-text" value=""
-                               placeholder="asdasd"/>
+                        <textarea type="text" class="form-control reviewText2" id="message-text" value=""
+                                  placeholder="asdasd" style="height: 222px;"></textarea>
                         <label for="message-text">내용</label>
                     </div>
 
@@ -894,25 +893,10 @@
 
                         <label for="floatingSelect">공개 여부</label>
 
-
                     </div>
 
                     <div class="input-group mb-3">
                         <input type="file" id="file" class="form-control file" multiple value="파일 첨부">
-                    </div>
-
-                    <div class="form-floating mb-3">
-
-                        <input type="date" class="form-control clubDate2" id="date-text" value=""
-                               placeholder="asdasd"/>
-                        <label for="date-text">모임 일정 날짜</label>
-
-                    </div>
-
-                    <div class="input-group mb-3">
-
-                        <input type="button" class="form-control" value="위치 선택">
-
                     </div>
 
                 </form>

@@ -218,7 +218,7 @@
         });
 
         $(".getMyBoardLike").on("click", function () {
-            self.location = "/myPage/getMyLike?userId=" + userId;
+            self.location = "/myPage/getMyVillBoardLike?userId=" + userId;
         });
 
 

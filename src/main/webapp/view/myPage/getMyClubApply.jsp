@@ -237,29 +237,6 @@
         }
     }
 
-    .underline.yellow {
-        background-image: linear-gradient(transparent 60%, #F8CD07 40%);
-    }
-
-    .underline:hover {
-        background-size: 100% 100%;
-    }
-
-    .cardbox {
-        transition: all 0.2s linear;
-    }
-
-    .cardbox:hover {
-        transform: scale(1.05);
-    }
-
-    .likeCheck:hover {
-        transform: scale(1.2);
-    }
-
-    .likeCheck {
-        transition: 0.2s;
-    }
 
     /* Bootstrap 수정 */
     .table > thead {
@@ -322,7 +299,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive project-list" style="border-radius: 5px;">
-                            <table class="table project-table table-centered table-nowrap table-hover table-striped">
+                            <table class="table project-table table-centered table-nowrap table-hover table-striped" style="    table-layout: fixed;">
                                 <thead>
                                 <tr>
                                     <th scope="col" style="width: 10%;">모임 이미지</th>

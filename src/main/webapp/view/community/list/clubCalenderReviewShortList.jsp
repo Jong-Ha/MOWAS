@@ -25,12 +25,7 @@
         var boardCategory = $(".boardCategory").val()
         var userId = $(".userId").val()
 
-        $(".add").on("click", function () {
-            window.open("/view/community/add/addClubCalenderReviewShort.jsp", "모임 일정 후기글 작성",
-                "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
-        });
-
-        $(".update").on("click", function () {
+        $(".update").off("click").on("click", function () {
 
             var boardNum = $(this).parents(".cardbox").find(".boardNum").val();
 
@@ -62,7 +57,7 @@
 
         });
 
-        $(".delete").on("click", function () {
+        $(".delete").off("click").on("click", function () {
             var boardNum = $(this).parents(".cardbox").find(".boardNum").val();
 
 
@@ -105,7 +100,7 @@
 
 
         /*좋아요*/
-        $(".likeButton").on("click", function () {
+        $(".likeButton").off("click").on("click", function () {
 
 
             if (userId === '' || userId === null) {
@@ -149,7 +144,7 @@
         });
 
 
-        $(".submit").on("click", function () {
+        $(".submit").off("click").on("click", function () {
 
             var clubCalenderReviewNum = $(".clubCalenderReviewNum").val();
             var boardCategory = $(".boardCategory").val();
@@ -242,7 +237,7 @@
 
         });
 
-        $(".report").on("click", function () {
+        $(".report").off("click").on("click", function () {
 
             if (userId === '' || userId === null) {
 
@@ -278,19 +273,19 @@
 
         })
 
-        $(".user_manu_click").on("click", function () {
+        $(".user_manu_click").off("click").on("click", function () {
 
             alert(123)
             $(this).parents(".card").find(".user_hidden_manu").slideToggle();
         })
 
-        $(".searchBtn").on("click", function () {
+        $(".searchBtn").off("click").on("click", function () {
             $(".currentPage").val(1);
 
             $("#textSerch").attr("method", "get").attr("action", "listCalenderReview")
         })
 
-        $(".getClub").on("click", function () {
+        $(".getClub").off("click").on("click", function () {
             var clubNum = $(this).parents(".card").find(".clubNum").val()
             location.href = "/club/getClub/" + clubNum
         })
@@ -299,6 +294,8 @@
 
     /*무한 스크롤*/
     $(function () {
+
+        lodingListClubCalendar();
 
 
         function getFormJson(select) {
@@ -855,18 +852,6 @@
                         <input type="file" id="file" class="form-control file" multiple value="파일 첨부">
                     </div>
 
-                    <div class="form-floating mb-3">
-
-                        <input type="date" class="form-control clubDate" id="date-text" value="" placeholder="asdasd"/>
-                        <label for="date-text">모임 일정 날짜</label>
-
-                    </div>
-
-                    <div class="input-group mb-3">
-
-                        <input type="button" class="form-control" value="위치 선택">
-
-                    </div>
 
                 </form>
 
