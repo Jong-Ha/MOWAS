@@ -35,7 +35,7 @@
 <%--    <img src="/resources/images/club6.png" alt="대문사진" style="width: 1600px;height: 500px;object-fit: contain;border-radius: 10px;">--%>
 <%--</div>--%>
 
-<img class="shadow-lg" src="/resources/images/club7.jpg" alt="대문사진" style="width: 1600px;height: 500px;object-fit: cover;border-radius: 10px;">
+<img class="shadow-lg" src="/resources/images/모임대표8.jpg" alt="대문사진" style="width: 1600px;height: 500px;object-fit: cover;border-radius: 10px;">
 
 <!-- Example Code -->
 <div class="container">

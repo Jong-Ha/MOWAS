@@ -880,6 +880,33 @@ public class MyPageController {
         return "forward:/view/myPage/getMyClub.jsp";
     }
 
+    @RequestMapping(value = "getMyClubLike", method = RequestMethod.GET)
+    public String getMyClubLike(@RequestParam(value = "userId") String userId, Model model, @ModelAttribute(value = "search") Search search) throws Exception {
+
+        if (search.getCurrentPage() == 0) {
+            search.setCurrentPage(1);
+        }
+
+        search.setPageSize(pageSize);
+
+        Map<String, Object> map = myPageService.getMyClubLike(userId, search);
+
+        for (Club club : (List<Club>)map.get("list")) {
+            club.parseInterList();
+            String gc = "모집완료";
+            if (club.getGatherCheck().equals("1")) {
+                gc = "모집중";
+            }
+            club.setGatherCheck(gc);
+        }
+
+        Page resultPage = new Page(search.getCurrentPage(), (Integer) map.get("totalCount"), pageUnit, pageSize);
+        map.put("resultPage", resultPage);
+        model.addAllAttributes(map);
+
+        return "forward:/view/myPage/getMyClubLike.jsp";
+    }
+
     @RequestMapping(value = "getMyClubApply")
     public String getMyClubApply(@RequestParam(value = "userId") String userId, Model model, @ModelAttribute(value = "search") Search search) throws Exception {
         System.out.println("getMyClubApply 컨트롤러 userId의 값?" + userId);

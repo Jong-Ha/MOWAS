@@ -38,6 +38,10 @@ public interface MyPageDao {
 
     public int getTotalMyCluber(Map<String, Object> map)throws Exception;
 
+    public int getTotalMyClubLike(Map<String ,Object> map) throws Exception;
+
+    public List<Club> getMyClubLike(Map<String, Object> map)throws Exception;
+
     public List<Deal> getMyDeal(String userId)throws Exception;
 
     public List<CommunityReport> getMyReport(String userId)throws Exception;

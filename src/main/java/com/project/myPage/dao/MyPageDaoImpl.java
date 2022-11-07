@@ -86,6 +86,16 @@ public class MyPageDaoImpl implements MyPageDao{
     }
 
     @Override
+    public int getTotalMyClubLike(Map<String, Object> map) throws Exception {
+        return sqlSession.selectOne("MyPageMapper.getTotalMyClubLike", map);
+    }
+
+    @Override
+    public List<Club> getMyClubLike(Map<String, Object> map) throws Exception {
+        return sqlSession.selectList("MyPageMapper.getMyClubLike", map);
+    }
+
+    @Override
     public int getTotalMyCluber(Map<String, Object> map) throws Exception {
         return sqlSession.selectOne("MyPageMapper.getTotalMyCluber", map);
     }

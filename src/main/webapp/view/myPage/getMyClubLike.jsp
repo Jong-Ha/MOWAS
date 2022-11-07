@@ -118,7 +118,7 @@
                 // console.log(data)
 // alert(json)
                 $.ajax({
-                    url: '/myPage/json/getMyClub',
+                    url: '/myPage/json/getMyClubLike',
                     method: 'post',
                     'data': JSON.stringify({
                         userId: '${user.userId}',
@@ -129,25 +129,25 @@
                         $.each(re.list, function (index, item) {
                             // console.log(index)
                             // console.log(item)
-                            console.log(item.club.likeCheck)
+                            console.log(item.likeCheck)
                             let html = '<div class="row row-cols-1 row-cols-md-3 g-4 cardbox">' +
                                 '           <div class="col clubBox" style="cursor: pointer">' +
                                 '               <div class="card shadow-lg clubCard">' +
-                                '                   <input type="hidden" class="clubNum" name="clubNum" value="' + item.club.clubNum + '">' +
+                                '                   <input type="hidden" class="clubNum" name="clubNum" value="' + item.clubNum + '">' +
                                 '                   <div class="card-img-top" style="background-color: #f0f0f0">' +
-                                '                       <img src="/resources/' + item.club.clubImage + '" alt="모임이미지">' +
+                                '                       <img src="/resources/' + item.clubImage + '" alt="모임이미지">' +
                                 '                   </div>' +
                                 '                   <div class="card-body carditem">' +
-                                '                       <h3 class="card-title">' + item.club.clubName + '</h3>' +
+                                '                       <h3 class="card-title">' + item.clubName + '</h3>' +
                                 '                       <div class="row g-3">' +
                                 '                           <div class="col-6">' +
-                                '                               <div class="badge bg-primary text-wrap" style="width: 6rem;margin: 2px;">' + item.club.gatherCheck + '</div>' +
-                                '                               <div class="badge bg-primary text-wrap" style="width: 6rem;margin: 2px;">' + item.club.villCode + '</div>' +
-                                '                               <div class="badge bg-primary text-wrap" style="width: 6rem;margin: 2px;">' + item.club.interList + '</div>' +
+                                '                               <div class="badge bg-primary text-wrap" style="width: 6rem;margin: 2px;">' + item.gatherCheck + '</div>' +
+                                '                               <div class="badge bg-primary text-wrap" style="width: 6rem;margin: 2px;">' + item.villCode + '</div>' +
+                                '                               <div class="badge bg-primary text-wrap" style="width: 6rem;margin: 2px;">' + item.interList + '</div>' +
                                 '                           </div>' +
                                 '                           <div class="col-6">' +
                                 '                               <span class="likeToggle">'
-                            if (item.club.likeCheck === 'y') {
+                            if (item.likeCheck === 'y') {
                                 html += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill likeCheck" viewBox="0 0 16 16">' +
                                     '<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>' +
                                     '</svg>'
@@ -160,7 +160,7 @@
                             html += '                   </span>' +
                                 '                   </div>' +
                                 '               </div>' +
-                                '               <button type="button" class="btn btn-outline-primary clubTag">' + item.club.tag + '</button>' +
+                                '               <button type="button" class="btn btn-outline-primary clubTag">' + item.tag + '</button>' +
                                 '           </div>' +
                                 '       </div>' +
                                 '   </div>' +
@@ -369,7 +369,7 @@
 
 
     <hr>
-    <h3>내가 가입한 모임</h3>
+    <h3>내가 찜한 모임</h3>
     <hr/>
 
     <div class="listClub">
@@ -381,33 +381,33 @@
                 <div class="row row-cols-1 row-cols-md-3 g-4 cardbox">
                     <div class="col clubBox" style="cursor: pointer">
                         <div class="card shadow-lg clubCard">
-                            <input type="hidden" class="clubNum" name="clubNum" value="${item.club.clubNum}">
+                            <input type="hidden" class="clubNum" name="clubNum" value="${item.clubNum}">
                             <div class="card-img-top" style="background-color: #f0f0f0">
-                                <img src="/resources/${item.club.clubImage}" alt="모임이미지">
+                                <img src="/resources/${item.clubImage}" alt="모임이미지">
                             </div>
 
                             <div class="card-body carditem">
-                                <h3 class="card-title">${item.club.clubName}</h3>
+                                <h3 class="card-title">${item.clubName}</h3>
                                 <div class="row g-3">
                                     <div class="col-6">
                                         <div class="badge bg-primary text-wrap" style="width: 6rem;margin: 2px;">
-                                                ${item.club.gatherCheck}
+                                                ${item.gatherCheck}
                                         </div>
                                         <div class="badge bg-primary text-wrap" style="width: 6rem;margin: 2px;">
-                                                ${item.club.villCode}
+                                                ${item.villCode}
                                         </div>
                                         <div class="badge bg-primary text-wrap" style="width: 6rem;margin: 2px;">
-                                                ${item.club.interList}
+                                                ${item.interList}
                                         </div>
                                     </div>
                                     <div class="col-6">
                                     <span class="likeToggle">
-                                        <c:if test="${item.club.likeCheck!='y'}">
+                                        <c:if test="${item.likeCheck!='y'}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                  fill="currentColor" class="bi bi-heart likeCheck" viewBox="0 0 16 16"> <path
                                                     d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/> </svg>
                                         </c:if>
-                                    <c:if test="${item.club.likeCheck=='y'}">
+                                    <c:if test="${item.likeCheck=='y'}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                              fill="currentColor" class="bi bi-heart-fill likeCheck" viewBox="0 0 16 16"> <path
                                                 fill-rule="evenodd"
@@ -416,7 +416,7 @@
                                     </span>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-outline-primary clubTag">${item.club.tag}</button>
+                                <button type="button" class="btn btn-outline-primary clubTag">${item.tag}</button>
                             </div>
                         </div>
                     </div>
