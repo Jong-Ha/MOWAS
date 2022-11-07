@@ -543,7 +543,7 @@
 
                                 </c:if>
 
-                                <c:if test="${sessionScope.user.userId ne null}">
+                                <c:if test="${sessionScope.user.userId ne null and sessionScope.user.masterCheck eq 1}">
 
                                 <div class="loginbox login underline yellow" style="font-size: 1.2em; color: #FFFFFF;"
                                      id="logout">로그아웃
@@ -554,6 +554,13 @@
                                 </div>
 
                             </c:if>
+                                <c:if test="${ sessionScope.user.masterCheck eq 2}">
+
+                                    <div class="loginbox login underline yellow" style="font-size: 1.2em; color: #FFFFFF;"
+                                         id="logout">로그아웃
+                                    </div>
+
+                                </c:if>
                             </div>
 
                         </div>

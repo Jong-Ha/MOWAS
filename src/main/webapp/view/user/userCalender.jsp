@@ -657,7 +657,8 @@
 <%--                <c:if test="${deal.boardCategory=='08'}">--%>
 <%--                <c:if test="${deal.dealId==sessionScope.user.userId}">--%>
                 <button type="button" class="btn btn-primary addReview" data-bs-toggle="modal"
-                        data-bs-target="#addReview">府轰累己${map.deal.boardCategory}${map}
+                        data-bs-target="#addReview">府轰累己${map.deal.dealBoardNum}${map.dealBoardNum}
+                    ${deal.dealBoardNum}${sessionScope.user.userId}
                 </button>
 <%--                </c:if>--%>
 <%--                </c:if>--%>

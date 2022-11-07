@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="EUC-KR">
-    <title>User List Title</title>
+    <title>MOWAS</title>
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -37,7 +37,7 @@
 
     /* Bootstrap 수정 */
     .table > thead {
-        background-color: #AF7AC5 ;
+        background-color: #b3c6ff ;
     }
     .table > thead > tr > th {
         text-align: center;

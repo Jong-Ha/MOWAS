@@ -22,6 +22,7 @@
 
 
     <script type="text/javascript">
+
         /*댓글 list 전역 함수로 등록*/
         $(function () {
             var boardNum = $(".boardNum").val();
@@ -298,9 +299,7 @@
 
 
                         })
-
-
-                        $(".updateComment").on("click", function () {
+                        $(".updateComment").off("click").on("click", function () {
 
                             var commentUser = $(this).parents(".commentList").find(".commentUser").val()
 
@@ -316,7 +315,7 @@
                         })
 
 
-                        $(".addUpdateComment").on("click", function () {
+                        $(".addUpdateComment").off("click").on("click", function () {
 
                             var commentText = $(this).parents(".commentList").find(".updateCommentText").val();
                             var commentNum = $(this).parents(".commentList").find(".commentNum").val()
@@ -342,7 +341,7 @@
                             })
                         })
 
-                        $(".deleteComment").on("click", function () {
+                        $(".deleteComment").off("click").on("click", function () {
 
                             var commentUser = $(this).parents(".commentList").find(".commentUser").val()
 
@@ -373,7 +372,7 @@
 
                         })
 
-                        $(".showRecomment").on("click", function () {
+                        $(".showRecomment").off("click").on("click", function () {
 
                             if (userId !== '') {
 
@@ -386,7 +385,7 @@
                                     title: '사용할수 없는 기능 입니다',
                                     text: '로그인후 사용해 주세요',
                                     footer: '<a href="">Why do I have this issue?</a>'
-                                }).then(()=>{
+                                }).then(() => {
                                         $("#loginModal").modal("show")
                                     }
                                 )
@@ -396,7 +395,7 @@
 
                         })
 
-                        $(".showRecomment2").on("click", function () {
+                        $(".showRecomment2").off("click").on("click", function () {
 
                             if (userId !== '') {
 
@@ -409,7 +408,7 @@
                                     title: '사용할수 없는 기능 입니다',
                                     text: '로그인후 사용해 주세요',
                                     footer: '<a href="">Why do I have this issue?</a>'
-                                }).then(()=>{
+                                }).then(() => {
                                         $("#loginModal").modal("show")
                                     }
                                 )
@@ -420,7 +419,7 @@
 
 
                         /*대댓*/
-                        $(".addRecomment").on("click", function () {
+                        $(".addRecomment").off("click").on("click", function () {
 
                             var recommentText = $(this).parents(".commentList").find(".addReommentText").val();
                             var commentNum = $(this).parents(".commentList").find(".commentNum").val()
@@ -447,7 +446,7 @@
                             })
                         })
 
-                        $(".updateRecomment").on("click", function () {
+                        $(".updateRecomment").off("click").on("click", function () {
 
                             var recommentUser = $(this).parents(".RecommentList").find(".recommentUser").val()
 
@@ -461,7 +460,7 @@
                             }
                         })
 
-                        $(".addUpdateRecomment").on("click", function () {
+                        $(".addUpdateRecomment").off("click").on("click", function () {
 
                             var recommentNum = $(this).parents(".RecommentList").find(".recommentNum").val()
                             var recommentText = $(this).parents(".RecommentList").find(".updateRecommentText").val();
@@ -485,7 +484,7 @@
                             })
                         })
 
-                        $(".deleteRecomment").on("click", function () {
+                        $(".deleteRecomment").off("click").on("click", function () {
 
                             var recommentUser = $(this).parents(".RecommentList").find(".recommentUser").val()
 
@@ -515,7 +514,7 @@
                         })
 
 
-                        $(".CommentlikeButton").on("click", function () {
+                        $(".CommentlikeButton").off("click").on("click", function () {
 
 
                             if (userId === '' || userId === null) {
@@ -525,7 +524,7 @@
                                     title: '사용할수 없는 기능 입니다',
                                     text: '로그인후 사용해 주세요',
                                     footer: '<a href="">Why do I have this issue?</a>'
-                                }).then(()=>{
+                                }).then(() => {
                                         $("#loginModal").modal("show")
                                     }
                                 )
@@ -557,7 +556,7 @@
 
                         })
 
-                        $(".RecommentlikeButton").on("click", function () {
+                        $(".RecommentlikeButton").off("click").on("click", function () {
 
                             var likeCount = $(this).parents(".RecommentList").find(".RelikeText");
                             var boardNum = $(this).parents(".RecommentList").find(".recommentNum").val();
@@ -571,7 +570,7 @@
                                     title: '사용할수 없는 기능 입니다',
                                     text: '로그인후 사용해 주세요',
                                     footer: '<a href="">Why do I have this issue?</a>'
-                                }).then(()=>{
+                                }).then(() => {
                                         $("#loginModal").modal("show")
                                     }
                                 )
@@ -598,7 +597,7 @@
 
                         })
 
-                        $(".chatComment").on("click", function () {
+                        $(".chatComment").off("click").on("click", function () {
                             var commentUser = $(this).parents(".commentList").find(".commentUser").val();
 
                             if (userId === '') {
@@ -608,7 +607,7 @@
                                     title: '사용할수 없는 기능 입니다',
                                     text: '로그인후 사용해 주세요',
                                     footer: '<a href="">Why do I have this issue?</a>'
-                                }).then(()=>{
+                                }).then(() => {
                                         $("#loginModal").modal("show")
                                     }
                                 )
@@ -661,7 +660,7 @@
 
                         })
 
-                        $(".chatRecomment").on("click", function () {
+                        $(".chatRecomment").off("click").on("click", function () {
 
                             var recommentUser = $(this).parents(".RecommentList").find(".recommentUser").val();
 
@@ -710,7 +709,7 @@
 
 
                         })
-                        $(".hideRecomment").on("click", function () {
+                        $(".hideRecomment").off("click").on("click", function () {
 
                             //var commentNum = $(this).find(".commentList")
                             $(this).parents(".commentList").nextUntil(".commentList").slideToggle();
@@ -726,7 +725,7 @@
                                     title: '사용할수 없는 기능 입니다',
                                     text: '로그인후 사용해 주세요',
                                     footer: '<a href="">Why do I have this issue?</a>'
-                                }).then(()=>{
+                                }).then(() => {
                                         $("#loginModal").modal("show")
                                     }
                                 )
@@ -751,7 +750,7 @@
                         })
 
 
-                        $(".reportRecomment").on("click", function () {
+                        $(".reportRecomment").off("click").on("click", function () {
 
                             if (userId === '' || userId === null) {
 
@@ -761,7 +760,7 @@
                                     title: '사용할수 없는 기능 입니다',
                                     text: '로그인후 사용해 주세요',
                                     footer: '<a href="">Why do I have this issue?</a>'
-                                }).then(()=>{
+                                }).then(() => {
                                         $("#loginModal").modal("show")
                                     }
                                 )
@@ -785,6 +784,7 @@
                             }
                         })
 
+
                     }
                 })
             }
@@ -798,8 +798,6 @@
             var currentPage = $(".currentPage").val()
 
             $(document).ready(function () {
-
-                $.getListComment(currentPage);
 
                 var viewCount = $(".viewText").html();
                 var boardNum = $(".boardNum").val();
@@ -834,7 +832,7 @@
                         title: '사용할수 없는 기능 입니다',
                         text: '로그인후 사용해 주세요',
                         footer: '<a href="">Why do I have this issue?</a>'
-                    }).then(()=>{
+                    }).then(() => {
                             $("#loginModal").modal("show")
                         }
                     )
@@ -864,10 +862,7 @@
                 }
 
             })
-        })
 
-
-        $(function () {
 
             var userId = '${user.userId}'
 
@@ -1107,7 +1102,7 @@
                         title: '사용할수 없는 기능 입니다',
                         text: '로그인후 사용해 주세요',
                         footer: '<a href="">Why do I have this issue?</a>'
-                    }).then(()=>{
+                    }).then(() => {
                             $("#loginModal").modal("show")
                         }
                     )
@@ -1143,7 +1138,7 @@
                         title: '사용할수 없는 기능 입니다',
                         text: '로그인후 사용해 주세요',
                         footer: '<a href="">Why do I have this issue?</a>'
-                    }).then(()=>{
+                    }).then(() => {
                             $("#loginModal").modal("show")
                         }
                     )
@@ -1217,7 +1212,9 @@
             /*댓글 무한 스크롤*/
             let loadCheck = false
             $(window).on("scroll", function () {
-                if (($(document).height() - $(window).height()) - ($(window).scrollTop()) < 200) {
+
+                console.log($(document).height());
+                if (($(document).height() - $(window).height()) - ($(window).scrollTop()) < 1200) {
                     if (loadCheck) {
                         return
                     }
@@ -1229,9 +1226,8 @@
                     var currentPage = $(".currentPage").val();
 
 
-                    console.log(currentPage);
-
                     $.getListComment(currentPage);
+
 
 
                 }
@@ -1241,7 +1237,7 @@
             $(".user_manu").on("click", function () {
                 $(".user_hidden_manu").slideToggle();
             })
-        })
+        });
 
 
     </script>
@@ -1256,7 +1252,7 @@
     <input hidden class="boardNum" value="${villBoard.villBoardNum}">
     <input hidden class="boardCategory" value="${villBoard.boardCategory}">
     <input hidden class="SUserId" value="${villBoard.userId}">
-    <input hidden class='currentPage' name='currentPage' value='1'>
+    <input hidden class="currentPage" name="currentPage" value="1">
 
     <jsp:include page="/layout/commubar.jsp"/>
 
@@ -1351,7 +1347,8 @@
                                 <label for="exampleFormControlTextarea1" class="form-label"></label>
                                 <textarea class="form-control" id="exampleFormControlTextarea1"
                                           rows="3"
-                                          style="  margin-left: 10px; width: 1080px; height: 100px; margin-top: -20px;" readonly
+                                          style="  margin-left: 10px; width: 1080px; height: 100px; margin-top: -20px;"
+                                          readonly
                                           placeholder="${villBoard.villText}"></textarea>
                             </div>
                         </div>

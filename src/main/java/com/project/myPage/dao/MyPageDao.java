@@ -14,7 +14,7 @@ public interface MyPageDao {
 
     public List<UserInterList> getMyInforInterList(String userId)throws Exception;
 
-    public List<VilBoard> getMyVillBoard(String userId)throws Exception;
+    public List<VilBoard> getMyVillBoard(Map<String,Object>map)throws Exception;
 
     public List<ClubMasterBoard> getMyClubBoard(String userId)throws Exception;
 
@@ -22,13 +22,13 @@ public interface MyPageDao {
 
     public List<Deal> getMydealBoard(String userId)throws Exception;
 
-    public List<Comment> getMyComment(String userId)throws Exception;
+    public List<Comment> getMyComment(Map<String,Object>map)throws Exception;
 
-    public List<Recomment> getMyRecomment(String userId)throws Exception;
+    public List<Recomment> getMyRecomment(Map<String,Object>map)throws Exception;
 
-    public List<VilBoard> getMyvillBoardLike(String userId)throws Exception;
+    public List<VilBoard> getMyvillBoardLike(Map<String,Object>map)throws Exception;
 
-    public List<ClubCalendarReview> getMyclubCalendarReviewLike(String userId)throws Exception;
+    public List<ClubCalendarReview> getMyclubCalendarReviewLike(Map<String,Object>map)throws Exception;
 
     public List<Deal> getMydealBoardLike(String userId)throws Exception;
 
@@ -50,4 +50,25 @@ public interface MyPageDao {
 
 
     public List<String> listDealBoardFile(int dealBoardNum);
+
+    int clubCalenderTitle(Map<String, Object> map);
+
+    int getTotalComment(Map<String, Object> map);
+
+    int getTotalRecomment(Map<String, Object> map);
+
+    int getTotalVillBoard(Map<String, Object> map);
+
+    int getTotalClubCalender(Map<String, Object> map);
+
+    List<Comment> getMyCommentLike(Map<String, Object> map);
+
+    int getTotalLikeComment(Map<String, Object> map);
+
+    List<Recomment> getMyRecommentList(Map<String, Object> map);
+
+    List<Recomment> getMyLikeRecommentlist(Map<String, Object> map);
+
+    int getTotalLikeRecomment(Map<String, Object> map);
+
 }

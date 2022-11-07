@@ -36,8 +36,8 @@ public class MyPageDaoImpl implements MyPageDao{
         return sqlSession.selectList("MyPageMapper.getMyInforInterList",userId);
     }
 
-    public List<VilBoard> getMyVillBoard(String userId)throws Exception{
-        return sqlSession.selectList("MyPageMapper.getMyVillBoard", userId);
+    public List<VilBoard> getMyVillBoard(Map<String,Object>map)throws Exception{
+        return sqlSession.selectList("MyPageMapper.getMyVillBoard", map);
     }
 
     public List<ClubMasterBoard> getMyClubBoard(String userId)throws Exception{
@@ -45,6 +45,10 @@ public class MyPageDaoImpl implements MyPageDao{
     }
 
     public List<ClubCalendarReview> getMyClubCalendarReview(Map<String,Object> map)throws Exception{
+        System.out.println("================================" + map.get("userId"));
+
+
+
         return sqlSession.selectList("MyPageMapper.getMyClubCalendarReview", map);
     }
 
@@ -52,20 +56,20 @@ public class MyPageDaoImpl implements MyPageDao{
         return sqlSession.selectList("MyPageMapper.getMydealBoard", userId);
     }
 
-    public List<Comment> getMyComment(String userId)throws Exception{
-        return sqlSession.selectList("MyPageMapper.getMyComment", userId);
+    public List<Comment> getMyComment(Map<String,Object> map)throws Exception{
+        return sqlSession.selectList("MyPageMapper.getMyComment", map);
     }
 
-    public List<Recomment> getMyRecomment(String userId)throws Exception{
-        return sqlSession.selectList("MyPageMapper.getMyRecomment", userId);
+    public List<Recomment> getMyRecomment(Map<String,Object> map)throws Exception{
+        return sqlSession.selectList("MyPageMapper.getMyRecommentlist", map);
     }
 /////////////////
-    public List<VilBoard> getMyvillBoardLike(String userId)throws Exception{
-        return sqlSession.selectList("MyPageMapper.getMyvillBoardLike", userId);
+    public List<VilBoard> getMyvillBoardLike(Map<String,Object>map)throws Exception{
+        return sqlSession.selectList("MyPageMapper.getMyVillBoardLike", map);
     }
 
-    public List<ClubCalendarReview> getMyclubCalendarReviewLike(String userId)throws Exception{
-        return sqlSession.selectList("MyPageMapper.getMyclubCalendarReviewLike", userId);
+    public List<ClubCalendarReview> getMyclubCalendarReviewLike(Map<String,Object>map)throws Exception{
+        return sqlSession.selectList("MyPageMapper.getMyclubCalendarReviewLike", map);
     }
 
     public List<Deal> getMydealBoardLike(String userId)throws Exception{
@@ -111,6 +115,55 @@ public class MyPageDaoImpl implements MyPageDao{
         return sqlSession.selectList("DealMapper.listDealBoardFile", dealBoardNum);
     }
 
+    @Override
+    public int clubCalenderTitle(Map<String, Object> map) {
+        return sqlSession.selectOne("MyPageMapper.getClubCalenderReviewTotal", map);
+    }
+
+    @Override
+    public int getTotalComment(Map<String, Object> map) {
+        return sqlSession.selectOne("MyPageMapper.getMyCommentTotal", map);
+    }
+
+    @Override
+    public int getTotalRecomment(Map<String, Object> map) {
+        return sqlSession.selectOne("MyPageMapper.getMyRecommentTotal", map);
+    }
+
+    @Override
+    public int getTotalVillBoard(Map<String, Object> map) {
+        return sqlSession.selectOne("MyPageMapper.getMyVillBoardTotal", map);
+    }
+
+    @Override
+    public int getTotalClubCalender(Map<String, Object> map) {
+        return sqlSession.selectOne("MyPageMapper.getMyclubCalendarReviewLikeTotal",map);
+    }
+
+    @Override
+    public List<Comment> getMyCommentLike(Map<String, Object> map) {
+        return sqlSession.selectList("MyPageMapper.getMyCommentLike",map);
+    }
+
+    @Override
+    public int getTotalLikeComment(Map<String, Object> map) {
+        return sqlSession.selectOne("MyPageMapper.getMyCommentLikeTotal", map);
+    }
+
+    @Override
+    public List<Recomment> getMyRecommentList(Map<String, Object> map) {
+        return sqlSession.selectList("MyPageMapper.getMyRecommentlist", map);
+    }
+
+    @Override
+    public List<Recomment> getMyLikeRecommentlist(Map<String, Object> map) {
+        return sqlSession.selectList("MyPageMapper.getMyRecommentLike", map);
+    }
+
+    @Override
+    public int getTotalLikeRecomment(Map<String, Object> map) {
+        return sqlSession.selectOne("MyPageMapper.getMyRecommentLikeTotal", map);
+    }
 
 
 }

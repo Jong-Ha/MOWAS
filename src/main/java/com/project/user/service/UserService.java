@@ -67,10 +67,5 @@ public interface UserService {
     public void addNaverUser(User user)throws Exception;
 
     public void userOut(String userId)throws Exception;
-/*
 
-    //로그아웃
-    public void logout(User user)throws Exception;
-
-    */
 }

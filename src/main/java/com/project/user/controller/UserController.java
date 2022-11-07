@@ -159,7 +159,7 @@ public class UserController {
 
         User findPwd = userService.getMyPassword(user);
 
-        model.addAttribute("findUser", findPwd);
+        model.addAttribute("findPwd", findPwd);
         return "forward:/view/user/getMyPasswordEnd.jsp";
     }
     @RequestMapping(value="loginNow", method=RequestMethod.GET)
@@ -221,7 +221,8 @@ public class UserController {
         System.out.println("keepLogin 쿠키의 벨류 값"+cookie.getValue());
         response.addCookie(cookie);
 
-
+/*
+ //로그아웃시 현재 페이지 URL 구해서 거기로 보내기
         String referer = request.getHeader("referer");
         System.out.println("로그아웃 referer 의 값?"+referer);
         //referer.substring(referer.lastIndexOf("/view"),referer.length());
@@ -229,7 +230,7 @@ public class UserController {
         System.out.println("인트a의 값? : "+a);
         String logoutNow= referer.substring(a, referer.length());
         System.out.println("logoutNow의 값...."+logoutNow);
-
+*/
 
 
         ///*/
@@ -450,6 +451,10 @@ public class UserController {
             System.out.println("lisInter의값..."+listInter);
             map.put("listInter",listInter);
         }
+        User userDetail = (User)map.get("userDetail");
+        userDetail.loginStatusChk();
+        userDetail.loginTypeChk();
+
         model.addAttribute("map", map);
         System.out.println("여기는 updatePsd 컨트롤러 종료이다");
         return "forward:/view/user/updatePsd.jsp";

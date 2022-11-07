@@ -31,10 +31,10 @@ public Deal getUserId(int dealBoardNum);
 public void updateReview(Deal deal);
 public int getReviewPt(Deal deal);
 
-    int getViewCount(Map<String, Object> map);
+    public int getViewCount(Map<String, Object> map);
 
-    void updateViewCount(Map<String,Object> map);
-    String getImage(String userId);
+    public void updateViewCount(Map<String,Object> map);
+    public String getImage(String userId);
     //--------------------------------------------------------------------
 //    public void addClubMasterBoard(ClubMasterBoard clubMasterBoard);
 //    public void updateClubMasterBoard(ClubMasterBoard clubMasterBoard);

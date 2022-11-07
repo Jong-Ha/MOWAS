@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title>MOWAS</title>
 </head>
 <style>
     .btn-primary {
@@ -69,10 +69,10 @@
                 },
                 dataType: "json",
                 success: function (smsNo) {
-                    alert('smsNo의값?'+smsNo)
+                    console.log('smsNo의값?'+smsNo)
                     console.log("smsNo의 값은????"+smsNo)
                     smsNum = smsNo;
-                    alert('smsNum의 값?'+smsNum)
+                    console.log('smsNum의 값?'+smsNum)
                     $("#smsYC").css("display", '');
                 },
                 error: function (){
@@ -244,7 +244,8 @@
         <button type="button" class="btn btn-primary ok" style="display: inline-block; width: 200px;" id="ok">확인</button>
     </div>
 </form>
-
+<div style="margin-bottom: 100px;">
+</div>
 <jsp:include page="/layout/chatIcon.jsp"/>
 <jsp:include page="/layout/footer.jsp"/>
 </body>

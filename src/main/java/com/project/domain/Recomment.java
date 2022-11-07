@@ -18,5 +18,7 @@ public class Recomment {
     private Date regDate;
     private int likeCount;
     private String userImg;
-
+    private String CboardCategory;
+    private int CboardNum;
+    private String likeCheck;
 }

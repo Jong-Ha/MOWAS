@@ -6,6 +6,7 @@ import com.google.gson.JsonParser;
 import com.project.domain.User;
 import com.project.domain.UserInterList;
 import com.project.user.service.UserService;
+import com.sun.xml.internal.ws.api.message.Attachment;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,6 +22,8 @@ import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.mail.*;
 import javax.mail.internet.*;
+
+
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -297,11 +300,32 @@ public class UserRestController {
         }
         System.out.println("emailNo의 값은 ::::: "+emailNo);
 
+        StringBuffer sb = new StringBuffer();
+        sb.append("<html><body><title>MOWAS</title>");
+        sb.append("<meta http-equiv='Content-Type' content='text/html'; charset='euc-kr'>");
+        sb.append("</head><body> ");
+        sb.append("<div class='container-sm'>");
+        sb.append("<br><br><div style='border: 1px solid; width: 600px; height: 10px; background-color: #333333;'></div>");
+        sb.append("<br><br><br><br><div style='margin-left: 130px;'/>");
+        sb.append("<span style='font-size: 15px;'>MOWAS</span><br>");
+        sb.append(" <span style='font-size: 28px;color: #f56c42;'>메일인증</span><span style='font-size: 28px;'> 안내입니다</span>");
+        sb.append("<p style='font-size: 16px; line-height: 26px; margin-top: 50px; padding: 0 5px;'>");
+        sb.append(" 안녕하세요<br>MOWAS에 가입해 주셔서 진심으로 감사드립니다.<br>아래 인증번호로 인증해주세요<br><br><br></p>");
+        sb.append("<span style='font-size: 16px; line-height: 26px; margin-top: 50px; padding: 0 5px;'>");
+        sb.append("인증번호 [ </span><span style='font-size: 28px; font-weight: bold;'>"+emailNo+"</span>");
+        sb.append("<span> ]입니다</span><br><br><br>감사합니다</div>");
+        sb.append("<br><br><br><br><br><br><div style='border: 1px solid; width: 600px; height: 10px; background-color: #333333;'>");
+
+        sb.append("</div></body></html>");
+
+        System.out.println("과연 ? 1");
+        String str = sb.toString();
+        System.out.println("과연 ? 2");
+
         // 메일 내용
         String recipient = email;    //받는 사람의 메일주소를 입력해주세요.
         String subject = "MOWAS 이메일 인증코드입니다";      //메일 제목 입력해주세요.
-        String body = "MOWAS님으로 부터 메일을 받았습니다. " +
-                "인증번호는 ["+emailNo+"]입니다";
+        String body = str;
                  //메일 내용 입력해주세요.
 
         Properties props = System.getProperties(); // 정보를 담기 위한 객체 생성
@@ -330,7 +354,7 @@ public class UserRestController {
 
 
         mimeMessage.setSubject(subject);  //제목셋팅
-        mimeMessage.setText(body);        //내용셋팅
+        mimeMessage.setContent(str, "text/html;charset=UTF-8");        //내용셋팅
         Transport.send(mimeMessage); //javax.mail.Transport.send() 이용
 
         System.out.println("emailNo의 값은???????????????????"+emailNo);
@@ -339,18 +363,26 @@ public class UserRestController {
 
         return emailNo;
     }
-
+/*
+          //이메일 이미지 전송 도전 1
     @RequestMapping(value = "mailImage",method = RequestMethod.POST)
-    public void mailImage(HttpServletRequest request, ModelMap mo,@RequestParam(value="email", required = false)String email) throws Exception,AddressException, MessagingException {
+    public String mailImage(HttpServletRequest request, ModelMap mo,@RequestParam(value="email", required = false)String email) throws Exception,AddressException, MessagingException {
         System.out.println("여기는 mailImage 컨트롤러 시작이다");
+        System.out.println("email의 값"+email);
 
         System.out.println("Sending mail...");
         Properties props = new Properties();
-        props.setProperty("mail.transport.protocol", "465");
-        props.setProperty("mail.host", "smtp.gmail.com");
-        props.setProperty("mail.user", "mowas1226");
-        props.setProperty("mail.password", "pfhcwivcgyxjrpro");
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "465");
+        props.put("mail.smtp.startls.enable","true");
+        props.setProperty("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.auth","true");
+        props.put("mail.debug","ture");
+        props.put("mail.user", "mowas1226@gmail.com");
+        props.put("mail.password", "kynmakvpudzstosh");
 
+        //Authenticator auth = new SMTPAuthenticator();
         Session mailSession = Session.getDefaultInstance(props, null);
         mailSession.setDebug(true);
         Transport transport = mailSession.getTransport();
@@ -364,26 +396,53 @@ public class UserRestController {
         System.out.println("emailNo의 값은 ::::: "+emailNo);
 
         StringBuffer sb = new StringBuffer();
-        sb.append("<html><body>");
-        sb.append("<meta http-equiv='Content-Type' content='text/html; charset=euc-kr'>");
-        sb.append("<h4> MOWAS ");
+        sb.append("<html><body><title>MOWAS</title>");
+        sb.append("<meta http-equiv='Content-Type' content='text/html'; charset='euc-kr'>");
+        sb.append("</head><body> ");
+        sb.append("<div class='container-sm'>");
+        sb.append("<br><br><div style='border: 1px solid; width: 600px; height: 10px; background-color: #333333;'></div>");
+        sb.append("<br><br><br><br><div style='margin-left: 130px;'/>");
+        sb.append("<span style='font-size: 15px;'>MOWAS</span><br>");
+        sb.append(" <span style='font-size: 28px;color: #f56c42;'>메일인증</span><span style='font-size: 28px;'> 안내입니다</span>");
+        sb.append("<p style='font-size: 16px; line-height: 26px; margin-top: 50px; padding: 0 5px;'>");
+        sb.append(" 안녕하세요<br>MOWAS에 가입해 주셔서 진심으로 감사드립니다.<br>아래 인증번호로 인증해주세요<br><br><br></p>");
+        sb.append("<span style='font-size: 16px; line-height: 26px; margin-top: 50px; padding: 0 5px;'>");
+        sb.append("인증번호 [ </span><span style='font-size: 28px; font-weight: bold;'>"+emailNo+"</span>");
+        sb.append("<span> ]입니다</span><br><br><br>감사합니다</div>");
+        sb.append("<br><br><br><br><br><br><div style='border: 1px solid; width: 600px; height: 220px; background-color: #333333;'>");
+                sb.append("<img src=/resources/images/MOWAS_T_2.jpg>");
+        sb.append("</div></body></html>");
+
+        System.out.println("과연 ? 1");
+        String str = sb.toString();
+        System.out.println("과연 ? 2");
 
         MimeMessage message = new MimeMessage(mailSession);
+        //message.Attachments.Add(new Attachment(@"C:\\images\\won.jpg"));
+
+
+        System.out.println("과연 ? 3");
         message.setSubject("[MOWAS] 이메일 인증 안내");
+        System.out.println("과연 ? 4");
         message.setFrom(new InternetAddress("mowas1226@gmail.com"));
-        message.setContent("<h1>MOWAS</h1><br>MOWAS님으로 부터 메일을 받았습니다.<br>인증번호는 ["+emailNo+"]입니다<br><img src=\\\"/resources/images/MOWAS_T_2.png\\\">", "text/html; charset=UTF-8");
+        System.out.println("과연 ? 5");
+        message.setContent(str, "text/html;charset=UTF-8");
+        System.out.println("과연 ? 6");
         message.addRecipient(javax.mail.Message.RecipientType.TO,
                 new InternetAddress(email));
-
-        transport.connect();
+        System.out.println("과연 ? 7");
+        transport.connect("smtp.gmail.com", "mowas1226@gmail.com", "kynmakvpudzstosh");
+        System.out.println("과연 ? 8");
         transport.sendMessage(message,
                 message.getRecipients(javax.mail.Message.RecipientType.TO));
+        System.out.println("과연 ? 9");
         transport.close();
 
 
         System.out.println("여기는 mailSender 컨트롤러 종료이다");
+        return "forward:/";
     }
-/*
+  //이메일 이미지 전송 도전 2
     @RequestMapping(value = "mailImage",method = RequestMethod.POST)
     public void mailImage(HttpServletRequest request, ModelMap mo,@RequestParam(value="email", required = false)String email) throws AddressException, MessagingException {
 

@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title>MOWAS</title>
 </head>
 <style>
     .tabBox {
@@ -23,6 +23,22 @@
         font-weight: bolder;
         cursor: pointer;
     }
+    .table > thead {
+        background-color: #b3c6ff ;
+    }
+    .table > thead > tr > th {
+        text-align: center;
+    }
+    .table-hover > tbody > tr:hover {
+        background-color: #EBDEF0;
+    }
+    .table > tbody > tr > td {
+        text-align: center;
+    }
+    .table > tbody > tr > #title {
+        text-align: left;
+    }
+
 </style>
 
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -64,40 +80,59 @@
         <div class="tabBox">
             <span class="tabBtn getMyPpt">내 벌점 조회</span>
             <span>|</span>
-            <span class="tabBtn getMyReport">내가 신고한 내역</span class="tabBtn">
+            <span class="tabBtn getMyReport" >내가 신고한 내역</span>
         </div>
 
-        <div class="container">
-            <hr>
-            <table class="table table-bordered my-5">
-                <thead>
-                <tr class="bg-light text-center">
-                    <th scope="col">번호</th>
-                    <th scope="col">신고한 회원 아이디</th>
-                    <th scope="col">신고 받은 회원 아이디</th>
-                    <th scope="col">게시글 종류</th>
-                    <th scope="col">신고기준</th>
-                    <th scope="col">신고 내용</th>
-                    <th scope="col">신고한 날짜</th>
-                    <th scope="col">처리 여부</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:set var="i" value="0"/>
-                <c:forEach var="list" items="${map.getMyReport}" begin="${(resultPage.currentPage-1)*10}"
-                           end="${resultPage.currentPage*10-1}">
-                    <c:set var="i" value="${ i+1 }"/>
-                    <tr class="userTable">
-                        <th scope="row">${i}</th>
-                        <th scope="row">${list.reportId}</th>
-                        <th scope="row">${list.reportedId}</th>
-                        <th scope="row">${list.boardCategory}</th>
-                        <td class="ia">${list.reportBasis}</td>
-                        <td class="ib">${list.reportText}</td>
-                        <td class="ic">${list.reportDate}</td>
-                        <td class="id">${list.processResult}</td>
-                    </tr>
-                </c:forEach>
+    <div class="container">
+<hr>
+    <table class="table table-bordered my-5">
+        <thead style="background-color: #b3c6ff">
+        <tr class="bg-light text-center" style="background-color: #b3c6ff">
+            <th scope="col">번호</th>
+            <th scope="col">신고한 회원 아이디</th>
+            <th scope="col">신고 받은 회원 아이디</th>
+            <th scope="col">게시글 종류</th>
+            <th scope="col">신고기준</th>
+            <th scope="col">신고 내용</th>
+            <th scope="col">신고한 날짜</th>
+            <th scope="col">처리 여부</th>
+        </tr>
+        </thead>
+        <tbody>
+<c:set var="i" value="0" />
+<c:forEach var="list" items="${map.getMyReport}" begin="${(resultPage.currentPage-1)*10}" end="${resultPage.currentPage*10-1}">
+    <c:set var="i" value="${ i+1 }" />
+        <tr class="userTable">
+            <th scope="row">${i}</th>
+            <th scope="row">${list.reportId}</th>
+            <th scope="row">${list.reportedId}</th>
+
+            <th scope="row">${list.boardCategory}</th>
+
+
+            <c:if test="${list.reportBasis eq 1}">
+                <td class="ia">욕설</td>
+            </c:if>
+            <c:if test="${list.reportBasis eq 2}">
+                <td class="ia">음담패설</td>
+            </c:if>
+            <c:if test="${list.reportBasis eq 3}">
+                <td class="ia">도용</td>
+            </c:if>
+            <c:if test="${list.reportBasis eq 4}">
+                <td class="ia">무단불참</td>
+            </c:if>
+            <c:if test="${list.reportBasis eq 5}">
+                <td class="ia">연락두절</td>
+            </c:if>
+            <c:if test="${list.reportBasis eq 6}">
+                <td class="ia">정치적발언</td>
+            </c:if>
+            <td class="ib">${list.reportText}</td>
+            <td class="ic">${list.reportDate}</td>
+            <td class="id">${list.processResult}</td>
+        </tr>
+        </c:forEach>
 
                 </tbody>
             </table>

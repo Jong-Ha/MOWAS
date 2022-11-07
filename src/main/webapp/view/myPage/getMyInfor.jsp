@@ -10,7 +10,7 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title>MOWAS</title>
 
 </head>
 <style>
@@ -288,8 +288,8 @@
                 </div>
 
                 <div class="col-lg-8 d-flex justify-content-around mb-3">
-                    <button type="button" class="listUser btn  btn-prm btn-primary   me-3" id="updateClick">내 정보 수정하기</button>
-                    <button type="button" class="listUser btn btn-prm  btn-primary " id="userOut">회원탈퇴 하기</button>
+                    <button type="button" class="listUser btn  btn-prm btn-primary   me-3" style="width: 250px;" id="updateClick">내 정보 수정하기</button>
+                    <button type="button" class="listUser btn btn-prm  btn-primary " style="width: 250px;" id="userOut">회원탈퇴 하기</button>
                 </div>
 
             </form>
@@ -297,6 +297,8 @@
 
     </div>
 
+</div>
+<div style="margin-bottom: 100px;">
 </div>
 <jsp:include page="/layout/chatIcon.jsp"/>
 <jsp:include page="/layout/footer.jsp"/>

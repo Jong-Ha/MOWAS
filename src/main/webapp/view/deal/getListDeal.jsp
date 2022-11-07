@@ -119,11 +119,18 @@
             });
         })
 
-        function numberWithCommas(x) {
+       $(function(){
+           // var price=document.getElementById("dealPrice");
+           // price.innerHtml=$('#dealPrice').val().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+           // alert(price)
 
-            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+           $.each($('.dealPrice'),function(index,item){
+               // alert($(item).html())
+               // alert($(item).html().toString())
+               $(item).html($(item).html().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
+           })
 
-        }
+       })
 
 
         //무한스크롤
@@ -191,6 +198,7 @@
                             $.each(re.list, function (index, item) {
                                 console.log(index)
                                 console.log(item)
+                                var e=item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                                 let html = '<div class="cardbox">' +
                                     '<div class="col dealBox">' +
                                     '<input type="hidden" name="dealBoardNum" class="dealBoardNum" value="' + item.dealBoardNum + '">' +
@@ -218,7 +226,7 @@
                                 html += '</div>' +
                                     '<div class="cardM " style="display: flex; padding: 10px 0 0 10px; height: 120px; ">' +
                                     ' <div class="dealinfo cartFont" style="flex: 1; width: 50%;">' +
-                                    '<p class="allFlex" style="font-size: 1.3em; font-weight: bold"> ' + item.price + '원 </p>' +
+                                    '<p class="allFlex" style="font-size: 1.3em; font-weight: bold"> ' + e + '원 </p>' +
                                     ' <p class="allFlex" id="demo" style="font-size: 1.3em; font-weight: bold">&nbsp;&nbsp;</p>' +
                                     '<p class="allFlex" style="font-size: 1em"> 좋아요 ' + item.likeCount + ' ∙ 조회수 ' + item.viewCount + '</p>' +
                                     '   </div>' +
@@ -789,7 +797,7 @@
                                     <%--                            </div>--%>
 
                                 <div class="dealinfo cartFont" style="flex: 1; width: 50%;">
-                                    <p class="allFlex" id="dealPrice"style="font-size: 1.3em; font-weight: bold"> ${deal.price} 원 </p>
+                                    <p class="allFlex dealPrice" id="dealPrice"style="font-size: 1.3em; font-weight: bold" value="${deal.price}"> ${deal.price} 원 </p>
                                     <p class="allFlex" id="demo"
                                        style="font-size: 1.3em; font-weight: bold">&nbsp;&nbsp;
                                     </p>
