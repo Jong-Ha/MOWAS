@@ -184,12 +184,17 @@ public class DealRestController {
 //        return 0;
 //    }
     @RequestMapping(value = "addReview" , method = RequestMethod.POST)
-    public int addVillBarod(@RequestBody Deal deal , HttpSession session) throws Exception {
+    public Map<String, Object> addVillBarod(@RequestBody Deal deal , HttpSession session) throws Exception {
         System.out.println("여기 restController에 들어간건가요 ?"+deal);
+        System.out.println(deal.getDealBoardNum());
         User user=(User) session.getAttribute("user");
+        Map<String, Object> map = new HashMap<>();
                 deal.setDealId(user.getUserId());
                 dealService.updateReview(deal);
-                return deal.getDealBoardNum();
+                map.put("deal",deal);
+        System.out.println(map);
+        System.out.println("왜갑자기안됨 ?");
+                return map;
     }
 
     @RequestMapping(value = "viewCount")
