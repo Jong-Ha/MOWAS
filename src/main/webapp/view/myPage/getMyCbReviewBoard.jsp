@@ -197,7 +197,7 @@
     }
 
     .table > thead > tr > th {
-        text-align: center;
+        text-align: left;
     }
 
     .table-hover > tbody > tr:hover {
@@ -205,7 +205,10 @@
     }
 
     .table > tbody > tr > td {
-        text-align: center;
+        text-align: left;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
     }
 
     .table > tbody > tr > #title {
@@ -229,15 +232,64 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script type="text/javascript">
+
+    function pagingSubmit() {
+        $("#clubCalenderForm").attr('action', '/myPage/getMyCbReviewBoard').attr('method', 'post').submit()
+
+    }
+
+
     $(function () {
-        var userId = $(".myPageUserId").val();
-        $(".paging").on("click", function () {
-            $("#currentPage").val($(this).text())
-            $("form").submit()
+
+        var userId = '${user.userId}'
+
+        $(".paging").off("click").on("click", function () {
+
+            $("#clubCalenderForm #currentPage").val($(this).text())
+
+            pagingSubmit()
         })
-        $("form").on("submit", function () {
-            $(this).attr("action", "/club/listClubMasterBoard/${clubNum}").attr("method", "post")
+
+        $(".pageUnit").off('click').on("click", function () {
+            if ($(this).hasClass('disabled')) {
+                return false
+            }
+
+            $("#clubCalenderForm #currentPage").val($(this).val())
+
+            pagingSubmit()
+        })
+
+
+        $(".getClubCalender").on("click", function () {
+            var clubCalenderNum = $(this).find(".clubCalenderReviewNum").val()
+            var boardCategory = $(this).find(".boardCategory").val()
+
+            Swal.fire({
+                title: '해당 페이지로 이동하시겠습니까??',
+                text: "해당 페이지로 이동합니다",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: "취소",
+                confirmButtonText: '페이지이동'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        '페이지를 이동 합니다',
+                        'success'
+                    )
+
+                    setTimeout(() => {
+                        location.href = "/clubCal/getClubCalenderReview?clubCalenderReviewNum=" + clubCalenderNum + "&boardCategory=" + boardCategory;
+                    }, 1500)
+                }
+            })
+
+
         })
         $(".getMyVillBoard").on("click", function () {
             self.location = "/myPage/getMyBoard?userId=" + userId;
@@ -251,6 +303,7 @@
         $(".getMyDealBoard").on("click", function () {
             self.location = "/myPage/getMyDealBoard?userId=" + userId;
         })
+
     })
 
 </script>
@@ -276,76 +329,119 @@
 <hr/>
 <h4>모임 후기글</h4>
 <hr/>
-    <input hidden class="CalenderReviewNum" value="10159">
-    <input hidden class="boardCategory" value="1">
-    <input hidden class="SUserId" value="user01">
-    <input hidden class="clubNum" value="10061">
 
 
+<!-- table Start /////////////////////////////////////-->
+<div class="container">
+    <form id="clubCalenderForm">
+        <input hidden class="userId" name="userId" value="${user.userId}">
+        <div class="row">
+            <div class="table-responsive project-list" style="border-radius: 5px;">
+                <input type="hidden" id="currentPage" name="currentPage" value="${resultPage.currentPage}">
+                <table class="table project-table table-centered table-nowrap table-hover table-striped"
+                       style="    table-layout: fixed;">
+                    <thead>
+                    <tr>
+                        <th scope="col" style="width: 10%;">후기글 이미지</th>
+                        <th scope="col" style="width: 10%;">게시글 종류</th>
+                        <th scope="col" style="width: 20%;">후기글 제목</th>
+                        <th scope="col" style="width: 40%;">후기글 내용</th>
+                        <th scope="col" style="width: 10%">주요활동위치</th>
+                        <th scope="col" style="width: 10%">조회수</th>
+                        <th scope="col" style="width: 10%">좋아요수</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach var="clubCalendarReview" items="${map.clubCalendarReview}">
+                        <c:forEach begin="1" end="1">
+                            <tr class="getClubCalender">
+                                <td style="display: none">
+                                    <input hidden class="clubCalenderReviewNum"
+                                           value="${clubCalendarReview.clubCalenderReviewNum}">
+                                    <input hidden class="boardCategory" value="${clubCalendarReview.boardCategory}">
+                                    <input hidden class="SUserId" value="${clubCalendarReview.userId}">
+                                    <input hidden class="clubNum" value="${clubCalendarReview.clubNum}">
+                                </td>
+                                <td>
+                                    <c:if test="${clubCalendarReview.boardCategory == '1'}">
+                                        <img class="clubImage" src="/resources/${clubCalendarReview.file[0]}"
+                                             alt="모임이미지"
+                                             style="width: 100%;height: 100%;object-fit: cover;">
+                                    </c:if>
+                                    <c:if test="${clubCalendarReview.boardCategory == '2'}">
+                                        <video class="clubImage" alt="모임이미지"
+                                               style="width: 100%;height: 100%;object-fit: cover;">
+                                            <source src="/resources/${clubCalendarReview.file}">
+                                        </video>
+                                    </c:if>
+                                </td>
+                                <td>
+                                        ${clubCalendarReview.boardCategory == '1' ? '후기글' : '후기쇼츠'}
+                                </td>
+                                <td>
+                                    <div>
+                                            ${clubCalendarReview.reviewTitle}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                            ${clubCalendarReview.reviewText}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                            ${clubCalendarReview.location}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                            ${clubCalendarReview.viewCount}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                            ${clubCalendarReview.likeConunt}
+                                    </div>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </c:forEach>
+                    </tbody>
+                </table>
+
+                <c:if test="${!empty resultPage}">
+                    <nav aria-label="Page navigation example" style="display: flex;justify-content: center;">
+                        <ul class="pagination">
+                            <li class="page-item pageUnit ${resultPage.beginUnitPage == 1?'disabled':''}"
+                                value="${resultPage.beginUnitPage - resultPage.pageUnit}">
+                                <a class="page-link" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+
+                            <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}"
+                                       var="i">
+                                <li class="page-item ${search.currentPage == i?'active':'paging'}"><a
+                                        class="page-link">${i}</a></li>
+                            </c:forEach>
+
+                            <li class="page-item pageUnit ${resultPage.maxPage==resultPage.endUnitPage?'disabled':''}"
+                                value="${resultPage.beginUnitPage+resultPage.pageUnit}">
+                                <a class="page-link" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </c:if>
+
+            </div>
+        </div>
+    </form>
+</div>
 
 
-
-    <!-- table Start /////////////////////////////////////-->
-    <div class="listClubCalender">
-    <div class="row">
-    <div class="col-lg-12">
-    <div class="card">
-    <div class="card-body">
-    <div class="table-responsive project-list" style="border-radius: 5px;">
-    <table class="table project-table table-centered table-nowrap table-hover table-striped">
-    <thead>
-    <tr>
-    <th scope="col" style="width: 10%;">후기글 이미지</th>
-    <th scope="col" style="width: 20%;">후기글 제목</th>
-    <th scope="col" style="width: 40%;">후기글 내용</th>
-    <th scope="col" style="width: 10%">주요활동위치</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach var="clubCalendarReview" items="${map.clubCalendarReview}">
-        <c:forEach begin="1" end="1">
-            <tr>
-                <input type="hidden" class="clubNum" value="${clubCalendarReview.clubCalenderNum}"/>
-                <td><%--<img class="clubImage" src="/resources/${clubCalendarReview.clubImage}" alt="모임이미지" style="width: 100%;height: 100%;object-fit: cover;">--%></td>
-                <td>${clubCalendarReview.reviewTitle}</td>
-                <td>${clubCalendarReview.reviewText}</td>
-                <td>${clubCalendarReview.location}</td>
-            </tr>
-        </c:forEach>
-    </c:forEach>
-    </tbody>
-    </table>
-    </div>
-
-    <%--<c:if test="${!empty list}">
-        <nav aria-label="Page navigation example" style="display: flex;justify-content: center;">
-            <ul class="pagination">
-                <li class="page-item pageUnit ${resultPage.beginUnitPage==1?'disabled':''}"
-                    value="${resultPage.beginUnitPage-resultPage.pageUnit}">
-                    <a class="page-link" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" var="i">
-                    <li class="page-item ${search.currentPage==i?'active':'paging'}"><a class="page-link">${i}</a></li>
-                </c:forEach>
-                <li class="page-item pageUnit ${resultPage.maxPage==resultPage.endUnitPage?'disabled':''}"
-                    value="${resultPage.beginUnitPage+resultPage.pageUnit}">
-                    <a class="page-link" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </c:if>--%>
-
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <jsp:include page="/layout/chatIcon.jsp"/>
-    <jsp:include page="/layout/footer.jsp"/>
-    </body>
-    </html>
+<jsp:include page="/layout/chatIcon.jsp"/>
+<jsp:include page="/layout/footer.jsp"/>
+</body>
+</html>

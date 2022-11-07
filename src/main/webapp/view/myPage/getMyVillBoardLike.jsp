@@ -227,113 +227,43 @@
         /* 위 속성들을 한 줄로 표기하기 */
         /* -webkit-animation: blink 1.5s ease infinite; */
     }
-
-    /* 애니메이션 지점 설정하기 */
-    /* 익스플로러 10 이상, 최신 모던 브라우저에서 지원 */
-    @keyframes blink {
-        from {color: white;}
-        30% {color: yellow;}
-        to {color: red; font-weight: bold;}
-        /* 0% {color:white;}
-        30% {color: yellow;}
-        100% {color:red; font-weight: bold;} */
-    }
-
-    .wrapper {
-        display: grid;
-        place-items: center;
-    }
-
-    .typing {
-        width: 17ch;
-        animation: typing 0.9s steps(22), blink .5s step-end infinite alternate;
-        white-space: nowrap;
-        overflow: hidden;
-        border-right: 3px solid;
-        font-size: 2em;
-        height: 2ch;
-    }
-    .underline {
-        line-height: 1.2;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
-        font-size: 1.5em;
-        font-weight: 700;
-        background-image: linear-gradient(transparent calc(100% - 3px), #000 3px);
-        background-repeat: no-repeat;
-        background-size: 0% 100%;
-        transition: background-size 0.2s;
-        color: #000;
-        cursor: pointer;
-        margin-right: 25px;
-    }
-
-    @media (min-width: 1000px) {
-        .underline {
-            font-size: 1.5em;
-        }
-    }
-    .underline.yellow {
-        background-image: linear-gradient(transparent 60%, #F8CD07 40%);
-    }
-
-    @keyframes typing {
-        from {
-            width: 0
-        }
-    }
-
-    @keyframes blink {
-        80% {
-            border-color: transparent
-        }
-    }
 </style>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script type="text/javascript">
 
     function pagingSubmit() {
-        $("#recommentForm").attr('action', '/myPage/getMyRecomment').attr('method', 'post').submit()
+        $("#villBoardLikeForm").attr('action', '/myPage/getMyVillBoardLike').attr('method', 'post').submit()
 
     }
 
     $(function () {
         var userId = '${user.userId}'
 
+        $(".paging").off("click").on("click", function () {
 
-        $(function () {
+            $("#villBoardLikeForm #currentPage").val($(this).text())
 
-            $(".paging").off("click").on("click", function () {
-
-                $("#recommentForm #currentPage").val($(this).text())
-
-                pagingSubmit()
-            })
-
-            $(".pageUnit").off('click').on("click", function () {
-                if ($(this).hasClass('disabled')) {
-                    return false
-                }
-
-                $("#recommentForm #currentPage").val($(this).val())
-
-                pagingSubmit()
-            })
-
-        });
-
-
-        $(".getMyComment").on("click", function (){
-            self.location="/myPage/getMyComment?userId="+userId;
+            pagingSubmit()
         })
-        $(".getMyRecomment").on("click", function (){
-            self.location="/myPage/getMyRecomment?userId="+userId;
-        $(".getMyRecomment").on("click", function () {
-            self.location = "/myPage/getMyRecommentLike?userId=" + userId;
+
+        $(".pageUnit").off('click').on("click", function () {
+            if ($(this).hasClass('disabled')) {
+                return false
+            }
+
+            $("#villBoardLikeForm #currentPage").val($(this).val())
+
+            pagingSubmit()
         })
+
+        $(".getMyCbRvLike").off("click").on("click", function () {
+            location.href = "/myPage/getMyCbRvLike?userId="+userId;
+        })
+
     })
 
 </script>
@@ -343,27 +273,28 @@
 
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
-<hr>
-<div class="container">
-
-
-
 <div class="tabBox">
-    <span class="tabBtn getMyComment">댓글</span>
+    <span class="tabBtn getMyLike" >좋아요한 우리동네 게시글</span>
     <span>|</span>
-    <span class="tabBtn getMyRecomment">대댓글</span>
+    <span class="tabBtn getMyCbRvLike">좋아요한 모임 후기글 게시글</span>
+    <span>|</span>
+    <span class="tabBtn getMyDealLike" >좋아요한 판매/판매요청 게시글</span>
 </div>
 
 <hr/>
-<h3>작성한 대댓글</h3>
+<h3>좋아요한 우리동네 게시글</h3>
 <hr/>
 
+
 <div class="container">
-    <form id="recommentForm">
+
+
+    <form id="villBoardLikeForm">
         <input hidden class="userId" name="userId" value="${user.userId}">
 
         <input type="hidden" id="currentPage" name="currentPage" value="${resultPage.currentPage}">
 
+        <!--  table Start /////////////////////////////////////-->
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
@@ -372,40 +303,56 @@
                             <table class="table project-table table-centered table-nowrap table-hover table-striped">
                                 <thead>
                                 <tr>
-                                    <th scope="col">게시글 번호</th>
-                                    <th scope="col">게시글 카테고리</th>
-                                    <th scope="col">댓글 내용</th>
+                                    <th scope="col">제목</th>
                                     <th scope="col">작성날짜</th>
+                                    <th scope="col">동네 코드</th>
+                                    <th scope="col">내용</th>
+                                    <th scope="col">좋아요수</th>
+                                    <th scope="col">조회수</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
-                              <c:set var="i" value="0"/>
-                                <c:forEach var="recomment" items="${list}">
+
+
+                               <c:set var="i" value="0"/>
+                                <c:forEach var="VilBoard" items="${map.villBoardLike}">
                                     <c:set var="i" value="${ i+1 }"/>
+                                    <c:if test="${VilBoard.likeCheck == 'y'}">
                                     <tr>
                                         <td>
                                             <div>
-                                                    ${recomment.recommentNum}
+                                                ${VilBoard.villTitle}
                                             </div>
                                         </td>
                                         <td>
                                             <div>
-                                                    ${recomment.boardCategory == '1 ' ? '후기글' : '우리동네 게시글'}
+                                                ${VilBoard.regDate}
                                             </div>
                                         </td>
                                         <td>
                                             <div>
-                                                    ${recomment.recommentText}
+                                                ${VilBoard.villCode}
                                             </div>
                                         </td>
                                         <td>
                                             <div>
-                                                    ${recomment.regDate}
+                                                ${VilBoard.villText}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                    ${VilBoard.likeCount}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                    ${VilBoard.viewCount}
                                             </div>
                                         </td>
 
                                     </tr>
+                                    </c:if>
                                 </c:forEach>
                                 </tbody>
                             </table>

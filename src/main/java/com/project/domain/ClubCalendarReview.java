@@ -29,4 +29,5 @@ public class ClubCalendarReview {
     private String calendarTitle;
     //파일을 담을 list파일
     private List<File> file;
+    private String likeCheck;
 }
