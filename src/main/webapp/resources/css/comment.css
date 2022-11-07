@@ -215,8 +215,8 @@ ul li {
 .commentText {
     background: #eaebe5e0;;
     border-radius: 10px;
-    height: 116px;
-    width: 700px;
+    height: 132px;
+    width: 710px;
     margin-bottom: 20px;
     font-size: 0.9em;
 
@@ -231,14 +231,29 @@ ul li {
     margin-bottom: 10px;
     cursor: pointer;
 }
+.input-group-text{
+ padding: 0;
+}
+.commentUserImg {
+    width: 100px;
+    height: 100%;
+    padding: 5px;
+    object-fit: cover;
 
+}
+.recommentUserImg{
+    width: 100px;
+    height: 100%;
+    padding: 5px;
+    object-fit: cover;
+}
 .RecommentText {
     border-radius: 10px;
     margin-bottom: 20px;
     font-size: 0.9em;
-    width: 561px;
-    height: 104px;
-    margin-left: 137px;
+    width: 565px;
+    height: 116px;
+    margin-left: 84px;
     background: #ebcdcdb8;
 }
 
@@ -302,6 +317,7 @@ ul li {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 22%;
 }
 
 .ReviewTop {
@@ -317,11 +333,10 @@ ul li {
 }
 
 .reviewTitle2 {
-    width: 100%;
+    width: 59%;
     font-size: 1.2em;
-    justify-content: center;
     align-items: center;
-    text-align: center;
+    text-align: left;
     display: flex;
 }
 
@@ -332,6 +347,12 @@ ul li {
     font-size: 2.9em;
     flex-direction: row-reverse;
 }
+.arrow{
+    display: flex;
+    position: absolute;
+    font-size: 3rem;
+    margin-left: 23px;
+}
 
 .commentTexts {
     width: 480px;
@@ -339,7 +360,7 @@ ul li {
     padding: 10px;
     float: left;
     height: 50px;
-    font-size: 1.2em;
+    font-size: 1.5em;
     border-bottom: 1px solid;
     margin-bottom: 10px;
     text-align: left;
@@ -352,7 +373,8 @@ ul li {
     text-align: left;
     height: 38px;
     border-bottom: 1px solid;
-    font-size: 1.2em;
+    font-size: 1.5em;
+    margin-bottom: 11px;
 }
 
 .buttonMargin {

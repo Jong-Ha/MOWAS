@@ -48,7 +48,7 @@
     <!--모임 일정 -->
     <insert id="addClubCalender" parameterType="clubCalender" useGeneratedKeys="true">
         INSERT INTO
-            club_calendar(club_calendar_num, club_num,reg_date,calendar_title,calendar_text,club_date,location,notice_check,notice_time,calendar_apply_check,apply_auto_check,board_category)
+            club_calendar(club_calendar_num, club_num,reg_date,calendar_title,calendar_text,club_date,location,calendar_apply_check,apply_auto_check,board_category)
             values(  SEQ_CLUB_CALENDAR.nextval
                 ,#{clubNum}
                 ,SYSDATE
@@ -56,8 +56,6 @@
                 ,#{calenderText}
                 ,#{clubDate}
                 ,#{location}
-                ,#{noticeCheck}
-                ,#{noticeTime}
                 ,#{calendarApplyCheck}
                 ,#{applyAutoCheck}
                 ,#{boardCategory})
@@ -74,9 +72,7 @@
                 calendar_title = #{calenderTitle}
                 ,calendar_text = #{calenderText}
                 ,location = #{location}
-                ,notice_check = #{noticeCheck}
                 ,club_date = #{clubDate}
-                ,notice_time = #{noticeTime}
                 ,calendar_apply_check = #{calendarApplyCheck}
                 ,apply_auto_check = #{applyAutoCheck}
                 ,reg_date = SYSDATE

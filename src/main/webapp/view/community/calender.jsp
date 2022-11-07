@@ -264,8 +264,8 @@
 
                                         // 성공시 해당 창을 닫고 부모창을 reload
                                         Swal.fire({
-                                            icon: 'success',
-                                            title: 'Your work has been saved',
+                                            icon: 'warning',
+                                            title: '게시글이 삭제 됩니다',
                                             showConfirmButton: false,
                                             timer: 1500
                                         });
@@ -396,7 +396,6 @@
 
                     var file = ("#file").length
 
-                    alert(file);
 
                     if (file > 0) {
 
@@ -459,9 +458,8 @@
                     console.log(result);
                     // 성공시 해당 창을 닫고 부모창을 reload
                     Swal.fire({
-                        position: 'top-end',
                         icon: 'success',
-                        title: 'Your work has been saved',
+                        title: '일정 등록에 성공 했습니다',
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -505,25 +503,11 @@
             var calenderText = $(".calenderText3").val()
             var clubDate = $(".clubDate3").val()
             var location = $(".location3").val()
-            var noticeCheck = $(".noticeCheck3").prop("checked")
-            var noticeTime = $(".noticeTime3").val();
             var calendarApplyCheck = $(".calendarApplyCheck3").prop("checked")
             var applyAutoCheck = $(".applyAutoCheck3").prop("checked")
             var boardCategory = '05';
 
 
-            alert(location);
-
-
-            var clubers = $(".clubers3")
-
-            var cluber = new Array();
-
-            $.each(clubers, function (index, item) {
-                cluber.push($(item).val());
-            })
-
-            console.log(cluber)
 
             $.ajax({
                 url: "/clubCal/json/updateClubCalender",
@@ -534,8 +518,6 @@
                     "calenderText": calenderText,
                     "clubDate": clubDate,
                     "location": location,
-                    "noticeCheck": noticeCheck,
-                    "noticeTime": noticeTime,
                     "calendarApplyCheck": calendarApplyCheck,
                     "applyAutoCheck": applyAutoCheck
 
@@ -550,7 +532,6 @@
 
                     var file = ("#file2").length
 
-                    alert(file);
 
                     if (file > 0) {
 
@@ -596,26 +577,12 @@
 
                     }
 
-                    $.ajax({
-                        url: "/clubCal/json/addCluber",
-                        method: "post",
-                        data: JSON.stringify({
-                            "cluberList": cluber,
-                            "clubCalenderNum": boardNum
-                        }),
-                        dataType: "json",
-                        contentType: "application/json; charset=UTF-8",
-                        success: function (JSONData, result) {
-
-                        }
-
-                    })
 
                     console.log(result);
                     // 성공시 해당 창을 닫고 부모창을 reload
                     Swal.fire({
                         icon: 'success',
-                        title: 'Your work has been saved',
+                        title: '수정 되었습니다',
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -733,7 +700,7 @@
                     // 성공시 해당 창을 닫고 부모창을 reload
                     Swal.fire({
                         icon: 'success',
-                        title: 'Your work has been saved',
+                        title: '모임 일정 후기글이 등록 되었습니다',
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -748,8 +715,8 @@
                     //error 발생시 그냥 창을 닫음
                 }, error: function () {
                     Swal.fire({
-                        icon: 'success',
-                        title: 'Your work has been saved',
+                        icon: 'error',
+                        title: '등록 실패',
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -845,7 +812,7 @@
                         // 성공시 해당 창을 닫고 부모창을 reload
                         Swal.fire({
                             icon: 'success',
-                            title: 'Your work has been saved',
+                            title: '모임 일정 후기 쇼츠글 작성이 성공하였습니다',
                             showConfirmButton: false,
                             timer: 1500
                         });
@@ -882,7 +849,7 @@
 
         });
 
-
+        /*모임원 등록*/
         $(".calenderCluber").on("click", function () {
 
             var clubNum = '${param.clubNum}'
@@ -936,6 +903,7 @@
 
             });
         })
+
 
 
         //일정 등록
@@ -1067,22 +1035,7 @@
                     </div>
 
 
-                    <div class=" mb-3 form-check form-switch">
-                        알림 설정 여부
-                        <input class="form-check-input check noticeCheck" name="noticeCheck" type="checkbox"
-                               role="switch" id="flexSwitchCheckDefault1">
-                    </div>
-
                     <hr>
-
-
-                    <div class="input-group mb-3">
-                        알림 시간 설정
-                        <input type="time" class="noticeTime" name="noticeTime">
-                    </div>
-
-                    <hr>
-
 
                     <div class=" mb-3 form-check form-switch">
                         추가 참여 여부
@@ -1102,7 +1055,6 @@
                     </div>
 
                     <hr>
-
 
                 </form>
 
@@ -1127,7 +1079,7 @@
             <input name="clubCalenderReviewNum" class="clubCalenderReviewNum" hidden value="">
             <div class="modal-header">
                 <input hidden class="clubCalnderNum" value="">
-                <h1 class="modal-title fs-5" id="exampleModalLabe3"> 모임 일정</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabe3"> 모임 일정 상세 조회</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
 
@@ -1205,21 +1157,6 @@
                     </div>
                 </div>
 
-
-                <div class=" mb-3 form-check form-switch">
-                    알림 설정 여부
-                    <input class="form-check-input check noticeCheck2" name="noticeCheck" type="checkbox" role="switch"
-                           id="flexSwitchCheckDefault4">
-                </div>
-
-                <hr>
-
-
-                <div class="input-group mb-3">
-                    알림 시간 설정
-                    <input type="time" class="noticeTime2" name="noticeTime">
-                </div>
-
                 <hr>
 
 
@@ -1269,7 +1206,7 @@
         <div class="modal-content">
             <input hidden class="clubCalenderNum3" value="">
             <div class="modal-header">
-                <h1 class="modal-title fs-5"> 모임 일정</h1>
+                <h1 class="modal-title fs-5"> 모임 일정 수정</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -1299,8 +1236,7 @@
 
                     <div class="input-group mb-3">
 
-                        <input type="button" class="form-control" data-bs-toggle="modal" data-bs-target="#location3"
-                               value="위치 선택">
+                        <input type="button" class="form-control" data-bs-toggle="modal" data-bs-target="#location3" value="위치 선택">
 
                         <div class="input-group input-group-sm mb-3">
                             <span class="input-group-text">위치 정보</span>
@@ -1315,25 +1251,6 @@
 
                     </div>
 
-                    <div class="input-group mb-3">
-                        <input type="button" class="form-control calenderCluber3" multiple value="모임 인원 추가 하기">
-
-                    </div>
-
-
-                    <div class=" mb-3 form-check form-switch">
-                        알림 설정 여부
-                        <input class="form-check-input check noticeCheck3" name="noticeCheck" type="checkbox"
-                               role="switch">
-                    </div>
-
-                    <hr>
-
-
-                    <div class="input-group mb-3">
-                        알림 시간 설정
-                        <input type="time" class="noticeTime3" name="noticeTime">
-                    </div>
 
                     <hr>
 

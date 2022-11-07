@@ -27,8 +27,6 @@
 
                 var villCode = '${user.villCode}'
 
-                alert(villCode);
-
                 var userId = '${user.userId}'
 
                 if(userId !== ''){
@@ -42,7 +40,9 @@
                         text: '로그인후 사용해 주세요',
                         footer: '<a href="">Why do I have this issue?</a>'
                     }).then(()=>{
+
                             $("#loginModal").modal("show")
+
                         }
                     )
                 }

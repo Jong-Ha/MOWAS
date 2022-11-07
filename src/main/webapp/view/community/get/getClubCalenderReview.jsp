@@ -67,15 +67,15 @@
                                 str +=
                                     "<div class='commentList'>" +
                                     "<div class='allComment'>" +
-                                    "<div class='input-group flex-nowrap commentText shadow-lg' style='width: 710px;'>" +
+                                    "<div class='input-group flex-nowrap commentText shadow-lg'>" +
                                     "<input hidden class='commentNum' value='" + item.commentNum + "'>" +
                                     "<input hidden class='commentUser' value='" + item.userId + "'>" +
-                                    "<div style='position: absolute; margin-top: -4px; margin-left: 29px;'>" + item.userId + "</div>" +
                                     "<span class='input-group-text' id='addon-wrapping' style='width:100px;font-size:0.5em;font-weight: bolder; border-radius: 10px 0 0 10px;'>" +
-                                    "<img src='/resources/" + item.userImg + "' style=' width: 74px;  border-radius: 50%;  margin-right: 10px;' alt=''>" +
+                                    "<img class='commentUserImg' src='/resources/" + item.userImg + "'  alt=''>" +
                                     "</span>" +
                                     "<div class='commentContent' style='display: flex;justify-content: center;align-items: center;flex-direction: column;padding: 10px;'>" +
-                                    "<div class='commentTexts' style=' 510px; text-align: left'>" + item.commentText + "</div>" +
+                                    "<div style='margin-top: -16px; margin-bottom: 13px; display: flex; width: 100%; font-size: 1.1em;margin-left: 27px;'>" + item.userId + "</div>" +
+                                    "<div class='commentTexts' style=''>" + item.commentText + "</div>" +
 
 
                                     "<div class='commentitem' style='text-align: left;display: flex;'>" +
@@ -177,7 +177,7 @@
                                     "</button>" +
 
                                     "<button type='button' class='btn btn-outline-danger itembutton buttonMargin'>" +
-                                    "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-hand-thumbs-down-fill itmesize' viewBox='0 0 16 16'>" +
+                                    "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-hand-thumbs-down-fill itmesize reportComment' viewBox='0 0 16 16'>" +
                                     " <path  d='M6.956 14.534c.065.936.952 1.659 1.908 1.42l.261-.065a1.378 1.378 0 0 0 1.012-.965c.22-.816.533-2.512.062-4.51.136.02.285.037.443.051.713.065 1.669.071 2.516-.211.518-.173.994-.68 1.2-1.272a1.896 1.896 0 0 0-.234-1.734c.058-.118.103-.242.138-.362.077-.27.113-.568.113-.856 0-.29-.036-.586-.113-.857a2.094 2.094 0 0 0-.16-.403c.169-.387.107-.82-.003-1.149a3.162 3.162 0 0 0-.488-.9c.054-.153.076-.313.076-.465a1.86 1.86 0 0 0-.253-.912C13.1.757 12.437.28 11.5.28H8c-.605 0-1.07.08-1.466.217a4.823 4.823 0 0 0-.97.485l-.048.029c-.504.308-.999.61-2.068.723C2.682 1.815 2 2.434 2 3.279v4c0 .851.685 1.433 1.357 1.616.849.232 1.574.787 2.132 1.41.56.626.914 1.28 1.039 1.638.199.575.356 1.54.428 2.591z'/>" +
                                     "</svg>" +
                                     "</button>" +
@@ -215,11 +215,11 @@
 
 
                             $.each(item.recommentList, function (index2, item) {
-                                console.log(item.recommentNum);
 
                                 str +=
-                                    "<div class='recommentplz' style='display: none'>" +
-                                    '<div class="arrow " style="display: flex; position: absolute; font-size: 3rem;   margin-left: 67px; ">' +
+                                    "<div class='allRecomment' style='display: none;'>" +
+                                    "<div class='recommentplz'  style='margin-left: 265px;'>" +
+                                    '<div class="arrow">' +
                                     '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">' +
                                     '<path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>' +
                                     '</svg>' +
@@ -231,12 +231,12 @@
                                     "<input hidden class='commentNumfor' value='" + item.commentNum + "'>" +
 
 
-                                    "<div style='position: absolute; margin-top: -4px; margin-left: 26px;'>" + item.userId + "</div>" +
-                                    "<span class='input-group-text' id='addon-wrapping' style='width:100px;font-size:0.5em;font-weight: bolder; border-radius: 10px 0 0 10px;'>" +
-                                    "<img src='/resources/" + item.userImg + "' style=' width: 74px;  border-radius: 50%;  margin-right: 10px;' alt=''>" +
+                                    "<span class='input-group-text' style='border-radius: 10px 0 0 10px'>" +
+                                    "<img class='recommentUserImg' src='/resources/" + item.userImg + "'  alt=''>" +
                                     "</span>" +
 
                                     "<div class='commentContent' style='display: flex;justify-content: center;align-items: center;flex-direction: column;padding: 10px;'>" +
+                                    "<div style='margin-top: -16px; margin-bottom: 13px; display: flex; width: 100%; font-size: 1.1em; margin-left: 5px;'>" + item.userId + "</div>" +
                                     "<div class='RecommentTexts' style=' 510px; text-align: left'>" + item.recommentText + "</div>" +
 
 
@@ -255,8 +255,12 @@
                                     "</svg>" +
                                     "</div>" +
 
-                                    "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-exclamation-lg itmesize reportRecomment' style='font-size: 2.5em' viewBox='0 0 16 16'>" +
-                                    "  <path d='M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0L7.005 3.1ZM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z'/> "+
+
+
+
+                                    "<div style='padding: 5px; margin-top: -3px; margin-left: -10px; cursor: pointer'>" +
+                                    "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-exclamation-lg reportRecomment' style='font-size: 2em;' viewBox='0 0 16 16'>" +
+                                        "<path d='M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0L7.005 3.1ZM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z'/>"+
                                     "</svg>" +
                                     "</div>" +
 
@@ -294,7 +298,9 @@
                                     "</div>" +
                                     "</div>" +
                                     "</div>" +
+                                    "</div>" +
                                     "</div>"
+
 
 
                             })
@@ -511,7 +517,6 @@
 
                             var recommentUser = $(this).parents(".RecommentList").find(".recommentUser").val()
 
-                            alert(";;" + recommentUser);
 
 
                             if (userId === recommentUser) {
@@ -645,7 +650,9 @@
 
 
                                 if (userId === commentUser) {
-                                    alert("그거 맞냐고~")
+
+                                    return false;
+
                                 } else if (userId !== commentUser) {
 
                                     const swalWithBootstrapButtons = Swal.mixin({
@@ -964,7 +971,6 @@
 
                         if (file > 0) {
 
-                            alert("파일 업로드 시작 : " + boardNum);
 
                             //form 테그를 불러와서 form변수에 등록
                             var form = document.querySelector("form");
@@ -1358,7 +1364,7 @@
                             <div>
                                 ${calenderReview.userId}
                             </div>
-                            <div style="font-size: 0.7em; margin-top: 5px;  text-align: left;  width: 150px;">
+                            <div style="font-size: 0.7em; margin-top: 5px;  text-align: left;">
                                 ${calenderReview.location}
                             </div>
                         </div>
@@ -1454,12 +1460,10 @@
                                         <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
                                         <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
                                     </svg>
-                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger viewText"
-                                          style="z-index: 1; font-size: 0.5em;">${calenderReview.viewCount}</span>
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger viewText" style="z-index: 1; font-size: 0.5em;">${calenderReview.viewCount}</span>
                                 </div>
 
-                                <div type="button" class="btn btn-success chating"
-                                     style=" font-size: 1.9em;height: 42px;">
+                                <div type="button" class="btn btn-success chating" style=" font-size: 1.9em;height: 42px;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                          fill="currentColor" class="bi bi-chat-left-quote "
                                          viewBox="0 0 16 16" style="margin-top: -22px;">
