@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>MOWAS</title>
 </head>
 
    <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,7 +44,7 @@
     $(function () {
 
       $("#updateSNSUserInfor").on("click",function (){
-      alert('aaaa');
+        console.log('aaaa');
         var userId=$("input[name='userId']").val();
         var name=$("input[name='userName']").val();
         var rrd=$("input[name='rrd']").val();
@@ -52,9 +52,9 @@
         var loginType = $("#loginType").val();
         var interList=$("input[name='interList']").val();
 
-        alert('userId'+userId);
-        alert('loginType'+loginType);
-        alert('userName'+name);
+        console.log('userId'+userId);
+        console.log('loginType'+loginType);
+        console.log('userName'+name);
 
         if(name == null || name.length <1){
           alert("이름은  반드시 입력하셔야 합니다.");
@@ -79,10 +79,10 @@
 
           contentType : "application/json;charset:UTF-8",
           success : function (result){
-            alert(54611561456)
+            console.log(54611561456)
             console.log(result)
            if(result){
-             alert('ajax 성공');
+             console.log('ajax 성공');
               window.opener.parent.location.reload();
               window.close();
           }},
@@ -113,10 +113,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비저장성공');
+                      console.log('디비저장성공');
                     },
                     error : function (){
-                        alert('디비저장실패');
+                      console.log('디비저장실패');
                     }
                 });
             }else {
@@ -132,10 +132,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비삭제성공');
+                      console.log('디비삭제성공');
                     },
                     error : function (){
-                        alert('디비삭제실패');
+                      console.log('디비삭제실패');
                     }
                 });
             }
@@ -155,10 +155,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비저장성공');
+                      console.log('디비저장성공');
                     },
                     error : function (){
-                        alert('디비저장실패');
+                      console.log('디비저장실패');
                     }
                 });
             }else {
@@ -174,10 +174,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비삭제성공');
+                      console.log('디비삭제성공');
                     },
                     error : function (){
-                        alert('디비삭제실패');
+                      console.log('디비삭제실패');
                     }
                 });
             }
@@ -196,10 +196,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비저장성공');
+                      console.log('디비저장성공');
                     },
                     error : function (){
-                        alert('디비저장실패');
+                      console.log('디비저장실패');
                     }
                 });
             }else {
@@ -215,10 +215,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비삭제성공');
+                      console.log('디비삭제성공');
                     },
                     error : function (){
-                        alert('디비삭제실패');
+                      console.log('디비삭제실패');
                     }
                 });
             }
@@ -238,10 +238,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비저장성공');
+                      console.log('디비저장성공');
                     },
                     error : function (){
-                        alert('디비저장실패');
+                      console.log('디비저장실패');
                     }
                 });
             }else {
@@ -257,10 +257,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비삭제성공');
+                      console.log('디비삭제성공');
                     },
                     error : function (){
-                        alert('디비삭제실패');
+                      console.log('디비삭제실패');
                     }
                 });
             }
@@ -280,10 +280,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비저장성공');
+                      console.log('디비저장성공');
                     },
                     error : function (){
-                        alert('디비저장실패');
+                      console.log('디비저장실패');
                     }
                 });
             }else {
@@ -299,10 +299,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비삭제성공');
+                      console.log('디비삭제성공');
                     },
                     error : function (){
-                        alert('디비삭제실패');
+                      console.log('디비삭제실패');
                     }
                 });
             }
@@ -322,10 +322,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비저장성공');
+                      console.log('디비저장성공');
                     },
                     error : function (){
-                        alert('디비저장실패');
+                      console.log('디비저장실패');
                     }
                 });
             }else {
@@ -341,10 +341,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비삭제성공');
+                      console.log('디비삭제성공');
                     },
                     error : function (){
-                        alert('디비삭제실패');
+                      console.log('디비삭제실패');
                     }
                 });
             }
@@ -364,10 +364,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비저장성공');
+                      console.log('디비저장성공');
                     },
                     error : function (){
-                        alert('디비저장실패');
+                      console.log('디비저장실패');
                     }
                 });
             }else {
@@ -383,10 +383,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비삭제성공');
+                      console.log('디비삭제성공');
                     },
                     error : function (){
-                        alert('디비삭제실패');
+                      console.log('디비삭제실패');
                     }
                 });
             }
@@ -406,10 +406,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비저장성공');
+                      console.log('디비저장성공');
                     },
                     error : function (){
-                        alert('디비저장실패');
+                      console.log('디비저장실패');
                     }
                 });
             }else {
@@ -425,10 +425,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비삭제성공');
+                      console.log('디비삭제성공');
                     },
                     error : function (){
-                        alert('디비삭제실패');
+                      console.log('디비삭제실패');
                     }
                 });
             }
@@ -448,10 +448,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비저장성공');
+                      console.log('디비저장성공');
                     },
                     error : function (){
-                        alert('디비저장실패');
+                      console.log('디비저장실패');
                     }
                 });
             }else {
@@ -467,10 +467,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비삭제성공');
+                      console.log('디비삭제성공');
                     },
                     error : function (){
-                        alert('디비삭제실패');
+                      console.log('디비삭제실패');
                     }
                 });
             }
@@ -490,10 +490,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비저장성공');
+                      console.log('디비저장성공');
                     },
                     error : function (){
-                        alert('디비저장실패');
+                      console.log('디비저장실패');
                     }
                 });
             }else {
@@ -509,10 +509,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비삭제성공');
+                      console.log('디비삭제성공');
                     },
                     error : function (){
-                        alert('디비삭제실패');
+                      console.log('디비삭제실패');
                     }
                 });
             }
@@ -532,10 +532,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비저장성공');
+                      console.log('디비저장성공');
                     },
                     error : function (){
-                        alert('디비저장실패');
+                      console.log('디비저장실패');
                     }
                 });
             }else {
@@ -551,10 +551,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비삭제성공');
+                      console.log('디비삭제성공');
                     },
                     error : function (){
-                        alert('디비삭제실패');
+                      console.log('디비삭제실패');
                     }
                 });
             }
@@ -574,10 +574,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비저장성공');
+                      console.log('디비저장성공');
                     },
                     error : function (){
-                        alert('디비저장실패');
+                      console.log('디비저장실패');
                     }
                 });
             }else {
@@ -593,10 +593,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비삭제성공');
+                      console.log('디비삭제성공');
                     },
                     error : function (){
-                        alert('디비삭제실패');
+                      console.log('디비삭제실패');
                     }
                 });
             }
@@ -616,10 +616,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비저장성공');
+                      console.log('디비저장성공');
                     },
                     error : function (){
-                        alert('디비저장실패');
+                      console.log('디비저장실패');
                     }
                 });
             }else {
@@ -635,10 +635,10 @@
                     contentType : "application/json",
                     dataType : "json",
                     success : function (){
-                        alert('디비삭제성공');
+                      console.log('디비삭제성공');
                     },
                     error : function (){
-                        alert('디비삭제실패');
+                      console.log('디비삭제실패');
                     }
                 });
             }
@@ -892,12 +892,12 @@
 
 
 
-      <input type="hidden" id="userId" name="userId" value="${user.userId}">${user.userId}
+      <input type="hidden" id="userId" name="userId" value="${user.userId}">
         <c:if test="${user.loginType=='2'}">
-      <input type="hidden" id="loginType" name="loginType" value="${user.loginType}">${user.loginType}
+      <input type="hidden" id="loginType" name="loginType" value="${user.loginType}">
         </c:if>
         <c:if test="${user.loginType=='3'}">
-      <input type="hidden" id="loginType" name="loginType" value="${user.loginType}">${user.loginType}
+      <input type="hidden" id="loginType" name="loginType" value="${user.loginType}">
         </c:if>
         <div class="col-12">
           <label for="address" class="form-label">관심목록 선택</label>

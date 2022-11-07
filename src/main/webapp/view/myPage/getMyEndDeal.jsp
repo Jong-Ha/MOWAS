@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title>MOWAS</title>
 </head>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -107,21 +107,22 @@
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
 <hr>
-<div class="container">
 
+
+<div class="container" style="width: 1320px;">
 <div class="tabBox">
     <span class="tabBtn" onclick="javascript:location.href='/myPage/getMyDeal?userId=${user.userId}';">완료한 거래 목록</span>
     <span>|</span>
-    <span class="tabBtn" onclick="javascript:location.href='/myPage/getMyDealReview?userId=${user.userId}';">거래 후기 목록</span class="tabBtn">
+    <span class="tabBtn" onclick="javascript:location.href='/myPage/getMyDealReview?userId=${user.userId}';">거래 후기 목록</span>
 </div>
 
 
-
+<!--
 <div class="searchBox">
     <span class="searchIcon"><i class="fa-solid fa-magnifying-glass"></i></span>
     <input class="searchInput" type="text" name="search" id="search" />
 </div>
-
+-->
 <hr/>
 
 
@@ -129,19 +130,21 @@
 
     <div class="goods_wrapper">
         <div class="tit_month">
-            <h4>2022.10</h4>
+
         </div>
         <c:set var="i" value="0" />
         <c:forEach var="list" items="${map.getMyDeal}">
         <div class="goods_group">
             <div class="goods_item">
-                <img src="https://phinf.pstatic.net/checkout/20181005_67/pEBjoin_1538725581806UviEL_PNG/60x60.png">
+                <img src="/resources/${list.files[i].fileName}">
                 <div class="goods_info">
                     <ul class="info">
                         <li class="goods_name">거래물품명 : <span>${list.productName}</span></li>
                         <li><span>거래날짜 : </span> ${list.dealEndDate}</li>
                         <li><span>가격 : </span>${list.price}원</li>
-                        <li><span>거래자 아이디 : </span>${list.dealId}</li>
+
+                            <li><span>거래자 아이디 : </span>${list.dealId}</li>
+
                     </ul>
                 </div>
             </div>
@@ -159,7 +162,11 @@
 </div>
 
 
+</div>
 
+
+<div style="margin-bottom: 100px;">
+</div>
 <jsp:include page="/layout/chatIcon.jsp"/>
 <jsp:include page="/layout/footer.jsp"/>
 

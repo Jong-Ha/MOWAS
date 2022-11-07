@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title>MOWAS</title>
 </head>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -837,7 +837,10 @@
 <%--        </c:forEach>--%>
 <%--    </div>--%>
 <%--</div>--%>
-<jsp:include page="/layout/chatIcon.jsp"/>
-<jsp:include page="/layout/footer.jsp"/>
+</div>
+<div style="margin-bottom: 100px;">
+</div>
+        <jsp:include page="/layout/chatIcon.jsp"/>
+        <jsp:include page="/layout/footer.jsp"/>
 </body>
 </html>

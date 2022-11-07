@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title>MOWAS</title>
 </head>
 <style>
     .tabBox {
@@ -45,8 +45,7 @@
         display: flex;
         flex-direction: row;
         margin-bottom: 30px;
-        float: left;
-        width: 442px;
+        width: 360px;
         transition: all 0.1s linear;
     }
 
@@ -159,6 +158,36 @@
         margin: 5px;
         font-weight: bolder;
         cursor: pointer;
+        margin-right: 25px;
+    }
+
+    @media (min-width: 1000px) {
+        .underline {
+            font-size: 1.5em;
+        }
+    }
+
+    .underline.yellow {
+        background-image: linear-gradient(transparent 60%, #F8CD07 40%);
+    }
+
+    .underline:hover {
+        background-size: 100% 100%;
+    }
+
+    .wrapper {
+        display: grid;
+        place-items: center;
+    }
+
+    .typing {
+        width: 14ch;
+        animation: typing 0.9s steps(22), blink .5s step-end infinite alternate;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 3px solid;
+        font-size: 2em;
+        height: 2ch;
     }
 
     @keyframes typing {
@@ -314,9 +343,6 @@
 
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
-
-<hr>
-<div class="container">
 <div class="tabBox">
     <span class="tabBtn getMyVillBoard">우리동네 게시글</span>
     <span>|</span>
@@ -325,7 +351,6 @@
     <span class="tabBtn getMyDealBoard">판매/판매요청 게시글</span>
 </div>
 
-
 <hr/>
 <h4>모임 후기글</h4>
 <hr/>
@@ -333,113 +358,129 @@
 
 <!-- table Start /////////////////////////////////////-->
 <div class="container">
+
     <form id="clubCalenderForm">
+
         <input hidden class="userId" name="userId" value="${user.userId}">
+        <input type="hidden" id="currentPage" name="currentPage" value="${resultPage.currentPage}">
         <div class="row">
-            <div class="table-responsive project-list" style="border-radius: 5px;">
-                <input type="hidden" id="currentPage" name="currentPage" value="${resultPage.currentPage}">
-                <table class="table project-table table-centered table-nowrap table-hover table-striped"
-                       style="    table-layout: fixed;">
-                    <thead>
-                    <tr>
-                        <th scope="col" style="width: 10%;">후기글 이미지</th>
-                        <th scope="col" style="width: 10%;">게시글 종류</th>
-                        <th scope="col" style="width: 20%;">후기글 제목</th>
-                        <th scope="col" style="width: 40%;">후기글 내용</th>
-                        <th scope="col" style="width: 10%">주요활동위치</th>
-                        <th scope="col" style="width: 10%">조회수</th>
-                        <th scope="col" style="width: 10%">좋아요수</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach var="clubCalendarReview" items="${map.clubCalendarReview}">
-                        <c:forEach begin="1" end="1">
-                            <tr class="getClubCalender">
-                                <td style="display: none">
-                                    <input hidden class="clubCalenderReviewNum"
-                                           value="${clubCalendarReview.clubCalenderReviewNum}">
-                                    <input hidden class="boardCategory" value="${clubCalendarReview.boardCategory}">
-                                    <input hidden class="SUserId" value="${clubCalendarReview.userId}">
-                                    <input hidden class="clubNum" value="${clubCalendarReview.clubNum}">
-                                </td>
-                                <td>
-                                    <c:if test="${clubCalendarReview.boardCategory == '1'}">
-                                        <img class="clubImage" src="/resources/${clubCalendarReview.file[0]}"
-                                             alt="모임이미지"
-                                             style="width: 100%;height: 100%;object-fit: cover;">
-                                    </c:if>
-                                    <c:if test="${clubCalendarReview.boardCategory == '2'}">
-                                        <video class="clubImage" alt="모임이미지"
-                                               style="width: 100%;height: 100%;object-fit: cover;">
-                                            <source src="/resources/${clubCalendarReview.file}">
-                                        </video>
-                                    </c:if>
-                                </td>
-                                <td>
-                                        ${clubCalendarReview.boardCategory == '1' ? '후기글' : '후기쇼츠'}
-                                </td>
-                                <td>
-                                    <div>
-                                            ${clubCalendarReview.reviewTitle}
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                            ${clubCalendarReview.reviewText}
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                            ${clubCalendarReview.location}
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                            ${clubCalendarReview.viewCount}
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                            ${clubCalendarReview.likeConunt}
-                                    </div>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </c:forEach>
-                    </tbody>
-                </table>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
 
-                <c:if test="${!empty resultPage}">
-                    <nav aria-label="Page navigation example" style="display: flex;justify-content: center;">
-                        <ul class="pagination">
-                            <li class="page-item pageUnit ${resultPage.beginUnitPage == 1?'disabled':''}"
-                                value="${resultPage.beginUnitPage - resultPage.pageUnit}">
-                                <a class="page-link" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
+                            <div class="table-responsive project-list">
+                                <table class="table project-table table-centered table-nowrap table-hover table-striped"
+                                       style="table-layout: fixed;">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" style="width: 10%;">후기글 이미지</th>
+                                        <th scope="col" style="width: 10%;">게시글 종류</th>
+                                        <th scope="col" style="width: 20%;">후기글 제목</th>
+                                        <th scope="col" style="width: 40%;">후기글 내용</th>
+                                        <th scope="col" style="width: 10%">주요활동위치</th>
+                                        <th scope="col" style="width: 10%">조회수</th>
+                                        <th scope="col" style="width: 10%">좋아요수</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach var="clubCalendarReview" items="${map.clubCalendarReview}">
+                                        <c:forEach begin="1" end="1">
+                                            <tr class="getClubCalender">
+                                                <td style="display: none">
+                                                    <input hidden class="clubCalenderReviewNum"
+                                                           value="${clubCalendarReview.clubCalenderReviewNum}">
+                                                    <input hidden class="boardCategory"
+                                                           value="${clubCalendarReview.boardCategory}">
+                                                    <input hidden class="SUserId" value="${clubCalendarReview.userId}">
+                                                    <input hidden class="clubNum" value="${clubCalendarReview.clubNum}">
+                                                </td>
+                                                <td>
+                                                    <c:if test="${clubCalendarReview.boardCategory == '1'}">
+                                                        <img class="clubImage"
+                                                             src="/resources/${clubCalendarReview.file[0]}"
+                                                             alt="모임이미지"
+                                                             style="width: 100%;height: 100%;object-fit: cover;">
+                                                    </c:if>
+                                                    <c:if test="${clubCalendarReview.boardCategory == '2'}">
+                                                        <video class="clubImage" alt="모임이미지"
+                                                               style="width: 100%;height: 100%;object-fit: cover;">
+                                                            <source src="/resources/${clubCalendarReview.file}">
+                                                        </video>
+                                                    </c:if>
+                                                </td>
+                                                <td>
+                                                        ${clubCalendarReview.boardCategory == '1' ? '후기글' : '후기쇼츠'}
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                            ${clubCalendarReview.reviewTitle}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                            ${clubCalendarReview.reviewText}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                            ${clubCalendarReview.location}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                            ${clubCalendarReview.viewCount}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                            ${clubCalendarReview.likeConunt}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
 
-                            <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}"
-                                       var="i">
-                                <li class="page-item ${search.currentPage == i?'active':'paging'}"><a
-                                        class="page-link">${i}</a></li>
-                            </c:forEach>
+                                <c:if test="${!empty resultPage}">
+                                    <nav aria-label="Page navigation example"
+                                         style="display: flex;justify-content: center;">
+                                        <ul class="pagination">
+                                            <li class="page-item pageUnit ${resultPage.beginUnitPage == 1?'disabled':''}"
+                                                value="${resultPage.beginUnitPage - resultPage.pageUnit}">
+                                                <a class="page-link" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
 
-                            <li class="page-item pageUnit ${resultPage.maxPage==resultPage.endUnitPage?'disabled':''}"
-                                value="${resultPage.beginUnitPage+resultPage.pageUnit}">
-                                <a class="page-link" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </c:if>
+                                            <c:forEach begin="${resultPage.beginUnitPage}"
+                                                       end="${resultPage.endUnitPage}"
+                                                       var="i">
+                                                <li class="page-item ${search.currentPage == i?'active':'paging'}"><a
+                                                        class="page-link">${i}</a></li>
+                                            </c:forEach>
 
+                                            <li class="page-item pageUnit ${resultPage.maxPage==resultPage.endUnitPage?'disabled':''}"
+                                                value="${resultPage.beginUnitPage+resultPage.pageUnit}">
+                                                <a class="page-link" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </c:if>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </form>
 </div>
-
+    <div style="margin-bottom: 100px;">
+    </div>
 
 <jsp:include page="/layout/chatIcon.jsp"/>
 <jsp:include page="/layout/footer.jsp"/>

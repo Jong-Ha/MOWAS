@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>MOWAS</title>
 </head>
 <style>
     .btn-primary {
@@ -242,7 +242,7 @@
 <form id="updatPsdForm">
     <div class="container">
         <div class="row g-5">
-            <div class="col-md-4 d-flex justify-content-end"><h3 class="fw-bold mt-4">회원 상세 조회</h3></div>
+            <div class="col-md-4 d-flex justify-content-end"><h3 class="fw-bold mt-4">회원 정보 수정</h3></div>
             <div class="col-md-8 d-flex justify-content-center flex-column align-items-start">
                 <form action="">
                     <div class="col-lg-8">
@@ -414,7 +414,7 @@
                                 </div>
 
 
-                                <c:if test="${map.userDetail.loginType=='1'}">
+                                <c:if test="${map.userDetail.loginType eq '기본 회원가입'}">
                                     <div class="row mt-2 mb-2">
                                         <div class="col-sm-4">
                                             <p class="mb-0 fw-bold">회원 사진</p>
@@ -427,7 +427,7 @@
                                         </div>
                                     </div>
                                 </c:if>
-                                <c:if test="${map.userDetail.loginType=='2'}">
+                                <c:if test="${map.userDetail.loginType eq '카카오 로그인'}">
                                     <div class="row mt-2 mb-2">
                                         <div class="col-sm-4">
                                             <p class="mb-0 fw-bold">회원 사진</p>
@@ -440,7 +440,7 @@
                                         </div>
                                     </div>
                                 </c:if>
-                                <c:if test="${map.userDetail.loginType=='3'}">
+                                <c:if test="${map.userDetail.loginType eq '네이버 로그인'}">
                                     <div class="row mt-2 mb-2">
                                         <div class="col-sm-4">
                                             <p class="mb-0 fw-bold">회원 사진</p>
@@ -466,6 +466,8 @@
 
 
 </form>
+                <div style="margin-bottom: 100px;">
+                </div>
 <jsp:include page="/layout/chatIcon.jsp"/>
 <jsp:include page="/layout/footer.jsp"/>
 </body>

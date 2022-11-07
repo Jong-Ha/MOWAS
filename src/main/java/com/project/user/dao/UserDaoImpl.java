@@ -70,9 +70,9 @@ public class UserDaoImpl implements UserDao{
     }
 
     public User getMyPassword(User user)throws Exception{
-        if(user.getEmail()!="" || user.getPhone().equals("") ) {
+        if(user.getEmail()!=null || user.getPhone()=="" ) {
             return sqlSession.selectOne("UserMapper.getMyPasswordEmail", user);
-        } else if(user.getPhone()!=null || user.getEmail()==null ) {
+        } else if(user.getPhone()!=null || user.getEmail()=="" ) {
             return sqlSession.selectOne("UserMapper.getMyPasswordPhone", user);
         }else {
             return null;

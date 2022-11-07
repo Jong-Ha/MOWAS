@@ -65,7 +65,7 @@
         }
 
     </style>
-    <title>Title</title>
+    <title>MOWAS</title>
 </head>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -109,6 +109,16 @@
         })
 
     });
+
+    $(function () {
+        $("#testbtn").on("click", function () {
+
+            $("#hhhh").attr("method","POST").attr("action","/user/json/mailImage").submit();
+
+        });
+
+    });
+
 
 </script>
 <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
@@ -185,7 +195,13 @@
 
                 <br>
             </div>
-
+            <!--
+            <form id="hhhh">
+            <input type="text" id="testEmail" name="email">
+            <button type="submit" id="testbtn">테스트</button>
+            </form>
+            <img style='margin-left: 130px;' src='/resources/images/MOWAS_T_2.png'>
+            -->
             <button type="button" class="getMyInfor btn btn-primary" id="getMyInfor">내 정보 보기</button>
             <br>
         </div>
@@ -197,7 +213,8 @@
     </div>
 </div>
 </div>
-
+<div style="margin-bottom: 100px;">
+</div>
 
 <jsp:include page="/layout/chatIcon.jsp"/>
 
