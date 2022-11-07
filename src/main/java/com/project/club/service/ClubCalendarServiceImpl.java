@@ -1,6 +1,7 @@
 package com.project.club.service;
 
 import com.project.club.dao.ClubCalendarDao;
+import com.project.club.dao.ClubDao;
 import com.project.common.Search;
 import com.project.domain.ClubCalendar;
 import com.project.domain.ClubCalendarReview;
@@ -21,6 +22,10 @@ public class ClubCalendarServiceImpl implements ClubCalendarService {
     @Autowired
     @Qualifier("clubCalenderDaoImpl")
     private ClubCalendarDao clubCalendarDao;
+
+    @Autowired
+    @Qualifier("clubDaoImpl")
+    private ClubDao clubDao;
 
     @Override
     public void addCalender(ClubCalendar calender) {
@@ -134,8 +139,12 @@ public class ClubCalendarServiceImpl implements ClubCalendarService {
 
     @Override
     public void deleteClubCalender(int boardNum) {
-        clubCalendarDao.deleteClubCalender(boardNum);
+
+
+        clubDao.deleteClubCluber(boardNum);
         clubCalendarDao.deleteFile(boardNum);
+        clubCalendarDao.deleteClubCalender(boardNum);
+
     }
 
     @Override

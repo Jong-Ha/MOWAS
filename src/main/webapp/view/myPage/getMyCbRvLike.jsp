@@ -265,7 +265,6 @@
 
 
         $(".getMyLike").on("click", function () {
-            alert('user' + userId)
             self.location = "/myPage/getMyVillBoardLike?userId=" + userId;
         })
         $(".getMyCbRvLike").on("click", function () {

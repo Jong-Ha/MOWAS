@@ -260,8 +260,16 @@
             pagingSubmit()
         })
 
+        $(".getMyLike").on("click", function () {
+            self.location = "/myPage/getMyVillBoardLike?userId=" + userId;
+        })
+
         $(".getMyCbRvLike").off("click").on("click", function () {
             location.href = "/myPage/getMyCbRvLike?userId="+userId;
+        })
+
+        $(".getMyDealLike").on("click", function (){
+            location.href="/myPage/getMyDealLike?userId="+userId;
         })
 
     })

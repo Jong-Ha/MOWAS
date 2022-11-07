@@ -175,8 +175,7 @@
         <result property="dealEndDate" column="deal_end_date" jdbcType="DATE"/>
         <result property="dealDate" column="deal_date" jdbcType="DATE"/>
         <result property="dealLocation" column="deal_location" jdbcType="VARCHAR"/>
-        <collection property="files" column="deal_board_num" ofType="com.project.domain.File"
-                    select="getDealBoardFiles"/>
+        <collection property="files" column="deal_board_num" ofType="com.project.domain.File" select="getDealBoardFiles"/>
     </resultMap>
 
     <resultMap type="com.project.domain.File" id="FileResultMap">
@@ -549,15 +548,45 @@
 
 
 
+    <sql id="getMydealBoardLikeSql">
+        select dl.*, ls.LIKE_CHECK
+        from DEAL dl, likes ls
+        where ls.user_id = #{userId}
+          and dl.deal_board_num = ls.BOARD_NUM
+          and ls.BOARD_CATEGORY = '8'
+          and ls.like_check = 'y'
+    </sql>
 
 
-    <select id="getMydealBoardLike" parameterType="String" resultMap="dealSelectMap">
-        SELECT *
-        FROM likes a,
-             deal b
-        WHERE a.board_category = b.board_category
-          and a.user_id = #{userId}
+
+    <select id="getMydealBoardLikeTotal" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM(
+        <include refid="getMydealBoardLikeSql"/>
+        )
     </select>
+
+    <select id="getMydealBoardLike" parameterType="map" resultMap="dealSelectMap">
+
+        SELECT * FROM (
+        SELECT ROWNUM row_num, vt.* FROM (
+        <include refid="getMydealBoardLikeSql"/>
+        ) vt
+        <if test="search.currentPage*search.pageSize!=0">
+            WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}
+        </if>
+        )
+        <where>
+            <if test="search.currentPage*search.pageSize!=0">
+                row_num >= ((#{search.currentPage}-1)*#{search.pageSize}+1)
+            </if>
+        </where>
+
+    </select>
+
+
+
+
+
 
 
     <!--가입한 모임 조회-->
