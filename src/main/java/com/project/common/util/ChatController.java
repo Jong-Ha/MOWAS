@@ -23,36 +23,38 @@ public class ChatController {
     private UserService userService;
 
     @RequestMapping("addOneChat")
-    public String addOneChat(@RequestParam("userId")String userId
-                            ,@RequestParam(value = "boardNum", defaultValue = "0") String  boardNum
-                            ,Model model
-                            ,@RequestParam("chatNameSpace")String chatNameSpace, HttpSession session) throws Exception {
+    public String addOneChat(@RequestParam("userId") String userId
+            , @RequestParam(value = "boardNum", defaultValue = "0") String boardNum
+            , @RequestParam(value = "roomName") String roomName
+            , Model model
+            , @RequestParam("chatNameSpace") String chatNameSpace, HttpSession session) throws Exception {
 
         model.addAttribute("roomId", UUID.randomUUID().toString());
 
         model.addAttribute("userId", userId);
-        model.addAttribute("userImage",userService.getUser(userId).getUserImage().replaceAll("\\\\","/"));
+        model.addAttribute("userImage", userService.getUser(userId).getUserImage().replaceAll("\\\\", "/"));
         model.addAttribute("chatNameSpace", chatNameSpace);
+        model.addAttribute("roomName", roomName);
 
 
-        if (! boardNum.equals("0")){
+        if (!boardNum.equals("0")) {
 
             model.addAttribute("boardNum", boardNum);
 
         }
 
-        System.out.println( chatNameSpace );
+        System.out.println(chatNameSpace);
 
-        User user = (User)session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
 
-        user.setUserImage(user.getUserImage().replaceAll("\\\\","/"));
+        user.setUserImage(user.getUserImage().replaceAll("\\\\", "/"));
 
         return "/chat/getChat.jsp";
     }
 
     @RequestMapping("chatList")
     public String chatList(@RequestParam(value = "chatCategory", defaultValue = "onebyone") String chatCategory
-                            ,Model model, HttpSession session) {
+            , Model model, HttpSession session) {
 
         model.addAttribute("chatCategory", chatCategory);
 
@@ -60,31 +62,32 @@ public class ChatController {
 
         User user = null;
 
-        if(session.getAttribute("user")!=null){
-            user = (User)session.getAttribute("user");
+        if (session.getAttribute("user") != null) {
+            user = (User) session.getAttribute("user");
 
-            user.setUserImage(user.getUserImage().replaceAll("\\\\","/"));
+            user.setUserImage(user.getUserImage().replaceAll("\\\\", "/"));
         }
 
         return "/chat/chatList.jsp";
     }
+
     //채팅 navigation
     @RequestMapping("getChat")
-    public String getChat( @RequestParam("roomId")String roomId
-                            ,@RequestParam("chatNameSpace")String chatNameSpace
-                            , Model model, HttpSession session) {
+    public String getChat(@RequestParam("roomId") String roomId
+            , @RequestParam("chatNameSpace") String chatNameSpace
+            , Model model, HttpSession session) {
 
 
-            model.addAttribute("roomId", roomId);
-            model.addAttribute("chatNameSpace", chatNameSpace);
+        model.addAttribute("roomId", roomId);
+        model.addAttribute("chatNameSpace", chatNameSpace);
 
-            System.out.println(chatNameSpace);
+        System.out.println(chatNameSpace);
 
-        User user = (User)session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
 
-        user.setUserImage(user.getUserImage().replaceAll("\\\\","/"));
+        user.setUserImage(user.getUserImage().replaceAll("\\\\", "/"));
 
-            return "/chat/getChat.jsp";
+        return "/chat/getChat.jsp";
 
     }
 

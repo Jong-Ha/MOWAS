@@ -107,6 +107,8 @@
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
 <hr>
+
+
 <div class="container" style="width: 1320px;">
 <div class="tabBox">
     <span class="tabBtn" onclick="javascript:location.href='/myPage/getMyDeal?userId=${user.userId}';">완료한 거래 목록</span>
@@ -128,7 +130,7 @@
 
     <div class="goods_wrapper">
         <div class="tit_month">
-            <h4>2022.11</h4>
+
         </div>
         <c:set var="i" value="0" />
         <c:forEach var="list" items="${map.getMyDeal}">

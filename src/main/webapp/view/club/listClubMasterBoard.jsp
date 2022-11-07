@@ -48,22 +48,22 @@
             }
         })
 
+        $('#listClubMasterBoardForm').off('submit').on('submit',function(){
+            return false
+        })
+
+        $('#listClubMasterBoardForm .searchClubMasterBoard').off('click').on('click',function(){
+
+            $("#listClubMasterBoardForm #searchKeyword").val($("#listClubMasterBoardForm #searchKeyword").val())
+
+            submitListClubMasterBoardForm()
+        })
+
         // paging
         $("#listClubMasterBoardForm .paging").off('click').on("click", function () {
             $("#listClubMasterBoardForm #currentPage").val($(this).text())
 
-            const data = $('#listClubMasterBoardForm').serialize()
-
-            $.ajax({
-                url : "/club/listClubMasterBoard/${clubNum}",
-                method : 'post',
-                'data' : data,
-                success : function(re){
-                    $("#ClubBoard").html(re)
-                    clubLayout()
-                    $('#ClubBoard')[0].scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
-                }
-            })
+            submitListClubMasterBoardForm()
         })
         $("#listClubMasterBoardForm .pageUnit").off('click').on("click", function () {
             if($(this).hasClass('disabled')){
@@ -72,6 +72,11 @@
 
             $("#listClubMasterBoardForm #currentPage").val($(this).val())
 
+            submitListClubMasterBoardForm()
+        })
+
+        function submitListClubMasterBoardForm(){
+
             const data = $('#listClubMasterBoardForm').serialize()
 
             $.ajax({
@@ -84,7 +89,8 @@
                     $('#ClubBoard')[0].scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
                 }
             })
-        })
+
+        }
 
     })
 </script>
@@ -142,9 +148,9 @@
             <div style="display: flex;align-items: center;min-width: 250px;justify-content: space-between;">
                 <label>
                     <input type="hidden" id="currentPage" name="currentPage" value="1">
-                    <input type="text" name="searchKeyword" value="${search.searchKeyword}">
+                    <input type="text" id="searchKeyword" name="searchKeyword" value="${search.searchKeyword}">
                 </label>
-                <button class="btn btn-primary">
+                <button class="btn btn-primary searchClubMasterBoard">
                     검색
                 </button>
             </div>

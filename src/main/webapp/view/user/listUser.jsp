@@ -94,7 +94,8 @@
     }
 
     .typing {
-        width: 15ch;
+        width: 9ch;
+        color: #000000;
         animation: typing 0.9s steps(22), blink .5s step-end infinite alternate;
         white-space: nowrap;
         overflow: hidden;
@@ -269,7 +270,7 @@
     <c:forEach var="user" items="${list}">
         <c:set var="i" value="${ i+1 }" />
     <tr class="userTable">
-        <th scope="row">${ i }</th>
+        <th scope="row" style="text-align: center;">${ i }</th>
         <td class="ia">${user.userId}</td>
         <td class="ic">${user.reviewPt}</td>
         <td class="id">${user.psd}</td>
@@ -284,7 +285,7 @@
                         </div>
                         <!--  table End /////////////////////////////////////-->
                         <div class="pt-3">
-                            <ul class="pagination justify-content-end mb-0">
+                            <ul class="pagination justify-content-center mb-0">
                                 <!--  <<== 좌측 nav -->
                                 <c:if test="${ resultPage.currentPage <= resultPage.pageUnit }">
                                 <li class="page-item disabled">

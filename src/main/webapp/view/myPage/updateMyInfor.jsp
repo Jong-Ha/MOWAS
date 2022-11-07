@@ -34,7 +34,9 @@
         }
 
         .img-account-profile {
-            height: 10rem;
+            height: 12rem;
+            object-fit: cover;
+            aspect-ratio: 1;
         }
 
         .rounded-circle {
@@ -104,7 +106,25 @@
         let num
         let smsNum
 
+        function readURL(inputSelector, outputSelector) {
+            const input = $(inputSelector)[0]
+            const output = $(outputSelector)[0]
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    output.src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                output.src = "/resources/images/proplePoto.png";
+            }
+        }
+
         $(function () {
+            $('form #file').on('change',function(){
+                readURL('form #file','.img-account-profile')
+            })
+
             $("form").on("submit", function () {
                 var userId = $("#updateUserId").val();
                 var loginType = $("#loginType").val();
@@ -793,7 +813,6 @@
                 <div class="card-header">내 정보 수정하기</div>
                 <div class="card-body text-center">
                     <!-- Profile picture image-->
-                    
                     <c:if test="${user.loginType eq 1}">
                     <img class="img-account-profile rounded-circle mb-2" src="/resources/${user.userImage}" alt="">
                     </c:if>

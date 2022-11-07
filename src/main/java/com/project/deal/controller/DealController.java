@@ -3,7 +3,9 @@ package com.project.deal.controller;
 import com.project.common.Search;
 import com.project.community.service.CommunityService;
 import com.project.deal.service.DealService;
-import com.project.domain.*;
+
+import com.project.domain.Deal;
+import com.project.domain.User;
 import com.project.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -41,25 +43,19 @@ public DealController(){
     System.out.println(this.getClass());
 }
 @Value("#{commonProperties['pageUnit']}")
-    int pageUnit;
+    private int pageUnit;
 
     @Value("#{commonProperties['pageSize']}")
-    int pageSize;
+    private int pageSize;
     @Value("#{commonProperties['resourcesPath']}")
-    String resourcesPath;
+    private String resourcesPath;
 
-    @Value("#{commonProperties['dealImagePath']}")
-    String clubImagePath;
+//    @Value("#{commonProperties['dealImagePath']}")
+//    private String clubImagePath;
 
     @Value("#{commonProperties['dealBoardPath']}")
-    String dealBoardPath;
+    private String dealBoardPath;
 
-    @RequestMapping(value = "login")
-    public String login(HttpSession session, @RequestParam("userId") String userId,@RequestParam(value = "dealBoardNum", required = false) int dealBoardNum) throws Exception{
-        User user = userService.getUser(userId);
-        session.setAttribute("user",user);
-        return "/deal/getDeal/"+dealBoardNum;
-    }
 
     @RequestMapping(value = "/addDeal", method = RequestMethod.GET)
     public String addDeal() throws Exception{
@@ -68,8 +64,9 @@ public DealController(){
         return "forward:/view/deal/addDeal.jsp";
     }
     @RequestMapping(value = "/addDeal", method =RequestMethod.POST)
-    public String addDeal(@ModelAttribute("deal")Deal deal, MultipartHttpServletRequest multi,HttpSession session)throws Exception{
+    public String addDeal(@ModelAttribute("deal") Deal deal, MultipartHttpServletRequest multi, HttpSession session)throws Exception{
         System.out.println("/deal/addDeal : post");
+
         deal.setUser((User) session.getAttribute("user"));
 
         System.out.println("sefdaj'ejw'gkfdsgda dfda"+session.getAttribute("user"));

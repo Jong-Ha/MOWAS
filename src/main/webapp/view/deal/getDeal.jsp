@@ -109,6 +109,7 @@ Product vo=(Product)request.getAttribute("vo");
 
                 var dealUserId = $(".dealUserId").val();
                 var userId = $(".userId").val()
+                var roomName = '${deal.dealTitle}'
                 var dealBoardNum = $(".dealBoardNum").val()
                 var chatNameSpace = "dealChat"
 
@@ -142,14 +143,14 @@ Product vo=(Product)request.getAttribute("vo");
                                 swalWithBootstrapButtons.fire(
                                     dealUserId + ' 님이 초대 되었습니다',
                                     'success',
-                                ).then(() => {
-                                    var openWin = window.open("/chat/chatList?chatCategory=" + chatNameSpace, 'chatList')
+                                ).then(()=>{
+                                    var openWin = window.open("/chat/chatList?chatCategory="+chatNameSpace, 'chatList')
                                     $.ajax({
                                         url: "/chat/addOneChat",
                                         data: {
                                             'userId': dealUserId,
                                             'chatNameSpace': chatNameSpace,
-                                            'roomName': dealUserId,
+                                            'roomName': roomName,
                                             'boardNum': dealBoardNum
                                         },
                                         success: function (re) {
@@ -486,7 +487,7 @@ Product vo=(Product)request.getAttribute("vo");
 </head>
 
 
-<body>
+<body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 <%-- toolbar 시작--%>
 <input hidden class="userId" value="${user.userId}"></h2>
 <input hidden name="dealBoardNum" value="${deal.dealBoardNum}" class="dealBoardNum">

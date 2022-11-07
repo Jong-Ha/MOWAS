@@ -23,33 +23,194 @@
         font-weight: bolder;
         cursor: pointer;
     }
-    body{
-        background:#f3f3f3;
-        margin-top:20px;
-        color: #616f80;
+
+    ul li {
+        list-style: none;
+        cursor: pointer;
     }
 
-    #list {
-        text-align: center;
+    .wap {
+        width: 1000px;
+        height: 1500px;
     }
 
-    #write {
+    .carditem {
+        display: flex;
+        flex-direction: column;
+        float: left;
+    }
+
+
+    .cardbox {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 30px;
+        float: left;
+        width: 442px;
+        transition: all 0.1s linear;
+    }
+
+    .cardbox:hover {
+        transform: scale(1.12);
+    }
+
+    .itemBox {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .clickBox {
+        padding: 10px;
+        display: flex;
+        float: left;
         text-align: right;
+        width: 100%;
+        margin-right: 39px;
+        margin-bottom: 11px;
+    }
+
+    .buttonBox {
+        margin-left: 10px;
+        cursor: pointer;
+        height: 28px;
+        width: 39px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .col.reviewBox {
+        width: 100%;
+        margin-right: 30px;
+    }
+
+
+    .addBox {
+        width: 100%;
+        display: flex;
+        flex-direction: row-reverse;
+        margin-bottom: 100px;
+    }
+
+
+    .get {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .carousel-inner {
+        width: 100%;
+        height: 100%;
+    }
+
+    .potoBox {
+        cursor: pointer;
+        padding: 1px;
+        width: 100%;
+        height: 361px;
+        overflow: hidden;
+        border-radius: 0 0 5px 5px;
+        border-bottom: 2px solid #0a090912;
+    }
+
+    .userImg {
+        width: 60px;
+        height: 60px;
+        padding: 5px;
+    }
+
+    .userInfo {
+        padding: 6px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .user_manu {
+        padding: 14px;
+        display: flex;
+        width: 101%;
+        font-size: 1.9em;
+        flex-direction: row-reverse;
+    }
+
+    .user_hidden_manu {
+        width: 100px;
+        height: 75px;
+        position: absolute;
+    }
+
+    .tabBox {
+        display: flex;
+        margin: 0 15px;
+    }
+
+    .tabBox span {
+        font-size: 25px;
+        margin: 5px;
+        font-weight: bolder;
+    }
+
+    .tabBox span.tabBtn {
+        font-size: 25px;
+        margin: 5px;
+        font-weight: bolder;
+        cursor: pointer;
+    }
+
+    @keyframes typing {
+        from {
+            width: 0
+        }
+    }
+
+    @keyframes blink {
+        80% {
+            border-color: transparent
+        }
+    }
+
+    .tabBox {
+        display: flex;
+        margin: 0 15px;
+    }
+
+    .tabBox span {
+        font-size: 25px;
+        margin: 5px;
+        font-weight: bolder;
+    }
+
+    .tabBox span.tabBtn {
+        font-size: 25px;
+        margin: 5px;
+        font-weight: bolder;
+        cursor: pointer;
     }
 
     /* Bootstrap 수정 */
     .table > thead {
         background-color: #b3c6ff;
     }
+
     .table > thead > tr > th {
-        text-align: center;
+        text-align: left;
     }
+
     .table-hover > tbody > tr:hover {
         background-color: #e6ecff;
     }
+
     .table > tbody > tr > td {
-        text-align: center;
+        text-align: left;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
     }
+
     .table > tbody > tr > #title {
         text-align: left;
     }
@@ -79,7 +240,6 @@
     }
 
     .wrapper {
-        height: 13ch;
         display: grid;
         place-items: center;
     }
@@ -132,15 +292,47 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script type="text/javascript">
-    $(function(){
-        var userId = $(".myPageUserId").val();
+
+    function pagingSubmit() {
+        $("#recommentForm").attr('action', '/myPage/getMyRecomment').attr('method', 'post').submit()
+
+    }
+
+    $(function () {
+        var userId = '${user.userId}'
+
+
+        $(function () {
+
+            $(".paging").off("click").on("click", function () {
+
+                $("#recommentForm #currentPage").val($(this).text())
+
+                pagingSubmit()
+            })
+
+            $(".pageUnit").off('click').on("click", function () {
+                if ($(this).hasClass('disabled')) {
+                    return false
+                }
+
+                $("#recommentForm #currentPage").val($(this).val())
+
+                pagingSubmit()
+            })
+
+        });
+
 
         $(".getMyComment").on("click", function (){
             self.location="/myPage/getMyComment?userId="+userId;
         })
         $(".getMyRecomment").on("click", function (){
-            self.location="/myPage/getMyRecommentLike?userId="+userId;
+            self.location="/myPage/getMyRecomment?userId="+userId;
+        $(".getMyRecomment").on("click", function () {
+            self.location = "/myPage/getMyRecommentLike?userId=" + userId;
         })
     })
 
@@ -151,81 +343,106 @@
 
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
+<hr>
+<div class="container">
+
+
+
 <div class="tabBox">
-    <span class="tabBtn getMyComment" >댓글</span>
+    <span class="tabBtn getMyComment">댓글</span>
     <span>|</span>
-    <span class="tabBtn getMyRecomment" >대댓글</span class="tabBtn">
+    <span class="tabBtn getMyRecomment">대댓글</span>
 </div>
 
 <hr/>
+<h3>작성한 대댓글</h3>
+<hr/>
 
-<div class="container" style="width: 1200px;">
-<!--  table Start /////////////////////////////////////-->
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-body">
-                <div class="table-responsive project-list">
-                    <table class="table project-table table-centered table-nowrap table-hover table-striped" >
-                        <thead>
+<div class="container">
+    <form id="recommentForm">
+        <input hidden class="userId" name="userId" value="${user.userId}">
 
-                        <tr>
-                            <th scope="col">게시글 카테고리</th>
-                            <th scope="col">대댓글 내용</th>
-                            <th scope="col">작성날짜</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:set var="i" value="0" />
-                        <c:forEach var="list" items="${map.myRecomment}" begin="${(resultPage.currentPage-1)*10}" end="${resultPage.currentPage*10-1}">
-                            <c:set var="i" value="${ i+1 }" />
-                            <tr>
-                                <td>${list.boardCategory}
-                                </td>
-                                <td>${list.recommentText}
-                                </td>
-                                <td>
-                                        ${list.regDate}
-                                </td>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
+        <input type="hidden" id="currentPage" name="currentPage" value="${resultPage.currentPage}">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive project-list">
+                            <table class="table project-table table-centered table-nowrap table-hover table-striped">
+                                <thead>
+                                <tr>
+                                    <th scope="col">게시글 번호</th>
+                                    <th scope="col">게시글 카테고리</th>
+                                    <th scope="col">댓글 내용</th>
+                                    <th scope="col">작성날짜</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                              <c:set var="i" value="0"/>
+                                <c:forEach var="recomment" items="${list}">
+                                    <c:set var="i" value="${ i+1 }"/>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                    ${recomment.recommentNum}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                    ${recomment.boardCategory == '1 ' ? '후기글' : '우리동네 게시글'}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                    ${recomment.recommentText}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                    ${recomment.regDate}
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--  table End /////////////////////////////////////-->
+                        <c:if test="${!empty resultPage}">
+                            <nav aria-label="Page navigation example" style="display: flex;justify-content: center;">
+                                <ul class="pagination">
+                                    <li class="page-item pageUnit ${resultPage.beginUnitPage == 1?'disabled':''}"
+                                        value="${resultPage.beginUnitPage - resultPage.pageUnit}">
+                                        <a class="page-link" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+
+                                    <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}"
+                                               var="i">
+                                        <li class="page-item ${search.currentPage == i?'active':'paging'}"><a
+                                                class="page-link">${i}</a></li>
+                                    </c:forEach>
+
+                                    <li class="page-item pageUnit ${resultPage.maxPage==resultPage.endUnitPage?'disabled':''}"
+                                        value="${resultPage.beginUnitPage+resultPage.pageUnit}">
+                                        <a class="page-link" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </c:if>
+
+
+                    </div>
                 </div>
-                <!--  table End /////////////////////////////////////-->
-                <nav class="d-flex justify-content-center mt-3">
-                    <ul class="pagination">
-                        <c:if test="${ resultPage.currentPage <= resultPage.pageUnit }">
-                            <li class="page-item disabled mx-1">
-                                <
-                            </li>
-                        </c:if>
-                        <c:if test="${ resultPage.currentPage > resultPage.pageUnit }">
-                            <li class="page-item disabled mx-1">
-                                <a class="page-link" href="javascript:fncGetMyPpt('${ resultPage.currentPage-1}')">
-                                    < </a>
-                            </li>
-                        </c:if>
-                        <c:forEach var="i"  begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" step="1">
-                            <li class="page-item active mx-1"><a class="page-link" href="http://192.168.0.235:8080/myPage/getMyRecomment?userId=${user.userId}&currentPage=${i}">${i}</a></li>
-                        </c:forEach>
-
-                        <c:if test="${ resultPage.endUnitPage >= resultPage.maxPage }">
-                            <li class="page-item mx-1">
-                                >
-                            </li>
-                        </c:if>
-                        <c:if test="${ resultPage.endUnitPage < resultPage.maxPage }">
-                            <li class="page-item mx-1">
-                                <a class="page-link" href="javascript:fncGetMyPpt('${resultPage.endUnitPage+1}')">></a>
-                            </li>
-                        </c:if>
-                    </ul>
-                </nav>
             </div>
         </div>
-    </div>
-</div>
+    </form>
 </div>
 <div style="margin-bottom: 100px;">
 </div>

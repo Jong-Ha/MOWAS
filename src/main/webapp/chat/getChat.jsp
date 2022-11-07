@@ -11,6 +11,8 @@
 
         $(function () {
 
+            const tooltip = new bootstrap.Tooltip($('.send-button'))
+
             $('.listDrop').click(function () {
 
 
@@ -226,14 +228,16 @@
             background: rgb(249 249 249);
             z-index: 2;
             width: 160px;
-            height: 242px;
+            height: fit-content;
             margin-top: 37px;
-            margin-left: 475px;
             border-radius: 10px;
         }
         .dropdown-box > ul > li > a{
             font-size: 0.9rem;
             color: black;
+        }
+        .dropdown-box > ul > li > *{
+            cursor: pointer;
         }
 
     </style>
@@ -282,6 +286,11 @@
                     <li>
                         <label for="file">파일 업로드 </label>
                     </li>
+                    <c:if test="${chatNameSpace!='clubChat'}">
+                        <li>
+                            <div class="deleteChat">채팅나가기</div>
+                        </li>
+                    </c:if>
 
 
                     <c:if test="${chatNameSpace=='clubChat'}">
@@ -323,7 +332,11 @@
             <label for="chatting-input" class="form-label"></label>
             <textarea class="form-control chatting-input" id="chatting-input" rows="3"></textarea>
 
-            <button class="send-button">전송</button>
+            <button class="send-button" style="aspect-ratio: 1" data-bs-title="전송" data-bs-toggle="tooltip">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16" style="font-size: 24px">
+                    <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+                </svg>
+            </button>
 
 
         </div>
@@ -499,6 +512,7 @@
                 userId1: '${userId}',
                 userId2: '${user.userId}',
                 boardNum: '${boardNum}',
+                roomName: '${roomName}',
                 userImage1: '${userImage}',
                 userImage2: '${user.userImage}'
             },
@@ -531,10 +545,13 @@
 
                 $.each(msg, (index, item) => {
 
-                    const newItem = new LiModel(item.userId[0], item.msg, item.time, item.file, item.imgCheck, item.userImage);
-                    console.log(item)
-                    //makeLi를 실행한다.
-                    newItem.makeLi();
+                    if(item.imgCheck!==9) {
+                        const newItem = new LiModel(item.userId[0], item.msg, item.time, item.file, item.imgCheck, item.userImage);
+                        console.log(item)
+                        //makeLi를 실행한다.
+                        newItem.makeLi();
+                    }
+
                 })
             });
 
@@ -554,9 +571,11 @@
             //server에서 data를 받음
             chatSocket.off('chatting').on("chatting", (newMsg) => {
 
-                const item = new LiModel(newMsg.userId, newMsg.msg, newMsg.time, newMsg.file, newMsg.imgCheck, newMsg.userImage);
-                console.log(newMsg)
-                item.makeLi();
+                if(newMsg.imgCheck!==9){
+                    const item = new LiModel(newMsg.userId, newMsg.msg, newMsg.time, newMsg.file, newMsg.imgCheck, newMsg.userImage);
+                    console.log(newMsg)
+                    item.makeLi();
+                }
 
             })
 
@@ -618,6 +637,27 @@
                         modal.show();
 
                     }
+                })
+            })
+
+            $(".deleteChat").off('click').on("click", () => {
+
+                const data = {roomId : '${roomId}'}
+
+                chatSocket.off('deleteChat')
+                chatSocket.emit('deleteChat', data)
+                $('.chatRoom').load('/chat/chatList.jsp .chatRoom')
+                chatSocket.disconnect()
+
+            })
+
+            chatSocket.off('deleteChat').on('deleteChat', ()=>{
+                Swal.fire({
+                    title : '상대방이 채팅방을 나갔습니다',
+                    icon : 'success'
+                }).then(()=>{
+                    $('.chatRoom').load('/chat/chatList.jsp .chatRoom')
+                    chatSocket.disconnect()
                 })
             })
 

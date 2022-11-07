@@ -2,10 +2,6 @@ body {
     overflow-y:scroll;
 }
 
-.modal .modal-body::-webkit-scrollbar {
-    display: none;
-}
-
 body::-webkit-scrollbar {
     display: none;
 }
@@ -13,6 +9,10 @@ body::-webkit-scrollbar {
 .stop-scrolling {
     height: 100%;
     overflow: hidden;
+}
+
+.modal .modal-body::-webkit-scrollbar {
+    display: none;
 }
 
 .clubInfo {

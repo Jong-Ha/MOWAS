@@ -19,8 +19,18 @@
     .wap{ width: 400px; }
     tr { height:40px; }
     td { border-bottom:1px solid #CCC; font-size:12px; }
-    span { cursor:pointer }
 
+    .inputBox{
+        display: flex;
+        align-items: center;
+        margin-bottom: 25px;
+    }
+
+    .inputLabel{
+        width: 50%;
+        text-align: right;
+        padding-right: 3%;
+    }
 
     .btn-primary {
         --bs-btn-color: #000;
@@ -44,7 +54,25 @@
 let num
 let smsNum
 
+function readURL(inputSelector, outputSelector) {
+    const input = $(inputSelector)[0]
+    const output = $(outputSelector)[0]
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            output.src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        output.src = "/resources/images/proplePoto.png";
+    }
+}
+
     $(function () {
+        $('.needs-validation #file').on('change',function(){
+            readURL('.needs-validation #file','.needs-validation #preview')
+        })
+
         function lodingNum() {
         $.ajax({
             url: "/user/json/mailSender",
@@ -561,147 +589,151 @@ let smsNum
     <form class="needs-validation" novalidate enctype="multipart/form-data">
 <div style="display:flex; margin-left: 50px; margin-right: 30px">
 
-        <div style="display: inline-block; height: 330px; width: 700px; border-right: 1px solid #9e9e9e;  padding-right: 50px; padding-top: 10px;">
-             <div class="col-12" style=" display:flex ">
-                <span style="width: 50%;">아이디</span>
-                 <div class="input-group has-validation">
-                 <input type="text" class="form-control" id="addUserId" name="userId" maxLength="20" style="margin-bottom: 25px;" required>
-                 </div>
-            </div>
+        <div style="display: flex;justify-content: space-between;width: 100%">
+            <div style="width: 100%;">
+                <div class="col-12 inputBox">
+                    <div class="inputLabel">아이디</div>
+                    <div class="input-group has-validation">
+                        <input type="text" class="form-control" id="addUserId" name="userId" maxLength="20" required>
+                    </div>
+                </div>
 
-             <span id="idChk" style="display: none;">
+                <span id="idChk" style="display: none;">
                 <strong class="text-danger" style="margin-left: 40px;" >이미 가입된 아이디입니다</strong>
              </span>
 
-              <div class="col-12"  style="display:flex">
-                  <span style="width: 50%">비밀번호</span>
-                     <div class="input-group has-validation">
-                        <input type="password" class="form-control" id="addPassword" name="password" maxLength="16" placeholder="영문,숫자 혼합, 8~16글자 입력" style="margin-bottom: 25px;"required>
-                     </div>
-              </div>
+                <div class="col-12 inputBox">
+                    <div class="inputLabel">비밀번호</div>
+                    <div class="input-group has-validation">
+                        <input type="password" class="form-control" id="addPassword" name="password" maxLength="16" placeholder="영문,숫자 혼합, 8~16글자 입력" required>
+                    </div>
+                </div>
 
-             <span id="passwordChk" style="display: none;">
+                <span id="passwordChk" style="display: none;">
                 <strong class="text-danger" style="margin-left: 20px;">영문,숫자 혼합, 8~16글자로 입력해주세요</strong>
              </span>
 
-             <div class="col-12" style="display:flex">
-               <span style="width: 50%;">비밀번호 확인</span>
-                 <div class="input-group has-validation">
-                  <input type="password" class="form-control" id="password2" name="password2" maxLength="16" style="margin-bottom: 25px;" required>
-                  </div>
-             </div>
+                <div class="col-12 inputBox">
+                    <div class="inputLabel">비밀번호 확인</div>
+                    <div class="input-group has-validation">
+                        <input type="password" class="form-control" id="password2" name="password2" maxLength="16" required>
+                    </div>
+                </div>
 
-            <span id="password2Chk" style="display: none;">
+                <span id="password2Chk" style="display: none;">
                 <strong class="text-danger"  style="margin-left: 40px;" >비밀번호가 틀렸습니다</strong>
            </span>
 
-             <div class="col-12" style="display:flex">
-               <span style="width: 50%;">이름</span>
-                     <div class="input-group has-validation">
-                       <input type="text" class="form-control" id="userName" name="userName"  style="margin-bottom: 25px;" required>
-                      </div>
-             </div>
-
-          <div class="col-12" style="display:flex">
-               <span style="width: 50%;">주민등록번호</span>
-                <div class="input-group has-validation">
-                   <input type="text" class="form-control" id="rrd" name="rrd"  placeholder="'-'포함하여 작성" style="margin-bottom: 25px;" required>
+                <div class="col-12 inputBox">
+                    <div class="inputLabel">이름</div>
+                    <div class="input-group has-validation">
+                        <input type="text" class="form-control" id="userName" name="userName" required>
+                    </div>
                 </div>
-          </div>
-             <span id="rrdChk" style="display: none;" >
+
+                <div class="col-12 inputBox">
+                    <div class="inputLabel">주민등록번호</div>
+                    <div class="input-group has-validation">
+                        <input type="text" class="form-control" id="rrd" name="rrd"  placeholder="'-'포함하여 작성" required>
+                    </div>
+                </div>
+                <span id="rrdChk" style="display: none;" >
                  <strong class="text-danger"  style="margin-left: 40px;">이미 가입한 회원입니다</strong>
               </span>
 
 
-        </div>
-
-
-
-
-
-        <div style="display: inline-block; height: 300px; width: 600px; padding-top: 10px;">
-
-            <div  >
-                <span >성별</span><label for="male" class="form-label">
-                <input type="radio" class="form-check-input" id="male" name="gender" value="남자" style="margin-left: 50px;" required>남자</label>
-                <label for="female" class="form-label">
-                    <input type="radio" class="form-check-input" id="female" name="gender" value="여자" style="margin-left: 60px;" required>여자</label>
-                <span style="margin-right: 200px;"></span>
             </div>
+            <div style="width: 100%;">
 
-
-            <h6>이메일 또는 휴대폰번호 인증하기(택1)</h6>
-
-<div>
-        <div class="col-12" style="display:flex; align-items: center;">
-            <div style="width: 130px; float: left;">
-          <label for="CheckEamil" class="form-label"><input type="radio" style="float: left;" class="form-check-input" id="CheckEamil" name="email&phone" required>
-            이메일</label>
-            </div>
-            <div>
-                <div style="display: flex; ">
-          <input type="email" class="form-control userEmail" id="email" name="email" style="margin-bottom: 25px; width: 250px;" >
-                <button  type="button" class=" btn btn-primary btn-sm emailKey" style="margin-bottom: 25px; width: 130px; margin-left: 10px;">인증번호 요청</button>
-                </div>
-                <span class=" emailYC" style="display: none; margin-right: 192px;">
-                <strong class="text-danger" >인증번호가 발송되었습니다</strong>
-                    </span>
-                <div style="display: flex">
-          <input type="text" class="form-control CheckEmailKey" placeholder="인증번호 입력"  style="margin-bottom: 25px; width: 250px;">
                 <div>
-          <button type="button" class="btn btn-primary btn-sm CheckEmailKey2" style="margin-bottom: 25px; width: 130px; margin-left: 10px;" >인증 확인</button>
+                    <span>성별</span><label for="male" class="form-label">
+                    <input type="radio" class="form-check-input" id="male" name="gender" value="남자" style="margin-left: 50px;" required>남자</label>
+                    <label for="female" class="form-label">
+                        <input type="radio" class="form-check-input" id="female" name="gender" value="여자" style="margin-left: 60px;" required>여자</label>
+                    <span style="margin-right: 200px;"></span>
                 </div>
 
-                </div>
-        </div>
-        </div>
-            <div style="display: flex">
-          <span class="emailInfor" style="display: none; margin-left: 130px;">
-                <strong class="text-danger" >인증번호가 틀렸습니다</strong>
-              </span>
 
-          <span class="emailInforYes" style="display: none; margin-left: 130px;">
-              <strong class="text-danger" > 인증되었습니다</strong>
-              </span>
-            </div>
+                <h6>이메일 또는 휴대폰번호 인증하기(택1)</h6>
 
-
-            <input type="hidden" id="randomEmail" name="randomEmail" >
-
-    <div>
-            <div style="display: flex; align-items: center;">
-          <div style="width: 130px;">
-          <label for="CheckPhone" class="form-label"><input type="radio" class="form-check-input" id="CheckPhone" name="email&phone" required>
-            휴대폰번호</label>
-          </div>
                 <div>
-                <div style="display: flex">
-          <input type="tel" class="form-control userPhone" name="phone" placeholder="'-'포함하여 작성" style="margin-bottom: 25px; width: 250px;" >
-                <button type="button" class="btn btn-primary btn-sm smsKey" style="margin-bottom: 25px; width: 130px; margin-left: 10px;">인증번호 요청</button>
-                </div>
-                    <span class="smsYC" id="smsYC" style="display: none; margin-right: 192px;">
-                     <strong class="text-danger" > 인증번호가 발송되었습니다</strong>
-                      </span>
-                <div style="display: flex">
-          <input type="text" class="form-control" id="CheckSms" placeholder="인증번호 입력" style="margin-bottom: 25px; width: 250px;">
-                <div>
+                    <div class="col-12" style="display:flex; align-items: center;">
+                        <div style="width: 130px; float: left;">
+                            <label for="CheckEamil" class="form-label"><input type="radio" style="float: left;" class="form-check-input" id="CheckEamil" name="email&phone" required>
+                                이메일</label>
+                        </div>
+                        <div>
+                            <div style="display: flex; ">
+                                <input type="email" class="form-control userEmail" id="email" name="email" style="margin-bottom: 25px; width: 250px;" >
+                                <button  type="button" class=" btn btn-primary btn-sm emailKey" style="margin-bottom: 25px; width: 130px; margin-left: 10px;">인증번호 요청</button>
+                            </div>
+                            <span class=" emailYC" style="display: none; margin-right: 192px;">
+                                <strong class="text-danger" >인증번호가 발송되었습니다</strong>
+                            </span>
+                            <div style="display: flex">
+                                <input type="text" class="form-control CheckEmailKey" placeholder="인증번호 입력"  style="margin-bottom: 25px; width: 250px;">
+                                <div>
+                                    <button type="button" class="btn btn-primary btn-sm CheckEmailKey2" style="margin-bottom: 25px; width: 130px; margin-left: 10px;" >인증 확인</button>
+                                </div>
 
-          <button type="button" class="btn btn-primary btn-sm CheckSmsKey" style="margin-bottom: 25px; width: 130px; margin-left: 10px;">인증 확인</button>
-                </div>
-                </div>
-          <span class="smsNo" style="display: none; margin-right: 224px;">
-              <strong class="text-danger" >인증번호가 틀렸습니다</strong>
-              </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex">
+                        <span class="emailInfor" style="display: none; margin-left: 130px;">
+                            <strong class="text-danger" >인증번호가 틀렸습니다</strong>
+                        </span>
 
-          <span class="smsYes" style="display: none; margin-right: 274px;">
-               <strong class="text-danger" > 인증되었습니다</strong>
-              </span>
+                        <span class="emailInforYes" style="display: none; margin-left: 130px;">
+                            <strong class="text-danger" > 인증되었습니다</strong>
+                        </span>
+                    </div>
+
+
+                    <input type="hidden" id="randomEmail" name="randomEmail" >
+
+                    <div>
+                        <div style="display: flex; align-items: center;">
+                            <div style="width: 130px;">
+                                <label for="CheckPhone" class="form-label"><input type="radio" class="form-check-input" id="CheckPhone" name="email&phone" required>
+                                    휴대폰번호</label>
+                            </div>
+                            <div>
+                                <div style="display: flex">
+                                    <input type="tel" class="form-control userPhone" name="phone" placeholder="'-'포함하여 작성" style="margin-bottom: 25px; width: 250px;" >
+                                    <button type="button" class="btn btn-primary btn-sm smsKey" style="margin-bottom: 25px; width: 130px; margin-left: 10px;">인증번호 요청</button>
+                                </div>
+                                <span class="smsYC" id="smsYC" style="display: none; margin-right: 192px;">
+                                    <strong class="text-danger" > 인증번호가 발송되었습니다</strong>
+                                </span>
+                                <div style="display: flex">
+                                    <input type="text" class="form-control" id="CheckSms" placeholder="인증번호 입력" style="margin-bottom: 25px; width: 250px;">
+                                    <div>
+
+                                        <button type="button" class="btn btn-primary btn-sm CheckSmsKey" style="margin-bottom: 25px; width: 130px; margin-left: 10px;">인증 확인</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="smsNo" style="display: none; margin-right: 224px;">
+                            <strong class="text-danger" >인증번호가 틀렸습니다</strong>
+                        </span>
+
+                        <span class="smsYes" style="display: none; margin-right: 274px;">
+                            <strong class="text-danger" > 인증되었습니다</strong>
+                        </span>
+                    </div>
+                </div>
+
             </div>
-            </div>
-    </div>
-      </div>
-
         </div>
+
+
+
+
+
 </div>
 
 
@@ -860,8 +892,8 @@ let smsNum
 
 
       <div class="col-12" style="display:inline-block;">
-        <label for="file" class="form-label">회원 사진 등록 *선택사항*</label><br>
-        <input type="file" style="border: 1px solid;" id="file" name="file" >
+        <br><label for="file" class="form-label"><img id="preview" src="/resources/images/proplePoto.png" alt="userImage" style="height: 100px;width: 100px;border-radius: 50%;object-fit: cover"></label><br>
+        <input type="file" style="border: 1px solid;" id="file" name="file">
       </div>
 
 

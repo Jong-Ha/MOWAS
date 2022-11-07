@@ -25,7 +25,7 @@
 
         var boardCategory = $(".boardCategory").val()
 
-        $(".get").on("click", function () {
+        $(".get").off("click").on("click", function () {
             var villBoardNum = $(this).parents(".cardbox").find(".villNum").val();
 
             console.log(villBoardNum);
@@ -33,7 +33,7 @@
         })
 
 
-        $(".delete").on("click", function () {
+        $(".delete").off("click").on("click", function () {
             var boardNum = $(this).parents(".cardbox").find(".villNum").val();
 
             const swalWithBootstrapButtons = Swal.mixin({
@@ -75,7 +75,7 @@
 
 
         /*좋아요*/
-        $(".likeButton").on("click", function () {
+        $(".likeButton").off("click").on("click", function () {
             var userId = $(".userId").val();
 
             console.log(userId);
@@ -119,7 +119,7 @@
 
         /*modal 창 오픈*/
 
-        $(".villBoardSubmit").on("click", function () {
+        $(".villBoardSubmit").off("click").on("click", function () {
             var userId = '${user.userId}';
 
 
@@ -239,7 +239,7 @@
         });
 
 
-        $(".update").on("click", function () {
+        $(".update").off("click").on("click", function () {
             var boardNum = $(this).parents(".cardbox").find(".villNum").val();
 
             $(".updateVillBoardNum").val(boardNum)
@@ -267,7 +267,7 @@
             });
         });
 
-        $(".villBoardUpdateSubmit").on("click", function () {
+        $(".villBoardUpdateSubmit").off("click").on("click", function () {
 
 
             var updateVillBoardNum = $(".updateVillBoardNum").val();
@@ -380,12 +380,12 @@
         })
 
 
-        $(".close").on("click", function () {
+        $(".close").off("click").on("click", function () {
             window.close();
         });
 
 
-        $(".report").on("click", function () {
+        $(".report").off("click").on("click", function () {
 
             if (userId === '' || userId === null) {
 
@@ -417,11 +417,11 @@
             }
         })
 
-        $(".user_manu").on("click", function () {
+        $(".user_manu").off("click").on("click", function () {
             $(this).parents(".card-top").find(".user_hidden_manu").slideToggle();
         })
 
-        $(".searchBtn").on("click", function () {
+        $(".searchBtn").off("click").on("click", function () {
 
             $(".currentPage").val(1);
 
@@ -432,6 +432,8 @@
 
 
     $(function () {
+
+        lodingVillBoard()
 
         /*무한 페이징*/
 
@@ -519,7 +521,7 @@
                                 '                                            <li class="getClub">모임 방문하기</li>'
                             if ('${user.userId}' === item.userId) {
                                 str +=
-                                    '<li data-bs-toggle="modal" data-bs-target="#exampleModal" class="update">수정</li>' +
+                                    '<li data-bs-toggle="modal" data-bs-target="#exampleModal2" class="update">수정</li>' +
                                     '<li class="delete">삭제</li>'
                             }
 
@@ -897,7 +899,7 @@
                                 <div class="user_hidden_manu" style="display: none">
                                     <ul class=" shadow-lg">
                                         <c:if test="${user.userId eq villBoard.userId}">
-                                            <li data-bs-toggle="modal" data-bs-target="#exampleModal" class="update">
+                                            <li data-bs-toggle="modal" data-bs-target="#exampleModal2" class="update">
                                                 수정
                                             </li>
                                             <li class="delete">
@@ -914,11 +916,11 @@
                         <div id="carouselExampleSlidesOnly " class="carousel slide potoBox get" data-bs-ride="carousel"
                              style="cursor: pointer">
 
-                            <div class="carousel-inner get">
+                            <div class="carousel-inner get" >
                                 <c:forEach var="File" items="${villBoard.file}">
-                                    <div class="carousel-item active" data-bs-interval="2000">
+                                    <div class="carousel-item active" data-bs-interval="2000" style="height: 100%;">
                                         <img class="d-block w-100  poto" width="100%" height="100%"
-                                             src="/resources/villBoardFiles${File.fileName }" alt="any">
+                                             src="/resources/${File.fileName }" alt="any">
                                     </div>
                                 </c:forEach>
                             </div>
@@ -1049,7 +1051,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel2"> 우리 동네 게시글 작성 </h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel2"> 우리 동네 게시글 수정 </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

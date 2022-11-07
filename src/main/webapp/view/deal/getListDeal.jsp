@@ -119,11 +119,18 @@
             });
         })
 
-        function numberWithCommas(x) {
+       $(function(){
+           // var price=document.getElementById("dealPrice");
+           // price.innerHtml=$('#dealPrice').val().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+           // alert(price)
 
-            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+           $.each($('.dealPrice'),function(index,item){
+               // alert($(item).html())
+               // alert($(item).html().toString())
+               $(item).html($(item).html().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
+           })
 
-        }
+       })
 
 
         //무한스크롤
@@ -191,6 +198,7 @@
                             $.each(re.list, function (index, item) {
                                 console.log(index)
                                 console.log(item)
+                                var e=item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                                 let html = '<div class="cardbox">' +
                                     '<div class="col dealBox">' +
                                     '<input type="hidden" name="dealBoardNum" class="dealBoardNum" value="' + item.dealBoardNum + '">' +
@@ -218,7 +226,7 @@
                                 html += '</div>' +
                                     '<div class="cardM " style="display: flex; padding: 10px 0 0 10px; height: 120px; ">' +
                                     ' <div class="dealinfo cartFont" style="flex: 1; width: 50%;">' +
-                                    '<p class="allFlex" style="font-size: 1.3em; font-weight: bold"> ' + item.price + '원 </p>' +
+                                    '<p class="allFlex" style="font-size: 1.3em; font-weight: bold"> ' + e + '원 </p>' +
                                     ' <p class="allFlex" id="demo" style="font-size: 1.3em; font-weight: bold">&nbsp;&nbsp;</p>' +
                                     '<p class="allFlex" style="font-size: 1em"> 좋아요 ' + item.likeCount + ' ∙ 조회수 ' + item.viewCount + '</p>' +
                                     '   </div>' +
@@ -359,6 +367,7 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 50px;
+            margin-top: 20px;
 
         }
 
@@ -440,7 +449,7 @@
         }
 
         .typing {
-            width: 9ch;
+            width: 14ch;
             animation: typing 0.9s steps(22), blink .5s step-end infinite alternate;
             white-space: nowrap;
             overflow: hidden;
@@ -589,6 +598,12 @@
         .searchbox {
             display: flex;
         }
+
+        .dealTab{
+            margin: 0 25px;
+            width: 110px;
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -608,7 +623,7 @@
 <!-- Example Code -->
 <jsp:include page="/layout/toolbar.jsp"/>
 <%--<jsp:include page="/view/deal/history.jsp"/>--%>
-<img src="/resources/uploadFiles/dealBoardFiles/중고거래.jpg"
+<img class="shadow-lg" src="/resources/uploadFiles/dealBoardFiles/중고거래.jpg"
      style="height: 500px;border-radius: 10px;  width: 1600px;">
 <div class="container">
 
@@ -616,7 +631,7 @@
         <div class="typing">
             <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
                     background-image: linear-gradient(transparent 60%, #F8CD07 40%);">
-                중고 거래</h4>
+                중고거래 게시판</h4>
         </div>
     </div>
 
@@ -631,15 +646,15 @@
         <nav class="navbar navbar-expand-lg deallistBox">
 
             <div>
-                <div class="underline yellow allList">전체</div>
+                <div class="underline yellow allList dealTab">전체</div>
             </div>
 
             <div>
-                <div class="underline yellow deallist">판매</div>
+                <div class="underline yellow deallist dealTab">판매</div>
             </div>
 
             <div>
-                <div class="underline yellow dealrequestlist">판매 요청</div>
+                <div class="underline yellow dealrequestlist dealTab">판매 요청</div>
             </div>
 
         </nav>
@@ -782,7 +797,7 @@
                                     <%--                            </div>--%>
 
                                 <div class="dealinfo cartFont" style="flex: 1; width: 50%;">
-                                    <p class="allFlex" id="dealPrice"style="font-size: 1.3em; font-weight: bold"> ${deal.price} 원 </p>
+                                    <p class="allFlex dealPrice" id="dealPrice"style="font-size: 1.3em; font-weight: bold" value="${deal.price}"> ${deal.price} 원 </p>
                                     <p class="allFlex" id="demo"
                                        style="font-size: 1.3em; font-weight: bold">&nbsp;&nbsp;
                                     </p>

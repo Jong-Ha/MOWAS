@@ -33,36 +33,25 @@ public class ClubController {
     private ClubCalendarService clubCalendarService;
 
     @Autowired
-    @Qualifier("userServiceImpl")
-    private UserService userService;
-
-    @Autowired
     @Qualifier("myPageServiceImpl")
     private MyPageService myPageService;
 
     @Value("#{commonProperties['pageSize']}")
-    int pageSize;
+    private int pageSize;
 
     @Value("#{commonProperties['pageUnit']}")
-    int pageUnit;
+    private int pageUnit;
 
     @Value("#{commonProperties['resourcesPath']}")
-    String resourcesPath;
+    private String resourcesPath;
 
     @Value("#{commonProperties['clubImagePath']}")
-    String clubImagePath;
+    private String clubImagePath;
 
     @Value("#{commonProperties['clubMasterBoardPath']}")
-    String clubMasterBoardPath;
+    private String clubMasterBoardPath;
 
     public ClubController() {
-    }
-
-    @RequestMapping(value = "login")
-    public String login(HttpSession session, @RequestParam("userId") String userId) throws Exception {
-        User user = userService.getUser(userId);
-        session.setAttribute("user", user);
-        return "forward:/club/listClub";
     }
 
     @RequestMapping(value = "addClub", method = RequestMethod.GET)

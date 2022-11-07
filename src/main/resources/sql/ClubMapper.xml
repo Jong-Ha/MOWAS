@@ -402,10 +402,10 @@
         UPDATE club_user
         <set>
             cluber_status =
-            <if test="result=='accept'">'4',
-                club_reg_date = SYSDATE
+            <if test="result=='accept'">'4'
             </if>
-            <if test="result=='reject'">'3'</if>
+            <if test="result=='reject'">'3'</if>,
+            club_reg_date = SYSDATE
         </set>
         <where>
             club_user_num = #{clubUserNum}

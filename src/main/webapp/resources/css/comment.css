@@ -125,7 +125,7 @@ ul li {
     position: absolute;
     z-index: 2;
     margin-top: -14px;
-    margin-left: 464px;
+    margin-left: -100px;
 }
 
 .user_hidden_manu > ul {
@@ -166,7 +166,7 @@ ul li {
     margin-top: 90px;
     background: #fff;
     padding: 20px;
-    width: 100%;
+    width: 87%;
 }
 
 .commentadd {
@@ -176,10 +176,7 @@ ul li {
 }
 
 .addcomment {
-    -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-    -moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-    -ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-    -o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    cursor: pointer;
     transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
     display: block;
     margin: 20px auto;
@@ -188,13 +185,15 @@ ul li {
     border-radius: 4px;
     padding: 20px 30px;
     color: rgba(30, 22, 54, 0.6);
-    box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+    font-size: 1.3em;
+    font-weight: bold;
+    box-shadow: #000000 0 0px 0px 2px inset;
 }
 
 
 .addcomment:hover {
-    color: rgba(255, 255, 255, 0.85);
-    box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+    color: rgba(30, 22, 54, 0.6);
+    box-shadow: #f8cd07b3 0 0px 0px 40px inset;
 }
 
 .allComment {

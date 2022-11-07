@@ -24,6 +24,7 @@ public class VilBoard {
     private List<File> file;
     private String userImg;
     private String userVillCode;
+    private String likeCheck;
 
 }
 

@@ -123,7 +123,7 @@
     <div class="typing">
         <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
                     background-image: linear-gradient(transparent 60%, #F8CD07 40%);">
-            커뮤니티 페이지</h4>
+            커뮤니티 게시판</h4>
     </div>
 </div>
 

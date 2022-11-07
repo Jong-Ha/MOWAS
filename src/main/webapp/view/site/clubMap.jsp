@@ -69,13 +69,14 @@
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
             mapOption = {
               center: new kakao.maps.LatLng(
-                      ${empty param.searchLat?empty latitude?'37.4994558002948':latitude:param.searchLat},
-                      ${empty param.searchLng?empty longitude?'127.029020621527':longitude:param.searchLng}
+                      ${empty param.searchLat?empty longitude?'37.4994558002948':longitude:param.searchLat},
+                      ${empty param.searchLng?empty latitude?'127.029020621527':latitude:param.searchLng}
               ), // 지도의 중심좌표
               level: 3 // 지도의 확대 레벨
             };
 
     var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+    console.log(map)
 
     // 지도를 클릭한 위치에 표출할 마커입니다
     var marker = new kakao.maps.Marker({
@@ -106,12 +107,11 @@
 
     });
 
-    getClubVilCode(${empty param.searchLng?empty longitude?'127.029020621527':longitude:param.searchLng}, ${empty param.searchLat?empty latitude?'37.4994558002948':latitude:param.searchLat})
+    getClubVilCode(${empty param.searchLng?empty latitude?'127.029020621527':latitude:param.searchLng}, ${empty param.searchLat?empty longitude?'37.4994558002948':longitude:param.searchLat})
 
     // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
     // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다
     // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
     map.relayout();
-
   }
 </script>

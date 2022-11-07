@@ -115,6 +115,7 @@
             userId1: '${userId}',
             userId2: '${user.userId}',
             boardNum: '${boardNum}',
+            roomName: '${roomName}',
             userImage1: '${userImage}',
             userImage2: '${user.userImage}'
         },
@@ -166,6 +167,9 @@
                         chatter = item.users[0].userId
                         roomImage = item.users[0].userImage
                     }
+                    if(item.chatCategory === 'dealChat'){
+                        chatter = item.roomName;
+                    }
                 }
 
                 var chatList = ' <div class="card chatBox shadow-lg" style="width: 90%">' +
@@ -176,9 +180,9 @@
                     '<img class="bd-placeholder-img img-fluid rounded-start poto" src="/resources/'+roomImage+'"'+
                     ' alt="any" style="width: 100%;object-fit: cover;border-radius: 5px;">' +
                     '</div>' +
-                    '<div class="col-md-9 chatText">' +
+                    '<div class="col-md-9">' +
                     '<div class="card-body " >' +
-                    '<h5 class="card-title" style="height: 50%;display: flex;align-items: center;padding-left: 10px;">' + chatter + '</h5>' +
+                    '<h5 class="card-title text-truncate" style="height: 50%;padding-left: 10px;max-width: 100%">' + chatter + '</h5>' +
                     '<div style="display: flex;justify-content: space-between;align-items: center;padding-left: 10px;">'+
                     '<div class="card-text lastchatText text-truncate" style="max-width: 70%"><small>&nbsp;</small></div>'+
                     '<div class="card-text chatTime"><small class="text-muted" style="width: 30%">&nbsp;</small></div>'+

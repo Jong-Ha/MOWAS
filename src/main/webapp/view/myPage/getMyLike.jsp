@@ -214,7 +214,6 @@
     }
 
     .wrapper {
-        height: 13ch;
         display: grid;
         place-items: center;
     }
@@ -249,7 +248,7 @@
     $(function(){
         var userId = $(".myPageUserId").val();
     $(".getMyLike").on("click", function (){
-        alert('user'+userId)
+        // alert('user'+userId)
         self.location="/myPage/getMyLike?userId="+userId;
     })
         $(".getMyCbRvLike").on("click", function (){
@@ -268,6 +267,9 @@
 
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
+
+<hr>
+<div class="container">
 <div class="tabBox">
     <span class="tabBtn getMyLike" >좋아요한 우리동네 게시글</span>
     <span>|</span>
@@ -395,9 +397,10 @@
 
     </div>
 </c:forEach>
+
+</div>
 <div style="margin-bottom: 100px;">
 </div>
-
 <jsp:include page="/layout/chatIcon.jsp"/>
 <jsp:include page="/layout/footer.jsp"/>
 </body>

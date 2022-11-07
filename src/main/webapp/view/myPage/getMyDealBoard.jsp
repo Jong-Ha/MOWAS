@@ -30,7 +30,6 @@
     }
 
 
-
     /*.searchBox {*/
     /*    margin: 20px;*/
     /*}*/
@@ -444,7 +443,6 @@
     }
 
     .wrapper {
-        height: 13ch;
         display: grid;
         place-items: center;
     }
@@ -522,7 +520,6 @@
     }
 
     .wrapper {
-        height: 13ch;
         display: grid;
         place-items: center;
     }
@@ -556,11 +553,12 @@
         align-items: center;
         justify-content: space-around;
     }
-    .pagination li{
+
+    .pagination li {
         cursor: default;
     }
 
-    .pagination .paging{
+    .pagination .paging {
         cursor: pointer;
     }
 
@@ -569,23 +567,28 @@
         align-items: center;
     }
 
-    .listDeal td{
+    .listDeal td {
         cursor: pointer;
         vertical-align: middle;
     }
+
     /* Bootstrap 수정 */
     .table > thead {
         background-color: #b3c6ff;
     }
+
     .table > thead > tr > th {
         text-align: center;
     }
+
     .table-hover > tbody > tr:hover {
         background-color: #e6ecff;
     }
+
     .table > tbody > tr > td {
         text-align: center;
     }
+
     .table > tbody > tr > #title {
         text-align: left;
     }
@@ -622,7 +625,7 @@
         })
 
 
-        $('.cardbox').each(function (index,item) {
+        $('.cardbox').each(function (index, item) {
             var address = $(item).find('.villCode').val();
             const myArray = address.split(" ");
             console.log(index)
@@ -637,13 +640,13 @@
 
         })
 
-    let check = true;
-    //각 모임으로 이동
-    $(".dealBox").on('click', function (e) {
-        if (check) {
-            location.href = "/deal/getDeal/" + $(this).find('[name="dealBoardNum"]').val()
-        }
-    })
+        let check = true;
+        //각 모임으로 이동
+        $(".dealBox").on('click', function (e) {
+            if (check) {
+                location.href = "/deal/getDeal/" + $(this).find('[name="dealBoardNum"]').val()
+            }
+        })
     })
 </script>
 <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
@@ -654,44 +657,45 @@
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
 <hr>
-<div class="container" style="width: 1320px;">
-<div class="tabBox">
-    <span class="tabBtn getMyVillBoard">우리동네 게시글</span>
-    <span>|</span>
-    <span class="tabBtn getMyCbReviewBoard">모임 일정 후기 게시글</span>
-    <span>|</span>
-    <span class="tabBtn getMyDealBoard">판매/판매요청 게시글</span>
-</div>
+<div class="container">
+    <div class="tabBox">
+        <span class="tabBtn getMyVillBoard">우리동네 게시글</span>
+        <span>|</span>
+        <span class="tabBtn getMyCbReviewBoard">모임 일정 후기 게시글</span>
+        <span>|</span>
+        <span class="tabBtn getMyDealBoard">판매/판매요청 게시글</span>
+    </div>
 
 
-<hr/>
-<h4>판매/판매요청 게시글</h4>
-<hr/>
+    <hr/>
+    <h4>판매/판매요청 게시글</h4>
+    <hr/>
 
-<div class="listDeal">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="table-responsive project-list" style="border-radius: 5px;">
-                        <table class="table project-table table-centered table-nowrap table-hover table-striped">
-                            <thead>
-                            <tr>
-                                <th scope="col" style="width: 20%;">거래명</th>
-                                <th scope="col" style="width: 10%;">상품명</th>
-                                <th scope="col" style="width: 10%">가격</th>
-                                <th scope="col" style="width: 20%">상품설명</th>
-                                <th scope="col" style="width: 10%">판매구분</th>
-                                <th scope="col" style="width: 10%;">작성일</th>
-                                <th scope="col" style="width: 10%;">거래상태</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <c:set var="i" value="0"/>
-                                    <c:forEach var="list" items="${map.dealBoard}">
+    <div class="listDeal">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive project-list" style="border-radius: 5px;">
+                            <table class="table project-table table-centered table-nowrap table-hover table-striped">
+                                <thead>
+                                <tr>
+                                    <th scope="col" style="width: 20%;">거래명</th>
+                                    <th scope="col" style="width: 10%;">상품명</th>
+                                    <th scope="col" style="width: 10%">가격</th>
+                                    <th scope="col" style="width: 20%">상품설명</th>
+                                    <th scope="col" style="width: 10%">판매구분</th>
+                                    <th scope="col" style="width: 10%;">작성일</th>
+                                    <th scope="col" style="width: 10%;">거래상태</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:set var="i" value="0"/>
+                                <c:forEach var="list" items="${map.dealBoard}">
                                     <tr class="dealBox">
-                                        <input type="hidden" name="dealBoardNum" class="dealBoardNum" value="${list.dealBoardNum}">
-                                                            <input type="hidden" name="villCode" class="villCode" value="${list.villCode}">
+                                        <input type="hidden" name="dealBoardNum" class="dealBoardNum"
+                                               value="${list.dealBoardNum}">
+                                        <input type="hidden" name="villCode" class="villCode" value="${list.villCode}">
                                         <td>${list.dealTitle}</td>
                                         <td>${list.productName}</td>
                                         <td>${list.price}</td>
@@ -710,31 +714,36 @@
                                     </tr>
                                 </c:forEach>
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--  table End /////////////////////////////////////-->
+
+                        <c:if test="${!empty list}">
+                            <nav aria-label="Page navigation example" style="display: flex;justify-content: center;">
+                                <ul class="pagination">
+                                    <li class="page-item pageUnit ${resultPage.beginUnitPage==1?'disabled':''}"
+                                        value="${resultPage.beginUnitPage-resultPage.pageUnit}">
+                                        <a class="page-link" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}"
+                                               var="i">
+                                        <li class="page-item ${search.currentPage==i?'active':'paging'}"><a
+                                                class="page-link">${i}</a></li>
+                                    </c:forEach>
+                                    <li class="page-item pageUnit ${resultPage.maxPage==resultPage.endUnitPage?'disabled':''}"
+                                        value="${resultPage.beginUnitPage+resultPage.pageUnit}">
+                                        <a class="page-link" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </c:if>
+
                     </div>
-                    <!--  table End /////////////////////////////////////-->
-
-                    <c:if test="${!empty list}">
-                        <nav aria-label="Page navigation example" style="display: flex;justify-content: center;">
-                            <ul class="pagination">
-                                <li class="page-item pageUnit ${resultPage.beginUnitPage==1?'disabled':''}" value="${resultPage.beginUnitPage-resultPage.pageUnit}">
-                                    <a class="page-link" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" var="i">
-                                    <li class="page-item ${search.currentPage==i?'active':'paging'}"><a class="page-link">${i}</a></li>
-                                </c:forEach>
-                                <li class="page-item pageUnit ${resultPage.maxPage==resultPage.endUnitPage?'disabled':''}" value="${resultPage.beginUnitPage+resultPage.pageUnit}">
-                                    <a class="page-link" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </c:if>
-
                 </div>
             </div>
         </div>

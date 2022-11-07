@@ -72,7 +72,8 @@
 
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
-
+<hr>
+    <div class="container">
 
 
 
@@ -168,7 +169,7 @@
         </ul>
     </nav>
 </div>
-
+    </div>
 </form>
 <div style="margin-bottom: 100px;">
 </div>

@@ -24,19 +24,40 @@ public class MongoDbDaoImpl implements MongoDbDao{
         Map<String, Object> room = new HashMap<>();
         List<Map<String, Object>> users = new ArrayList<>();
         Map<String, Object> user = new HashMap<>();
+        String roomId = UUID.randomUUID().toString();
         user.put("userId",userId);
         user.put("userImage",userImage.replaceAll("\\\\","/"));
         user.put("regDate",String.valueOf(new Date().getTime()));
         users.add(user);
         room.put("users",users);
         room.put("roomImage",clubImage.replaceAll("\\\\","/"));
-        room.put("roomId", UUID.randomUUID().toString());
+        room.put("roomId", roomId);
         room.put("chatCategory","clubChat");
         room.put("roomName",clubName);
         room.put("boardNum",clubNum);
         System.out.println(room);
 
         mongoTemplate.insert(room,"rooms");
+
+        Map<String, Object> msg = new HashMap<>();
+        Date rtime = new Date();
+        String realTime = "";
+        if(rtime.getHours()>12){
+            realTime+=rtime.getHours()-12;
+        }
+        realTime+=":"+rtime.getMinutes()+" ";
+        if(rtime.getHours()>12){
+            realTime+="PM";
+        }else {
+            realTime+="AM";
+        }
+        msg.put("roomId",roomId);
+        msg.put("msg","새로운 채팅방입니다!");
+        msg.put("time",realTime);
+        msg.put("rtime",String.valueOf(rtime.getTime()));
+        msg.put("imgCheck",9);
+        System.out.println(msg);
+        mongoTemplate.save(msg, "msgs");
     }
 
     @Override

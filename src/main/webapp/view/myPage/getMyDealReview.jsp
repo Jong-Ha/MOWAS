@@ -107,7 +107,7 @@
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
 <hr>
-<div class="container" style="width: 1320px;">
+<div class="container">
 <div class="tabBox">
     <span class="tabBtn" onclick="javascript:location.href='/myPage/getMyDeal?userId=${user.userId}';">완료한 거래 목록</span>
     <span>|</span>
@@ -118,7 +118,7 @@
 <hr/>
 <div class="goods_wrapper">
     <div class="tit_month">
-        <h4>2022.11</h4>
+
     </div>
 <c:set var="i" value="0" />
 <c:forEach var="list" items="${map.getMyDeal}">
@@ -139,8 +139,9 @@
         </div>
     </div>
         </c:forEach>
-    <div>
+
 <hr>
+</div>
         <div style="margin-bottom: 100px;">
         </div>
     <jsp:include page="/layout/chatIcon.jsp"/>

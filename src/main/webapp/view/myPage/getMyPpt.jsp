@@ -69,6 +69,9 @@
 
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
+    <hr>
+    <div class="container">
+
     <div class="tabBox">
         <span class="tabBtn getMyPpt" >내 벌점 조회</span>
         <span>|</span>
@@ -156,6 +159,7 @@
                 </c:if>
             </ul>
         </nav>
+    </div>
     </div>
 
 </form>

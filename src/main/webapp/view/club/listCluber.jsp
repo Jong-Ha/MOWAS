@@ -1,6 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
+<script>
+    $(function(){
+        $.each($('.tooltipList'),function(i,e){
+            const tooltip = new bootstrap.Tooltip(e)
+        })
+    })
+</script>
 <div class="modal-header">
     <input type="hidden" id="clubNum" value="${clubNum}">
     <a class="navbar-brand back-btn">
@@ -15,22 +22,25 @@
 <div class="modal-body">
     <c:if test="${currentCluber.cluberStatus=='5'||currentCluber.cluberStatus=='6'}">
         <div class="buttonClass">
-            <div class="badge bg-primary text-wrap listCluberApply" data-bs-target="#listCluberApply"
-                 data-bs-toggle="modal">가입 신청 조회
+            <div class="badge bg-primary text-wrap listCluberApply tooltipList" data-bs-target="#listCluberApply" data-bs-title="가입 신청 조회"
+                 data-bs-toggle="modal">
+                <img src="/resources/images/cluberApply.png" style="width: 50px;height: 50px;">
             </div>
-            <div class="badge bg-primary text-wrap addClubBlacklist" data-bs-target="#addClubBlacklist"
-                 data-bs-toggle="modal">블랙리스트 등록
+            <div class="badge bg-primary text-wrap addClubBlacklist tooltipList" data-bs-target="#addClubBlacklist" data-bs-title="블랙리스트 등록"
+                 data-bs-toggle="modal">
+                <img src="/resources/images/clubBlacklist.png" style="width: 50px;height: 50px;">
             </div>
-            <div class="badge bg-primary text-wrap listClubBlacklist" data-bs-target="#listClubBlacklist"
-                 data-bs-toggle="modal">블랙리스트 조회
+            <div class="badge bg-primary text-wrap listClubBlacklist tooltipList" data-bs-target="#listClubBlacklist" data-bs-title="블랙리스트 조회"
+                 data-bs-toggle="modal">
+                <img src="/resources/images/groupBlackllist.png" style="width: 50px;height: 50px;">
             </div>
             <c:if test="${search.searchCondition=='0'}">
-                <div class="badge bg-primary text-wrap listCluberOut" data-bs-target="#listCluberOut"
+                <div class="badge bg-primary text-wrap listCluberOut tooltipList" data-bs-target="#listCluberOut" data-bs-title="탈퇴한 모임원 조회"
                      data-bs-toggle="modal">탈퇴한 모임원 조회
                 </div>
             </c:if>
             <c:if test="${search.searchCondition=='1'}">
-                <div class="badge bg-primary text-wrap listCluber" data-bs-target="#listCluber" data-bs-toggle="modal">
+                <div class="badge bg-primary text-wrap listCluber tooltipList" data-bs-target="#listCluber" data-bs-toggle="modal" data-bs-title="현재 모임원 조회">
                     현재 모임원 조회
                 </div>
             </c:if>
