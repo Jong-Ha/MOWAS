@@ -140,26 +140,29 @@ public class MongoDbDaoImpl implements MongoDbDao{
         Query query = new Query(new Criteria().andOperator(
                 Criteria.where("users.userId").is("userId")
         ));
-        Map<String, Object> map = mongoTemplate.find(query, Map.class, "rooms").get(0);
-        List<Map<String, Object>> users = (List<Map<String, Object>>) map.get("users");
-        for (int i = 0; i < users.size(); i++) {
-            Map<String, Object> user = users.get(i);
-            if (user.get("userId").equals(userId)) {
-                user.put("userImage",userImage);
-                break;
+        List<Map> mapList = mongoTemplate.find(query, Map.class, "rooms");
+        if(mapList!=null){
+            Map<String, Object> map = mapList.get(0);
+            List<Map<String, Object>> users = (List<Map<String, Object>>) map.get("users");
+            for (int i = 0; i < users.size(); i++) {
+                Map<String, Object> user = users.get(i);
+                if (user.get("userId").equals(userId)) {
+                    user.put("userImage",userImage);
+                    break;
+                }
             }
-        }
-        map.put("users",users);
-        mongoTemplate.save(map, "rooms");
+            map.put("users",users);
+            mongoTemplate.save(map, "rooms");
 
-        //채팅메시지
-        query = new Query(new Criteria().andOperator(
-                Criteria.where("userId").is("userId")
-        ));
-        List<Map> msgs = mongoTemplate.find(query, Map.class, "msgs");
-        for(Map<String, Object> msg : msgs){
-            msg.put("userImage",userImage);
-            mongoTemplate.save(msg, "msgs");
+            //채팅메시지
+            query = new Query(new Criteria().andOperator(
+                    Criteria.where("userId").is("userId")
+            ));
+            List<Map> msgs = mongoTemplate.find(query, Map.class, "msgs");
+            for(Map<String, Object> msg : msgs){
+                msg.put("userImage",userImage);
+                mongoTemplate.save(msg, "msgs");
+            }
         }
     }
 }

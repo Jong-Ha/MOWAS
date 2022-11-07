@@ -248,7 +248,11 @@ public class UserController {
 
         }
         */
-        return "redirect:/";
+        if(!logoutNow.contains("chat")){
+            return "redirect:/";
+        }else {
+            return "redirect:/chat/chatList";
+        }
     }
 
     /*

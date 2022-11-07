@@ -146,7 +146,7 @@
                                         </if>
                                         </where>
                                     </if>
-                                    ORDER BY master_board_num ) inner_table
+                                    ORDER BY master_board_num DESC ) inner_table
                  WHERE ROWNUM &lt;= #{endRowNum} )
         WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum}
     </select>

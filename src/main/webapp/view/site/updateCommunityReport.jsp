@@ -233,5 +233,6 @@
     </div>
     <!-- Row -->
  </div>
+<jsp:include page="/layout/footer.jsp"/>
  </body>
 </html>

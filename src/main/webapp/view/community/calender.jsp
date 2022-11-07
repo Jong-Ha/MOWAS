@@ -46,6 +46,14 @@
 
                 $(function () {
 
+
+
+
+
+
+                    if(${currentCluber.cluberStatus=='4'||currentCluber.cluberStatus=='5'||currentCluber.cluberStatus=='6'}){
+
+
                     //상세 조회 modal 오픈
                     $.ajax({
                         url: "/clubCal/json/getClubCalender",
@@ -285,7 +293,15 @@
 
 
                     })
+                    }else{
 
+                        Swal.fire({
+                            icon: 'error',
+                            title: '사용할수 없는 기능 입니다',
+                            text: '모임원만 조회할 수 있습니다',
+                            footer: '<a href="">Why do I have this issue?</a>'
+                        })
+                    }
                 })
 
 

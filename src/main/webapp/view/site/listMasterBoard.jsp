@@ -30,13 +30,18 @@
             margin-top: 20px;
         }
 
+        .card-body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
         .mbTab {
             margin: 0 25px;
         }
 
         .card {
             border: none;
-            margin-bottom: 24px;
             -webkit-box-shadow: 0 0 13px 0 rgba(236, 236, 241, .44);
             box-shadow: 0 0 13px 0 rgba(236, 236, 241, .44);
         }
@@ -124,10 +129,6 @@
 
         .table > tbody > tr > #title {
             text-align: left;
-        }
-
-        .resultBox {
-            height: 100%;
         }
     </style>
 
@@ -296,9 +297,9 @@
     </nav>
 
     <hr>
-    <div class="row">
+    <div class="row" style="margin-bottom: 24px;">
         <div class="col-xl-3 col-md-6 resultBox">
-            <div class="card bg-pattern">
+            <div class="card bg-pattern" style="height: 100%;">
                 <div class="card-body">
                     <div class="float-right">
                         <i class="fa fa-archive text-primary h4 ml-3"></i>
@@ -309,7 +310,7 @@
             </div>
         </div>
         <div class="col-xl-3 col-md-6 resultBox">
-            <div class="card bg-pattern">
+            <div class="card bg-pattern" style="height: 100%;">
                 <div class="card-body">
                     <div class="float-right">
                         <i class="fa fa-th text-primary h4 ml-3"></i>
@@ -320,7 +321,7 @@
             </div>
         </div>
         <div class="col-xl-3 col-md-6 resultBox">
-            <div class="card bg-pattern">
+            <div class="card bg-pattern" style="height: 100%;">
                 <div class="card-body">
                     <div class="float-right">
                         <i class="fa fa-file text-primary h4 ml-3"></i>
@@ -332,7 +333,7 @@
         </div>
 
         <div class="col-xl-3 col-md-6 text-right resultBox">
-            <div class="card">
+            <div class="card" style="height: 100%;">
                 <div class="card-body">
                     <form id="masterBoard">
                         <div class="form-group">
@@ -458,48 +459,25 @@
 
                         </div>
 
-                        <ul class="pagination justify-content-center mb-2">
-                            <!--  <<== 좌측 nav -->
-                            <c:if test="${ resultPage.currentPage <= resultPage.pageUnit }">
-                            <li class="page-item disabled">
-                                </c:if>
-                                <c:if test="${ resultPage.currentPage > resultPage.pageUnit }">
-                            <li class="page-item">
-                                </c:if>
-                                <a class="page-link" href="javascript:fncGetList('${ resultPage.currentPage-1}')"
-                                   aria-disabled="true" aria-label="Previous">
-                                    <span aria-hidden="true"><<</span></a>
-                            </li>
-
-                            <!--  중앙  -->
-                            <c:forEach var="i" begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}"
-                                       step="1">
-                                <c:if test="${ resultPage.currentPage == i }">
-                                    <li class="page-item active">
-                                        <a class="page-link" href="javascript:fncGetList('${ i }');">${ i }<span
-                                                class="sr-only"></span></a>
+                        <c:if test="${!empty list}">
+                            <nav aria-label="Page navigation example" style="display: flex;justify-content: center;">
+                                <ul class="pagination">
+                                    <li class="page-item pageUnit ${resultPage.beginUnitPage==1?'disabled':''}" value="${resultPage.beginUnitPage-resultPage.pageUnit}">
+                                        <a class="page-link" href="javascript:fncGetList('${ resultPage.currentPage-1}')" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
                                     </li>
-                                </c:if>
-
-                                <c:if test="${resultPage.currentPage != i}">
-                                    <li class="page-item">
-                                        <a class="page-link" href="javascript:fncGetList('${ i }');">${ i }</a>
+                                    <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" var="i">
+                                        <li class="page-item ${search.currentPage==i?'active':'paging'}"><a class="page-link" href="javascript:fncGetList('${ i }');">${i}</a></li>
+                                    </c:forEach>
+                                    <li class="page-item pageUnit ${resultPage.maxPage==resultPage.endUnitPage?'disabled':''}" value="${resultPage.beginUnitPage+resultPage.pageUnit}">
+                                        <a class="page-link" href="javascript:fncGetList('${resultPage.endUnitPage+1}')" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
                                     </li>
-                                </c:if>
-                            </c:forEach>
-
-                            <c:if test="${ resultPage.endUnitPage >= resultPage.maxPage }">
-                            <li class="page-item disabled">
-                                </c:if>
-                                <c:if test="${ resultPage.endUnitPage < resultPage.maxPage }">
-                            <li class="page-item">
-                                </c:if>
-                                <a class="page-link" href="javascript:fncGetList('${resultPage.endUnitPage+1}')"
-                                   aria-disabled="true" aria-label="Next">
-                                    <span aria-hidden="true">>></span></a>
-                            </li>
-
-                        </ul>
+                                </ul>
+                            </nav>
+                        </c:if>
 
                     </div>
 

@@ -39,7 +39,7 @@
 
 <!-- Example Code -->
 <div class="container">
-    
+
     <div class="wrapper">
         <div class="typing">
             <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
@@ -154,7 +154,7 @@
         </div>
     </div>
     <%--태그 입력 모달 끝--%>
-
+<hr>
     <%--버튼 모음 시작--%>
     <div class="add" style="display:flex;justify-content: space-between;align-items: center;">
         <button class="btn btn-primary addClub" data-bs-toggle="modal" data-bs-target="#addClub">

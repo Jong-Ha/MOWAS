@@ -301,7 +301,7 @@
     <button type="button" class="btn btn-primary updateVoterCheck" ${vote.voterCheck==1?'':'style="display : none"'}>다시 투표하기
     </button>
 </c:if>
-<c:if test="${vote.voteMasterId==user.userId&&vote.endCheck=='0'}">
+<c:if test="${vote.voteMasterId==user.userId&&vote.endCheck=='0'&&vote.totalVoter==0}">
     <button type="button" class="btn btn-primary updateVote" data-bs-target="#updateVote" data-bs-toggle="modal">투표 수정
     </button>
 </c:if>

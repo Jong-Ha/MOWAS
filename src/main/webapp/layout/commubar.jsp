@@ -9,9 +9,6 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<html>
-<head>
-
     <script type="text/javascript">
         $(function () {
 
@@ -118,7 +115,6 @@
 
     </style>
 
-
 <div class="wrapper">
     <div class="typing">
         <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
@@ -144,5 +140,7 @@
 
 
 </nav>
-<hr>
 
+<div class="container">
+    <hr>
+</div>
