@@ -202,6 +202,19 @@ public class MyPageServiceImpl implements MyPageService {
         return map;
     }
 
+    @Override
+    public Map<String, Object> getMyClubLike(String userId, Search search) throws Exception {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("userId",userId);
+        map.put("search",search);
+        List<Club> list = myPageDao.getMyClubLike(map);
+        int totalCount = myPageDao.getTotalMyClubLike(map);
+
+        map.put("list", list);
+        map.put("totalCount", totalCount);
+        return map;
+    }
+
     public Map<String, Object> getMyDeal(String userId)throws Exception{
         System.out.println("getMyDeal 서비스임플 시작이다 ");
         Map<String, Object> map = new HashMap<String, Object>();

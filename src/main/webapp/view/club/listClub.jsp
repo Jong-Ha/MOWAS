@@ -35,11 +35,11 @@
 <%--    <img src="/resources/images/club6.png" alt="대문사진" style="width: 1600px;height: 500px;object-fit: contain;border-radius: 10px;">--%>
 <%--</div>--%>
 
-<img class="shadow-lg" src="/resources/images/club7.jpg" alt="대문사진" style="width: 1600px;height: 500px;object-fit: cover;border-radius: 10px;">
+<img class="shadow-lg" src="/resources/images/모임대표8.jpg" alt="대문사진" style="width: 1600px;height: 500px;object-fit: cover;border-radius: 10px;">
 
 <!-- Example Code -->
 <div class="container">
-    
+
     <div class="wrapper">
         <div class="typing">
             <h4 style="font-weight: bolder; margin-bottom: 50px; font-size: 2rem;
@@ -154,7 +154,7 @@
         </div>
     </div>
     <%--태그 입력 모달 끝--%>
-
+<hr>
     <%--버튼 모음 시작--%>
     <div class="add" style="display:flex;justify-content: space-between;align-items: center;">
         <button class="btn btn-primary addClub" data-bs-toggle="modal" data-bs-target="#addClub">

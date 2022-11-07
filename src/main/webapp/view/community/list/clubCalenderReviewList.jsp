@@ -440,7 +440,7 @@
                             $.each(item.file, function (index, item) {
                                 str +=
                                     '               <div class="carousel-item active get">' +
-                                    '                   <img class="poto" width="100%" height="100%" src="/resources/' + item.fileName + '" alt="any">' +
+                                    '                   <img class="poto" width="100%" height="100%" src="/resources' + item.fileName + '" alt="any">' +
                                     '               </div>'
                             })
 
@@ -793,7 +793,7 @@
                                 <c:forEach var="File" items="${ClubCalendarReview.file}">
                                     <div class="carousel-item active get" data-bs-interval="2000">
                                         <img class="d-block w-100 poto" width="100%" height="100%"
-                                             src="/resources/${File.fileName}" alt="any">
+                                             src="/resources${File.fileName}" alt="any">
                                     </div>
                                 </c:forEach>
                             </div>

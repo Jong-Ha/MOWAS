@@ -330,7 +330,7 @@
         <div class="input-container">
 
             <label for="chatting-input" class="form-label"></label>
-            <textarea class="form-control chatting-input" id="chatting-input" rows="3"></textarea>
+            <textarea class="form-control chatting-input" id="chatting-input" style="resize: none;" rows="3"></textarea>
 
             <button class="send-button" style="aspect-ratio: 1" data-bs-title="전송" data-bs-toggle="tooltip">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16" style="font-size: 24px">

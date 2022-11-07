@@ -635,6 +635,39 @@
           AND c.club_num = l.board_num(+)
     </select>
 
+    <sql id="getMyClubLikeSql">
+        SELECT c.*, l.like_check
+        FROM club c,
+             (SELECT board_num,
+                     like_check
+              FROM likes
+              WHERE board_category = '12'
+                AND user_id = #{userId}
+              AND like_check = 'y') l
+        WHERE c.club_delete_check = '0'
+          AND c.club_num = l.board_num
+    </sql>
+    <select id="getTotalMyClubLike" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM (
+        <include refid="getMyClubLikeSql"/>
+        )
+    </select>
+    <select id="getMyClubLike" parameterType="map" resultMap="ClubResultMap">
+        SELECT * FROM (
+        SELECT ROWNUM row_num, vt.* FROM (
+        <include refid="getMyClubLikeSql"/>
+        ) vt
+        <if test="search.currentPage*search.pageSize!=0">
+            WHERE ROWNUM &lt;= #{search.currentPage}*#{search.pageSize}
+        </if>
+        )
+        <where>
+            <if test="search.currentPage*search.pageSize!=0">
+                row_num >= ((#{search.currentPage}-1)*#{search.pageSize}+1)
+            </if>
+        </where>
+    </select>
+
 
     <select id="getMyDeal" parameterType="String" resultMap="dealSelectMap">
         SELECT *

@@ -49,36 +49,36 @@
     function fncGetMyReport(currentPage) {
         $("#currentPage").val(currentPage)
         var userIdReport = $("#userIdReport").val()
-        alert('유저아이디? '+userIdReport)
+        alert('유저아이디? ' + userIdReport)
 
-        $("form").attr("method" , "POST").attr("action" , "/myPage/getMyReport").submit();
+        $("form").attr("method", "POST").attr("action", "/myPage/getMyReport").submit();
     }
-    $(function(){
+
+    $(function () {
         var userId = $(".myPageUserId").val();
 
-        $(".getMyPpt").on("click", function (){
-            self.location="/myPage/getMyPpt?userId="+userId;
+        $(".getMyPpt").on("click", function () {
+            self.location = "/myPage/getMyPpt?userId=" + userId;
         })
-        $(".getMyReport").on("click", function (){
-            self.location="/myPage/getMyReport?userId="+userId;
+        $(".getMyReport").on("click", function () {
+            self.location = "/myPage/getMyReport?userId=" + userId;
         })
     })
 
 </script>
 <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 <form>
-<%--상단 툴바--%>
-<jsp:include page="/layout/toolbar.jsp"/>
+    <%--상단 툴바--%>
+    <jsp:include page="/layout/toolbar.jsp"/>
 
-<%--상단 탑바--%>
-<jsp:include page="/view/myPage/myPageTitle.jsp"/>
-<hr>
+    <%--상단 탑바--%>
+    <jsp:include page="/view/myPage/myPageTitle.jsp"/>
+    <hr>
     <div class="container">
 
 
-
         <div class="tabBox">
-            <span class="tabBtn getMyPpt" >내 벌점 조회</span>
+            <span class="tabBtn getMyPpt">내 벌점 조회</span>
             <span>|</span>
             <span class="tabBtn getMyReport" >내가 신고한 내역</span>
         </div>
@@ -134,45 +134,32 @@
         </tr>
         </c:forEach>
 
-        </tbody>
-    </table>
-    <input type="hidden" id="currentPage" name="currentPage" value="${resultPage.currentPage}"/>
-    <input type="hidden" id="userIdReport" name="userIdReport" value="${user.userId}"/>
+                </tbody>
+            </table>
+            <input type="hidden" id="currentPage" name="currentPage" value="${resultPage.currentPage}"/>
+            <input type="hidden" id="userIdReport" name="userIdReport" value="${user.userId}"/>
 
-    <nav class="d-flex justify-content-center mt-3">
-        <ul class="pagination">
-<c:if test="${ resultPage.currentPage <= resultPage.pageUnit }">
-            <li class="page-item disabled mx-1">
-               <
-            </li>
-</c:if>
-<c:if test="${ resultPage.currentPage > resultPage.pageUnit }">
-    <li class="page-item disabled mx-1">
-    <a class="page-link" href="javascript:fncGetMyReport('${ resultPage.currentPage-1}')">
-    < </a>
-    </li>
-</c:if>
-<c:forEach var="i"  begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" step="1">
-            <li class="page-item active mx-1"><a class="page-link" href="http://192.168.0.235:8080/myPage/getMyReport?userId=${user.userId}&currentPage=${i}">${i}</a></li>
-</c:forEach>
+            <nav aria-label="Page navigation example" style="display: flex;justify-content: center;">
+                <ul class="pagination">
+                    <li class="page-item pageUnit ${resultPage.beginUnitPage==1?'disabled':''}" value="${resultPage.beginUnitPage-resultPage.pageUnit}">
+                        <a class="page-link" href="javascript:fncGetMyReport('${ resultPage.currentPage-1}')" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" var="i">
+                        <li class="page-item ${search.currentPage==i?'active':'paging'}"><a class="page-link" href="/myPage/getMyReport?userId=${user.userId}&currentPage=${i}">${i}</a></li>
+                    </c:forEach>
+                    <li class="page-item pageUnit ${resultPage.maxPage==resultPage.endUnitPage?'disabled':''}" value="${resultPage.beginUnitPage+resultPage.pageUnit}">
+                        <a class="page-link" href="javascript:fncGetMyReport('${resultPage.endUnitPage+1}')" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
 
-<c:if test="${ resultPage.endUnitPage >= resultPage.maxPage }">
-            <li class="page-item mx-1">
-              >
-            </li>
-</c:if>
-            <c:if test="${ resultPage.endUnitPage < resultPage.maxPage }">
-            <li class="page-item mx-1">
-                <a class="page-link" href="javascript:fncGetMyReport('${resultPage.endUnitPage+1}')">></a>
-            </li>
-            </c:if>
-        </ul>
-    </nav>
-</div>
+        </div>
     </div>
 </form>
-<div style="margin-bottom: 100px;">
-</div>
 <jsp:include page="/layout/chatIcon.jsp"/>
 <jsp:include page="/layout/footer.jsp"/>
 </body>

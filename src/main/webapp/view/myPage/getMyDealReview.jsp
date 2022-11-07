@@ -142,8 +142,7 @@
 
 <hr>
 </div>
-        <div style="margin-bottom: 100px;">
-        </div>
+</div>
     <jsp:include page="/layout/chatIcon.jsp"/>
     <jsp:include page="/layout/footer.jsp"/>
 </body>

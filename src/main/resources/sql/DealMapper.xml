@@ -267,18 +267,26 @@
     </select>
     <update id="updateReview" parameterType="deal">
         update DEAL
-        <set>
+
+<set>
             review=#{review},
             review_pt=#{reviewPt},
             deal_status='2',
-            deal_id=#{dealId}
+
         </set>
         <where>deal_board_num=#{dealBoardNum}</where>
+
     </update>
     <select id="getReviewPt" parameterType="deal" resultType="int">
         select NVL(AVG(review_pt), 0)
         from deal
+<if test="boardCategory=='08'">
         where user_id = #{user.userId}
+</if>
+        <if test="boardCategory=='09'">
+            where deal_id = #{dealId:VARCHAR}
+        </if>
+
     </select>
 
     <update id="addDealCalender" parameterType="deal">

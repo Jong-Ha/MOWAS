@@ -215,6 +215,15 @@ onebyone.on('connection', (socket) => {
 
         console.log("roomId onebyone : " + roomId);
 
+        socket.on("deleteChat", (data) => {
+            console.log(data.roomId)
+            Room.deleteMany({roomId : data.roomId},function(){
+                Msg.deleteMany({roomId : data.roomId}, function(){
+                    chatlist.emit('newChat')
+                    dealChat.to(roomId).emit("deleteChat");
+                })
+            })
+        })
 
         Msg.find({'roomId': roomId}, function (error, msg) {
             // console.log(msg);

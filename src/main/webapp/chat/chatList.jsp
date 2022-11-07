@@ -17,7 +17,7 @@
 
     <script>
         if(${empty user}){
-            opener.location.reload()
+            opener.location.href = "/index.jsp"
             window.close()
         }
     </script>

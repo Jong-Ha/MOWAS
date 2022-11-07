@@ -240,7 +240,8 @@ public class ClubCalendarRestController<list> {
         System.out.println("==============="+ deal);
 
         map.put("deal", deal);
-
+        System.out.println(deal.getDealId());
+        System.out.println("deaojfa;e"+map);
         return map;
 
     }

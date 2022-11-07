@@ -162,7 +162,7 @@
          <hr>
         <div class="contact__wrapper shadow-lg mt-n9">
             <div class="row no-gutters">
-                <div class="col-lg-5 contact-info__wrapper gradient-brand-color p-5 order-lg-2">
+                <div class="col-lg-5 contact-info__wrapper gradient-brand-color p-5 order-lg-2" style="position: relative;">
                     <h3 class="color--white mb-5">Get in Touch</h3>
 
                     <ul class="contact-info__list list-style--none position-relative z-index-101">
@@ -183,7 +183,7 @@
                         </li>
                     </ul>
 
-                    <figure class="figure position-absolute m-0 opacity-06 z-index-100" style="bottom:0; right: 10px">
+                    <figure class="figure position-absolute m-0 opacity-06 z-index-100" style="bottom:0; right: 0;">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="400px" height="498px">
                             <defs>
                                 <linearGradient id="PSgrad_1" x1="0%" x2="81.915%" y1="57.358%" y2="0%">
@@ -202,24 +202,24 @@
 
                 <div class="col-lg-7 contact-form__wrapper p-5 order-lg-1">
                         <div class="row">
-                            <div class="col-sm-6 mb-3">
+                            <div class="col-sm-3 mb-3">
                                <h4><label class="required-field">제  목</label></h4>
                             </div>
-                            <div class="col-sm-6 mb-3">
+                            <div class="col-sm-9 mb-3">
                                 <p class="mb-3 font-13 border-danger">${masterBoard.mbTitle}</p>
                             </div>
 
-                            <div class="col-sm-6 mb-3">
+                            <div class="col-sm-3 mb-3">
                                 <h4><label class="required-field">내  용</label></h4>
                             </div>
-                            <div class="col-sm-6 mb-3">
+                            <div class="col-sm-9 mb-3">
                                 <p class="mb-3 font-13 border-danger">${masterBoard.mbText}</p>
                             </div>
 
-                            <div class="col-sm-6 mb-3">
+                            <div class="col-sm-3 mb-3">
                                 <h4><label class="required-field" >날  짜</label></h4>
                             </div>
-                            <div class="col-sm-6 mb-3">
+                            <div class="col-sm-9 mb-3">
                                 <p class="mb-3 font-13 board-danger">${masterBoard.mbRegDate}</p>
                             </div>
 
@@ -230,7 +230,7 @@
 
                             <div class="col-sm-12 mb-3">
                                 <button type="button" class="btn btn-primary">확인</button>
-                                <button type="button" class="btn btn-primary">삭제</button>
+                                <c:if test="${user.masterCheck=='2'}"><button type="button" class="btn btn-primary">삭제</button></c:if>
                             </div>
                          </div>
 
@@ -261,5 +261,6 @@
   </div>
 </form>
 --%>
+<jsp:include page="/layout/footer.jsp"/>
 </body>
 </html>

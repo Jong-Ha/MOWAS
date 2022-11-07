@@ -306,8 +306,7 @@
                     alert('숫자만 입력가능합니다.')
                 }
             })
-            //가격 콤마찍기
-            $('#dealPrice')
+
 
         })
     </script>
@@ -623,8 +622,8 @@
 <!-- Example Code -->
 <jsp:include page="/layout/toolbar.jsp"/>
 <%--<jsp:include page="/view/deal/history.jsp"/>--%>
-<img class="shadow-lg" src="/resources/uploadFiles/dealBoardFiles/중고거래.jpg"
-     style="height: 500px;border-radius: 10px;  width: 1600px;">
+<img class="shadow-lg"  src="/resources/images/거래대표7.jpg"
+     style="height: 500px;border-radius: 10px;  width: 1600px;object-fit: cover;">
 <div class="container">
 
     <div class="wrapper">

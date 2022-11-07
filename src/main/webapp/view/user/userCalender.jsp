@@ -7,7 +7,7 @@
         src="/resources/OpenSource/fullcalendar-5.11.3/lib/main.js"></script>
 <script type="text/javascript"
         src="/resources/OpenSource/fullcalendar-5.11.3/lib/main.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script>
 
     var calendar = null;
@@ -141,12 +141,13 @@
                             contentType: 'application/json; charset=utf-8',
                             data: JSON.stringify({
                                 "dealBoardNum": info.event.id
+
                             }),
                             success: function (JSONData, result) {
 
                                 var deal = JSONData.deal
 
-                                console.log("deal : " + deal.dealCalenderTitle);
+                                console.log("deal : " + deal.dealCalenderTitle+deal.dealId);
 
                                 var date = new Date(deal.dealDate);
 
@@ -158,8 +159,22 @@
                                 $(".dealCalenderTitle2").val(deal.dealCalenderTitle);
                                 $(".dealDate2").val(dateStr);
                                 $(".dealLocation2").val(deal.dealLocation);
-
+                               $(".dealId").val(deal.dealId);
                                 const modal = new bootstrap.Modal('#exampleModal3', {})
+                                if(deal.boardCategory==='08'){
+                                if('${user.userId}'===deal.dealId){
+                                    $('.addReview').css('display','block')
+                                }else {
+                                    $('.addReview').css('display','none')
+                                }
+                            }else if(deal.boardCategory==='09'){
+                                    if('${user.userId}'===deal.user.userId){
+                                        $('.addReview').css('display','block')
+                                    }else {
+                                        $('.addReview').css('display','none')
+                                    }
+                                }
+
                                 modal.show();
 
                             }
@@ -372,7 +387,8 @@
         $(".submit").on("click", function () {
             var rating = $(".rating").val()
             var content = $(".content").val();
-            var dealBoardNum = $(".dealBoardNum").val();
+            var dealBoardNum = $(".boardNum").val();
+            var dealId=$(".dealId").val();
 
             $.ajax({
                 url: "/deal/json/addReview",
@@ -380,7 +396,8 @@
                 data: JSON.stringify({
                     "reviewPt": rating,
                     "review": content,
-                    "dealBoardNum": dealBoardNum
+                    "dealBoardNum": dealBoardNum,
+                    "dealId": dealId
                 }),
                 dataType: "json",
                 headers: {
@@ -400,18 +417,18 @@
                     });
 
                     setTimeout(function () {
-                        // opener.location.reload();
-                        //window.close();
+                     window.location.reload();
                     }, 2000);
                     //error 발생시 그냥 창을 닫음
 
                 }, error: function () {
                     Swal.fire({
-                        //  position: 'top-end',
-                        //icon: 'success',
-                        //title: 'Your work has been saved',
-                        //showConfirmButton: false,
-                        //timer: 1500
+                         position: 'top-end',
+                        icon: 'success',
+                        title: 'Your work has been saved',
+                        showConfirmButton: false,
+                        timer: 1500
+
                     });
                     setTimeout(function () {
                         window.close();
@@ -441,7 +458,9 @@
         })
 
     })
+    $(function () {
 
+    })
 
 </script>
 
@@ -506,7 +525,6 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <input name="clubCalenderReviewNum" class="clubCalenderReviewNum" hidden value="">
-            <input hidden class="clubNum" value="">
             <div class="modal-header">
                 <input hidden class="clubCalnderNum" value="">
                 <h1 class="modal-title fs-5" id="exampleModalLabel1"> 모임 일정</h1>
@@ -659,14 +677,16 @@
             </div>
 
             <div class="modal-footer" style=" justify-content:center;">
-
+                <input hidden name="dealBoardNum" value="${map.dealBoardNum}" class="dealBoardNum">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
                 <button type="button" class="btn btn-secondary getDealPage">게시글 상세 조회</button>
                 <%--                <c:if test="${deal.boardCategory=='08'}">--%>
                 <%--                <c:if test="${deal.dealId==sessionScope.user.userId}">--%>
+                <button type="button" class="btn btn-secondary getDealPage">게시글 상세 조회${deal.dealId}</button>
+<%--                <c:if test="${deal.boardCategory=='08'}">--%>
+<%--                <c:if test="${deal.dealId==sessionScope.user.userId}">--%>
                 <button type="button" class="btn btn-primary addReview" data-bs-toggle="modal"
-                        data-bs-target="#addReview">리뷰작성${map.deal.dealBoardNum}${map.dealBoardNum}
-                    ${deal.dealBoardNum}${sessionScope.user.userId}
+                        data-bs-target="#addReview">리뷰작성${deal.dealId}
                 </button>
                 <%--                </c:if>--%>
                 <%--                </c:if>--%>
@@ -696,6 +716,23 @@
                             ${deal.dealTitle}
                         </div>
                     </div>
+        <div class="modal fade" id="addReview" tabindex="-1" aria-labelledby="addReviewLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="addReviewlLabel">리뷰 작성</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="addReviewForm" enctype="multipart/form-data">
+                            <input hidden name="dealBoardNum" value="${map.dealBoardNum}" class="dealBoardNum">
+                            <input hidden name="dealId" value="${map.dealId}" class="dealId">
+                                <%--                                <input type="hidden" name="deleteFileName" value="${deal.clubImage}" disabled>--%>
+                            <div class="input-group mb-3">
+                                <div class="form-floating">
+                                        ${deal.dealTitle}
+                                </div>
+                            </div>
 
                     <div class="input-group mb-3">
                         <div class="form-floating">

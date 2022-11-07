@@ -239,6 +239,10 @@
             self.location = "/myPage/getMyClubApply?userId=" + userId;
         });
 
+        $(".getMyClubLike").on("click", function () {
+            self.location = "/myPage/getMyClubLike?userId=" + userId;
+        });
+
         $(".getMyDeal").on("click", function () {
             self.location = "/myPage/getMyDeal?userId=" + userId;
         });
@@ -301,7 +305,7 @@
                 <ul class="shadow-lg sub">
                     <li class="getMyClub">가입한 모임</li>
                     <li class="getMyClubApply">가입신청한 모임</li>
-
+                    <li class="getMyClubLike">내가 찜한 모임</li>
                 </ul>
             </div>
         </div>
