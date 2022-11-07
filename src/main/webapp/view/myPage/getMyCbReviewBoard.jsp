@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title>MOWAS</title>
 </head>
 <style>
     .tabBox {
@@ -261,7 +261,7 @@
 
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
-
+<div class="container" style="width: 1320px;">
 <div class="tabBox">
     <span class="tabBtn getMyVillBoard">우리동네 게시글</span>
     <span>|</span>
@@ -342,7 +342,9 @@
     </div>
     </div>
     </div>
-
+</div>
+<div style="margin-bottom: 100px;">
+</div>
     <jsp:include page="/layout/chatIcon.jsp"/>
     <jsp:include page="/layout/footer.jsp"/>
     </body>

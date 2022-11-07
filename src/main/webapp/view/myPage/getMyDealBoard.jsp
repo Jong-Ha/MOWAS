@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title>MOWAS</title>
 </head>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -653,7 +653,8 @@
 
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
-
+<hr>
+<div class="container" style="width: 1320px;">
 <div class="tabBox">
     <span class="tabBtn getMyVillBoard">우리동네 게시글</span>
     <span>|</span>
@@ -827,6 +828,9 @@
 <%--        </c:forEach>--%>
 <%--    </div>--%>
 <%--</div>--%>
+</div>
+<div style="margin-bottom: 100px;">
+</div>
         <jsp:include page="/layout/chatIcon.jsp"/>
         <jsp:include page="/layout/footer.jsp"/>
 </body>

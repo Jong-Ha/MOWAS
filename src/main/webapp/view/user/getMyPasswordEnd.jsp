@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title>MOWAS</title>
 </head>
 <style>
     .btn-primary {
@@ -51,17 +51,19 @@ $(function (){
         <h3 style="padding: 10px;">비밀번호 찾기</h3>
         </div>
         <div style="margin-top: 100px;">
-            <c:if test="${findUser.password eq null}">
+            <c:if test="${findPwd.password eq null}">
                 조회된 비밀번호가 없습니다.<br>
                 이메일 또는 휴대전화 번호를 확인해주세요.
             </c:if>
-            <c:if test="${findUser.password ne null}">
+            <c:if test="${findPwd.password ne null}">
                 회원님께서 가입한 비밀번호는<br>
-                [ ${findUser.password} ]입니다
+                [ ${findPwd.password} ]입니다
             </c:if>
         </div>
         <button style="margin-top: 50px;" type="button" class="btn btn-primary ok" >확인</button>
     </div>
+</div>
+<div style="margin-bottom: 100px;">
 </div>
 <jsp:include page="/layout/chatIcon.jsp"/>
 <jsp:include page="/layout/footer.jsp"/>

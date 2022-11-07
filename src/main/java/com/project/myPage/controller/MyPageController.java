@@ -254,7 +254,7 @@ public class MyPageController {
     @RequestMapping(value = "updateMyInfor",method = RequestMethod.POST)
     public String updateMyInfor(@ModelAttribute User user, Model model, HttpSession session,
                                 @RequestParam(value = "file") MultipartFile file)throws Exception{
-        System.out.println("updateMyInfor컨트롤러 user의 값?"+user);
+        System.out.println("updateMyInfor컨트롤러 user의 값? "+user);
         System.out.println(user.getLoginType());
 
         if(user.getLoginType().equals("1")){
@@ -844,7 +844,53 @@ public class MyPageController {
         Map<String, Object> mapTotalCount = myPageService.getTotalCount(search);
         Page resultPage = new Page( search.getCurrentPage(), ((Integer)mapTotalCount.get("totalCount")).intValue(), pageUnit, pageSize);
         System.out.println(resultPage);
+/*
+        System.out.println("과연?????");
+        List<CommunityReport> abcd = (List<CommunityReport>)map.get("getMyReport");
+        System.out.println("abcd의 값??????????"+abcd);
 
+        for (int i = 0; i < abcd.size(); i++) {
+            System.out.println("돌아라~~~~~~1111111");
+            String abc = abcd.get(i).getReportBasis().trim();
+            System.out.println("abc신고의 값...." + abc);
+            String report = "";
+
+            switch (Integer.parseInt(abc)) {
+                case 1:
+                    report = "욕설";
+
+                    break;
+                case 2:
+                    report = "음담패설";
+
+                    break;
+                case 3:
+                    report = "도용";
+
+                    break;
+                case 4:
+                    report = "무단불참";
+
+                    break;
+                case 5:
+                    report = "연락두절";
+
+                    break;
+                case 6:
+                    report = "정치적발언";
+
+                    break;
+
+            }
+
+            System.out.println("report 값..?" + report);
+
+
+
+            map.put("report", report);
+        }
+
+*/
         model.addAttribute("map", map);
         model.addAttribute("resultPage", resultPage);
         return "forward:/view/myPage/getMyReport.jsp";
@@ -860,6 +906,47 @@ public class MyPageController {
 
         Map<String, Object> map = myPageService.getMyPpt(userId);
         System.out.println("getMyPpt 컨트롤러 map의 값은?"+map);
+
+/*
+        List<CommunityReport> abcd = (List<CommunityReport>)map.get("getMyreport");
+        for (int i = 0; i < abcd.size(); i++) {
+            String abc = abcd.get(i).getReportBasis().trim();
+            System.out.println("abc신고의 값...." + abc);
+            String report = "";
+            String str = "";
+            switch (Integer.parseInt(abc)) {
+                case 1:
+                    report = "욕설";
+
+                    break;
+                case 2:
+                    report = "음담패설";
+
+                    break;
+                case 3:
+                    report = "도용";
+
+                    break;
+                case 4:
+                    report = "무단불참";
+
+                    break;
+                case 5:
+                    report = "연락두절";
+
+                    break;
+                case 6:
+                    report = "정치적발언";
+
+                    break;
+
+            }
+            System.out.println("str의 값..?" + str);
+
+
+            map.put("interList", report);
+        }
+*/
         Map<String, Object> mapTotalCount = myPageService.getTotalCount(search);
         Page resultPage = new Page( search.getCurrentPage(), ((Integer)mapTotalCount.get("totalCount")).intValue(), pageUnit, pageSize);
         System.out.println(resultPage);

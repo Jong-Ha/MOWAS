@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title>MOWAS</title>
     <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
@@ -106,8 +106,9 @@
 
         $(function () {
             $("form").on("submit", function () {
-                var userId = $(".myPageUserId").val();
+                var userId = $("#updateUserId").val();
                 var loginType = $("#loginType").val();
+                console.log('userId는?'+userId)
                 $("form").attr("method", "POST").attr("action", "/myPage/updateMyInfor").submit;
             });
             //인증,비번,관심목록 수정해야함
@@ -173,6 +174,8 @@
                     $(".emailYC").css("display", 'none');
                     $('.emailInfor').css('display','none');
                     $(".emailInforYes").css('display','');
+                    $(".updatePassword").css('display','');
+                    $(".chk").css('display','none');
                 }
             });
             $(".CheckSmsKey").on("click",function (){
@@ -187,6 +190,8 @@
                     $(".smsYC").css("display",'none');
                     $('.smsNo').css('display','none');
                     $(".smsYes").css('display','');
+                    $(".updatePassword").css('display','');
+                    $(".chk").css('display','none');
                 }
             });
 
@@ -215,7 +220,8 @@
 
         <!--관심목록 스크립트 시작-->
         $(function () {
-            var userId = $(".myPageUserId").val();
+            var userId = $("#updateUserId").val();
+
             $("#list01").on("change", function () {
                 if ($("#list01").is(":checked")) {
                     var check = $(this).val();
@@ -810,25 +816,21 @@
                 <div class="card-body">
                     <form enctype="multipart/form-data">
                         <!-- Form Group (username)-->
-                        <div class="mb-3">
-                            <label class="small mb-1 fw-bold" for="updatePassword">비밀번호 (영문,숫자 혼합, 8~16글자로 입력해주세요)</label>
-                            <input class="form-control" id="updatePassword" type="text" maxLength="16"  placeholder="password"
-                                   value="${map.user.password}">
-                        </div>
+
                         <!-- Form Row-->
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
                                 <label class="small mb-1 fw-bold" for="email">이메일</label>
-                                <input class="form-control" id="email" name="email" type="email"
+                                <input class="form-control userEmail" id="email" name="email" type="email"
                                        placeholder="이메일을 입력하세요" value="${map.user.email}">
                                 <button type="button" class="btn btn-primary btn-sm emailKey">인증번호 요청</button>
-                                <span class=" emailYC" style="display: none; margin-right: 192px;">
+                                <span class=" emailYC"  style="display: none;">
                 <strong class="text-danger" >인증번호가 발송되었습니다</strong>
                     </span>
                             </div>
 
                             <div class="col-md-6">
-                                <label class="small mb-1 fw-bold CheckEmailKey">인증번호 입력</label>
+                                <label class="small mb-1 fw-bold ">인증번호 입력</label>
                                 <input type="text" class="form-control CheckEmailKey" placeholder="인증번호 입력해주세요">
                                 <button type="button" class="btn btn-primary btn-sm CheckEmailKey2">인증 확인</button>
                             </div>
@@ -846,10 +848,10 @@
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
                                 <label class="small mb-1 fw-bold" for="phone">휴대폰번호</label>
-                                <input type="text" class="form-control" id="phone" name="phone"
+                                <input type="text" class="form-control userPhone" id="phone" name="phone"
                                        placeholder="휴대폰 번호를 입력하세요" value="${map.user.phone}">
                                 <button type="button" class="btn btn-primary btn-sm smsKey">인증번호 요청</button>
-                                <span class="smsYC" id="smsYC" style="display: none; margin-right: 192px;">
+                                <span class="smsYC" id="smsYC" style="display: none; ">
                      <strong class="text-danger" > 인증번호가 발송되었습니다</strong>
                       </span>
                             </div>
@@ -858,14 +860,22 @@
                                 <label class="small mb-1 fw-bold CheckSmsKey">인증번호 입력</label>
                                 <input type="text" class="form-control" id="CheckSms" placeholder="인증번호 입력">
                                 <button type="button" class="btn btn-primary btn-sm CheckSmsKey">인증 확인</button>
-                                <span class="smsNo" style="display: none; margin-right: 224px;">
+                            </div>
+                        </div>
+                        <div style="display: flex">
+                                <span class="smsNo" style="display: none; margin-left: 132px;">
               <strong class="text-danger" >인증번호가 틀렸습니다</strong>
               </span>
 
-                                <span class="smsYes" style="display: none; margin-right: 274px;">
+                                <span class="smsYes" style="display: none; margin-left: 128px;">
                <strong class="text-danger" > 인증되었습니다</strong>
               </span>
-                            </div>
+                        </div>
+                        <div class="small mb-1 fw-bold chk" >이메일 또는 휴대폰번호 인증을 하면 비밀번호 입력란이 나옵니다</div>
+                        <div class="mb-3 updatePassword" style="display: none;">
+                            <label class="small mb-1 fw-bold" for="updatePassword">비밀번호 (영문,숫자 혼합, 8~16글자로 입력해주세요)</label>
+                            <input class="form-control" id="updatePassword" type="text" maxLength="16" name="password" placeholder="password"
+                                   value="${map.user.password}">
                         </div>
 
                         <div class="mb-3">
@@ -883,7 +893,7 @@
                                 <c:set var="i" value="0"/>
                                 <c:forEach var="list" items="${map.interList}">
                                     <input type="text" class="form-control" id="addinterList" placeholder="관심 목록"
-                                           name="villCode" value="${list}">
+                                            value="${list}">
                                 </c:forEach>
 
                                 <button type="button" class="btn btn-primary btn-sm interList" data-bs-toggle="modal"
@@ -900,6 +910,7 @@
                         <!-- Form Group (email address)-->
                         <div class="col-mb-3" style=" text-align: center;">
                             <!-- Form Row-->
+                            <input type="hidden" id="updateUserId" name="userId" value="${map.user.userId}">
                             <input type="hidden" id="loginType" name="loginType" value="${map.user.loginType}">
                             <!-- Save changes button-->
                             <button class="btn btn-primary" type="submit" id="updateMyInfor">수정</button>
@@ -1106,6 +1117,8 @@
             </div>
         </div>
     </div>
+</div>
+<div style="margin-bottom: 100px;">
 </div>
 <jsp:include page="/layout/chatIcon.jsp"/>
 <jsp:include page="/layout/footer.jsp"/>

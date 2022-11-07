@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title>MOWAS</title>
 </head>
 <style>
     .tabBox {
@@ -395,8 +395,10 @@
 
     </div>
 </c:forEach>
+<div style="margin-bottom: 100px;">
+</div>
 
-
+<jsp:include page="/layout/chatIcon.jsp"/>
 <jsp:include page="/layout/footer.jsp"/>
 </body>
 </html>

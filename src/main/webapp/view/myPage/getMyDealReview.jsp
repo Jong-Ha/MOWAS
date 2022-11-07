@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title>MOWAS</title>
 </head>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -107,17 +107,18 @@
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
 <hr>
+<div class="container" style="width: 1320px;">
 <div class="tabBox">
     <span class="tabBtn" onclick="javascript:location.href='/myPage/getMyDeal?userId=${user.userId}';">완료한 거래 목록</span>
     <span>|</span>
-    <span class="tabBtn" onclick="javascript:location.href='/myPage/getMyDealReview?userId=${user.userId}';">거래 후기 목록</span class="tabBtn">
+    <span class="tabBtn" onclick="javascript:location.href='/myPage/getMyDealReview?userId=${user.userId}';">거래 후기 목록</span>
 </div>
 
 
 <hr/>
 <div class="goods_wrapper">
     <div class="tit_month">
-        <h4>2022.10</h4>
+        <h4>2022.11</h4>
     </div>
 <c:set var="i" value="0" />
 <c:forEach var="list" items="${map.getMyDeal}">
@@ -125,12 +126,12 @@
         <div class="goods_item">
             <div class="goods_info">
                 <ul class="info">
-                    <li class="goods_name"><span">거래물품명 : ${list.productName}></span></li>
-                    <li><span">거래날짜 : </span>${list.dealEndDate}</li>
-                    <li><span">거래자 아이디 : </span>${list.dealId}</li>
-                    <li><span">신뢰온도 : </span>${list.reviewPt}</li>
+                    <li class="goods_name"><span>거래물품명 : ${list.productName}></span></li>
+                    <li><span>거래날짜 : </span>${list.dealEndDate}</li>
+                    <li><span>거래자 아이디 : </span>${list.dealId}</li>
+                    <li><span>신뢰온도 : </span>${list.reviewPt}</li>
                     <li>
-                        <span">구매후기</span><br />
+                        <span>구매후기</span><br />
                     ${list.review}
                     </li>
                 </ul>
@@ -138,8 +139,10 @@
         </div>
     </div>
         </c:forEach>
-
+    <div>
 <hr>
+        <div style="margin-bottom: 100px;">
+        </div>
     <jsp:include page="/layout/chatIcon.jsp"/>
     <jsp:include page="/layout/footer.jsp"/>
 </body>
