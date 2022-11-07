@@ -838,14 +838,29 @@ public class MyPageController {
     }
 
     @RequestMapping(value = "getMyDealLike", method = RequestMethod.GET)
-    public String getMyDealLike(@RequestParam(value = "userId") String userId, Model model) throws Exception {
+    public String getMyDealLike(@RequestParam(value = "userId") String userId,
+                                Model model
+                                ,@ModelAttribute("search")Search search) throws Exception {
         System.out.println("getMyDealLike 컨트롤러 userId의 값?" + userId);
 
-        Search search = new Search();
+        if (search.getCurrentPage() == 0) {
+            search.setCurrentPage(1);
+        }
+        search.setPageSize(pageSize);
+
 
         Map<String, Object> map = myPageService.getMyLike(userId, search);
+
+
+      Page resultPage = new Page(search.getCurrentPage(), ((Integer) map.get("dealBoardLikeTotal")).intValue(), pageUnit, pageSize);
+
+
         System.out.println("getMyDealLike 컨트롤러 map의 값은?" + map);
-        model.addAttribute("map", map);
+
+
+        model.addAttribute("map", map.get("dealBoardLike"));
+        model.addAttribute("resultPage", resultPage);
+
         return "forward:/view/myPage/getMyDealLike.jsp";
     }
 

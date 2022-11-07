@@ -30,7 +30,7 @@ public interface MyPageDao {
 
     public List<ClubCalendarReview> getMyclubCalendarReviewLike(Map<String,Object>map)throws Exception;
 
-    public List<Deal> getMydealBoardLike(String userId)throws Exception;
+    public List<Deal> getMydealBoardLike(Map<String, Object>map)throws Exception;
 
     public Club getMyClub(Map<String, Object> map)throws Exception;
 
@@ -75,4 +75,5 @@ public interface MyPageDao {
 
     int getTotalLikeRecomment(Map<String, Object> map);
 
+    int getTotalDealBoardTotal(Map<String, Object> map);
 }

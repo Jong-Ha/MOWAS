@@ -72,8 +72,8 @@ public class MyPageDaoImpl implements MyPageDao{
         return sqlSession.selectList("MyPageMapper.getMyclubCalendarReviewLike", map);
     }
 
-    public List<Deal> getMydealBoardLike(String userId)throws Exception{
-        return sqlSession.selectList("MyPageMapper.getMydealBoardLike", userId);
+    public List<Deal> getMydealBoardLike(Map<String,Object> map)throws Exception{
+        return sqlSession.selectList("MyPageMapper.getMydealBoardLike", map);
     }
 
     public Club getMyClub(Map<String, Object> map)throws Exception{
@@ -173,6 +173,11 @@ public class MyPageDaoImpl implements MyPageDao{
     @Override
     public int getTotalLikeRecomment(Map<String, Object> map) {
         return sqlSession.selectOne("MyPageMapper.getMyRecommentLikeTotal", map);
+    }
+
+    @Override
+    public int getTotalDealBoardTotal(Map<String, Object> map) {
+        return sqlSession.selectOne("MyPageMapper.getMydealBoardLikeTotal", map);
     }
 
 
