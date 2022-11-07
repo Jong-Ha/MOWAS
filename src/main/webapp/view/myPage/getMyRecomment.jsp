@@ -227,66 +227,6 @@
         /* 위 속성들을 한 줄로 표기하기 */
         /* -webkit-animation: blink 1.5s ease infinite; */
     }
-
-    /* 애니메이션 지점 설정하기 */
-    /* 익스플로러 10 이상, 최신 모던 브라우저에서 지원 */
-    @keyframes blink {
-        from {color: white;}
-        30% {color: yellow;}
-        to {color: red; font-weight: bold;}
-        /* 0% {color:white;}
-        30% {color: yellow;}
-        100% {color:red; font-weight: bold;} */
-    }
-
-    .wrapper {
-        display: grid;
-        place-items: center;
-    }
-
-    .typing {
-        width: 17ch;
-        animation: typing 0.9s steps(22), blink .5s step-end infinite alternate;
-        white-space: nowrap;
-        overflow: hidden;
-        border-right: 3px solid;
-        font-size: 2em;
-        height: 2ch;
-    }
-    .underline {
-        line-height: 1.2;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
-        font-size: 1.5em;
-        font-weight: 700;
-        background-image: linear-gradient(transparent calc(100% - 3px), #000 3px);
-        background-repeat: no-repeat;
-        background-size: 0% 100%;
-        transition: background-size 0.2s;
-        color: #000;
-        cursor: pointer;
-        margin-right: 25px;
-    }
-
-    @media (min-width: 1000px) {
-        .underline {
-            font-size: 1.5em;
-        }
-    }
-    .underline.yellow {
-        background-image: linear-gradient(transparent 60%, #F8CD07 40%);
-    }
-
-    @keyframes typing {
-        from {
-            width: 0
-        }
-    }
-
-    @keyframes blink {
-        80% {
-            border-color: transparent
-        }
-    }
 </style>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -326,11 +266,9 @@
         });
 
 
-        $(".getMyComment").on("click", function (){
-            self.location="/myPage/getMyComment?userId="+userId;
+        $(".getMyComment").on("click", function () {
+            self.location = "/myPage/getMyComment?userId=" + userId;
         })
-        $(".getMyRecomment").on("click", function (){
-            self.location="/myPage/getMyRecomment?userId="+userId;
         $(".getMyRecomment").on("click", function () {
             self.location = "/myPage/getMyRecommentLike?userId=" + userId;
         })
@@ -343,10 +281,6 @@
 
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
-<hr>
-<div class="container">
-
-
 
 <div class="tabBox">
     <span class="tabBtn getMyComment">댓글</span>
@@ -380,7 +314,7 @@
                                 </thead>
                                 <tbody>
 
-                              <c:set var="i" value="0"/>
+                                <c:set var="i" value="0"/>
                                 <c:forEach var="recomment" items="${list}">
                                     <c:set var="i" value="${ i+1 }"/>
                                     <tr>
@@ -443,8 +377,6 @@
             </div>
         </div>
     </form>
-</div>
-<div style="margin-bottom: 100px;">
 </div>
 <jsp:include page="/layout/chatIcon.jsp"/>
 <jsp:include page="/layout/footer.jsp"/>

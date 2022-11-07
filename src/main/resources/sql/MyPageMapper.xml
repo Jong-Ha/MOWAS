@@ -610,8 +610,9 @@
     <select id="getMyDeal" parameterType="String" resultMap="dealSelectMap">
         SELECT *
         FROM deal
-        WHERE deal_status='3' and (deal_id=#{userId} or USER_ID=#{userId})
+        WHERE deal_status = '2' and (user_id = #{userId} or deal_id = #{userId})
     </select>
+
 
     <select id="getMyReport" parameterType="String" resultMap="CommunityReportSelectMap">
         SELECT *

@@ -302,11 +302,12 @@ public class UserRestController {
 
         StringBuffer sb = new StringBuffer();
         sb.append("<html><body><title>MOWAS</title>");
-        sb.append("<meta http-equiv='Content-Type' content='text/html'; charset='euc-kr'>");
+        sb.append("<meta http-equiv='Content-Type' content='text/html'; charset='euc-kr'><link rel=\"icon\" href=\"/favicon.ico\" type=\"image/x-icon\">");
         sb.append("</head><body> ");
         sb.append("<div class='container-sm'>");
-        sb.append("<br><br><div style='border: 1px solid; width: 600px; height: 10px; background-color: #333333;'></div>");
-        sb.append("<br><br><br><br><div style='margin-left: 130px;'/>");
+        sb.append("<br><br><div style='border: 1px solid; width: 600px; height: 210px; background-color: #333333;'>");
+        sb.append("<img style='margin-left: 75px; border-radius : 50%;' src='https://192.168.0.235:8443/resources/images/MOWAS_T_2.png'></div>");
+        sb.append("<br><br><div class='ms-5'; style='margin-left: 130px;'/>");
         sb.append("<span style='font-size: 15px;'>MOWAS</span><br>");
         sb.append(" <span style='font-size: 28px;color: #f56c42;'>메일인증</span><span style='font-size: 28px;'> 안내입니다</span>");
         sb.append("<p style='font-size: 16px; line-height: 26px; margin-top: 50px; padding: 0 5px;'>");
@@ -314,8 +315,7 @@ public class UserRestController {
         sb.append("<span style='font-size: 16px; line-height: 26px; margin-top: 50px; padding: 0 5px;'>");
         sb.append("인증번호 [ </span><span style='font-size: 28px; font-weight: bold;'>"+emailNo+"</span>");
         sb.append("<span> ]입니다</span><br><br><br>감사합니다</div>");
-        sb.append("<br><br><br><br><br><br><div style='border: 1px solid; width: 600px; height: 10px; background-color: #333333;'>");
-
+        sb.append("<br><br><br><div style='border: 1px solid; width: 600px; height: 10px; background-color: #333333;'>");
         sb.append("</div></body></html>");
 
         System.out.println("과연 ? 1");

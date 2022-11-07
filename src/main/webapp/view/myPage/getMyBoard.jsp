@@ -41,12 +41,12 @@
     }
 
 
-
     .cardbox {
         display: flex;
         flex-direction: row;
         margin-bottom: 30px;
-        width: 360px;
+        float: left;
+        width: 442px;
         transition: all 0.1s linear;
     }
 
@@ -159,33 +159,6 @@
         margin: 5px;
         font-weight: bolder;
         cursor: pointer;
-        margin-right: 25px;
-    }
-    @media (min-width: 1000px) {
-        .underline {
-            font-size: 1.5em;
-        }
-    }
-    .underline.yellow {
-        background-image: linear-gradient(transparent 60%, #F8CD07 40%);
-    }
-    .underline:hover {
-        background-size: 100% 100%;
-    }
-
-    .wrapper {
-        display: grid;
-        place-items: center;
-    }
-
-    .typing {
-        width: 14ch;
-        animation: typing 0.9s steps(22), blink .5s step-end infinite alternate;
-        white-space: nowrap;
-        overflow: hidden;
-        border-right: 3px solid;
-        font-size: 2em;
-        height: 2ch;
     }
 
     @keyframes typing {
@@ -321,60 +294,9 @@
 </div>
 
 
-<hr>
-
-<div class="container">
-    <div class="tabBox">
-        <span class="tabBtn getMyVillBoard" >우리동네 게시글</span>
-        <span>|</span>
-        <span class="tabBtn getMyCbReviewBoard">모임 일정 후기 게시글</span>
-        <span>|</span>
-        <span class="tabBtn getMyDealBoard" >판매/판매요청 게시글</span>
-    </div>
 <hr/>
 <h4>우리동네 게시글</h4>
 <hr/>
-<div style="display: flex;justify-content: space-between;">
-<c:set var="i" value="0" />
-<c:forEach var="list" items="${map.myVillBoard}">
-
-
-<div class="cardbox">
-    <input hidden class="villNum" value="10067">
-    <input hidden class="SUserId" value="user01">
-    <div class="col villBox">
-
-        <div class="card h-100 shadow-lg">
-
-            <div class="card-top" style=" border-bottom: 1px solid; display: flex; font-weight: bold;justify-content: space-between;">
-                <div style="display: flex">
-                    <div class="userImg">
-                        <img src="/resources/uploadFiles\userImages\37b973dd.jpg" alt=""
-                             style="border-radius: 10px; width: 100%; height: 100%;">
-                    </div>
-                    <div class="userInfo">
-                        <div>
-                                ${list.userId}
-                        </div>
-                        <div style="font-size: 0.7em; margin-top: 5px">
-                                ${list.villCode}
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="user_manu">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             class="bi bi-three-dots" viewBox="0 0 16 16">
-                            <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
-                        </svg>
-
-                    </div>
-
-                    <div class="user_hidden_manu" style="display: none">
-                        <ul class=" shadow-lg">
-                            <li class="getClub">
-                                모임 방문하기
-                            </li>
 
 
 
@@ -480,14 +402,9 @@
         </div>
     </form>
 </div>
-</c:forEach>
-</div>
-</div>
 
-<input type="hidden" id="villBoardUserId" name="villBoardUserId" value="${user.userId}"/>
-
-<jsp:include page="/layout/chatIcon.jsp"/>
-<jsp:include page="/layout/footer.jsp"/>
+                    <jsp:include page="/layout/chatIcon.jsp"/>
+                    <jsp:include page="/layout/footer.jsp"/>
 </body>
 
 </html>
