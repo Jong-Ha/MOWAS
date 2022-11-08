@@ -232,6 +232,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script type="text/javascript">
     function pagingSubmit() {
         $("#dealBoardForm").attr('action', '/myPage/getMyDealLike').attr('method', 'post').submit()
@@ -265,7 +266,25 @@
         $(".getDeal").on("click", function () {
             var boardNUm = $(this).find(".dealBoardNum").val()
 
-            location.href = "/deal/getDeal/" + boardNUm
+            Swal.fire({
+                title: '해당 페이지로 이동하시겠습니까??',
+                text: "해당 페이지로 이동합니다",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: "취소",
+                confirmButtonText: '페이지이동'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        '페이지를 이동 합니다',
+                        'success'
+                    )
+
+                    location.href = "/deal/getDeal/" + boardNUm
+                }
+            });
         })
 
         $(".getMyVillBoard").on("click", function () {
@@ -334,47 +353,52 @@
                                 <c:set var="i" value="0"/>
                                 <c:forEach var="deal" items="${map}">
                                     <c:set var="i" value="${ i+1 }"/>
-                                    <div class="dealList">
+
                                         <tr class="getDeal">
 
-
-                                            <td>
+                                            <td style="    width: 100px;">
                                                 <div>
                                                     <input hidden class="dealBoardNum" value="${deal.dealBoardNum}">
-
-                                                        <%-- ${deal.files.fileName}--%>
+                                                    <img src="/resources/${deal.files[0].fileName}"  style="width: 100%;height: 100%;object-fit: cover;">
                                                 </div>
                                             </td>
+
                                             <td>
                                                 <div>
                                                         ${deal.boardCategory == '8 ' ? '판매 게시글' : '구매 게시글' }
                                                 </div>
                                             </td>
+
                                             <td>
                                                 <div>
                                                         ${deal.dealTitle}
                                                 </div>
                                             </td>
+
                                             <td>
                                                 <div>
                                                         ${deal.dealText}
                                                 </div>
                                             </td>
+
                                             <td>
                                                 <div>
                                                         ${deal.dealRegDate}
                                                 </div>
                                             </td>
+
                                             <td>
                                                 <div>
                                                         ${deal.productName}
                                                 </div>
                                             </td>
+
                                             <td>
                                                 <div>
                                                         ${deal.price}
                                                 </div>
                                             </td>
+
                                             <td>
                                                 <div>
                                                         ${deal.dealModeCheck == '1' ? '거래중' : '판매중 '}
@@ -384,7 +408,7 @@
                                             </td>
 
                                         </tr>
-                                    </div>
+
                                 </c:forEach>
                                 </tbody>
                             </table>

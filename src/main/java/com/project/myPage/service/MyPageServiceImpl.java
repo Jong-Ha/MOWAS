@@ -73,9 +73,16 @@ public class MyPageServiceImpl implements MyPageService {
 
         List<VilBoard> villBoard = myPageDao.getMyVillBoard(map2);
 
-        System.out.println("==================================================================villBoard 값??"+villBoard);
-
         int villBoardTotal = myPageDao.getTotalVillBoard(map2);
+
+        int j=0;
+        for (VilBoard vilBoard : villBoard){
+            vilBoard.setFile(clubCalendarDao.getListFile(villBoard.get(j).getVillBoardNum(), villBoard.get(j).getBoardCategory()));
+
+            j += 1;
+        }
+
+
 
         List<ClubCalendarReview> clubCalendarReview = myPageDao.getMyClubCalendarReview(map2);
         int clubCalenderTotle = myPageDao.clubCalenderTitle(map2);
@@ -147,9 +154,26 @@ public class MyPageServiceImpl implements MyPageService {
 
         int villBoardTotal = myPageDao.getTotalVillBoard(map);
 
+
+        int j=0;
+        for (VilBoard vilBoard : villBoardLike){
+            vilBoard.setFile(clubCalendarDao.getListFile(villBoardLike.get(j).getVillBoardNum(),
+                    villBoardLike.get(j).getBoardCategory()));
+        }
+
         List<ClubCalendarReview> clubCalendarReviewLike = myPageDao.getMyclubCalendarReviewLike(map);
 
         int clubCalenderReviewTotal = myPageDao.getTotalClubCalender(map);
+
+        int i =0;
+        for (ClubCalendarReview clubCalender : clubCalendarReviewLike){
+
+            clubCalender.setFile(clubCalendarDao.getListFile(clubCalendarReviewLike.get(i).getClubCalenderReviewNum(),
+                    clubCalendarReviewLike.get(i).getBoardCategory()));
+            i += 1;
+
+        }
+
 
         List<Deal> dealBoardLike = myPageDao.getMydealBoardLike(map);
 

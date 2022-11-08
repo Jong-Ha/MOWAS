@@ -646,7 +646,9 @@ public class MyPageController {
         Page resultPage = new Page(search.getCurrentPage(), (Integer) map.get("clubCalenderTotle"), pageUnit, pageSize);
 
         model.addAttribute("resultPage", resultPage);
+
         model.addAttribute("map", map);
+
         return "forward:/view/myPage/getMyCbReviewBoard.jsp";
     }
 

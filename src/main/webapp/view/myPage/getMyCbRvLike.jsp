@@ -231,8 +231,8 @@
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script type="text/javascript">
 
 
@@ -275,6 +275,33 @@
             location.href = "/myPage/getMyDealLike?userId=" + userId;
         })
 
+        $(".getClubCalender").on("click", function () {
+            var clubCalenderNum = $(this).find(".clubCalenderNum").val()
+            var boardCategory = $(this).find(".boardCategory").val()
+
+            Swal.fire({
+                title: '해당 페이지로 이동하시겠습니까??',
+                text: "해당 페이지로 이동합니다",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: "취소",
+                confirmButtonText: '페이지이동'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        '페이지를 이동 합니다',
+                        'success'
+                    )
+
+                    setTimeout(() => {
+                        location.href = "/clubCal/getClubCalenderReview?clubCalenderReviewNum=" + clubCalenderNum + "&boardCategory=" + boardCategory;
+                    }, 1500)
+                }
+            })
+        });
+
 
     });
 
@@ -315,6 +342,7 @@
                                    style="table-layout: fixed;">
                                 <thead>
                                 <tr>
+                                    <th scope="col">이미지</th>
                                     <th scope="col">제목</th>
                                     <th scope="col">작성날짜</th>
                                     <th scope="col">동네 코드</th>
@@ -330,7 +358,14 @@
                                 <c:forEach var="list" items="${map.clubCalendarReviewLike}">
                                     <c:set var="i" value="${ i+1 }"/>
                                     <c:if test="${list.likeCheck == 'y'}">
-                                        <tr>
+                                        <tr class="getClubCalender">
+                                            <td style="width: 100px;">
+                                                <div>
+                                                    <input hidden class="clubCalenderNum" value="${list.clubCalenderReviewNum}">
+                                                    <input hidden class="boardCategory" value="${list.boardCategory}">
+                                                    <img src="/resources/${list.file[0].fileName}" style=" width: 100%; height: 100%;  object-fit: cover;">
+                                                </div>
+                                            </td>
                                             <td>
                                                 <div>
                                                         ${list.reviewTitle}
