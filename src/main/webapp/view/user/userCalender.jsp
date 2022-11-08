@@ -122,7 +122,7 @@
 
                                 })
 
-                                $(".slide").append(str);
+                                $(".slide").html(str);
 
                                 const modal = new bootstrap.Modal('#exampleModal1', {})
                                 modal.show();
@@ -695,7 +695,7 @@
 
 </div>
 
-<%-- ¸®ºä ¸ð´ÞÃ¢ ¸¸µé±â ÇìÇò--%>
+<%-- ¸®ºä ¸ð´ÞÃ¢ ¸¸µé±â ÇìÇò
 
 <div class="modal fade" id="addReview" tabindex="-1" aria-labelledby="addReviewLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">

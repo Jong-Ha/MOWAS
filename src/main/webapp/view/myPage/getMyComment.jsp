@@ -231,18 +231,26 @@
     /* 애니메이션 지점 설정하기 */
     /* 익스플로러 10 이상, 최신 모던 브라우저에서 지원 */
     @keyframes blink {
-        from {color: white;}
-        30% {color: yellow;}
-        to {color: red; font-weight: bold;}
+        from {
+            color: white;
+        }
+        30% {
+            color: yellow;
+        }
+        to {
+            color: red;
+            font-weight: bold;
+        }
         /* 0% {color:white;}
         30% {color: yellow;}
         100% {color:red; font-weight: bold;} */
     }
+
     .card {
         border: none;
         margin-bottom: 24px;
-        -webkit-box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
-        box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
+        -webkit-box-shadow: 0 0 13px 0 rgba(236, 236, 241, .44);
+        box-shadow: 0 0 13px 0 rgba(236, 236, 241, .44);
     }
 
     .wrapper {
@@ -259,10 +267,12 @@
         font-size: 2em;
         height: 2ch;
     }
+
     .mbBox {
         margin-bottom: 50px;
         justify-content: center;
     }
+
     .underline {
         line-height: 1.2;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
@@ -276,11 +286,13 @@
         cursor: pointer;
         margin-right: 25px;
     }
+
     @media (min-width: 1000px) {
         .underline {
             font-size: 1.5em;
         }
     }
+
     .underline.yellow {
         background-image: linear-gradient(transparent 60%, #F8CD07 40%);
     }
@@ -333,11 +345,11 @@
             self.location = "/myPage/getMyComment?userId=" + userId;
         })
 
-    $(".getMyRecomment").on("click", function (){
-        // alert('adsfadsf');
-        // alert(userId);
-        location.href="getMyRecomment?userId="+userId;
-    })
+        $(".getMyRecomment").on("click", function () {
+
+            location.href = "getMyRecomment?userId=" + userId;
+        })
+
     })
 
 </script>
@@ -351,95 +363,96 @@
 <hr>
 <div class="container">
 
-<div class="tabBox">
-    <span class="tabBtn getMyComment">댓글</span>
-    <span>|</span>
-    <span class="tabBtn getMyRecomment">대댓글</span>
-</div>
+    <div class="tabBox">
+        <span class="tabBtn getMyComment">댓글</span>
+        <span>|</span>
+        <span class="tabBtn getMyRecomment">대댓글</span>
+    </div>
 
-<hr/>
-<h3>작성한 댓글</h3>
-<hr/>
+    <hr/>
+    <h3>작성한 댓글</h3>
+    <hr/>
 
-<div class="container">
-    <form id="commentForm">
-        <input hidden class="userId" name="userId" value="${user.userId}">
+    <div class="container">
+        <form id="commentForm">
+            <input hidden class="userId" name="userId" value="${user.userId}">
 
-        <input type="hidden" id="currentPage" name="currentPage" value="${resultPage.currentPage}">
+            <input type="hidden" id="currentPage" name="currentPage" value="${resultPage.currentPage}">
 
-        <!--  table Start /////////////////////////////////////-->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="table-responsive project-list">
-                            <table class="table project-table table-centered table-nowrap table-hover table-striped">
-                                <thead>
-                                <tr>
-                                    <th scope="col">게시글 번호</th>
-                                    <th scope="col">게시글 카테고리</th>
-                                    <th scope="col">댓글 내용</th>
-                                    <th scope="col">작성날짜</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                <c:set var="i" value="0"/>
-                                <c:forEach var="list" items="${map.myComment}">
-                                    <c:set var="i" value="${ i+1 }"/>
+            <!--  table Start /////////////////////////////////////-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive project-list">
+                                <table class="table project-table table-centered table-nowrap table-hover table-striped">
+                                    <thead>
                                     <tr>
-                                        <td>
-                                            <div>
-                                                    ${list.boardNum}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                    ${list.boardCategory == '1 ' ? '후기글' : '우리동네 게시글'}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                    ${list.commentText}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                    ${list.regDate}
-                                            </div>
-                                        </td>
-
+                                        <th scope="col">게시글 번호</th>
+                                        <th scope="col">게시글 카테고리</th>
+                                        <th scope="col">댓글 내용</th>
+                                        <th scope="col">작성날짜</th>
                                     </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!--  table End /////////////////////////////////////-->
-                        <c:if test="${!empty resultPage}">
-                            <nav aria-label="Page navigation example" style="display: flex;justify-content: center;">
-                                <ul class="pagination">
-                                    <li class="page-item pageUnit ${resultPage.beginUnitPage == 1?'disabled':''}"
-                                        value="${resultPage.beginUnitPage - resultPage.pageUnit}">
-                                        <a class="page-link" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                        </a>
-                                    </li>
+                                    </thead>
+                                    <tbody>
 
-                                    <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}"
-                                               var="i">
-                                        <li class="page-item ${search.currentPage == i?'active':'paging'}"><a
-                                                class="page-link">${i}</a></li>
+                                    <c:set var="i" value="0"/>
+                                    <c:forEach var="list" items="${map.myComment}">
+                                        <c:set var="i" value="${ i+1 }"/>
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                        ${list.boardNum}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                        ${list.boardCategory == '1 ' ? '후기글' : '우리동네 게시글'}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                        ${list.commentText}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                        ${list.regDate}
+                                                </div>
+                                            </td>
+
+                                        </tr>
                                     </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--  table End /////////////////////////////////////-->
+                            <c:if test="${!empty resultPage}">
+                                <nav aria-label="Page navigation example"
+                                     style="display: flex;justify-content: center;">
+                                    <ul class="pagination">
+                                        <li class="page-item pageUnit ${resultPage.beginUnitPage == 1?'disabled':''}"
+                                            value="${resultPage.beginUnitPage - resultPage.pageUnit}">
+                                            <a class="page-link" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
 
-                                    <li class="page-item pageUnit ${resultPage.maxPage==resultPage.endUnitPage?'disabled':''}"
-                                        value="${resultPage.beginUnitPage+resultPage.pageUnit}">
-                                        <a class="page-link" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </c:if>
+                                        <c:forEach begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}"
+                                                   var="i">
+                                            <li class="page-item ${search.currentPage == i?'active':'paging'}"><a
+                                                    class="page-link">${i}</a></li>
+                                        </c:forEach>
+
+                                        <li class="page-item pageUnit ${resultPage.maxPage==resultPage.endUnitPage?'disabled':''}"
+                                            value="${resultPage.beginUnitPage+resultPage.pageUnit}">
+                                            <a class="page-link" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </c:if>
 
 
                     </div>

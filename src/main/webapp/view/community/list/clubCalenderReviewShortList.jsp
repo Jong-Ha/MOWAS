@@ -708,7 +708,7 @@
 
 <div class="container">
     <img class="shadow-lg" src="/resources/images/커뮤8.jpg"
-         style="border-radius: 10px;object-fit: cover;aspect-ratio: 12/5;width: 100%;object-fit: cover;">
+         style="border-radius: 10px;object-fit: cover;aspect-ratio: 12/5;width: 100%;">
 </div>
 
 <jsp:include page="/layout/commubar.jsp"/>
