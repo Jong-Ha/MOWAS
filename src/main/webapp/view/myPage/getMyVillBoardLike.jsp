@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title>MOWAS</title>
 </head>
 <style>
     .tabBox {
@@ -325,43 +325,43 @@
 
 
 
-                               <c:set var="i" value="0"/>
+                                <c:set var="i" value="0"/>
                                 <c:forEach var="VilBoard" items="${map.villBoardLike}">
                                     <c:set var="i" value="${ i+1 }"/>
                                     <c:if test="${VilBoard.likeCheck == 'y'}">
-                                    <tr>
-                                        <td>
-                                            <div>
-                                                ${VilBoard.villTitle}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                ${VilBoard.regDate}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                ${VilBoard.villCode}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                ${VilBoard.villText}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                    ${VilBoard.likeCount}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                    ${VilBoard.viewCount}
-                                            </div>
-                                        </td>
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                        ${VilBoard.villTitle}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                        ${VilBoard.regDate}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                        ${VilBoard.villCode}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                        ${VilBoard.villText}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                        ${VilBoard.likeCount}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                        ${VilBoard.viewCount}
+                                                </div>
+                                            </td>
 
-                                    </tr>
+                                        </tr>
                                     </c:if>
                                 </c:forEach>
                                 </tbody>

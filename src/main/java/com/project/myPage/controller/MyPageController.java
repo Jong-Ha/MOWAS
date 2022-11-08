@@ -586,6 +586,7 @@ public class MyPageController {
     ///*
     @RequestMapping(value = "getMyBoard")
     public String getMyBoard(@RequestParam(value = "userId") String userId, Model model,  @ModelAttribute("search") Search search) throws Exception {
+
         System.out.println("getMyBoard컨트롤러 userId의 값?" + userId);
 
         if (search.getCurrentPage() == 0) {
