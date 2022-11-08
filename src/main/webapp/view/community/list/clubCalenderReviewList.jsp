@@ -16,6 +16,20 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script type="text/javascript">
+    function setToolTip(){
+        $('.report').attr('data-bs-title','신고하기')
+        $.each($('.report'),function(i,e){
+            new bootstrap.Tooltip(e)
+        })
+        $('.likeButton').attr('data-bs-title','좋아요')
+        $.each($('.likeButton'),function(i,e){
+            new bootstrap.Tooltip(e)
+        })
+        $('.viewBox').attr('data-bs-title','조회수')
+        $.each($('.viewBox'),function(i,e){
+            new bootstrap.Tooltip(e)
+        })
+    }
 
     function lodingListClubCalender() {
 
@@ -334,6 +348,8 @@
     /*무한스크롤*/
     $(function () {
 
+        setToolTip()
+
         lodingListClubCalender()
 
 
@@ -413,7 +429,7 @@
                                 '                            </div>' +
                                 '                            <div class="userInfo">' +
                                 '                                <div>' + item.userId + '</div>' +
-                                '                                <div style="font-size: 0.7em; margin-top: 5px;  text-align: left;  width: 150px;">' + item.location + '</div>' +
+                                '                                <div style="font-size: 0.7em;margin-top: 5px;text-align: left;text-overflow: ellipsis;">' + item.location + '</div>' +
                                 '                            </div>' +
                                 '                            <div style="width: 56%;">' +
                                 '                                   <div class="user_manu">' +
@@ -440,7 +456,7 @@
                             $.each(item.file, function (index, item) {
                                 str +=
                                     '               <div class="carousel-item active get">' +
-                                    '                   <img class="poto" width="100%" height="100%" src="/resources' + item.fileName + '" alt="any">' +
+                                    '                   <img class="poto" width="100%" height="100%" src="/resources' + item.fileName + '" alt="any" style="object-fit: cover;">' +
                                     '               </div>'
                             })
 
@@ -457,7 +473,7 @@
                                 '                                                    </svg>' +
                                 '                                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger likeText"  style=" z-index: 1; font-size: 0.5em;">' + item.likeConunt + '</span>' +
                                 '                                                </div>' +
-                                '                                                <div class="btn btn-secondary position-relative position-relative buttonBox">' +
+                                '                                                <div class="btn btn-secondary position-relative position-relative buttonBox viewBox">' +
                                 '                                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"      fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16" style="font-size: 1.7em">' +
                                 '                                                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>' +
                                 '                                                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>' +
@@ -495,6 +511,7 @@
 
                         $("#textSerch .currentPage").val(parseInt($("#textSerch .currentPage").val()) + 1)
 
+                        setToolTip()
                         lodingListClubCalender()
 
 
@@ -522,6 +539,10 @@
 
 
 <style>
+
+    .userImg img{
+        object-fit: cover;
+    }
 
     ul li {
         list-style: none;
@@ -671,7 +692,7 @@
     .reviewText {
         width: 100%;
         text-align: left;
-        font-size: 0.1em;
+        font-size: 1em;
         text-overflow: ellipsis;
         overflow: hidden;
         height: 76px;
@@ -790,8 +811,8 @@
                              data-bs-ride="carousel">
 
                             <div class="carousel-inner">
-                                <c:forEach var="File" items="${ClubCalendarReview.file}">
-                                    <div class="carousel-item active get" data-bs-interval="2000">
+                                <c:forEach var="File" items="${ClubCalendarReview.file}" varStatus="st">
+                                    <div class="carousel-item ${st.first?'active':''} get" data-bs-interval="2000">
                                         <img class="d-block w-100 poto" width="100%" height="100%" style="object-fit: cover;"
                                              src="/resources${File.fileName}" alt="any">
                                     </div>
@@ -818,7 +839,7 @@
                                                   style=" z-index: 1; font-size: 0.5em;">${ClubCalendarReview.likeConunt}</span>
                                         </div>
 
-                                        <div class="btn btn-secondary position-relative position-relative buttonBox">
+                                        <div class="btn btn-secondary position-relative position-relative buttonBox viewBox">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                                                  fill="currentColor"
                                                  class="bi bi-eye" viewBox="0 0 16 16" style="font-size: 1.7em">

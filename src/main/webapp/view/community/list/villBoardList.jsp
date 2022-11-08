@@ -20,6 +20,20 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 <script type="text/javascript">
+    function setToolTip(){
+        $('.report').attr('data-bs-title','신고하기')
+        $.each($('.report'),function(i,e){
+            new bootstrap.Tooltip(e)
+        })
+        $('.likeButton').attr('data-bs-title','좋아요')
+        $.each($('.likeButton'),function(i,e){
+            new bootstrap.Tooltip(e)
+        })
+        $('.viewBox').attr('data-bs-title','조회수')
+        $.each($('.viewBox'),function(i,e){
+            new bootstrap.Tooltip(e)
+        })
+    }
 
     function lodingVillBoard() {
 
@@ -428,7 +442,7 @@
 
 
     $(function () {
-
+        setToolTip()
         lodingVillBoard()
 
         /*무한 페이징*/
@@ -550,7 +564,7 @@
                                 '                                               </svg>' +
                                 '                                               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger likeText"style=" z-index: 1; font-size: 0.5em;">' + item.likeCount + '</span>' +
                                 '                                           </div>' +
-                                '                                           <div type="button" class="btn btn-secondary position-relative buttonBox">' +
+                                '                                           <div type="button" class="btn btn-secondary position-relative buttonBox viewBox">' +
                                 '                                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"      fill="currentColor"    class="bi bi-eye" viewBox="0 0 16 16">' +
                                 '                                                       <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>' +
                                 '                                                       <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>' +
@@ -587,7 +601,7 @@
                         });
 
                         $("#textSearch .currentPage").val(parseInt($("#textSearch .currentPage").val()) + 1)
-
+                        setToolTip()
                         lodingVillBoard();
 
                         if (JSON.list.length > 0) {
@@ -797,7 +811,7 @@
     .villText {
         width: 100%;
         text-align: left;
-        font-size: 0.1em;
+        font-size: 1em;
         text-overflow: ellipsis;
     }
 
@@ -945,7 +959,7 @@
                                                   style=" z-index: 1; font-size: 0.5em;">${villBoard.likeCount}</span>
                                         </div>
 
-                                        <div type="button" class="btn btn-secondary position-relative buttonBox">
+                                        <div type="button" class="btn btn-secondary position-relative buttonBox viewBox">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                  fill="currentColor"
                                                  class="bi bi-eye" viewBox="0 0 16 16">

@@ -22,9 +22,52 @@
 
 
     <script type="text/javascript">
+        function setToolTip(){
+            $('.report').attr('data-bs-title','신고하기')
+            $.each($('.report'),function(i,e){
+                new bootstrap.Tooltip(e)
+            })
+            $('.reportComment').attr('data-bs-title','신고하기')
+            $.each($('.reportComment'),function(i,e){
+                new bootstrap.Tooltip(e)
+            })
+            $('.reportRecomment').attr('data-bs-title','신고하기')
+            $.each($('.reportRecomment'),function(i,e){
+                new bootstrap.Tooltip(e)
+            })
+            $('.likeButton').attr('data-bs-title','좋아요')
+            $.each($('.likeButton'),function(i,e){
+                new bootstrap.Tooltip(e)
+            })
+            $('.CommentlikeButton').attr('data-bs-title','좋아요')
+            $.each($('.CommentlikeButton'),function(i,e){
+                new bootstrap.Tooltip(e)
+            })
+            $('.RecommentlikeButton').attr('data-bs-title','좋아요')
+            $.each($('.RecommentlikeButton'),function(i,e){
+                new bootstrap.Tooltip(e)
+            })
+            $('.chating').attr('data-bs-title','채팅하기')
+            $.each($('.chating'),function(i,e){
+                new bootstrap.Tooltip(e)
+            })
+            $('.chatComment').attr('data-bs-title','채팅하기')
+            $.each($('.chatComment'),function(i,e){
+                new bootstrap.Tooltip(e)
+            })
+            $('.chatRecomment').attr('data-bs-title','채팅하기')
+            $.each($('.chatRecomment'),function(i,e){
+                new bootstrap.Tooltip(e)
+            })
+            $('.viewBox').attr('data-bs-title','조회수')
+            $.each($('.viewBox'),function(i,e){
+                new bootstrap.Tooltip(e)
+            })
+        }
 
         /*댓글 list 전역 함수로 등록*/
         $(function () {
+            setToolTip()
             var boardNum = $(".boardNum").val();
             var boardCategory = $(".boardCategory").val();
             var userId = '${user.userId}'
@@ -300,7 +343,7 @@
                             $(".commentplz").html(" ");
 
                             $(".commentplz").append(str);
-
+                            setToolTip()
 
                         })
                         $(".updateComment").off("click").on("click", function () {
@@ -1208,7 +1251,7 @@
                                                         loadCheck = false
                                                     }
                                                 }
-                                            }, 100)
+                                            }, 1000)
                                         }
                                     })
                                 })
@@ -1388,7 +1431,7 @@
                                 </div>
 
 
-                                <div class="btn btn-secondary position-relative buttonBox">
+                                <div class="btn btn-secondary position-relative buttonBox viewBox">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                                          fill="currentColor"
                                          class="bi bi-eye" viewBox="0 0 16 16" style="font-size: 1.7em;">
