@@ -73,13 +73,6 @@ public class ClubCalendarRestController<list> {
             calender.setCalendarApplyCheck("2");
         }
 
-        /*알림 설정*/
-        if (calender.getNoticeCheck().equals("true")) {
-            calender.setNoticeCheck("1");
-        } else {
-            calender.setNoticeCheck("2");
-        }
-
         System.out.println("addClubCalender 진입 " + calender);
 
 

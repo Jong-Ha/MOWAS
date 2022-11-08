@@ -282,6 +282,10 @@
 <%--상단 탑바--%>
 <jsp:include page="/view/myPage/myPageTitle.jsp"/>
 
+
+<hr>
+
+<div class="container">
 <div class="tabBox">
     <span class="tabBtn getMyComment">댓글</span>
     <span>|</span>
@@ -378,7 +382,8 @@
         </div>
     </form>
 </div>
-<jsp:include page="/layout/chatIcon.jsp"/>
+</div>
+    <jsp:include page="/layout/chatIcon.jsp"/>
 <jsp:include page="/layout/footer.jsp"/>
 </body>
 </html>

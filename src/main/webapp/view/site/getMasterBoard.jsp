@@ -223,10 +223,12 @@
                                 <p class="mb-3 font-13 board-danger">${masterBoard.mbRegDate}</p>
                             </div>
 
+                            <c:if test="${!empty masterBoard.files}">
                             <div class="container-fluid py-3" style="text-align: center; width: 70%;">
                                 <img src="/resources/${masterBoard.files[0].fileName}" alt="이미지"
                                      style="object-fit: cover; width: 100%; height: 100%">
                             </div>
+                            </c:if>
 
                             <div class="col-sm-12 mb-3">
                                 <button type="button" class="btn btn-primary">확인</button>

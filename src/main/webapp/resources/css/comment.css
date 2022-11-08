@@ -307,7 +307,7 @@ ul li {
 }
 
 .userImg {
-    width: 135px;
+    aspect-ratio: 1;
     height: 65px;
     padding: 5px;
 }

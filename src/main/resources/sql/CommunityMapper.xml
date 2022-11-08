@@ -89,9 +89,9 @@
     </delete>
 
     <select id="getVillBoard" parameterType="int" resultMap="villBoardSelect">
-        SELECT *
-        FROM vill_board
-        WHERE VILL_BOARD_NUM = #{villBoardNum}
+        SELECT v.*, u.user_image
+        FROM vill_board v, users u
+        WHERE VILL_BOARD_NUM = #{villBoardNum} AND v.user_id = u.user_id
     </select>
 
     <sql id="ListVillBoardSql">

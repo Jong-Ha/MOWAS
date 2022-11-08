@@ -6,7 +6,6 @@
         src="/resources/OpenSource/fullcalendar-5.11.3/lib/main.min.js"></script>
 
 <script>
-
     var calendar = null;
 
     function calenderInfo() {
@@ -136,23 +135,27 @@
 
                             var str = ''
 
-                            $.each(clubCalendar.file, function (index, item) {
+                            if(clubCalendar.file.length===0){
+                                $('.slide').parents('.fileBox').remove()
+                            }else {
+                                $.each(clubCalendar.file, function (index, item) {
 
-                                console.log("====================" + item.fileName);
-
-
-                                str +=
-
-                                    '<div class="carousel-inner">' +
-                                    '<div class="carousel-item active" data-bs-interval="2000">' +
-                                    '<img src="/resources' + item.fileName + '" width="490px" height="400px">' +
-                                    '</div>' +
-                                    '</div>'
+                                    console.log("====================" + item.fileName);
 
 
-                            })
+                                    str +=
 
-                            $(".slide").html(str);
+                                        '<div class="carousel-inner">' +
+                                        '<div class="carousel-item active" data-bs-interval="2000">' +
+                                        '<img src="/resources' + item.fileName + '" width="490px" height="400px">' +
+                                        '</div>' +
+                                        '</div>'
+
+
+                                })
+
+                                $(".slide").html(str);
+                            }
 
                             const modal = new bootstrap.Modal('#exampleModal2', {})
                             modal.show();
@@ -190,10 +193,10 @@
                             if (date3 < date2) {
 
                                 button = '<button class="btn btn-primary addReview" data-bs-toggle="modal" data-bs-target="#exampleModal4">' +
-                                    '모임 일정 후기글 작성' +
+                                    '후기글 작성' +
                                     '</button>' +
                                     '<button class="btn btn-primary addShort"  data-bs-toggle="modal" data-bs-target="#exampleModal5">' +
-                                    '모임 일정 쇼츠' +
+                                    '쇼츠 작성' +
                                     '</button>'
 
                                 $(".addBox").html('');
@@ -939,7 +942,7 @@
 
                     $("#location2").modal("show")
 
-                    $(".getLocation").on("click", function () {
+                    $("#location2 .getLocation").on("click", function () {
 
                         $("#location2").modal("hide")
                         $("#exampleModal2").modal("show");
@@ -971,6 +974,10 @@
     .fc-event {
         margin-top: 5px;
         cursor: pointer;
+    }
+
+    #getCalendarFooter button {
+        margin : 5px;
     }
 
     .check {
@@ -1090,7 +1097,7 @@
 <%--상세 조회--%>
 <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
      aria-hidden="true" style="display: none;">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <input name="clubCalenderReviewNum" class="clubCalenderReviewNum" hidden value="">
             <div class="modal-header">
@@ -1154,24 +1161,6 @@
                     </div>
 
                 </div>
-                <div>
-                    <div class="input-group mb-3">
-                        <button class="btn btn-primary listCalendarCluberView" data-bs-toggle="modal"
-                                data-bs-target="#listCalendarCluber">
-                            참여자
-                        </button>
-                    </div>
-                    <div class="input-group mb-3">
-                        <button class="btn btn-primary addClubCalendarApply" style="display: none">
-                            모임 일정 참여
-                        </button>
-                    </div>
-                    <div class="input-group mb-3">
-                        <button class="btn btn-primary deleteClubCalendarApply" style="display: none">
-                            모임 일정 참여 취소
-                        </button>
-                    </div>
-                </div>
 
                 <hr>
 
@@ -1193,24 +1182,44 @@
 
                 </div>
 
-                <hr>
 
 
             </div>
+<div id="getCalendarFooter" class="modal-footer" style="justify-content: space-between">
 
-            <div class="mb-3" style="    display: flex; align-items: center;    justify-content: center;">
-                <c:if test="${param.cluberStatus=='5'||param.cluberStatus=='6'}">
-                <div class="addBox"
-                     style="    display: flex;  flex-direction: column;      margin-right: 202px;    margin-left: -35px;"></div>
-                </c:if>
-
-                <div class="addBox2"
-                     style=" display: flex;  flex-direction: column;  margin-right: 142px; margin-left: -69px;"></div>
-
-
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-
+    <div style="display: flex;justify-content: space-around;align-items: center;">
+        <div class="input-group mb-3" style="width: fit-content">
+            <button class="btn btn-primary listCalendarCluberView" data-bs-toggle="modal"
+                    data-bs-target="#listCalendarCluber">
+                참여자
+            </button>
+        </div>
+        <div class="mb-3">
+            <div class="input-group">
+                <button class="btn btn-primary addClubCalendarApply" style="display: none">
+                    참여하기
+                </button>
             </div>
+            <div class="input-group">
+                <button class="btn btn-primary deleteClubCalendarApply" style="display: none">
+                    참여취소
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3" style="    display: flex; align-items: center;    justify-content: center;">
+        <c:if test="${param.cluberStatus=='5'||param.cluberStatus=='6'}">
+            <div class="addBox"
+                 style="    display: flex;"></div>
+        </c:if>
+
+        <div class="addBox2"
+             style=" display: flex;"></div>
+
+    </div>
+</div>
+
         </div>
     </div>
 </div>

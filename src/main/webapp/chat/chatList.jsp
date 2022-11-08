@@ -16,7 +16,7 @@
     <title>Title</title>
 
     <script>
-        if(${empty user}){
+        if (${empty user}) {
             opener.location.href = "/index.jsp"
             window.close()
         }
@@ -61,24 +61,37 @@
 </head>
 <body class="p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
 <jsp:include page="/layout/toolbar.jsp"/>
-<div class="container" style="display: flex;border: 1px solid;border-radius: 5px;padding: 0">
+<div class="container" id="chatContainer" style="display: flex;border: 1px solid;border-radius: 5px;padding: 0">
 
-    <div class="chatList" style="border-right: 1px solid;padding: 3px 0;">
-        <div style="width: 90%">
+    <div class="chatList" style="border-right: 1px solid;padding: 3px 0 0;border-bottom-left-radius: 5px;border-top-left-radius: 5px;">
+        <div style="width: 90%;">
             <jsp:include page="/layout/chatbar.jsp"/>
         </div>
 
-        <div style="border-top: 1px solid;width: 100%;">
-        <div class="chatRooms" style="overflow-y: scroll;height: 650px;">
+        <div style="border-top: 1px solid;width: 100%;border-bottom-left-radius: 5px;">
+            <div class="chatRooms" style="overflow-y: scroll;height: 650px;">
+
+                <div class="card chatBox shadow-lg" style="width: 90%;cursor: default; height: 80px;">
+                    <div class="g-0" style="width: 100%">
+                        <div>
+                            <div class="card-body">
+                                <h5 class="card-title text-center text-truncate" style="height: 100%;margin: 8px;">참여한 채팅방이 없습니다!</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
-
+            </div>
         </div>
-    </div>
 
     </div>
     <div class="chatRoom">
-        채팅 내용 표시 예정
+        <div id="chattingRoom" style="width: 100%;height: 100%;display: flex;justify-content: center;align-items: center;flex-direction: column;">
+        <img src="/resources/images/sp_chat_layout.png" alt="noChat" style="height: auto;width: 30%;">
+            <h2>대화 내역이 없습니다!</h2>
+            <div>채팅방을 선택해주세요</div>
+        </div>
     </div>
 </div>
 
@@ -99,16 +112,16 @@
     const socketServer = 'http://192.168.0.234:5000'
 
     //소켓 연결
-    let socket = io(socketServer+"/chatlist", {
+    let socket = io(socketServer + "/chatlist", {
         cors: {origin: '*'},
         query: {
             userId: '${user.userId}',
             chatCategory: '${chatCategory}'
         },
-        autoConnect:false
+        autoConnect: false
     })
 
-    let chatSocket = io(socketServer+"/${chatNameSpace}",{
+    let chatSocket = io(socketServer + "/${chatNameSpace}", {
         cors: {origin: '*'},
         query: {
             roomId: '${roomId}',
@@ -119,8 +132,8 @@
             userImage1: '${userImage}',
             userImage2: '${user.userImage}'
         },
-        autoConnect:false,
-        forceNew:true
+        autoConnect: false,
+        forceNew: true
     })
 
     $(function () {
@@ -134,7 +147,7 @@
 
         socket.connect()
 
-        socket.on('newChat',() =>{
+        socket.on('newChat', () => {
             socket.emit('newChat')
         })
 
@@ -145,9 +158,18 @@
 
             $(".chatRooms").html("");
 
-            if(room.length===0){
-                var chatlist = '<div>참여한 채팅방이 없습니다!</div>'
+            if (room.length === 0) {
+                var chatlist = '<div class="card chatBox shadow-lg" style="width: 90%;cursor: default; height: 94px;">' +
+                    '<div class="g-0" style="width: 100%">' +
+                    '<div>' +
+                    '<div class="card-body">' +
+                    '<h5 class="card-title text-center text-truncate" style="height: 100%;margin: 8px;">참여한 채팅방이 없습니다!</h5>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>'
                 $('.chatRooms').html(chatlist)
+                $(".chatBox").off('click')
             }
 
             $.each(room, function (index, item) {
@@ -167,7 +189,7 @@
                         chatter = item.users[0].userId
                         roomImage = item.users[0].userImage
                     }
-                    if(item.chatCategory === 'dealChat'){
+                    if (item.chatCategory === 'dealChat') {
                         chatter = item.roomName;
                     }
                 }
@@ -177,15 +199,15 @@
                     '<input hidden class="rTime" value="0">' +
                     '<div class="row g-0" style="width: 100%">' +
                     '<div class="col-md-3 potoBox">' +
-                    '<img class="bd-placeholder-img img-fluid rounded-start poto" src="/resources/'+roomImage+'"'+
+                    '<img class="bd-placeholder-img img-fluid rounded-start poto" src="/resources/' + roomImage + '"' +
                     ' alt="any" style="width: 100%;object-fit: cover;border-radius: 5px;">' +
                     '</div>' +
                     '<div class="col-md-9">' +
                     '<div class="card-body " >' +
                     '<h5 class="card-title text-truncate" style="height: 50%;padding-left: 10px;max-width: 100%">' + chatter + '</h5>' +
-                    '<div style="display: flex;justify-content: space-between;align-items: center;padding-left: 10px;">'+
-                    '<div class="card-text lastchatText text-truncate" style="max-width: 70%"><small>&nbsp;</small></div>'+
-                    '<div class="card-text chatTime"><small class="text-muted" style="width: 30%">&nbsp;</small></div>'+
+                    '<div style="display: flex;justify-content: space-between;align-items: center;padding-left: 10px;">' +
+                    '<div class="card-text lastchatText text-truncate" style="max-width: 70%"><small>&nbsp;</small></div>' +
+                    '<div class="card-text chatTime"><small class="text-muted" style="width: 30%">&nbsp;</small></div>' +
                     '</div>' +
                     '</div>' +
                     '</div>' +
@@ -198,6 +220,8 @@
                 $(window).off('resize').on('resize', function () {
                     $('.poto').height($('.poto').width())
                 })
+
+                setChat()
             })
 
             //최근 메시지 및 채팅창 시간 순 정렬
@@ -222,12 +246,12 @@
                 var card = $(".roomId[value='" + msg[0].roomId + "']").parent()
 
                 if (msg[0].msg === undefined) {
-                    card.find(".lastchatText small").html('사진<img src="/resources'+msg[0].file+'" alt="사진" style="width: 30px;height: 30px;object-fit: contain;">')
-                }else {
-                    if(msg[0].msg.indexOf('<br>')===-1){
+                    card.find(".lastchatText small").html('사진<img src="/resources' + msg[0].file + '" alt="사진" style="width: 30px;height: 30px;object-fit: contain;">')
+                } else {
+                    if (msg[0].msg.indexOf('<br>') === -1) {
                         card.find(".lastchatText small").html(msg[0].msg)
-                    }else {
-                        card.find(".lastchatText small").html(msg[0].msg.split('<br>',1))
+                    } else {
+                        card.find(".lastchatText small").html(msg[0].msg.split('<br>', 1))
                     }
                 }
                 card.find(".chatTime small").html(msg[0].time)
@@ -244,7 +268,7 @@
                         return false;
                     }
                 })
-
+                setChat()
             });
 
             /*css append*/
@@ -255,28 +279,31 @@
             // });
             //
             // stylesheet.appendTo("head");
-            $(".chatBox").off('click').on("click", function () {
-                const roomId = $(this).find(".roomId").val()
-                const roomName = $(this).find(".card-title").html()
+            function setChat(){
+                $(".chatBox").off('click').on("click", function () {
+                    const roomId = $(this).find(".roomId").val()
+                    const roomName = $(this).find(".card-title").html()
 
-                if(chatSocket.connected){
-                    chatSocket.disconnect()
-                }
-
-                // alert(roomId)
-                <%--alert("/chat/getChat?roomId=" + roomId + "&chatNameSpace=" + '${chatCategory}')--%>
-
-                <%--location.href = "/chat/getChat?roomId=" + roomId + "&chatNameSpace=" + '${chatCategory}';--%>
-                $.ajax({
-                    url : "/chat/getChat?roomId=" + roomId + "&chatNameSpace=" + socket.io.opts.query.chatCategory,
-                    data: {
-                        'roomName': roomName
-                    },
-                    success : function(re){
-                        $('.chatRoom').html(re)
+                    if (chatSocket.connected) {
+                        chatSocket.disconnect()
                     }
+
+                    // alert(roomId)
+                    <%--alert("/chat/getChat?roomId=" + roomId + "&chatNameSpace=" + '${chatCategory}')--%>
+
+                    <%--location.href = "/chat/getChat?roomId=" + roomId + "&chatNameSpace=" + '${chatCategory}';--%>
+                    $.ajax({
+                        url: "/chat/getChat?roomId=" + roomId + "&chatNameSpace=" + socket.io.opts.query.chatCategory,
+                        data: {
+                            'roomName': roomName
+                        },
+                        success: function (re) {
+                            $('.chatRoom').html(re)
+                        }
+                    })
                 })
-            })
+            }
+
 
         })
 

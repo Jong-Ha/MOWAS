@@ -436,6 +436,7 @@
             </div>
         </form>
     </div>
+</div>
 
 
     <jsp:include page="/layout/chatIcon.jsp"/>

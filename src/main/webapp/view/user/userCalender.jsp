@@ -147,7 +147,7 @@
 
                                 var deal = JSONData.deal
 
-                                console.log("deal : " + deal.dealCalenderTitle+deal.dealId);
+                                console.log("deal : " + deal.dealCalenderTitle + deal.dealId);
 
                                 var date = new Date(deal.dealDate);
 
@@ -159,19 +159,19 @@
                                 $(".dealCalenderTitle2").val(deal.dealCalenderTitle);
                                 $(".dealDate2").val(dateStr);
                                 $(".dealLocation2").val(deal.dealLocation);
-                               $(".dealId").val(deal.dealId);
+                                $(".dealId").val(deal.dealId);
                                 const modal = new bootstrap.Modal('#exampleModal3', {})
-                                if(deal.boardCategory==='08'){
-                                if('${user.userId}'===deal.dealId){
-                                    $('.addReview').css('display','block')
-                                }else {
-                                    $('.addReview').css('display','none')
-                                }
-                            }else if(deal.boardCategory==='09'){
-                                    if('${user.userId}'===deal.user.userId){
-                                        $('.addReview').css('display','block')
-                                    }else {
-                                        $('.addReview').css('display','none')
+                                if (deal.boardCategory === '08') {
+                                    if ('${user.userId}' === deal.dealId) {
+                                        $('.addReview').css('display', 'block')
+                                    } else {
+                                        $('.addReview').css('display', 'none')
+                                    }
+                                } else if (deal.boardCategory === '09') {
+                                    if ('${user.userId}' === deal.user.userId) {
+                                        $('.addReview').css('display', 'block')
+                                    } else {
+                                        $('.addReview').css('display', 'none')
                                     }
                                 }
 
@@ -388,7 +388,7 @@
             var rating = $(".rating").val()
             var content = $(".content").val();
             var dealBoardNum = $(".boardNum").val();
-            var dealId=$(".dealId").val();
+            var dealId = $(".dealId").val();
 
             $.ajax({
                 url: "/deal/json/addReview",
@@ -417,13 +417,13 @@
                     });
 
                     setTimeout(function () {
-                     window.location.reload();
+                        window.location.reload();
                     }, 2000);
                     //error 발생시 그냥 창을 닫음
 
                 }, error: function () {
                     Swal.fire({
-                         position: 'top-end',
+                        position: 'top-end',
                         icon: 'success',
                         title: 'Your work has been saved',
                         showConfirmButton: false,
@@ -662,7 +662,7 @@
 
                 <div class="form-floating mb-3">
 
-                    <input type="date" class="form-control dealDate2" value="" placeholder="asdasd"/>
+                    <input type="date" class="form-control dealDate2" value="" readonly placeholder="asdasd"/>
                     <label for="date-text">모임 일정 날짜</label>
 
                 </div>
@@ -678,16 +678,13 @@
 
             <div class="modal-footer" style=" justify-content:center;">
                 <input hidden name="dealBoardNum" value="${map.dealBoardNum}" class="dealBoardNum">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                <button type="button" class="btn btn-secondary getDealPage">게시글 상세 조회</button>
+                <button type="button" class="btn btn-primary getDealPage">게시글 상세 조회</button>
                 <%--                <c:if test="${deal.boardCategory=='08'}">--%>
                 <%--                <c:if test="${deal.dealId==sessionScope.user.userId}">--%>
-                <button type="button" class="btn btn-secondary getDealPage">게시글 상세 조회${deal.dealId}</button>
-<%--                <c:if test="${deal.boardCategory=='08'}">--%>
-<%--                <c:if test="${deal.dealId==sessionScope.user.userId}">--%>
                 <button type="button" class="btn btn-primary addReview" data-bs-toggle="modal"
-                        data-bs-target="#addReview">리뷰작성${deal.dealId}
+                        data-bs-target="#addReview">리뷰작성
                 </button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
                 <%--                </c:if>--%>
                 <%--                </c:if>--%>
                 <%--<c:if test="${deal.dealBoard=='09'}">--%>
@@ -703,36 +700,20 @@
 <div class="modal fade" id="addReview" tabindex="-1" aria-labelledby="addReviewLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
+            <form id="addReviewForm" enctype="multipart/form-data">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="addReviewlLabel">리뷰 작성</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="addReviewForm" enctype="multipart/form-data">
-                    <input hidden name="dealBoardNum" value="${deal.dealBoardNum}" class="dealBoardNum">
+                    <input hidden name="dealBoardNum" value="${map.dealBoardNum}" class="dealBoardNum">
+                    <input hidden name="dealId" value="${map.dealId}" class="dealId">
                     <%--                                <input type="hidden" name="deleteFileName" value="${deal.clubImage}" disabled>--%>
                     <div class="input-group mb-3">
                         <div class="form-floating">
                             ${deal.dealTitle}
                         </div>
                     </div>
-        <div class="modal fade" id="addReview" tabindex="-1" aria-labelledby="addReviewLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="addReviewlLabel">리뷰 작성</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="addReviewForm" enctype="multipart/form-data">
-                            <input hidden name="dealBoardNum" value="${map.dealBoardNum}" class="dealBoardNum">
-                            <input hidden name="dealId" value="${map.dealId}" class="dealId">
-                                <%--                                <input type="hidden" name="deleteFileName" value="${deal.clubImage}" disabled>--%>
-                            <div class="input-group mb-3">
-                                <div class="form-floating">
-                                        ${deal.dealTitle}
-                                </div>
-                            </div>
 
                     <div class="input-group mb-3">
                         <div class="form-floating">
@@ -765,14 +746,12 @@
 
                 </div>
             </div>
+                <input type="hidden" value="${deal}">
+            </form>
         </div>
-        <input type="hidden" value="${deal}">
-        </form>
     </div>
 
 
-</div>
-</div>
 </div>
 
 <%--상세조회 지도--%>

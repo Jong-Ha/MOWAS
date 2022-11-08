@@ -312,14 +312,14 @@
                 </div>
             </div>
 
-            <div class="form-check mt-5">
+            <div class="form-check mt-5" style="display: none;">
                 <input class="form-check-input" type="radio" name="Type" id="flexRadioDefault3" checked>
                 <label class="form-check-label" for="flexRadioDefault2">
                     회원 가입유형 선택
                 </label>
                 <div>
             <label for="basic">
-                <input type="radio" id="basic" name="loginType" value="1">일반 회원가입
+                <input type="radio" id="basic" name="loginType" checked value="1">일반 회원가입
             </label>
             <label for="kakao">
                 <input type="radio" id="kakao" name="loginType" value="2"> 카카오 로그인

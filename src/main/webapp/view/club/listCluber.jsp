@@ -84,7 +84,7 @@
                                         ${cluber.cluberStatus=='7'?cluber.clubOutDate:''}
                                         ${cluber.cluberStatus=='8'?cluber.clubOutDate:''}
                                 </small>
-                                <div class="badge bg-primary text-wrap">접속중미구현</div>
+                                <div class="badge bg-primary text-wrap" style="display: none;">접속중미구현</div>
                             </div>
                         </div>
                     </div>

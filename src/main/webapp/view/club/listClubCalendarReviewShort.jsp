@@ -232,7 +232,7 @@
                                 <div style="display: flex">
                                     <div class="userImg">
                                         <img src="/resources/${ClubCalendarReview.userImg}" alt=""
-                                             style="border-radius: 10px; width: 100%; height: 100%;">
+                                             style="border-radius: 10px; width: 100%; height: 100%;object-fit: cover">
                                     </div>
                                     <div class="userInfo">
                                         <div>

@@ -25,6 +25,7 @@
                 $('#listVote .modal-content').load('/club/listVote/${roomId}')
             })
 
+            $('.display-container').parent().height($('#chatContainer').height()-$('.user-container').height()-21)
 
         })
 
@@ -36,7 +37,7 @@
             list-style: none;
             padding: 5px;
             margin-top: 10px;
-
+            margin-bottom: 0;
         }
 
         .dealList {
@@ -249,7 +250,7 @@
 
         <label for="nickname"></label>
 
-        <input type="text" class="form-control-plaintext" readonly value="${param.roomName}" id="nickname">
+        <input type="text" class="form-control-plaintext" readonly value="${param.roomName}" style="font-size: 1.2em;" id="nickname">
         <input type="hidden" id="chatterId" value="${user.userId}">
 
 
@@ -322,7 +323,7 @@
 
 
     <div style="height: 653px;width: 100%">
-        <div class="display-container" style="width: 100%; height: 90%; overflow-y: scroll;background-color: #CFCFCF;">
+        <div class="display-container" style="width: 100%; height: 90%; overflow-y: scroll;background-color: #87cefa40;">
             <ul class="chatting-list">
 
             </ul>
@@ -555,13 +556,18 @@
                 })
             });
 
-
-            chatInput.addEventListener("keyup", (e) => {
+            chatInput.addEventListener("keydown", (e) => {
                 if (e.keyCode === 13) {
                     sendMessage(chatSocket)
                 }
-
             });
+
+            chatInput.addEventListener("keyup", (e) => {
+                if (e.keyCode === 13) {
+                    chatInput.value = ''
+                }
+            });
+
             //button클릭시 발생하는 이벤트
             sendButton.addEventListener("click", () => {
                 sendMessage(chatSocket)
@@ -646,7 +652,7 @@
 
                 chatSocket.off('deleteChat')
                 chatSocket.emit('deleteChat', data)
-                $('.chatRoom').load('/chat/chatList.jsp .chatRoom')
+                $('.chatRoom').load('/chat/chatList.jsp #chattingRoom')
                 chatSocket.disconnect()
 
             })
@@ -656,7 +662,7 @@
                     title : '상대방이 채팅방을 나갔습니다',
                     icon : 'warning'
                 }).then(()=>{
-                    $('.chatRoom').load('/chat/chatList.jsp .chatRoom')
+                    $('.chatRoom').load('/chat/chatList.jsp #chattingRoom')
                     chatSocket.disconnect()
                 })
             })
@@ -858,7 +864,8 @@
     })
 
     function sendMessage(chatSocket) {
-        if (chatInput.value === '') {
+        if (chatInput.value === ''||chatInput.value==='\n') {
+            chatInput.value = ''
             return
         }
 
@@ -1005,7 +1012,7 @@
 
     .chatRoom .profile .userimg {
         border-radius: 50%;
-        object-fit: contain;
+        object-fit: cover;
         width: 50px;
         height: 50px;
         background-color: #FFFFFF;

@@ -78,8 +78,8 @@
         <span class="tabBtn getMyReport" >내가 신고한 내역</span>
     </div>
 
-    <div class="container">
         <hr>
+    <div class="container">
         <table class="table table-bordered my-5">
             <thead style="background-color: #b3c6ff">
             <tr class="bg-light text-center" style="background-color: #b3c6ff">
