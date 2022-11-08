@@ -399,10 +399,10 @@
                                                     <input hidden class="SUserId" value="${clubCalendarReview.userId}">
                                                     <input hidden class="clubNum" value="${clubCalendarReview.clubNum}">
                                                 </td>
-                                                <td>
+                                                <td style="width: 100px">
                                                     <c:if test="${clubCalendarReview.boardCategory == '1'}">
                                                         <img class="clubImage"
-                                                             src="/resources/${clubCalendarReview.file[0]}"
+                                                             src="/resources/${clubCalendarReview.file[0].fileName}"
                                                              alt="모임이미지"
                                                              style="width: 100%;height: 100%;object-fit: cover;">
                                                     </c:if>

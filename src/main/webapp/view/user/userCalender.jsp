@@ -122,7 +122,7 @@
 
                                 })
 
-                                $(".slide").append(str);
+                                $(".slide").html(str);
 
                                 const modal = new bootstrap.Modal('#exampleModal1', {})
                                 modal.show();
@@ -698,7 +698,7 @@
 
 </div>
 
-<%-- ¸®ºä ¸ð´ÞÃ¢ ¸¸µé±â ÇìÇò--%>
+<%-- ¸®ºä ¸ð´ÞÃ¢ ¸¸µé±â ÇìÇò
 
 <div class="modal fade" id="addReview" tabindex="-1" aria-labelledby="addReviewLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -710,7 +710,7 @@
             <div class="modal-body">
                 <form id="addReviewForm" enctype="multipart/form-data">
                     <input hidden name="dealBoardNum" value="${deal.dealBoardNum}" class="dealBoardNum">
-                    <%--                                <input type="hidden" name="deleteFileName" value="${deal.clubImage}" disabled>--%>
+                    &lt;%&ndash;                                <input type="hidden" name="deleteFileName" value="${deal.clubImage}" disabled>&ndash;%&gt;
                     <div class="input-group mb-3">
                         <div class="form-floating">
                             ${deal.dealTitle}
@@ -727,7 +727,7 @@
                         <form id="addReviewForm" enctype="multipart/form-data">
                             <input hidden name="dealBoardNum" value="${map.dealBoardNum}" class="dealBoardNum">
                             <input hidden name="dealId" value="${map.dealId}" class="dealId">
-                                <%--                                <input type="hidden" name="deleteFileName" value="${deal.clubImage}" disabled>--%>
+                                &lt;%&ndash;                                <input type="hidden" name="deleteFileName" value="${deal.clubImage}" disabled>&ndash;%&gt;
                             <div class="input-group mb-3">
                                 <div class="form-floating">
                                         ${deal.dealTitle}
@@ -768,7 +768,7 @@
         </div>
         <input type="hidden" value="${deal}">
         </form>
-    </div>
+    </div>--%>
 
 
 </div>

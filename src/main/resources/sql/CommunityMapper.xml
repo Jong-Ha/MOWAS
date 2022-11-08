@@ -89,9 +89,10 @@
     </delete>
 
     <select id="getVillBoard" parameterType="int" resultMap="villBoardSelect">
-        SELECT *
-        FROM vill_board
-        WHERE VILL_BOARD_NUM = #{villBoardNum}
+        SELECT vd.* , us.user_image
+        FROM vill_board vd, users us
+        WHERE vd.VILL_BOARD_NUM = #{villBoardNum}
+            and vd.user_id = us.user_id
     </select>
 
     <sql id="ListVillBoardSql">
@@ -100,11 +101,12 @@
         WHERE vb.user_id =  us.USER_ID
             AND vb.vill_code LIKE '%'||#{villCode}||'%'
 
-        <if test="search.searchKeyword != null ">
-            AND vill_title LIKE '%'||#{search.searchKeyword}||'%'
-        </if>
+
 
         <if test="search.searchCondition == 1">
+            <if test="search.searchKeyword != null ">
+                AND vill_title LIKE '%'||#{search.searchKeyword}||'%'
+            </if>
             ORDER BY vill_board_num DESC
         </if>
         <if test="search.searchCondition == 2">

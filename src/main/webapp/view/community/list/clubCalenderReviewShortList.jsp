@@ -741,7 +741,7 @@
 
     </div>
 
-    <div class="ListClubCaenderReview" style=" display: flex;  flex-wrap: wrap;  padding-bottom: 140px;">
+    <div class="ListClubCaenderReview" style=" display: flex; padding-bottom: 140px;    flex-direction: column;">
         <c:set var="i" value="0"/>
         <c:forEach var="ClubCalendarReview" items="${list}">
             <c:set var="i" value="${i+1}"/>

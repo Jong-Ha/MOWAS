@@ -303,6 +303,35 @@
         $(".getMyDealBoard").on("click", function () {
             self.location = "/myPage/getMyDealBoard?userId=" + userId;
         })
+
+        $(".getVillBoard").on("click", function () {
+
+            var villBoardNum = $(this).find(".villBoardNum").val()
+            var boardCategory = '3';
+
+            Swal.fire({
+                title: '해당 페이지로 이동하시겠습니까??',
+                text: "해당 페이지로 이동합니다",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: "취소",
+                confirmButtonText: '페이지이동'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        '페이지를 이동 합니다',
+                        'success'
+                    )
+
+                    setTimeout(() => {
+                        location.href = "/commu/getVillBoard?villBoardNum=" + villBoardNum + "&boardCategory=" + boardCategory;
+                    }, 1500)
+                }
+            })
+
+        })
     })
 
 </script>
@@ -349,6 +378,7 @@
                                 <table class="table project-table table-centered table-nowrap table-hover table-striped" style="table-layout: fixed;">
                                     <thead>
                                     <tr>
+                                        <th scope="col">이미지</th>
                                         <th scope="col">제목</th>
                                         <th scope="col">작성날짜</th>
                                         <th scope="col">동네 코드</th>
@@ -362,7 +392,13 @@
                                     <c:set var="i" value="0"/>
                                     <c:forEach var="VilBoard" items="${map}">
                                         <c:set var="i" value="${ i+1 }"/>
-                                        <tr>
+                                        <tr class="getVillBoard">
+                                            <td style="width: 100px">
+                                                <div>
+                                                    <input hidden class="villBoardNum" value="${VilBoard.villBoardNum}">
+                                                    <img src="/resourcess/${VilBoard.file[0].fileName}" style=" width: 100%; height: 100%;  object-fit: cover;">
+                                                </div>
+                                            </td>
                                             <td>
                                                 <div>
                                                         ${VilBoard.villTitle}
