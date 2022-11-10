@@ -474,7 +474,7 @@ public class UserController {
         model.addAttribute("map", map);
         System.out.println("여기는 listupdatedUser 컨트롤러 종료이다");
 
-        return "forward:/view/user/getUserDetail.jsp";
+        return "redirect:/user/listUserDetail?userId="+user.getUserId();
     }
 
     @RequestMapping(value="kickoutUser", method = RequestMethod.GET)
@@ -488,7 +488,7 @@ public class UserController {
         Map<String, Object> map =userService.getUserDetail(userId);
         System.out.println("유저 컨트롤러 map 값은? :"+map);
         model.addAttribute("map", map);
-        return "forward:/view/user/getUserDetail.jsp";
+        return "redirect:/user/listUserDetail?userId="+userId;
     }
 
     @RequestMapping(value="userPhoto", method = RequestMethod.GET)

@@ -81,6 +81,7 @@
         <result property="commentText" column="comment_text" jdbcType="VARCHAR"/>
         <result property="regDate" column="reg_date" jdbcType="DATE"/>
         <result property="likeCheck" column="LIKE_CHECK" jdbcType="CHAR"/>
+        <result property="likeCount" column="LIKE_count" jdbcType="INTEGER"/>
     </resultMap>
 
     <resultMap id="recommentSelect" type="recomment">
@@ -93,6 +94,7 @@
         <result property="CboardCategory" column="c_board_category" jdbcType="VARCHAR"/>
         <result property="CboardNum" column="board_num" jdbcType="INTEGER"/>
         <result property="likeCheck" column="LIKE_CHECK" jdbcType="CHAR"/>
+        <result property="likeCount" column="LIKE_count" jdbcType="INTEGER"/>
     </resultMap>
 
     <resultMap id="clubCalenderSelect" type="clubCalender">

@@ -107,6 +107,8 @@
     </div>
 </div>
 
+<jsp:include page="/layout/footer.jsp"/>
+
 <script>
 
     const socketServer = 'http://192.168.0.234:5000'
@@ -206,7 +208,7 @@
                     '<div class="card-body " >' +
                     '<h5 class="card-title text-truncate" style="height: 50%;padding-left: 10px;max-width: 100%">' + chatter + '</h5>' +
                     '<div style="display: flex;justify-content: space-between;align-items: center;padding-left: 10px;">' +
-                    '<div class="card-text lastchatText text-truncate" style="max-width: 70%"><small>&nbsp;</small></div>' +
+                    '<div class="card-text lastchatText text-truncate" style="max-width: 60%"><small>&nbsp;</small></div>' +
                     '<div class="card-text chatTime"><small class="text-muted" style="width: 30%">&nbsp;</small></div>' +
                     '</div>' +
                     '</div>' +

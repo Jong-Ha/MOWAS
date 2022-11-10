@@ -37,7 +37,7 @@
                         let maxLength=0
                         for(var i=0 ; i < 1; i++){
                             $.each(json,function(index, item){
-                                str += '<div class="voter"><div class="voterImage"><img src="/resources/'+item.userImage+'" style="width: 40px;height: 40px;border-radius: 5px;object-fit: contain;" alt="img"/></div><div class="voterId">'+item.userId+'</div></div>'
+                                str += '<div class="voter"><div class="voterImage"><img src="/resources/'+item.userImage+'" style="width: 40px;margin-right: 5px;height: 40px;border-radius: 5px;object-fit: cover; border-radius: 50%" alt="img"/></div><div class="voterId">'+item.userId+'</div></div>'
                                 if(maxLength<item.userId.length){
                                     maxLength = item.userId.length
                                 }
@@ -46,7 +46,7 @@
 
                         console.log(maxLength)
 
-                        const diaWidth = maxLength*7+80
+                        const diaWidth = maxLength*7+90
 
                         console.log(diaWidth)
 
@@ -105,26 +105,36 @@
         //투표 마감
         $(".endVote").off('click').on("click", function () {
             <%--location.href = "/club/endVote/${voteNum}"--%>
-            if(confirm('투표를 마감하시겠습니까?')){
-                $.ajax({
-                    url : "/club/endVote/${voteNum}",
-                    success : function(re){
-                        Swal.fire('투표가 마감되었습니다!')
+            Swal.fire({
+                title: '투표를 마감하시겠습니까?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '네, 마감합니다',
+                cancelButtonText: '아니요'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url : "/club/endVote/${voteNum}",
+                        success : function(re){
+                            Swal.fire('투표가 마감되었습니다!')
 
-                        let msg ='"${vote.voteTitle}" 투표가 마감되었습니다!'
+                            let msg ='"${vote.voteTitle}" 투표가 마감되었습니다!'
 
-                        const data = {
-                            name: '${user.userId}',
-                            msg: msg,
-                            userImage: '${user.userImage}'
+                            const data = {
+                                name: '${user.userId}',
+                                msg: msg,
+                                userImage: '${user.userImage}'
+                            }
+                            //Server에 socket.on으로 data정보를 전달
+                            chatSocket.emit("chatting", data)
+
+                            $('#getVote .modal-content').html(re)
                         }
-                        //Server에 socket.on으로 data정보를 전달
-                        chatSocket.emit("chatting", data)
-
-                        $('#getVote .modal-content').html(re)
-                    }
-                })
-            }
+                    })
+                }
+            })
         })
 
         //투표 수정
@@ -141,19 +151,30 @@
         //투표 삭제
         $(".deleteVote").off('click').on("click", function () {
             <%--location.href = "/club/deleteVote/${vote.roomId}/${voteNum}"--%>
-            if(confirm('투표를 삭제하시겠습니까?')){
-                $.ajax({
-                    url : "/club/deleteVote/${vote.roomId}/${voteNum}",
-                    success : function(re){
-                        Swal.fire('투표가 삭제되었습니다!').then(()=>{
-                            $('#listVote .modal-content').html(re)
-                            $('#getVote').modal('hide')
-                            $('#listVote').modal('show')
-                        })
+                Swal.fire({
+                    title: '투표를 삭제하시겠습니까?',
+                    text: "다시는 복구할 수 없습니다",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '네, 삭제합니다',
+                    cancelButtonText: '아니요'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url : "/club/deleteVote/${vote.roomId}/${voteNum}",
+                            success : function(re){
+                                Swal.fire('투표가 삭제되었습니다!').then(()=>{
+                                    $('#listVote .modal-content').html(re)
+                                    $('#getVote').modal('hide')
+                                    $('#listVote').modal('show')
+                                })
 
+                            }
+                        })
                     }
                 })
-            }
         })
     })
 </script>

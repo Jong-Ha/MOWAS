@@ -390,7 +390,7 @@
                                     <tbody>
                                     <c:forEach var="clubCalendarReview" items="${map.clubCalendarReview}">
                                         <c:forEach begin="1" end="1">
-                                            <tr class="getClubCalender">
+                                            <tr class="getClubCalender" style="vertical-align: middle">
                                                 <td style="display: none">
                                                     <input hidden class="clubCalenderReviewNum"
                                                            value="${clubCalendarReview.clubCalenderReviewNum}">
@@ -409,7 +409,7 @@
                                                     <c:if test="${clubCalendarReview.boardCategory == '2'}">
                                                         <video class="clubImage" alt="모임이미지"
                                                                style="width: 100%;height: 100%;object-fit: cover;">
-                                                            <source src="/resources/${clubCalendarReview.file}">
+                                                            <source src="/resources/${clubCalendarReview.file[0].fileName}">
                                                         </video>
                                                     </c:if>
                                                 </td>

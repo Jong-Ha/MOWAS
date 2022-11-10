@@ -220,7 +220,7 @@ onebyone.on('connection', (socket) => {
             Room.deleteMany({roomId : data.roomId},function(){
                 Msg.deleteMany({roomId : data.roomId}, function(){
                     chatlist.emit('newChat')
-                    dealChat.to(roomId).emit("deleteChat");
+                    onebyone.to(roomId).emit("deleteChat");
                 })
             })
         })

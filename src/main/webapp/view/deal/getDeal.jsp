@@ -63,7 +63,7 @@ Product vo=(Product)request.getAttribute("vo");
                     contentType: false,
                     'data': data,
                     success: function (re) {
-                        alert('수정되었습니다')
+                        Swal.fire('수정되었습니다')
                         // $('#getClubMasterBoard .modal-content').html(re)
                         //   $('.getClubMasterBoard').click()
                         // $('.listClubMasterBoardView').click()
@@ -79,7 +79,7 @@ Product vo=(Product)request.getAttribute("vo");
             //파일 갯수 체크
             $("#updateDealForm input:file").on("change", function () {
                 if ($(this)[0].files.length > 10 - $('#fileSize').val()) {
-                    alert('파일 갯수를 초과하였습니다.');
+                    Swal.fire('파일 갯수를 초과하였습니다.');
                     // alert(10-$('#fileSize').val());
                     $(this).val('');
                 }
@@ -117,11 +117,17 @@ Product vo=(Product)request.getAttribute("vo");
 
                 if (userId === '' || userId === null) {
 
-                    alert("로그인후 이용 가능 합니다");
+                    Swal.fire({
+                        icon: 'error',
+                        title: '로그인이 필요합니다',
+                        text: '로그인을 먼저 진행해주세요'
+                    }).then(()=>{
+                        $('#loginModal').modal('show')
+                    })
 
                 } else if (userId !== '') {
                     if (userId === dealUserId) {
-                        alert("동명이인???");
+                        Swal.fire('자신의 게시물입니다.')
                     } else {
                         const swalWithBootstrapButtons = Swal.mixin({
                             customClass: {
@@ -131,7 +137,7 @@ Product vo=(Product)request.getAttribute("vo");
                             buttonsStyling: false
                         })
                         swalWithBootstrapButtons.fire({
-                            title: '해당 유저와 채팅을 하기겠습니까?',
+                            title: '해당 유저와 채팅을 하시겠습니까?',
                             text: "",
                             icon: 'warning',
                             showCancelButton: true,
@@ -144,6 +150,10 @@ Product vo=(Product)request.getAttribute("vo");
                                     dealUserId + ' 님이 초대 되었습니다',
                                     'success',
                                 ).then(()=>{
+                                    // alert(chatNameSpace)
+                                    // alert(dealUserId)
+                                    // alert(roomName)
+                                    // alert(dealBoardNum)
                                     var openWin = window.open("/chat/chatList?chatCategory="+chatNameSpace, 'chatList')
                                     $.ajax({
                                         url: "/chat/addOneChat",
@@ -163,7 +173,7 @@ Product vo=(Product)request.getAttribute("vo");
                                                         loadCheck = false
                                                     }
                                                 }
-                                            }, 100)
+                                            }, 1000)
                                         }
                                     })
                                 })
@@ -223,10 +233,10 @@ Product vo=(Product)request.getAttribute("vo");
                     },
                     success: function (JSONData, result) {
                         console.log(JSONData);
-                        alert(result);
-                        alert(JSONData);
-                        alert(rating)
-                        alert(content)
+                        // alert(result);
+                        // alert(JSONData);
+                        // alert(rating)
+                        // alert(content)
 
                         // 성공시 해당 창을 닫고 부모창을 reload
                         Swal.fire({
@@ -305,27 +315,27 @@ Product vo=(Product)request.getAttribute("vo");
 
             })
             $('#updateDeal #dealTitle').on('keyup',function(){
-                if($(this).val().length>15){
-                    alert('거래명은 최대 15글자입니다')
-                    $(this).val($(this).val().substring(0, 15));
+                if($(this).val().length>30){
+                    Swal.fire('거래명은 최대 30글자입니다')
+                    $(this).val($(this).val().substring(0, 30));
                 }
             })
             $('#updateDeal #productName').on('keyup',function(){
                 if($(this).val().length>30){
-                    alert('상품명은 최대 30글자입니다')
+                    Swal.fire('상품명은 최대 30글자입니다')
                     $(this).val($(this).val().substring(0, 30));
                 }
             })
             $('#updateDeal #dealText').on('keyup',function(){
                 if($(this).val().length>300){
-                    alert('상품설명은 최대 300글자입니다')
+                    Swal.fire('상품설명은 최대 300글자입니다')
                     $(this).val($(this).val().substring(0, 300));
                 }
             })
             let checkprice = /^[0-9]+$/;
             $('#updateDeal #price').on('keyup',function(){
                 if(!checkprice.test($(this).val())){
-                    alert('숫자만 입력가능합니다.')
+                    Swal.fire('숫자만 입력가능합니다.')
                 }
             })
         })
@@ -1048,9 +1058,9 @@ Product vo=(Product)request.getAttribute("vo");
 
                     <div class="input-group mb-3">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="dealText" name="dealText" placeholder="상품 설명"
-                                   value="${deal.dealText}" required>
-                            <label for="dealText">상품설명</label>
+                            <textarea class="form-control" id="dealText" name="dealText" placeholder="상품 설명"
+                                   required>${deal.dealText}</textarea>
+                                <label for="dealText">상품설명</label>
                         </div>
                     </div>
 

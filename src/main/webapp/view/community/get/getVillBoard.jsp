@@ -690,7 +690,7 @@
                                     })
 
                                     swalWithBootstrapButtons.fire({
-                                        title: '해당 유저와 채팅을 하기겠습니까?',
+                                        title: '해당 유저와 채팅을 하시겠습니까?',
                                         text: "",
                                         icon: 'warning',
                                         showCancelButton: true,
@@ -740,7 +740,7 @@
                                 })
 
                                 swalWithBootstrapButtons.fire({
-                                    title: '해당 유저와 채팅을 하기겠습니까?',
+                                    title: '해당 유저와 채팅을 하시겠습니까?',
                                     text: "",
                                     icon: 'warning',
                                     showCancelButton: true,
@@ -1062,6 +1062,13 @@
                     str += " "
                 })
 
+                console.log(JSON.stringify({
+                    "villBoardNum": updateVillBoardNum,
+                    "boardCategory": boardCategory,
+                    "villTitle": villTitle,
+                    "villText": villText,
+                    "villTag": str
+                }))
 
                 $.ajax({
                     url: "/commu/json/updateVillBoard",
@@ -1083,7 +1090,7 @@
                         if (file > 0) {
 
                             //form 테그를 불러와서 form변수에 등록
-                            var form = document.querySelector("form");
+                            var form = document.querySelector("#fileForm2");
                             //formData 변수에 html에서 form과 같은 역활을 하는 javaScript의 FormData에 form을 넣는다
                             var formData = new FormData(form);
                             //파일 사이즈만큼 formData을 돌리기 위해 fileSize를 알아내는 변수
@@ -1091,7 +1098,7 @@
                             console.log(fileSize.length);
                             //formData에 해당 게시글 번호, 게시글 category append
                             formData.append("boardNum", updateVillBoardNum);
-                            formData.append("boardCategoru", boardCategory);
+                            formData.append("boardCategoru", '3');
 
                             //file길이 만큼 for문으로 formData에 append함
                             for (var i = 0; i < fileSize.length; i++) {
@@ -1099,6 +1106,7 @@
                                 //파일이 잘 들어 갔는지 확인
                                 console.log(fileSize[i]);
                             }
+                            // alert(1)
                             //formData에 들어 있는 boardNum과 file의 정보를 비동기식으로 보냄
                             //파일은 json형식으로 보낼수 없기 떄문에 contentType, processData, dataType을 false로 지정
                             $.ajax({
@@ -1123,9 +1131,8 @@
 
                         // 성공시 해당 창을 닫고 부모창을 reload
                         Swal.fire({
-                            position: 'top-end',
                             icon: 'success',
-                            title: 'Your work has been saved',
+                            title: '수정되었습니다!',
                             showConfirmButton: false,
                             timer: 1500
                         });
@@ -1220,7 +1227,7 @@
                         })
 
                         swalWithBootstrapButtons.fire({
-                            title: '해당 유저와 채팅을 하기겠습니까?',
+                            title: '해당 유저와 채팅을 하시겠습니까?',
                             text: "",
                             icon: 'warning',
                             showCancelButton: true,
@@ -1356,7 +1363,7 @@
                                 <ul class=" shadow-lg" style="width: 81px;">
 
                                     <c:if test="${user.userId eq villBoard.userId}">
-                                        <li data-bs-toggle="modal" data-bs-target="#exampleModal" class="update">
+                                        <li data-bs-toggle="modal" data-bs-target="#exampleModal2" class="update">
                                             수정
                                         </li>
                                         <li class="delete">
@@ -1374,10 +1381,10 @@
                          data-bs-ride="carousel">
                         <div class="carousel-inner" style="height: 529px;">
                             <c:set var="i" value="0"/>
-                            <c:forEach var="File" items="${villBoard.file}">
+                            <c:forEach var="File" items="${villBoard.file}" varStatus="st">
                                 <c:set var="i" value="${i+1}"/>
 
-                                <div class="carousel-item active" data-bs-interval="3000"
+                                <div class="carousel-item ${st.first?'active':''}" data-bs-interval="3000"
                                      style=" background-color: #FFFFFF;">
                                     <img class="potos" style="object-fit: contain;" src="/resources${File.fileName}">
                                 </div>

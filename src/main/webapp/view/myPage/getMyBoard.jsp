@@ -392,11 +392,11 @@
                                     <c:set var="i" value="0"/>
                                     <c:forEach var="VilBoard" items="${map}">
                                         <c:set var="i" value="${ i+1 }"/>
-                                        <tr class="getVillBoard">
+                                        <tr class="getVillBoard" style="vertical-align: middle">
                                             <td style="width: 100px">
                                                 <div>
                                                     <input hidden class="villBoardNum" value="${VilBoard.villBoardNum}">
-                                                    <img src="/resourcess/${VilBoard.file[0].fileName}" style=" width: 100%; height: 100%;  object-fit: cover;">
+                                                    <img src="/resources/${VilBoard.file[0].fileName}" style=" width: 100%; height: 100%;  object-fit: cover;">
                                                 </div>
                                             </td>
                                             <td>

@@ -226,7 +226,7 @@
                         // 성공시 해당 창을 닫고 부모창을 reload
                         Swal.fire({
                             icon: 'success',
-                            title: '수정 되었습니다',
+                            title: '작성 되었습니다',
                             showConfirmButton: false,
                             timer: 1500
                         });
@@ -811,7 +811,10 @@
         text-align: left;
         width: 100%;
         margin-bottom: 20px;
+        height: 35px;
         font-size: 1.3em;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 
     .villText {
@@ -819,6 +822,8 @@
         text-align: left;
         font-size: 1em;
         text-overflow: ellipsis;
+        overflow: hidden;
+        height: 76px;
     }
 
     .card-top {
@@ -944,7 +949,7 @@
                         </div>
 
 
-                        <div class="card-text text" style="padding: 10px; font-size: 1em; height: 48px;">
+                        <div class="card-text text" style="padding: 10px; font-size: 1em; height: 48px;max-width: 320px;">
                                 ${villBoard.villTag}
                         </div>
 

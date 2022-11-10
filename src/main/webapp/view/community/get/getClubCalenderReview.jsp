@@ -706,7 +706,7 @@
                                     })
 
                                     swalWithBootstrapButtons.fire({
-                                        title: '해당 유저와 채팅을 하기겠습니까?',
+                                        title: '해당 유저와 채팅을 하시겠습니까?',
                                         text: "",
                                         icon: 'warning',
                                         showCancelButton: true,
@@ -786,7 +786,7 @@
                                 })
 
                                 swalWithBootstrapButtons.fire({
-                                    title: '해당 유저와 채팅을 하기겠습니까?',
+                                    title: '해당 유저와 채팅을 하시겠습니까?',
                                     text: "",
                                     icon: 'warning',
                                     showCancelButton: true,
@@ -1229,7 +1229,7 @@
                         })
 
                         swalWithBootstrapButtons.fire({
-                            title: '해당 유저와 채팅을 하기겠습니까?',
+                            title: '해당 유저와 채팅을 하시겠습니까?',
                             text: "",
                             icon: 'warning',
                             showCancelButton: true,
@@ -1372,8 +1372,7 @@
 
     </script>
 
-<body class="bg-light p-3 m-0 border-0 bd-example" style="text-align: -webkit-center">
-
+<body class="bg-light p-3 m-0 border-0 bd-example" style="text-align: -webkit-center;">
 <jsp:include page="/layout/toolbar.jsp"/>
 
 
@@ -1450,9 +1449,9 @@
                          data-bs-ride="carousel">
                         <div class="carousel-inner" style="height: 529px;">
                             <c:set var="i" value="0"/>
-                            <c:forEach var="File" items="${calenderReview.file}">
+                            <c:forEach var="File" items="${calenderReview.file}" varStatus="st">
                                 <c:set var="i" value="${i+1}"/>
-                                <div class="carousel-item active" data-bs-interval="3000"
+                                <div class="carousel-item ${st.first?'active':''}" data-bs-interval="3000"
                                      style=" background-color: #FFFFFF;">
                                     <img class="potos" style="object-fit: contain" src="/resources${File.fileName}">
                                 </div>

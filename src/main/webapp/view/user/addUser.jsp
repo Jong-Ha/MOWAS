@@ -229,7 +229,7 @@ function readURL(inputSelector, outputSelector) {
               }
             },
             error: function () {
-              alert('아이디유효성검사실패');
+              // alert('아이디유효성검사실패');
             }
           });
       })
@@ -249,7 +249,7 @@ function readURL(inputSelector, outputSelector) {
               }
             },
             error: function () {
-              alert('비밀번호유효성검사실패');
+              // alert('비밀번호유효성검사실패');
             }
           });
         })
@@ -270,7 +270,7 @@ function readURL(inputSelector, outputSelector) {
                 }
               },
               error: function () {
-                alert('비밀번호확인 유효성검사실패');
+                // alert('비밀번호확인 유효성검사실패');
               }
             });
       });
@@ -416,7 +416,7 @@ function readURL(inputSelector, outputSelector) {
                 jsonStr.results.common.errorMessage;
 
         if(errCode!= "0"){
-          alert(errCode+"="+errDesc);
+          // alert(errCode+"="+errDesc);
         }else{
           if(jsonStr!= null){
             makeListJson(jsonStr);
@@ -425,7 +425,7 @@ function readURL(inputSelector, outputSelector) {
           }
         }
       },error: function(xhr,status, error){
-        alert("에러발생");
+        // alert("에러발생");
       }
     });
   }
@@ -461,7 +461,7 @@ function readURL(inputSelector, outputSelector) {
       });
       pageMake(jsonStr);
     } else {
-      htmlStr += "<tr><td colspan='2'>조회된 데이터가 않습니다.<br/>다시 검색하여 주시기 바랍니다.</td></tr>";
+      htmlStr += "<tr><td colspan='2'>조회된 데이터가 없습니다.<br/>다시 검색하여 주시기 바랍니다.</td></tr>";
     }
     htmlStr += "</tbody>";
     jQuery("#list").html(htmlStr);
@@ -492,7 +492,7 @@ function readURL(inputSelector, outputSelector) {
       //특수문자 제거
       var expText = /[%=><]/ ;
       if(expText.test(obj.value) == true){
-        alert("특수문자를 입력 할수 없습니다.") ;
+        Swal.fire("특수문자를 입력 할수 없습니다.") ;
         obj.value = obj.value.split(expText).join("");
         return false;
       }
@@ -508,7 +508,7 @@ function readURL(inputSelector, outputSelector) {
         regex = new RegExp( sqlArray[i] ,"gi") ;
 
         if (regex.test(obj.value) ) {
-          alert("\"" + sqlArray[i]+"\"와(과) 같은 특정문자로 검색할 수 없습니다.");
+          Swal.fire("\"" + sqlArray[i]+"\"와(과) 같은 특정문자로 검색할 수 없습니다.");
           obj.value =obj.value.replace(regex, "");
           return false;
         }
@@ -717,11 +717,11 @@ function readURL(inputSelector, outputSelector) {
                         </div>
                     </div>
                     <div>
-                        <span class="smsNo" style="display: none; margin-right: 224px;">
+                        <span class="smsNo" style="display: none;margin-left: -90px;">
                             <strong class="text-danger" >인증번호가 틀렸습니다</strong>
                         </span>
 
-                        <span class="smsYes" style="display: none; margin-right: 274px;">
+                        <span class="smsYes" style="display: none;margin-left: -90px;">
                             <strong class="text-danger" > 인증되었습니다</strong>
                         </span>
                     </div>
@@ -747,8 +747,8 @@ function readURL(inputSelector, outputSelector) {
         <input type=text id="zipCode" value="" onClick="addressWindowOpen();" placeholder="00000" readOnly />
         <a class="btn btn-primary btn-sm" href='javascript:void(0);' onclick="addressWindowOpen();">우편번호 찾기</a>
         <div id="wrap" style="display: none;">
-          <a class="btn btn-primary" id="closeBtn" href='javascript:void(0);' onclick="addressWindowClose();"><i class="fa fa-remove"></i></a>
-          <div>
+<%--          <a class="btn btn-primary" id="closeBtn" href='javascript:void(0);' onclick="addressWindowClose();"><i class="fa fa-remove"></i></a>--%>
+          <div class="mt-3">
             <input type="text" id="searchAddr" value="" onkeydown="enterSearch();" placeholder="도로명주소, 건물명 또는 지번 입력"/>
             <a class="btn btn-primary btn-sm" href='javascript:void(0);' onclick="getAddr();">주소검색</a>
           </div>
@@ -839,7 +839,7 @@ function readURL(inputSelector, outputSelector) {
                     }
                   },
                   error : function (){
-                    alert('지도 인증 실패');
+                    // alert('지도 인증 실패');
                   }
                 })
               })

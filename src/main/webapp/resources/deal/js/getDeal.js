@@ -413,8 +413,13 @@ $(function () {
                 if (userId === '' || userId === null) {
 
 
-                        alert('로그인 후 이용해주세요')
+                    Swal.fire({
+                        icon: 'error',
+                        title: '로그인이 필요합니다',
+                        text: '로그인을 먼저 진행해주세요'
+                    }).then(()=>{
                         $('#loginModal').modal('show')
+                    })
                         return false
 
                 }else if (userId !== '') {

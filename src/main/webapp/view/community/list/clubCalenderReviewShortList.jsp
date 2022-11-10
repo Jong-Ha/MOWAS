@@ -517,7 +517,7 @@
 
                                 var offset = $(this).parents(".cardbox").find(".ShortVideo").offset();
 
-                                $('html').animate({scrollTop: offset.top - 80}, 0);
+                                $('html').animate({scrollTop: offset.top - 180}, 0);
 
 
                             })
@@ -954,7 +954,7 @@
 
             var offset = $(this).parents(".cardbox").find(".ShortVideo").offset();
 
-            $('html').animate({scrollTop: offset.top - 80}, 0);
+            $('html').animate({scrollTop: offset.top - 180}, 0);
 
 
         })

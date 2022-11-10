@@ -66,8 +66,13 @@
                 // alert($(".userId").val())
                 if (userId === '' || userId === null) {
 
-                        alert('로그인 후 이용해주세요')
+                    Swal.fire({
+                        icon: 'error',
+                        title: '로그인이 필요합니다',
+                        text: '로그인을 먼저 진행해주세요'
+                    }).then(()=>{
                         $('#loginModal').modal('show')
+                    })
                         return false
 
 
@@ -76,23 +81,23 @@
                     $("#addDeal").find(".newDeal").on('click', function () {
 
                         if ($("#dealTitle").val() === '') {
-                            alert("거래명은 필수입니다")
+                            Swal.fire("거래명은 필수입니다")
                             return;
                         }
                         if ($("#dealProduct").val() === '') {
-                            alert("제품명은 필수입니다")
+                            Swal.fire("제품명은 필수입니다")
                             return;
                         }
                         if ($("#price").val() === '') {
-                            alert("가격은 필수입니다")
+                            Swal.fire("가격은 필수입니다")
                             return;
                         }
                         if ($("#dealText").val() === '') {
-                            alert("상품 설명은 필수입니다")
+                            Swal.fire("상품 설명은 필수입니다")
                             return;
                         }
                         if ($("#file").val() === '') {
-                            alert("파일 첨부는 필수입니다")
+                            Swal.fire("파일 첨부는 필수입니다")
                             return;
                         }
 
@@ -204,7 +209,8 @@
                                     '<input type="hidden" name="dealBoardNum" class="dealBoardNum" value="' + item.dealBoardNum + '">' +
                                     '<input type="hidden" name="villCode" class="villCode" value="' + item.villCode + '">' +
                                     ' <div class="card h-100 shadow-lg">' +
-                                    ' <div class="card-footer" style=" border-bottom: 1px solid; display: flex; font-weight: bold">' + item.dealTitle +
+                                    ' <div class="card-footer" style=" border-bottom: 1px solid; display: flex; font-weight: bold">' +
+                                    '<div class="dealTitle text-truncate">'+item.dealTitle+'</div>'+
                                     '<p class="allFlex " style="position: absolute; right: 10px;">'
                                 if (item.dealStatus === 0) {
                                     html += '거래전'
@@ -284,26 +290,26 @@
             let checkprice = /^[0-9]+$/;
             $('#addDeal #dealTitle').on('keyup',function(){
                 if($(this).val().length>30){
-                    alert('거래명은 최대 20글자입니다')
+                    Swal.fire('거래명은 최대 20글자입니다')
                     $(this).val($(this).val().substring(0, 30));
                 }
             })
             $('#addDeal #productName').on('keyup',function(){
                 if($(this).val().length>30){
 
-                    alert('상품명은 최대 30글자입니다')
+                    Swal.fire('상품명은 최대 30글자입니다')
                     $(this).val($(this).val().substring(0, 30));
                 }
             })
             $('#addDeal #dealText').on('keyup',function(){
                 if($(this).val().length>300){
-                    alert('상품설명은 최대 300글자입니다')
+                    Swal.fire('상품설명은 최대 300글자입니다')
                     $(this).val($(this).val().substring(0, 300));
                 }
             })
             $('#addDeal #price').on('keyup',function(){
                 if(!checkprice.test($(this).val())){
-                    alert('숫자만 입력가능합니다.')
+                    Swal.fire('숫자만 입력가능합니다.')
                 }
             })
 
@@ -313,6 +319,11 @@
 
 
     <style>
+        .dealTitle {
+            width:280px;
+            text-align: left;
+        }
+
         .body {
             text-align: -webkit-center;
         }
@@ -772,7 +783,7 @@
                         <div class="card h-100 shadow-lg">
                             <div class="card-footer "
                                  style=" border-bottom: 1px solid; display: flex; font-weight: bold;  ">
-                                    <div class="text-truncate" style="width:280px;text-align: left">
+                                    <div class="dealTitle text-truncate">
                                             ${deal.dealTitle}
                                     </div>
                                 <p class="allFlex " style="position: absolute; right: 10px;">
@@ -928,9 +939,9 @@
                         </div>
                         <div class="input-group mb-3">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="dealText" name="dealText"
+                                <textarea class="form-control" id="dealText" name="dealText"
                                        placeholder="상품 설명"
-                                       required>
+                                          required></textarea>
                                 <label for="dealText">상품설명</label>
                             </div>
                         </div>

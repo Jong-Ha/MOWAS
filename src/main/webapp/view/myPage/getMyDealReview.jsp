@@ -55,32 +55,12 @@
         padding: 15px;
     }
 
-    .goods_wrapper .tit_month {
-        width: 100%;
-        height: 39px;
-        margin: -9px 0;
-        background: url(./bg_tit_month.gif) repeat-x;
-        text-align: center;
-    }
-
-    .goods_wrapper .tit_month h4 {
-        width: 110px;
-        height: 39px;
-        margin: 0 auto;
-        background: url(./bg_tit_month2.gif) no-repeat;
-        line-height: 39px;
-        font-family: Tahoma,Geneva,sans-serif;
-        font-size: 16px;
-        font-weight: normal;
-        color: #000;
-    }
-
     .goods_wrapper .goods_group .goods_item .goods_info {
         width: 40%;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: flex-start;
+        align-items: center;
         padding: 10px;
         margin: 10px;
         border: 1px solid rgb(118, 118, 118);
@@ -124,11 +104,11 @@
 <c:forEach var="list" items="${map.getMyDeal}">
     <div class="goods_group">
         <div class="goods_item">
-            <div class="goods_info">
+            <div class="goods_info" style="display: flex;">
                 <ul class="info">
-                    <li class="goods_name"><span>거래물품명 : ${list.productName}></span></li>
+                    <li class="goods_name"><span>거래물품명 : ${list.productName}</span></li>
                     <li><span>거래날짜 : </span>${list.dealEndDate}</li>
-                    <li><span>거래자 아이디 : </span>${list.dealId}</li>
+                    <li><span>거래자 아이디 : </span>${list.user.userId==user.userId?list.dealId:list.user.userId}</li>
                     <li><span>신뢰온도 : </span>${list.reviewPt}</li>
                     <li>
                         <span>구매후기</span><br />
@@ -140,7 +120,6 @@
     </div>
         </c:forEach>
 
-<hr>
 </div>
 </div>
     <jsp:include page="/layout/chatIcon.jsp"/>

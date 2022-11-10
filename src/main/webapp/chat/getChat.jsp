@@ -11,6 +11,13 @@
 
         $(function () {
 
+            $('#addVote').on('hide.bs.modal', () => {
+                $('.xdsoft_datetimepicker').css('display', 'hide')
+            })
+            $('#updateVote').on('hide.bs.modal', () => {
+                $('.xdsoft_datetimepicker').css('display', 'hide')
+            })
+
             const tooltip = new bootstrap.Tooltip($('.send-button'))
 
             $('.listDrop').click(function () {
@@ -21,11 +28,11 @@
 
 
             //투표합시당
-            $('.listVoteView').on('click', function () {
+            $('#listVote').off('show.bs.modal').on('show.bs.modal', function () {
                 $('#listVote .modal-content').load('/club/listVote/${roomId}')
             })
 
-            $('.display-container').parent().height($('#chatContainer').height()-$('.user-container').height()-21)
+            $('.display-container').parent().height($('#chatContainer').height() - $('.user-container').height() - 21)
 
         })
 
@@ -233,11 +240,13 @@
             margin-top: 37px;
             border-radius: 10px;
         }
-        .dropdown-box > ul > li > a{
+
+        .dropdown-box > ul > li > a {
             font-size: 0.9rem;
             color: black;
         }
-        .dropdown-box > ul > li > *{
+
+        .dropdown-box > ul > li > * {
             cursor: pointer;
         }
 
@@ -250,11 +259,12 @@
 
         <label for="nickname"></label>
 
-        <input type="text" class="form-control-plaintext" readonly value="${param.roomName}" style="font-size: 1.2em;" id="nickname">
+        <input type="text" class="form-control-plaintext" readonly value="${param.roomName}" style="font-size: 1.2em;"
+               id="nickname">
         <input type="hidden" id="chatterId" value="${user.userId}">
 
 
-        <div class="dropContainer" style=" width: 100%;display: flex;flex-direction: row-reverse;">
+        <div class="dropContainer" style="display: flex;flex-direction: row-reverse;">
 
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                  class="bi bi-three-dots listDrop" viewBox="0 0 16 16" style="font-size: 3rem;">
@@ -276,10 +286,6 @@
 
                         <li>
                             <a class="dealList dealCalenderlist">내 거래 일정 보기</a>
-                        </li>
-
-                        <li>
-                            <a class="dealList addReview">거래 확정</a>
                         </li>
 
                     </c:if>
@@ -323,7 +329,8 @@
 
 
     <div style="height: 653px;width: 100%">
-        <div class="display-container" style="width: 100%; height: 90%; overflow-y: scroll;background-color: #87cefa40;">
+        <div class="display-container"
+             style="width: 100%; height: 90%; overflow-y: scroll;background-color: #87cefa40;">
             <ul class="chatting-list">
 
             </ul>
@@ -334,7 +341,8 @@
             <textarea class="form-control chatting-input" id="chatting-input" style="resize: none;" rows="3"></textarea>
 
             <button class="send-button" style="aspect-ratio: 1" data-bs-title="전송" data-bs-toggle="tooltip">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16" style="font-size: 24px">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send"
+                     viewBox="0 0 16 16" style="font-size: 24px">
                     <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
                 </svg>
             </button>
@@ -374,11 +382,13 @@
 
                 <div class="input-group mb-3">
 
-                    <input type="button" class="form-control" data-bs-toggle="modal" data-bs-target="#location1" value="위치 선택">
+                    <input type="button" class="form-control" data-bs-toggle="modal" data-bs-target="#location1"
+                           value="위치 선택">
 
                     <div class="input-group input-group-sm mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-sm">위치 정보</span>
-                        <input type="text" id="dealLocation" class="form-control dealLocation" aria-label="위치 정보" aria-describedby="inputGroup-sizing-sm">
+                        <input type="text" id="dealLocation" class="form-control dealLocation" aria-label="위치 정보"
+                               aria-describedby="inputGroup-sizing-sm">
                     </div>
 
 
@@ -506,7 +516,7 @@
         <%--alert('${roomId}');--%>
         // return false
         //app.js에 있는 io상수를 socket상수에 담는다
-        chatSocket = io(socketServer+"/${chatNameSpace}",{
+        chatSocket = io(socketServer + "/${chatNameSpace}", {
             cors: {origin: '*'},
             query: {
                 roomId: '${roomId}',
@@ -546,7 +556,7 @@
 
                 $.each(msg, (index, item) => {
 
-                    if(item.imgCheck!==9) {
+                    if (item.imgCheck !== 9) {
                         const newItem = new LiModel(item.userId[0], item.msg, item.time, item.file, item.imgCheck, item.userImage);
                         console.log(item)
                         //makeLi를 실행한다.
@@ -577,7 +587,7 @@
             //server에서 data를 받음
             chatSocket.off('chatting').on("chatting", (newMsg) => {
 
-                if(newMsg.imgCheck!==9){
+                if (newMsg.imgCheck !== 9) {
                     const item = new LiModel(newMsg.userId, newMsg.msg, newMsg.time, newMsg.file, newMsg.imgCheck, newMsg.userImage);
                     console.log(newMsg)
                     item.makeLi();
@@ -587,9 +597,9 @@
 
             //clubNum 받기
             chatSocket.off('clubNum').on("clubNum", (clubNum) => {
-                $('.chatRoom .getClub').off('click').on('click',function(){
+                $('.chatRoom .getClub').off('click').on('click', function () {
                     // 원래창 이동 후 채팅창 닫기
-                    opener.location.href = '/club/getClub/'+clubNum
+                    opener.location.href = '/club/getClub/' + clubNum
                     self.close()
 
                     // 새창 열기
@@ -611,7 +621,7 @@
 
                 var dealBoardNum = $(".dealNum").val();
 
-                alert(dealBoardNum);
+                // alert(dealBoardNum);
 
                 $.ajax({
                     url: "/clubCal/json/getDealCalender",
@@ -624,23 +634,24 @@
                     success: function (JSONData, result) {
 
                         var deal = JSONData.deal
+                        if (deal.dealCalenderTitle == null) {
+                            Swal.fire('일정을 등록해주세요!')
+                        } else {
+                            var date = new Date(deal.dealDate);
 
-                        console.log("deal : " + deal);
-
-                        var date = new Date(deal.dealDate);
-
-                        const year = date.getFullYear();
-                        const month = ('0' + (date.getMonth() + 1)).slice(-2);
-                        const day = ('0' + date.getDate()).slice(-2);
-                        const dateStr = year + '-' + month + '-' + day;
+                            const year = date.getFullYear();
+                            const month = ('0' + (date.getMonth() + 1)).slice(-2);
+                            const day = ('0' + date.getDate()).slice(-2);
+                            const dateStr = year + '-' + month + '-' + day;
 
 
-                        $(".dealCalenderTitle2").val(deal.dealCalenderTitle);
-                        $(".dealDate2").val(dateStr);
-                        $(".dealLocation2").val(deal.dealLocation);
+                            $(".dealCalenderTitle2").val(deal.dealCalenderTitle);
+                            $(".dealDate2").val(dateStr);
+                            $(".dealLocation2").val(deal.dealLocation);
 
-                        const modal = new bootstrap.Modal('#exampleModal2', {})
-                        modal.show();
+                            const modal = new bootstrap.Modal('#exampleModal2', {})
+                            modal.show();
+                        }
 
                     }
                 })
@@ -648,7 +659,7 @@
 
             $(".deleteChat").off('click').on("click", () => {
 
-                const data = {roomId : '${roomId}'}
+                const data = {roomId: '${roomId}'}
 
                 chatSocket.off('deleteChat')
                 chatSocket.emit('deleteChat', data)
@@ -657,11 +668,11 @@
 
             })
 
-            chatSocket.off('deleteChat').on('deleteChat', ()=>{
+            chatSocket.off('deleteChat').on('deleteChat', () => {
                 Swal.fire({
-                    title : '상대방이 채팅방을 나갔습니다',
-                    icon : 'warning'
-                }).then(()=>{
+                    title: '상대방이 채팅방을 나갔습니다',
+                    icon: 'warning'
+                }).then(() => {
                     $('.chatRoom').load('/chat/chatList.jsp #chattingRoom')
                     chatSocket.disconnect()
                 })
@@ -682,7 +693,7 @@
                 var dealLocation = $(".dealLocation").val()
                 var userId = '${user.userId}';
 
-                alert(userId);
+                // alert(userId);
 
                 console.log(dealBoardNum)
                 console.log(dealCalenderTitle)
@@ -708,24 +719,22 @@
                         console.log(result);
                         // 성공시 해당 창을 닫고 부모창을 reload
                         Swal.fire({
-                            position: 'top-end',
                             icon: 'success',
-                            title: 'Your work has been saved',
+                            title: '일정이 등록되었습니다',
                             showConfirmButton: false,
                             timer: 1500
                         });
 
                         setTimeout(function () {
+                            $('#exampleModal').modal('hide')
                             window.open("/view/community/list/dealCalender.jsp", "거래 일정",
-                                "left=300, top=200, width=800px, height=800px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no")
-                            window.location.reload()
+                                "left=300, top=200, width=750px, height=500px, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no")
                         }, 2000);
                         //error 발생시 그냥 창을 닫음
                     }, error: function () {
                         Swal.fire({
-                            position: 'top-end',
                             icon: 'success',
-                            title: 'Your work has been saved',
+                            title: '에러 발생',
                             showConfirmButton: false,
                             timer: 1500
                         });
@@ -766,12 +775,10 @@
                     contentType: "application/json; charset=UTF-8",
                     success: function (JSONData, result) {
 
-                        console.log(result);
                         // 성공시 해당 창을 닫고 부모창을 reload
                         Swal.fire({
-                            position: 'top-end',
                             icon: 'success',
-                            title: 'Your work has been saved',
+                            title: '일정이 수정되었습니다',
                             showConfirmButton: false,
                             timer: 1500
                         });
@@ -784,7 +791,6 @@
                         //error 발생시 그냥 창을 닫음
                     }, error: function () {
                         Swal.fire({
-                            position: 'top-end',
                             icon: 'success',
                             title: 'Your work has been saved',
                             showConfirmButton: false,
@@ -864,7 +870,7 @@
     })
 
     function sendMessage(chatSocket) {
-        if (chatInput.value === ''||chatInput.value==='\n') {
+        if (chatInput.value === '' || chatInput.value === '\n') {
             chatInput.value = ''
             return
         }
@@ -921,7 +927,9 @@
             //catList에 li의 html을 append한다
             chatList.appendChild(li);
             //$('.chatting-list li:last-child').slideDown();
-            displayContainer.scrollTo(0, displayContainer.scrollHeight);
+            setTimeout(function () {
+                displayContainer.scrollTo(0, displayContainer.scrollHeight);
+            }, 100)
 
 
         }
@@ -931,8 +939,9 @@
 </html>
 <style>
     .message > img {
-        max-width: 600px;
-        max-height: 300px;
+        /*max-width: 600px;*/
+        /*max-height: 300px;*/
+        width: 100%;
         object-fit: scale-down;
         background-color: #FFFFFF;
         border-radius: 10px;
@@ -1025,6 +1034,7 @@
         margin: 0 5px;
         text-align: left;
         word-break: break-all;
+        max-width: 50%;
     }
 
     .chatRoom .time {

@@ -103,11 +103,29 @@
 <c:forEach var="list" items="${map.getMyReport}" begin="${(resultPage.currentPage-1)*10}" end="${resultPage.currentPage*10-1}">
     <c:set var="i" value="${ i+1 }" />
         <tr class="userTable">
-            <th scope="row">${i}</th>
-            <th scope="row">${list.reportId}</th>
-            <th scope="row">${list.reportedId}</th>
+            <th scope="row" class="text-center">${i}</th>
+            <th scope="row" class="text-center">${list.reportId}</th>
+            <th scope="row" class="text-center">${list.reportedId}</th>
 
-            <th scope="row">${list.boardCategory}</th>
+            <th scope="row" class="text-center">
+                <c:choose>
+                    <c:when test="${! empty list.boardCategory && list.boardCategory eq '1 '}">
+                        모임일정후기글
+                    </c:when>
+                    <c:when test="${! empty list.boardCategory && list.boardCategory eq '2 '}">
+                        모임일정후기쇼츠
+                    </c:when>
+                    <c:when test="${! empty list.boardCategory && list.boardCategory eq '3 '}">
+                        우리동네게시글
+                    </c:when>
+                    <c:when test="${! empty list.boardCategory && list.boardCategory eq '10'}">
+                        댓글
+                    </c:when>
+                    <c:when test="${! empty list.boardCategory && list.boardCategory eq '11'}">
+                        대댓글
+                    </c:when>
+                </c:choose>
+            </th>
 
 
             <c:if test="${list.reportBasis eq 1}">

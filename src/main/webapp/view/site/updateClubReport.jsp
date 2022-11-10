@@ -155,7 +155,7 @@
 
 <form class="form-horizontal" name="detailForm">
     <input type="hidden" name="clubReportNo" value="${clubReport.clubReportNo}">
-    <h7 class="h5 mb-0">모 임 번 호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn " style="background-color: #F8CD07;">알림</button></h7>
+    <h7 class="h5 mb-0">모 임 번 호</h7>
     <p class="text-danger mt-2 mb-3"><i class="bi bi-info-square-fill"></i>  ${club.clubNum}</p>
     <input type="hidden" name="clubNum" value="${clubReport.clubNum}">
     <h7 class="h5 mb-0">모 임 명</h7>

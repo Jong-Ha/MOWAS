@@ -157,7 +157,7 @@ public class MongoDbDaoImpl implements MongoDbDao{
 
             //채팅메시지
             query = new Query(new Criteria().andOperator(
-                    Criteria.where("userId").is("userId")
+                    Criteria.where("userId").is(userId)
             ));
             List<Map> msgs = mongoTemplate.find(query, Map.class, "msgs");
             for(Map<String, Object> msg : msgs){

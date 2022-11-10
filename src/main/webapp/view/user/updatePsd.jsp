@@ -96,9 +96,9 @@
         $(function (){
             $("#listupdatedUser").on("click", function (){
 
-                alert('userId의 값'+$("#getUserDerailuserId").val());
-                alert('psd의 값'+psd);
-                alert('ped의 값'+ped);
+                // alert('userId의 값'+$("#getUserDerailuserId").val());
+                // alert('psd의 값'+psd);
+                // alert('ped의 값'+ped);
 
                //  $("form").attr("method","POST").attr("action", "/user/listupdatedUser").submit();
                 $("#updatPsdForm").attr("method","POST").attr("action", "/user/listupdatedUser").submit();
@@ -244,7 +244,6 @@
         <div class="row g-5">
             <div class="col-md-4 d-flex justify-content-end"><h3 class="fw-bold mt-4">회원 정보 수정</h3></div>
             <div class="col-md-8 d-flex justify-content-center flex-column align-items-start">
-                <form action="">
                     <div class="col-lg-8">
                         <div class="card mb-4 border-0">
                             <div class="card-body">
@@ -465,6 +464,9 @@
                     </div>
 
 
+            </div>
+        </div>
+    </div>
 </form>
                 <div style="margin-bottom: 100px;">
                 </div>

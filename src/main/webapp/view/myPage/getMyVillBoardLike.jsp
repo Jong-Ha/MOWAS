@@ -233,6 +233,7 @@
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script type="text/javascript">
 
     function pagingSubmit() {
@@ -347,7 +348,6 @@
                                     <th scope="col">제목</th>
                                     <th scope="col">작성날짜</th>
                                     <th scope="col">동네 코드</th>
-                                    <th scope="col">내용</th>
                                     <th scope="col">좋아요수</th>
                                     <th scope="col">조회수</th>
                                 </tr>
@@ -359,11 +359,11 @@
                                 <c:set var="i" value="0"/>
                                 <c:forEach var="VilBoard" items="${map.villBoardLike}">
                                     <c:set var="i" value="${ i+1 }"/>
-                                    <tr class="getVillBoard">
-                                        <td style="width: 100px;">
+                                    <tr class="getVillBoard" style="vertical-align: middle">
+                                        <td style="width: 150px;aspect-ratio: 1;">
                                             <div>
                                                 <input hidden class="villBoardNum" value="${VilBoard.villBoardNum}">
-                                                <img src="/resurcess/${VilBoard.file[0].fileName}" style=" width: 100%; height: 100%;  object-fit: cover;">
+                                                <img src="/resources/${VilBoard.file[0].fileName}" style=" width: 100%; aspect-ratio: 1;  object-fit: cover;">
                                             </div>
                                         </td>
                                         <td>
@@ -379,11 +379,6 @@
                                         <td>
                                             <div>
                                                 ${VilBoard.villCode}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                ${VilBoard.villText}
                                             </div>
                                         </td>
                                         <td>

@@ -155,22 +155,19 @@ public class MyPageServiceImpl implements MyPageService {
         int villBoardTotal = myPageDao.getTotalVillBoard(map);
 
 
-        int j=0;
         for (VilBoard vilBoard : villBoardLike){
-            vilBoard.setFile(clubCalendarDao.getListFile(villBoardLike.get(j).getVillBoardNum(),
-                    villBoardLike.get(j).getBoardCategory()));
+            vilBoard.setFile(clubCalendarDao.getListFile(vilBoard.getVillBoardNum(),
+                    vilBoard.getBoardCategory()));
         }
 
         List<ClubCalendarReview> clubCalendarReviewLike = myPageDao.getMyclubCalendarReviewLike(map);
 
         int clubCalenderReviewTotal = myPageDao.getTotalClubCalender(map);
 
-        int i =0;
         for (ClubCalendarReview clubCalender : clubCalendarReviewLike){
 
-            clubCalender.setFile(clubCalendarDao.getListFile(clubCalendarReviewLike.get(i).getClubCalenderReviewNum(),
-                    clubCalendarReviewLike.get(i).getBoardCategory()));
-            i += 1;
+            clubCalender.setFile(clubCalendarDao.getListFile(clubCalender.getClubCalenderReviewNum(),
+                    clubCalender.getBoardCategory()));
 
         }
 

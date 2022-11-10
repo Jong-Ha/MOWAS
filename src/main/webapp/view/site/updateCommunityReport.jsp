@@ -153,13 +153,12 @@
                                 </div>
 
 <form class="form-horizontal" name="detailForm">
-    ${user.userId}
 
     <input type="hidden" name="adminId" value="${user.userId}">
     <%--관리자 아이디 : ${masterBoard.adminId} </br>--%>
     <input type="hidden" name="reportNo" value="${communityReport.reportNo}">
 
-        <h7 class="h5 mb-0">신고 받은 회원 ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn " style="background-color: #F8CD07;">알림</button></h7>
+        <h7 class="h5 mb-0">신고 받은 회원 ID</h7>
         <p class="text-danger mt-2 mb-3"><i class="bi bi-info-square-fill"></i> ${communityReport.reportedId}</p>
         <h7 class="h5 mb-0">게시글 종류</h7>
         <p class="text-danger mt-2 mb-3"><i class="bi bi-info-square-fill"></i> ${communityReport.boardCategory}</p>

@@ -341,9 +341,7 @@
                                     <th scope="col">이미지</th>
                                     <th scope="col">게시글 종류</th>
                                     <th scope="col">제목</th>
-                                    <th scope="col">내용</th>
                                     <th scope="col">등록 날짜</th>
-                                    <th scope="col">제품명</th>
                                     <th scope="col">금액</th>
                                     <th scope="col">상태</th>
                                 </tr>
@@ -355,12 +353,12 @@
                                 <c:forEach var="deal" items="${map}">
                                     <c:set var="i" value="${ i+1 }"/>
 
-                                        <tr class="getDeal">
+                                        <tr class="getDeal" style="vertical-align: middle">
 
                                             <td style="    width: 100px;">
                                                 <div>
                                                     <input hidden class="dealBoardNum" value="${deal.dealBoardNum}">
-                                                    <img src="/resources/${deal.files[0].fileName}"  style="width: 100%;height: 100%;object-fit: cover;">
+                                                    <img src="/resources/${deal.files[0].fileName}"  style="width: 100%;height: 75px;object-fit: cover;">
                                                 </div>
                                             </td>
 
@@ -378,19 +376,7 @@
 
                                             <td>
                                                 <div>
-                                                        ${deal.dealText}
-                                                </div>
-                                            </td>
-
-                                            <td>
-                                                <div>
                                                         ${deal.dealRegDate}
-                                                </div>
-                                            </td>
-
-                                            <td>
-                                                <div>
-                                                        ${deal.productName}
                                                 </div>
                                             </td>
 
@@ -402,9 +388,9 @@
 
                                             <td>
                                                 <div>
-                                                        ${deal.dealModeCheck == '1' ? '거래중' : '판매중 '}
-                                                        ${deal.dealModeCheck == '2' ? '거래중' : ' '}
-                                                        ${deal.dealModeCheck == '3' ? '거래중' : ' '}
+                                                        ${deal.dealStatus == '0' ? '거래전' : ''}
+                                                        ${deal.dealStatus == '1' ? '거래중' : ''}
+                                                        ${deal.dealStatus == '2' ? '거래완료' : ''}
                                                 </div>
                                             </td>
 

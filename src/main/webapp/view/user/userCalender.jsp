@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
          pageEncoding="EUC-KR" %>
-
+<html>
 <link rel="stylesheet" href="/resources/OpenSource/fullcalendar-5.11.3/lib/main.css">
 <script type="text/javascript"
         src="/resources/OpenSource/fullcalendar-5.11.3/lib/main.js"></script>
@@ -284,7 +284,6 @@
             Swal.fire({
                 icon: 'success',
                 title: '해당 페이지로 이동 하시겠습니까?',
-                text: '로그인후 사용해 주세요',
                 confirmButtonText: '이동',
                 showCancelButton: true,
                 CancelButtonText: '취소',
@@ -305,7 +304,6 @@
             Swal.fire({
                 icon: 'success',
                 title: '해당 페이지로 이동 하시겠습니까?',
-                text: '로그인후 사용해 주세요',
                 confirmButtonText: '이동',
                 showCancelButton: true,
                 CancelButtonText: '취소',
@@ -409,7 +407,6 @@
 
                     // 성공시 해당 창을 닫고 부모창을 reload
                     Swal.fire({
-                        position: 'top-end',
                         icon: 'success',
                         title: 'Your work has been saved',
                         showConfirmButton: false,
@@ -423,7 +420,6 @@
 
                 }, error: function () {
                     Swal.fire({
-                        position: 'top-end',
                         icon: 'success',
                         title: 'Your work has been saved',
                         showConfirmButton: false,
@@ -527,6 +523,7 @@
             <input name="clubCalenderReviewNum" class="clubCalenderReviewNum" hidden value="">
             <div class="modal-header">
                 <input hidden class="clubCalnderNum" value="">
+                <input hidden class="clubNum" value="">
                 <h1 class="modal-title fs-5" id="exampleModalLabel1"> 모임 일정</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
@@ -695,7 +692,7 @@
 
 </div>
 
-<%-- 리뷰 모달창 만들기 헤헷
+<%-- 리뷰 모달창 만들기 헤헷 --%>
 
 <div class="modal fade" id="addReview" tabindex="-1" aria-labelledby="addReviewLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -708,7 +705,7 @@
             <div class="modal-body">
                     <input hidden name="dealBoardNum" value="${map.dealBoardNum}" class="dealBoardNum">
                     <input hidden name="dealId" value="${map.dealId}" class="dealId">
-                    <%--                                <input type="hidden" name="deleteFileName" value="${deal.clubImage}" disabled>--%>
+                    <input type="hidden" name="deleteFileName" value="${deal.clubImage}" disabled>
                     <div class="input-group mb-3">
                         <div class="form-floating">
                             ${deal.dealTitle}
@@ -750,8 +747,6 @@
             </form>
         </div>
     </div>
-
-
 </div>
 
 <%--상세조회 지도--%>

@@ -36,6 +36,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script type="text/javascript">
     $(function (){
         $("#updateClick").on("click" , function (){
@@ -46,13 +47,21 @@
     $(function (){
         $("#userOut").on("click" , function (){
             var userId = $(".myPageUserId").val();
-            alert('유저아이디'+userId);
-            var result =confirm('정말로 탈퇴하시겠습니까?');
-            if(result) {
-                alert('회원 탈퇴 되었습니다');
-                self.location = "/myPage/userOut?userId="+userId;
-
-            }
+            Swal.fire({
+                title: '정말로 탈퇴하시겠습니까?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '네, 탈퇴합니다',
+                cancelButtonText: '아니요'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire('회원 탈퇴 되었습니다').then(()=>{
+                        self.location = "/myPage/userOut?userId="+userId;
+                    })
+                }
+            })
         });
         // $(".bbb").on("click",function (){
         //     var userPhoto = $(".userPhoto").val();

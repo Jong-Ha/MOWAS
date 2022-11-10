@@ -388,7 +388,6 @@
                                 <table class="table project-table table-centered table-nowrap table-hover table-striped">
                                     <thead>
                                     <tr>
-                                        <th scope="col">게시글 번호</th>
                                         <th scope="col">게시글 카테고리</th>
                                         <th scope="col">댓글 내용</th>
                                         <th scope="col">작성날짜</th>
@@ -400,11 +399,6 @@
                                     <c:forEach var="list" items="${map.myComment}">
                                         <c:set var="i" value="${ i+1 }"/>
                                         <tr>
-                                            <td>
-                                                <div>
-                                                        ${list.boardNum}
-                                                </div>
-                                            </td>
                                             <td>
                                                 <div>
                                                         ${list.boardCategory == '1 ' ? '후기글' : '우리동네 게시글'}

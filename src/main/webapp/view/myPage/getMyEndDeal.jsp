@@ -58,26 +58,6 @@
         padding: 15px;
     }
 
-    .goods_wrapper .tit_month {
-        width: 100%;
-        height: 39px;
-        margin: -9px 0;
-        background: url(./bg_tit_month.gif) repeat-x;
-        text-align: center;
-    }
-
-    .goods_wrapper .tit_month h4 {
-        width: 110px;
-        height: 39px;
-        margin: 0 auto;
-        background: url(./bg_tit_month2.gif) no-repeat;
-        line-height: 39px;
-        font-family: Tahoma,Geneva,sans-serif;
-        font-size: 16px;
-        font-weight: normal;
-        color: #000;
-    }
-
     .goods_wrapper .goods_group .goods_item {
         display: flex;
         justify-content: flex-start;
@@ -123,27 +103,23 @@
     <input class="searchInput" type="text" name="search" id="search" />
 </div>
 -->
-<hr/>
 
 
 
 
-    <div class="goods_wrapper">
-        <div class="tit_month">
-
-        </div>
+    <div class="goods_wrapper" style="border: 1px solid #CCCCCC; border-radius: 5px;">
         <c:set var="i" value="0" />
         <c:forEach var="list" items="${map.getMyDeal}">
-        <div class="goods_group">
+        <div class="goods_group" style="border-bottom: 1px solid #CCCCCC;">
             <div class="goods_item">
                 <img src="/resources/${list.files[i].fileName}">
-                <div class="goods_info">
+                <div class="goods_info" style="text-align: left;">
                     <ul class="info">
                         <li class="goods_name">거래물품명 : <span>${list.productName}</span></li>
                         <li><span>거래날짜 : </span> ${list.dealEndDate}</li>
                         <li><span>가격 : </span>${list.price}원</li>
 
-                            <li><span>거래자 아이디 : </span>${list.dealId}</li>
+                            <li><span>거래자 아이디 : </span>${list.user.userId==user.userId?list.dealId:list.user.userId}</li>
 
                     </ul>
                 </div>
@@ -153,7 +129,6 @@
         </c:forEach>
     </div>
  <br/>
-<hr>
 
 
 
@@ -162,7 +137,6 @@
 </div>
 
 
-</div>
 
 
 <div style="margin-bottom: 100px;">

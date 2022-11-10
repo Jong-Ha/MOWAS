@@ -272,6 +272,7 @@
             review=#{review},
             review_pt=#{reviewPt},
             deal_status='2',
+deal_end_date = SYSDATE
 
         </set>
         <where>deal_board_num=#{dealBoardNum}</where>
@@ -280,13 +281,7 @@
     <select id="getReviewPt" parameterType="deal" resultType="int">
         select NVL(AVG(review_pt), 0)
         from deal
-<if test="boardCategory=='08'">
-        where user_id = #{user.userId}
-</if>
-        <if test="boardCategory=='09'">
-            where deal_id = #{dealId:VARCHAR}
-        </if>
-
+        where (user_id = #{user.userId} AND board_category = '08') OR (deal_id = #{user.userId} AND board_category = '09')
     </select>
 
     <update id="addDealCalender" parameterType="deal">
@@ -297,6 +292,7 @@
             ,deal_location =#{dealLocation}
             ,deal_id = #{dealId}
             ,deal_status = '1'
+            ,DEAL_MODE_CHECK = '1'
         </set>
         WHERE deal_board_num = #{dealBoardNum}
     </update>
@@ -322,6 +318,7 @@
         where deal_id = '${user}'
            or user_id = '${user}'
             and DEAL_MODE_CHECK = '1'
+AND deal_status = '1'
     </select>
 
     <update id="dealUpdateCalender" parameterType="deal">

@@ -348,7 +348,7 @@
                                     <th scope="col">이미지</th>
                                     <th scope="col">제목</th>
                                     <th scope="col">작성날짜</th>
-                                    <th scope="col">동네 코드</th>
+                                    <th scope="col">게시글 종류</th>
                                     <th scope="col">내용</th>
                                     <th scope="col">좋아요수</th>
                                     <th scope="col">조회수</th>
@@ -361,12 +361,23 @@
                                 <c:forEach var="list" items="${map.clubCalendarReviewLike}">
                                     <c:set var="i" value="${ i+1 }"/>
                                     <c:if test="${list.likeCheck == 'y'}">
-                                        <tr class="getClubCalender">
+                                        <tr class="getClubCalender" style="vertical-align: middle">
                                             <td style="width: 100px;">
                                                 <div>
                                                     <input hidden class="clubCalenderNum" value="${list.clubCalenderReviewNum}">
                                                     <input hidden class="boardCategory" value="${list.boardCategory}">
-                                                    <img src="/resources/${list.file[0].fileName}" style=" width: 100%; height: 100%;  object-fit: cover;">
+                                                    <c:if test="${list.boardCategory == '1'}">
+                                                        <img class="clubImage"
+                                                             src="/resources/${list.file[0].fileName}"
+                                                             alt="모임이미지"
+                                                             style="width: 100%;aspect-ratio: 1;object-fit: cover;">
+                                                    </c:if>
+                                                    <c:if test="${list.boardCategory == '2'}">
+                                                        <video class="clubImage" alt="모임이미지"
+                                                               style="width: 100%;aspect-ratio: 1;object-fit: cover;">
+                                                            <source src="/resources/${list.file[0].fileName}">
+                                                        </video>
+                                                    </c:if>
                                                 </div>
                                             </td>
                                             <td>

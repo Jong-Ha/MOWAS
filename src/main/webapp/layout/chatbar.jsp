@@ -121,13 +121,13 @@
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg chatBar" style="display: flex;justify-content: space-between;width: 100%;">
+<nav class="navbar navbar-expand-lg chatBar" style="display: flex;justify-content: space-between;width: 100%;flex-wrap: nowrap;">
 
-        <div class="underline yellow onebyone">1대1 채팅</div>
+        <div class="underline yellow onebyone text-truncate">1대1 채팅</div>
 
-        <div class="underline yellow dealChat">거래 채팅</div>
+        <div class="underline yellow dealChat text-truncate">거래 채팅</div>
 
-        <div class="underline yellow clubChat">모임 채팅</div>
+        <div class="underline yellow clubChat text-truncate">모임 채팅</div>
 
 </nav>
 </body>

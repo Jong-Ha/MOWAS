@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -231,14 +232,14 @@
                         }
                     },
                     error: function () {
-                        alert('비밀번호유효성검사실패');
+                        // alert('비밀번호유효성검사실패');
                     }
                 });
             })
 
         })
 
-        <!--관심목록 스크립트 시작-->
+        // 관심목록 스크립트 시작
         $(function () {
             var userId = $("#updateUserId").val();
 
@@ -256,10 +257,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비저장성공');
+                            // alert('디비저장성공');
                         },
                         error: function () {
-                            alert('디비저장실패');
+                            // alert('디비저장실패');
                         }
                     });
                 } else {
@@ -275,10 +276,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비삭제성공');
+                            // alert('디비삭제성공');
                         },
                         error: function () {
-                            alert('디비삭제실패');
+                            // alert('디비삭제실패');
                         }
                     });
                 }
@@ -298,10 +299,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비저장성공');
+                            // alert('디비저장성공');
                         },
                         error: function () {
-                            alert('디비저장실패');
+                            // alert('디비저장실패');
                         }
                     });
                 } else {
@@ -317,10 +318,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비삭제성공');
+                            // alert('디비삭제성공');
                         },
                         error: function () {
-                            alert('디비삭제실패');
+                            // alert('디비삭제실패');
                         }
                     });
                 }
@@ -339,10 +340,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비저장성공');
+                            // alert('디비저장성공');
                         },
                         error: function () {
-                            alert('디비저장실패');
+                            // alert('디비저장실패');
                         }
                     });
                 } else {
@@ -358,10 +359,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비삭제성공');
+                            // alert('디비삭제성공');
                         },
                         error: function () {
-                            alert('디비삭제실패');
+                            // alert('디비삭제실패');
                         }
                     });
                 }
@@ -381,10 +382,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비저장성공');
+                            // alert('디비저장성공');
                         },
                         error: function () {
-                            alert('디비저장실패');
+                            // alert('디비저장실패');
                         }
                     });
                 } else {
@@ -400,10 +401,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비삭제성공');
+                            // alert('디비삭제성공');
                         },
                         error: function () {
-                            alert('디비삭제실패');
+                            // alert('디비삭제실패');
                         }
                     });
                 }
@@ -423,10 +424,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비저장성공');
+                            // alert('디비저장성공');
                         },
                         error: function () {
-                            alert('디비저장실패');
+                            // alert('디비저장실패');
                         }
                     });
                 } else {
@@ -442,10 +443,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비삭제성공');
+                            // alert('디비삭제성공');
                         },
                         error: function () {
-                            alert('디비삭제실패');
+                            // alert('디비삭제실패');
                         }
                     });
                 }
@@ -465,10 +466,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비저장성공');
+                            // alert('디비저장성공');
                         },
                         error: function () {
-                            alert('디비저장실패');
+                            // alert('디비저장실패');
                         }
                     });
                 } else {
@@ -484,10 +485,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비삭제성공');
+                            // alert('디비삭제성공');
                         },
                         error: function () {
-                            alert('디비삭제실패');
+                            // alert('디비삭제실패');
                         }
                     });
                 }
@@ -507,10 +508,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비저장성공');
+                            // alert('디비저장성공');
                         },
                         error: function () {
-                            alert('디비저장실패');
+                            // alert('디비저장실패');
                         }
                     });
                 } else {
@@ -526,10 +527,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비삭제성공');
+                            // alert('디비삭제성공');
                         },
                         error: function () {
-                            alert('디비삭제실패');
+                            // alert('디비삭제실패');
                         }
                     });
                 }
@@ -549,10 +550,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비저장성공');
+                            // alert('디비저장성공');
                         },
                         error: function () {
-                            alert('디비저장실패');
+                            // alert('디비저장실패');
                         }
                     });
                 } else {
@@ -568,10 +569,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비삭제성공');
+                            // alert('디비삭제성공');
                         },
                         error: function () {
-                            alert('디비삭제실패');
+                            // alert('디비삭제실패');
                         }
                     });
                 }
@@ -591,10 +592,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비저장성공');
+                            // alert('디비저장성공');
                         },
                         error: function () {
-                            alert('디비저장실패');
+                            // alert('디비저장실패');
                         }
                     });
                 } else {
@@ -610,10 +611,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비삭제성공');
+                            // alert('디비삭제성공');
                         },
                         error: function () {
-                            alert('디비삭제실패');
+                            // alert('디비삭제실패');
                         }
                     });
                 }
@@ -633,10 +634,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비저장성공');
+                            // alert('디비저장성공');
                         },
                         error: function () {
-                            alert('디비저장실패');
+                            // alert('디비저장실패');
                         }
                     });
                 } else {
@@ -652,10 +653,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비삭제성공');
+                            // alert('디비삭제성공');
                         },
                         error: function () {
-                            alert('디비삭제실패');
+                            // alert('디비삭제실패');
                         }
                     });
                 }
@@ -675,10 +676,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비저장성공');
+                            // alert('디비저장성공');
                         },
                         error: function () {
-                            alert('디비저장실패');
+                            // alert('디비저장실패');
                         }
                     });
                 } else {
@@ -694,10 +695,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비삭제성공');
+                            // alert('디비삭제성공');
                         },
                         error: function () {
-                            alert('디비삭제실패');
+                            // alert('디비삭제실패');
                         }
                     });
                 }
@@ -717,10 +718,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비저장성공');
+                            // alert('디비저장성공');
                         },
                         error: function () {
-                            alert('디비저장실패');
+                            // alert('디비저장실패');
                         }
                     });
                 } else {
@@ -736,10 +737,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비삭제성공');
+                            // alert('디비삭제성공');
                         },
                         error: function () {
-                            alert('디비삭제실패');
+                            // alert('디비삭제실패');
                         }
                     });
                 }
@@ -759,10 +760,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비저장성공');
+                            // alert('디비저장성공');
                         },
                         error: function () {
-                            alert('디비저장실패');
+                            // alert('디비저장실패');
                         }
                     });
                 } else {
@@ -778,10 +779,10 @@
                         contentType: "application/json",
                         dataType: "json",
                         success: function () {
-                            alert('디비삭제성공');
+                            // alert('디비삭제성공');
                         },
                         error: function () {
-                            alert('디비삭제실패');
+                            // alert('디비삭제실패');
                         }
                     });
                 }
@@ -1090,43 +1091,108 @@
 
                     <div class="interList">
                         <label>
-                            <input type="checkbox" id="list01" name="interList" value="01"> 독서
+                            <c:if test="${fn:indexOf(map.interList,'독서')==-1}">
+                                <input type="checkbox" id="list01" name="interList" value="01"> 독서
+                            </c:if>
+                            <c:if test="${fn:indexOf(map.interList,'독서')!=-1}">
+                                <input type="checkbox" id="list01" name="interList" checked value="01"> 독서
+                            </c:if>
                         </label>
                         <label>
-                            <input type="checkbox" id="list02" name="interList" value="02"> 자동차
+                            <c:if test="${fn:indexOf(map.interList,'자동차')==-1}">
+                                <input type="checkbox" id="list02" name="interList" value="02"> 자동차
+                            </c:if>
+                            <c:if test="${fn:indexOf(map.interList,'자동차')!=-1}">
+                                <input type="checkbox" id="list02" name="interList" checked value="02"> 자동차
+                            </c:if>
                         </label>
                         <label>
-                            <input type="checkbox" id="list03" name="interList" value="03"> 반려동물
+                            <c:if test="${fn:indexOf(map.interList,'반려동물')==-1}">
+                                <input type="checkbox" id="list03" name="interList" value="03"> 반려동물
+                            </c:if>
+                            <c:if test="${fn:indexOf(map.interList,'반려동물')!=-1}">
+                                <input type="checkbox" id="list03" name="interList" checked value="03"> 반려동물
+                            </c:if>
                         </label>
                         <label>
-                            <input type="checkbox" id="list04" name="interList" value="04"> 공예
+                            <c:if test="${fn:indexOf(map.interList,'공예')==-1}">
+                                <input type="checkbox" id="list04" name="interList" value="04"> 공예
+                            </c:if>
+                            <c:if test="${fn:indexOf(map.interList,'공예')!=-1}">
+                                <input type="checkbox" id="list04" name="interList" checked value="04"> 공예
+                            </c:if>
                         </label>
                         <label>
-                            <input type="checkbox" id="list05" name="interList" value="05"> 스포츠
+                            <c:if test="${fn:indexOf(map.interList,'스포츠')==-1}">
+                                <input type="checkbox" id="list05" name="interList" value="05"> 스포츠
+                            </c:if>
+                            <c:if test="${fn:indexOf(map.interList,'스포츠')!=-1}">
+                                <input type="checkbox" id="list05" name="interList" checked value="05"> 스포츠
+                            </c:if>
                         </label>
                         <label>
-                            <input type="checkbox" id="list06" name="interList" value="06"> 댄스
+                            <c:if test="${fn:indexOf(map.interList,'댄스')==-1}">
+                                <input type="checkbox" id="list06" name="interList" value="06"> 댄스
+                            </c:if>
+                            <c:if test="${fn:indexOf(map.interList,'댄스')!=-1}">
+                                <input type="checkbox" id="list06" name="interList" checked value="06"> 댄스
+                            </c:if>
                         </label>
                         <label>
-                            <input type="checkbox" id="list07" name="interList" value="07"> 여행
+                            <c:if test="${fn:indexOf(map.interList,'여행')==-1}">
+                                <input type="checkbox" id="list07" name="interList" value="07"> 여행
+                            </c:if>
+                            <c:if test="${fn:indexOf(map.interList,'여행')!=-1}">
+                                <input type="checkbox" id="list07" name="interList" checked value="07"> 여행
+                            </c:if>
                         </label>
                         <label>
-                            <input type="checkbox" id="list08" name="interList" value="08"> 사진
+                            <c:if test="${fn:indexOf(map.interList,'사진')==-1}">
+                                <input type="checkbox" id="list08" name="interList" value="08"> 사진
+                            </c:if>
+                            <c:if test="${fn:indexOf(map.interList,'사진')!=-1}">
+                                <input type="checkbox" id="list08" name="interList" checked value="08"> 사진
+                            </c:if>
                         </label>
                         <label>
-                            <input type="checkbox" id="list09" name="interList" value="09"> 육아
+                            <c:if test="${fn:indexOf(map.interList,'육아')==-1}">
+                                <input type="checkbox" id="list09" name="interList" value="09"> 육아
+                            </c:if>
+                            <c:if test="${fn:indexOf(map.interList,'육아')!=-1}">
+                                <input type="checkbox" id="list09" name="interList" checked value="09"> 육아
+                            </c:if>
                         </label>
                         <label>
-                            <input type="checkbox" id="list10" name="interList" value="10"> 공연
+                            <c:if test="${fn:indexOf(map.interList,'공연')==-1}">
+                                <input type="checkbox" id="list10" name="interList" value="10"> 공연
+                            </c:if>
+                            <c:if test="${fn:indexOf(map.interList,'공연')!=-1}">
+                                <input type="checkbox" id="list10" name="interList" checked value="10"> 공연
+                            </c:if>
                         </label>
                         <label>
-                            <input type="checkbox" id="list11" name="interList" value="11"> 음악
+                            <c:if test="${fn:indexOf(map.interList,'음악')==-1}">
+                                <input type="checkbox" id="list11" name="interList" value="11"> 음악
+                            </c:if>
+                            <c:if test="${fn:indexOf(map.interList,'음악')!=-1}">
+                                <input type="checkbox" id="list11" name="interList" checked value="11"> 음악
+                            </c:if>
                         </label>
                         <label>
-                            <input type="checkbox" id="list12" name="interList" value="12"> 게임
+                            <c:if test="${fn:indexOf(map.interList,'게임')==-1}">
+                                <input type="checkbox" id="list12" name="interList" value="12"> 게임
+                            </c:if>
+                            <c:if test="${fn:indexOf(map.interList,'게임')!=-1}">
+                                <input type="checkbox" id="list12" name="interList" checked value="12"> 게임
+                            </c:if>
                         </label>
                         <label>
-                            <input type="checkbox" id="list13" name="interList" value="13"> 그외
+                            <c:if test="${fn:indexOf(map.interList,'그외')==-1}">
+                                <input type="checkbox" id="list13" name="interList" value="13"> 그외
+                            </c:if>
+                            <c:if test="${fn:indexOf(map.interList,'그외')!=-1}">
+                                <input type="checkbox" id="list13" name="interList" checked value="13"> 그외
+                            </c:if>
                         </label>
                     </div>
                 </div>

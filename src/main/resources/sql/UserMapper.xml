@@ -232,7 +232,8 @@
     <update id="updatePsd" parameterType="user"  >
         UPDATE users
          <set>
-             psd=#{psd}
+             psd=#{psd},
+user_status = '2'
          </set>
          WHERE user_id=#{userId}
     </update>

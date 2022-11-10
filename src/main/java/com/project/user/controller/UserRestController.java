@@ -165,6 +165,10 @@ public class UserRestController {
                 model.addAttribute("user", user);
                 result = true;
                 System.out.println("session 값 : " + session);
+                if(!dbVO.getUserStatus().equals("1")){
+                    map.put("cannot","cannot");
+                    session.removeAttribute("user");
+                }
                 map.put("result", result);
                 map.put("uri", uri);
                 return map;

@@ -79,7 +79,15 @@
                     } else {
                         $.removeCookie('keepLogin', {path: '/'})
                     }
-                    $(self.location).attr("href", map.uri)
+                    if(map.cannot=='cannot'){
+                        Swal.fire(
+                            "로그인 실패",
+                            "탈퇴 혹은 정지된 계정입니다.",
+                            "error"
+                        );
+                    }else {
+                        $(self.location).attr("href", map.uri)
+                    }
                 } else {
                     Swal.fire(
                         "아이디, 비밀번호를 확인하세요",
